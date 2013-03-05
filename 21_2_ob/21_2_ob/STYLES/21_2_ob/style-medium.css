@@ -1,0 +1,388 @@
+/* CSS Document */
+
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #383838;
+}
+body {
+	background-color: #767678;
+	background-image: url(../imgs/bg-main.jpg);
+	background-repeat: repeat-x;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+a:link {
+	color: #383838;
+}
+a:visited {
+	color: #383838;
+}
+a:hover {
+	color: #383838;
+}
+a:active {
+	color: #383838;
+}
+.profile-h1 {
+	font-size: 14px;
+}
+.headlines {color: #004182}
+a.headlines {color: #004182}
+.footer {
+	font-size: 11px;
+	
+	color: #999999;
+	font-weight: normal;
+}
+a.footer {
+	
+	color: #999999;
+	font-weight: normal;
+}
+.footer #countries {
+	font-size: 12px;
+	color: #383838;
+}
+.profile {font-size: 11px}
+a.profile {font-size: 11px; text-decoration:underline;}
+
+.caption 
+{
+    font-size: 11px;
+    font-weight: bold;
+    
+}
+a.caption 
+{
+    font-size: 11px;
+    font-weight: bold;
+}
+a.lang 
+{
+    text-decoration:none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+a.lang2 { text-decoration:none; color:#999999;}
+.tiny {font-size: 10px; text-decoration:none; font-weight: bold;}
+
+.slide-show-text {
+	color: #ffffff;
+	font-size: 13px;
+}
+.slide-show-head {color: #FFFFFF; font-size: 16px; }
+
+.pagehdr {
+	font-size: 20px;
+	color: #383838;
+	line-height: 28px;
+	font-weight: bold;
+	}
+
+.pageSubhdr {
+	font-size: 14px;
+	font-weight:bold;
+	margin-bottom:-12px;
+	}
+		
+	a.pageSubhdr:link {
+	color:#1d407b;
+	text-decoration:none;
+	}
+	a.pageSubhdr:active {
+	color:#1d407b;
+	text-decoration:none;
+	}
+	a.pageSubhdr:visited {
+	color:#1d407b;
+	text-decoration:none;
+	}
+	a.pageSubhdr:hover {
+	color:#1d407b;
+	text-decoration:underline;
+	}
+	
+.subnav {
+	font-size: 12px;
+	color: #ae3f1f;
+	line-height: 19px;
+}		
+
+.subnavblue {
+	font-size: 12px;
+	color: #1d407b;
+	line-height: 19px;
+}	
+
+A.subnav:LINK {
+	color: #1d407b;
+	text-decoration:underline;
+}
+
+A.subnav:VISITED {
+	color : #1d407b;
+	text-decoration:underline;
+}
+
+A.subnav:HOVER {
+	color : #ae3f1f;
+	text-decoration:underline;
+}
+
+.subnav #section {
+	font-size: 14px;
+	color: #1d407b;
+	line-height: 34px;
+	text-transform:uppercase;
+}		
+
+.subnav #section:HOVER {
+	color : #ae3f1f;
+}		
+
+.mailinglist {
+	font-size:11px;
+	font-weight: bold;
+	color: #666666;
+	line-height:normal;
+}
+
+.videotitle {
+	font-size:15px;
+	color:#98351c;
+	font-weight:bold;
+	text-decoration:underline;	
+}
+
+A.videotitle:LINK {
+	color:#98351c;
+	text-decoration:underline;	
+}
+
+A.videotitle:VISITED {
+	color:#98351c;
+	text-decoration:underline;	
+}
+
+A.videotitle:HOVER {
+	color:#98351c;
+	text-decoration:underline;	
+}
+
+.data
+{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #383838;
+}
+.goButton1 {
+    cursor: hand;
+    background-image: url(../imgs/btn-go1.gif);
+    border: 0px;
+    width: 28px;
+    height: 18px;
+}
+.goButton2 {
+    cursor: pointer;
+    background-image: url(../imgs/btn-go2.gif);
+    border: 0px;
+    width: 28px;
+    height: 18px;
+}
+.goButton3 {
+    cursor: hand;
+    background-image: url(../imgs/btn-go3.gif);
+    border: 0px;
+    width: 28px;
+    height: 18px;
+}
+.goButton4 {
+    cursor: hand;
+    background-image: url(../imgs/btn-go4.gif);
+    border: 0px;
+    width: 28px;
+    height: 18px;
+}
+
+.pledgeButton1 {
+    cursor: hand;
+    background-image: url(../imgs/btn-submit1.gif);
+    border: 0px;
+    width: 48px;
+    height: 18px;
+}
+
+.pledgeButton3 {
+    cursor: hand;
+    background-image: url(../imgs/btn-submit3.gif);
+    border: 0px;
+    width: 48px;
+    height: 18px;
+}
+
+.returnToOrbisLink
+{
+    color: #ae3f1f;
+    font-size: 14px;
+    
+}
+A.returnToOrbisLink:LINK {
+	color:#ae3f1f;
+	text-decoration:none;	
+	font-size: 14px;
+}
+
+A.returnToOrbisLink:VISITED {
+	color:#ae3f1f;
+	text-decoration:none;	
+	font-size: 14px;
+}
+
+A.returnToOrbisLink:HOVER {
+	color:#ae3f1f;
+	text-decoration:underline;	
+	font-size: 14px;
+}
+
+.sitemap1
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 14px;
+    font-weight:bold;
+}
+A.sitemap1:LINK
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 14px;
+    font-weight:bold;
+}
+A.sitemap1:VISITED
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 14px;
+    font-weight:bold;
+}
+A.sitemap1:HOVER
+{
+    color: #ae3f1f;
+    text-decoration:underline;
+    font-size: 14px;
+    font-weight:bold;
+}
+.sitemap2
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:bold;
+}
+A.sitemap2:LINK
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:bold;
+}
+A.sitemap2:VISITED
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:bold;
+}
+A.sitemap2:HOVER
+{
+    color: #ae3f1f;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:bold;
+}
+.sitemap3
+{
+    color: #1d407b;
+    text-decoration:none;
+    font-size: 12px;
+    font-weight:normal;
+}
+A.sitemap3:LINK
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:normal;
+}
+A.sitemap3:VISITED
+{
+    color: #1d407b;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:normal;
+}
+A.sitemap3:HOVER
+{
+    color: #ae3f1f;
+    text-decoration:underline;
+    font-size: 12px;
+    font-weight:normal;
+}
+
+.TasterHeader {
+	font-size: 14px;
+	font-weight:bold;
+	margin-bottom:-12px;
+	}
+		
+	a.TasterHeader:link {
+	color:#1d407b;
+	text-decoration:none;
+	}
+	a.TasterHeader:active {
+	color:#1d407b;
+	text-decoration:none;
+	}
+	a.TasterHeader:visited {
+	color:#1d407b;
+	text-decoration:none;
+	}
+	a.TasterHeader:hover {
+	color:#1d407b;
+	text-decoration:underline;
+	}
+	
+.officefooterlinks
+{
+    font-size: 12px;
+	color: #1d407b;
+	line-height: 19px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height:  normal;
+}
+A.officefooterlinks:LINK {
+	color: #1d407b;
+	text-decoration:underline;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height:  normal;
+}
+
+A.officefooterlinks:VISITED {
+	color : #1d407b;
+	text-decoration:underline;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height:  normal;
+}
+
+A.officefooterlinks:HOVER {
+	color : #ae3f1f;
+	text-decoration:underline;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height:  normal;
+}

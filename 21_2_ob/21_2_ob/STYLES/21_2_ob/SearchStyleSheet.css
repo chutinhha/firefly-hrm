@@ -1,0 +1,49 @@
+.srch_header_title {
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: small;
+		font-weight: bold;
+		color: White;
+		background-color: #336699;
+		text-align: left;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		padding-left: 8px;
+	}
+	.srch_header_parameters {
+		font-family: verdana, arial, helvetica, sans-serif;
+		padding: 2px;
+	}
+	.srch_header_result_back {
+		background-color: #EEEEEE;
+		padding: 2px;
+	}
+	.srch_header_results {
+		font-family: verdana, arial, helvetica, sans-serif;
+	}
+	.srch_title {
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: x-small;
+		font-weight: bold;
+	}
+	.srch_abstract {
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: xx-small;
+		padding-right: 10px;
+		color:black;
+	}
+	.srch_url {
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: xx-small;
+		font-style: italic;
+		color:#808080;
+	}
+	.srch_relev {
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: x-small;
+		color:black;
+	}
+	.srch_date {
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: xx-small;
+		color:#808080;
+	}
