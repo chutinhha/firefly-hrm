@@ -11,38 +11,48 @@ namespace SP2010VisualWebPart.Login
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Remove("Account");
         }
-
+        public Common com = new Common();
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            string connetionString = null;
-            SqlConnection cnn ;
-            connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
-            cnn = new SqlConnection(connetionString);
-            try
+            if (TextBox1.Text.Trim() == "")
             {
-                cnn.Open();
-                string sql = @"SELECT distinct UserName, Password, Rank FROM HumanResources.Users WHERE UserName='"+TextBox1.Text.Trim()
-                    +"' and Password='"+TextBox2.Text.Trim()+"'";
-                SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-                // Tạo DataSet
-                DataSet ds = new DataSet();
-                // Lấp đầy kết quả vào DataSet
-                da.Fill(ds, "products");
-                // Tạo DataTable thu kết quả từ bảng
-                DataTable dt = ds.Tables["products"];
-                if (dt.Rows.Count > 0)
+                Label2.Text = "You must enter user name";
+            }
+            else {
+                if (TextBox2.Text == "")
                 {
-                    Response.Redirect("http://tungda:1111/hr/SitePages/"+dt.Rows[0][2].ToString().Trim()+".aspx");
+                    Label2.Text = "You must enter password";
                 }
                 else {
-                    Label2.Text = "Invalid username and password";
+                    try
+                    {
+                        string sql = @"SELECT distinct UserName, Password, Rank FROM HumanResources.Users WHERE UserName='" + TextBox1.Text.Trim()
+                            + "' and Password='" + TextBox2.Text.Trim() + "'";
+                        SqlDataAdapter da = new SqlDataAdapter(sql, com.cnn);
+                        // Tạo DataSet
+                        DataSet ds = new DataSet();
+                        // Lấp đầy kết quả vào DataSet
+                        da.Fill(ds, "data");
+                        // Tạo DataTable thu kết quả từ bảng
+                        DataTable dt = ds.Tables["data"];
+                        if (dt.Rows.Count > 0)
+                        {
+                            com.closeConnection();
+                            Session["Account"] = dt.Rows[0][2].ToString().Trim();
+                            Response.Redirect(dt.Rows[0][2].ToString().Trim() + ".aspx");
+                        }
+                        else
+                        {
+                            Label2.Text = "Invalid username and password";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Label2.Text = ex.Message;
+                    }
                 }
-                cnn.Close();
-            }
-            catch (Exception ex)
-            {
-                Label2.Text="Can not open connection ! ";
             }
         }
 
