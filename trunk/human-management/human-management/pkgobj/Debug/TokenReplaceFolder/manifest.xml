@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="958e8086-3a42-41c4-b1ed-0854da2b8ba1" SharePointProductVersion="14.0">
+  <Assemblies>
+    <Assembly Location="21_2_ob.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <TemplateFiles>
+    <TemplateFile Location="Images\21_2_ob\10664_Facebook_adlet.jpg" />
+    <TemplateFile Location="Images\21_2_ob\13760_TwitterButton_Final.jpg" />
+    <TemplateFile Location="Images\21_2_ob\13866_donateNowAdlet2011.jpg" />
+    <TemplateFile Location="Images\21_2_ob\14665_nursing.jpg" />
+    <TemplateFile Location="Images\21_2_ob\14666_cataracts_berlina2.jpg" />
+    <TemplateFile Location="Images\21_2_ob\14707_MD10.jpg" />
+    <TemplateFile Location="Images\21_2_ob\14708_Lazarus Kitwe_HP.jpg" />
+    <TemplateFile Location="Images\21_2_ob\15100_AR_HP_Large.jpg" />
+    <TemplateFile Location="Images\21_2_ob\15102_ipad1_Large.jpg" />
+    <TemplateFile Location="Images\21_2_ob\15383_drAsiHPthumb.jpg" />
+    <TemplateFile Location="Images\21_2_ob\15409_TYHPthumb.jpg" />
+    <TemplateFile Location="Images\21_2_ob\15457_Gondar_Pt1_Vid_HP.jpg" />
+    <TemplateFile Location="Images\21_2_ob\4Star_Charity_Navigator.jpg" />
+    <TemplateFile Location="Images\21_2_ob\bg-left-notches.gif" />
+    <TemplateFile Location="Images\21_2_ob\bg-main.jpg" />
+    <TemplateFile Location="Images\21_2_ob\bg-patient-profile.jpg" />
+    <TemplateFile Location="Images\21_2_ob\bg-top-left.gif" />
+    <TemplateFile Location="Images\21_2_ob\bg-top-right.gif" />
+    <TemplateFile Location="Images\21_2_ob\btn-go1.gif" />
+    <TemplateFile Location="Images\21_2_ob\corppartners4.jpg" />
+    <TemplateFile Location="Images\21_2_ob\dmb_i.gif" />
+    <TemplateFile Location="Images\21_2_ob\dmb_m.gif" />
+    <TemplateFile Location="Images\21_2_ob\logo1.jpg" />
+    <TemplateFile Location="Images\21_2_ob\map1-over.jpg" />
+    <TemplateFile Location="Images\21_2_ob\map1.jpg" />
+    <TemplateFile Location="Images\21_2_ob\nav-bg1.jpg" />
+    <TemplateFile Location="Images\21_2_ob\nav-bg2.jpg" />
+    <TemplateFile Location="Images\21_2_ob\newbbb.jpg" />
+    <TemplateFile Location="Images\21_2_ob\patient-profile-divider.gif" />
+    <TemplateFile Location="Images\21_2_ob\slide-shadow.jpg" />
+    <TemplateFile Location="Images\21_2_ob\spacer.gif" />
+    <TemplateFile Location="Layouts\21_2_ob\addthis_widget.js" />
+    <TemplateFile Location="Layouts\21_2_ob\cswap.js" />
+    <TemplateFile Location="Layouts\21_2_ob\dropdown.js" />
+    <TemplateFile Location="Layouts\21_2_ob\emailpopup.js" />
+    <TemplateFile Location="Layouts\21_2_ob\ga.js" />
+    <TemplateFile Location="Layouts\21_2_ob\QM_script.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\222ob.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\jd.gallery.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\main.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\menuStyles.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\QM_styles.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\SearchStyleSheet.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\style-large.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\style-medium.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\widget107.css" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="human_management_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

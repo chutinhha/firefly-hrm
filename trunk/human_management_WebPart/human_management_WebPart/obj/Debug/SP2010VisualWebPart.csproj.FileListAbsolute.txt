@@ -1,0 +1,5 @@
+f:\users\administrator\documents\visual studio 2010\Projects\SP2010VisualWebPart\SP2010VisualWebPart\bin\Debug\SP2010VisualWebPart.dll
+f:\users\administrator\documents\visual studio 2010\Projects\SP2010VisualWebPart\SP2010VisualWebPart\bin\Debug\SP2010VisualWebPart.pdb
+f:\users\administrator\documents\visual studio 2010\Projects\SP2010VisualWebPart\SP2010VisualWebPart\obj\Debug\ResolveAssemblyReference.cache
+f:\users\administrator\documents\visual studio 2010\Projects\SP2010VisualWebPart\SP2010VisualWebPart\obj\Debug\SP2010VisualWebPart.dll
+f:\users\administrator\documents\visual studio 2010\Projects\SP2010VisualWebPart\SP2010VisualWebPart\obj\Debug\SP2010VisualWebPart.pdb

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS" Space="C-S">
+  <Alias Key="Model" Value="AdventureWorks2008R2" />
+  <Alias Key="Target" Value="AdventureWorks2008R2.Store" />
+  <EntityContainerMapping CdmEntityContainer="AdventureWorks2008R2Container" StorageEntityContainer="AdventureWorks2008R2TargetContainer" />
+</Mapping>
