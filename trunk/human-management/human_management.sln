@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_management", "human-management\human_management.csproj", "{346AE176-D9AB-4316-831F-92D729A38B00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_management", "human_management\human_management.csproj", "{346AE176-D9AB-4316-831F-92D729A38B00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "human_management_WebPart", "..\human_management_WebPart\human_management_WebPart\human_management_WebPart.csproj", "{8A057C63-6BA0-461F-AA8D-A07C7E0A552A}"
 EndProject
