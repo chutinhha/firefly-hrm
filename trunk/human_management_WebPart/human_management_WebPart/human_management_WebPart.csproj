@@ -60,6 +60,14 @@
     <Compile Include="AddCandidate\AddCandidateUserControl.ascx.designer.cs">
       <DependentUpon>AddCandidateUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddVacancy\AddVacancy.cs" />
+    <Compile Include="AddVacancy\AddVacancyUserControl.ascx.cs">
+      <DependentUpon>AddVacancyUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVacancy\AddVacancyUserControl.ascx.designer.cs">
+      <DependentUpon>AddVacancyUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Candidates\Candidates.cs" />
     <Compile Include="Candidates\CandidatesUserControl.ascx.cs">
       <DependentUpon>CandidatesUserControl.ascx</DependentUpon>
@@ -68,6 +76,7 @@
     <Compile Include="Candidates\CandidatesUserControl.ascx.designer.cs">
       <DependentUpon>CandidatesUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common.cs" />
     <Compile Include="EditCandidate\EditCandidate.cs" />
     <Compile Include="EditCandidate\EditCandidateUserControl.ascx.cs">
       <DependentUpon>EditCandidateUserControl.ascx</DependentUpon>
@@ -75,6 +84,14 @@
     </Compile>
     <Compile Include="EditCandidate\EditCandidateUserControl.ascx.designer.cs">
       <DependentUpon>EditCandidateUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditVacancy\EditVacancy.cs" />
+    <Compile Include="EditVacancy\EditVacancyUserControl.ascx.cs">
+      <DependentUpon>EditVacancyUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditVacancy\EditVacancyUserControl.ascx.designer.cs">
+      <DependentUpon>EditVacancyUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Login\Login.cs" />
@@ -85,11 +102,23 @@
     <Compile Include="Login\LoginUserControl.ascx.designer.cs">
       <DependentUpon>LoginUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vacancies\Vacancies.cs" />
+    <Compile Include="Vacancies\VacanciesUserControl.ascx.cs">
+      <DependentUpon>VacanciesUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vacancies\VacanciesUserControl.ascx.designer.cs">
+      <DependentUpon>VacanciesUserControl.ascx.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AddCandidate\AddCandidate.webpart" />
     <None Include="AddCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4b16b2e1-882c-48cd-b492-29a4fe53e3e7}</SharePointProjectItemId>
+    </None>
+    <None Include="AddVacancy\AddVacancy.webpart" />
+    <None Include="AddVacancy\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cf5222bc-a4b4-4851-82a1-7bf3410321cc}</SharePointProjectItemId>
     </None>
     <None Include="Candidates\Candidates.webpart" />
     <None Include="Candidates\SharePointProjectItem.spdata">
@@ -99,11 +128,19 @@
     <None Include="EditCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e342d604-aedd-4a25-a183-baf103c7b4e4}</SharePointProjectItemId>
     </None>
+    <None Include="EditVacancy\EditVacancy.webpart" />
+    <None Include="EditVacancy\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d2b586fd-f75a-47bf-94a3-d318139aafb5}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
     <None Include="Login\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f8c01da9-8061-45c1-91e5-0afa8642ac0c}</SharePointProjectItemId>
     </None>
     <None Include="Login\Login.webpart" />
+    <None Include="Vacancies\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6fb3e01b-018b-4b22-9f51-4d5f2ce4e5f8}</SharePointProjectItemId>
+    </None>
+    <None Include="Vacancies\Vacancies.webpart" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
@@ -124,6 +161,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="AddCandidate\Elements.xml" />
+    <Content Include="AddVacancy\AddVacancyUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="AddVacancy\Elements.xml" />
     <Content Include="Candidates\CandidatesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -132,8 +173,16 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="EditCandidate\Elements.xml" />
+    <Content Include="EditVacancy\EditVacancyUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="EditVacancy\Elements.xml" />
     <Content Include="Login\Elements.xml" />
     <Content Include="Login\LoginUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Vacancies\Elements.xml" />
+    <Content Include="Vacancies\VacanciesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>

@@ -101,7 +101,7 @@
 
 
 <p>
-    <asp:Label ID="Label19" runat="server" style="text-color:red;"></asp:Label>
+    <asp:Label ID="Label19" runat="server" style="color:red;"></asp:Label>
 </p>
 <p align="center">
     <asp:Button ID="Button2" runat="server" Text="Save" Width="80px" 

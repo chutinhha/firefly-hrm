@@ -11,38 +11,33 @@ namespace SP2010VisualWebPart.AddCandidate
 {
     public partial class AddCandidateUserControl : UserControl
     {
+        public Common com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["Account"].ToString() == "Admin")
             {
-                DropDownList1.DataSource = getCountryList();
-                DropDownList1.DataBind();
-                DropDownList1.Items.Insert(0, "Select");
-                this.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList3);
-                this.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2);
-                this.SetItemList("Status", "HumanResources.CandidateStatus", DropDownList4);
-                Calendar1.Visible = false;
-                Label19.Text = "";
-            }
-        }
-        public List<string> getCountryList()
-        {
-            List<string> cultureList = new List<string>();
-            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures);
-            foreach (CultureInfo culture in cultures)
-            {
-                if (culture.LCID != 127)
+                try
                 {
-                    RegionInfo region = new RegionInfo(culture.LCID);
-                    //RegionInfo region = new RegionInfo(culture.LCID);
-                    if (!(cultureList.Contains(region.EnglishName)))
+                    if (!IsPostBack)
                     {
-                        cultureList.Add(region.EnglishName);
+                        DropDownList1.DataSource = com.getCountryList();
+                        DropDownList1.DataBind();
+                        com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList3, "", false, "");
+                        com.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2, "", false, "");
+                        com.SetItemList("Status", "HumanResources.CandidateStatus", DropDownList4, "", false, "");
+                        Calendar1.Visible = false;
+                        Label19.Text = "";
                     }
                 }
+                catch (Exception ex)
+                {
+                    Label19.Text = ex.Message;
+                }
             }
-            cultureList.Sort(); //put the country list in alphabetic order.
-            return cultureList;
+            else {
+                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Redirect(Session["Account"] + ".aspx", true);
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -63,68 +58,77 @@ namespace SP2010VisualWebPart.AddCandidate
 
         protected void Button3_Click(object sender, EventArgs e)
         {
+            com.closeConnection();
             Response.Redirect("Candidates.aspx", true);
         }
 
-        public void SetItemList(string column, string table, DropDownList ddl)
-        {
-            ddl.Items.Clear();
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
-            cnn = new SqlConnection(connetionString);
-            try
-            {
-                cnn.Open();
-                string sql = @"SELECT distinct " + column + " FROM " + table;
-                SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-                // Tạo DataSet
-                DataSet ds = new DataSet();
-                // Lấp đầy kết quả vào DataSet
-                da.Fill(ds, "items");
-                // Tạo DataTable thu kết quả từ bảng
-                DataTable dt = ds.Tables["items"];
-                if (dt.Rows.Count > 0)
-                {
-                    ddl.Items.Add("All");
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        ddl.Items.Add(dt.Rows[i][0].ToString());
-                    }
-                }
-                cnn.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
         protected void Button2_Click(object sender, EventArgs e)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
-            cnn = new SqlConnection(connetionString);
-            try
+            if (TextBox1.Text.Trim() == "")
             {
-                cnn.Open();
-                string sql = @"insert into HumanResources.JobCandidate values(N'" + TextBox1.Text + "',"
-                    + "N'" + TextBox2.Text + "',N'" + TextBox3.Text + "',"
-                    + "N'" + TextBox4.Text + "','" + TextBox5.Text + "',"
-                    + "'" + DropDownList1.SelectedValue + "'," + TextBox6.Text
-                    + "," + TextBox7.Text + "," + TextBox8.Text + ",'" + TextBox9.Text + "',"
-                    + "'" + DropDownList2.SelectedValue + "',N'" + TextBox10.Text + "',"
-                    + "N'" + TextBox13.Text + "','" + TextBox12.Text + "','" + DropDownList3.SelectedValue + "',"
-                    + "N'" + TextBox11.Text + "',"
-                    + "'" + DropDownList4.SelectedValue + "','" + DropDownList5.SelectedValue + "');";
-                SqlCommand command = new SqlCommand(sql, cnn);
-                //command.Connection.Open();
-                command.ExecuteNonQuery();
-                cnn.Close();
-                Response.Redirect("Candidates.aspx", true);
+                Label19.Text = "You must enter candidate name!";
             }
-            catch (Exception ex)
+            else
             {
-                Label19.Text = ex.Message;
+                if (TextBox9.Text.Trim() == "")
+                {
+                    Label19.Text = "You must enter email!";
+                }
+                else {
+                    try
+                    {
+                        double checkPhone;
+                        if (TextBox6.Text.Trim() != "")
+                        {
+                            checkPhone = double.Parse(TextBox6.Text);
+                        }
+                        if (TextBox7.Text.Trim() != "")
+                        {
+                            checkPhone = double.Parse(TextBox7.Text);
+                        }
+                        if (TextBox8.Text.Trim() != "")
+                        {
+                            checkPhone = double.Parse(TextBox8.Text);
+                        }
+                        if (!TextBox9.Text.Contains("@"))
+                        {
+                            Label19.Text = "Email must contain @";
+                        }
+                        else {
+                            try{
+                                if (TextBox12.Text.Trim() != "")
+                                {
+                                    DateTime dt = DateTime.Parse(TextBox12.Text);
+                                }
+                                try
+                                {
+                                    com.insertIntoTable("HumanResources.JobCandidate", "N'" + TextBox1.Text + "',"
+                                        + "N'" + TextBox2.Text + "',N'" + TextBox3.Text + "',"
+                                        + "N'" + TextBox4.Text + "','" + TextBox5.Text + "',"
+                                        + "'" + DropDownList1.SelectedValue + "','" + TextBox6.Text
+                                        + "','" + TextBox7.Text + "','" + TextBox8.Text + "','" + TextBox9.Text + "',"
+                                        + "'" + DropDownList2.SelectedValue + "',N'" + TextBox10.Text + "',"
+                                        + "N'" + TextBox13.Text + "','" + TextBox12.Text + "','" + DropDownList3.SelectedValue + "',"
+                                        + "N'" + TextBox11.Text + "',"
+                                        + "'" + DropDownList4.SelectedValue + "','" + DropDownList5.SelectedValue + "'");
+                                    com.closeConnection();
+                                    Response.Redirect("Candidates.aspx", true);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Label19.Text = ex.Message;
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                Label19.Text = "Apply Date must be DateTime type";
+                            }
+                        }
+                    }
+                    catch (FormatException) {
+                        Label19.Text = "Home phone, Work phone and Mobile phone must be number";
+                    }
+                }
             }
         }
     }

@@ -9,47 +9,32 @@ namespace SP2010VisualWebPart.Candidates
 {
     public partial class CandidatesUserControl : UserControl
     {
+        public Common com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["Account"].ToString() == "Admin")
             {
-                this.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList1);
-                this.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2);
-                this.SetItemList("Status", "HumanResources.Candidatestatus", DropDownList3);
-                bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "");
-                Calendar1.Visible = false;
-                Calendar2.Visible = false;
-            }
-        }
-
-        public void SetItemList(string column, string table, DropDownList ddl) {
-            ddl.Items.Clear();
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
-            cnn = new SqlConnection(connetionString);
-            try
-            {
-                cnn.Open();
-                string sql = @"SELECT distinct "+column+" FROM "+table;
-                SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-                // Tạo DataSet
-                DataSet ds = new DataSet();
-                // Lấp đầy kết quả vào DataSet
-                da.Fill(ds, "items");
-                // Tạo DataTable thu kết quả từ bảng
-                DataTable dt = ds.Tables["items"];
-                if (dt.Rows.Count > 0)
+                try
                 {
-                    ddl.Items.Add("All");
-                    for (int i = 0; i < dt.Rows.Count; i++) {
-                        ddl.Items.Add(dt.Rows[i][0].ToString());
+                    if (!IsPostBack)
+                    {
+                        com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList1, "", true, "All");
+                        com.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2, "", true, "All");
+                        com.SetItemList("Status", "HumanResources.Candidatestatus", DropDownList3, "", true, "All");
+                        com.bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "", "HumanResources.JobCandidate", GridView1);
+                        Calendar1.Visible = false;
+                        Calendar2.Visible = false;
                     }
                 }
-                cnn.Close();
+                catch (Exception ex)
+                {
+                    Label11.Text = ex.Message;
+                }
             }
-            catch (Exception ex)
+            else
             {
+                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Redirect(Session["Account"] + ".aspx", true);
             }
         }
 
@@ -76,17 +61,25 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            DropDownList1.SelectedIndex = 0;
-            DropDownList2.SelectedIndex = 0;
-            DropDownList3.SelectedIndex = 0;
-            DropDownList4.SelectedIndex = 0;
-            TextBox1.Text = "";
-            TextBox2.Text = "";
-            TextBox3.Text = "";
-            TextBox4.Text = "";
-            TextBox5.Text = "";
-            Calendar1.Visible = false;
-            Calendar2.Visible = false;
+            try
+            {
+                DropDownList1.SelectedIndex = 0;
+                DropDownList2.SelectedIndex = 0;
+                DropDownList3.SelectedIndex = 0;
+                DropDownList4.SelectedIndex = 0;
+                TextBox1.Text = "";
+                TextBox2.Text = "";
+                TextBox3.Text = "";
+                TextBox4.Text = "";
+                TextBox5.Text = "";
+                Calendar1.Visible = false;
+                Calendar2.Visible = false;
+                com.bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "", "HumanResources.JobCandidate", GridView1);
+            }
+            catch (Exception ex)
+            {
+                Label11.Text = ex.Message;
+            }
         }
 
         protected void Button5_Click(object sender, EventArgs e)
@@ -112,81 +105,67 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            string condition = " where ";
-            if (DropDownList1.SelectedValue == "All") { }
-            else {
-                condition = condition + "JobTitle='" + DropDownList1.SelectedItem.Text + "' and ";
-            }
-            if (DropDownList2.SelectedItem.Text == "All") { }
-            else
-            {
-                condition = condition + "JobVacancy='" + DropDownList2.SelectedItem.Text + "' and ";
-            }
-            if (DropDownList3.SelectedItem.Text == "All") { }
-            else
-            {
-                condition = condition + "Status='" + DropDownList3.SelectedItem.Text + "' and ";
-            }
-            if (DropDownList4.SelectedItem.Text == "All") { }
-            else
-            {
-                condition = condition + "MethodOfApply='" + DropDownList4.SelectedItem.Text + "' and ";
-            }
-            if (TextBox1.Text.Trim()=="") { }
-            else
-            {
-                condition = condition + "HiringManager like'%" + TextBox1.Text + "%' and ";
-            }
-            if (TextBox2.Text.Trim() == "") { }
-            else
-            {
-                condition = condition + "FullName like'%" + TextBox2.Text + "%' and ";
-            }
-            if (TextBox3.Text.Trim() == "") { }
-            else
-            {
-                condition = condition + "Keywords like'%" + TextBox3.Text + "%' and ";
-            }
-            if (TextBox4.Text.Trim() == "") { }
-            else
-            {
-                condition = condition + "ApplyDate > '" + TextBox4.Text + "' and ";
-            }
-            if (TextBox5.Text.Trim() == "") { }
-            else
-            {
-                condition = condition + "ApplyDate < '" + TextBox5.Text + "' and ";
-            }
-            if(condition == " where "){
-                condition="";
-            }else{
-                condition = condition.Substring(0, condition.Length - 4);
-            }
-            bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", condition);
-        }
-
-        public void bindData(string column, string condition) {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
-            cnn = new SqlConnection(connetionString);
             try
             {
-                cnn.Open();
-                string sql = @"SELECT "+column+" from HumanResources.JobCandidate" + condition+";";
-                SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-                // Tạo DataSet
-                DataSet ds = new DataSet();
-                // Lấp đầy kết quả vào DataSet
-                da.Fill(ds, "candidate");
-                // Tạo DataTable thu kết quả từ bảng
-                DataTable dt = ds.Tables["candidate"];
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                cnn.Close();
+                string condition = " where ";
+                if (DropDownList1.SelectedValue == "All") { }
+                else
+                {
+                    condition = condition + "JobTitle='" + DropDownList1.SelectedItem.Text + "' and ";
+                }
+                if (DropDownList2.SelectedItem.Text == "All") { }
+                else
+                {
+                    condition = condition + "JobVacancy='" + DropDownList2.SelectedItem.Text + "' and ";
+                }
+                if (DropDownList3.SelectedItem.Text == "All") { }
+                else
+                {
+                    condition = condition + "Status='" + DropDownList3.SelectedItem.Text + "' and ";
+                }
+                if (DropDownList4.SelectedItem.Text == "All") { }
+                else
+                {
+                    condition = condition + "MethodOfApply='" + DropDownList4.SelectedItem.Text + "' and ";
+                }
+                if (TextBox1.Text.Trim() == "") { }
+                else
+                {
+                    condition = condition + "HiringManager like'%" + TextBox1.Text + "%' and ";
+                }
+                if (TextBox2.Text.Trim() == "") { }
+                else
+                {
+                    condition = condition + "FullName like'%" + TextBox2.Text + "%' and ";
+                }
+                if (TextBox3.Text.Trim() == "") { }
+                else
+                {
+                    condition = condition + "Keywords like'%" + TextBox3.Text + "%' and ";
+                }
+                if (TextBox4.Text.Trim() == "") { }
+                else
+                {
+                    condition = condition + "ApplyDate > '" + TextBox4.Text + "' and ";
+                }
+                if (TextBox5.Text.Trim() == "") { }
+                else
+                {
+                    condition = condition + "ApplyDate < '" + TextBox5.Text + "' and ";
+                }
+                if (condition == " where ")
+                {
+                    condition = "";
+                }
+                else
+                {
+                    condition = condition.Substring(0, condition.Length - 4);
+                }
+                com.bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", condition, "HumanResources.JobCandidate", GridView1);
             }
             catch (Exception ex)
             {
+                Label11.Text = ex.Message;
             }
         }
 
@@ -197,28 +176,23 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void Button8_Click(object sender, EventArgs e)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
-            cnn = new SqlConnection(connetionString);
             try{
-                cnn.Open();
                 foreach (GridViewRow gr in GridView1.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
                         string sql = @"delete from HumanResources.JobCandidate where FullName=N'" + Server.HtmlDecode(gr.Cells[2].Text)+"' and Email='"+gr.Cells[4].Text+"';";
-                        SqlCommand command = new SqlCommand(sql, cnn);
+                        SqlCommand command = new SqlCommand(sql, com.cnn);
                         //command.Connection.Open();
                         command.ExecuteNonQuery();
                     }
                 }
-                cnn.Close();
-                bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "");
+                com.bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "", "HumanResources.JobCandidate",GridView1);
             }
             catch (Exception ex)
             {
+                Label11.Text = ex.Message;
             }
         }
 
@@ -231,14 +205,15 @@ namespace SP2010VisualWebPart.Candidates
                 {
                     Session["Name"] = Server.HtmlDecode(gr.Cells[2].Text);
                     Session["Email"] = Server.HtmlDecode(gr.Cells[4].Text);
+                    com.closeConnection();
                     Response.Redirect("EditCandidate.aspx",true);
-                    break;
                 }
             }
         }
 
         protected void Button6_Click(object sender, EventArgs e)
         {
+            com.closeConnection();
             Response.Redirect("AddCandidate.aspx",true);
         }
     }

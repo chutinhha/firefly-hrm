@@ -16,6 +16,6 @@
 <span style="padding-left:70px;"></span><asp:Button ID="Button1" runat="server" 
     Text="Login" onclick="Button1_Click1" />
 <p>
-    <span style="padding-left:70px;"></span><asp:Label ID="Label2" runat="server"></asp:Label>
+    <span style="padding-left:70px;"></span><asp:Label ID="Label2" runat="server" style="color:Red;"></asp:Label>
 </p>
 

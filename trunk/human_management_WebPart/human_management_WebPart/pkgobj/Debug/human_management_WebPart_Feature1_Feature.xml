@@ -9,5 +9,11 @@
     <ElementFile Location="EditCandidate\EditCandidate.webpart" />
     <ElementManifest Location="AddCandidate\Elements.xml" />
     <ElementFile Location="AddCandidate\AddCandidate.webpart" />
+    <ElementManifest Location="Vacancies\Elements.xml" />
+    <ElementFile Location="Vacancies\Vacancies.webpart" />
+    <ElementManifest Location="AddVacancy\Elements.xml" />
+    <ElementFile Location="AddVacancy\AddVacancy.webpart" />
+    <ElementManifest Location="EditVacancy\Elements.xml" />
+    <ElementFile Location="EditVacancy\EditVacancy.webpart" />
   </ElementManifests>
 </Feature>
