@@ -1,0 +1,6 @@
+F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\21_2_ob\21_2_ob\obj\Debug\ResolveAssemblyReference.cache
+F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\21_2_ob\21_2_ob\obj\Debug\21_2_ob.dll
+F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\21_2_ob\21_2_ob\obj\Debug\21_2_ob.pdb
+F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\21_2_ob\21_2_ob\bin\Debug\21_2_ob.dll.config
+F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\21_2_ob\21_2_ob\bin\Debug\21_2_ob.dll
+F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\21_2_ob\21_2_ob\bin\Debug\21_2_ob.pdb

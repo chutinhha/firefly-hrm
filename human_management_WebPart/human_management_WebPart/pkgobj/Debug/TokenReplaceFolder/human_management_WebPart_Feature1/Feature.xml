@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My Visual WebPart Feature" Id="3412803a-0161-478b-bf17-b8ef50f9a9f1" Scope="Site" Title="SP2010VisualWebPart Feature1">
+  <ElementManifests>
+    <ElementManifest Location="Login\Elements.xml" />
+    <ElementFile Location="Login\Login.webpart" />
+    <ElementManifest Location="Candidates\Elements.xml" />
+    <ElementFile Location="Candidates\Candidates.webpart" />
+    <ElementManifest Location="EditCandidate\Elements.xml" />
+    <ElementFile Location="EditCandidate\EditCandidate.webpart" />
+    <ElementManifest Location="AddCandidate\Elements.xml" />
+    <ElementFile Location="AddCandidate\AddCandidate.webpart" />
+  </ElementManifests>
+</Feature>
