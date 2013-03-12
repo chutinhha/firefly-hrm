@@ -15,5 +15,13 @@
     <ElementFile Location="AddVacancy\AddVacancy.webpart" />
     <ElementManifest Location="EditVacancy\Elements.xml" />
     <ElementFile Location="EditVacancy\EditVacancy.webpart" />
+    <ElementManifest Location="JobCategories\Elements.xml" />
+    <ElementFile Location="JobCategories\JobCategories.webpart" />
+    <ElementManifest Location="JobTitles\Elements.xml" />
+    <ElementFile Location="JobTitles\JobTitles.webpart" />
+    <ElementManifest Location="AddJobtitle\Elements.xml" />
+    <ElementFile Location="AddJobtitle\AddJobtitle.webpart" />
+    <ElementManifest Location="EditJobTitle\Elements.xml" />
+    <ElementFile Location="EditJobTitle\EditJobTitle.webpart" />
   </ElementManifests>
 </Feature>
