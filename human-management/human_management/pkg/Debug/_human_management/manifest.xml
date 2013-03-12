@@ -35,21 +35,21 @@
     <TemplateFile Location="Images\21_2_ob\patient-profile-divider.gif" />
     <TemplateFile Location="Images\21_2_ob\slide-shadow.jpg" />
     <TemplateFile Location="Images\21_2_ob\spacer.gif" />
-    <TemplateFile Location="Layouts\21_2_ob\addthis_widget.js" />
-    <TemplateFile Location="Layouts\21_2_ob\cswap.js" />
-    <TemplateFile Location="Layouts\21_2_ob\dropdown.js" />
-    <TemplateFile Location="Layouts\21_2_ob\emailpopup.js" />
-    <TemplateFile Location="Layouts\21_2_ob\ga.js" />
-    <TemplateFile Location="Layouts\21_2_ob\QM_script.js" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\222ob.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\jd.gallery.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\main.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\menuStyles.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\QM_styles.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\SearchStyleSheet.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\style-large.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\style-medium.css" />
-    <TemplateFile Location="LAYOUTS\STYLES\21_2_ob\widget107.css" />
+    <TemplateFile Location="Layouts\human_management\addthis_widget.js" />
+    <TemplateFile Location="Layouts\human_management\cswap.js" />
+    <TemplateFile Location="Layouts\human_management\dropdown.js" />
+    <TemplateFile Location="Layouts\human_management\emailpopup.js" />
+    <TemplateFile Location="Layouts\human_management\ga.js" />
+    <TemplateFile Location="Layouts\human_management\QM_script.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\222ob.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jd.gallery.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\main.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\menuStyles.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\QM_styles.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\SearchStyleSheet.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\style-large.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\style-medium.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\widget107.css" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="human_management_Feature1\Feature.xml" />

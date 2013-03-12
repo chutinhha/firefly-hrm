@@ -10,3 +10,9 @@ F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\h
 F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\human-management\human_management\bin\Debug\human_management.pdb
 F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\human-management\human_management\obj\Debug\human_management.dll
 F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\human-management\human_management\obj\Debug\human_management.pdb
+D:\Đồ án\Source\trunk\human-management\human_management\bin\Debug\human_management.dll.config
+D:\Đồ án\Source\trunk\human-management\human_management\bin\Debug\human_management.dll
+D:\Đồ án\Source\trunk\human-management\human_management\bin\Debug\human_management.pdb
+D:\Đồ án\Source\trunk\human-management\human_management\obj\Debug\ResolveAssemblyReference.cache
+D:\Đồ án\Source\trunk\human-management\human_management\obj\Debug\human_management.dll
+D:\Đồ án\Source\trunk\human-management\human_management\obj\Debug\human_management.pdb
