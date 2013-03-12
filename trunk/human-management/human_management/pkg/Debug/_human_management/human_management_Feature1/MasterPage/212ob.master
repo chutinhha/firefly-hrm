@@ -32,12 +32,12 @@
 	<asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" runat="server"/>
 	<SharePoint:SPPageManager runat="server"/>
 	<SharePoint:SPHelpPageComponent Visible="false" runat="server"/>
-    <link href="/_layouts/STYLES/21_2_ob/222ob.css" rel="stylesheet" type="text/css" />
-    <link href="/_layouts/STYLES/21_2_ob/QM_styles.css" rel="stylesheet" type="text/css" />
-    <link href="/_layouts/STYLES/21_2_ob/menuStyles.css" rel="stylesheet" type="text/css" />
+    <link href="/_layouts/STYLES/human_management/222ob.css" rel="stylesheet" type="text/css" />
+    <link href="/_layouts/STYLES/human_management/QM_styles.css" rel="stylesheet" type="text/css" />
+    <link href="/_layouts/STYLES/human_management/menuStyles.css" rel="stylesheet" type="text/css" />
     
-    <script type="text/javascript" language="javascript" src="/_layouts/Layouts/21_2_ob/dropdown.js"></script>			
-    <script type="text/javascript" language="javascript" src="/_layouts/Layouts/21_2_ob/QM_script.js"></script>	
+    <script type="text/javascript" language="javascript" src="/_layouts/Layouts/human_management/dropdown.js"></script>			
+    <script type="text/javascript" language="javascript" src="/_layouts/Layouts/human_management/QM_script.js"></script>	
 </head>
 <body scroll="no" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();" class="v4master">
 
@@ -346,7 +346,7 @@
                                
                     
                     <!--
-                    <td background="/_layouts/Images/21_2_ob/bg-top-left.gif" height="203px"><img src="/_layouts/Images/21_2_ob/spacer.gif" width="1" height="203px" alt=""></td>
+                    <td background="/_layouts/Images/human_management/bg-top-left.gif" height="203px"><img src="/_layouts/Images/human_management/spacer.gif" width="1" height="203px" alt=""></td>
                     -->
                     <!--Insert banner-->
                     <table class="s4-titletable">

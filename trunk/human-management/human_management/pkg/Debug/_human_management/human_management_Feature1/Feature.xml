@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My Module Feature" Id="62f8a983-3d1b-4089-b794-24192be887ce" Scope="Web" Title="21_2_ob Feature1">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My Module Feature" Id="62f8a983-3d1b-4089-b794-24192be887ce" Scope="Web" Title="human_management Feature1">
   <ElementManifests>
     <ElementManifest Location="MasterPage\Elements.xml" />
     <ElementFile Location="MasterPage\212ob.master" />

@@ -1,0 +1,1 @@
+bin\Debug\_human_management.wsp
