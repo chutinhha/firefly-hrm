@@ -14,37 +14,46 @@ namespace SP2010VisualWebPart.EditVacancy
         {
             if (Session["Account"].ToString() == "Admin")
             {
-                try
+                if (Session["Name"] == null)
                 {
-                    if (!IsPostBack)
+                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
+                }
+                else
+                {
+                    try
                     {
-                        com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList1, "", false, "");
-                        DataTable dt = com.getData("HumanResources.JobVacancy", " where VacancyName=N'" + Session["Name"] + "'");
-                        if (dt.Rows.Count > 0)
+                        if (!IsPostBack)
                         {
-                            DropDownList1.SelectedValue = dt.Rows[0][0].ToString().Trim();
-                            TextBox2.Text = dt.Rows[0][1].ToString().Trim();
-                            TextBox3.Text = dt.Rows[0][2].ToString().Trim();
-                            TextBox4.Text = dt.Rows[0][3].ToString().Trim();
-                            TextBox5.Text = dt.Rows[0][4].ToString().Trim();
-                            if (dt.Rows[0][5].ToString().Trim() == "Active")
+                            com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList1, "", false, "");
+                            DataTable dt = com.getData("HumanResources.JobVacancy", " where VacancyName=N'" + Session["Name"] + "'");
+                            if (dt.Rows.Count > 0)
                             {
-                                CheckBox1.Checked = true;
-                            }
-                            else
-                            {
-                                CheckBox1.Checked = false;
+                                DropDownList1.SelectedValue = dt.Rows[0][0].ToString().Trim();
+                                TextBox2.Text = dt.Rows[0][1].ToString().Trim();
+                                TextBox3.Text = dt.Rows[0][2].ToString().Trim();
+                                TextBox4.Text = dt.Rows[0][3].ToString().Trim();
+                                TextBox5.Text = dt.Rows[0][4].ToString().Trim();
+                                if (dt.Rows[0][5].ToString().Trim() == "Active")
+                                {
+                                    CheckBox1.Checked = true;
+                                }
+                                else
+                                {
+                                    CheckBox1.Checked = false;
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Label7.Text = ex.Message;
+                    catch (Exception ex)
+                    {
+                        Label7.Text = ex.Message;
+                    }
                 }
             }
             else
             {
+                Session.Remove("Name");
                 Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
                 Response.Redirect(Session["Account"] + ".aspx", true);
             }
@@ -97,6 +106,7 @@ namespace SP2010VisualWebPart.EditVacancy
         protected void Button2_Click(object sender, EventArgs e)
         {
             com.closeConnection();
+            Session.Remove("Name");
             Response.Redirect("Vacancies.aspx",true);
         }
     }

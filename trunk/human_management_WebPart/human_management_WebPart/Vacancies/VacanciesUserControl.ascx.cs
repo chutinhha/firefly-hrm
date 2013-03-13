@@ -21,7 +21,9 @@ namespace SP2010VisualWebPart.Vacancies
                         com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList1, "", true, "All");
                         com.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2, "", true, "All");
                         TextBox1.Text = "";
+                        CheckBox1.AutoPostBack = true;
                         DropDownList3.SelectedIndex = 0;
+                        Session.Remove("Name");
                         com.bindData("VacancyName,JobTitle,HiringManager,Status", "", "HumanResources.JobVacancy", GridView1);
                     }
                 }
@@ -135,6 +137,26 @@ namespace SP2010VisualWebPart.Vacancies
             catch (Exception ex)
             {
                 Label5.Text = ex.Message;
+            }
+        }
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBox1.Checked == true)
+            {
+                foreach (GridViewRow gr in GridView1.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    cb.Checked = true;
+                }
+            }
+            else
+            {
+                foreach (GridViewRow gr in GridView1.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    cb.Checked = false;
+                }
             }
         }
     }
