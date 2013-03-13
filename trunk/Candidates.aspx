@@ -102,10 +102,18 @@
     &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c8ee8a1f_38c0_4237_bc1b_698665619ea9$ctl00$Button8&quot; value=&quot;Delete&quot; id=&quot;FullPage_g_c8ee8a1f_38c0_4237_bc1b_698665619ea9_ctl00_Button8&quot; style=&quot;width:70px;&quot; /&gt;
     &lt;br /&gt;
     &lt;br /&gt;
+    &lt;input id=&quot;FullPage_g_c8ee8a1f_38c0_4237_bc1b_698665619ea9_ctl00_CheckBox1&quot; type=&quot;checkbox&quot; name=&quot;FullPage$g_c8ee8a1f_38c0_4237_bc1b_698665619ea9$ctl00$CheckBox1&quot; /&gt;&lt;label for=&quot;FullPage_g_c8ee8a1f_38c0_4237_bc1b_698665619ea9_ctl00_CheckBox1&quot;&gt;All&lt;/label&gt;
+    &lt;br /&gt;
     
 	
 &lt;/fieldset&gt;
 &lt;/div&gt;
+&lt;p&gt;
+    &amp;nbsp;&lt;/p&gt;
+&lt;p&gt;
+    &lt;span id=&quot;FullPage_g_c8ee8a1f_38c0_4237_bc1b_698665619ea9_ctl00_Label11&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+&lt;/p&gt;
+
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -136,8 +144,10 @@
                                         </li>
                                         <li><a href="">Job</a>
                                             <ul>
-                                                <li><a href="">Job Categories</a></li>
-                                                <li><a href="">Position</a></li>
+                                                <li><a href="JobCategories.aspx">
+												Job Categories</a></li>
+                                                <li><a href="JobTitles.aspx">
+												Position</a></li>
                                                 <li><a href="">Pay Grades</a></li>
                                             </ul>
                                         </li>
@@ -181,7 +191,7 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -192,9 +202,8 @@
 								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
 								RECRUITMENT</a>
 									<ul>
-										<li><a href="Candidates.aspx">
-										Candidates</a></li>
-										<li><a href="">Vacancies</a></li>
+										<li><a href="Candidates.aspx">Candidates</a></li>
+										<li><a href="Vacancies.aspx">Vacancies</a></li>
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>

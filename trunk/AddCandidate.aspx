@@ -126,7 +126,7 @@
 
 
 &lt;p&gt;
-    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_Label19&quot; style=&quot;text-color:red;&quot;&gt;&lt;/span&gt;
+    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_Label19&quot; style=&quot;color:red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
     &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$Button2&quot; value=&quot;Save&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;
@@ -168,8 +168,10 @@
                                         </li>
                                         <li><a href="">Job</a>
                                             <ul>
-                                                <li><a href="">Job Categories</a></li>
-                                                <li><a href="">Position</a></li>
+                                                <li><a href="JobCategories.aspx">
+												Job Categories</a></li>
+                                                <li><a href="JobTitles.aspx">
+												Position</a></li>
                                                 <li><a href="">Pay Grades</a></li>
                                             </ul>
                                         </li>
@@ -213,7 +215,7 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -225,7 +227,7 @@
 								RECRUITMENT</a>
 									<ul>
 										<li><a href="Candidates.aspx">Candidates</a></li>
-										<li><a href="">Vacancies</a></li>
+										<li><a href="Vacancies.aspx">Vacancies</a></li>
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>

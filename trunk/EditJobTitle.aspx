@@ -104,8 +104,10 @@
                                         </li>
                                         <li><a href="">Job</a>
                                             <ul>
-                                                <li><a href="">Job Categories</a></li>
-                                                <li><a href="">Position</a></li>
+                                                <li><a href="JobCategories.aspx">
+												Job Categories</a></li>
+                                                <li><a href="JobTitles.aspx">
+												Position</a></li>
                                                 <li><a href="">Pay Grades</a></li>
                                             </ul>
                                         </li>
@@ -149,7 +151,7 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
