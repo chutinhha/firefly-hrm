@@ -24,6 +24,9 @@ namespace SP2010VisualWebPart.Candidates
                         com.bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "", "HumanResources.JobCandidate", GridView1);
                         Calendar1.Visible = false;
                         Calendar2.Visible = false;
+                        CheckBox1.AutoPostBack = true;
+                        Session.Remove("Name");
+                        Session.Remove("Email");
                     }
                 }
                 catch (Exception ex)
@@ -215,6 +218,26 @@ namespace SP2010VisualWebPart.Candidates
         {
             com.closeConnection();
             Response.Redirect("AddCandidate.aspx",true);
+        }
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBox1.Checked == true)
+            {
+                foreach (GridViewRow gr in GridView1.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    cb.Checked = true;
+                }
+            }
+            else
+            {
+                foreach (GridViewRow gr in GridView1.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    cb.Checked = false;
+                }
+            }
         }
     }
 }

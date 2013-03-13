@@ -86,6 +86,56 @@ public class Common
         GridView1.DataBind();
     }
 
+    public void bindDataAttendance(string column, string condition, string table, GridView GridView1)
+    {
+        string sql = @"SELECT " + column + " from " + table + condition + ";";
+        SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
+        // Tạo DataSet
+        DataSet ds = new DataSet();
+        // Lấp đầy kết quả vào DataSet
+        da.Fill(ds, "data");
+        // Tạo DataTable thu kết quả từ bảng
+        DataTable dt = ds.Tables["data"];
+        dt.Columns.Add("Duration(Hours)");
+        dt.Columns.Add("Total");
+        int rowTotal = 0;
+        for (int i = 0; i < dt.Rows.Count;i++ )
+        {
+            TimeSpan total;
+            DateTime punchIn = DateTime.Parse(dt.Rows[i][3].ToString());
+            DateTime punchOut = DateTime.Parse(dt.Rows[i][1].ToString());
+            TimeSpan diff = punchIn.Subtract(punchOut);
+            total = diff;
+            dt.Rows[i][5] = diff.ToString();
+            if (rowTotal <= i) {
+                rowTotal = i;
+            }
+            for (int j = 0; j < dt.Rows.Count; j++)
+            {
+                if (dt.Rows[i][0].ToString().Equals(dt.Rows[j][0])&&i!=j) {
+                    DateTime punchIn1 = DateTime.Parse(dt.Rows[j][3].ToString());
+                    DateTime punchOut1 = DateTime.Parse(dt.Rows[j][1].ToString());
+                    if (punchIn.Day == punchIn1.Day && punchIn.Month == punchIn1.Month && punchIn.Year == punchIn1.Year)
+                    {
+                        TimeSpan diff1 = punchIn1.Subtract(punchOut1);
+                        total = total + diff1;
+                        rowTotal = j;
+                    }
+                }
+                if (rowTotal <= i)
+                {
+                    rowTotal = i;
+                }
+            }
+            if (rowTotal == i)
+            {
+                dt.Rows[i][6] = total.ToString();
+            }
+        }
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+    }
+
     public DataTable getData(string table, string condition) {
         string sql = @"SELECT * from "+table + condition+";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);

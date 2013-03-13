@@ -21,6 +21,7 @@ namespace SP2010VisualWebPart.JobTitles
                         com.bindData("JobTitle,JobDes,JobCategory", "", "HumanResources.JobTitle", GridView1);
                         Label1.Text = "";
                         CheckBox1.AutoPostBack = true;
+                        Session.Remove("Name");
                     }
                 }
                 catch (Exception ex)

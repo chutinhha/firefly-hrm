@@ -14,28 +14,37 @@ namespace SP2010VisualWebPart.EditJobTitle
         {
             if (Session["Account"].ToString() == "Admin")
             {
-                try
+                if (Session["Name"] == null)
                 {
-                    if (!IsPostBack)
+                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
+                }
+                else
+                {
+                    try
                     {
-                        com.SetItemList("Name", "HumanResources.JobCategories", DropDownList1, "", false, "");
-                        DataTable dt = com.getData("HumanResources.JobTitle", " where JobTitle=N'" + Session["Name"] + "'");
-                        if (dt.Rows.Count > 0)
+                        if (!IsPostBack)
                         {
-                            TextBox1.Text = dt.Rows[0][0].ToString().Trim();
-                            TextBox2.Text = dt.Rows[0][1].ToString().Trim();
-                            TextBox3.Text = dt.Rows[0][2].ToString().Trim();
-                            DropDownList1.SelectedValue = dt.Rows[0][3].ToString().Trim();
+                            com.SetItemList("Name", "HumanResources.JobCategories", DropDownList1, "", false, "");
+                            DataTable dt = com.getData("HumanResources.JobTitle", " where JobTitle=N'" + Session["Name"] + "'");
+                            if (dt.Rows.Count > 0)
+                            {
+                                TextBox1.Text = dt.Rows[0][0].ToString().Trim();
+                                TextBox2.Text = dt.Rows[0][1].ToString().Trim();
+                                TextBox3.Text = dt.Rows[0][2].ToString().Trim();
+                                DropDownList1.SelectedValue = dt.Rows[0][3].ToString().Trim();
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Label5.Text = ex.Message;
+                    catch (Exception ex)
+                    {
+                        Label5.Text = ex.Message;
+                    }
                 }
             }
             else
             {
+                Session.Remove("Name");
                 Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
                 Response.Redirect(Session["Account"] + ".aspx", true);
             }
@@ -44,6 +53,7 @@ namespace SP2010VisualWebPart.EditJobTitle
         protected void Button2_Click(object sender, EventArgs e)
         {
             com.closeConnection();
+            Session.Remove("Name");
             Response.Redirect("JobTitles.aspx", true);
         }
 

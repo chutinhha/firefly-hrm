@@ -16,47 +16,56 @@ namespace SP2010VisualWebPart.EditCandidate
         {
             if (Session["Account"].ToString() == "Admin")
             {
-                try
+                if (Session["Name"] == null) {
+                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
+                }
+                else
                 {
-                    if (!IsPostBack)
+                    try
                     {
-                        DropDownList1.DataSource = com.getCountryList();
-                        DropDownList1.DataBind();
-                        com.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2, "", false, "");
-                        com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList3, "", false, "");
-                        com.SetItemList("Status", "HumanResources.CandidateStatus", DropDownList4, "", false, "");
-                        Calendar1.Visible = false;
-                        DataTable dt = com.getData("HumanResources.JobCandidate", " where FullName=N'" + Session["Name"] + "' and Email='" + Session["Email"] + "'");
-                        if (dt.Rows.Count > 0)
+                        if (!IsPostBack)
                         {
-                            TextBox1.Text = dt.Rows[0][0].ToString().Trim();
-                            TextBox2.Text = dt.Rows[0][1].ToString().Trim();
-                            TextBox3.Text = dt.Rows[0][2].ToString().Trim();
-                            TextBox4.Text = dt.Rows[0][3].ToString().Trim();
-                            TextBox5.Text = dt.Rows[0][4].ToString().Trim();
-                            DropDownList1.SelectedValue = dt.Rows[0][5].ToString().Trim();
-                            TextBox6.Text = dt.Rows[0][6].ToString().Trim();
-                            TextBox7.Text = dt.Rows[0][7].ToString().Trim();
-                            TextBox8.Text = dt.Rows[0][8].ToString().Trim();
-                            TextBox9.Text = dt.Rows[0][9].ToString().Trim();
-                            DropDownList2.SelectedValue = dt.Rows[0][10].ToString().Trim();
-                            TextBox10.Text = dt.Rows[0][11].ToString().Trim();
-                            DropDownList3.SelectedValue = dt.Rows[0][14].ToString().Trim();
-                            TextBox11.Text = dt.Rows[0][15].ToString().Trim();
-                            DropDownList4.SelectedValue = dt.Rows[0][16].ToString().Trim();
-                            DropDownList5.SelectedValue = dt.Rows[0][17].ToString().Trim();
-                            TextBox12.Text = dt.Rows[0][13].ToString().Trim();
-                            TextBox13.Text = dt.Rows[0][12].ToString().Trim();
+                            DropDownList1.DataSource = com.getCountryList();
+                            DropDownList1.DataBind();
+                            com.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2, "", false, "");
+                            com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList3, "", false, "");
+                            com.SetItemList("Status", "HumanResources.CandidateStatus", DropDownList4, "", false, "");
+                            Calendar1.Visible = false;
+                            DataTable dt = com.getData("HumanResources.JobCandidate", " where FullName=N'" + Session["Name"] + "' and Email='" + Session["Email"] + "'");
+                            if (dt.Rows.Count > 0)
+                            {
+                                TextBox1.Text = dt.Rows[0][0].ToString().Trim();
+                                TextBox2.Text = dt.Rows[0][1].ToString().Trim();
+                                TextBox3.Text = dt.Rows[0][2].ToString().Trim();
+                                TextBox4.Text = dt.Rows[0][3].ToString().Trim();
+                                TextBox5.Text = dt.Rows[0][4].ToString().Trim();
+                                DropDownList1.SelectedValue = dt.Rows[0][5].ToString().Trim();
+                                TextBox6.Text = dt.Rows[0][6].ToString().Trim();
+                                TextBox7.Text = dt.Rows[0][7].ToString().Trim();
+                                TextBox8.Text = dt.Rows[0][8].ToString().Trim();
+                                TextBox9.Text = dt.Rows[0][9].ToString().Trim();
+                                DropDownList2.SelectedValue = dt.Rows[0][10].ToString().Trim();
+                                TextBox10.Text = dt.Rows[0][11].ToString().Trim();
+                                DropDownList3.SelectedValue = dt.Rows[0][14].ToString().Trim();
+                                TextBox11.Text = dt.Rows[0][15].ToString().Trim();
+                                DropDownList4.SelectedValue = dt.Rows[0][16].ToString().Trim();
+                                DropDownList5.SelectedValue = dt.Rows[0][17].ToString().Trim();
+                                TextBox12.Text = dt.Rows[0][13].ToString().Trim();
+                                TextBox13.Text = dt.Rows[0][12].ToString().Trim();
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Label19.Text = ex.Message;
+                    catch (Exception ex)
+                    {
+                        Label19.Text = ex.Message;
+                    }
                 }
             }
             else
             {
+                Session.Remove("Name");
+                Session.Remove("Email");
                 Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
                 Response.Redirect(Session["Account"] + ".aspx", true);
             }
@@ -81,6 +90,8 @@ namespace SP2010VisualWebPart.EditCandidate
         protected void Button3_Click(object sender, EventArgs e)
         {
             com.closeConnection();
+            Session.Remove("Name");
+            Session.Remove("Email");
             Response.Redirect("Candidates.aspx",true);
         }
 
