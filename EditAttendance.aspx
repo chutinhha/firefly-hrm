@@ -1,41 +1,17 @@
-﻿<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="~masterurl/default.master" meta:progid="SharePoint.WebPartPage.Document"       %>
-<%@ Import Namespace="Microsoft.SharePoint.WebPartPages" %> <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+﻿<%@ Register tagprefix="EditAttendance" namespace="SP2010VisualWebPart.EditAttendance" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
+<%-- _LocalBinding --%>
+<%@ Page language="C#" MasterPageFile="~masterurl/default.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
+<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
-	<SharePoint:UIVersionedContent runat="server" UIVersion="3" Id="PlaceHolderWebDescription" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' ID='1' T='PlaceHolderWebDescription' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
-		<ContentTemplate>
-			<div class="ms-webpartpagedescription"><SharePoint:ProjectProperty Property="Description" runat="server"/></div>
-		</ContentTemplate>
-	</SharePoint:UIVersionedContent>
-	<asp:UpdatePanel
-		   id="updatePanel"
-		   runat="server"
-		   UpdateMode="Conditional"
-		   ChildrenAsTriggers="false">
-		<ContentTemplate>
-			<SharePoint:VersionedPlaceHolder UIVersion="4" runat="server" __designer:Preview="&lt;Regions&gt;&lt;Region Name=&quot;0&quot; Editable=&quot;True&quot; Content=&quot;&amp;#xD;&amp;#xA;				&amp;lt;SharePoint:SPRibbonButton&amp;#xD;&amp;#xA;					id=&amp;quot;btnWikiEdit&amp;quot;&amp;#xD;&amp;#xA;					RibbonCommand=&amp;quot;Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Edit&amp;quot;&amp;#xD;&amp;#xA;					runat=&amp;quot;server&amp;quot;&amp;#xD;&amp;#xA;				    Text=&amp;quot;edit&amp;quot; __designer:Preview=&amp;quot;&amp;amp;lt;div style='display:none'&amp;amp;gt;&amp;amp;lt;input type=&amp;amp;quot;submit&amp;amp;quot; name=&amp;amp;quot;btnWikiEdit&amp;amp;quot; value=&amp;amp;quot;edit&amp;amp;quot; id=&amp;amp;quot;btnWikiEdit&amp;amp;quot; /&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;&amp;quot; __designer:Values=&amp;quot;&amp;amp;lt;P N='ID' ID='1' T='btnWikiEdit' /&amp;amp;gt;&amp;amp;lt;P N='RibbonCommand' T='Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Edit' /&amp;amp;gt;&amp;amp;lt;P N='Text' T='edit' /&amp;amp;gt;&amp;amp;lt;P N='Page' ID='2' /&amp;amp;gt;&amp;amp;lt;P N='TemplateControl' R='2' /&amp;amp;gt;&amp;amp;lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&amp;amp;gt;&amp;quot;/&amp;gt;&amp;#xD;&amp;#xA;				&amp;lt;SharePoint:SPRibbonButton&amp;#xD;&amp;#xA;					id=&amp;quot;btnWikiSave&amp;quot;&amp;#xD;&amp;#xA;					RibbonCommand=&amp;quot;Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.SaveAndStop&amp;quot;&amp;#xD;&amp;#xA;					runat=&amp;quot;server&amp;quot;&amp;#xD;&amp;#xA;				    Text=&amp;quot;edit&amp;quot; __designer:Preview=&amp;quot;&amp;amp;lt;div style='display:none'&amp;amp;gt;&amp;amp;lt;input type=&amp;amp;quot;submit&amp;amp;quot; name=&amp;amp;quot;btnWikiSave&amp;amp;quot; value=&amp;amp;quot;edit&amp;amp;quot; id=&amp;amp;quot;btnWikiSave&amp;amp;quot; /&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;&amp;quot; __designer:Values=&amp;quot;&amp;amp;lt;P N='ID' ID='1' T='btnWikiSave' /&amp;amp;gt;&amp;amp;lt;P N='RibbonCommand' T='Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.SaveAndStop' /&amp;amp;gt;&amp;amp;lt;P N='Text' T='edit' /&amp;amp;gt;&amp;amp;lt;P N='Page' ID='2' /&amp;amp;gt;&amp;amp;lt;P N='TemplateControl' R='2' /&amp;amp;gt;&amp;amp;lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&amp;amp;gt;&amp;quot;/&amp;gt;&amp;#xD;&amp;#xA;				&amp;lt;SharePoint:SPRibbonButton&amp;#xD;&amp;#xA;					id=&amp;quot;btnWikiRevert&amp;quot;&amp;#xD;&amp;#xA;					RibbonCommand=&amp;quot;Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Revert&amp;quot;&amp;#xD;&amp;#xA;				    runat=&amp;quot;server&amp;quot;&amp;#xD;&amp;#xA;					Text=&amp;quot;Revert&amp;quot; __designer:Preview=&amp;quot;&amp;amp;lt;div style='display:none'&amp;amp;gt;&amp;amp;lt;input type=&amp;amp;quot;submit&amp;amp;quot; name=&amp;amp;quot;btnWikiRevert&amp;amp;quot; value=&amp;amp;quot;Revert&amp;amp;quot; id=&amp;amp;quot;btnWikiRevert&amp;amp;quot; /&amp;amp;gt;&amp;amp;lt;/div&amp;amp;gt;&amp;quot; __designer:Values=&amp;quot;&amp;amp;lt;P N='ID' ID='1' T='btnWikiRevert' /&amp;amp;gt;&amp;amp;lt;P N='RibbonCommand' T='Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Revert' /&amp;amp;gt;&amp;amp;lt;P N='Text' T='Revert' /&amp;amp;gt;&amp;amp;lt;P N='Page' ID='2' /&amp;amp;gt;&amp;amp;lt;P N='TemplateControl' R='2' /&amp;amp;gt;&amp;amp;lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&amp;amp;gt;&amp;quot;/&amp;gt;&amp;#xD;&amp;#xA;			&quot; /&gt;&lt;/Regions&gt;&lt;div height=&quot;&quot; width=&quot;&quot; style=&quot;&quot; _designerRegion=0&gt;&lt;/div&gt;" __designer:Values="&lt;P N='UIVersion' T='4' /&gt;&lt;P N='Visible' T='True' /&gt;&lt;P N='ID' ID='1' T='ctl00' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
-				<SharePoint:SPRibbonButton
-					id="btnWikiEdit"
-					RibbonCommand="Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Edit"
-					runat="server"
-				    Text="edit"/>
-				<SharePoint:SPRibbonButton
-					id="btnWikiSave"
-					RibbonCommand="Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.SaveAndStop"
-					runat="server"
-				    Text="edit"/>
-				<SharePoint:SPRibbonButton
-					id="btnWikiRevert"
-					RibbonCommand="Ribbon.WikiPageTab.EditAndCheckout.SaveEdit.Menu.SaveEdit.Revert"
-				    runat="server"
-					Text="Revert"/>
-			</SharePoint:VersionedPlaceHolder>
-			<SharePoint:EmbeddedFormField id="WikiField" FieldName="WikiField" ControlMode="Display" runat="server"></SharePoint:EmbeddedFormField>
-			<WebPartPages:WebPartZone runat="server" ID="Bottom" Title="loc:Bottom" __designer:Preview="&lt;Regions&gt;&lt;Region Name=&quot;0&quot; Editable=&quot;True&quot; Content=&quot;&quot; NamingContainer=&quot;True&quot; /&gt;&lt;/Regions&gt;&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; id=&quot;Bottom&quot;&gt;
+		<table cellpadding="4" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td id="_invisibleIfEmpty" name="_invisibleIfEmpty" valign="top" width="100%"> 
+					<WebPartPages:WebPartZone runat="server" Title="loc:FullPage" ID="FullPage" FrameType="TitleBarOnly" __designer:Preview="&lt;Regions&gt;&lt;Region Name=&quot;0&quot; Editable=&quot;True&quot; Content=&quot;&quot; NamingContainer=&quot;True&quot; /&gt;&lt;/Regions&gt;&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; id=&quot;FullPage&quot;&gt;
 	&lt;tr&gt;
 		&lt;td style=&quot;white-space:nowrap;&quot;&gt;&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;2&quot; border=&quot;0&quot; style=&quot;width:100%;&quot;&gt;
 			&lt;tr&gt;
-				&lt;td style=&quot;white-space:nowrap;&quot;&gt;Bottom&lt;/td&gt;
+				&lt;td style=&quot;white-space:nowrap;&quot;&gt;Full Page&lt;/td&gt;
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;&lt;tr&gt;
@@ -49,14 +25,71 @@
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='Bottom' /&gt;&lt;P N='HeaderText' T='loc:Bottom' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate></ZoneTemplate></WebPartPages:WebPartZone>
-	</ContentTemplate>
-	<Triggers>
-	    <asp:PostBackTrigger ControlID="WikiField" />
-	    <asp:PostBackTrigger ControlID="btnWikiRevert" />
-	    <asp:PostBackTrigger ControlID="btnWikiSave" />
-	</Triggers>
- </asp:UpdatePanel>
+&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='FullPage' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' ID='2' T='Full Page' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='Title' R='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><EditAttendance:EditAttendance runat="server" ID="g_a51f47a2_6b19_48e6_8adb_825cf881eb34" Description="EditAttendance" Title="EditAttendance" __designer:Values="&lt;P N='Description' ID='1' T='EditAttendance' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_a51f47a2_6b19_48e6_8adb_825cf881eb34' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+			&lt;tr class=&quot;ms-WPHeader&quot;&gt;
+				&lt;td align=&quot;left&quot; class=&quot;ms-wpTdSpace&quot;&gt;&amp;#160;&lt;/td&gt;&lt;td title=&quot;EditAttendance - EditAttendance&quot; id=&quot;WebPartTitleFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot; class=&quot;ms-WPHeaderTd&quot;&gt;&lt;div class=&quot;ms-WPTitle&quot;&gt;&lt;nobr&gt;&lt;span&gt;EditAttendance&lt;/span&gt;&lt;span id=&quot;WebPartCaptionFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot;&gt;&lt;/span&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;/td&gt;&lt;td align=&quot;left&quot; class=&quot;ms-wpTdSpace&quot;&gt;&amp;#160;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;&lt;/td&gt;
+	&lt;/tr&gt;&lt;tr&gt;
+		&lt;td class=&quot;&quot; valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot; width=&quot;100%&quot; class=&quot;ms-WPBody ms-wpContentDivSpace&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
+			&lt;div id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot;&gt;
+	&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label6&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name&lt;/span&gt;
+&lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox7&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox7&quot; disabled=&quot;disabled&quot; style=&quot;width:290px;&quot; /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label1&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Punch In&lt;/span&gt;
+    &lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox1&quot; style=&quot;width:150px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:20px;&quot;&gt;&lt;/span&gt;&lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox2&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox2&quot; style=&quot;width:120px;&quot; /&gt;
+&lt;br /&gt;
+&lt;p&gt;
+    &amp;nbsp;&lt;/p&gt;
+&lt;p&gt;
+    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label2&quot;&gt;Punch In Note&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;span style=&quot;padding-left:150px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox3&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox3&quot; style=&quot;height:100px;width:290px;&quot;&gt;&lt;/textarea&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label3&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Punch Out&lt;/span&gt;
+    &lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox4&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox4&quot; style=&quot;width:290px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:20px;&quot;&gt;&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &amp;nbsp;&lt;/p&gt;
+&lt;p&gt;
+    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label4&quot;&gt;Punch Out Note&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;span style=&quot;padding-left:150px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox6&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox6&quot; style=&quot;height:100px;width:290px;&quot;&gt;&lt;/textarea&gt;
+
+
+&lt;p&gt;
+    &amp;nbsp;&lt;/p&gt;
+&lt;p&gt;
+    &lt;span style=&quot;padding-left:150px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$Button1&quot; value=&quot;Save&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$Button2&quot; value=&quot;Cancel&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &amp;nbsp;&lt;/p&gt;
+&lt;p&gt;
+    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label5&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+&lt;/p&gt;
+
+
+
+
+&lt;/div&gt;
+		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;" __MarkupType="vsattributemarkup" __WebPartId="{A51F47A2-6B19-48E6-8ADB-825CF881EB34}" WebPart="true" __designer:IsClosed="false"></EditAttendance:EditAttendance>
+
+</ZoneTemplate></WebPartPages:WebPartZone> </td>
+				</tr>
+				<script type="text/javascript" language="javascript">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</script>
+		</table>
 </asp:Content>
 <asp:Content id="Content1" runat="server" contentplaceholderid="PlaceHolderHorizontalNav">
 
@@ -148,7 +181,7 @@
 										<li><a href="">Attendace Summary</a></li>
 										<li><a href="">Evaluate Employees</a></li>
 									</ul>
-								</li>
+								</li>                
 							</ul>
 							</div>
 							
@@ -181,7 +214,7 @@
 	  MaximumDynamicDisplayLevels="1"
 	  SkipLinkText=""
 	  CssClass="s4-tn" __designer:Preview="&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/1033/styles/menu-21.css&quot;/&gt;
-&lt;div id=&quot;zz3_TopNavigationMenuV4&quot; class=&quot;s4-tn&quot;&gt;
+&lt;div id=&quot;zz2_TopNavigationMenuV4&quot; class=&quot;s4-tn&quot;&gt;
 	&lt;div class=&quot;menu horizontal menu-horizontal&quot;&gt;
 		&lt;ul class=&quot;root static&quot;&gt;
 			&lt;li class=&quot;static&quot;&gt;&lt;a class=&quot;static menu-item&quot; href=&quot;/hr/SitePages/Home.aspx&quot; accesskey=&quot;1&quot;&gt;&lt;span class=&quot;additional-background&quot;&gt;&lt;span class=&quot;menu-item-text&quot;&gt;hr&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;

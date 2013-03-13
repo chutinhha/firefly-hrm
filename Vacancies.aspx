@@ -70,6 +70,8 @@
     &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_223b737b_8d58_4a24_929d_736a75ae012c$ctl00$Button5&quot; value=&quot;Delete&quot; id=&quot;FullPage_g_223b737b_8d58_4a24_929d_736a75ae012c_ctl00_Button5&quot; style=&quot;width:80px;&quot; /&gt;
     &lt;br /&gt;
     &lt;br /&gt;
+    &lt;input id=&quot;FullPage_g_223b737b_8d58_4a24_929d_736a75ae012c_ctl00_CheckBox1&quot; type=&quot;checkbox&quot; name=&quot;FullPage$g_223b737b_8d58_4a24_929d_736a75ae012c$ctl00$CheckBox1&quot; /&gt;&lt;label for=&quot;FullPage_g_223b737b_8d58_4a24_929d_736a75ae012c_ctl00_CheckBox1&quot;&gt;All&lt;/label&gt;
+    &lt;br /&gt;
     
 &lt;/fieldset&gt;
 
@@ -107,8 +109,10 @@
                                         </li>
                                         <li><a href="">Job</a>
                                             <ul>
-                                                <li><a href="">Job Categories</a></li>
-                                                <li><a href="">Position</a></li>
+                                                <li><a href="JobCategories.aspx">
+												Job Categories</a></li>
+                                                <li><a href="JobTitles.aspx">
+												Position</a></li>
                                                 <li><a href="">Pay Grades</a></li>
                                             </ul>
                                         </li>
@@ -152,7 +156,7 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -175,8 +179,7 @@
 										<li><a href="">Attendace Summary</a></li>
 										<li><a href="">Evaluate Employees</a></li>
 									</ul>
-								</li>	
-							</ul>
+								</li>							</ul>
 							</div>
 							
 				            </div>
