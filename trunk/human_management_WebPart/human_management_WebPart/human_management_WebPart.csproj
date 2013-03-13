@@ -76,6 +76,14 @@
     <Compile Include="AddVacancy\AddVacancyUserControl.ascx.designer.cs">
       <DependentUpon>AddVacancyUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="AttendanceRecord\AttendanceRecord.cs" />
+    <Compile Include="AttendanceRecord\AttendanceRecordUserControl.ascx.cs">
+      <DependentUpon>AttendanceRecordUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AttendanceRecord\AttendanceRecordUserControl.ascx.designer.cs">
+      <DependentUpon>AttendanceRecordUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Candidates\Candidates.cs" />
     <Compile Include="Candidates\CandidatesUserControl.ascx.cs">
       <DependentUpon>CandidatesUserControl.ascx</DependentUpon>
@@ -85,6 +93,14 @@
       <DependentUpon>CandidatesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.cs" />
+    <Compile Include="EditAttendance\EditAttendance.cs" />
+    <Compile Include="EditAttendance\EditAttendanceUserControl.ascx.cs">
+      <DependentUpon>EditAttendanceUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditAttendance\EditAttendanceUserControl.ascx.designer.cs">
+      <DependentUpon>EditAttendanceUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditCandidate\EditCandidate.cs" />
     <Compile Include="EditCandidate\EditCandidateUserControl.ascx.cs">
       <DependentUpon>EditCandidateUserControl.ascx</DependentUpon>
@@ -134,6 +150,14 @@
     <Compile Include="Login\LoginUserControl.ascx.designer.cs">
       <DependentUpon>LoginUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="PunchAttendance\PunchAttendance.cs" />
+    <Compile Include="PunchAttendance\PunchAttendanceUserControl.ascx.cs">
+      <DependentUpon>PunchAttendanceUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PunchAttendance\PunchAttendanceUserControl.ascx.designer.cs">
+      <DependentUpon>PunchAttendanceUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vacancies\Vacancies.cs" />
     <Compile Include="Vacancies\VacanciesUserControl.ascx.cs">
       <DependentUpon>VacanciesUserControl.ascx</DependentUpon>
@@ -156,9 +180,17 @@
     <None Include="AddVacancy\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cf5222bc-a4b4-4851-82a1-7bf3410321cc}</SharePointProjectItemId>
     </None>
+    <None Include="AttendanceRecord\AttendanceRecord.webpart" />
+    <None Include="AttendanceRecord\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bf65553d-a739-48ba-a3c9-03f0930aa13f}</SharePointProjectItemId>
+    </None>
     <None Include="Candidates\Candidates.webpart" />
     <None Include="Candidates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ccc65a0d-f925-49a1-91a7-c4c9576805d0}</SharePointProjectItemId>
+    </None>
+    <None Include="EditAttendance\EditAttendance.webpart" />
+    <None Include="EditAttendance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7abfa6c5-e973-4a7b-833e-e6e0094baac4}</SharePointProjectItemId>
     </None>
     <None Include="EditCandidate\EditCandidate.webpart" />
     <None Include="EditCandidate\SharePointProjectItem.spdata">
@@ -185,6 +217,10 @@
       <SharePointProjectItemId>{f8c01da9-8061-45c1-91e5-0afa8642ac0c}</SharePointProjectItemId>
     </None>
     <None Include="Login\Login.webpart" />
+    <None Include="PunchAttendance\PunchAttendance.webpart" />
+    <None Include="PunchAttendance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d4f74f66-32fa-4341-ac72-55fe13909859}</SharePointProjectItemId>
+    </None>
     <None Include="Vacancies\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6fb3e01b-018b-4b22-9f51-4d5f2ce4e5f8}</SharePointProjectItemId>
     </None>
@@ -217,10 +253,18 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="AddVacancy\Elements.xml" />
+    <Content Include="AttendanceRecord\AttendanceRecordUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="AttendanceRecord\Elements.xml" />
     <Content Include="Candidates\CandidatesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Candidates\Elements.xml" />
+    <Content Include="EditAttendance\EditAttendanceUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="EditAttendance\Elements.xml" />
     <Content Include="EditCandidate\EditCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -243,6 +287,10 @@
     </Content>
     <Content Include="Login\Elements.xml" />
     <Content Include="Login\LoginUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="PunchAttendance\Elements.xml" />
+    <Content Include="PunchAttendance\PunchAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Vacancies\Elements.xml" />
