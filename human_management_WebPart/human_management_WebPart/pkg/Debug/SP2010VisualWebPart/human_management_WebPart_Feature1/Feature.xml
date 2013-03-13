@@ -23,5 +23,11 @@
     <ElementFile Location="AddJobtitle\AddJobtitle.webpart" />
     <ElementManifest Location="EditJobTitle\Elements.xml" />
     <ElementFile Location="EditJobTitle\EditJobTitle.webpart" />
+    <ElementManifest Location="AttendanceRecord\Elements.xml" />
+    <ElementFile Location="AttendanceRecord\AttendanceRecord.webpart" />
+    <ElementManifest Location="PunchAttendance\Elements.xml" />
+    <ElementFile Location="PunchAttendance\PunchAttendance.webpart" />
+    <ElementManifest Location="EditAttendance\Elements.xml" />
+    <ElementFile Location="EditAttendance\EditAttendance.webpart" />
   </ElementManifests>
 </Feature>

@@ -86,6 +86,9 @@
         onclick="Button8_Click" />
     <br />
     <br />
+    <asp:CheckBox ID="CheckBox1" runat="server" 
+        oncheckedchanged="CheckBox1_CheckedChanged" Text="All" />
+    <br />
     <asp:GridView ID="GridView1" align="right" runat="server" EnableModelValidation="True" 
         onselectedindexchanged="GridView1_SelectedIndexChanged" 
         Width="100%">
