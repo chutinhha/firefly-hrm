@@ -6,10 +6,11 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobTitlesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.JobTitles.JobTitlesUserControl" %>
-<fieldset name="Group1">
-    <legend style="background-color: #FF6600; color: #FFFF00;">Job Titles</legend>
+<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<table class="fieldTitleTable">
+<tr><td class="fieldTitleTd">Job Titles</td></tr></table>
     <br />
-    <asp:Button ID="Button1" runat="server" Text="Add" Width="80px" 
+    <span style="padding-left:5px;"></span><asp:Button ID="Button1" runat="server" Text="Add" Width="80px" 
         onclick="Button1_Click" />
     <asp:Button ID="Button2" runat="server" Text="Edit" Width="80px" 
         onclick="Button2_Click" />
@@ -17,13 +18,19 @@
         onclick="Button3_Click" />
     <br />
     <br />
-    <asp:CheckBox ID="CheckBox1" runat="server" Text="All" 
-        oncheckedchanged="CheckBox1_CheckedChanged" />
-    <br />
-    <asp:GridView ID="GridView1" runat="server" Width="500px">
+    <asp:GridView ID="GridView1" runat="server" Width="100%">
     <Columns>
 
                         <asp:TemplateField>
+                        <HeaderStyle Width="25" />
+                            <HeaderTemplate>
+            <asp:CheckBox 
+                ID="CheckBox2" 
+                runat="server"
+                OnCheckedChanged="CheckUncheckAll"
+                AutoPostBack="true" 
+                />
+        </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
@@ -31,6 +38,6 @@
 
                   </Columns>
     </asp:GridView>
+    </td></tr></table>
     <br />
     <asp:Label ID="Label1" runat="server" style="color:Red;"></asp:Label>
-</fieldset>

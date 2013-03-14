@@ -6,16 +6,17 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Login.LoginUserControl" %>
-<asp:Label ID="Label1" runat="server" Text="User" Width="70px"></asp:Label>
-<asp:TextBox ID="TextBox1" runat="server" Width="140px"></asp:TextBox>
+<span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="User" Width="120px"></asp:Label>
+<asp:TextBox ID="TextBox1" runat="server" Width="200px"></asp:TextBox>
+<br /><br />
 <p>
-    <asp:Label ID="Label3" runat="server" Text="Password" Width="70px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label3" runat="server" Text="Password" Width="120px"></asp:Label>
     <asp:TextBox ID="TextBox2" runat="server" ontextchanged="TextBox2_TextChanged" 
-        TextMode="Password" Width="140px"></asp:TextBox>
+        TextMode="Password" Width="200px"></asp:TextBox>
 </p>
-<span style="padding-left:70px;"></span><asp:Button ID="Button1" runat="server" 
-    Text="Login" onclick="Button1_Click1" />
+<span style="padding-left:128px;"></span>
+<asp:Button ID="Button1" runat="server" 
+    Text="Login" onclick="Button1_Click1" Width="80px" />
 <p>
-    <span style="padding-left:70px;"></span><asp:Label ID="Label2" runat="server" style="color:Red;"></asp:Label>
+    <asp:Label ID="Label2" runat="server" style="color:Red;"></asp:Label>
 </p>
-

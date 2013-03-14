@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace SP2010VisualWebPart.EditCandidate {
-
-
-    public partial class EditCandidateUserControl
-    {
+    
+    
+    public partial class EditCandidateUserControl {
         
         /// <summary>
         /// Label1 control.
@@ -356,15 +355,6 @@ namespace SP2010VisualWebPart.EditCandidate {
         protected global::System.Web.UI.WebControls.TextBox TextBox13;
         
         /// <summary>
-        /// Label19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
-        
-        /// <summary>
         /// Button2 control.
         /// </summary>
         /// <remarks>
@@ -381,5 +371,14 @@ namespace SP2010VisualWebPart.EditCandidate {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button3;
+        
+        /// <summary>
+        /// Label19 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label19;
     }
 }

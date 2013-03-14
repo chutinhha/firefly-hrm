@@ -7,12 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SP2010VisualWebPart.Login
-{
-
-
-    public partial class LoginUserControl
-    {
+namespace SP2010VisualWebPart.Login {
+    
+    
+    public partial class LoginUserControl {
         
         /// <summary>
         /// Label1 control.

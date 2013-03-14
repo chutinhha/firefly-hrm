@@ -22,3 +22,42 @@
 	vertical-align:middle;
 	
 }
+.fieldTitleTable
+{
+    background-color:#2CA6CD;
+    width:100%;
+    border:none;
+    color:#FFFFFF;
+    font-weight: bold;
+    font-size:15pt;
+    border-radius:5px;
+}
+.fieldTitleDiv
+{
+    border:2px solid #2CA6CD;
+    width:100%;
+    border-radius:8px;
+    border-spacing:0; 
+}
+.fieldTitleTd
+{
+    height:30px;    
+}
+.borderTop
+{
+    border-top:1px solid #2CA6CD;
+    padding-top:10px;
+    padding-left:5px;
+    padding-bottom:10px;
+}
+.borderBottom
+{
+    border-bottom:1px solid #2CA6CD;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:5px;
+}
+textarea
+{
+resize: none;
+}

@@ -21,10 +21,14 @@ namespace SP2010VisualWebPart.Vacancies
                         com.SetItemList("JobTitle", "HumanResources.JobTitle", DropDownList1, "", true, "All");
                         com.SetItemList("VacancyName", "HumanResources.JobVacancy", DropDownList2, "", true, "All");
                         TextBox1.Text = "";
-                        CheckBox1.AutoPostBack = true;
                         DropDownList3.SelectedIndex = 0;
                         Session.Remove("Name");
                         com.bindData("VacancyName,JobTitle,HiringManager,Status", "", "HumanResources.JobVacancy", GridView1);
+                        GridView1.GridLines = GridLines.None;
+                        GridView1.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                        GridView1.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                        GridView1.HeaderStyle.Height = 25;
+                        GridView1.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                     }
                 }
                 catch (Exception ex)
@@ -102,6 +106,23 @@ namespace SP2010VisualWebPart.Vacancies
             Response.Redirect("AddVacancy.aspx",true);
         }
 
+        public void CheckUncheckAll(object sender, EventArgs e)
+        {
+            CheckBox cbSelectedHeader = (CheckBox)GridView1.HeaderRow.FindControl("CheckBox2");
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                if (cbSelectedHeader.Checked == true)
+                {
+                    cbSelected.Checked = true;
+                }
+                else
+                {
+                    cbSelected.Checked = false;
+                }
+            }
+        }
+
         protected void Button4_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow gr in GridView1.Rows)
@@ -137,26 +158,6 @@ namespace SP2010VisualWebPart.Vacancies
             catch (Exception ex)
             {
                 Label5.Text = ex.Message;
-            }
-        }
-
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CheckBox1.Checked == true)
-            {
-                foreach (GridViewRow gr in GridView1.Rows)
-                {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = true;
-                }
-            }
-            else
-            {
-                foreach (GridViewRow gr in GridView1.Rows)
-                {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = false;
-                }
             }
         }
     }

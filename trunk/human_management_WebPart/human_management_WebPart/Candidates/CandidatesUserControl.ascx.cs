@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace SP2010VisualWebPart.Candidates
 {
@@ -24,9 +25,13 @@ namespace SP2010VisualWebPart.Candidates
                         com.bindData("JobVacancy,FullName,HiringManager,Email,ApplyDate,Status", "", "HumanResources.JobCandidate", GridView1);
                         Calendar1.Visible = false;
                         Calendar2.Visible = false;
-                        CheckBox1.AutoPostBack = true;
                         Session.Remove("Name");
                         Session.Remove("Email");
+                        GridView1.GridLines = GridLines.None;
+                        GridView1.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                        GridView1.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                        GridView1.HeaderStyle.Height = 25;
+                        GridView1.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                     }
                 }
                 catch (Exception ex)
@@ -38,6 +43,23 @@ namespace SP2010VisualWebPart.Candidates
             {
                 Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
                 Response.Redirect(Session["Account"] + ".aspx", true);
+            }
+        }
+
+        public void CheckUncheckAll(object sender, EventArgs e)
+        {
+            CheckBox cbSelectedHeader = (CheckBox)GridView1.HeaderRow.FindControl("CheckBox2");
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                if (cbSelectedHeader.Checked == true)
+                {
+                    cbSelected.Checked = true;
+                }
+                else
+                {
+                    cbSelected.Checked = false;
+                }       
             }
         }
 
@@ -218,26 +240,6 @@ namespace SP2010VisualWebPart.Candidates
         {
             com.closeConnection();
             Response.Redirect("AddCandidate.aspx",true);
-        }
-
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CheckBox1.Checked == true)
-            {
-                foreach (GridViewRow gr in GridView1.Rows)
-                {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = true;
-                }
-            }
-            else
-            {
-                foreach (GridViewRow gr in GridView1.Rows)
-                {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = false;
-                }
-            }
         }
     }
 }

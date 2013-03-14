@@ -4,6 +4,11 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+
 
 namespace SP2010VisualWebPart.AttendanceRecord
 {
@@ -30,9 +35,13 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         Label3.Visible = false;
                         RadioButton1.AutoPostBack = true;
                         RadioButton2.AutoPostBack = true;
-                        CheckBox1.AutoPostBack = true;
                         RadioButton3.AutoPostBack = true;
                         Label5.Text = "";
+                        GridView1.GridLines = GridLines.None;
+                        GridView1.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                        GridView1.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                        GridView1.HeaderStyle.Height = 25;
+                        GridView1.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                     }
                     if (Session["EmployeeName"] != null)
                     {
@@ -40,6 +49,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         RadioButton3.Checked = true;
                         Label5.Text = "";
                         com.bindDataAttendance("*", " where EmployeeName=N'" + TextBox1.Text + "'" + condition, "HumanResources.Attendance", GridView1);
+                        Panel1.Visible = true;
                         Session.Remove("EmployeeName");
                     }
                 }
@@ -112,28 +122,26 @@ namespace SP2010VisualWebPart.AttendanceRecord
             }
         }
 
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        public void CheckUncheckAll(object sender, EventArgs e)
         {
-            if (CheckBox1.Checked == true)
+            CheckBox cbSelectedHeader = (CheckBox)GridView1.HeaderRow.FindControl("CheckBox2");
+            foreach (GridViewRow row in GridView1.Rows)
             {
-                foreach (GridViewRow gr in GridView1.Rows)
+                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                if (cbSelectedHeader.Checked == true)
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = true;
+                    cbSelected.Checked = true;
                 }
-            }
-            else
-            {
-                foreach (GridViewRow gr in GridView1.Rows)
+                else
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = false;
+                    cbSelected.Checked = false;
                 }
             }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
+            Boolean check = false;
             if(TextBox1.Text.Trim()==""){
                 Label5.Text="You must enter Employee Name";
             }
@@ -143,6 +151,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     if(RadioButton3.Checked==true){
                         Label5.Text = "";
                         com.bindDataAttendance("*", " where EmployeeName=N'" + TextBox1.Text + "'" + condition, "HumanResources.Attendance", GridView1);
+                        check = true;
                     }
                     else if (RadioButton1.Checked == true)
                     {
@@ -159,6 +168,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                     + dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                                 Label5.Text = "";
                                 com.bindDataAttendance("*", " where EmployeeName=N'" + TextBox1.Text + "'" + condition, "HumanResources.Attendance", GridView1);
+                                check = true;
                             }
                             catch (FormatException)
                             {
@@ -183,10 +193,11 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                     Label5.Text = "To Date must be after From date";
                                 }
                                 else if (dt.Year < dt1.Year) {
-                                    condition = " and PunchIn > '" + dt.Day + "-" + dt.Month + "-" + dt.Year + "'"
-                                                + " and PunchIn < '" + dt1.Day + "-" + dt1.Month + "-" + dt1.Year + "'";
+                                    condition = " and PunchIn > '" + dt.Month + "-" + dt.Day + "-" + dt.Year + "'"
+                                                + " and PunchIn < '" + dt1.Month + "-" + dt1.Day + "-" + dt1.Year + "'";
                                     Label5.Text = "";
                                     com.bindDataAttendance("*", " where EmployeeName=N'" + TextBox1.Text + "'" + condition, "HumanResources.Attendance", GridView1);
+                                    check = true;
                                 }
                                 else
                                 {
@@ -195,10 +206,11 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         Label5.Text = "To Date must be after From date";
                                     }
                                     else if (dt.Month < dt1.Month) {
-                                        condition = " and PunchIn > '" + dt.Day + "-" + dt.Month + "-" + dt.Year + "'"
-                                                + " and PunchIn < '" + dt1.Day + "-" + dt1.Month + "-" + dt1.Year + "'";
+                                        condition = " and PunchIn > '" + dt.Month + "-" + dt.Day + "-" + dt.Year + "'"
+                                                + " and PunchIn < '" + dt1.Month + "-" + dt1.Day + "-" + dt1.Year + "'";
                                         Label5.Text = "";
                                         com.bindDataAttendance("*", " where EmployeeName=N'" + TextBox1.Text + "'" + condition, "HumanResources.Attendance", GridView1);
+                                        check = true;
                                     }
                                     else
                                     {
@@ -208,10 +220,11 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         }
                                         else
                                         {
-                                            condition = " and PunchIn > '" + dt.Day + "-" + dt.Month + "-" + dt.Year + "'"
-                                                + " and PunchIn < '" + dt1.Day + "-" + dt1.Month + "-" + dt1.Year + "'";
+                                            condition = " and PunchIn > '" + dt.Month + "-" + dt.Day + "-" + dt.Year + "'"
+                                                + " and PunchIn < '" + dt1.Month + "-" + dt1.Day + "-" + dt1.Year + "'";
                                             Label5.Text = "";
                                             com.bindDataAttendance("*", " where EmployeeName=N'" + TextBox1.Text + "'" + condition, "HumanResources.Attendance", GridView1);
+                                            check = true;
                                         }
                                     }
                                 }
@@ -226,6 +239,13 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 catch (Exception ex) {
                     Label5.Text = ex.Message;
                 }
+            }
+            if (GridView1.Rows.Count > 0 && check==true)
+            {
+                Panel1.Visible = true;
+            }
+            else {
+                Panel1.Visible = false;
             }
         }
 
@@ -297,6 +317,10 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     Response.Redirect("EditAttendance.aspx", true);
                 }
             }
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

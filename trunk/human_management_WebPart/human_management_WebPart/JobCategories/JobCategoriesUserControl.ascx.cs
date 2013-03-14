@@ -19,7 +19,11 @@ namespace SP2010VisualWebPart.JobCategories
                         com.bindData("Name", "", "HumanResources.JobCategories", GridView1);
                         Panel1.Visible = false;
                         Label1.Text = "";
-                        CheckBox1.AutoPostBack = true;
+                        GridView1.GridLines = GridLines.None;
+                        GridView1.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                        GridView1.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                        GridView1.HeaderStyle.Height = 25;
+                        GridView1.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                     }
                 }catch(Exception ex){
                     Label1.Text = ex.Message;
@@ -61,7 +65,6 @@ namespace SP2010VisualWebPart.JobCategories
                     }
                     Panel1.Visible = false;
                     com.bindData("Name", "", "HumanResources.JobCategories", GridView1);
-                    CheckBox1.Checked = false;
                     Label1.Text = "";
                     TextBox1.Text = "";
                 }
@@ -111,22 +114,19 @@ namespace SP2010VisualWebPart.JobCategories
                 Label1.Text = ex.Message;
             }
         }
-
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        public void CheckUncheckAll(object sender, EventArgs e)
         {
-            if (CheckBox1.Checked == true)
+            CheckBox cbSelectedHeader = (CheckBox)GridView1.HeaderRow.FindControl("CheckBox2");
+            foreach (GridViewRow row in GridView1.Rows)
             {
-                foreach (GridViewRow gr in GridView1.Rows)
+                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                if (cbSelectedHeader.Checked == true)
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = true;
+                    cbSelected.Checked = true;
                 }
-            }
-            else {
-                foreach (GridViewRow gr in GridView1.Rows)
+                else
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = false;
+                    cbSelected.Checked = false;
                 }
             }
         }
