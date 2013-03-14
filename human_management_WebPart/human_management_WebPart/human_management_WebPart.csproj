@@ -40,10 +40,19 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.50508.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.Binary.NET35\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -245,13 +254,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="AddCandidate\Elements.xml" />
-    <Content Include="AddJobtitle\AddJobtitleUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="AddJobtitle\AddJobtitleUserControl.ascx" />
     <Content Include="AddJobtitle\Elements.xml" />
-    <Content Include="AddVacancy\AddVacancyUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="AddVacancy\AddVacancyUserControl.ascx" />
     <Content Include="AddVacancy\Elements.xml" />
     <Content Include="AttendanceRecord\AttendanceRecordUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -261,21 +266,15 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Candidates\Elements.xml" />
-    <Content Include="EditAttendance\EditAttendanceUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="EditAttendance\EditAttendanceUserControl.ascx" />
     <Content Include="EditAttendance\Elements.xml" />
     <Content Include="EditCandidate\EditCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="EditCandidate\Elements.xml" />
-    <Content Include="EditJobTitle\EditJobTitleUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="EditJobTitle\EditJobTitleUserControl.ascx" />
     <Content Include="EditJobTitle\Elements.xml" />
-    <Content Include="EditVacancy\EditVacancyUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="EditVacancy\EditVacancyUserControl.ascx" />
     <Content Include="EditVacancy\Elements.xml" />
     <Content Include="JobCategories\Elements.xml" />
     <Content Include="JobCategories\JobCategoriesUserControl.ascx">

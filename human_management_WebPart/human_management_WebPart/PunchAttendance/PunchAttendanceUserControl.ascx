@@ -6,45 +6,40 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PunchAttendanceUserControl.ascx.cs" Inherits="SP2010VisualWebPart.PunchAttendance.PunchAttendanceUserControl" %>
-<asp:Label ID="Label1" runat="server" Text="Punch In"></asp:Label>
+<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<table class="fieldTitleTable">
+<tr><td class="fieldTitleTd"><asp:Label ID="Label1" runat="server" Text="Punch In"></asp:Label></td></tr></table>
 <p>
-    &nbsp;</p>
-<p>
-    <asp:Label ID="Label2" runat="server" Text="Employee Name" Width="150px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label2" runat="server" Text="Employee Name" Width="150px"></asp:Label>
     <asp:TextBox ID="TextBox1" runat="server" ReadOnly="True" Width="200px" 
         Enabled="False"></asp:TextBox>
 </p>
-<p>
-    &nbsp;</p>
-<asp:Label ID="Label3" runat="server" Text="Date(*)" Width="150px"></asp:Label>
+<span style="padding-left:5px;"></span><asp:Label ID="Label3" runat="server" Text="Date(*)" Width="150px"></asp:Label>
 <asp:TextBox ID="TextBox2" runat="server" Width="200px"></asp:TextBox>
-<asp:Button ID="Button1" runat="server" Text="..." onclick="Button1_Click" />
+<asp:Button ID="Button1" runat="server" Text="..." onclick="Button1_Click" 
+        Width="26px" />
 <p>
     <asp:Calendar ID="Calendar1" runat="server" align="center" 
         onselectionchanged="Calendar1_SelectionChanged" Visible="False"></asp:Calendar>
 </p>
 <p>
-    <asp:Label ID="Label4" runat="server" Text="Time(*)" Width="150px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label4" runat="server" Text="Time(*)" Width="150px"></asp:Label>
     <asp:TextBox ID="TextBox3" runat="server" Width="200px"></asp:TextBox>
-    <span style="padding-left:10px;"></span><asp:Label ID="Label5" runat="server" Text="HH:MM"></asp:Label>
+    <asp:Label ID="Label5" runat="server" Text="HH:MM"></asp:Label>
 </p>
 <p>
-    &nbsp;</p>
-<p>
-    <asp:Label ID="Label7" runat="server" Text="Note"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label7" runat="server" Text="Note"></asp:Label>
 </p>
 <p>
-    <span style="padding-left:150px;"></span><asp:TextBox ID="TextBox4" runat="server" Height="100px" TextMode="MultiLine" 
-        Width="300px"></asp:TextBox>
+    <span style="padding-left:160px;"></span><asp:TextBox ID="TextBox4" runat="server" Height="100px" TextMode="MultiLine" 
+        Width="300px"  ></asp:TextBox>
 </p>
 <p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:150px;"></span>
+    <span style="padding-left:160px;"></span>
     <asp:Button ID="Button2" 
         runat="server" Text="In" Width="80px" onclick="Button2_Click" />
 </p>
-
+</td></tr></table><br>
 <asp:Label ID="Label8" runat="server" style="color:Red;"></asp:Label>
 <p>
     &nbsp;</p>

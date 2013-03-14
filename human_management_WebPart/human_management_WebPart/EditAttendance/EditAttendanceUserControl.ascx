@@ -6,47 +6,46 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditAttendanceUserControl.ascx.cs" Inherits="SP2010VisualWebPart.EditAttendance.EditAttendanceUserControl" %>
-<asp:Label ID="Label6" runat="server" Text="Employee Name" Width="150px"></asp:Label>
+<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<table class="fieldTitleTable">
+<tr><td class="fieldTitleTd">Edit Attendance</td></tr></table><br>
+<span style="padding-left:5px;"></span><asp:Label ID="Label6" runat="server" Text="Employee Name" Width="150px"></asp:Label>
 <asp:TextBox ID="TextBox7" runat="server" Enabled="False" Width="290px"></asp:TextBox>
 <br />
 <br />
 <br />
-<asp:Label ID="Label1" runat="server" Text="Punch In" Width="150px"></asp:Label>
+<span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Punch In" Width="150px"></asp:Label>
     <asp:TextBox ID="TextBox1" runat="server" Width="150px"></asp:TextBox>
-    <span style="padding-left:20px;"></span><asp:TextBox ID="TextBox2" runat="server" Width="120px"></asp:TextBox>
+    <asp:TextBox ID="TextBox2" runat="server" Width="130px"></asp:TextBox>
 <br />
 <p>
     &nbsp;</p>
 <p>
-    <asp:Label ID="Label2" runat="server" Text="Punch In Note"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label2" runat="server" Text="Punch In Note"></asp:Label>
 </p>
 <p>
-    <span style="padding-left:150px;"></span><asp:TextBox ID="TextBox3" runat="server" Height="100px" TextMode="MultiLine" 
-        Width="290px"></asp:TextBox>
+    <span style="padding-left:160px;"></span><asp:TextBox ID="TextBox3" runat="server" Height="100px" TextMode="MultiLine" 
+        Width="290px"  ></asp:TextBox>
 </p>
 <p>
-    <asp:Label ID="Label3" runat="server" Text="Punch Out" Width="150px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label3" runat="server" Text="Punch Out" Width="150px"></asp:Label>
     <asp:TextBox ID="TextBox4" runat="server" Width="290px"></asp:TextBox>
     <span style="padding-left:20px;"></span>
 </p>
 <p>
     &nbsp;</p>
 <p>
-    <asp:Label ID="Label4" runat="server" Text="Punch Out Note"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label4" runat="server" Text="Punch Out Note"></asp:Label>
 </p>
 
-<span style="padding-left:150px;"></span><asp:TextBox ID="TextBox6" runat="server" Height="100px" TextMode="MultiLine" 
-    Width="290px"></asp:TextBox>
-
-
-<p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:150px;"></span><asp:Button ID="Button1" 
+<span style="padding-left:160px;"></span><asp:TextBox ID="TextBox6" runat="server" Height="100px" TextMode="MultiLine" 
+    Width="290px"  ></asp:TextBox><br><br>
+<div class="borderTop">
+    <span style="padding-left:155px;"></span><asp:Button ID="Button1" 
         runat="server" Text="Save" Width="80px" onclick="Button1_Click" />
     <asp:Button ID="Button2" runat="server" Text="Cancel" Width="80px" 
-        onclick="Button2_Click" />
-</p>
+        onclick="Button2_Click" /></div>
+</td></tr></table>
 <p>
     &nbsp;</p>
 <p>

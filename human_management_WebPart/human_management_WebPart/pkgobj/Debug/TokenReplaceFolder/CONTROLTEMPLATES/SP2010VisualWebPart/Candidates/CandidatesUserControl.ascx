@@ -6,12 +6,11 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CandidatesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Candidates.CandidatesUserControl" %>
-<div>
-							<fieldset name="Group1">
-							<legend width="100%" style="background-color: #FF6600; color: #FFFF00;">
-							Candidates</legend>
+<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<table class="fieldTitleTable">
+<tr><td class="fieldTitleTd">Candidates</td></tr></table>
 							<br />
-							<asp:Label runat="server" Text="Job Title" id="Label1" Width="145px"></asp:Label>
+							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Job Title" id="Label1" Width="145px"></asp:Label>
 							<asp:DropDownList runat="server" id="DropDownList1" Width="120px" Height="20px" 
                                     onselectedindexchanged="DropDownList1_SelectedIndexChanged">
 							</asp:DropDownList>
@@ -27,7 +26,7 @@
                                     ontextchanged="TextBox1_TextChanged"></asp:TextBox>
 							<br />
 							<br />
-							<asp:Label runat="server" Text="Candidate Name" id="Label4" Width="145px"></asp:Label>
+							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Candidate Name" id="Label4" Width="145px"></asp:Label>
 							<asp:TextBox runat="server" id="TextBox2" Width="115px"></asp:TextBox>
 							<span style="padding-left:80px;"></span>
 							<asp:Label runat="server" Text="Keywords" id="Label5" Width="120px">
@@ -40,7 +39,7 @@
 							</asp:DropDownList>
 							    <br />
                                 <br />
-							<asp:Label runat="server" Text="Method of Application" id="Label7" Width="145px"></asp:Label>
+							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Method of Application" id="Label7" Width="145px"></asp:Label>
 							<asp:DropDownList runat="server" id="DropDownList4" Width="120px" Height="20px">
 								<asp:ListItem Selected="True">All</asp:ListItem>
 								<asp:ListItem>Online</asp:ListItem>
@@ -59,42 +58,48 @@
                                     Width="25px" />
                                 <br />
                                 <span style="padding-left:480px;"></span><asp:Label ID="Label9" runat="server" 
-                                    Text="From" Width="195px"></asp:Label>
+                                    Text="From" Width="200px" Height="20px"></asp:Label>
 							    <asp:Label ID="Label10" runat="server" Text="To"></asp:Label>
 							    <br />
                                 <asp:Calendar align="center" ID="Calendar1" runat="server" 
                                     onselectionchanged="Calendar1_SelectionChanged1" Visible="False"></asp:Calendar>
                                 <asp:Calendar align="center" ID="Calendar2" runat="server" Visible="False" 
                                     onselectionchanged="Calendar2_SelectionChanged"></asp:Calendar>
+                                <div class="borderTop">
                                 <asp:Button ID="Button3" runat="server" Text="Search" Width="70px" 
                                     onclick="Button3_Click" />
                                 <asp:Button ID="Button4" runat="server" onclick="Button4_Click" Text="Reset" 
                                     Width="70px" />
-                                <br />
-							</fieldset></div>
+                                    </div>
+							</td></tr></table>
 
 <p>
     &nbsp;</p>
-<div>
-<fieldset name="Group2">
-	
+<table class="fieldTitleDiv"><tr><td>
+	<div class="borderBottom">
     <asp:Button ID="Button6" runat="server" Text="Add" Width="70px" 
         onclick="Button6_Click" />
     <asp:Button ID="Button7" runat="server" Text="Edit" Width="70px" 
         onclick="Button7_Click" />
     <asp:Button ID="Button8" runat="server" Text="Delete" Width="70px" 
         onclick="Button8_Click" />
-    <br />
-    <br />
-    <asp:CheckBox ID="CheckBox1" runat="server" 
-        oncheckedchanged="CheckBox1_CheckedChanged" Text="All" />
+    </div>
     <br />
     <asp:GridView ID="GridView1" align="right" runat="server" EnableModelValidation="True" 
         onselectedindexchanged="GridView1_SelectedIndexChanged" 
-        Width="100%">
+        Width="100%" BorderStyle="None" BorderWidth="0px">
     <Columns>
 
                         <asp:TemplateField>
+                        <HeaderStyle Width="25" />
+                            <HeaderTemplate>
+            <asp:CheckBox 
+                ID="CheckBox2" 
+                runat="server"
+                OnCheckedChanged="CheckUncheckAll"
+                AutoPostBack="true" 
+                />
+        </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
@@ -102,12 +107,7 @@
 
                   </Columns>
     </asp:GridView>
-	
-</fieldset>
-</div>
-<p>
-    &nbsp;</p>
-<p>
-    <asp:Label ID="Label11" runat="server" style="color:Red;"></asp:Label>
-</p>
+</td></tr></table>
+<br><br>
+<asp:Label ID="Label11" runat="server" style="color:Red;"></asp:Label>
 

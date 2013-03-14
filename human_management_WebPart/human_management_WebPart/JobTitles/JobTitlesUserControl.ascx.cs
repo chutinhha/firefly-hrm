@@ -20,8 +20,12 @@ namespace SP2010VisualWebPart.JobTitles
                     {
                         com.bindData("JobTitle,JobDes,JobCategory", "", "HumanResources.JobTitle", GridView1);
                         Label1.Text = "";
-                        CheckBox1.AutoPostBack = true;
                         Session.Remove("Name");
+                        GridView1.GridLines = GridLines.None;
+                        GridView1.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                        GridView1.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                        GridView1.HeaderStyle.Height = 25;
+                        GridView1.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                     }
                 }
                 catch (Exception ex)
@@ -36,22 +40,19 @@ namespace SP2010VisualWebPart.JobTitles
             }
         }
 
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        public void CheckUncheckAll(object sender, EventArgs e)
         {
-            if (CheckBox1.Checked == true)
+            CheckBox cbSelectedHeader = (CheckBox)GridView1.HeaderRow.FindControl("CheckBox2");
+            foreach (GridViewRow row in GridView1.Rows)
             {
-                foreach (GridViewRow gr in GridView1.Rows)
+                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                if (cbSelectedHeader.Checked == true)
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = true;
+                    cbSelected.Checked = true;
                 }
-            }
-            else
-            {
-                foreach (GridViewRow gr in GridView1.Rows)
+                else
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    cb.Checked = false;
+                    cbSelected.Checked = false;
                 }
             }
         }

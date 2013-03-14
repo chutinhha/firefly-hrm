@@ -21,8 +21,8 @@ namespace SP2010VisualWebPart.PunchAttendance
                     {
                         TextBox1.Text = Session["Name"].ToString();
                         Label3.Visible = true;
-                        TextBox2.Visible = true;
-                        Button1.Visible = true;
+                        TextBox2.Enabled = true;
+                        Button1.Enabled = true;
                         Label1.Text = "Punch In";
                         Button2.Text = "In";
                     }
@@ -86,9 +86,8 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     TextBox3.Text = "";
                                     TextBox4.Text = "";
                                     Calendar1.Visible = false;
-                                    Label3.Visible = false;
-                                    TextBox2.Visible = false;
-                                    Button1.Visible = false;
+                                    TextBox2.Enabled = false;
+                                    Button1.Enabled = false;
                                     Label8.Text = "Your last punch in is " + Session["In"].ToString();
                                 }
                             }

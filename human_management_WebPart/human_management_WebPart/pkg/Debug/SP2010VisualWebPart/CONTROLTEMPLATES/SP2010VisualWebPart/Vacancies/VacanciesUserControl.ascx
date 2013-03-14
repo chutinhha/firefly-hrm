@@ -6,10 +6,11 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="VacanciesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Vacancies.VacanciesUserControl" %>
-<fieldset name="Group1">
-    <legend style="background-color: #FF6600; color: #FFFF00;" width="100%">Vacancies</legend>
+<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<table class="fieldTitleTable">
+<tr><td class="fieldTitleTd">Vacancies</td></tr></table>
     <br />
-    <asp:Label ID="Label1" runat="server" Text="Job Title" Width="80px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Job Title" Width="80px"></asp:Label>
     <asp:DropDownList ID="DropDownList1" runat="server" Width="110px">
     </asp:DropDownList>
     <span style="padding-left:40px;"></span>
@@ -30,34 +31,43 @@
     </asp:DropDownList>
     <br />
     <br />
+    <div class="borderTop">
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Search" 
         Width="80px" />
     <asp:Button ID="Button2" runat="server" Text="Reset" Width="80px" 
         onclick="Button2_Click" />
-</fieldset>
+        </div>
+</td></tr></table>
 <br><br><br>
-<fieldset name="Group2">
+<table class="fieldTitleDiv"><tr><td>
+    <div class="borderBottom">
     <asp:Button ID="Button3" runat="server" Text="Add" Width="80px" 
         onclick="Button3_Click" />
     <asp:Button ID="Button4" runat="server" Text="Edit" Width="80px" 
         onclick="Button4_Click" />
     <asp:Button ID="Button5" runat="server" Text="Delete" Width="80px" 
         onclick="Button5_Click" />
-    <br />
-    <br />
-    <asp:CheckBox ID="CheckBox1" runat="server" 
-        oncheckedchanged="CheckBox1_CheckedChanged" Text="All" />
+        </div>
     <br />
     <asp:GridView ID="GridView1" runat="server" Width="100%">
         <Columns>
             <asp:TemplateField>
+            <HeaderStyle Width="25" />
+                            <HeaderTemplate>
+            <asp:CheckBox 
+                ID="CheckBox2" 
+                runat="server"
+                OnCheckedChanged="CheckUncheckAll"
+                AutoPostBack="true" 
+                />
+        </HeaderTemplate>
                 <ItemTemplate>
                     <asp:CheckBox ID="myCheckBox" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-</fieldset>
+</td></tr></table>
 
 <br><br>
 <asp:Label ID="Label5" runat="server" style="color:Red;"></asp:Label>
