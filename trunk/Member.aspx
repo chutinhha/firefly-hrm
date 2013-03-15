@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="~masterurl/default.master" meta:progid="SharePoint.WebPartPage.Document"       %>
 <%@ Import Namespace="Microsoft.SharePoint.WebPartPages" %> <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 	<SharePoint:UIVersionedContent runat="server" UIVersion="3" Id="PlaceHolderWebDescription" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' ID='1' T='PlaceHolderWebDescription' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
 		<ContentTemplate>
@@ -66,7 +67,8 @@
 					
 							<div style="float:left;">
 							<ul id="qm0" class="qmmc" style="line-height:15px;width:100%">
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">PIM</a>
+								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								PIM</a>
                                     <ul>
                                         <li><a href="">Personal Information</a>
                                             <ul>
@@ -89,7 +91,8 @@
                                     </ul>
                                 </li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">PERSONAL CALENDAR</a>
+								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								PERSONAL CALENDAR</a>
 									<ul>
 										<li><a href="">Timesheets</a>
 											<ul>
@@ -111,13 +114,17 @@
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">PERFORMANCE</a>
+								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								PERFORMANCE</a>
 									<ul>
 										<li><a href="">Reviews</a>
 											<ul>
-												<li><a href="">Timesheets Summary</a></li>
-												<li><a href="">Attendance Summary</a></li>
-												<li><a href="">Supervisor Judgment</a></li>
+												<li><a href="">Timesheets 
+												Summary</a></li>
+												<li><a href="">Attendance 
+												Summary</a></li>
+												<li><a href="">Supervisor 
+												Judgment</a></li>
 											</ul>
 										</li>
 									</ul>
@@ -184,4 +191,21 @@
     </SharePoint:DelegateControl>
 								
 </asp:Content>
+
+<asp:Content id="Content2" runat="server" contentplaceholderid="PlaceHolderSearchArea">
+
+<UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{c413c245-16aa-496f-9682-e86e48c8146b}" WebPart="true" __designer:IsClosed="false" id="g_c413c245_16aa_496f_9682_e86e48c8146b" __designer:Preview="&lt;div id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{c413c245-16aa-496f-9682-e86e48c8146b}&quot; WebPart=&quot;true&quot;&gt;
+	
+&amp;nbsp;&lt;a id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_c413c245_16aa_496f_9682_e86e48c8146b$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;|
+&lt;a id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_c413c245_16aa_496f_9682_e86e48c8146b$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&amp;nbsp;|
+&lt;a id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_c413c245_16aa_496f_9682_e86e48c8146b$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+
+
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_c413c245_16aa_496f_9682_e86e48c8146b' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+
+											
+</asp:Content>
+
 

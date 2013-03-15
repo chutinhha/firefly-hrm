@@ -55,7 +55,14 @@ namespace SP2010VisualWebPart.EditVacancy
             {
                 Session.Remove("Name");
                 Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
-                Response.Redirect(Session["Account"] + ".aspx", true);
+                if (Session["Account"] != null)
+                {
+                    Response.Redirect(Session["Account"] + ".aspx", true);
+                }
+                else
+                {
+                    Response.Redirect("Home.aspx", true);
+                }
             }
         }
 

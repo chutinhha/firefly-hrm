@@ -101,6 +101,14 @@
     <Compile Include="Candidates\CandidatesUserControl.ascx.designer.cs">
       <DependentUpon>CandidatesUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangePassword\ChangePassword.cs" />
+    <Compile Include="ChangePassword\ChangePasswordUserControl.ascx.cs">
+      <DependentUpon>ChangePasswordUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword\ChangePasswordUserControl.ascx.designer.cs">
+      <DependentUpon>ChangePasswordUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="EditAttendance\EditAttendance.cs" />
     <Compile Include="EditAttendance\EditAttendanceUserControl.ascx.cs">
@@ -167,6 +175,14 @@
     <Compile Include="PunchAttendance\PunchAttendanceUserControl.ascx.designer.cs">
       <DependentUpon>PunchAttendanceUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserAccount\UserAccount.cs" />
+    <Compile Include="UserAccount\UserAccountUserControl.ascx.cs">
+      <DependentUpon>UserAccountUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount\UserAccountUserControl.ascx.designer.cs">
+      <DependentUpon>UserAccountUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vacancies\Vacancies.cs" />
     <Compile Include="Vacancies\VacanciesUserControl.ascx.cs">
       <DependentUpon>VacanciesUserControl.ascx</DependentUpon>
@@ -196,6 +212,10 @@
     <None Include="Candidates\Candidates.webpart" />
     <None Include="Candidates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ccc65a0d-f925-49a1-91a7-c4c9576805d0}</SharePointProjectItemId>
+    </None>
+    <None Include="ChangePassword\ChangePassword.webpart" />
+    <None Include="ChangePassword\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e0bd07ab-6519-4e4a-86f1-76c16f5acee0}</SharePointProjectItemId>
     </None>
     <None Include="EditAttendance\EditAttendance.webpart" />
     <None Include="EditAttendance\SharePointProjectItem.spdata">
@@ -230,6 +250,10 @@
     <None Include="PunchAttendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d4f74f66-32fa-4341-ac72-55fe13909859}</SharePointProjectItemId>
     </None>
+    <None Include="UserAccount\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{70fb110d-7aee-4216-998a-179092904049}</SharePointProjectItemId>
+    </None>
+    <None Include="UserAccount\UserAccount.webpart" />
     <None Include="Vacancies\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6fb3e01b-018b-4b22-9f51-4d5f2ce4e5f8}</SharePointProjectItemId>
     </None>
@@ -266,6 +290,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Candidates\Elements.xml" />
+    <Content Include="ChangePassword\ChangePasswordUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="ChangePassword\Elements.xml" />
     <Content Include="EditAttendance\EditAttendanceUserControl.ascx" />
     <Content Include="EditAttendance\Elements.xml" />
     <Content Include="EditCandidate\EditCandidateUserControl.ascx">
@@ -290,6 +318,10 @@
     </Content>
     <Content Include="PunchAttendance\Elements.xml" />
     <Content Include="PunchAttendance\PunchAttendanceUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="UserAccount\Elements.xml" />
+    <Content Include="UserAccount\UserAccountUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Vacancies\Elements.xml" />

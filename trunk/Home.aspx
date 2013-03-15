@@ -34,20 +34,24 @@
 			</SharePoint:VersionedPlaceHolder>
 			<SharePoint:EmbeddedFormField id="WikiField" FieldName="WikiField" ControlMode="Display" runat="server"><div class="ExternalClassA6E2B85F942E4A7E978B1AD11185906D">
                 <table id="layoutsTable" style="width:100%"><tbody><tr style="vertical-align:top"><td style="width:66.6%"><div class="ms-rte-layoutszone-outer" style="width:100%"><div class="ms-rte-layoutszone-inner">
-<Login:Login runat="server" Height="111px" ID="g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7" Description="            This Web Part has a User Control to render the UI.          " Width="279px" Title="Login" __designer:Values="&lt;P N='Description' T='            This Web Part has a User Control to render the UI.          ' /&gt;&lt;P N='DisplayTitle' ID='1' T='Login' /&gt;&lt;P N='Height' T='111px' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='Width' T='279px' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' ID='2' T='g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7&quot; style=&quot;height:111px;width:279px;&quot;&gt;
-	&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label1&quot; style=&quot;display:inline-block;width:70px;&quot;&gt;User&lt;/span&gt;
-&lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_TextBox1&quot; style=&quot;width:140px;&quot; /&gt;
+<Login:Login runat="server" ID="g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7" Description="            This Web Part has a User Control to render the UI.          " ChromeType="None" Title="Login" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='            This Web Part has a User Control to render the UI.          ' /&gt;&lt;P N='DisplayTitle' ID='1' T='Login' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' ID='2' T='g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7&quot;&gt;
+	
+&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label1&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;User&lt;/span&gt;
+&lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_TextBox1&quot; style=&quot;width:200px;&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;
 &lt;p&gt;
-    &lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label3&quot; style=&quot;display:inline-block;width:70px;&quot;&gt;Password&lt;/span&gt;
-    &lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$TextBox2&quot; type=&quot;password&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_TextBox2&quot; style=&quot;width:140px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label3&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Password&lt;/span&gt;
+    &lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$TextBox2&quot; type=&quot;password&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_TextBox2&quot; style=&quot;width:200px;&quot; /&gt;
 &lt;/p&gt;
-&lt;span style=&quot;padding-left:70px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$Button1&quot; value=&quot;Login&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Button1&quot; /&gt;
+&lt;span style=&quot;padding-left:128px;&quot;&gt;&lt;/span&gt;
+&lt;input type=&quot;submit&quot; name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$Button1&quot; value=&quot;Login&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:70px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label2&quot;&gt;&lt;/span&gt;
+    &lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label2&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
-
 
 &lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{1179F2C7-EE84-4A3E-98BD-E827E2D708E7}" WebPart="true" __designer:IsClosed="false"></Login:Login>
+
+
 
 
 
@@ -102,19 +106,62 @@
 					
 							<div style="float:left;">
 							<ul id="qm0" class="qmmc" style="line-height:15px;width:100%">
-								<li class="menuNav"><a class="qmparent" href="/ob3/SitePages/Home.aspx" style="padding-left:8px; padding-right:8px;">HOME</a>                                </li>
+								<li class="menuNav"><a class="qmparent" href="/ob3/SitePages/Home.aspx" style="padding-left:8px; padding-right:8px;">
+								HOME</a>                                </li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="/ob3/Lists/Calendar/calendar.aspx" style="padding-left:8px; padding-right:8px;">WHO WE ARE</a><ul><li><a href="/ob3/Lists/Calendar/calendar.aspx">About ORBIS International</a></li><li><a href="/Default.aspx?cid=4830&lang=1">History</a></li><li><a href="/Default.aspx?cid=4831&lang=1">What Makes Us Different</a></li><li><a href="/Default.aspx?cid=4836&lang=1">Global Leadership</a></li><li><a href="/Default.aspx?cid=4833&lang=1">Financial Information</a></li><li><a href="/Default.aspx?cid=4840&lang=1">Corporate Sponsors</a></li><li><a href="/Default.aspx?cid=4834&lang=1">Contact Us</a></li><li><a href="/Default.aspx?cid=4835&lang=1">Employment</a></li></ul></li>
+								<li class="menuNav"><a class="qmparent" href="/ob3/Lists/Calendar/calendar.aspx" style="padding-left:8px; padding-right:8px;">
+								WHO WE ARE</a><ul><li><a href="/ob3/Lists/Calendar/calendar.aspx">
+									About ORBIS International</a></li><li><a href="/Default.aspx?cid=4830&lang=1">
+									History</a></li><li><a href="/Default.aspx?cid=4831&lang=1">
+									What Makes Us Different</a></li><li><a href="/Default.aspx?cid=4836&lang=1">
+									Global Leadership</a></li><li><a href="/Default.aspx?cid=4833&lang=1">
+									Financial Information</a></li><li><a href="/Default.aspx?cid=4840&lang=1">
+									Corporate Sponsors</a></li><li><a href="/Default.aspx?cid=4834&lang=1">
+									Contact Us</a></li><li><a href="/Default.aspx?cid=4835&lang=1">
+									Employment</a></li></ul></li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="/Default.aspx?cid=4825-4860" style="padding-left:8px; padding-right:8px;">WHAT WE DO</a><ul><li><a href="/Default.aspx?cid=4860&lang=1">Where We Work</a></li><li><a href="/Default.aspx?cid=4855&lang=1">Flying Eye Hospital</a></li><li><a href="/Default.aspx?cid=4858&lang=1">Capacity Building</a></li><li><a href="/Default.aspx?cid=4859&lang=1">Training</a></li><li><a href="/Default.aspx?cid=5607&lang=1">Diseases We Treat</a></li><li><a href="/Default.aspx?cid=4867&lang=1">Cyber-Sight&#174;</a></li><li><a href="/Default.aspx?cid=4841&lang=1">Success Stories</a></li><li><a href="/default.aspx?cid=8639&lang=1">Videos: Eye Reports</a></li></ul></li>
+								<li class="menuNav"><a class="qmparent" href="/Default.aspx?cid=4825-4860" style="padding-left:8px; padding-right:8px;">
+								WHAT WE DO</a><ul><li><a href="/Default.aspx?cid=4860&lang=1">
+									Where We Work</a></li><li><a href="/Default.aspx?cid=4855&lang=1">
+									Flying Eye Hospital</a></li><li><a href="/Default.aspx?cid=4858&lang=1">
+									Capacity Building</a></li><li><a href="/Default.aspx?cid=4859&lang=1">
+									Training</a></li><li><a href="/Default.aspx?cid=5607&lang=1">
+									Diseases We Treat</a></li><li><a href="/Default.aspx?cid=4867&lang=1">
+									Cyber-Sight®</a></li><li><a href="/Default.aspx?cid=4841&lang=1">
+									Success Stories</a></li><li><a href="/default.aspx?cid=8639&lang=1">
+									Videos: Eye Reports</a></li></ul></li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4825-4855" style="padding-left:8px; padding-right:8px;">FLYING EYE HOSPITAL</a><ul><li><a href="/Default.aspx?cid=4825-4855">Flying Eye Hospital</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=9656&lang=1">MD-10: The New Plane</a></li><li><a href="/Default.aspx?cid=4825-4855-4856">Who's On Board?</a></li><li><a href="/Default.aspx?cid=4825-4855-8526">Itinerary</a></li><li><a href="/Default.aspx?cid=4825-4855-6893">Employment</a></li></ul></li>
+								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4825-4855" style="padding-left:8px; padding-right:8px;">
+								FLYING EYE HOSPITAL</a><ul><li><a href="/Default.aspx?cid=4825-4855">
+									Flying Eye Hospital</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=9656&lang=1">
+									MD-10: The New Plane</a></li><li><a href="/Default.aspx?cid=4825-4855-4856">
+									Who&#39;s On Board?</a></li><li><a href="/Default.aspx?cid=4825-4855-8526">
+									Itinerary</a></li><li><a href="/Default.aspx?cid=4825-4855-6893">
+									Employment</a></li></ul></li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://www.orbis.org/Default.aspx?cid=4839&lang=1" style="padding-left:8px; padding-right:8px;">GET INVOLVED</a><ul><li><a href="/Default.aspx?cid=4839&lang=1">In Your Community: Advocates for Sight</a></li><li><a href="/Default.aspx?cid=4837&lang=1">Medical Volunteers</a></li><li><a href="/Default.aspx?cid=4838&lang=1">Volunteer Pilots</a></li><li><a href="/Default.aspx?cid=5617&lang=1">Corporate Opportunities</a></li><li><a href="/Default.aspx?cid=7967&lang=1">Publications</a></li><li><a href="/Default.aspx?cid=8315&lang=1">Volunteer Opportunities</a></li></ul></li>
+								<li class="menuNav"><a class="qmparent" href="http://www.orbis.org/Default.aspx?cid=4839&lang=1" style="padding-left:8px; padding-right:8px;">
+								GET INVOLVED</a><ul><li><a href="/Default.aspx?cid=4839&lang=1">
+									In Your Community: Advocates for Sight</a></li><li><a href="/Default.aspx?cid=4837&lang=1">
+									Medical Volunteers</a></li><li><a href="/Default.aspx?cid=4838&lang=1">
+									Volunteer Pilots</a></li><li><a href="/Default.aspx?cid=5617&lang=1">
+									Corporate Opportunities</a></li><li><a href="/Default.aspx?cid=7967&lang=1">
+									Publications</a></li><li><a href="/Default.aspx?cid=8315&lang=1">
+									Volunteer Opportunities</a></li></ul></li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="https://www.orbis.org/Default.aspx?cid=5856" style="padding-left:8px; padding-right:8px;">DONATE NOW</a><ul><li><a href="https://www.orbis.org/Default.aspx?cid=5856">Make a Donation</a></li><li><a href="/Default.aspx?cid=7974&lang=1">Donate Frequent Flyer Miles</a></li><li><a href="/Default.aspx?cid=7965&lang=1">Other Ways of Giving</a></li></ul></li>
+								<li class="menuNav"><a class="qmparent" href="https://www.orbis.org/Default.aspx?cid=5856" style="padding-left:8px; padding-right:8px;">
+								DONATE NOW</a><ul><li><a href="https://www.orbis.org/Default.aspx?cid=5856">
+									Make a Donation</a></li><li><a href="/Default.aspx?cid=7974&lang=1">
+									Donate Frequent Flyer Miles</a></li><li><a href="/Default.aspx?cid=7965&lang=1">
+									Other Ways of Giving</a></li></ul></li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4827-4869" style="padding-left:8px; padding-right:8px;">NEWSROOM</a><ul><li><a href="/Default.aspx?cid=4869&lang=1">Media contacts</a></li><li><a href="/Default.aspx?cid=4870&lang=1">Fact Sheet</a></li><li><a href="/Default.aspx?cid=4871&lang=1">Press Releases</a></li><li><a href="/Default.aspx?cid=8029&lang=1">What's New</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=5630&lang=1">Video Gallery</a></li><li><a href="http://blog.orbis.org/">Blog</a></li></ul></li>                
+								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4827-4869" style="padding-left:8px; padding-right:8px;">
+								NEWSROOM</a><ul><li><a href="/Default.aspx?cid=4869&lang=1">
+									Media contacts</a></li><li><a href="/Default.aspx?cid=4870&lang=1">
+									Fact Sheet</a></li><li><a href="/Default.aspx?cid=4871&lang=1">
+									Press Releases</a></li><li><a href="/Default.aspx?cid=8029&lang=1">
+									What&#39;s New</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=5630&lang=1">
+									Video Gallery</a></li><li><a href="http://blog.orbis.org/">
+									Blog</a></li></ul></li>                
 							</ul>
 							</div>
 							

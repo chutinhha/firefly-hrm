@@ -12,6 +12,7 @@ namespace SP2010VisualWebPart.Login
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Remove("Account");
+            Session.Remove("AcountName");
         }
         public Common com = new Common();
         protected void Button1_Click1(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace SP2010VisualWebPart.Login
                         {
                             com.closeConnection();
                             Session["Account"] = dt.Rows[0][2].ToString().Trim();
+                            Session["AccountName"] = TextBox1.Text.Trim();
                             Response.Redirect(dt.Rows[0][2].ToString().Trim() + ".aspx");
                         }
                         else
