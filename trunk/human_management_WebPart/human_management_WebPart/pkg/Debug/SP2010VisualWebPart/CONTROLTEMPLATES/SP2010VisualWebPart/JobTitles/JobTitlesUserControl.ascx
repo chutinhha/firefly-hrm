@@ -10,15 +10,15 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Job Titles</td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Button ID="Button1" runat="server" Text="Add" Width="80px" 
-        onclick="Button1_Click" />
-    <asp:Button ID="Button2" runat="server" Text="Edit" Width="80px" 
-        onclick="Button2_Click" />
-    <asp:Button ID="Button3" runat="server" Text="Delete" Width="80px" 
-        onclick="Button3_Click" />
+    <span style="padding-left:5px;"></span><asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+        onclick="btnAdd_Click" />
+    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+        onclick="btnEdit_Click" />
+    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
+        onclick="btnDelete_Click" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" Width="100%">
+    <asp:GridView ID="grdData" runat="server" Width="100%">
     <Columns>
 
                         <asp:TemplateField>
@@ -40,4 +40,4 @@
     </asp:GridView>
     </td></tr></table>
     <br />
-    <asp:Label ID="Label1" runat="server" style="color:Red;"></asp:Label>
+    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

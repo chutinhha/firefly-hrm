@@ -40,10 +40,6 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=3.5.50508.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AjaxControlToolkit.Binary.NET35\AjaxControlToolkit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Build.Conversion.v3.5" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,203 +57,203 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCandidate\AddCandidate.cs" />
-    <Compile Include="AddCandidate\AddCandidateUserControl.ascx.cs">
+    <Compile Include="Admin\Candidate\AddCandidate\AddCandidate.cs" />
+    <Compile Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx.cs">
       <DependentUpon>AddCandidateUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddCandidate\AddCandidateUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx.designer.cs">
       <DependentUpon>AddCandidateUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddJobtitle\AddJobtitle.cs" />
-    <Compile Include="AddJobtitle\AddJobtitleUserControl.ascx.cs">
+    <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitle.cs" />
+    <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx.cs">
       <DependentUpon>AddJobtitleUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddJobtitle\AddJobtitleUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx.designer.cs">
       <DependentUpon>AddJobtitleUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddVacancy\AddVacancy.cs" />
-    <Compile Include="AddVacancy\AddVacancyUserControl.ascx.cs">
+    <Compile Include="Admin\Vacancy\AddVacancy\AddVacancy.cs" />
+    <Compile Include="Admin\Vacancy\AddVacancy\AddVacancyUserControl.ascx.cs">
       <DependentUpon>AddVacancyUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddVacancy\AddVacancyUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Vacancy\AddVacancy\AddVacancyUserControl.ascx.designer.cs">
       <DependentUpon>AddVacancyUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="AttendanceRecord\AttendanceRecord.cs" />
-    <Compile Include="AttendanceRecord\AttendanceRecordUserControl.ascx.cs">
+    <Compile Include="Admin\Attendance\AttendanceRecord\AttendanceRecord.cs" />
+    <Compile Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx.cs">
       <DependentUpon>AttendanceRecordUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AttendanceRecord\AttendanceRecordUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx.designer.cs">
       <DependentUpon>AttendanceRecordUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Candidates\Candidates.cs" />
-    <Compile Include="Candidates\CandidatesUserControl.ascx.cs">
+    <Compile Include="Admin\Candidate\Candidates\Candidates.cs" />
+    <Compile Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx.cs">
       <DependentUpon>CandidatesUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Candidates\CandidatesUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx.designer.cs">
       <DependentUpon>CandidatesUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangePassword\ChangePassword.cs" />
-    <Compile Include="ChangePassword\ChangePasswordUserControl.ascx.cs">
+    <Compile Include="Admin\Common\ChangePassword\ChangePassword.cs" />
+    <Compile Include="Admin\Common\ChangePassword\ChangePasswordUserControl.ascx.cs">
       <DependentUpon>ChangePasswordUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ChangePassword\ChangePasswordUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Common\ChangePassword\ChangePasswordUserControl.ascx.designer.cs">
       <DependentUpon>ChangePasswordUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.cs" />
-    <Compile Include="EditAttendance\EditAttendance.cs" />
-    <Compile Include="EditAttendance\EditAttendanceUserControl.ascx.cs">
+    <Compile Include="Admin\Attendance\EditAttendance\EditAttendance.cs" />
+    <Compile Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx.cs">
       <DependentUpon>EditAttendanceUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditAttendance\EditAttendanceUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx.designer.cs">
       <DependentUpon>EditAttendanceUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditCandidate\EditCandidate.cs" />
-    <Compile Include="EditCandidate\EditCandidateUserControl.ascx.cs">
+    <Compile Include="Admin\Candidate\EditCandidate\EditCandidate.cs" />
+    <Compile Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx.cs">
       <DependentUpon>EditCandidateUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditCandidate\EditCandidateUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx.designer.cs">
       <DependentUpon>EditCandidateUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditJobTitle\EditJobTitle.cs" />
-    <Compile Include="EditJobTitle\EditJobTitleUserControl.ascx.cs">
+    <Compile Include="Admin\Job Title\EditJobTitle\EditJobTitle.cs" />
+    <Compile Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx.cs">
       <DependentUpon>EditJobTitleUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditJobTitle\EditJobTitleUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx.designer.cs">
       <DependentUpon>EditJobTitleUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditVacancy\EditVacancy.cs" />
-    <Compile Include="EditVacancy\EditVacancyUserControl.ascx.cs">
+    <Compile Include="Admin\Vacancy\EditVacancy\EditVacancy.cs" />
+    <Compile Include="Admin\Vacancy\EditVacancy\EditVacancyUserControl.ascx.cs">
       <DependentUpon>EditVacancyUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditVacancy\EditVacancyUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Vacancy\EditVacancy\EditVacancyUserControl.ascx.designer.cs">
       <DependentUpon>EditVacancyUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="JobCategories\JobCategories.cs" />
-    <Compile Include="JobCategories\JobCategoriesUserControl.ascx.cs">
+    <Compile Include="Admin\Job Category\JobCategories\JobCategories.cs" />
+    <Compile Include="Admin\Job Category\JobCategories\JobCategoriesUserControl.ascx.cs">
       <DependentUpon>JobCategoriesUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="JobCategories\JobCategoriesUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Job Category\JobCategories\JobCategoriesUserControl.ascx.designer.cs">
       <DependentUpon>JobCategoriesUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="JobTitles\JobTitles.cs" />
-    <Compile Include="JobTitles\JobTitlesUserControl.ascx.cs">
+    <Compile Include="Admin\Job Title\JobTitles\JobTitles.cs" />
+    <Compile Include="Admin\Job Title\JobTitles\JobTitlesUserControl.ascx.cs">
       <DependentUpon>JobTitlesUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="JobTitles\JobTitlesUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Job Title\JobTitles\JobTitlesUserControl.ascx.designer.cs">
       <DependentUpon>JobTitlesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Login\Login.cs" />
-    <Compile Include="Login\LoginUserControl.ascx.cs">
+    <Compile Include="Admin\Common\Login\Login.cs" />
+    <Compile Include="Admin\Common\Login\LoginUserControl.ascx.cs">
       <DependentUpon>LoginUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login\LoginUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Common\Login\LoginUserControl.ascx.designer.cs">
       <DependentUpon>LoginUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="PunchAttendance\PunchAttendance.cs" />
-    <Compile Include="PunchAttendance\PunchAttendanceUserControl.ascx.cs">
+    <Compile Include="Admin\Attendance\PunchAttendance\PunchAttendance.cs" />
+    <Compile Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx.cs">
       <DependentUpon>PunchAttendanceUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PunchAttendance\PunchAttendanceUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx.designer.cs">
       <DependentUpon>PunchAttendanceUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserAccount\UserAccount.cs" />
-    <Compile Include="UserAccount\UserAccountUserControl.ascx.cs">
+    <Compile Include="Admin\Common\UserAccount\UserAccount.cs" />
+    <Compile Include="Admin\Common\UserAccount\UserAccountUserControl.ascx.cs">
       <DependentUpon>UserAccountUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserAccount\UserAccountUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Common\UserAccount\UserAccountUserControl.ascx.designer.cs">
       <DependentUpon>UserAccountUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vacancies\Vacancies.cs" />
-    <Compile Include="Vacancies\VacanciesUserControl.ascx.cs">
+    <Compile Include="Admin\Vacancy\Vacancies\Vacancies.cs" />
+    <Compile Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx.cs">
       <DependentUpon>VacanciesUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vacancies\VacanciesUserControl.ascx.designer.cs">
+    <Compile Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx.designer.cs">
       <DependentUpon>VacanciesUserControl.ascx.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AddCandidate\AddCandidate.webpart" />
-    <None Include="AddCandidate\SharePointProjectItem.spdata">
+    <None Include="Admin\Candidate\AddCandidate\AddCandidate.webpart" />
+    <None Include="Admin\Candidate\AddCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4b16b2e1-882c-48cd-b492-29a4fe53e3e7}</SharePointProjectItemId>
     </None>
-    <None Include="AddJobtitle\AddJobtitle.webpart" />
-    <None Include="AddJobtitle\SharePointProjectItem.spdata">
+    <None Include="Admin\Job Title\AddJobtitle\AddJobtitle.webpart" />
+    <None Include="Admin\Job Title\AddJobtitle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ef23c689-5313-4f4e-b7ce-2611ac5dbfe6}</SharePointProjectItemId>
     </None>
-    <None Include="AddVacancy\AddVacancy.webpart" />
-    <None Include="AddVacancy\SharePointProjectItem.spdata">
+    <None Include="Admin\Vacancy\AddVacancy\AddVacancy.webpart" />
+    <None Include="Admin\Vacancy\AddVacancy\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cf5222bc-a4b4-4851-82a1-7bf3410321cc}</SharePointProjectItemId>
     </None>
-    <None Include="AttendanceRecord\AttendanceRecord.webpart" />
-    <None Include="AttendanceRecord\SharePointProjectItem.spdata">
+    <None Include="Admin\Attendance\AttendanceRecord\AttendanceRecord.webpart" />
+    <None Include="Admin\Attendance\AttendanceRecord\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bf65553d-a739-48ba-a3c9-03f0930aa13f}</SharePointProjectItemId>
     </None>
-    <None Include="Candidates\Candidates.webpart" />
-    <None Include="Candidates\SharePointProjectItem.spdata">
+    <None Include="Admin\Candidate\Candidates\Candidates.webpart" />
+    <None Include="Admin\Candidate\Candidates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ccc65a0d-f925-49a1-91a7-c4c9576805d0}</SharePointProjectItemId>
     </None>
-    <None Include="ChangePassword\ChangePassword.webpart" />
-    <None Include="ChangePassword\SharePointProjectItem.spdata">
+    <None Include="Admin\Common\ChangePassword\ChangePassword.webpart" />
+    <None Include="Admin\Common\ChangePassword\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e0bd07ab-6519-4e4a-86f1-76c16f5acee0}</SharePointProjectItemId>
     </None>
-    <None Include="EditAttendance\EditAttendance.webpart" />
-    <None Include="EditAttendance\SharePointProjectItem.spdata">
+    <None Include="Admin\Attendance\EditAttendance\EditAttendance.webpart" />
+    <None Include="Admin\Attendance\EditAttendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7abfa6c5-e973-4a7b-833e-e6e0094baac4}</SharePointProjectItemId>
     </None>
-    <None Include="EditCandidate\EditCandidate.webpart" />
-    <None Include="EditCandidate\SharePointProjectItem.spdata">
+    <None Include="Admin\Candidate\EditCandidate\EditCandidate.webpart" />
+    <None Include="Admin\Candidate\EditCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e342d604-aedd-4a25-a183-baf103c7b4e4}</SharePointProjectItemId>
     </None>
-    <None Include="EditJobTitle\EditJobTitle.webpart" />
-    <None Include="EditJobTitle\SharePointProjectItem.spdata">
+    <None Include="Admin\Job Title\EditJobTitle\EditJobTitle.webpart" />
+    <None Include="Admin\Job Title\EditJobTitle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cfccab88-a017-4f5e-980f-674b77fd80d9}</SharePointProjectItemId>
     </None>
-    <None Include="EditVacancy\EditVacancy.webpart" />
-    <None Include="EditVacancy\SharePointProjectItem.spdata">
+    <None Include="Admin\Vacancy\EditVacancy\EditVacancy.webpart" />
+    <None Include="Admin\Vacancy\EditVacancy\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d2b586fd-f75a-47bf-94a3-d318139aafb5}</SharePointProjectItemId>
     </None>
-    <None Include="JobCategories\JobCategories.webpart" />
-    <None Include="JobCategories\SharePointProjectItem.spdata">
+    <None Include="Admin\Job Category\JobCategories\JobCategories.webpart" />
+    <None Include="Admin\Job Category\JobCategories\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fd12cbde-261a-4107-bccb-e768bea3ba0e}</SharePointProjectItemId>
     </None>
-    <None Include="JobTitles\JobTitles.webpart" />
-    <None Include="JobTitles\SharePointProjectItem.spdata">
+    <None Include="Admin\Job Title\JobTitles\JobTitles.webpart" />
+    <None Include="Admin\Job Title\JobTitles\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6a98034-ff31-4015-b9e1-9db49f438a68}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
-    <None Include="Login\SharePointProjectItem.spdata">
+    <None Include="Admin\Common\Login\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f8c01da9-8061-45c1-91e5-0afa8642ac0c}</SharePointProjectItemId>
     </None>
-    <None Include="Login\Login.webpart" />
-    <None Include="PunchAttendance\PunchAttendance.webpart" />
-    <None Include="PunchAttendance\SharePointProjectItem.spdata">
+    <None Include="Admin\Common\Login\Login.webpart" />
+    <None Include="Admin\Attendance\PunchAttendance\PunchAttendance.webpart" />
+    <None Include="Admin\Attendance\PunchAttendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d4f74f66-32fa-4341-ac72-55fe13909859}</SharePointProjectItemId>
     </None>
-    <None Include="UserAccount\SharePointProjectItem.spdata">
+    <None Include="Admin\Common\UserAccount\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{70fb110d-7aee-4216-998a-179092904049}</SharePointProjectItemId>
     </None>
-    <None Include="UserAccount\UserAccount.webpart" />
-    <None Include="Vacancies\SharePointProjectItem.spdata">
+    <None Include="Admin\Common\UserAccount\UserAccount.webpart" />
+    <None Include="Admin\Vacancy\Vacancies\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6fb3e01b-018b-4b22-9f51-4d5f2ce4e5f8}</SharePointProjectItemId>
     </None>
-    <None Include="Vacancies\Vacancies.webpart" />
+    <None Include="Admin\Vacancy\Vacancies\Vacancies.webpart" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
@@ -274,58 +270,68 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AddCandidate\AddCandidateUserControl.ascx">
+    <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="AddCandidate\Elements.xml" />
-    <Content Include="AddJobtitle\AddJobtitleUserControl.ascx" />
-    <Content Include="AddJobtitle\Elements.xml" />
-    <Content Include="AddVacancy\AddVacancyUserControl.ascx" />
-    <Content Include="AddVacancy\Elements.xml" />
-    <Content Include="AttendanceRecord\AttendanceRecordUserControl.ascx">
+    <Content Include="Admin\Candidate\AddCandidate\Elements.xml" />
+    <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="AttendanceRecord\Elements.xml" />
-    <Content Include="Candidates\CandidatesUserControl.ascx">
+    <Content Include="Admin\Job Title\AddJobtitle\Elements.xml" />
+    <Content Include="Admin\Vacancy\AddVacancy\AddVacancyUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Candidates\Elements.xml" />
-    <Content Include="ChangePassword\ChangePasswordUserControl.ascx">
+    <Content Include="Admin\Vacancy\AddVacancy\Elements.xml" />
+    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="ChangePassword\Elements.xml" />
-    <Content Include="EditAttendance\EditAttendanceUserControl.ascx" />
-    <Content Include="EditAttendance\Elements.xml" />
-    <Content Include="EditCandidate\EditCandidateUserControl.ascx">
+    <Content Include="Admin\Attendance\AttendanceRecord\Elements.xml" />
+    <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="EditCandidate\Elements.xml" />
-    <Content Include="EditJobTitle\EditJobTitleUserControl.ascx" />
-    <Content Include="EditJobTitle\Elements.xml" />
-    <Content Include="EditVacancy\EditVacancyUserControl.ascx" />
-    <Content Include="EditVacancy\Elements.xml" />
-    <Content Include="JobCategories\Elements.xml" />
-    <Content Include="JobCategories\JobCategoriesUserControl.ascx">
+    <Content Include="Admin\Candidate\Candidates\Elements.xml" />
+    <Content Include="Admin\Common\ChangePassword\ChangePasswordUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="JobTitles\Elements.xml" />
-    <Content Include="JobTitles\JobTitlesUserControl.ascx">
+    <Content Include="Admin\Common\ChangePassword\Elements.xml" />
+    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Login\Elements.xml" />
-    <Content Include="Login\LoginUserControl.ascx">
+    <Content Include="Admin\Attendance\EditAttendance\Elements.xml" />
+    <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="PunchAttendance\Elements.xml" />
-    <Content Include="PunchAttendance\PunchAttendanceUserControl.ascx">
+    <Content Include="Admin\Candidate\EditCandidate\Elements.xml" />
+    <Content Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="UserAccount\Elements.xml" />
-    <Content Include="UserAccount\UserAccountUserControl.ascx">
+    <Content Include="Admin\Job Title\EditJobTitle\Elements.xml" />
+    <Content Include="Admin\Vacancy\EditVacancy\EditVacancyUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Vacancies\Elements.xml" />
-    <Content Include="Vacancies\VacanciesUserControl.ascx">
+    <Content Include="Admin\Vacancy\EditVacancy\Elements.xml" />
+    <Content Include="Admin\Job Category\JobCategories\Elements.xml" />
+    <Content Include="Admin\Job Category\JobCategories\JobCategoriesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Job Title\JobTitles\Elements.xml" />
+    <Content Include="Admin\Job Title\JobTitles\JobTitlesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Common\Login\Elements.xml" />
+    <Content Include="Admin\Common\Login\LoginUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Attendance\PunchAttendance\Elements.xml" />
+    <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Common\UserAccount\Elements.xml" />
+    <Content Include="Admin\Common\UserAccount\UserAccountUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Vacancy\Vacancies\Elements.xml" />
+    <Content Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>
