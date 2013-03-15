@@ -10,39 +10,39 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Add Job Vacancy</td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Job Title(*)" Width="150px"></asp:Label>
-    <asp:DropDownList ID="DropDownList1" runat="server" Width="205px">
+    <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title(*)" Width="150px"></asp:Label>
+    <asp:DropDownList ID="ddlJobTitle" runat="server" Width="205px">
     </asp:DropDownList>
     <br />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label2" runat="server" Text="Vacancy Name(*)" Width="150px"></asp:Label>
-    <asp:TextBox ID="TextBox2" runat="server" Width="200px"></asp:TextBox>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblVacancy" runat="server" Text="Vacancy Name(*)" Width="150px"></asp:Label>
+    <asp:TextBox ID="txtVacancy" runat="server" Width="200px"></asp:TextBox>
     <br />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label3" runat="server" Text="Hiring Manager" Width="150px"></asp:Label>
-    <asp:TextBox ID="TextBox3" runat="server" Width="200px"></asp:TextBox>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblHiringManager" runat="server" Text="Hiring Manager" Width="150px"></asp:Label>
+    <asp:TextBox ID="txtHiringManager" runat="server" Width="200px"></asp:TextBox>
     <br />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label4" runat="server" Text="Number of Positions" Width="150px"></asp:Label>
-    <asp:TextBox ID="TextBox4" runat="server" Width="200px"></asp:TextBox>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblNoOfPosition" runat="server" Text="Number of Positions" Width="150px"></asp:Label>
+    <asp:TextBox ID="txtNoOfPosition" runat="server" Width="200px"></asp:TextBox>
     <br />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label5" runat="server" Text="Description" Width="150px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblDescription" runat="server" Text="Description" Width="150px"></asp:Label>
     <br />
-    <span style="padding-left:160px;"></span><asp:TextBox ID="TextBox5" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtDescription" 
         runat="server" Height="100px" Width="500px" TextMode="MultiLine"  ></asp:TextBox>
     <br />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label6" runat="server" Text="Active" Width="150px"></asp:Label>
-    <asp:CheckBox ID="CheckBox1" runat="server" Checked="True" />
+    <span style="padding-left:5px;"></span><asp:Label ID="lblActive" runat="server" Text="Active" Width="150px"></asp:Label>
+    <asp:CheckBox ID="chkActive" runat="server" Checked="True" />
     <br />
     <br />
     <div class="borderTop">
-    <span style="padding-left:150px;"></span><asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Save" 
+    <span style="padding-left:150px;"></span><asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save" 
         Width="80px" />
-    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="Cancel" 
+    <asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" Text="Cancel" 
         Width="80px" />
     </div>
 </td></tr></table>
     <br />
-    <asp:Label ID="Label7" runat="server" style="color:Red;"></asp:Label>
+    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

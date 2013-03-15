@@ -13,57 +13,57 @@
 
     
 
-    <span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Employee Name(*)" Width="150px"></asp:Label>
-    <asp:TextBox ID="TextBox1" runat="server" Width="200px" 
-        ontextchanged="TextBox1_TextChanged"></asp:TextBox>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" Width="150px"></asp:Label>
+    <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" 
+        ontextchanged="txtEmployeeName_TextChanged"></asp:TextBox>
     <br />
     <br />
-    <span style="padding-left:155px;"></span><asp:RadioButton ID="RadioButton1" 
+    <span style="padding-left:155px;"></span><asp:RadioButton ID="rdoViewDate" 
         runat="server" Checked="True" 
         GroupName="ViewDateType" Text="View a date" Width="120px" 
-        oncheckedchanged="RadioButton1_CheckedChanged" />
-    <asp:RadioButton ID="RadioButton2" runat="server" GroupName="ViewDateType" 
-        Text="View range of date" oncheckedchanged="RadioButton2_CheckedChanged" 
+        oncheckedchanged="rdoViewDate_CheckedChanged" />
+    <asp:RadioButton ID="rdoViewRange" runat="server" GroupName="ViewDateType" 
+        Text="View range of date" oncheckedchanged="rdoViewRange_CheckedChanged" 
         Width="150px" />
-    <asp:RadioButton ID="RadioButton3" runat="server" GroupName="ViewDateType" 
-        oncheckedchanged="RadioButton3_CheckedChanged" Text="View all" />
+    <asp:RadioButton ID="rdoViewAll" runat="server" GroupName="ViewDateType" 
+        oncheckedchanged="rdoViewAll_CheckedChanged" Text="View all" />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label2" runat="server" Text="Date" Width="150px"></asp:Label>
-    <asp:TextBox ID="TextBox2" runat="server" Width="200px"></asp:TextBox>
-    <asp:Button ID="Button1" runat="server" Text="..." Width="30px" 
-        onclick="Button1_Click" />
+    <span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
+    <asp:TextBox ID="txtDateFrom" runat="server" Width="200px"></asp:TextBox>
+    <asp:Button ID="btnDateFrom" runat="server" Text="..." Width="30px" 
+        onclick="btnDateFrom_Click" />
     <span style="padding-left:80px;"></span>
-    <asp:TextBox ID="TextBox3" runat="server" Width="200px"></asp:TextBox>
-    <asp:Button ID="Button2" runat="server" Text="..." onclick="Button2_Click" />
+    <asp:TextBox ID="txtDateTo" runat="server" Width="200px"></asp:TextBox>
+    <asp:Button ID="btnDateTo" runat="server" Text="..." onclick="btnDateTo_Click" />
 
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label6" runat="server" 
-        Text="(mm-dd-yyyy)" Width="155px" Height="20px"></asp:Label><asp:Label ID="Label3" runat="server" 
+    <span style="padding-left:5px;"></span><asp:Label ID="lblDateDescription" runat="server" 
+        Text="(mm-dd-yyyy)" Width="155px" Height="20px"></asp:Label><asp:Label ID="lblDateFrom" runat="server" 
         Text="From" Width="50px"></asp:Label>
 
-    <span style="padding-left:265px;"></span><asp:Label ID="Label4" runat="server" Text="To"></asp:Label>
-    <asp:Calendar ID="Calendar1" runat="server" align="center" 
-        onselectionchanged="Calendar1_SelectionChanged" Visible="False"></asp:Calendar>
+    <span style="padding-left:265px;"></span><asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
+    <asp:Calendar ID="cldChooseDate" runat="server" align="center" 
+        onselectionchanged="cldChooseDate_SelectionChanged" Visible="False"></asp:Calendar>
     <div class="borderTop">
-    <span style="padding-left:155px;"></span><asp:Button ID="Button3" runat="server" Text="View" Width="80px" 
-        onclick="Button3_Click" />
+    <span style="padding-left:155px;"></span><asp:Button ID="btnView" runat="server" Text="View" Width="80px" 
+        onclick="btnView_Click" />
     </div>
     
 
 </td></tr></table>
 <br><br>
-<br /><asp:Panel ID="Panel1" runat="server" Visible="False">
+<br /><asp:Panel ID="pnlData" runat="server" Visible="False">
 <table class="fieldTitleDiv"><tr><td>
 	<div class="borderBottom">
-<asp:Button ID="Button4" runat="server" Text="Add" Width="80px" 
-    onclick="Button4_Click" />
-<asp:Button ID="Button5" runat="server" Text="Edit" Width="80px" 
-    onclick="Button5_Click" />
-<asp:Button ID="Button6" runat="server" onclick="Button6_Click" Text="Delete" 
+<asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+    onclick="btnAdd_Click" />
+<asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+    onclick="btnEdit_Click" />
+<asp:Button ID="btnDelete" runat="server" onclick="btnDelete_Click" Text="Delete" 
     Width="80px" />
     </div>
 <br />
-    <asp:GridView ID="GridView1" runat="server" Width="100%">
+    <asp:GridView ID="grdData" runat="server" Width="100%">
         <Columns>
             <asp:TemplateField>
                 <HeaderStyle Width="25" />
@@ -80,6 +80,6 @@
     </td></tr></table></asp:Panel>
     <br />
     <br />
-    <asp:Label ID="Label5" runat="server" style="color:Red;"></asp:Label>
+    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 
 

@@ -10,21 +10,21 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Vacancies</td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Job Title" Width="80px"></asp:Label>
-    <asp:DropDownList ID="DropDownList1" runat="server" Width="110px">
+    <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="80px"></asp:Label>
+    <asp:DropDownList ID="ddlJobTitle" runat="server" Width="110px">
     </asp:DropDownList>
     <span style="padding-left:40px;"></span>
-    <asp:Label ID="Label2" runat="server" 
+    <asp:Label ID="lblVacancy" runat="server" 
         Text="Vacancy" Width="80px"></asp:Label>
-    <asp:DropDownList ID="DropDownList2" runat="server" Width="110px">
+    <asp:DropDownList ID="ddlVacancy" runat="server" Width="110px">
     </asp:DropDownList>
-    <span style="padding-left:40px;"></span><asp:Label ID="Label3" runat="server" 
+    <span style="padding-left:40px;"></span><asp:Label ID="lblHiringManager" runat="server" 
         Text="Hiring Manager" Width="120px"></asp:Label>
-    <asp:TextBox ID="TextBox1" runat="server" Width="110px"></asp:TextBox>
+    <asp:TextBox ID="txtHiringManager" runat="server" Width="110px"></asp:TextBox>
     <span style="padding-left:40px;"></span>
-    <asp:Label ID="Label4" runat="server" 
+    <asp:Label ID="lblStatus" runat="server" 
         Text="Status" Width="80px"></asp:Label>
-    <asp:DropDownList ID="DropDownList3" runat="server" Width="110px">
+    <asp:DropDownList ID="ddlStatus" runat="server" Width="110px">
         <asp:ListItem Selected="True">All</asp:ListItem>
         <asp:ListItem>Active</asp:ListItem>
         <asp:ListItem>Closed</asp:ListItem>
@@ -32,24 +32,24 @@
     <br />
     <br />
     <div class="borderTop">
-    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Search" 
+    <asp:Button ID="btnSearch" runat="server" onclick="btnSearch_Click" Text="Search" 
         Width="80px" />
-    <asp:Button ID="Button2" runat="server" Text="Reset" Width="80px" 
-        onclick="Button2_Click" />
+    <asp:Button ID="btnReset" runat="server" Text="Reset" Width="80px" 
+        onclick="btnReset_Click" />
         </div>
 </td></tr></table>
 <br><br><br>
 <table class="fieldTitleDiv"><tr><td>
     <div class="borderBottom">
-    <asp:Button ID="Button3" runat="server" Text="Add" Width="80px" 
-        onclick="Button3_Click" />
-    <asp:Button ID="Button4" runat="server" Text="Edit" Width="80px" 
-        onclick="Button4_Click" />
-    <asp:Button ID="Button5" runat="server" Text="Delete" Width="80px" 
-        onclick="Button5_Click" />
+    <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+        onclick="btnAdd_Click" />
+    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+        onclick="btnEdit_Click" />
+    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
+        onclick="btnDelete_Click" />
         </div>
     <br />
-    <asp:GridView ID="GridView1" runat="server" Width="100%">
+    <asp:GridView ID="grdData" runat="server" Width="100%">
         <Columns>
             <asp:TemplateField>
             <HeaderStyle Width="25" />
@@ -70,5 +70,5 @@
 </td></tr></table>
 
 <br><br>
-<asp:Label ID="Label5" runat="server" style="color:Red;"></asp:Label>
+<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 <br>

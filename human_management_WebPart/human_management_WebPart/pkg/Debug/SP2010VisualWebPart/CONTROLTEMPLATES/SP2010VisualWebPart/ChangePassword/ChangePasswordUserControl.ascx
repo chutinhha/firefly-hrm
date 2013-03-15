@@ -16,22 +16,22 @@
                 </tr>
             </table>
             <br>
-            <span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Old Password" Width="150px"></asp:Label>
+            <span style="padding-left:5px;"></span><asp:Label ID="lblOldPassword" runat="server" Text="Old Password" Width="150px"></asp:Label>
             
 
-            <asp:TextBox ID="TextBox1" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtOldPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
             <br />
             <br />
-            <span style="padding-left:5px;"></span><asp:Label ID="Label2" runat="server" Text="New Password" Width="150px"></asp:Label>
-            <asp:TextBox ID="TextBox2" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
+            <span style="padding-left:5px;"></span><asp:Label ID="lblNewPassword" runat="server" Text="New Password" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtNewPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
             <br />
             <br />
-            <span style="padding-left:5px;"></span><asp:Label ID="Label3" runat="server" Text="Confirm Password" Width="150px"></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
+            <span style="padding-left:5px;"></span><asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtConfirmPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
             <br />
             <br />
-            <span style="padding-left:155px;"></span><asp:Button ID="Button1" 
-                runat="server" Text="Change Password" Width="150px" onclick="Button1_Click" />
+            <span style="padding-left:155px;"></span><asp:Button ID="btnChangePassword" 
+                runat="server" Text="Change Password" Width="150px" onclick="btnChangePassword_Click" />
             <br><br>
 
             
@@ -41,5 +41,5 @@
     </tr>
 </table>
             <br /><br>
-            <asp:Label ID="Label4" runat="server" style="color:Red;"></asp:Label>
+            <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 

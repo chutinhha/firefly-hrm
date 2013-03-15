@@ -11,30 +11,30 @@
     <table class="fieldTitleDiv" cellpadding="0"><tr><td>
     <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Add Job Category</td></tr></table>
-    <br><span style="padding-left:10px;"></span><asp:Label ID="Label2" runat="server" Text="Name(*)" 
+    <br><span style="padding-left:10px;"></span><asp:Label ID="lblName" runat="server" Text="Name(*)" 
         Width="150px"></asp:Label>
-    <asp:TextBox ID="TextBox1" runat="server" Width="200px"></asp:TextBox>
+    <asp:TextBox ID="txtName" runat="server" Width="200px"></asp:TextBox>
     <br />
     <br />
     <div class="borderTop">
-    <asp:Button ID="Button4" runat="server" Text="Save" Width="80px" 
-        onclick="Button4_Click" />
-    <asp:Button ID="Button5" runat="server" Text="Cancel" Width="80px" 
-        onclick="Button5_Click" /></div><br></td></tr></table>
+    <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" 
+        onclick="btnSave_Click" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
+        onclick="btnCancel_Click" /></div><br></td></tr></table>
 </asp:Panel><br>
 <table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Job Categories</td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Button ID="Button1" runat="server" Text="Add" Width="80px" 
-        onclick="Button1_Click" />
-    <asp:Button ID="Button2" runat="server" Text="Edit" Width="80px" 
-        onclick="Button2_Click" />
-    <asp:Button ID="Button3" runat="server" Text="Delete" Width="80px" 
-        onclick="Button3_Click" />
+    <span style="padding-left:5px;"></span><asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+        onclick="btnAdd_Click" />
+    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+        onclick="btnEdit_Click" />
+    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
+        onclick="btnDelete_Click" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" Width="100%">
+    <asp:GridView ID="grdData" runat="server" Width="100%">
         <Columns >
 
                         <asp:TemplateField>
@@ -56,7 +56,7 @@
     </asp:GridView>
     </td></tr></table>
 <br><br>
-<asp:Label ID="Label1" runat="server" style="color:Red;"></asp:Label>
+<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 <br>
 <p>
     &nbsp;</p>
