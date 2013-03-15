@@ -30,7 +30,14 @@ namespace SP2010VisualWebPart.AddVacancy
             else
             {
                 Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
-                Response.Redirect(Session["Account"] + ".aspx", true);
+                if (Session["Account"] != null)
+                {
+                    Response.Redirect(Session["Account"] + ".aspx", true);
+                }
+                else
+                {
+                    Response.Redirect("Home.aspx", true);
+                }
             }
         }
 

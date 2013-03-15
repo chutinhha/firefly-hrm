@@ -1,4 +1,5 @@
 ﻿<%@ Register tagprefix="EditAttendance" namespace="SP2010VisualWebPart.EditAttendance" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
 <%-- _LocalBinding --%>
 <%@ Page language="C#" MasterPageFile="~masterurl/default.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
@@ -25,53 +26,47 @@
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='FullPage' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' ID='2' T='Full Page' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='Title' R='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><EditAttendance:EditAttendance runat="server" ID="g_a51f47a2_6b19_48e6_8adb_825cf881eb34" Description="EditAttendance" Title="EditAttendance" __designer:Values="&lt;P N='Description' ID='1' T='EditAttendance' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_a51f47a2_6b19_48e6_8adb_825cf881eb34' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='FullPage' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' ID='2' T='Full Page' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='Title' R='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><EditAttendance:EditAttendance runat="server" ID="g_a51f47a2_6b19_48e6_8adb_825cf881eb34" Description="EditAttendance" ChromeType="None" Title="EditAttendance" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' ID='1' T='EditAttendance' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_a51f47a2_6b19_48e6_8adb_825cf881eb34' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
 	&lt;tr&gt;
-		&lt;td&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
-			&lt;tr class=&quot;ms-WPHeader&quot;&gt;
-				&lt;td align=&quot;left&quot; class=&quot;ms-wpTdSpace&quot;&gt;&amp;#160;&lt;/td&gt;&lt;td title=&quot;EditAttendance - EditAttendance&quot; id=&quot;WebPartTitleFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot; class=&quot;ms-WPHeaderTd&quot;&gt;&lt;div class=&quot;ms-WPTitle&quot;&gt;&lt;nobr&gt;&lt;span&gt;EditAttendance&lt;/span&gt;&lt;span id=&quot;WebPartCaptionFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot;&gt;&lt;/span&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;/td&gt;&lt;td align=&quot;left&quot; class=&quot;ms-wpTdSpace&quot;&gt;&amp;#160;&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/table&gt;&lt;/td&gt;
-	&lt;/tr&gt;&lt;tr&gt;
-		&lt;td class=&quot;&quot; valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot; width=&quot;100%&quot; class=&quot;ms-WPBody ms-wpContentDivSpace&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
+		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34&quot;&gt;
-	&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label6&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name&lt;/span&gt;
+	
+&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
+&lt;table class=&quot;fieldTitleTable&quot;&gt;
+&lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;Edit Attendance&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
+&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label6&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name&lt;/span&gt;
 &lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox7&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox7&quot; disabled=&quot;disabled&quot; style=&quot;width:290px;&quot; /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label1&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Punch In&lt;/span&gt;
+&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label1&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Punch In&lt;/span&gt;
     &lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox1&quot; style=&quot;width:150px;&quot; /&gt;
-    &lt;span style=&quot;padding-left:20px;&quot;&gt;&lt;/span&gt;&lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox2&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox2&quot; style=&quot;width:120px;&quot; /&gt;
+    &lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox2&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox2&quot; style=&quot;width:130px;&quot; /&gt;
 &lt;br /&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
-    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label2&quot;&gt;Punch In Note&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label2&quot;&gt;Punch In Note&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:150px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox3&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox3&quot; style=&quot;height:100px;width:290px;&quot;&gt;&lt;/textarea&gt;
+    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox3&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox3&quot; style=&quot;height:100px;width:290px;&quot;&gt;&lt;/textarea&gt;
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label3&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Punch Out&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label3&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Punch Out&lt;/span&gt;
     &lt;input name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox4&quot; type=&quot;text&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox4&quot; style=&quot;width:290px;&quot; /&gt;
     &lt;span style=&quot;padding-left:20px;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
-    &lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label4&quot;&gt;Punch Out Note&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Label4&quot;&gt;Punch Out Note&lt;/span&gt;
 &lt;/p&gt;
 
-&lt;span style=&quot;padding-left:150px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox6&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox6&quot; style=&quot;height:100px;width:290px;&quot;&gt;&lt;/textarea&gt;
-
-
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-&lt;p&gt;
-    &lt;span style=&quot;padding-left:150px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$Button1&quot; value=&quot;Save&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$Button2&quot; value=&quot;Cancel&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;
-&lt;/p&gt;
+&lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$TextBox6&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_TextBox6&quot; style=&quot;height:100px;width:290px;&quot;&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;
+&lt;div class=&quot;borderTop&quot;&gt;
+    &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$Button1&quot; value=&quot;Save&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_a51f47a2_6b19_48e6_8adb_825cf881eb34$ctl00$Button2&quot; value=&quot;Cancel&quot; id=&quot;FullPage_g_a51f47a2_6b19_48e6_8adb_825cf881eb34_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
@@ -158,7 +153,8 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">
+												Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -244,4 +240,23 @@
     </SharePoint:DelegateControl>
 								
 </asp:Content>
+
+<asp:Content id="Content2" runat="server" contentplaceholderid="PlaceHolderSearchArea">
+
+						
+
+<UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{3703aaa2-ff8d-41f2-b475-ee3d565a588f}" WebPart="true" __designer:IsClosed="false" id="g_3703aaa2_ff8d_41f2_b475_ee3d565a588f" __designer:Preview="&lt;div id=&quot;g_3703aaa2_ff8d_41f2_b475_ee3d565a588f&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{3703aaa2-ff8d-41f2-b475-ee3d565a588f}&quot; WebPart=&quot;true&quot;&gt;
+	
+&amp;nbsp;&lt;a id=&quot;g_3703aaa2_ff8d_41f2_b475_ee3d565a588f_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_3703aaa2_ff8d_41f2_b475_ee3d565a588f$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;|
+&lt;a id=&quot;g_3703aaa2_ff8d_41f2_b475_ee3d565a588f_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_3703aaa2_ff8d_41f2_b475_ee3d565a588f$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&amp;nbsp;|
+&lt;a id=&quot;g_3703aaa2_ff8d_41f2_b475_ee3d565a588f_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_3703aaa2_ff8d_41f2_b475_ee3d565a588f$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+
+
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_3703aaa2_ff8d_41f2_b475_ee3d565a588f' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+
+						
+</asp:Content>
+
 

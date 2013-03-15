@@ -29,5 +29,9 @@
     <ElementFile Location="PunchAttendance\PunchAttendance.webpart" />
     <ElementManifest Location="EditAttendance\Elements.xml" />
     <ElementFile Location="EditAttendance\EditAttendance.webpart" />
+    <ElementManifest Location="UserAccount\Elements.xml" />
+    <ElementFile Location="UserAccount\UserAccount.webpart" />
+    <ElementManifest Location="ChangePassword\Elements.xml" />
+    <ElementFile Location="ChangePassword\ChangePassword.webpart" />
   </ElementManifests>
 </Feature>

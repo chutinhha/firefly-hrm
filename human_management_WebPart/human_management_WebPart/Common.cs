@@ -154,46 +154,4 @@ public class Common
         //command.Connection.Open();
         command.ExecuteNonQuery();
     }
-
-    public string[] GetCompletionList(string prefixText, int count, string table, string column)
-    {
-        DataSet ds = new DataSet();
-        DataTable dt = new DataTable();
-        SqlCommand cmd = new SqlCommand();
-        //Compare String From Textbox(prefixText) AND String From 
-        //Column in DataBase(CompanyName)
-        //If String from DataBase is equal to String from TextBox(prefixText) 
-        //then add it to return ItemList
-        //-----I defined a parameter instead of passing value directly to 
-        //prevent SQL injection--------//
-        cmd.CommandText = "select * from "+table+" Where "+column+" like @myParameter";
-        cmd.Parameters.AddWithValue("@myParameter", "%" + prefixText + "%");
-        try
-        {
-            cmd.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
-        }
-        catch
-        {
-        }
-        finally
-        {
-        }
-        dt = ds.Tables[0];
-
-        //Then return List of string(txtItems) as result
-        List<string> txtItems = new List<string>();
-        String dbValues;
-
-        foreach (DataRow row in dt.Rows)
-        {
-            //String From DataBase(dbValues)
-            dbValues = row[column].ToString();
-            dbValues = dbValues.ToLower();
-            txtItems.Add(dbValues);
-        }
-
-        return txtItems.ToArray();
-    }
 }
