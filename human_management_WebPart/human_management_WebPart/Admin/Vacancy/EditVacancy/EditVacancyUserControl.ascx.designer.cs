@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.EditVacancy {
     public partial class EditVacancyUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// lblJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.DropDownList ddlJobTitle;
         
         /// <summary>
-        /// lblDate control.
+        /// lblVacancy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +49,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.Label lblVacancy;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtVacancy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.TextBox txtVacancy;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblHiringManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.Label lblHiringManager;
         
         /// <summary>
-        /// txtDateTo control.
+        /// txtHiringManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +76,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.TextBox txtHiringManager;
         
         /// <summary>
-        /// lblDateTo control.
+        /// lblNoOfPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -85,7 +94,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.TextBox txtNoOfPosition;
         
         /// <summary>
-        /// lblError control.
+        /// lblDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -103,7 +112,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// lblDateDescription control.
+        /// lblActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -121,7 +130,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.CheckBox chkActive;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -130,7 +139,7 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnDateTo control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

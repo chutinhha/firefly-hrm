@@ -6,7 +6,8 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditVacancyUserControl.ascx.cs" Inherits="SP2010VisualWebPart.EditVacancy.EditVacancyUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<asp:Panel ID="Panel1" runat="server" 
+       DefaultButton="btnSave" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Edit Vancancy</td></tr></table>
     <br />
@@ -38,11 +39,11 @@
     <br />
     <br /><div class="borderTop">
     <span style="padding-left:155px;"></span><asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save" 
-        Width="80px" />
+        Width="80px" OnClientClick="return confirm('Are you sure you want to save ?')" />
     <asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" Text="Cancel" 
         Width="80px" /></div>
     
-</td></tr></table>
+</td></tr></table></asp:Panel>
 <br />
     <br />
     <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

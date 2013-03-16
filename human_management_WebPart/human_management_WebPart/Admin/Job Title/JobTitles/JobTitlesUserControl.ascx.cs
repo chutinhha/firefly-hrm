@@ -9,7 +9,7 @@ namespace SP2010VisualWebPart.JobTitles
 {
     public partial class JobTitlesUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -18,14 +18,11 @@ namespace SP2010VisualWebPart.JobTitles
                 {
                     if (!IsPostBack)
                     {
-                        com.bindData("JobTitle,JobDes,JobCategory", "", "HumanResources.JobTitle", grdData);
+                        _com.bindData(Message.JobTitleColumn+","+Message.JobDescriptionColumn+","+Message.JobCategoryColumn
+                            +"", "", Message.TableJobTitle, grdData);
                         lblError.Text = "";
                         Session.Remove("Name");
-                        grdData.GridLines = GridLines.None;
-                        grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                        grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                        grdData.HeaderStyle.Height = 25;
-                        grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                        _com.setGridViewStyle(grdData);
                     }
                 }
                 catch (Exception ex)
@@ -35,20 +32,21 @@ namespace SP2010VisualWebPart.JobTitles
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
 
-        public void CheckUncheckAll(object sender, EventArgs e)
+        protected void CheckUncheckAll(object sender, EventArgs e)
         {
+            //Check or uncheck all checkbox
             CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
             foreach (GridViewRow row in grdData.Rows)
             {
@@ -73,14 +71,14 @@ namespace SP2010VisualWebPart.JobTitles
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        string sql = @"delete from HumanResources.JobTitle where JobTitle=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';";
-                        SqlCommand command = new SqlCommand(sql, com.cnn);
-                        //command.Connection.Open();
+                        string sql = @"delete from "+Message.TableJobTitle+" where "+Message.JobTitleColumn+"=N'" 
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "';";
+                        SqlCommand command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                         lblError.Text = "";
                     }
                 }
-                com.bindData("JobTitle,JobDes", "", "HumanResources.JobTitle", grdData);
+                _com.bindData(Message.JobTitleColumn+","+Message.JobDescriptionColumn+"", "", Message.TableJobTitle, grdData);
             }
             catch (Exception ex)
             {
@@ -90,8 +88,8 @@ namespace SP2010VisualWebPart.JobTitles
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
-            Response.Redirect("AddJobTitle.aspx",true);
+            _com.closeConnection();
+            Response.Redirect(Message.AddJobTitlePage,true);
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -102,8 +100,8 @@ namespace SP2010VisualWebPart.JobTitles
                 if (cb.Checked)
                 {
                     Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
-                    com.closeConnection();
-                    Response.Redirect("EditJobTitle.aspx",true);
+                    _com.closeConnection();
+                    Response.Redirect(Message.EditJobTitlePage,true);
                 }
             }
         }

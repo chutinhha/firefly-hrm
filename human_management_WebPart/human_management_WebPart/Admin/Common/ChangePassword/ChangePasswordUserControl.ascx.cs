@@ -9,11 +9,11 @@ namespace SP2010VisualWebPart.ChangePassword
 {
     public partial class ChangePasswordUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"] == null) {
-                Response.Redirect("Home.aspx",true);
+                Response.Redirect(Message.HomePage,true);
             }
             else
             {
@@ -28,28 +28,28 @@ namespace SP2010VisualWebPart.ChangePassword
         {
             if (txtOldPassword.Text.Trim() == "" || txtNewPassword.Text.Trim() == "" || txtConfirmPassword.Text.Trim() == "")
             {
-                lblError.Text = "You must enter old, new and confirm password";
+                lblError.Text = Message.OldPassword;
             }
             else {
                 try
                 {
-                    DataTable dt = com.getData("HumanResources.Users", " where UserName=N'" + Session["AccountName"]
+                    DataTable dt = _com.getData(Message.TableUser, " where "+Message.UserNameColumn+"=N'" + Session["AccountName"]
                         + "'");
                     if (txtOldPassword.Text.Trim() != dt.Rows[0][1].ToString())
                     {
-                        lblError.Text = "Your old password is incorrect. Please try again";
+                        lblError.Text = Message.OldPasswordError;
                         txtOldPassword.Text = "";
                     }
                     else {
                         if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
                         {
-                            lblError.Text = "Your new password and confirm password are not the same. Please try again";
+                            lblError.Text = Message.ConfirmPassword;
                             txtNewPassword.Text = "";
                             txtConfirmPassword.Text = "";
                         }
                         else {
-                            com.updateTable("HumanResources.Users", " Password=N'"+txtNewPassword.Text.Trim()+"'"
-                                +" where UserName=N'"+Session["AccountName"].ToString()+"'");
+                            _com.updateTable(Message.TableUser, " "+Message.PasswordColumn+"=N'"+txtNewPassword.Text.Trim()+"'"
+                                +" where "+Message.UserNameColumn+"=N'"+Session["AccountName"].ToString()+"'");
                             Response.Redirect(Session["Account"] + ".aspx", true);
                         }
                     }

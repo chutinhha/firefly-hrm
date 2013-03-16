@@ -15,7 +15,7 @@
     <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
         onclick="btnEdit_Click" />
     <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
-        onclick="btnDelete_Click" />
+        onclick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
     <br />
     <br />
     <asp:GridView ID="grdData" runat="server" Width="100%">

@@ -154,6 +154,7 @@
     <Compile Include="Admin\Job Title\JobTitles\JobTitlesUserControl.ascx.designer.cs">
       <DependentUpon>JobTitlesUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Admin\Common\Login\Login.cs" />
     <Compile Include="Admin\Common\Login\LoginUserControl.ascx.cs">

@@ -11,5 +11,5 @@
 &nbsp;|
 <asp:LinkButton ID="lbtnChangePassword" runat="server" onclick="lbtnChangePassword_Click">Change Passwod</asp:LinkButton>
 &nbsp;|
-<asp:LinkButton ID="lbtnLogOut" runat="server" onclick="lbtnLogOut_Click">Logout</asp:LinkButton>
+<asp:LinkButton ID="lbtnLogOut" runat="server" onclick="lbtnLogOut_Click" OnClientClick="return confirm('Are you sure you want to log out ?')">Logout</asp:LinkButton>
 

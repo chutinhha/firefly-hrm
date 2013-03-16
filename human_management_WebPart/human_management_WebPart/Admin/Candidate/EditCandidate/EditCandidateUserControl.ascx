@@ -6,7 +6,8 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditCandidateUserControl.ascx.cs" Inherits="SP2010VisualWebPart.EditCandidate.EditCandidateUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<asp:Panel ID="Panel1" runat="server" 
+       DefaultButton="btnSave" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Edit Candidate</td></tr></table><br>
 <span style="padding-left:5px;"></span><asp:Label ID="lblFullName" runat="server" Text="Full Name(*)" Width="120px"></asp:Label>
@@ -106,10 +107,10 @@
 
     <div class="borderTop">
     <span style="padding-left:125px;"></span><asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" 
-        onclick="btnSave_Click" />
+        onclick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
         onclick="btnCancel_Click" /></div>
-</td></tr></table>
+</td></tr></table></asp:Panel>
 <br>
 <p>
     <asp:Label ID="lblError" runat="server" style="color:red;"></asp:Label>

@@ -9,35 +9,31 @@ namespace SP2010VisualWebPart.JobCategories
 {
     public partial class JobCategoriesUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
             {
                 try{
                     if (!IsPostBack) {
-                        com.bindData("Name", "", "HumanResources.JobCategories", grdData);
+                        _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
                         Panel1.Visible = false;
                         lblError.Text = "";
-                        grdData.GridLines = GridLines.None;
-                        grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                        grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                        grdData.HeaderStyle.Height = 25;
-                        grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                        _com.setGridViewStyle(grdData);
                     }
                 }catch(Exception ex){
                     lblError.Text = ex.Message;
                 }
             }
             else{
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
@@ -45,6 +41,7 @@ namespace SP2010VisualWebPart.JobCategories
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             Panel1.Visible = true;
+            lblTitle.Text = "Add Job Category";
             Session["type"] = "Add";
         }
 
@@ -57,7 +54,7 @@ namespace SP2010VisualWebPart.JobCategories
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (txtName.Text.Trim() == "") {
-                lblError.Text = "You must enter category name";
+                lblError.Text = Message.CategoryNameError;
             }
             else
             {
@@ -65,13 +62,14 @@ namespace SP2010VisualWebPart.JobCategories
                 {
                     if (Session["type"].ToString() == "Add")
                     {
-                        com.insertIntoTable("HumanResources.JobCategories", "N'" + txtName.Text.Trim() + "'");
+                        _com.insertIntoTable(Message.TableJobCategory,"", "N'" + txtName.Text.Trim() + "','"+DateTime.Now+"'",false);
                     }
                     else { 
-                        com.updateTable("HumanResources.JobCategories","Name=N'"+txtName.Text.Trim()+"' where Name=N'"+Session["Name"]+"'");
+                        _com.updateTable(Message.TableJobCategory,Message.NameColumn+"=N'"+txtName.Text.Trim()
+                            +"',LastModified='"+DateTime.Now+"' where "+Message.NameColumn+"=N'"+Session["Name"]+"'");
                     }
                     Panel1.Visible = false;
-                    com.bindData("Name", "", "HumanResources.JobCategories", grdData);
+                    _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
                     lblError.Text = "";
                     txtName.Text = "";
                 }
@@ -92,6 +90,7 @@ namespace SP2010VisualWebPart.JobCategories
                     Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
                     Session["type"] = "Edit";
                     Panel1.Visible = true;
+                    lblTitle.Text = "Edit Job Category";
                     txtName.Text = Session["Name"].ToString();
                     break;
                 }
@@ -107,22 +106,23 @@ namespace SP2010VisualWebPart.JobCategories
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        string sql = @"delete from HumanResources.JobCategories where Name=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';";
-                        SqlCommand command = new SqlCommand(sql, com.cnn);
-                        //command.Connection.Open();
+                        string sql = @"delete from "+Message.TableJobCategory+" where "+Message.NameColumn+"=N'" 
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "';";
+                        SqlCommand command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                         lblError.Text = "";
                     }
                 }
-                com.bindData("Name", "", "HumanResources.JobCategories", grdData);
+                _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
             }
         }
-        public void CheckUncheckAll(object sender, EventArgs e)
+        protected void CheckUncheckAll(object sender, EventArgs e)
         {
+            //Check or uncheck all checkbox
             CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
             foreach (GridViewRow row in grdData.Rows)
             {

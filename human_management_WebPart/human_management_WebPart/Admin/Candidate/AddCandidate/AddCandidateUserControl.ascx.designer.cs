@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.AddCandidate {
     public partial class AddCandidateUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// lblFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +31,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.Label lblFullName;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// txtFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtFullName;
         
         /// <summary>
-        /// lblDate control.
+        /// lblAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +49,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.Label lblAddress;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.Label lblCity;
         
         /// <summary>
-        /// txtDateTo control.
+        /// txtCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +76,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtCity;
         
         /// <summary>
-        /// lblDateTo control.
+        /// lblState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -85,7 +94,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtState;
         
         /// <summary>
-        /// lblError control.
+        /// lblZipCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -103,7 +112,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtZipCode;
         
         /// <summary>
-        /// lblDateDescription control.
+        /// lblCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -319,7 +328,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtApplyDate;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnApplyDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -328,7 +337,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.Button btnApplyDate;
         
         /// <summary>
-        /// cldChooseDate control.
+        /// cldApplyDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -355,7 +364,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.TextBox txtComment;
         
         /// <summary>
-        /// btnDateTo control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -364,7 +373,7 @@ namespace SP2010VisualWebPart.AddCandidate {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnView control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

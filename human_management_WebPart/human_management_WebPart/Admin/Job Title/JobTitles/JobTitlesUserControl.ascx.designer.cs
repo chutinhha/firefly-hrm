@@ -13,7 +13,7 @@ namespace SP2010VisualWebPart.JobTitles {
     public partial class JobTitlesUserControl {
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +22,7 @@ namespace SP2010VisualWebPart.JobTitles {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// btnDateTo control.
+        /// btnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +31,7 @@ namespace SP2010VisualWebPart.JobTitles {
         protected global::System.Web.UI.WebControls.Button btnEdit;
         
         /// <summary>
-        /// btnView control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +49,7 @@ namespace SP2010VisualWebPart.JobTitles {
         protected global::System.Web.UI.WebControls.GridView grdData;
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

@@ -9,14 +9,14 @@ namespace SP2010VisualWebPart.EditJobTitle
 {
     public partial class EditJobTitleUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
             {
                 if (Session["Name"] == null)
                 {
-                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
@@ -25,13 +25,13 @@ namespace SP2010VisualWebPart.EditJobTitle
                     {
                         if (!IsPostBack)
                         {
-                            com.SetItemList("Name", "HumanResources.JobCategories", ddlJobCategory, "", false, "");
-                            DataTable dt = com.getData("HumanResources.JobTitle", " where JobTitle=N'" + Session["Name"] + "'");
+                            _com.SetItemList(Message.NameColumn, Message.TableJobCategory, ddlJobCategory, "", false, "");
+                            DataTable dt = _com.getData(Message.TableJobTitle, " where "+Message.JobTitleColumn+"=N'" + Session["Name"] + "'");
                             if (dt.Rows.Count > 0)
                             {
-                                txtJobTitle.Text = dt.Rows[0][0].ToString().Trim();
-                                txtJobDescription.Text = dt.Rows[0][1].ToString().Trim();
-                                txtNote.Text = dt.Rows[0][2].ToString().Trim();
+                                txtJobTitle.Text = dt.Rows[0][1].ToString().Trim();
+                                txtJobDescription.Text = dt.Rows[0][2].ToString().Trim();
+                                txtNote.Text = dt.Rows[0][4].ToString().Trim();
                                 ddlJobCategory.SelectedValue = dt.Rows[0][3].ToString().Trim();
                             }
                         }
@@ -45,41 +45,42 @@ namespace SP2010VisualWebPart.EditJobTitle
             else
             {
                 Session.Remove("Name");
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
+            _com.closeConnection();
             Session.Remove("Name");
-            Response.Redirect("JobTitles.aspx", true);
+            Response.Redirect(Message.JobTitlePage, true);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (txtJobTitle.Text.Trim() == "")
             {
-                lblError.Text = "You must enter Job Title name";
+                lblError.Text = Message.JobTitleError;
             }
             else {
                 try
                 {
-                    com.updateTable("HumanResources.JobTitle", "JobTitle=N'" + txtJobTitle.Text + "',"
-                        + "JobDes=N'" + txtJobDescription.Text + "',Note=N'" + txtNote.Text + "',"
-                        + "JobCategory=N'" + ddlJobCategory.SelectedValue + "' where JobTitle=N'"+Session["Name"]+"'");
+                    _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn+"=N'" + txtJobTitle.Text + "',"
+                        + Message.JobDescriptionColumn+"=N'" + txtJobDescription.Text + "',"+Message.NoteColumn+"=N'" 
+                        + txtNote.Text + "',"+ Message.JobCategoryColumn+"=N'" + ddlJobCategory.SelectedValue 
+                        + "',LastModified='"+DateTime.Now+"' where "+Message.JobTitleColumn+"=N'"+Session["Name"]+"'");
                     Session.Remove("Name");
                     lblError.Text = "";
-                    com.closeConnection();
-                    Response.Redirect("JobTitles.aspx", true);
+                    _com.closeConnection();
+                    Response.Redirect(Message.JobTitlePage, true);
                 }
                 catch (Exception ex)
                 {

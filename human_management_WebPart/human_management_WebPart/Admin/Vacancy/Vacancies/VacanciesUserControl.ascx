@@ -6,7 +6,8 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="VacanciesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Vacancies.VacanciesUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<asp:Panel ID="Panel1" runat="server" 
+       DefaultButton="btnSearch" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">Vacancies</td></tr></table>
     <br />
@@ -37,7 +38,7 @@
     <asp:Button ID="btnReset" runat="server" Text="Reset" Width="80px" 
         onclick="btnReset_Click" />
         </div>
-</td></tr></table>
+</td></tr></table></asp:Panel>
 <br><br><br>
 <table class="fieldTitleDiv"><tr><td>
     <div class="borderBottom">
@@ -46,7 +47,7 @@
     <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
         onclick="btnEdit_Click" />
     <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
-        onclick="btnDelete_Click" />
+        onclick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
         </div>
     <br />
     <asp:GridView ID="grdData" runat="server" Width="100%">

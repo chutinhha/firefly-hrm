@@ -11,7 +11,7 @@ namespace SP2010VisualWebPart.AddCandidate
 {
     public partial class AddCandidateUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -20,11 +20,11 @@ namespace SP2010VisualWebPart.AddCandidate
                 {
                     if (!IsPostBack)
                     {
-                        ddlCountry.DataSource = com.getCountryList();
+                        ddlCountry.DataSource = _com.getCountryList();
                         ddlCountry.DataBind();
-                        com.SetItemList("JobTitle", "HumanResources.JobTitle", ddlJobTitle, "", false, "");
-                        com.SetItemList("VacancyName", "HumanResources.JobVacancy", ddlVacancy, "", false, "");
-                        com.SetItemList("Status", "HumanResources.CandidateStatus", ddlStatus, "", false, "");
+                        _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
+                        _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
+                        _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
                         cldApplyDate.Visible = false;
                         lblError.Text = "";
                     }
@@ -35,13 +35,13 @@ namespace SP2010VisualWebPart.AddCandidate
                 }
             }
             else {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else {
-                    Response.Redirect("Home.aspx",true);
+                    Response.Redirect(Message.HomePage,true);
                 }
             }
         }
@@ -64,21 +64,21 @@ namespace SP2010VisualWebPart.AddCandidate
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
-            Response.Redirect("Candidates.aspx", true);
+            _com.closeConnection();
+            Response.Redirect(Message.CandidatePage, true);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (txtFullName.Text.Trim() == "")
             {
-                lblError.Text = "You must enter candidate name!";
+                lblError.Text = Message.CandidateNameError;
             }
             else
             {
                 if (txtEmail.Text.Trim() == "")
                 {
-                    lblError.Text = "You must enter email!";
+                    lblError.Text = Message.EmailError;
                 }
                 else {
                     try
@@ -98,7 +98,7 @@ namespace SP2010VisualWebPart.AddCandidate
                         }
                         if (!txtEmail.Text.Contains("@"))
                         {
-                            lblError.Text = "Email must contain @";
+                            lblError.Text = Message.EmailContain;
                         }
                         else {
                             try{
@@ -108,7 +108,7 @@ namespace SP2010VisualWebPart.AddCandidate
                                 }
                                 try
                                 {
-                                    com.insertIntoTable("HumanResources.JobCandidate", "N'" + txtFullName.Text + "',"
+                                    _com.insertIntoTable(Message.TableJobCandidate,"", "N'" + txtFullName.Text + "',"
                                         + "N'" + txtAddress.Text + "',N'" + txtCity.Text + "',"
                                         + "N'" + txtState.Text + "','" + txtZipCode.Text + "',"
                                         + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
@@ -116,9 +116,9 @@ namespace SP2010VisualWebPart.AddCandidate
                                         + "'" + ddlVacancy.SelectedValue + "',N'" + txtKeyword.Text + "',"
                                         + "N'" + txtComment.Text + "','" + txtApplyDate.Text + "','" + ddlJobTitle.SelectedValue + "',"
                                         + "N'" + txtHiringManager.Text + "',"
-                                        + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "'");
-                                    com.closeConnection();
-                                    Response.Redirect("Candidates.aspx", true);
+                                        + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','"+DateTime.Now+"'",false);
+                                    _com.closeConnection();
+                                    Response.Redirect(Message.CandidatePage, true);
                                 }
                                 catch (Exception ex)
                                 {
@@ -127,12 +127,12 @@ namespace SP2010VisualWebPart.AddCandidate
                             }
                             catch (FormatException)
                             {
-                                lblError.Text = "Apply Date must be DateTime type";
+                                lblError.Text = Message.ApplyDateError;
                             }
                         }
                     }
                     catch (FormatException) {
-                        lblError.Text = "Home phone, Work phone and Mobile phone must be number";
+                        lblError.Text = Message.PhoneError;
                     }
                 }
             }

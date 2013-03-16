@@ -6,7 +6,8 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChangePasswordUserControl.ascx.cs" Inherits="SP2010VisualWebPart.ChangePassword.ChangePasswordUserControl" %>
-<table cellpadding="0" class="fieldTitleDiv">
+<asp:Panel ID="Panel1" runat="server" 
+       DefaultButton="btnChangePassword" Width="100%" ><table cellpadding="0" class="fieldTitleDiv">
     <tr>
         <td>
             <table class="fieldTitleTable">
@@ -31,8 +32,8 @@
             <br />
             <br />
             <span style="padding-left:155px;"></span><asp:Button ID="btnChangePassword" 
-                runat="server" Text="Change Password" Width="150px" onclick="btnChangePassword_Click" />
-            <br><br>
+                runat="server" Text="Change Password" Width="150px" onclick="btnChangePassword_Click" OnClientClick="return confirm('Are you sure you want to change password ?')" />
+            </asp:Panel><br><br>
 
             
             

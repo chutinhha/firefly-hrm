@@ -6,7 +6,8 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PunchAttendanceUserControl.ascx.cs" Inherits="SP2010VisualWebPart.PunchAttendance.PunchAttendanceUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<asp:Panel ID="Panel1" runat="server" 
+       DefaultButton="btnInOut" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><asp:Label ID="Label1" runat="server" Text="Punch In"></asp:Label></td></tr></table>
 <p>
@@ -39,7 +40,7 @@
     <asp:Button ID="btnInOut" 
         runat="server" Text="In" Width="80px" onclick="btnInOut_Click" />
 </p>
-</td></tr></table><br>
+</td></tr></table></asp:Panel><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 <p>
     &nbsp;</p>

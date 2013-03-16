@@ -11,13 +11,13 @@ namespace SP2010VisualWebPart.EditCandidate
 {
     public partial class EditCandidateUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
             {
                 if (Session["Name"] == null) {
-                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
@@ -26,13 +26,14 @@ namespace SP2010VisualWebPart.EditCandidate
                     {
                         if (!IsPostBack)
                         {
-                            ddlCountry.DataSource = com.getCountryList();
+                            ddlCountry.DataSource = _com.getCountryList();
                             ddlCountry.DataBind();
-                            com.SetItemList("VacancyName", "HumanResources.JobVacancy", ddlVacancy, "", false, "");
-                            com.SetItemList("JobTitle", "HumanResources.JobTitle", ddlJobTitle, "", false, "");
-                            com.SetItemList("Status", "HumanResources.CandidateStatus", ddlStatus, "", false, "");
+                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
+                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
+                            _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
                             cldDate.Visible = false;
-                            DataTable dt = com.getData("HumanResources.JobCandidate", " where FullName=N'" + Session["Name"] + "' and Email='" + Session["Email"] + "'");
+                            DataTable dt = _com.getData(Message.TableJobCandidate, " where "+Message.FullNameColumn
+                                +"=N'" + Session["Name"] + "' and "+Message.EmailColumn+"='" + Session["Email"] + "'");
                             if (dt.Rows.Count > 0)
                             {
                                 txtFullName.Text = dt.Rows[0][0].ToString().Trim();
@@ -66,14 +67,14 @@ namespace SP2010VisualWebPart.EditCandidate
             {
                 Session.Remove("Name");
                 Session.Remove("Email");
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
@@ -96,23 +97,23 @@ namespace SP2010VisualWebPart.EditCandidate
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
+            _com.closeConnection();
             Session.Remove("Name");
             Session.Remove("Email");
-            Response.Redirect("Candidates.aspx",true);
+            Response.Redirect(Message.CandidatePage,true);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (txtFullName.Text.Trim() == "")
             {
-                lblError.Text = "You must enter candidate name!";
+                lblError.Text = Message.CandidateNameError;
             }
             else
             {
                 if (txtEmail.Text.Trim() == "")
                 {
-                    lblError.Text = "You must enter email!";
+                    lblError.Text = Message.EmailError;
                 }
                 else {
                     try
@@ -132,7 +133,7 @@ namespace SP2010VisualWebPart.EditCandidate
                         }
                         if (!txtEmail.Text.Contains("@"))
                         {
-                            lblError.Text = "Email must contain @";
+                            lblError.Text = Message.EmailContain;
                         }
                         else {
                             try{
@@ -142,20 +143,22 @@ namespace SP2010VisualWebPart.EditCandidate
                                 }
                                 try
                                 {
-                                    com.updateTable("HumanResources.JobCandidate", "FullName=N'" + txtFullName.Text + "',"
-                                        + "AddressStreet=N'" + txtAddress.Text + "',City=N'" + txtCity.Text + "',"
-                                        + "State=N'" + txtState.Text + "',ZipCode='" + txtZipCode.Text + "',"
-                                        + "Country='" + ddlCountry.SelectedValue + "',HomePhone=" + txtHomePhone.Text
-                                        + ",Mobile=" + txtMobile.Text + ",WorkPhone=" + txtWorkPhone.Text + ",Email='" + txtEmail.Text + "',"
-                                        + "JobVacancy='" + ddlVacancy.SelectedValue + "',Keywords=N'" + txtKeyword.Text + "',"
-                                        + "JobTitle='" + ddlJobTitle.SelectedValue + "',HiringManager=N'" + txtHiringManager.Text + "',"
-                                        + "Status='" + ddlStatus.SelectedValue + "',MethodOfApply='" + ddlApplyMethod.SelectedValue + "',"
-                                        + "ApplyDate='" + txtApplyDate.Text + "',Comment=N'" + txtComment.Text + "' where FullName=N'" + Session["Name"]
-                                        + "' and Email='" + Session["Email"] + "'");
+                                    _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn+"=N'" + txtFullName.Text + "',"
+                                        + Message.StreetColumn+"=N'" + txtAddress.Text + "',"+Message.CityColumn+"=N'" + txtCity.Text + "',"
+                                        + Message.StateColumn+"=N'" + txtState.Text + "',"+Message.ZipCodeColumn+"='" + txtZipCode.Text + "',"
+                                        + Message.CountryColumn+"='" + ddlCountry.SelectedValue + "',"+Message.HomePhoneColumn+"=" + txtHomePhone.Text
+                                        + ","+Message.MobileColumn+"=" + txtMobile.Text + ","+Message.WorkPhoneColumn+"=" + txtWorkPhone.Text 
+                                        + ","+Message.EmailColumn+"='" + txtEmail.Text + "',"
+                                        + Message.JobVacancyColumn+"='" + ddlVacancy.SelectedValue + "',"+Message.KeywordColumn+"=N'" + txtKeyword.Text + "',"
+                                        + Message.JobTitleColumn+"='" + ddlJobTitle.SelectedValue + "',"+Message.HiringManagerColumn+"=N'" + txtHiringManager.Text + "',"
+                                        + Message.StatusColumn+"='" + ddlStatus.SelectedValue + "',"+Message.MethodOfApplyColumn+"='" + ddlApplyMethod.SelectedValue + "',"
+                                        + Message.ApplyDateColumn+"='" + txtApplyDate.Text + "',"+Message.CommentColumn+"=N'" + txtComment.Text 
+                                        + "',LastModified='"+DateTime.Now+"' where "+Message.FullNameColumn+"=N'" + Session["Name"]
+                                        + "' and "+Message.EmailColumn+"='" + Session["Email"] + "'");
                                     Session.Remove("Name");
                                     Session.Remove("Email");
-                                    com.closeConnection();
-                                    Response.Redirect("Candidates.aspx", true);
+                                    _com.closeConnection();
+                                    Response.Redirect(Message.CandidatePage, true);
                                 }
                                 catch (Exception ex)
                                 {
@@ -164,13 +167,13 @@ namespace SP2010VisualWebPart.EditCandidate
                             }
                             catch (FormatException)
                             {
-                                lblError.Text = "Apply Date must be DateTime type";
+                                lblError.Text = Message.ApplyDateError;
                             }
                         }
                     }
                     catch (FormatException)
                     {
-                        lblError.Text = "Home phone, Work phone and Mobile phone must be number";
+                        lblError.Text = Message.PhoneError;
                     }
                 }
             }

@@ -6,7 +6,8 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AttendanceRecordUserControl.ascx.cs" Inherits="SP2010VisualWebPart.AttendanceRecord.AttendanceRecordUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<asp:Panel ID="Panel1" runat="server" 
+       DefaultButton="btnView" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd">View Attendance Records</td></tr></table>
     <br />
@@ -50,7 +51,7 @@
     </div>
     
 
-</td></tr></table>
+</td></tr></table></asp:Panel>
 <br><br>
 <br /><asp:Panel ID="pnlData" runat="server" Visible="False">
 <table class="fieldTitleDiv"><tr><td>
@@ -60,7 +61,7 @@
 <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
     onclick="btnEdit_Click" />
 <asp:Button ID="btnDelete" runat="server" onclick="btnDelete_Click" Text="Delete" 
-    Width="80px" />
+    Width="80px" OnClientClick="return confirm('Are you sure you want to delete ?')" />
     </div>
 <br />
     <asp:GridView ID="grdData" runat="server" Width="100%">

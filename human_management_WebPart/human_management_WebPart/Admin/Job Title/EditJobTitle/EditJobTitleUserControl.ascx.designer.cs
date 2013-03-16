@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.EditJobTitle {
     public partial class EditJobTitleUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// lblJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +31,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.Label lblJobTitle;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// txtJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.TextBox txtJobTitle;
         
         /// <summary>
-        /// lblDateTo control.
+        /// lblJobCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.DropDownList ddlJobCategory;
         
         /// <summary>
-        /// lblDate control.
+        /// lblJobDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.Label lblJobDescription;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtJobDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +76,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.TextBox txtJobDescription;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -76,7 +85,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.Label lblNote;
         
         /// <summary>
-        /// txtDateTo control.
+        /// txtNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -85,7 +94,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.TextBox txtNote;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -94,7 +103,7 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnDateTo control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

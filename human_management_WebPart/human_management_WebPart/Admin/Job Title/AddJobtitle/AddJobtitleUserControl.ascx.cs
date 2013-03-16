@@ -2,12 +2,13 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Data;
 
 namespace SP2010VisualWebPart.AddJobtitle
 {
     public partial class AddJobtitleUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -16,7 +17,7 @@ namespace SP2010VisualWebPart.AddJobtitle
                 {
                     if (!IsPostBack)
                     {
-                        com.SetItemList("Name", "HumanResources.JobCategories", ddlJobCategory, "", false, "");
+                        _com.SetItemList(Message.NameColumn, Message.TableJobCategory, ddlJobCategory, "", false, "");
                         lblError.Text = "";
                     }
                 }
@@ -27,21 +28,21 @@ namespace SP2010VisualWebPart.AddJobtitle
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
+            _com.closeConnection();
             Response.Redirect("JobTitles.aspx",true);
         }
 
@@ -49,16 +50,20 @@ namespace SP2010VisualWebPart.AddJobtitle
         {
             if (txtJobTitle.Text.Trim() == "")
             {
-                lblError.Text = "You must enter Job Title name";
+                lblError.Text = Message.JobTitleError;
             }
             else {
                 try
                 {
-                    com.insertIntoTable("HumanResources.JobTitle","N'"+txtJobTitle.Text.Trim()
-                        +"',N'"+txtJobDescription.Text.Trim()+"',N'"+txtNote.Text+"',N'"+ddlJobCategory.SelectedValue+"'");
+                    DataTable dt = _com.getData(Message.TableJobTitle, " order by JobID desc");
+                    int JobID = int.Parse(dt.Rows[0][0].ToString()) + 1;
+                    _com.insertIntoTable(Message.TableJobTitle," ("+Message.JobIDColumn+","+Message.JobTitleColumn
+                        +","+Message.JobDescriptionColumn+","+Message.NoteColumn+","+Message.JobCategoryColumn
+                        + "," + Message.LastModifiedColumn + ")", JobID + ",N'" + txtJobTitle.Text.Trim()
+                        +"',N'"+txtJobDescription.Text.Trim()+"',N'"+txtNote.Text+"',N'"+ddlJobCategory.SelectedValue+"','"+DateTime.Now+"'",true);
                     lblError.Text = "";
-                    com.closeConnection();
-                    Response.Redirect("JobTitles.aspx",true);
+                    _com.closeConnection();
+                    Response.Redirect(Message.JobTitlePage,true);
                 }
                 catch (Exception ex) {
                     lblError.Text = ex.Message;
