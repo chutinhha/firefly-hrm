@@ -9,14 +9,14 @@ namespace SP2010VisualWebPart.EditVacancy
 {
     public partial class EditVacancyUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
             {
                 if (Session["Name"] == null)
                 {
-                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
@@ -25,8 +25,9 @@ namespace SP2010VisualWebPart.EditVacancy
                     {
                         if (!IsPostBack)
                         {
-                            com.SetItemList("JobTitle", "HumanResources.JobTitle", ddlJobTitle, "", false, "");
-                            DataTable dt = com.getData("HumanResources.JobVacancy", " where VacancyName=N'" + Session["Name"] + "'");
+                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
+                            DataTable dt = _com.getData(Message.TableVacancy, " where "+Message.VacancyNameColumn
+                                +"=N'" + Session["Name"] + "'");
                             if (dt.Rows.Count > 0)
                             {
                                 ddlJobTitle.SelectedValue = dt.Rows[0][0].ToString().Trim();
@@ -54,14 +55,14 @@ namespace SP2010VisualWebPart.EditVacancy
             else
             {
                 Session.Remove("Name");
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
@@ -70,7 +71,7 @@ namespace SP2010VisualWebPart.EditVacancy
         {
             if (txtVacancy.Text.Trim() == "")
             {
-                lblError.Text = "You must enter vacancy name";
+                lblError.Text = Message.VacancyNameError;
             }
             else {
                 try
@@ -89,13 +90,14 @@ namespace SP2010VisualWebPart.EditVacancy
                             {
                                 active = "Closed";
                             }
-                            com.updateTable("HumanResources.JobVacancy", "VacancyName=N'" + txtVacancy.Text + "',"
-                                + "HiringManager=N'" + txtHiringManager.Text + "',NoOfPos='" + txtNoOfPosition.Text + "',"
-                                + "Description=N'" + txtDescription.Text + "',JobTitle=N'" + ddlJobTitle.SelectedValue + "',Status='"
-                                + active + "' where VacancyName=N'" + Session["Name"] + "'");
+                            _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn+"=N'" + txtVacancy.Text + "',"
+                                + Message.HiringManagerColumn+"=N'" + txtHiringManager.Text + "',"+Message.NumberOfPositionColumn
+                                +"='" + txtNoOfPosition.Text + "',"+ Message.DescriptionColumn+"=N'" + txtDescription.Text 
+                                + "',"+Message.JobTitleColumn+"=N'" + ddlJobTitle.SelectedValue + "',"+Message.StatusColumn
+                                +"='"+ active + "',LastModified='"+DateTime.Now+"' where "+Message.VacancyNameColumn+"=N'" + Session["Name"] + "'");
                             Session.Remove("Name");
-                            com.closeConnection();
-                            Response.Redirect("Vacancies.aspx", true);
+                            _com.closeConnection();
+                            Response.Redirect(Message.VacancyPage, true);
                         }
                         catch (Exception ex)
                         {
@@ -105,16 +107,16 @@ namespace SP2010VisualWebPart.EditVacancy
                 }
                 catch (FormatException)
                 {
-                    lblError.Text = "Number of positions must be a number";
+                    lblError.Text = Message.NumberOfPosition;
                 }
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
+            _com.closeConnection();
             Session.Remove("Name");
-            Response.Redirect("Vacancies.aspx",true);
+            Response.Redirect(Message.VacancyPage,true);
         }
     }
 }

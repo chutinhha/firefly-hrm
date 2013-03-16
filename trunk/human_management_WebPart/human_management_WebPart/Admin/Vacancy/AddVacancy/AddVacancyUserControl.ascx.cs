@@ -10,7 +10,7 @@ namespace SP2010VisualWebPart.AddVacancy
 {
     public partial class AddVacancyUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -19,7 +19,7 @@ namespace SP2010VisualWebPart.AddVacancy
                 {
                     if (!IsPostBack)
                     {
-                        com.SetItemList("JobTitle", "HumanResources.JobTitle", ddlJobTitle, "", false, "");
+                        _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
                     }
                 }
                 catch (Exception ex)
@@ -29,14 +29,14 @@ namespace SP2010VisualWebPart.AddVacancy
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace SP2010VisualWebPart.AddVacancy
         {
             if (txtVacancy.Text.Trim() == "")
             {
-                lblError.Text = "You must enter vacancy name";
+                lblError.Text = Message.VacancyNameError;
             }
             else {
                 try
@@ -64,11 +64,12 @@ namespace SP2010VisualWebPart.AddVacancy
                             {
                                 active = "Closed";
                             }
-                            com.insertIntoTable("HumanResources.JobVacancy", "N'" + ddlJobTitle.SelectedValue + "',N'"
-                                + txtVacancy.Text.Trim() + "',N'" + txtHiringManager.Text + "',N'" + txtNoOfPosition.Text + "',N'" + txtDescription.Text + "',"
-                                + "N'" + active + "'");
-                            com.closeConnection();
-                            Response.Redirect("Vacancies.aspx", true);
+                            _com.insertIntoTable(Message.TableVacancy,"", "N'" + ddlJobTitle.SelectedValue + "',N'"
+                                + txtVacancy.Text.Trim() + "',N'" + txtHiringManager.Text + "',N'" + txtNoOfPosition.Text 
+                                + "',N'" + txtDescription.Text + "',"
+                                + "N'" + active + "','"+DateTime.Now+"'",false);
+                            _com.closeConnection();
+                            Response.Redirect(Message.VacancyPage, true);
                         }
                         catch (Exception ex)
                         {
@@ -77,15 +78,15 @@ namespace SP2010VisualWebPart.AddVacancy
                     }
                 }
                 catch (FormatException) {
-                    lblError.Text = "Number of positions must be a number";
+                    lblError.Text = Message.NumberOfPosition;
                 }
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
-            Response.Redirect("Vacancies.aspx", true);
+            _com.closeConnection();
+            Response.Redirect(Message.VacancyPage, true);
         }
     }
 }

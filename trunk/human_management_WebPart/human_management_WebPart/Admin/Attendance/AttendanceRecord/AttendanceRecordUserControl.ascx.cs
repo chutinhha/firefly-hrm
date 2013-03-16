@@ -8,14 +8,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using System.Web;
+using System.Text;
 
 
 namespace SP2010VisualWebPart.AttendanceRecord
 {
     public partial class AttendanceRecordUserControl : UserControl
     {
-        public Common com = new Common();
-        public string condition = "";
+        private Common _com = new Common();
+        private string _condition = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -28,7 +30,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         txtEmployeeName.Text = "";
                         txtDateFrom.Text = "";
                         txtDateTo.Text = "";
-                        Session.Remove("date");
+                        Session.Remove("Date");
                         txtDateTo.Visible = false;
                         btnDateTo.Visible = false;
                         lblDateTo.Visible = false;
@@ -37,20 +39,18 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         rdoViewRange.AutoPostBack = true;
                         rdoViewAll.AutoPostBack = true;
                         lblError.Text = "";
-                        grdData.GridLines = GridLines.None;
-                        grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                        grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                        grdData.HeaderStyle.Height = 25;
-                        grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                        _com.setGridViewStyle(grdData);
                     }
-                    if (Session["EmployeeName"] != null)
+                    if (Session[Message.EmployeeName] != null)
                     {
-                        txtEmployeeName.Text = Session["EmployeeName"].ToString();
+                        //In case return from Add or Edit Attendance Record
+                        txtEmployeeName.Text = Session[Message.EmployeeName].ToString();
                         rdoViewAll.Checked = true;
                         lblError.Text = "";
-                        com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
+                        _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" + txtEmployeeName.Text 
+                            + "'" + _condition, Message.TableAttendance, grdData);
                         pnlData.Visible = true;
-                        Session.Remove("EmployeeName");
+                        Session.Remove(Message.EmployeeName);
                     }
                 }
                 catch (Exception ex) {
@@ -59,14 +59,14 @@ namespace SP2010VisualWebPart.AttendanceRecord
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
@@ -74,17 +74,19 @@ namespace SP2010VisualWebPart.AttendanceRecord
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {
             cldChooseDate.Visible = true;
-            Session["date"] = "From";
+            Session["Date"] = "From";
         }
 
         protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
         {
-            if (Session["date"].ToString() == "From")
+            if (Session["Date"].ToString() == "From")
             {
-                txtDateFrom.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" + cldChooseDate.SelectedDate.Day + "-" + cldChooseDate.SelectedDate.Year;
+                txtDateFrom.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" 
+                    + cldChooseDate.SelectedDate.Day + "-" + cldChooseDate.SelectedDate.Year;
             }
             else {
-                txtDateTo.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" + cldChooseDate.SelectedDate.Day + "-" + cldChooseDate.SelectedDate.Year;
+                txtDateTo.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" 
+                    + cldChooseDate.SelectedDate.Day + "-" + cldChooseDate.SelectedDate.Year;
             }
             cldChooseDate.Visible = false;
         }
@@ -92,7 +94,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
         protected void btnDateTo_Click(object sender, EventArgs e)
         {
             cldChooseDate.Visible = true;
-            Session["date"] = "To";
+            Session["Date"] = "To";
         }
 
         protected void rdoViewDate_CheckedChanged(object sender, EventArgs e)
@@ -129,8 +131,9 @@ namespace SP2010VisualWebPart.AttendanceRecord
             }
         }
 
-        public void CheckUncheckAll(object sender, EventArgs e)
+        protected void CheckUncheckAll(object sender, EventArgs e)
         {
+            //Check or uncheck all checkbox
             CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
             foreach (GridViewRow row in grdData.Rows)
             {
@@ -150,43 +153,49 @@ namespace SP2010VisualWebPart.AttendanceRecord
         {
             Boolean check = false;
             if(txtEmployeeName.Text.Trim()==""){
-                lblError.Text="You must enter Employee Name";
+                lblError.Text=Message.EmployeeNameError;
             }
             else{
                 try
                 {
                     if(rdoViewAll.Checked==true){
+                        //Case 1: View All Attendance of a Employee
                         lblError.Text = "";
-                        com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
+                        _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" + txtEmployeeName.Text 
+                            + "'" + _condition, Message.TableAttendance, grdData);
                         check = true;
                     }
                     else if (rdoViewDate.Checked == true)
                     {
+                        //Case 2: View Attendance of a date of a employee
                         if (txtDateFrom.Text.Trim() == "")
                         {
-                            lblError.Text = "You must choose a date";
+                            lblError.Text = Message.NotChooseDate;
                         }
                         else
                         {
                             try
                             {
                                 DateTime dt = DateTime.Parse(txtDateFrom.Text.Trim());
-                                condition = " and CAST(DAY(PunchIn) as varchar(50))+'-'+CAST(MONTH(PunchIn) as varchar(50))+'-'+CAST(YEAR(PunchIn) as varchar(50)) = '"
-                                    + dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
+                                _condition = " and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(MONTH("
+                                + Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
+                                +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                                 lblError.Text = "";
-                                com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
+                                _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" + txtEmployeeName.Text 
+                                    + "'" + _condition, Message.TableAttendance, grdData);
                                 check = true;
                             }
                             catch (FormatException)
                             {
-                                lblError.Text = "Invalid date. Try again";
+                                lblError.Text = Message.InvalidDate;
                             }
                         }
                     }
                     else {
+                        //Case 3: View Attendance in a range of date of a employee
                         if (txtDateFrom.Text.Trim() == ""||txtDateTo.Text.Trim()=="")
                         {
-                            lblError.Text = "You must choose From and To date";
+                            lblError.Text = Message.NotChooseFromToDate;
                         }
                         else
                         {
@@ -195,50 +204,19 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                 DateTime dt = DateTime.Parse(txtDateFrom.Text.Trim());
                                 DateTime dt1 = DateTime.Parse(txtDateTo.Text.Trim());
                                 dt1 = dt1.AddDays(1.0);
-                                if (dt.Year > dt1.Year)
-                                {
-                                    lblError.Text = "To Date must be after From date";
-                                }
-                                else if (dt.Year < dt1.Year) {
-                                    condition = " and PunchIn > '" + dt.Month + "-" + dt.Day + "-" + dt.Year + "'"
-                                                + " and PunchIn < '" + dt1.Month + "-" + dt1.Day + "-" + dt1.Year + "'";
+                                if(dt.CompareTo(dt1)<0){
+                                    _condition = " and "+Message.PunchInColumn+" > '" + dt.Month + "-" + dt.Day + "-" 
+                                        + dt.Year + "'" + " and "+Message.PunchInColumn+" < '" + dt1.Month + "-" 
+                                        + dt1.Day + "-" + dt1.Year + "'";
                                     lblError.Text = "";
-                                    com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
+                                    _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" 
+                                        + txtEmployeeName.Text + "'" + _condition, Message.TableAttendance, grdData);
                                     check = true;
-                                }
-                                else
-                                {
-                                    if (dt.Month > dt.Month)
-                                    {
-                                        lblError.Text = "To Date must be after From date";
-                                    }
-                                    else if (dt.Month < dt1.Month) {
-                                        condition = " and PunchIn > '" + dt.Month + "-" + dt.Day + "-" + dt.Year + "'"
-                                                + " and PunchIn < '" + dt1.Month + "-" + dt1.Day + "-" + dt1.Year + "'";
-                                        lblError.Text = "";
-                                        com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
-                                        check = true;
-                                    }
-                                    else
-                                    {
-                                        if (dt.Day >= dt1.Day)
-                                        {
-                                            lblError.Text = "To Date must be after From date";
-                                        }
-                                        else
-                                        {
-                                            condition = " and PunchIn > '" + dt.Month + "-" + dt.Day + "-" + dt.Year + "'"
-                                                + " and PunchIn < '" + dt1.Month + "-" + dt1.Day + "-" + dt1.Year + "'";
-                                            lblError.Text = "";
-                                            com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
-                                            check = true;
-                                        }
-                                    }
                                 }
                             }
                             catch (FormatException)
                             {
-                                lblError.Text = "Invalid date. Try again";
+                                lblError.Text = Message.InvalidDate;
                             }
                         }
                     }
@@ -247,6 +225,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     lblError.Text = ex.Message;
                 }
             }
+            //Show Data if Gridview have data and bindDataAttendance method success
             if (grdData.Rows.Count > 0 && check==true)
             {
                 pnlData.Visible = true;
@@ -282,15 +261,24 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        string sql = @"delete from HumanResources.Attendance where EmployeeName=N'" 
-                            + Server.HtmlDecode(gr.Cells[1].Text) + "' and PunchIn='"+gr.Cells[2].Text
-                            +"' and PunchOut='"+gr.Cells[4].Text+"';";
-                        SqlCommand command = new SqlCommand(sql, com.cnn);
-                        //command.Connection.Open();
+                        string sql = @"delete from "+Message.TableAttendance+" where "+Message.EmployeeName+"=N'" 
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "' and "+Message.PunchInColumn+"='"+gr.Cells[2].Text
+                            +"' and "+Message.PunchOutColumn+"='"+gr.Cells[4].Text+"';";
+                        SqlCommand command = new SqlCommand(sql, _com.cnn);
+                        
+                        /*String csname1 = "PopupScript";
+
+                        if (!Page.IsClientScriptBlockRegistered(csname1))
+                        {
+                            String cstext1 = "<script type=\"text/javascript\">" +
+                                "alert('Hello World');</" + "script>";
+                            Page.RegisterStartupScript(csname1, cstext1);
+                        }*/
                         command.ExecuteNonQuery();
                     }
                 }
-                com.bindDataAttendance("*", " where EmployeeName=N'" + txtEmployeeName.Text + "'" + condition, "HumanResources.Attendance", grdData);
+                _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" + txtEmployeeName.Text 
+                    + "'" + _condition, Message.TableAttendance, grdData);
             }
             catch (Exception ex)
             {
@@ -301,12 +289,12 @@ namespace SP2010VisualWebPart.AttendanceRecord
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             if (txtEmployeeName.Text.Trim() == "") {
-                lblError.Text = "You must enter employee name first";
+                lblError.Text = Message.EmployeeNameError;
             }
             else
             {
                 Session["Name"] = Server.HtmlDecode(txtEmployeeName.Text.Trim());
-                Response.Redirect("PunchAttendance.aspx", true);
+                Response.Redirect(Message.PunchAttendancePage, true);
             }
         }
 
@@ -320,8 +308,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
                     Session["In"] = gr.Cells[2].Text;
                     Session["Out"] = gr.Cells[4].Text;
-                    com.closeConnection();
-                    Response.Redirect("EditAttendance.aspx", true);
+                    _com.closeConnection();
+                    Response.Redirect(Message.EditAttendancePage, true);
                 }
             }
         }

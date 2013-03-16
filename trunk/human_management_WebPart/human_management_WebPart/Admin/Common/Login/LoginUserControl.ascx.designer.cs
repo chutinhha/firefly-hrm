@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.Login {
     public partial class LoginUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// lblUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +31,7 @@ namespace SP2010VisualWebPart.Login {
         protected global::System.Web.UI.WebControls.Label lblUser;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// txtUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.Login {
         protected global::System.Web.UI.WebControls.TextBox txtUser;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +49,7 @@ namespace SP2010VisualWebPart.Login {
         protected global::System.Web.UI.WebControls.Label lblPassword;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.Login {
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.Login {
         protected global::System.Web.UI.WebControls.Button btnLogin;
         
         /// <summary>
-        /// lblDate control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

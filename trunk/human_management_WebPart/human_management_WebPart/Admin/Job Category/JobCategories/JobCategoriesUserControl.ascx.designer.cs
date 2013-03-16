@@ -13,7 +13,7 @@ namespace SP2010VisualWebPart.JobCategories {
     public partial class JobCategoriesUserControl {
         
         /// <summary>
-        /// pnlData control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +22,16 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// lblDate control.
+        /// lblTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitle;
+        
+        /// <summary>
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +49,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnEdit control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +76,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// btnDateTo control.
+        /// btnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -76,7 +85,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.Button btnEdit;
         
         /// <summary>
-        /// btnView control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -94,7 +103,7 @@ namespace SP2010VisualWebPart.JobCategories {
         protected global::System.Web.UI.WebControls.GridView grdData;
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

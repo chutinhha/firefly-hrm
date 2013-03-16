@@ -9,7 +9,7 @@ namespace SP2010VisualWebPart.EditAttendance
 {
     public partial class EditAttendanceUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -21,8 +21,9 @@ namespace SP2010VisualWebPart.EditAttendance
                         if (!IsPostBack)
                         {
                             txtEmployeeName.Text = Session["Name"].ToString();
-                            DataTable dt = com.getData("HumanResources.Attendance", " where EmployeeName=N'" + Session["Name"] 
-                                + "' and PunchIn='" + Session["In"] + "'");
+                            DataTable dt = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName
+                                +"=N'" + Session["Name"] + "' and "+Message.PunchInColumn+"='" 
+                                + Session["In"] + "'");
                             if (dt.Rows.Count > 0)
                             {
                                 DateTime PunchIn = DateTime.Parse(dt.Rows[0][1].ToString().Trim());
@@ -42,32 +43,32 @@ namespace SP2010VisualWebPart.EditAttendance
                     }
                 }
                 else {
-                    Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
-            Session["EmployeeName"]=Session["Name"];
+            _com.closeConnection();
+            Session[Message.EmployeeName]=Session["Name"];
             Session.Remove("Name");
             Session.Remove("In");
             Session.Remove("Out");
-            Response.Redirect("AttendanceRecord.aspx",true);
+            Response.Redirect(Message.AttendancePage,true);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -75,7 +76,7 @@ namespace SP2010VisualWebPart.EditAttendance
             if (txtPunchInDate.Text.Trim() == "" || txtPunchInHour.Text.Trim() == ""
                 || txtPunchOut.Text.Trim() == "")
             {
-                lblError.Text = "You must enter punch in and punch out time";
+                lblError.Text = Message.PunchAttendanceError;
             }
             else {
                 try
@@ -84,63 +85,76 @@ namespace SP2010VisualWebPart.EditAttendance
                     DateTime punchOut = DateTime.Parse(txtPunchInDate.Text.Trim() + " " + txtPunchOut.Text.Trim());
                     if (DateTime.Compare(punchIn, punchOut) >= 0)
                     {
-                        lblError.Text = "Punch Out time must be later than Punch In time";
+                        lblError.Text = Message.PunchOutAfterPunchIn;
                     }
-                    else { 
-                        DataTable dt = com.getData("HumanResources.Attendance"," where EmployeeName=N'"
-                            +Session["Name"].ToString()+"' and PunchIn <='"+txtPunchInDate.Text.Trim() + " " 
-                            + txtPunchInHour.Text.Trim()+"' and PunchOut >='"+txtPunchInDate.Text.Trim() + " " 
-                            + txtPunchInHour.Text.Trim()+"' and PunchIn <> '"+Session["In"].ToString()
-                            + "' and PunchOut <> '"+Session["Out"].ToString()+"'");
-                        DataTable dt1 = com.getData("HumanResources.Attendance", " where EmployeeName=N'"
-                            + Session["Name"].ToString() + "' and PunchIn <='" + txtPunchInDate.Text.Trim() + " "
-                            + txtPunchOut.Text.Trim() + "' and PunchOut >='" + txtPunchInDate.Text.Trim() + " "
-                            + txtPunchOut.Text.Trim() + "' and PunchIn <> '" + Session["In"].ToString()
-                            + "' and PunchOut <> '" + Session["Out"].ToString() + "'");
-                        DataTable dt2 = com.getData("HumanResources.Attendance", " where EmployeeName=N'"
-                            + Session["Name"].ToString() + "' and PunchIn >='" + txtPunchInDate.Text.Trim() + " "
-                            + txtPunchInHour.Text.Trim() + "' and PunchOut <='" + txtPunchInDate.Text.Trim() + " "
-                            + txtPunchOut.Text.Trim() + "' and PunchIn <> '" + Session["In"].ToString()
-                            + "' and PunchOut <> '" + Session["Out"].ToString() + "'");
+                    else {
+                        //Case 1: Punch In Time is between an other Punch In and Punch Out Time
+                        DataTable dt = _com.getData(Message.TableAttendance," where "+Message.EmployeeName+"=N'"
+                            +Session["Name"].ToString()+"' and "+Message.PunchInColumn+" <='"
+                            +txtPunchInDate.Text.Trim() + " " + txtPunchInHour.Text.Trim()+"' and "+Message.PunchOutColumn
+                            +" >='"+txtPunchInDate.Text.Trim() + " " + txtPunchInHour.Text.Trim()+"' and "+Message.PunchInColumn
+                            +" <> '"+Session["In"].ToString() + "' and "+Message.PunchOutColumn+" <> '"
+                            +Session["Out"].ToString()+"'");
+                        //Case 1: Punch Out Time is between an other Punch In and Punch Out Time
+                        DataTable dt1 = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName+"=N'"
+                            + Session["Name"].ToString() + "' and "+Message.PunchInColumn+" <='" 
+                            + txtPunchInDate.Text.Trim() + " "+ txtPunchOut.Text.Trim() + "' and "+Message.PunchOutColumn
+                            +" >='" + txtPunchInDate.Text.Trim() + " "+ txtPunchOut.Text.Trim() 
+                            + "' and "+Message.PunchInColumn+" <> '" + Session["In"].ToString()
+                            + "' and "+Message.PunchOutColumn+" <> '" + Session["Out"].ToString() + "'");
+                        /*Case 1: Punch In Time is earlier than an other Punch In Time but Punch Out Time
+                         is later than that other Punch Out Time*/
+                        DataTable dt2 = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName+"=N'"
+                            + Session["Name"].ToString() + "' and "+Message.PunchInColumn+" >='" 
+                            + txtPunchInDate.Text.Trim() + " "+ txtPunchInHour.Text.Trim() + "' and "
+                            +Message.PunchOutColumn+" <='" + txtPunchInDate.Text.Trim() + " "
+                            + txtPunchOut.Text.Trim() + "' and "+Message.PunchInColumn+" <> '" + Session["In"].ToString()
+                            + "' and "+Message.PunchOutColumn+" <> '" + Session["Out"].ToString() + "'");
+                        //Case 1
                         if (dt.Rows.Count != 0)
                         {
-                            lblError.Text = "You have Punch In in " + dt.Rows[0][1].ToString()
-                                +" and Punch Out in " + dt.Rows[0][3].ToString()
-                                +",you can not Punch In in " + txtPunchInDate.Text.Trim() + " " 
+                            lblError.Text = Message.PunchIn + dt.Rows[0][1].ToString()
+                                + Message.PunchOut + dt.Rows[0][3].ToString()
+                                + Message.PunchInError + txtPunchInDate.Text.Trim() + " " 
                                 + txtPunchInHour.Text.Trim();
                         }
                         else {
+                            //Case 2
                             if (dt1.Rows.Count != 0)
                             {
-                                lblError.Text = "You have Punch In in " + dt1.Rows[0][1].ToString()
-                                + " and Punch Out in " + dt1.Rows[0][3].ToString()
-                                + ",you can not Punch Out in " + txtPunchInDate.Text.Trim() + " "
+                                lblError.Text = Message.PunchIn + dt1.Rows[0][1].ToString()
+                                + Message.PunchOut + dt1.Rows[0][3].ToString()
+                                + Message.PunchOutError + txtPunchInDate.Text.Trim() + " "
                                 + txtPunchOut.Text.Trim();
                             }
                             else {
+                                //Case 3
                                 if (dt2.Rows.Count != 0)
                                 {
-                                    lblError.Text = "You have Punch In in " + dt2.Rows[0][1].ToString()
-                                        + " and Punch Out in " + dt2.Rows[0][3].ToString()
-                                        + ",you can not Punch In in " + txtPunchInDate.Text.Trim() + " "
-                                        + txtPunchInHour.Text.Trim() + " and Punch Out in " + txtPunchInDate.Text.Trim() + " "
+                                    lblError.Text = Message.PunchIn + dt2.Rows[0][1].ToString()
+                                        + Message.PunchOut + dt2.Rows[0][3].ToString()
+                                        + Message.PunchInError + txtPunchInDate.Text.Trim() + " "
+                                        + txtPunchInHour.Text.Trim() + Message.PunchOutError + txtPunchInDate.Text.Trim() + " "
                                         + txtPunchOut.Text.Trim();
                                 }
                                 else {
                                     try
                                     {
-                                        com.updateTable("HumanResources.Attendance", " PunchIn='" + txtPunchInDate.Text.Trim() + " "
-                                            + txtPunchInHour.Text.Trim() + "',PunchInNote=N'" + txtPunchInNote.Text.Trim() + "',"
-                                            + "PunchOut='" + txtPunchInDate.Text.Trim() + " " + txtPunchOut.Text.Trim() + "',"
-                                            + "PunchOutNote=N'" + txtPunchOutNote.Text.Trim() + "' where EmployeeName=N'"
-                                            +Session["Name"].ToString()+"' and PunchIn='"+Session["In"].ToString()
-                                            +"' and PunchOut='"+Session["Out"]+"'");
-                                        com.closeConnection();
-                                        Session["EmployeeName"] = Session["Name"];
+                                        _com.updateTable(Message.TableAttendance, " "+Message.PunchInColumn+"='" 
+                                            + txtPunchInDate.Text.Trim() + " "+ txtPunchInHour.Text.Trim() + "',"
+                                            +Message.PunchInNoteColumn+"=N'" + txtPunchInNote.Text.Trim() + "',"
+                                            + Message.PunchOutColumn+"='" + txtPunchInDate.Text.Trim() + " " 
+                                            + txtPunchOut.Text.Trim() + "',"
+                                            + Message.PunchOutNoteColumn+"=N'" + txtPunchOutNote.Text.Trim() 
+                                            + "',LastModified='"+DateTime.Now+"' where "+Message.EmployeeName+"=N'"+Session["Name"].ToString()
+                                            +"' and "+Message.PunchInColumn+"='"+Session["In"].ToString()
+                                            +"' and "+Message.PunchOutColumn+"='"+Session["Out"]+"'");
+                                        _com.closeConnection();
+                                        Session[Message.EmployeeName] = Session["Name"];
                                         Session.Remove("Name");
                                         Session.Remove("In");
                                         Session.Remove("Out");
-                                        Response.Redirect("AttendanceRecord.aspx", true);
+                                        Response.Redirect(Message.AttendancePage, true);
                                     }
                                     catch (Exception ex) {
                                         lblError.Text = ex.Message;
@@ -151,7 +165,7 @@ namespace SP2010VisualWebPart.EditAttendance
                     }
                 }
                 catch (FormatException) {
-                    lblError.Text = "Invalid Punch In or Punch Out date";
+                    lblError.Text = Message.PunchDateError;
                 }
             }
         }

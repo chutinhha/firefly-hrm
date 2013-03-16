@@ -6,23 +6,26 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
 
 public class Common
 {
-    public SqlConnection cnn;
+    internal SqlConnection cnn;
     
-    public Common() {
+    internal Common() {
         string connetionString = null;
-        connetionString = "Data Source=localhost;Initial Catalog=AdventureWorks2008R2;User ID=hr;Password=123456";
+        connetionString = Message.ConnectionString;
         cnn = new SqlConnection(connetionString);
         cnn.Open();
     }
 
-    public void closeConnection() {
+    internal void closeConnection() {
         cnn.Close();
     }
 
-    public List<string> getCountryList()
+    //Get country list to bind to DropDownList
+    internal List<string> getCountryList()
     {
         List<string> cultureList = new List<string>();
         CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures);
@@ -31,33 +34,37 @@ public class Common
             if (culture.LCID != 127)
             {
                 RegionInfo region = new RegionInfo(culture.LCID);
-                //RegionInfo region = new RegionInfo(culture.LCID);
                 if (!(cultureList.Contains(region.EnglishName)))
                 {
                     cultureList.Add(region.EnglishName);
                 }
             }
         }
-        cultureList.Sort(); //put the country list in alphabetic order.
+        cultureList.Sort();
         return cultureList;
     }
 
-    public void insertIntoTable(string table, string condition) {
-        string sql = @"insert into " + table + " values(" + condition + ");";
+    //Insert new row to table
+    internal void insertIntoTable(string table,string column, string condition, bool IDENTITY_INSERT)
+    {
+        string sql;
+        if (IDENTITY_INSERT == true) {
+            sql = @"SET IDENTITY_INSERT "+table+" ON insert into " + table +column+ " values(" + condition + ");";
+        }else{
+            sql = @"insert into " + table + " values(" + condition + ");";
+        }
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
     }
 
-    public void SetItemList(string column, string table, DropDownList ddl,string condition, Boolean addItem, string Item)
+    //Set a DropDownList Item List
+    internal void SetItemList(string column, string table, DropDownList ddl, string condition, Boolean addItem, string Item)
     {
         ddl.Items.Clear();
         string sql = @"SELECT distinct " + column + " FROM " + table + condition;
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-        // Tạo DataSet
         DataSet ds = new DataSet();
-        // Lấp đầy kết quả vào DataSet
         da.Fill(ds, "items");
-        // Tạo DataTable thu kết quả từ bảng
         DataTable dt = ds.Tables["items"];
         if (dt.Rows.Count > 0)
         {
@@ -72,30 +79,27 @@ public class Common
         }
     }
 
-    public void bindData(string column, string condition, string table, GridView GridView1)
+    //Bind data to a gridview
+    internal void bindData(string column, string condition, string table, GridView GridView1)
     {
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-        // Tạo DataSet
         DataSet ds = new DataSet();
-        // Lấp đầy kết quả vào DataSet
         da.Fill(ds, "data");
-        // Tạo DataTable thu kết quả từ bảng
         DataTable dt = ds.Tables["data"];
         GridView1.DataSource = dt;
         GridView1.DataBind();
     }
 
-    public void bindDataAttendance(string column, string condition, string table, GridView GridView1)
+    //Bind data to gridview of Attendance screen
+    internal void bindDataAttendance(string column, string condition, string table, GridView GridView1)
     {
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-        // Tạo DataSet
         DataSet ds = new DataSet();
-        // Lấp đầy kết quả vào DataSet
         da.Fill(ds, "data");
-        // Tạo DataTable thu kết quả từ bảng
         DataTable dt = ds.Tables["data"];
+        //Add and calculate Duration and Total column
         dt.Columns.Add("Duration(Hours)");
         dt.Columns.Add("Total");
         int rowTotal = 0;
@@ -136,22 +140,70 @@ public class Common
         GridView1.DataBind();
     }
 
-    public DataTable getData(string table, string condition) {
+    //Get data to a DataTable
+    internal DataTable getData(string table, string condition)
+    {
         string sql = @"SELECT * from "+table + condition+";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
-        // Tạo DataSet
         DataSet ds = new DataSet();
-        // Lấp đầy kết quả vào DataSet
         da.Fill(ds, "data");
-        // Tạo DataTable thu kết quả từ bảng
         DataTable dt = ds.Tables["data"];
         return dt;
     }
 
-    public void updateTable(string table, string condition) {
+    //Update a table
+    internal void updateTable(string table, string condition)
+    {
         string sql = @"update "+table+" set "+condition+";";
         SqlCommand command = new SqlCommand(sql, cnn);
-        //command.Connection.Open();
         command.ExecuteNonQuery();
+    }
+
+    //Set gridview style
+    internal void setGridViewStyle(GridView grdData) {
+        grdData.GridLines = GridLines.None;
+        grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+        grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+        grdData.HeaderStyle.Height = 25;
+        grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+    }
+
+    internal string GetMd5Hash(MD5 md5Hash, string input)
+    {
+        // Convert the input string to a byte array and compute the hash. 
+        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+        // Create a new Stringbuilder to collect the bytes 
+        // and create a string.
+        StringBuilder sBuilder = new StringBuilder();
+
+        // Loop through each byte of the hashed data  
+        // and format each one as a hexadecimal string. 
+        for (int i = 0; i < data.Length; i++)
+        {
+            sBuilder.Append(data[i].ToString("x2"));
+        }
+
+        // Return the hexadecimal string. 
+        return sBuilder.ToString();
+    }
+
+    // Verify a hash against a string. 
+    internal bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
+    {
+        // Hash the input. 
+        string hashOfInput = GetMd5Hash(md5Hash, input);
+
+        // Create a StringComparer an compare the hashes.
+        StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+        if (0 == comparer.Compare(hashOfInput, hash))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

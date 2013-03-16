@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.Candidates {
     public partial class CandidatesUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// lblJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.DropDownList ddlJobTitle;
         
         /// <summary>
-        /// lblDate control.
+        /// lblVacancy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.DropDownList ddlVacancy;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblHiringManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Label lblHiringManager;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// txtHiringManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +76,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.TextBox txtHiringManager;
         
         /// <summary>
-        /// lblDateTo control.
+        /// lblCandidateName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -76,7 +85,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Label lblCandidateName;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtCandidateName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -85,7 +94,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.TextBox txtCandidateName;
         
         /// <summary>
-        /// lblError control.
+        /// lblKeyword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -94,7 +103,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Label lblKeyword;
         
         /// <summary>
-        /// txtDateTo control.
+        /// txtKeyword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -103,7 +112,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.TextBox txtKeyword;
         
         /// <summary>
-        /// lblDateDescription control.
+        /// lblStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -157,7 +166,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
         
         /// <summary>
-        /// btnEdit control.
+        /// btnDateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -202,7 +211,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Label lblDateTo;
         
         /// <summary>
-        /// cldChooseDate control.
+        /// cldData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -220,7 +229,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Calendar cldData1;
         
         /// <summary>
-        /// btnView control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -229,7 +238,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -238,7 +247,7 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Button btnReset;
         
         /// <summary>
-        /// btnDelete control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

@@ -4,50 +4,58 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace SP2010VisualWebPart.Login
 {
     public partial class LoginUserControl : UserControl
     {
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Remove("Account");
             Session.Remove("AcountName");
         }
-        public Common com = new Common();
+        
         protected void btnLogin_Click1(object sender, EventArgs e)
         {
             if (txtUser.Text.Trim() == "")
             {
-                lblError.Text = "You must enter user name";
+                lblError.Text = Message.UserName;
             }
             else {
                 if (txtPassword.Text == "")
                 {
-                    lblError.Text = "You must enter password";
+                    lblError.Text = Message.Password;
                 }
                 else {
                     try
                     {
-                        string sql = @"SELECT distinct UserName, Password, Rank FROM HumanResources.Users WHERE UserName='" + txtUser.Text.Trim()
-                            + "' and Password='" + txtPassword.Text.Trim() + "'";
-                        SqlDataAdapter da = new SqlDataAdapter(sql, com.cnn);
-                        // Tạo DataSet
-                        DataSet ds = new DataSet();
-                        // Lấp đầy kết quả vào DataSet
-                        da.Fill(ds, "data");
-                        // Tạo DataTable thu kết quả từ bảng
-                        DataTable dt = ds.Tables["data"];
+                        MD5 md5Hash = MD5.Create();
+                        string hash = _com.GetMd5Hash(md5Hash, txtPassword.Text);
+                        DataTable dt = _com.getData(Message.TableEmployee, " where "+Message.UserNameColumn+"=N'" 
+                            + txtUser.Text + "'");
                         if (dt.Rows.Count > 0)
                         {
-                            com.closeConnection();
-                            Session["Account"] = dt.Rows[0][2].ToString().Trim();
-                            Session["AccountName"] = txtUser.Text.Trim();
-                            Response.Redirect(dt.Rows[0][2].ToString().Trim() + ".aspx");
+                            DataTable dt1 = _com.getData(Message.TablePassword, " where "+Message.BusinessEntityIDColumn
+                                +"='" + dt.Rows[0][0].ToString() + "' and "+Message.PasswordColumn+"='" + hash + "'");
+                            if (dt1.Rows.Count > 0)
+                            {
+                                DataTable dt2 = _com.getData(Message.TablePerson, " where "+Message.BusinessEntityIDColumn
+                                    +"='" + dt.Rows[0][0].ToString() + "'");
+                                _com.closeConnection();
+                                Session["Account"] = dt2.Rows[0][1].ToString().Trim();
+                                Session["AccountName"] = txtUser.Text.Trim();
+                                Response.Redirect(dt2.Rows[0][1].ToString().Trim() + ".aspx");
+                            }
+                            else
+                            {
+                                lblError.Text = Message.InvalidUserPass;
+                            }
                         }
                         else
                         {
-                            lblError.Text = "Invalid username and password";
+                            lblError.Text = Message.InvalidUserPass;
                         }
                     }
                     catch (Exception ex)

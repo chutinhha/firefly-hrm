@@ -7,10 +7,10 @@
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobCategoriesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.JobCategories.JobCategoriesUserControl" %>
 <asp:Panel ID="Panel1" runat="server"  
-    Visible="False">
+    Visible="False" DefaultButton="btnSave">
     <table class="fieldTitleDiv" cellpadding="0"><tr><td>
     <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Add Job Category</td></tr></table>
+<tr><td class="fieldTitleTd"><asp:Label ID="lblTitle" runat="server" Text="Add Job Category"></asp:Label></td></tr></table>
     <br><span style="padding-left:10px;"></span><asp:Label ID="lblName" runat="server" Text="Name(*)" 
         Width="150px"></asp:Label>
     <asp:TextBox ID="txtName" runat="server" Width="200px"></asp:TextBox>
@@ -18,7 +18,7 @@
     <br />
     <div class="borderTop">
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" 
-        onclick="btnSave_Click" />
+        onclick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
         onclick="btnCancel_Click" /></div><br></td></tr></table>
 </asp:Panel><br>
@@ -31,7 +31,7 @@
     <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
         onclick="btnEdit_Click" />
     <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
-        onclick="btnDelete_Click" />
+        onclick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
     <br />
     <br />
     <asp:GridView ID="grdData" runat="server" Width="100%">
@@ -57,6 +57,5 @@
     </td></tr></table>
 <br><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
-<br>
-<p>
-    &nbsp;</p>
+
+

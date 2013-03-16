@@ -9,24 +9,24 @@ namespace SP2010VisualWebPart.UserAccount
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lbtnUserName.Text = "Welcome " + Session["AccountName"].ToString();
+            lbtnUserName.Text = Message.Welcome + Session["AccountName"].ToString();
         }
 
         protected void lbtnLogOut_Click(object sender, EventArgs e)
         {
             Session.Remove("Account");
             Session.Remove("AccountName");
-            Response.Redirect("Home.aspx",true);
+            Response.Redirect(Message.HomePage,true);
         }
 
         protected void lbtnUserName_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PersonalInfo.aspx",true);
+            Response.Redirect(Message.PIMPage,true);
         }
 
         protected void lbtnChangePassword_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ChangePassword"+Session["Account"].ToString()+".aspx",true);
+            Response.Redirect(Message.ChangePasswordPage+Session["Account"].ToString()+".aspx",true);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SP2010VisualWebPart.Vacancies
 {
     public partial class VacanciesUserControl : UserControl
     {
-        public Common com = new Common();
+        private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"].ToString() == "Admin")
@@ -18,17 +18,14 @@ namespace SP2010VisualWebPart.Vacancies
                 {
                     if (!IsPostBack)
                     {
-                        com.SetItemList("JobTitle", "HumanResources.JobTitle", ddlJobTitle, "", true, "All");
-                        com.SetItemList("VacancyName", "HumanResources.JobVacancy", ddlVacancy, "", true, "All");
+                        _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
+                        _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
                         txtHiringManager.Text = "";
                         ddlStatus.SelectedIndex = 0;
                         Session.Remove("Name");
-                        com.bindData("VacancyName,JobTitle,HiringManager,Status", "", "HumanResources.JobVacancy", grdData);
-                        grdData.GridLines = GridLines.None;
-                        grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                        grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                        grdData.HeaderStyle.Height = 25;
-                        grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                        _com.bindData(Message.VacancyNameColumn+","+Message.JobTitleColumn+","+Message.HiringManagerColumn
+                            +","+Message.StatusColumn+"", "", Message.TableVacancy, grdData);
+                        _com.setGridViewStyle(grdData);
                     }
                 }
                 catch (Exception ex)
@@ -38,14 +35,14 @@ namespace SP2010VisualWebPart.Vacancies
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Access Denied'); </script>");
+                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
                 if (Session["Account"] != null)
                 {
                     Response.Redirect(Session["Account"] + ".aspx", true);
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx", true);
+                    Response.Redirect(Message.HomePage, true);
                 }
             }
         }
@@ -58,22 +55,22 @@ namespace SP2010VisualWebPart.Vacancies
                 if (ddlJobTitle.SelectedValue == "All") { }
                 else
                 {
-                    condition = condition + "JobTitle='" + ddlJobTitle.SelectedItem.Text + "' and ";
+                    condition = condition + Message.JobTitleColumn+"='" + ddlJobTitle.SelectedItem.Text + "' and ";
                 }
                 if (ddlVacancy.SelectedItem.Text == "All") { }
                 else
                 {
-                    condition = condition + "VacancyName='" + ddlVacancy.SelectedItem.Text + "' and ";
+                    condition = condition + Message.VacancyNameColumn+"='" + ddlVacancy.SelectedItem.Text + "' and ";
                 }
                 if (ddlStatus.SelectedItem.Text == "All") { }
                 else
                 {
-                    condition = condition + "Status='" + ddlStatus.SelectedValue + "' and ";
+                    condition = condition + Message.StatusColumn+"='" + ddlStatus.SelectedValue + "' and ";
                 }
                 if (txtHiringManager.Text.Trim() == "") { }
                 else
                 {
-                    condition = condition + "HiringManager like'%" + txtHiringManager.Text + "%' and ";
+                    condition = condition + Message.HiringManagerColumn+" like'%" + txtHiringManager.Text + "%' and ";
                 }
                 if (condition == " where ")
                 {
@@ -83,7 +80,8 @@ namespace SP2010VisualWebPart.Vacancies
                 {
                     condition = condition.Substring(0, condition.Length - 4);
                 }
-                com.bindData("VacancyName,JobTitle,HiringManager,Status", condition, "HumanResources.JobVacancy", grdData);
+                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
+                            + "," + Message.StatusColumn + "",condition, Message.TableVacancy, grdData);
             }
             catch (Exception ex)
             {
@@ -99,7 +97,8 @@ namespace SP2010VisualWebPart.Vacancies
                 ddlVacancy.SelectedIndex = 0;
                 ddlStatus.SelectedIndex = 0;
                 txtHiringManager.Text = "";
-                com.bindData("VacancyName,JobTitle,HiringManager,Status", "", "HumanResources.JobVacancy", grdData);
+                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
+                            + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
             }
             catch (Exception ex)
             {
@@ -109,11 +108,11 @@ namespace SP2010VisualWebPart.Vacancies
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            com.closeConnection();
-            Response.Redirect("AddVacancy.aspx",true);
+            _com.closeConnection();
+            Response.Redirect(Message.AddVacancyPage,true);
         }
 
-        public void CheckUncheckAll(object sender, EventArgs e)
+        protected void CheckUncheckAll(object sender, EventArgs e)
         {
             CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
             foreach (GridViewRow row in grdData.Rows)
@@ -138,8 +137,8 @@ namespace SP2010VisualWebPart.Vacancies
                 if (cb.Checked)
                 {
                     Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
-                    com.closeConnection();
-                    Response.Redirect("EditVacancy.aspx", true);
+                    _com.closeConnection();
+                    Response.Redirect(Message.EditVacancyPage, true);
                     break;
                 }
             }
@@ -154,13 +153,14 @@ namespace SP2010VisualWebPart.Vacancies
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        string sql = @"delete from HumanResources.JobVacancy where VacancyName=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';";
-                        SqlCommand command = new SqlCommand(sql, com.cnn);
-                        //command.Connection.Open();
+                        string sql = @"delete from "+Message.TableVacancy+" where "+Message.VacancyNameColumn+"=N'" 
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "';";
+                        SqlCommand command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                     }
                 }
-                com.bindData("VacancyName,JobTitle,HiringManager,Status", "", "HumanResources.JobVacancy",grdData);
+                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
+                            + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
             }
             catch (Exception ex)
             {

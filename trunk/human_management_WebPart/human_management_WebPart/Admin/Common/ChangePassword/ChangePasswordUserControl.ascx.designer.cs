@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.ChangePassword {
     public partial class ChangePasswordUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// lblOldPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +31,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.Label lblOldPassword;
         
         /// <summary>
-        /// txtEmployeeName control.
+        /// txtOldPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -31,7 +40,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.TextBox txtOldPassword;
         
         /// <summary>
-        /// lblDate control.
+        /// lblNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +49,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.Label lblNewPassword;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.Label lblConfirmPassword;
         
         /// <summary>
-        /// txtDateTo control.
+        /// txtConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -67,7 +76,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnChangePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -76,7 +85,7 @@ namespace SP2010VisualWebPart.ChangePassword {
         protected global::System.Web.UI.WebControls.Button btnChangePassword;
         
         /// <summary>
-        /// lblDateTo control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

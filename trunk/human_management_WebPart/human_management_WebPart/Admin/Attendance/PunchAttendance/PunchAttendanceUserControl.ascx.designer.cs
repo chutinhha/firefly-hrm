@@ -13,7 +13,16 @@ namespace SP2010VisualWebPart.PunchAttendance {
     public partial class PunchAttendanceUserControl {
         
         /// <summary>
-        /// lblEmployeeName control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -22,7 +31,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lblDate control.
+        /// lblEmployeeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -40,7 +49,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
         
         /// <summary>
-        /// lblDateFrom control.
+        /// lblDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -49,7 +58,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// txtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -58,7 +67,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// btnDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -76,7 +85,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.Calendar cldChooseDate;
         
         /// <summary>
-        /// lblDateTo control.
+        /// lblTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -85,7 +94,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.Label lblTime;
         
         /// <summary>
-        /// txtDateTo control.
+        /// txtTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -94,7 +103,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.TextBox txtTime;
         
         /// <summary>
-        /// lblError control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -121,7 +130,7 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.TextBox txtNote;
         
         /// <summary>
-        /// btnDateTo control.
+        /// btnInOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
