@@ -12,37 +12,37 @@ namespace SP2010VisualWebPart.Vacancies
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                try
-                {
-                    if (!IsPostBack)
-                    {
-                        _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
-                        _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
-                        txtHiringManager.Text = "";
-                        ddlStatus.SelectedIndex = 0;
-                        Session.Remove("Name");
-                        _com.bindData(Message.VacancyNameColumn+","+Message.JobTitleColumn+","+Message.HiringManagerColumn
-                            +","+Message.StatusColumn+"", "", Message.TableVacancy, grdData);
-                        _com.setGridViewStyle(grdData);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = ex.Message;
-                }
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
+                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
+                            txtHiringManager.Text = "";
+                            ddlStatus.SelectedIndex = 0;
+                            Session.Remove("Name");
+                            _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
+                                + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
+                            _com.setGridViewStyle(grdData);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }

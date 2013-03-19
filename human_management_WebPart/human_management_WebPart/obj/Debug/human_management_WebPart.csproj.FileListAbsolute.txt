@@ -8,3 +8,9 @@ F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\h
 F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\human_management_WebPart\human_management_WebPart\obj\Debug\ResolveAssemblyReference.cache
 F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\human_management_WebPart\human_management_WebPart\obj\Debug\SP2010VisualWebPart.dll
 F:\Users\Administrator\Documents\Visual Studio 2010\Projects\firefly-hrm\trunk\human_management_WebPart\human_management_WebPart\obj\Debug\SP2010VisualWebPart.pdb
+F:\trunk\human_management_WebPart\human_management_WebPart\bin\Debug\SP2010VisualWebPart.dll
+F:\trunk\human_management_WebPart\human_management_WebPart\bin\Debug\SP2010VisualWebPart.pdb
+F:\trunk\human_management_WebPart\human_management_WebPart\obj\Debug\SP2010VisualWebPart.dll
+F:\trunk\human_management_WebPart\human_management_WebPart\obj\Debug\SP2010VisualWebPart.pdb
+F:\trunk\human_management_WebPart\human_management_WebPart\obj\Debug\ResolveAssemblyReference.cache
+F:\trunk\human_management_WebPart\human_management_WebPart\bin\Debug\obout_Calendar2_Net.dll

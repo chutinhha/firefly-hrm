@@ -12,28 +12,33 @@ namespace SP2010VisualWebPart.JobCategories
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                try{
-                    if (!IsPostBack) {
-                        _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
-                        Panel1.Visible = false;
-                        lblError.Text = "";
-                        _com.setGridViewStyle(grdData);
-                    }
-                }catch(Exception ex){
-                    lblError.Text = ex.Message;
-                }
+                Response.Redirect(Message.HomePage, true);
             }
-            else{
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
+                            Panel1.Visible = false;
+                            lblError.Text = "";
+                            _com.setGridViewStyle(grdData);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }

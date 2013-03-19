@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="ImportEmployee" List="113" Url="_catalogs/wp">
+    <File Path="ImportEmployee\ImportEmployee.webpart" Url="ImportEmployee.webpart" Type="GhostableInLibrary" >
+      <Property Name="Group" Value="HR" />
+    </File>
+  <File Path="ImportEmployee\ImportEmployee.webpart" Url="ImportEmployee.webpart" Type="GhostableInLibrary">
+<Property Name="Group" Value="Custom" />
+</File>
+</Module>
+</Elements>

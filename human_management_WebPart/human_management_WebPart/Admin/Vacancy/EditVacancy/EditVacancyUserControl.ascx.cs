@@ -12,57 +12,57 @@ namespace SP2010VisualWebPart.EditVacancy
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                if (Session["Name"] == null)
-                {
-                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
-                }
-                else
-                {
-                    try
-                    {
-                        if (!IsPostBack)
-                        {
-                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
-                            DataTable dt = _com.getData(Message.TableVacancy, " where "+Message.VacancyNameColumn
-                                +"=N'" + Session["Name"] + "'");
-                            if (dt.Rows.Count > 0)
-                            {
-                                ddlJobTitle.SelectedValue = dt.Rows[0][0].ToString().Trim();
-                                txtVacancy.Text = dt.Rows[0][1].ToString().Trim();
-                                txtHiringManager.Text = dt.Rows[0][2].ToString().Trim();
-                                txtNoOfPosition.Text = dt.Rows[0][3].ToString().Trim();
-                                txtDescription.Text = dt.Rows[0][4].ToString().Trim();
-                                if (dt.Rows[0][5].ToString().Trim() == "Active")
-                                {
-                                    chkActive.Checked = true;
-                                }
-                                else
-                                {
-                                    chkActive.Checked = false;
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        lblError.Text = ex.Message;
-                    }
-                }
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Session.Remove("Name");
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    if (Session["Name"] == null)
+                    {
+                        Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                        Response.Redirect(Session["Account"] + ".aspx", true);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (!IsPostBack)
+                            {
+                                _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
+                                DataTable dt = _com.getData(Message.TableVacancy, " where " + Message.VacancyNameColumn
+                                    + "=N'" + Session["Name"] + "'");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    ddlJobTitle.SelectedValue = dt.Rows[0][0].ToString().Trim();
+                                    txtVacancy.Text = dt.Rows[0][1].ToString().Trim();
+                                    txtHiringManager.Text = dt.Rows[0][2].ToString().Trim();
+                                    txtNoOfPosition.Text = dt.Rows[0][3].ToString().Trim();
+                                    txtDescription.Text = dt.Rows[0][4].ToString().Trim();
+                                    if (dt.Rows[0][5].ToString().Trim() == "Active")
+                                    {
+                                        chkActive.Checked = true;
+                                    }
+                                    else
+                                    {
+                                        chkActive.Checked = false;
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Session.Remove("Name");
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }

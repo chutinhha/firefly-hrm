@@ -16,3 +16,9 @@ D:\Đồ án\Source\trunk\human-management\human_management\bin\Debug\human_mana
 D:\Đồ án\Source\trunk\human-management\human_management\obj\Debug\ResolveAssemblyReference.cache
 D:\Đồ án\Source\trunk\human-management\human_management\obj\Debug\human_management.dll
 D:\Đồ án\Source\trunk\human-management\human_management\obj\Debug\human_management.pdb
+F:\trunk\human-management\human_management\bin\Debug\human_management.dll.config
+F:\trunk\human-management\human_management\bin\Debug\human_management.dll
+F:\trunk\human-management\human_management\bin\Debug\human_management.pdb
+F:\trunk\human-management\human_management\obj\Debug\ResolveAssemblyReference.cache
+F:\trunk\human-management\human_management\obj\Debug\human_management.dll
+F:\trunk\human-management\human_management\obj\Debug\human_management.pdb

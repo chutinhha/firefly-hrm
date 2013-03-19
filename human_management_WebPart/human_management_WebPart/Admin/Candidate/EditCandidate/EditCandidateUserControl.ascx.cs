@@ -14,80 +14,77 @@ namespace SP2010VisualWebPart.EditCandidate
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                if (Session["Name"] == null) {
-                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
-                }
-                else
-                {
-                    try
-                    {
-                        if (!IsPostBack)
-                        {
-                            ddlCountry.DataSource = _com.getCountryList();
-                            ddlCountry.DataBind();
-                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
-                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
-                            _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
-                            cldDate.Visible = false;
-                            DataTable dt = _com.getData(Message.TableJobCandidate, " where "+Message.FullNameColumn
-                                +"=N'" + Session["Name"] + "' and "+Message.EmailColumn+"='" + Session["Email"] + "'");
-                            if (dt.Rows.Count > 0)
-                            {
-                                txtFullName.Text = dt.Rows[0][0].ToString().Trim();
-                                txtAddress.Text = dt.Rows[0][1].ToString().Trim();
-                                txtCity.Text = dt.Rows[0][2].ToString().Trim();
-                                txtState.Text = dt.Rows[0][3].ToString().Trim();
-                                txtZipCode.Text = dt.Rows[0][4].ToString().Trim();
-                                ddlCountry.SelectedValue = dt.Rows[0][5].ToString().Trim();
-                                txtHomePhone.Text = dt.Rows[0][6].ToString().Trim();
-                                txtMobile.Text = dt.Rows[0][7].ToString().Trim();
-                                txtWorkPhone.Text = dt.Rows[0][8].ToString().Trim();
-                                txtEmail.Text = dt.Rows[0][9].ToString().Trim();
-                                ddlVacancy.SelectedValue = dt.Rows[0][10].ToString().Trim();
-                                txtKeyword.Text = dt.Rows[0][11].ToString().Trim();
-                                ddlJobTitle.SelectedValue = dt.Rows[0][14].ToString().Trim();
-                                txtHiringManager.Text = dt.Rows[0][15].ToString().Trim();
-                                ddlStatus.SelectedValue = dt.Rows[0][16].ToString().Trim();
-                                ddlApplyMethod.SelectedValue = dt.Rows[0][17].ToString().Trim();
-                                txtApplyDate.Text = dt.Rows[0][13].ToString().Trim();
-                                txtComment.Text = dt.Rows[0][12].ToString().Trim();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        lblError.Text = ex.Message;
-                    }
-                }
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Session.Remove("Name");
-                Session.Remove("Email");
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    if (Session["Name"] == null)
+                    {
+                        Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                        Response.Redirect(Session["Account"] + ".aspx", true);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (!IsPostBack)
+                            {
+                                ddlCountry.DataSource = _com.getCountryList();
+                                ddlCountry.DataBind();
+                                _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
+                                _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
+                                _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
+                                DataTable dt = _com.getData(Message.TableJobCandidate, " where " + Message.FullNameColumn
+                                    + "=N'" + Session["Name"] + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    txtFullName.Text = dt.Rows[0][0].ToString().Trim();
+                                    txtAddress.Text = dt.Rows[0][1].ToString().Trim();
+                                    txtCity.Text = dt.Rows[0][2].ToString().Trim();
+                                    txtState.Text = dt.Rows[0][3].ToString().Trim();
+                                    txtZipCode.Text = dt.Rows[0][4].ToString().Trim();
+                                    ddlCountry.SelectedValue = dt.Rows[0][5].ToString().Trim();
+                                    txtHomePhone.Text = dt.Rows[0][6].ToString().Trim();
+                                    txtMobile.Text = dt.Rows[0][7].ToString().Trim();
+                                    txtWorkPhone.Text = dt.Rows[0][8].ToString().Trim();
+                                    txtEmail.Text = dt.Rows[0][9].ToString().Trim();
+                                    ddlVacancy.SelectedValue = dt.Rows[0][10].ToString().Trim();
+                                    txtKeyword.Text = dt.Rows[0][11].ToString().Trim();
+                                    ddlJobTitle.SelectedValue = dt.Rows[0][14].ToString().Trim();
+                                    txtHiringManager.Text = dt.Rows[0][15].ToString().Trim();
+                                    ddlStatus.SelectedValue = dt.Rows[0][16].ToString().Trim();
+                                    ddlApplyMethod.SelectedValue = dt.Rows[0][17].ToString().Trim();
+                                    this.inputValue = dt.Rows[0][13].ToString().Trim();
+                                    txtComment.Text = dt.Rows[0][12].ToString().Trim();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Session.Remove("Name");
+                    Session.Remove("Email");
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }
-
+        protected string inputValue { get; set; }
         protected void btnApplyDate_Click(object sender, EventArgs e)
         {
-            cldDate.Visible = true;
         }
 
         protected void cldDate_SelectionChanged(object sender, EventArgs e)
         {
-            txtApplyDate.Text = cldDate.SelectedDate.Date.ToString();
-            cldDate.Visible = false;
         }
 
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,6 +102,7 @@ namespace SP2010VisualWebPart.EditCandidate
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            this.inputValue = Request.Form["txtDate"].ToString().Trim();
             if (txtFullName.Text.Trim() == "")
             {
                 lblError.Text = Message.CandidateNameError;
@@ -137,9 +135,9 @@ namespace SP2010VisualWebPart.EditCandidate
                         }
                         else {
                             try{
-                                if (txtApplyDate.Text.Trim() != "")
+                                if (Request.Form["txtDate"].ToString().Trim() != "")
                                 {
-                                    DateTime dt = DateTime.Parse(txtApplyDate.Text);
+                                    DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim());
                                 }
                                 try
                                 {
@@ -152,7 +150,7 @@ namespace SP2010VisualWebPart.EditCandidate
                                         + Message.JobVacancyColumn+"='" + ddlVacancy.SelectedValue + "',"+Message.KeywordColumn+"=N'" + txtKeyword.Text + "',"
                                         + Message.JobTitleColumn+"='" + ddlJobTitle.SelectedValue + "',"+Message.HiringManagerColumn+"=N'" + txtHiringManager.Text + "',"
                                         + Message.StatusColumn+"='" + ddlStatus.SelectedValue + "',"+Message.MethodOfApplyColumn+"='" + ddlApplyMethod.SelectedValue + "',"
-                                        + Message.ApplyDateColumn+"='" + txtApplyDate.Text + "',"+Message.CommentColumn+"=N'" + txtComment.Text 
+                                        + Message.ApplyDateColumn + "='" + Request.Form["txtDate"].ToString().Trim() + "'," + Message.CommentColumn + "=N'" + txtComment.Text 
                                         + "',LastModified='"+DateTime.Now+"' where "+Message.FullNameColumn+"=N'" + Session["Name"]
                                         + "' and "+Message.EmailColumn+"='" + Session["Email"] + "'");
                                     Session.Remove("Name");

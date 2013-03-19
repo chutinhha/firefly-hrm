@@ -6,6 +6,22 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AttendanceRecordUserControl.ascx.cs" Inherits="SP2010VisualWebPart.AttendanceRecord.AttendanceRecordUserControl" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(function () {
+        $("#txtDateFrom").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        $("#txtDateTo").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
 <asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnView" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
@@ -30,21 +46,16 @@
         oncheckedchanged="rdoViewAll_CheckedChanged" Text="View all" />
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
-    <asp:TextBox ID="txtDateFrom" runat="server" Width="200px"></asp:TextBox>
-    <asp:Button ID="btnDateFrom" runat="server" Text="..." Width="30px" 
-        onclick="btnDateFrom_Click" />
-    <span style="padding-left:80px;"></span>
-    <asp:TextBox ID="txtDateTo" runat="server" Width="200px"></asp:TextBox>
-    <asp:Button ID="btnDateTo" runat="server" Text="..." onclick="btnDateTo_Click" />
+    <asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;"><input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value=""/></asp:Panel>
+    <span style="padding-left:5px;"></span>
+    <asp:Panel ID="pnlDateTo" runat="server" style="display:inline;"><input type="text" id="txtDateTo" name="txtDateTo" value="" size="30"/></asp:Panel>
 
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblDateDescription" runat="server" 
         Text="(mm-dd-yyyy)" Width="155px" Height="20px"></asp:Label><asp:Label ID="lblDateFrom" runat="server" 
         Text="From" Width="50px"></asp:Label>
 
-    <span style="padding-left:265px;"></span><asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
-    <asp:Calendar ID="cldChooseDate" runat="server" align="center" 
-        onselectionchanged="cldChooseDate_SelectionChanged" Visible="False"></asp:Calendar>
+    <span style="padding-left:160px;"></span><asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
     <div class="borderTop">
     <span style="padding-left:155px;"></span><asp:Button ID="btnView" runat="server" Text="View" Width="80px" 
         onclick="btnView_Click" />

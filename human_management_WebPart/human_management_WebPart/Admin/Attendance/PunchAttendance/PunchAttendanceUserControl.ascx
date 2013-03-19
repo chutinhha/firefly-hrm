@@ -6,6 +6,18 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PunchAttendanceUserControl.ascx.cs" Inherits="SP2010VisualWebPart.PunchAttendance.PunchAttendanceUserControl" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(function () {
+        $("#txtDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
 <asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnInOut" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
@@ -16,13 +28,7 @@
         Enabled="False"></asp:TextBox>
 </p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date(*)" Width="150px"></asp:Label>
-<asp:TextBox ID="txtDate" runat="server" Width="200px"></asp:TextBox>
-<asp:Button ID="btnDate" runat="server" Text="..." onclick="btnDate_Click" 
-        Width="26px" />
-<p>
-    <asp:Calendar ID="cldChooseDate" runat="server" align="center" 
-        onselectionchanged="cldChooseDate_SelectionChanged" Visible="False"></asp:Calendar>
-</p>
+<asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" id="<%= this.inputID %>" name="txtDate" size="30" value="<%= this.inputValue %>"/></asp:Panel>
 <p>
     <span style="padding-left:5px;"></span><asp:Label ID="lblTime" runat="server" Text="Time(*)" Width="150px"></asp:Label>
     <asp:TextBox ID="txtTime" runat="server" Width="200px"></asp:TextBox>

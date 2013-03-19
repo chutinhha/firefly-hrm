@@ -58,31 +58,13 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
-        /// txtDate control.
+        /// pnlDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
-        
-        /// <summary>
-        /// btnDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDate;
-        
-        /// <summary>
-        /// cldChooseDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cldChooseDate;
+        protected global::System.Web.UI.WebControls.Panel pnlDate;
         
         /// <summary>
         /// lblTime control.

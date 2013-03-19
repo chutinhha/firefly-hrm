@@ -96,4 +96,23 @@
     internal const string TablePerson = "HumanResources.Person";
     internal const string JobIDColumn = "JobID";
     internal const string LastModifiedColumn = "LastModified";
+    internal const string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;";
+    internal const string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;";
+    internal const string InvalidExcel = "You must select an excel type file";
+    internal const string StartRowColumnError = "You must enter start row and start column";
+    internal const string InvalidStartRowColumn = "Start row and start integer must be number";
+    internal const string NotSelectSheet = "You must select excel sheet";
+    internal const string BirthDateColumn = "BirthDate";
+    internal const string MaritalStatusColumn = "MaritalStatus";
+    internal const string GenderColumn = "Gender";
+    internal const string HireDateColumn = "HireDate";
+    internal const string SalariedFlagColumn = "SalariedFlag";
+    internal const string VacationHoursColumn = "VacationHours";
+    internal const string SickLeaveHoursColumn = "SickLeaveHours";
+    internal const string CurrentFlagColumn = "CurrentFlag";
+    internal const string ModifiedDateColumn = "ModifiedDate";
+    internal const string LoginIDColumn = "LoginID";
+    internal const string AffectedRow = "Success! Number of row affected is ";
+    internal const string EmployeeListPage = "EmployeeList.aspx";
+    internal const string Excel2007Type = "This function only accept excel 2007 type. Please convert your file first";
 }

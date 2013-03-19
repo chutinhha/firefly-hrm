@@ -12,47 +12,47 @@ namespace SP2010VisualWebPart.EditJobTitle
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                if (Session["Name"] == null)
-                {
-                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
-                }
-                else
-                {
-                    try
-                    {
-                        if (!IsPostBack)
-                        {
-                            _com.SetItemList(Message.NameColumn, Message.TableJobCategory, ddlJobCategory, "", false, "");
-                            DataTable dt = _com.getData(Message.TableJobTitle, " where "+Message.JobTitleColumn+"=N'" + Session["Name"] + "'");
-                            if (dt.Rows.Count > 0)
-                            {
-                                txtJobTitle.Text = dt.Rows[0][1].ToString().Trim();
-                                txtJobDescription.Text = dt.Rows[0][2].ToString().Trim();
-                                txtNote.Text = dt.Rows[0][4].ToString().Trim();
-                                ddlJobCategory.SelectedValue = dt.Rows[0][3].ToString().Trim();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        lblError.Text = ex.Message;
-                    }
-                }
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Session.Remove("Name");
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    if (Session["Name"] == null)
+                    {
+                        Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                        Response.Redirect(Session["Account"] + ".aspx", true);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (!IsPostBack)
+                            {
+                                _com.SetItemList(Message.NameColumn, Message.TableJobCategory, ddlJobCategory, "", false, "");
+                                DataTable dt = _com.getData(Message.TableJobTitle, " where " + Message.JobTitleColumn + "=N'" + Session["Name"] + "'");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    txtJobTitle.Text = dt.Rows[0][1].ToString().Trim();
+                                    txtJobDescription.Text = dt.Rows[0][2].ToString().Trim();
+                                    txtNote.Text = dt.Rows[0][4].ToString().Trim();
+                                    ddlJobCategory.SelectedValue = dt.Rows[0][3].ToString().Trim();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Session.Remove("Name");
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }

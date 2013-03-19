@@ -12,51 +12,52 @@ namespace SP2010VisualWebPart.EditAttendance
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                if (Session["Name"] != null)
-                {
-                    try
-                    {
-                        if (!IsPostBack)
-                        {
-                            txtEmployeeName.Text = Session["Name"].ToString();
-                            DataTable dt = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName
-                                +"=N'" + Session["Name"] + "' and "+Message.PunchInColumn+"='" 
-                                + Session["In"] + "'");
-                            if (dt.Rows.Count > 0)
-                            {
-                                DateTime PunchIn = DateTime.Parse(dt.Rows[0][1].ToString().Trim());
-                                DateTime PunchOut = DateTime.Parse(dt.Rows[0][3].ToString().Trim());
-                                txtPunchInDate.Text = PunchIn.Month + "-" + PunchIn.Day + "-" + PunchIn.Year;
-                                txtPunchInHour.Text = PunchIn.Hour+":"+PunchIn.Minute;
-                                txtPunchInNote.Text = dt.Rows[0][2].ToString().Trim();
-                                txtPunchOut.Text = PunchOut.Hour+":"+PunchOut.Minute;
-                                txtPunchOutNote.Text = dt.Rows[0][4].ToString().Trim();
-                            }
-                            lblError.Text = "";
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        lblError.Text = ex.Message;
-                    }
-                }
-                else {
-                    Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
-                }
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    if (Session["Name"] != null)
+                    {
+                        try
+                        {
+                            if (!IsPostBack)
+                            {
+                                txtEmployeeName.Text = Session["Name"].ToString();
+                                DataTable dt = _com.getData(Message.TableAttendance, " where " + Message.EmployeeName
+                                    + "=N'" + Session["Name"] + "' and " + Message.PunchInColumn + "='"
+                                    + Session["In"] + "'");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    DateTime PunchIn = DateTime.Parse(dt.Rows[0][1].ToString().Trim());
+                                    DateTime PunchOut = DateTime.Parse(dt.Rows[0][3].ToString().Trim());
+                                    txtPunchInDate.Text = PunchIn.Month + "-" + PunchIn.Day + "-" + PunchIn.Year;
+                                    txtPunchInHour.Text = PunchIn.Hour + ":" + PunchIn.Minute;
+                                    txtPunchInNote.Text = dt.Rows[0][2].ToString().Trim();
+                                    txtPunchOut.Text = PunchOut.Hour + ":" + PunchOut.Minute;
+                                    txtPunchOutNote.Text = dt.Rows[0][4].ToString().Trim();
+                                }
+                                lblError.Text = "";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                        Response.Redirect(Session["Account"] + ".aspx", true);
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }

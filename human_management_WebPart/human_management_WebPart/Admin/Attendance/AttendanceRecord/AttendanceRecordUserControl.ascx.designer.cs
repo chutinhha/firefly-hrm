@@ -76,40 +76,22 @@ namespace SP2010VisualWebPart.AttendanceRecord {
         protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// pnlDateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
+        protected global::System.Web.UI.WebControls.Panel pnlDateFrom;
         
         /// <summary>
-        /// btnDateFrom control.
+        /// pnlDateTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDateFrom;
-        
-        /// <summary>
-        /// txtDateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateTo;
-        
-        /// <summary>
-        /// btnDateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDateTo;
+        protected global::System.Web.UI.WebControls.Panel pnlDateTo;
         
         /// <summary>
         /// lblDateDescription control.
@@ -137,15 +119,6 @@ namespace SP2010VisualWebPart.AttendanceRecord {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDateTo;
-        
-        /// <summary>
-        /// cldChooseDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cldChooseDate;
         
         /// <summary>
         /// btnView control.

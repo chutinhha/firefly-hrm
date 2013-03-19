@@ -89,7 +89,7 @@
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
@@ -127,7 +127,8 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">
+												Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -218,11 +219,11 @@
 
 							<UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{d7d58236-9aa9-4cce-8261-1f71b21eb269}" WebPart="true" __designer:IsClosed="false" id="g_d7d58236_9aa9_4cce_8261_1f71b21eb269" __designer:Preview="&lt;div id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{d7d58236-9aa9-4cce-8261-1f71b21eb269}&quot; WebPart=&quot;true&quot;&gt;
 	
-&amp;nbsp;&lt;a id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;&lt;a id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&lt;a id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$lbtnChangePassword','')&quot;&gt;Change Passwod&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+&lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
 &lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_d7d58236_9aa9_4cce_8261_1f71b21eb269' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>						

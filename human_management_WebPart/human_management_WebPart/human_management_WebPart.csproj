@@ -23,6 +23,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +43,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Build.Conversion.v3.5" />
+    <Reference Include="obout_Calendar2_Net">
+      <HintPath>..\..\..\Users\Administrator\Documents\Visual Studio 2010\Controls\obout Suite for ASP.NET 3.5 and up\obout_Calendar2_Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -64,6 +69,14 @@
     </Compile>
     <Compile Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx.designer.cs">
       <DependentUpon>AddCandidateUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CSV\ImportEmployees\ImportEmployees.cs" />
+    <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.cs">
+      <DependentUpon>ImportEmployeesUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.designer.cs">
+      <DependentUpon>ImportEmployeesUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitle.cs" />
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx.cs">
@@ -194,6 +207,10 @@
     <None Include="Admin\Candidate\AddCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4b16b2e1-882c-48cd-b492-29a4fe53e3e7}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\CSV\ImportEmployees\ImportEmployees.webpart" />
+    <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Job Title\AddJobtitle\AddJobtitle.webpart" />
     <None Include="Admin\Job Title\AddJobtitle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ef23c689-5313-4f4e-b7ce-2611ac5dbfe6}</SharePointProjectItemId>
@@ -275,6 +292,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Candidate\AddCandidate\Elements.xml" />
+    <Content Include="Admin\CSV\ImportEmployees\Elements.xml" />
+    <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
