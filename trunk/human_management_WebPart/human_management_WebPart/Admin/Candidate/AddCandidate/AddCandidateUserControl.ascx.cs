@@ -14,47 +14,45 @@ namespace SP2010VisualWebPart.AddCandidate
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                try
+                Response.Redirect(Message.HomePage, true);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    if (!IsPostBack)
+                    try
                     {
-                        ddlCountry.DataSource = _com.getCountryList();
-                        ddlCountry.DataBind();
-                        _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
-                        _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
-                        _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
-                        cldApplyDate.Visible = false;
-                        lblError.Text = "";
+                        if (!IsPostBack)
+                        {
+                            ddlCountry.DataSource = _com.getCountryList();
+                            ddlCountry.DataBind();
+                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
+                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
+                            _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
+                            lblError.Text = "";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    lblError.Text = ex.Message;
-                }
-            }
-            else {
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
-                {
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
                     Response.Redirect(Session["Account"] + ".aspx", true);
-                }
-                else {
-                    Response.Redirect(Message.HomePage,true);
                 }
             }
         }
 
         protected void btnApplyDate_Click(object sender, EventArgs e)
         {
-            cldApplyDate.Visible = true;
         }
 
         protected void cldApplyDate_SelectionChanged(object sender, EventArgs e)
         {
-            txtApplyDate.Text = cldApplyDate.SelectedDate.Date.ToString();
-            cldApplyDate.Visible = false;
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,9 +100,9 @@ namespace SP2010VisualWebPart.AddCandidate
                         }
                         else {
                             try{
-                                if (txtApplyDate.Text.Trim() != "")
+                                if (Request.Form["txtApplyDate"].ToString().Trim() != "")
                                 {
-                                    DateTime dt = DateTime.Parse(txtApplyDate.Text);
+                                    DateTime dt = DateTime.Parse(Request.Form["txtApplyDate"].ToString().Trim());
                                 }
                                 try
                                 {
@@ -114,7 +112,7 @@ namespace SP2010VisualWebPart.AddCandidate
                                         + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                         + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
                                         + "'" + ddlVacancy.SelectedValue + "',N'" + txtKeyword.Text + "',"
-                                        + "N'" + txtComment.Text + "','" + txtApplyDate.Text + "','" + ddlJobTitle.SelectedValue + "',"
+                                        + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() + "','" + ddlJobTitle.SelectedValue + "',"
                                         + "N'" + txtHiringManager.Text + "',"
                                         + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','"+DateTime.Now+"'",false);
                                     _com.closeConnection();

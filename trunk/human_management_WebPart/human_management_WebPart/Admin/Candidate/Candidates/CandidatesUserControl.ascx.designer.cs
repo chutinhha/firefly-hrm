@@ -157,22 +157,13 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.Label lblApplyDate;
         
         /// <summary>
-        /// txtDateFrom control.
+        /// pnlDateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
-        
-        /// <summary>
-        /// btnDateFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDateFrom;
+        protected global::System.Web.UI.WebControls.Panel pnlDateFrom;
         
         /// <summary>
         /// txtDateTo control.
@@ -181,16 +172,7 @@ namespace SP2010VisualWebPart.Candidates {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateTo;
-        
-        /// <summary>
-        /// btnDateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDateTo;
+        protected global::System.Web.UI.WebControls.Panel txtDateTo;
         
         /// <summary>
         /// lblDateFrom control.
@@ -209,24 +191,6 @@ namespace SP2010VisualWebPart.Candidates {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDateTo;
-        
-        /// <summary>
-        /// cldData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cldData;
-        
-        /// <summary>
-        /// cldData1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cldData1;
         
         /// <summary>
         /// btnSearch control.

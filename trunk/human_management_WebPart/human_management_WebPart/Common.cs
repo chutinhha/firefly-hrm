@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using System.Data.OleDb;
+using System.IO;
 
 public class Common
 {
@@ -110,7 +112,7 @@ public class Common
             DateTime punchOut = DateTime.Parse(dt.Rows[i][1].ToString());
             TimeSpan diff = punchIn.Subtract(punchOut);
             total = diff;
-            dt.Rows[i][5] = diff.ToString();
+            dt.Rows[i][6] = diff.ToString();
             if (rowTotal <= i) {
                 rowTotal = i;
             }
@@ -133,7 +135,7 @@ public class Common
             }
             if (rowTotal == i)
             {
-                dt.Rows[i][6] = total.ToString();
+                dt.Rows[i][7] = total.ToString();
             }
         }
         GridView1.DataSource = dt;
@@ -204,6 +206,67 @@ public class Common
         else
         {
             return false;
+        }
+    }
+
+    internal void GetExcelSheets(string FilePath, string Extension, string isHDR, DropDownList ddlSheets, 
+        Label lblFileName, Panel Panel1, Panel Panel2)
+    {
+
+        string conStr = "";
+        switch (Extension)
+        {
+            case ".xls": //Excel 97-03
+                conStr = Message.Excel03ConString + "'";
+                break;
+            case ".xlsx": //Excel 07
+                conStr = Message.Excel07ConString+"'";
+                break;
+            case ".csv": //Excel 07
+                conStr = Message.Excel07ConString + "'";
+                break;
+        }
+
+        //Get the Sheets in Excel WorkBoo
+        conStr = String.Format(conStr, FilePath, isHDR);
+        OleDbConnection connExcel = new OleDbConnection(conStr);
+        OleDbCommand cmdExcel = new OleDbCommand();
+        OleDbDataAdapter oda = new OleDbDataAdapter();
+        cmdExcel.Connection = connExcel;
+        connExcel.Open();
+        //Bind the Sheets to DropDownList
+        ddlSheets.Items.Clear();
+        ddlSheets.Items.Add(new ListItem("--Select Sheet--",""));
+        ddlSheets.DataSource = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+        ddlSheets.DataTextField = "TABLE_NAME";
+        ddlSheets.DataValueField = "TABLE_NAME";
+        ddlSheets.DataBind();
+        connExcel.Close();
+        lblFileName.Text = Path.GetFileName(FilePath);
+        Panel2.Visible = true;
+    }
+
+    internal DataTable getDataFromExcel(string _conStr, string sheet) {
+        OleDbConnection con = new OleDbConnection(_conStr);
+        OleDbDataAdapter da = new OleDbDataAdapter("select * from ["+sheet+"]", con);
+        DataTable dt = new DataTable();
+        da.Fill(dt);
+        return dt;
+    }
+
+    internal void setItemListCSV(DropDownList ddl, bool zeroValue) {
+        ddl.Items.Clear();
+        for (int i = 0; i < 51; i++) {
+            if (i == 0)
+            {
+                if (zeroValue == true)
+                {
+                    ddl.Items.Add(i.ToString());
+                }
+            }
+            else {
+                ddl.Items.Add(i.ToString());
+            }
         }
     }
 }

@@ -319,31 +319,13 @@ namespace SP2010VisualWebPart.EditCandidate {
         protected global::System.Web.UI.WebControls.Label lblApplyDate;
         
         /// <summary>
-        /// txtApplyDate control.
+        /// pnlDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplyDate;
-        
-        /// <summary>
-        /// btnApplyDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnApplyDate;
-        
-        /// <summary>
-        /// cldDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cldDate;
+        protected global::System.Web.UI.WebControls.Panel pnlDate;
         
         /// <summary>
         /// lblComment control.

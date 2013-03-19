@@ -13,39 +13,37 @@ namespace SP2010VisualWebPart.Candidates
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
+            if (Session["Account"] == null)
             {
-                try
-                {
-                    if (!IsPostBack)
-                    {
-                        _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
-                        _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
-                        _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", true, "All");
-                        _com.bindData(Message.JobVacancyColumn+","+Message.FullNameColumn+","+Message.HiringManagerColumn
-                            +","+Message.EmailColumn+","+Message.ApplyDateColumn+","+Message.StatusColumn+"", "", Message.TableJobCandidate, grdData);
-                        cldData.Visible = false;
-                        cldData1.Visible = false;
-                        Session.Remove("Name");
-                        Session.Remove("Email");
-                        _com.setGridViewStyle(grdData);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = ex.Message;
-                }
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
+                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
+                            _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", true, "All");
+                            _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.HiringManagerColumn
+                                + "," + Message.EmailColumn + "," + Message.ApplyDateColumn + "," + Message.StatusColumn + "", "", Message.TableJobCandidate, grdData);
+                            Session.Remove("Name");
+                            Session.Remove("Email");
+                            _com.setGridViewStyle(grdData);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }
@@ -75,18 +73,14 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            cldData.Visible = true;
         }
 
         protected void cldData_SelectionChanged1(object sender, EventArgs e)
         {
-            txtDateFrom.Text = cldData.SelectedDate.Date.ToString();
-            cldData.Visible = false;
         }
 
         protected void btnDateTo_Click(object sender, EventArgs e)
         {
-            cldData1.Visible = true;
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -100,10 +94,6 @@ namespace SP2010VisualWebPart.Candidates
                 txtHiringManager.Text = "";
                 txtCandidateName.Text = "";
                 txtKeyword.Text = "";
-                txtDateFrom.Text = "";
-                txtDateTo.Text = "";
-                cldData.Visible = false;
-                cldData1.Visible = false;
                 _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.HiringManagerColumn
                             + "," + Message.EmailColumn + "," + Message.ApplyDateColumn + "," + Message.StatusColumn 
                             + "", "", Message.TableJobCandidate, grdData);
@@ -116,7 +106,6 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {
-            cldData.Visible = true;
         }
 
         protected void txtDateFrom_TextChanged(object sender, EventArgs e)
@@ -126,8 +115,6 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void cldData1_SelectionChanged(object sender, EventArgs e)
         {
-            txtDateTo.Text = cldData1.SelectedDate.Date.ToString();
-            cldData1.Visible = false;
         }
 
         protected void txtHiringManager_TextChanged(object sender, EventArgs e)
@@ -175,15 +162,15 @@ namespace SP2010VisualWebPart.Candidates
                 {
                     condition = condition + Message.KeywordColumn+" like'%" + txtKeyword.Text + "%' and ";
                 }
-                if (txtDateFrom.Text.Trim() == "") { }
+                if (Request.Form["txtDateFrom"].ToString().Trim() == "") { }
                 else
                 {
-                    condition = condition + Message.ApplyDateColumn+" > '" + txtDateFrom.Text + "' and ";
+                    condition = condition + Message.ApplyDateColumn + " >= '" + Request.Form["txtDateFrom"].ToString().Trim() + "' and ";
                 }
-                if (txtDateTo.Text.Trim() == "") { }
+                if (Request.Form["txtDateTo"].ToString().Trim() == "") { }
                 else
                 {
-                    condition = condition + Message.ApplyDateColumn+" < '" + txtDateTo.Text + "' and ";
+                    condition = condition + Message.ApplyDateColumn + " <= '" + Request.Form["txtDateTo"].ToString().Trim() + "' and ";
                 }
                 if (condition == " where ")
                 {

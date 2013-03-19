@@ -13,52 +13,54 @@ namespace SP2010VisualWebPart.PunchAttendance
         private Common _com = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin" && Session["Name"]!=null)
+            if (Session["Account"] == null)
             {
-                try
-                {
-                    if (!IsPostBack)
-                    {
-                        txtEmployeeName.Text = Session["Name"].ToString();
-                        lblDate.Visible = true;
-                        txtDate.Enabled = true;
-                        btnDate.Enabled = true;
-                        Label1.Text = "Punch In";
-                        btnInOut.Text = "In";
-                    }
-                }
-                catch (Exception ex) {
-                    lblError.Text = ex.Message;
-                }
+                Response.Redirect(Message.HomePage, true);
             }
-            else {
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+            else
+            {
+                if (Session["Account"].ToString() == "Admin" && Session["Name"] != null)
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            this.readOnly = "";
+                            this.inputID = "txtDate";
+                            txtEmployeeName.Text = Session["Name"].ToString();
+                            lblDate.Visible = true;
+                            pnlDate.Enabled = true;
+                            Label1.Text = "Punch In";
+                            btnInOut.Text = "In";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }
 
+        protected string readOnly { get; set; }
+        protected string inputValue { get; set; }
+        protected string inputID { get; set; }
         protected void btnDate_Click(object sender, EventArgs e)
         {
-            cldChooseDate.Visible = true;
         }
 
         protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
         {
-            txtDate.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" + cldChooseDate.SelectedDate.Day 
-                + "-" + cldChooseDate.SelectedDate.Year;
-            cldChooseDate.Visible = false;
         }
 
         protected void btnInOut_Click(object sender, EventArgs e)
         {
-            if (txtDate.Text.Trim() == "")
+            if (Request.Form["txtDate"].ToString().Trim() == "")
             {
                 lblError.Text = Message.NotChooseDate;
             }
@@ -72,7 +74,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                     {
                         try
                         {
-                            DateTime dt = DateTime.Parse(txtDate.Text.Trim() + " " + txtTime.Text.Trim());
+                            DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim());
                             if (Session["In"] == null)
                             {
                                 //Only accept Punch In after last Punch Out in the same day
@@ -80,7 +82,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     + Session["Name"].ToString() + "' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
                                     + "+CAST(MONTH("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                     +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "' and "+Message.PunchOutColumn
-                                    +" >'" + txtDate.Text.Trim() + " "+ txtTime.Text.Trim() + "' order by "+Message.PunchOutColumn+" desc");
+                                    + " >'" + Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim() + "' order by " + Message.PunchOutColumn + " desc");
                                 if (data.Rows.Count > 0)
                                 {
                                     lblError.Text = Message.LastPunchOut + data.Rows[0][3].ToString()
@@ -88,15 +90,15 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 }
                                 else
                                 {
-                                    Session["In"] = txtDate.Text.Trim() + " " + txtTime.Text.Trim();
+                                    Session["In"] = Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim();
                                     Session["NoteIn"] = txtNote.Text.Trim();
                                     Label1.Text = "Punch Out";
                                     btnInOut.Text = "Out";
                                     txtTime.Text = "";
                                     txtNote.Text = "";
-                                    cldChooseDate.Visible = false;
-                                    txtDate.Enabled = false;
-                                    btnDate.Enabled = false;
+                                    this.readOnly = "readonly";
+                                    this.inputValue = Request.Form["txtDate"].ToString().Trim();
+                                    this.inputID = "txtDateDisable";
                                     lblError.Text = Message.LastPunchIn + Session["In"].ToString();
                                 }
                             }
@@ -110,7 +112,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 else {
                                     _com.insertIntoTable(Message.TableAttendance,"", "N'" + Session["Name"].ToString()
                                             + "','" + Session["In"].ToString() + "',N'" + Session["NoteIn"].ToString()
-                                            + "','" + txtDate.Text.Trim() + " " + txtTime.Text.Trim() + "'"
+                                            + "','" + Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim() + "'"
                                             + ",N'" + txtNote.Text.Trim() + "','"+DateTime.Now+"'",false);
                                     _com.closeConnection();
                                     Session.Remove("In");

@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My Module Feature" Id="62f8a983-3d1b-4089-b794-24192be887ce" Scope="Web" Title="human_management Feature1">
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My Module Feature" Id="62f8a983-3d1b-4089-b794-24192be887ce" Scope="Site" Title="human_management Feature1">
   <ElementManifests>
     <ElementManifest Location="MasterPage\Elements.xml" />
     <ElementFile Location="MasterPage\212ob.master" />
+    <ElementManifest Location="AttendanceRecord\Elements.xml" />
+    <ElementFile Location="AttendanceRecord\AttendanceRecord.webpart" />
+    <ElementManifest Location="EditAttendance\Elements.xml" />
+    <ElementFile Location="EditAttendance\EditAttendance.webpart" />
+    <ElementManifest Location="PunchAttendance\Elements.xml" />
+    <ElementFile Location="PunchAttendance\PunchAttendance.webpart" />
+    <ElementManifest Location="AddCandidate\Elements.xml" />
+    <ElementFile Location="AddCandidate\AddCandidate.webpart" />
+    <ElementManifest Location="Candidates\Elements.xml" />
+    <ElementFile Location="Candidates\Candidates.webpart" />
+    <ElementManifest Location="EditCandidate\Elements.xml" />
+    <ElementFile Location="EditCandidate\EditCandidate.webpart" />
+    <ElementManifest Location="ChangePassword\Elements.xml" />
+    <ElementFile Location="ChangePassword\ChangePassword.webpart" />
+    <ElementManifest Location="Login\Elements.xml" />
+    <ElementFile Location="Login\Login.webpart" />
+    <ElementManifest Location="UserAccount\Elements.xml" />
+    <ElementFile Location="UserAccount\UserAccount.webpart" />
+    <ElementManifest Location="JobCategories\Elements.xml" />
+    <ElementFile Location="JobCategories\JobCategories.webpart" />
+    <ElementManifest Location="AddJobtitle\Elements.xml" />
+    <ElementFile Location="AddJobtitle\AddJobtitle.webpart" />
+    <ElementManifest Location="EditJobTitle\Elements.xml" />
+    <ElementFile Location="EditJobTitle\EditJobTitle.webpart" />
+    <ElementManifest Location="JobTitles\Elements.xml" />
+    <ElementFile Location="JobTitles\JobTitles.webpart" />
+    <ElementManifest Location="AddVacancy\Elements.xml" />
+    <ElementFile Location="AddVacancy\AddVacancy.webpart" />
+    <ElementManifest Location="EditVacancy\Elements.xml" />
+    <ElementFile Location="EditVacancy\EditVacancy.webpart" />
+    <ElementManifest Location="Vacancies\Elements.xml" />
+    <ElementFile Location="Vacancies\Vacancies.webpart" />
   </ElementManifests>
 </Feature>

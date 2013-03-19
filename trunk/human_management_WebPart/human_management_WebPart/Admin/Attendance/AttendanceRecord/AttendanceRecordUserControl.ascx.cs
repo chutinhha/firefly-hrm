@@ -20,96 +20,74 @@ namespace SP2010VisualWebPart.AttendanceRecord
         private string _condition = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"].ToString() == "Admin")
-            {
-                try
-                {
-                    if (!IsPostBack)
-                    {
-                        cldChooseDate.Visible = false;
-                        txtEmployeeName.Text = "";
-                        txtDateFrom.Text = "";
-                        txtDateTo.Text = "";
-                        Session.Remove("Date");
-                        txtDateTo.Visible = false;
-                        btnDateTo.Visible = false;
-                        lblDateTo.Visible = false;
-                        lblDateFrom.Visible = false;
-                        rdoViewDate.AutoPostBack = true;
-                        rdoViewRange.AutoPostBack = true;
-                        rdoViewAll.AutoPostBack = true;
-                        lblError.Text = "";
-                        _com.setGridViewStyle(grdData);
-                    }
-                    if (Session[Message.EmployeeName] != null)
-                    {
-                        //In case return from Add or Edit Attendance Record
-                        txtEmployeeName.Text = Session[Message.EmployeeName].ToString();
-                        rdoViewAll.Checked = true;
-                        lblError.Text = "";
-                        _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" + txtEmployeeName.Text 
-                            + "'" + _condition, Message.TableAttendance, grdData);
-                        pnlData.Visible = true;
-                        Session.Remove(Message.EmployeeName);
-                    }
-                }
-                catch (Exception ex) {
-                    lblError.Text = ex.Message;
-                }
+            if (Session["Account"] == null) {
+                Response.Redirect(Message.HomePage, true);
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('"+Message.AcessDenied+"'); </script>");
-                if (Session["Account"] != null)
+                if (Session["Account"].ToString() == "Admin")
                 {
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            txtEmployeeName.Text = "";
+                            pnlDateTo.Visible = false;
+                            lblDateTo.Visible = false;
+                            lblDateFrom.Visible = false;
+                            rdoViewDate.AutoPostBack = true;
+                            rdoViewRange.AutoPostBack = true;
+                            rdoViewAll.AutoPostBack = true;
+                            lblError.Text = "";
+                            _com.setGridViewStyle(grdData);
+                            
+                        }
+                        if (Session[Message.EmployeeName] != null)
+                        {
+                            //In case return from Add or Edit Attendance Record
+                            txtEmployeeName.Text = Session[Message.EmployeeName].ToString();
+                            rdoViewAll.Checked = true;
+                            lblError.Text = "";
+                            _com.bindDataAttendance("*", " where " + Message.EmployeeName + "=N'" + txtEmployeeName.Text
+                                + "'" + _condition, Message.TableAttendance, grdData);
+                            pnlData.Visible = true;
+                            Session.Remove(Message.EmployeeName);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
-                    Response.Redirect(Message.HomePage, true);
+                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
+                    Response.Redirect(Session["Account"] + ".aspx", true);
                 }
             }
         }
 
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {
-            cldChooseDate.Visible = true;
-            Session["Date"] = "From";
         }
 
         protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
         {
-            if (Session["Date"].ToString() == "From")
-            {
-                txtDateFrom.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" 
-                    + cldChooseDate.SelectedDate.Day + "-" + cldChooseDate.SelectedDate.Year;
-            }
-            else {
-                txtDateTo.Text = cldChooseDate.SelectedDate.Month.ToString() + "-" 
-                    + cldChooseDate.SelectedDate.Day + "-" + cldChooseDate.SelectedDate.Year;
-            }
-            cldChooseDate.Visible = false;
         }
 
         protected void btnDateTo_Click(object sender, EventArgs e)
         {
-            cldChooseDate.Visible = true;
-            Session["Date"] = "To";
         }
 
         protected void rdoViewDate_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoViewDate.Checked == true)
             {
-                txtDateTo.Visible = false;
-                btnDateTo.Visible = false;
+                pnlDateTo.Visible = false;
                 lblDateTo.Visible = false;
                 lblDateFrom.Visible = true;
-                txtDateTo.Text = "";
-                txtDateFrom.Text = "";
                 lblDate.Visible = true;
-                txtDateFrom.Visible = true;
-                btnDateFrom.Visible = true;
+                pnlDateFrom.Visible = true;
                 lblDateDescription.Visible = true;
             }
         }
@@ -118,15 +96,11 @@ namespace SP2010VisualWebPart.AttendanceRecord
         {
             if (rdoViewRange.Checked == true)
             {
-                txtDateTo.Visible = true;
-                txtDateFrom.Visible = true;
-                btnDateTo.Visible = true;
-                btnDateFrom.Visible = true;
+                pnlDateFrom.Visible = true;
+                pnlDateTo.Visible = true;
                 lblDateTo.Visible = true;
                 lblDateFrom.Visible = true;
                 lblDate.Visible = true;
-                txtDateTo.Text = "";
-                txtDateFrom.Text = "";
                 lblDateDescription.Visible = true;
             }
         }
@@ -168,7 +142,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     else if (rdoViewDate.Checked == true)
                     {
                         //Case 2: View Attendance of a date of a employee
-                        if (txtDateFrom.Text.Trim() == "")
+                        if (Request.Form["txtDateFrom"].ToString().Trim() == "")
                         {
                             lblError.Text = Message.NotChooseDate;
                         }
@@ -176,7 +150,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         {
                             try
                             {
-                                DateTime dt = DateTime.Parse(txtDateFrom.Text.Trim());
+                                DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
                                 _condition = " and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(MONTH("
                                 + Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                 +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
@@ -193,7 +167,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     }
                     else {
                         //Case 3: View Attendance in a range of date of a employee
-                        if (txtDateFrom.Text.Trim() == ""||txtDateTo.Text.Trim()=="")
+                        if (Request.Form["txtDateFrom"].ToString().Trim() == "" || Request.Form["txtDateTo"].ToString().Trim() == "")
                         {
                             lblError.Text = Message.NotChooseFromToDate;
                         }
@@ -201,8 +175,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         {
                             try
                             {
-                                DateTime dt = DateTime.Parse(txtDateFrom.Text.Trim());
-                                DateTime dt1 = DateTime.Parse(txtDateTo.Text.Trim());
+                                DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                DateTime dt1 = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
                                 dt1 = dt1.AddDays(1.0);
                                 if(dt.CompareTo(dt1)<0){
                                     _condition = " and "+Message.PunchInColumn+" > '" + dt.Month + "-" + dt.Day + "-" 
@@ -239,15 +213,11 @@ namespace SP2010VisualWebPart.AttendanceRecord
         {
             if (rdoViewAll.Checked == true)
             {
-                txtDateTo.Visible = false;
-                txtDateFrom.Visible = false;
-                btnDateFrom.Visible = false;
-                btnDateTo.Visible = false;
+                pnlDateTo.Visible = false;
+                pnlDateFrom.Visible = false;
                 lblDateTo.Visible = false;
                 lblDateFrom.Visible = false;
                 lblDate.Visible = false;
-                txtDateTo.Text = "";
-                txtDateFrom.Text = "";
                 lblDateDescription.Visible = false;
             }
         }
@@ -265,15 +235,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             + Server.HtmlDecode(gr.Cells[1].Text) + "' and "+Message.PunchInColumn+"='"+gr.Cells[2].Text
                             +"' and "+Message.PunchOutColumn+"='"+gr.Cells[4].Text+"';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);
-                        
-                        /*String csname1 = "PopupScript";
-
-                        if (!Page.IsClientScriptBlockRegistered(csname1))
-                        {
-                            String cstext1 = "<script type=\"text/javascript\">" +
-                                "alert('Hello World');</" + "script>";
-                            Page.RegisterStartupScript(csname1, cstext1);
-                        }*/
                         command.ExecuteNonQuery();
                     }
                 }

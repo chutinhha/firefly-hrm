@@ -33,5 +33,7 @@
     <ElementFile Location="UserAccount\UserAccount.webpart" />
     <ElementManifest Location="ChangePassword\Elements.xml" />
     <ElementFile Location="ChangePassword\ChangePassword.webpart" />
+    <ElementManifest Location="ImportEmployees\Elements.xml" />
+    <ElementFile Location="ImportEmployees\ImportEmployees.webpart" />
   </ElementManifests>
 </Feature>
