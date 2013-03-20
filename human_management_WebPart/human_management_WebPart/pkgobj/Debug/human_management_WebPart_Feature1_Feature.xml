@@ -35,5 +35,13 @@
     <ElementFile Location="ChangePassword\ChangePassword.webpart" />
     <ElementManifest Location="ImportEmployees\Elements.xml" />
     <ElementFile Location="ImportEmployees\ImportEmployees.webpart" />
+    <ElementManifest Location="AddNewQuestion\Elements.xml" />
+    <ElementFile Location="AddNewQuestion\AddNewQuestion.webpart" />
+    <ElementManifest Location="QuestionList\Elements.xml" />
+    <ElementFile Location="QuestionList\QuestionList.webpart" />
+    <ElementManifest Location="EditQuestion\Elements.xml" />
+    <ElementFile Location="EditQuestion\EditQuestion.webpart" />
+    <ElementManifest Location="EvaluateEmployee\Elements.xml" />
+    <ElementFile Location="EvaluateEmployee\EvaluateEmployee.webpart" />
   </ElementManifests>
 </Feature>

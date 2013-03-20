@@ -31,44 +31,63 @@
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414&quot;&gt;
 	
-&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css&quot; /&gt;
+&lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://code.jquery.com/ui/1.10.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/resources/demos/style.css&quot; /&gt;
+&lt;script&gt;
+    $(function () {
+        $(&quot;#txtDateFrom&quot;).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        $(&quot;#txtDateTo&quot;).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+&lt;/script&gt;
+&lt;div id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+		&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
 &lt;table class=&quot;fieldTitleTable&quot;&gt;
 &lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;View Attendance Records&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     &lt;br /&gt;
 
     
 
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Label1&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name(*)&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_TextBox1&quot; style=&quot;width:200px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_lblEmployeeName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name(*)&lt;/span&gt;
+    &lt;input name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$txtEmployeeName&quot; type=&quot;text&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_txtEmployeeName&quot; style=&quot;width:200px;&quot; /&gt;
     &lt;br /&gt;
     &lt;br /&gt;
-    &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;display:inline-block;width:120px;&quot;&gt;&lt;input id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_RadioButton1&quot; type=&quot;radio&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$ViewDateType&quot; value=&quot;RadioButton1&quot; checked=&quot;checked&quot; /&gt;&lt;label for=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_RadioButton1&quot;&gt;View a date&lt;/label&gt;&lt;/span&gt;
-    &lt;span style=&quot;display:inline-block;width:150px;&quot;&gt;&lt;input id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_RadioButton2&quot; type=&quot;radio&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$ViewDateType&quot; value=&quot;RadioButton2&quot; /&gt;&lt;label for=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_RadioButton2&quot;&gt;View range of date&lt;/label&gt;&lt;/span&gt;
-    &lt;input id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_RadioButton3&quot; type=&quot;radio&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$ViewDateType&quot; value=&quot;RadioButton3&quot; /&gt;&lt;label for=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_RadioButton3&quot;&gt;View all&lt;/label&gt;
+    &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;display:inline-block;width:120px;&quot;&gt;&lt;input id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_rdoViewDate&quot; type=&quot;radio&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$ViewDateType&quot; value=&quot;rdoViewDate&quot; checked=&quot;checked&quot; /&gt;&lt;label for=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_rdoViewDate&quot;&gt;View a date&lt;/label&gt;&lt;/span&gt;
+    &lt;span style=&quot;display:inline-block;width:150px;&quot;&gt;&lt;input id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_rdoViewRange&quot; type=&quot;radio&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$ViewDateType&quot; value=&quot;rdoViewRange&quot; /&gt;&lt;label for=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_rdoViewRange&quot;&gt;View range of date&lt;/label&gt;&lt;/span&gt;
+    &lt;input id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_rdoViewAll&quot; type=&quot;radio&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$ViewDateType&quot; value=&quot;rdoViewAll&quot; /&gt;&lt;label for=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_rdoViewAll&quot;&gt;View all&lt;/label&gt;
     &lt;br /&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Label2&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Date&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$TextBox2&quot; type=&quot;text&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_TextBox2&quot; style=&quot;width:200px;&quot; /&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$Button1&quot; value=&quot;...&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Button1&quot; style=&quot;width:30px;&quot; /&gt;
-    &lt;span style=&quot;padding-left:80px;&quot;&gt;&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$TextBox3&quot; type=&quot;text&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_TextBox3&quot; style=&quot;width:200px;&quot; /&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$Button2&quot; value=&quot;...&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Button2&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_lblDate&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Date&lt;/span&gt;
+    &lt;div id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_pnlDateFrom&quot; style=&quot;display:inline;&quot;&gt;
+			&lt;input type=&quot;text&quot; id=&quot;txtDateFrom&quot; name=&quot;txtDateFrom&quot; size=&quot;30&quot; value=&quot;&quot;/&gt;
+		&lt;/div&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
+    &lt;div id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_pnlDateTo&quot; style=&quot;display:inline;&quot;&gt;
+			&lt;input type=&quot;text&quot; id=&quot;txtDateTo&quot; name=&quot;txtDateTo&quot; value=&quot;&quot; size=&quot;30&quot;/&gt;
+		&lt;/div&gt;
 
     &lt;br /&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Label6&quot; style=&quot;display:inline-block;height:20px;width:155px;&quot;&gt;(mm-dd-yyyy)&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Label3&quot; style=&quot;display:inline-block;width:50px;&quot;&gt;From&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_lblDateDescription&quot; style=&quot;display:inline-block;height:20px;width:155px;&quot;&gt;(mm-dd-yyyy)&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_lblDateFrom&quot; style=&quot;display:inline-block;width:50px;&quot;&gt;From&lt;/span&gt;
 
-    &lt;span style=&quot;padding-left:265px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Label4&quot;&gt;To&lt;/span&gt;
-    
+    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_lblDateTo&quot;&gt;To&lt;/span&gt;
     &lt;div class=&quot;borderTop&quot;&gt;
-    &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$Button3&quot; value=&quot;View&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Button3&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fc90b503_bb67_4ed8_8713_7a4e2823e414$ctl00$btnView&quot; value=&quot;View&quot; id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_btnView&quot; style=&quot;width:80px;&quot; /&gt;
     &lt;/div&gt;
     
 
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+	&lt;/div&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;br /&gt;
     &lt;br /&gt;
     &lt;br /&gt;
-    &lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_Label5&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+    &lt;span id=&quot;FullPage_g_fc90b503_bb67_4ed8_8713_7a4e2823e414_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 
 
 
@@ -111,7 +130,7 @@
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
@@ -149,7 +168,8 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">
+												Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -170,9 +190,14 @@
 									<ul>
 										<li><a href="">Timesheets Summary</a></li>
 										<li><a href="">Attendace Summary</a></li>
-										<li><a href="">Evaluate Employees</a></li>
+										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+											<ul>
+												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+											</ul>
+										</li>
 									</ul>
-								</li>                
+								</li>
 							</ul>
 							</div>
 							
@@ -240,14 +265,14 @@
 
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{bbf784eb-7103-4089-9a62-705e69909468}" WebPart="true" __designer:IsClosed="false" id="g_bbf784eb_7103_4089_9a62_705e69909468" __designer:Preview="&lt;div id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{bbf784eb-7103-4089-9a62-705e69909468}&quot; WebPart=&quot;true&quot;&gt;
 	
-&amp;nbsp;&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnChangePassword','')&quot;&gt;Change Password&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+&lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_bbf784eb_7103_4089_9a62_705e69909468' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_bbf784eb_7103_4089_9a62_705e69909468' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 						
 </asp:Content>

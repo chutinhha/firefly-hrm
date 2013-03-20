@@ -31,36 +31,48 @@
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2&quot;&gt;
 	
-&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css&quot; /&gt;
+&lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://code.jquery.com/ui/1.10.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/resources/demos/style.css&quot; /&gt;
+&lt;script&gt;
+    $(function () {
+        $(&quot;#txtDate&quot;).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+&lt;/script&gt;
+&lt;div id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+		&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
 &lt;table class=&quot;fieldTitleTable&quot;&gt;
 &lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label1&quot;&gt;Punch In&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label2&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$TextBox1&quot; type=&quot;text&quot; readonly=&quot;readonly&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_TextBox1&quot; disabled=&quot;disabled&quot; style=&quot;width:200px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_lblEmployeeName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Employee Name&lt;/span&gt;
+    &lt;input name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$txtEmployeeName&quot; type=&quot;text&quot; readonly=&quot;readonly&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_txtEmployeeName&quot; disabled=&quot;disabled&quot; style=&quot;width:200px;&quot; /&gt;
 &lt;/p&gt;
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label3&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Date(*)&lt;/span&gt;
-&lt;input name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$TextBox2&quot; type=&quot;text&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_TextBox2&quot; style=&quot;width:200px;&quot; /&gt;
-&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$Button1&quot; value=&quot;...&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Button1&quot; style=&quot;width:26px;&quot; /&gt;
+&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_lblDate&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Date(*)&lt;/span&gt;
+&lt;div id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_pnlDate&quot; style=&quot;display:inline;&quot;&gt;
+			&lt;input type=&quot;text&quot; id=&quot;&quot; name=&quot;txtDate&quot; size=&quot;30&quot; value=&quot;&quot;/&gt;
+		&lt;/div&gt;
 &lt;p&gt;
-    
-&lt;/p&gt;
-&lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label4&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Time(*)&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$TextBox3&quot; type=&quot;text&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_TextBox3&quot; style=&quot;width:200px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_lblTime&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Time(*)&lt;/span&gt;
+    &lt;input name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$txtTime&quot; type=&quot;text&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_txtTime&quot; style=&quot;width:200px;&quot; /&gt;
     &lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label5&quot;&gt;HH:MM&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label7&quot;&gt;Note&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_lblNote&quot;&gt;Note&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$TextBox4&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_TextBox4&quot; style=&quot;height:100px;width:300px;&quot;&gt;&lt;/textarea&gt;
+    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$txtNote&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_txtNote&quot; style=&quot;height:100px;width:300px;&quot;&gt;&lt;/textarea&gt;
 &lt;/p&gt;
 &lt;p&gt;
     &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$Button2&quot; value=&quot;In&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_436571a1_c83c_4219_bec9_938aa0b9eca2$ctl00$btnInOut&quot; value=&quot;In&quot; id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_btnInOut&quot; style=&quot;width:80px;&quot; /&gt;
 &lt;/p&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_Label8&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+	&lt;/div&gt;&lt;br&gt;
+&lt;span id=&quot;FullPage_g_436571a1_c83c_4219_bec9_938aa0b9eca2_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 
@@ -105,7 +117,7 @@
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
@@ -143,7 +155,8 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">
+												Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -164,9 +177,15 @@
 									<ul>
 										<li><a href="">Timesheets Summary</a></li>
 										<li><a href="">Attendace Summary</a></li>
-										<li><a href="">Evaluate Employees</a></li>
+										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+											<ul>
+												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+											</ul>
+										</li>
 									</ul>
-								</li>                
+								</li>
+            
 							</ul>
 							</div>
 							
@@ -234,14 +253,14 @@
 						
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{989f8c2b-5c5d-4f77-9389-6ee3961c3607}" WebPart="true" __designer:IsClosed="false" id="g_989f8c2b_5c5d_4f77_9389_6ee3961c3607" __designer:Preview="&lt;div id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{989f8c2b-5c5d-4f77-9389-6ee3961c3607}&quot; WebPart=&quot;true&quot;&gt;
 	
-&amp;nbsp;&lt;a id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_989f8c2b_5c5d_4f77_9389_6ee3961c3607$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;&lt;a id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_989f8c2b_5c5d_4f77_9389_6ee3961c3607$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_989f8c2b_5c5d_4f77_9389_6ee3961c3607$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&lt;a id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_989f8c2b_5c5d_4f77_9389_6ee3961c3607$ctl00$lbtnChangePassword','')&quot;&gt;Change Password&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_989f8c2b_5c5d_4f77_9389_6ee3961c3607$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+&lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_989f8c2b_5c5d_4f77_9389_6ee3961c3607_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_989f8c2b_5c5d_4f77_9389_6ee3961c3607$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_989f8c2b_5c5d_4f77_9389_6ee3961c3607' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_989f8c2b_5c5d_4f77_9389_6ee3961c3607' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 						
 </asp:Content>
 

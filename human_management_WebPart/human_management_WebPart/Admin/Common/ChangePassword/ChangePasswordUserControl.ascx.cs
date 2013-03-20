@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace SP2010VisualWebPart.ChangePassword
 {
@@ -33,9 +34,13 @@ namespace SP2010VisualWebPart.ChangePassword
             else {
                 try
                 {
-                    DataTable dt = _com.getData(Message.TableUser, " where "+Message.UserNameColumn+"=N'" + Session["AccountName"]
-                        + "'");
-                    if (txtOldPassword.Text.Trim() != dt.Rows[0][1].ToString())
+                    MD5 md5Hash = MD5.Create();
+                    string hashOldPassword = _com.GetMd5Hash(md5Hash, txtOldPassword.Text.Trim());
+                    string hashNewPassword = _com.GetMd5Hash(md5Hash, txtConfirmPassword.Text.Trim());
+                    DataTable dt = _com.getData(Message.TableEmployee+" a join "+Message.TablePassword+" b", " on a."
+                        +Message.BusinessEntityIDColumn+"=b."+Message.BusinessEntityIDColumn+" and a."+Message.LoginIDColumn
+                        +"='" + Session["AccountName"]+ "'");
+                    if (hashOldPassword.ToUpper() != dt.Rows[0][13].ToString())
                     {
                         lblError.Text = Message.OldPasswordError;
                         txtOldPassword.Text = "";
@@ -48,8 +53,8 @@ namespace SP2010VisualWebPart.ChangePassword
                             txtConfirmPassword.Text = "";
                         }
                         else {
-                            _com.updateTable(Message.TableUser, " "+Message.PasswordColumn+"=N'"+txtNewPassword.Text.Trim()+"'"
-                                +" where "+Message.UserNameColumn+"=N'"+Session["AccountName"].ToString()+"'");
+                            _com.updateTable(Message.TablePassword, " "+Message.PasswordColumn+"=N'"+hashNewPassword.ToUpper()+"'"
+                                +" where "+Message.BusinessEntityIDColumn+"=N'"+dt.Rows[0][0].ToString()+"'");
                             Response.Redirect(Session["Account"] + ".aspx", true);
                         }
                     }

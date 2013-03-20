@@ -269,4 +269,185 @@ public class Common
             }
         }
     }
+
+    internal int getQuarter() {
+        DateTime dt = DateTime.Now;
+        int quarter;
+        if (dt.Month <= 3)
+        {
+            quarter = 1;
+        }
+        else if (dt.Month <= 6)
+        {
+            quarter = 2;
+        }
+        else if (dt.Month <= 9)
+        {
+            quarter = 3;
+        }
+        else
+        {
+            quarter = 4;
+        }
+        return quarter;
+    }
+    internal void generateControl(Panel pnlGenerate, string isEdit, string BusinessID, int quarter) {
+        DataTable question = this.getData(Message.TableCheckpointQuestion, "");
+        if (question.Rows.Count > 0)
+        {
+            int countRdoYesNo = 1;
+            int countRdoLevel = 1;
+            int countTxtNote = 1;
+            for (int i = 0; i < question.Rows.Count; i++)
+            {
+                Label lblQuestion = new Label();
+                lblQuestion.ID = "lblQuestion" + (i + 1).ToString();
+                lblQuestion.Width = 150;
+                pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                pnlGenerate.Controls.Add(new LiteralControl("<div class=\"borderTop\">"));
+                pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                pnlGenerate.Controls.Add(lblQuestion);
+                pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                lblQuestion.Text = (i + 1).ToString() + ". " + question.Rows[i][1].ToString();
+                if (question.Rows[i][2].ToString() == "YesNo")
+                {
+                    RadioButton rdoYes = new RadioButton();
+                    rdoYes.ID = "rdoYes" + countRdoYesNo;
+                    rdoYes.Text = "Yes";
+                    RadioButton rdoNo = new RadioButton();
+                    rdoNo.ID = "rdoNo" + countRdoYesNo;
+                    rdoNo.Text = "No";
+                    rdoYes.GroupName = "rdoYesNo" + countRdoYesNo;
+                    rdoNo.GroupName = "rdoYesNo" + countRdoYesNo;
+                    if (isEdit == "true")
+                    {
+                        DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, " where "+Message.BusinessEntityIDColumn+"='"
+                            + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='" 
+                            + question.Rows[i][0].ToString()+"'");
+                        if (evaluatePoint.Rows[0][3].ToString() == "10")
+                        {
+                            rdoYes.Checked = true;
+                        }
+                        else {
+                            rdoNo.Checked = true;
+                        }
+                    }
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoYes);
+                    pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoNo);
+                    pnlGenerate.Controls.Add(new LiteralControl("</div>"));
+                    countRdoYesNo++;
+                }
+                else if (question.Rows[i][2].ToString() == "Note")
+                {
+                    TextBox txtNote = new TextBox();
+                    txtNote.ID = "txtNote" + countTxtNote;
+                    txtNote.TextMode = TextBoxMode.MultiLine;
+                    txtNote.Width = new Unit("98%");
+                    txtNote.Height = 100;
+                    DropDownList ddlNotePoint = new DropDownList();
+                    ddlNotePoint.ID = "ddlNotePoint" + countTxtNote;
+                    ddlNotePoint.Width = 200;
+                    for (int k = 0; k < 11; k++)
+                    {
+                        ddlNotePoint.Items.Add(k.ToString());
+                    }
+                    Label lblNotePoint = new Label();
+                    lblNotePoint.ID = "lblNotePoint" + countTxtNote;
+                    lblNotePoint.Text = "Points for this question";
+                    lblNotePoint.Width = 150;
+                    DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, " where "+Message.BusinessEntityIDColumn+"='"
+                            + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
+                            + question.Rows[i][0].ToString() + "'");
+                    if (isEdit == "true")
+                    {
+                        txtNote.Text = evaluatePoint.Rows[0][4].ToString();
+                        ddlNotePoint.SelectedValue = evaluatePoint.Rows[0][3].ToString();
+                    }
+
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(txtNote);
+                    pnlGenerate.Controls.Add(new LiteralControl("<br>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(lblNotePoint);
+                    pnlGenerate.Controls.Add(ddlNotePoint);
+                    if (isEdit == "true")
+                    {
+                        ddlNotePoint.SelectedValue = evaluatePoint.Rows[0][3].ToString();
+                    }
+                    pnlGenerate.Controls.Add(new LiteralControl("</div>"));
+                    countTxtNote++;
+                }
+                else
+                {
+                    RadioButton rdoPerfect = new RadioButton();
+                    rdoPerfect.ID = "rdoPerfect" + countRdoLevel;
+                    rdoPerfect.Text = question.Rows[i][3].ToString();
+                    RadioButton rdoGreat = new RadioButton();
+                    rdoGreat.ID = "rdoGreat" + countRdoLevel;
+                    rdoGreat.Text = question.Rows[i][4].ToString();
+                    RadioButton rdoNormal = new RadioButton();
+                    rdoNormal.ID = "rdoNormal" + countRdoLevel;
+                    rdoNormal.Text = question.Rows[i][5].ToString();
+                    RadioButton rdoBad = new RadioButton();
+                    rdoBad.ID = "rdoBad" + countRdoLevel;
+                    rdoBad.Text = question.Rows[i][6].ToString();
+                    RadioButton rdoVeryBad = new RadioButton();
+                    rdoVeryBad.ID = "rdoVeryBad" + countRdoLevel;
+                    rdoVeryBad.Text = question.Rows[i][7].ToString();
+                    rdoPerfect.GroupName = "rdoLevel" + countRdoLevel;
+                    rdoGreat.GroupName = "rdoLevel" + countRdoLevel;
+                    rdoNormal.GroupName = "rdoLevel" + countRdoLevel;
+                    rdoBad.GroupName = "rdoLevel" + countRdoLevel;
+                    rdoVeryBad.GroupName = "rdoLevel" + countRdoLevel;
+
+                    if (isEdit == "true")
+                    {
+                        DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, " where "+Message.BusinessEntityIDColumn+"='"
+                            + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
+                            + question.Rows[i][0].ToString() + "'");
+                        if (evaluatePoint.Rows[0][3].ToString() == "10") {
+                            rdoPerfect.Checked = true;
+                        }
+                        else if (evaluatePoint.Rows[0][3].ToString() == "8")
+                        {
+                            rdoGreat.Checked = true;
+                        }
+                        else if (evaluatePoint.Rows[0][3].ToString() == "6")
+                        {
+                            rdoNormal.Checked = true;
+                        }
+                        else if (evaluatePoint.Rows[0][3].ToString() == "4")
+                        {
+                            rdoBad.Checked = true;
+                        }
+                        else if (evaluatePoint.Rows[0][3].ToString() == "2")
+                        {
+                            rdoVeryBad.Checked = true;
+                        }
+                    }
+
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoPerfect);
+                    pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoGreat);
+                    pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoNormal);
+                    pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoBad);
+                    pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
+                    pnlGenerate.Controls.Add(rdoVeryBad);
+                    pnlGenerate.Controls.Add(new LiteralControl("</div>"));
+                    countRdoLevel++;
+                }
+            }
+        }
+    }
 }

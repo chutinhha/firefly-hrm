@@ -70,6 +70,38 @@
     <Compile Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx.designer.cs">
       <DependentUpon>AddCandidateUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestion.cs" />
+    <Compile Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx.cs">
+      <DependentUpon>AddNewQuestionUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx.designer.cs">
+      <DependentUpon>AddNewQuestionUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\EditQuestion\EditQuestion.cs" />
+    <Compile Include="Admin\Checkpoint\EditQuestion\EditQuestionUserControl.ascx.cs">
+      <DependentUpon>EditQuestionUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\EditQuestion\EditQuestionUserControl.ascx.designer.cs">
+      <DependentUpon>EditQuestionUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\EvaluateEmployee\EvaluateEmployee.cs" />
+    <Compile Include="Admin\Checkpoint\EvaluateEmployee\EvaluateEmployeeUserControl.ascx.cs">
+      <DependentUpon>EvaluateEmployeeUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\EvaluateEmployee\EvaluateEmployeeUserControl.ascx.designer.cs">
+      <DependentUpon>EvaluateEmployeeUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\QuestionList\QuestionList.cs" />
+    <Compile Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx.cs">
+      <DependentUpon>QuestionListUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx.designer.cs">
+      <DependentUpon>QuestionListUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployees.cs" />
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.cs">
       <DependentUpon>ImportEmployeesUserControl.ascx</DependentUpon>
@@ -207,6 +239,22 @@
     <None Include="Admin\Candidate\AddCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4b16b2e1-882c-48cd-b492-29a4fe53e3e7}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestion.webpart" />
+    <None Include="Admin\Checkpoint\AddNewQuestion\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c4046b60-1746-499d-b2f9-32f192f3586b}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Checkpoint\EditQuestion\EditQuestion.webpart" />
+    <None Include="Admin\Checkpoint\EditQuestion\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7c24406c-daaa-45a7-b909-44073b212746}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Checkpoint\EvaluateEmployee\EvaluateEmployee.webpart" />
+    <None Include="Admin\Checkpoint\EvaluateEmployee\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ad2632d2-aa31-4098-9942-1617c58bcde6}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Checkpoint\QuestionList\QuestionList.webpart" />
+    <None Include="Admin\Checkpoint\QuestionList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f20955a4-c668-4ca1-b34d-efaa7e806991}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\CSV\ImportEmployees\ImportEmployees.webpart" />
     <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
@@ -292,6 +340,22 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Candidate\AddCandidate\Elements.xml" />
+    <Content Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Checkpoint\AddNewQuestion\Elements.xml" />
+    <Content Include="Admin\Checkpoint\EditQuestion\EditQuestionUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Checkpoint\EditQuestion\Elements.xml" />
+    <Content Include="Admin\Checkpoint\EvaluateEmployee\Elements.xml" />
+    <Content Include="Admin\Checkpoint\EvaluateEmployee\EvaluateEmployeeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Checkpoint\QuestionList\Elements.xml" />
+    <Content Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\CSV\ImportEmployees\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -357,6 +421,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
 </Project>
