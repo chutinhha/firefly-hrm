@@ -1,4 +1,5 @@
 ﻿<%@ Register tagprefix="ImportEmployees" namespace="SP2010VisualWebPart.Admin.CSV.ImportEmployees" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
 <%-- _LocalBinding --%>
 <%@ Page language="C#" MasterPageFile="~masterurl/default.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
@@ -155,7 +156,12 @@
 									<ul>
 										<li><a href="">Timesheets Summary</a></li>
 										<li><a href="">Attendace Summary</a></li>
-										<li><a href="">Evaluate Employees</a></li>
+										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+											<ul>
+												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+											</ul>
+										</li>
 									</ul>
 								</li>
 								</ul>
@@ -220,4 +226,21 @@
     </SharePoint:DelegateControl>
 								
 </asp:Content>
+
+<asp:Content id="Content2" runat="server" contentplaceholderid="PlaceHolderSearchArea">
+
+
+<UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{481099a2-b627-4cec-81f6-43a2cdf54d15}" WebPart="true" __designer:IsClosed="false" id="g_481099a2_b627_4cec_81f6_43a2cdf54d15" __designer:Preview="&lt;div id=&quot;g_481099a2_b627_4cec_81f6_43a2cdf54d15&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{481099a2-b627-4cec-81f6-43a2cdf54d15}&quot; WebPart=&quot;true&quot;&gt;
+	
+&amp;nbsp;&lt;a id=&quot;g_481099a2_b627_4cec_81f6_43a2cdf54d15_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_481099a2_b627_4cec_81f6_43a2cdf54d15$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;|
+&lt;a id=&quot;g_481099a2_b627_4cec_81f6_43a2cdf54d15_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_481099a2_b627_4cec_81f6_43a2cdf54d15$ctl00$lbtnChangePassword','')&quot;&gt;Change Password&lt;/a&gt;
+&amp;nbsp;|
+&lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_481099a2_b627_4cec_81f6_43a2cdf54d15_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_481099a2_b627_4cec_81f6_43a2cdf54d15$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
+
+
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_481099a2_b627_4cec_81f6_43a2cdf54d15' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+
+</asp:Content>
+
 

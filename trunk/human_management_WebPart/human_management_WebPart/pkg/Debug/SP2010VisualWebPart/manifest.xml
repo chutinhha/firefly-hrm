@@ -20,6 +20,10 @@
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.UserAccount" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.ChangePassword" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.CSV.ImportEmployees" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.QuestionList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.EditQuestion" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>
@@ -41,6 +45,10 @@
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\UserAccount\UserAccountUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\ChangePassword\ChangePasswordUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.CSV\ImportEmployees\ImportEmployeesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\QuestionList\QuestionListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\EditQuestion\EditQuestionUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\EvaluateEmployee\EvaluateEmployeeUserControl.ascx" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="human_management_WebPart_Feature1\Feature.xml" />

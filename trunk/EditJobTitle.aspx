@@ -30,44 +30,45 @@
 	&lt;tr&gt;
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_fea837de_a912_4613_bd16_0128453e1805&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805&quot;&gt;
-	
-&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
+	&lt;div id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+		&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
 &lt;table class=&quot;fieldTitleTable&quot;&gt;
 &lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;Candidates&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 							&lt;br /&gt;
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Label1&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Job Title(*)&lt;/span&gt;
-&lt;input name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_TextBox1&quot; style=&quot;width:400px;&quot; /&gt;
+&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_lblJobTitle&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Job Title(*)&lt;/span&gt;
+&lt;input name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$txtJobTitle&quot; type=&quot;text&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_txtJobTitle&quot; style=&quot;width:400px;&quot; /&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Label4&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Job Category&lt;/span&gt;
-    &lt;select name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$DropDownList1&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_DropDownList1&quot; style=&quot;width:200px;&quot;&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_lblJobCategory&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Job Category&lt;/span&gt;
+    &lt;select name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$ddlJobCategory&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_ddlJobCategory&quot; style=&quot;width:200px;&quot;&gt;
 
-	&lt;/select&gt;
+		&lt;/select&gt;
 &lt;/p&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Label2&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Job Description&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_lblJobDescription&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Job Description&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$TextBox2&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_TextBox2&quot; style=&quot;height:100px;width:400px;&quot;&gt;&lt;/textarea&gt;
+    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$txtJobDescription&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_txtJobDescription&quot; style=&quot;height:100px;width:400px;&quot;&gt;&lt;/textarea&gt;
 &lt;/p&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Label3&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Note&lt;/span&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_lblNote&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Note&lt;/span&gt;
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$TextBox3&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_TextBox3&quot; style=&quot;height:100px;width:400px;&quot;&gt;&lt;/textarea&gt;
+    &lt;span style=&quot;padding-left:160px;&quot;&gt;&lt;/span&gt;&lt;textarea name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$txtNote&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_txtNote&quot; style=&quot;height:100px;width:400px;&quot;&gt;&lt;/textarea&gt;
 &lt;/p&gt;&lt;div class=&quot;borderTop&quot;&gt;
-&lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$Button1&quot; value=&quot;Save&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
-&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$Button2&quot; value=&quot;Cancel&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;&lt;/div&gt;
+&lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$btnSave&quot; value=&quot;Save&quot; onclick=&quot;return confirm('Are you sure you want to save ?');&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_btnSave&quot; style=&quot;width:80px;&quot; /&gt;
+&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_fea837de_a912_4613_bd16_0128453e1805$ctl00$btnCancel&quot; value=&quot;Cancel&quot; id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_btnCancel&quot; style=&quot;width:80px;&quot; /&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+	&lt;/div&gt;
 &lt;p&gt;
     &amp;nbsp;&lt;/p&gt;
 &lt;p&gt;
-    &lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_Label5&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+    &lt;span id=&quot;FullPage_g_fea837de_a912_4613_bd16_0128453e1805_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
 
 
@@ -112,7 +113,7 @@
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
@@ -150,7 +151,8 @@
 										<li><a href="">Assign Leave</a></li>
 										<li><a href="">Attendance</a>
 											<ul>
-												<li><a href="AttendanceRecord.aspx">Employee Records</a></li>
+												<li><a href="AttendanceRecord.aspx">
+												Employee Records</a></li>
 												<li><a href="">Attendance 
 												Summary</a></li>
 											</ul>
@@ -171,9 +173,15 @@
 									<ul>
 										<li><a href="">Timesheets Summary</a></li>
 										<li><a href="">Attendace Summary</a></li>
-										<li><a href="">Evaluate Employees</a></li>
+										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+											<ul>
+												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+											</ul>
+										</li>
 									</ul>
 								</li>
+
 							</ul>
 							</div>
 							
@@ -243,14 +251,14 @@
 
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{063a4850-07ab-4d93-b518-67b0637eaa7f}" WebPart="true" __designer:IsClosed="false" id="g_063a4850_07ab_4d93_b518_67b0637eaa7f" __designer:Preview="&lt;div id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{063a4850-07ab-4d93-b518-67b0637eaa7f}&quot; WebPart=&quot;true&quot;&gt;
 	
-&amp;nbsp;&lt;a id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_063a4850_07ab_4d93_b518_67b0637eaa7f$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;&lt;a id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_063a4850_07ab_4d93_b518_67b0637eaa7f$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_063a4850_07ab_4d93_b518_67b0637eaa7f$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&lt;a id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_063a4850_07ab_4d93_b518_67b0637eaa7f$ctl00$lbtnChangePassword','')&quot;&gt;Change Password&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_063a4850_07ab_4d93_b518_67b0637eaa7f$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+&lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_063a4850_07ab_4d93_b518_67b0637eaa7f_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_063a4850_07ab_4d93_b518_67b0637eaa7f$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_063a4850_07ab_4d93_b518_67b0637eaa7f' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_063a4850_07ab_4d93_b518_67b0637eaa7f' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 						
 </asp:Content>

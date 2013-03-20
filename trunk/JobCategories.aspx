@@ -35,18 +35,17 @@
 &lt;table class=&quot;fieldTitleTable&quot;&gt;
 &lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;Job Categories&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     &lt;br /&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023$ctl00$Button1&quot; value=&quot;Add&quot; id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023$ctl00$Button2&quot; value=&quot;Edit&quot; id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_Button2&quot; style=&quot;width:80px;&quot; /&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023$ctl00$Button3&quot; value=&quot;Delete&quot; id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_Button3&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023$ctl00$btnAdd&quot; value=&quot;Add&quot; id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_btnAdd&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023$ctl00$btnEdit&quot; value=&quot;Edit&quot; id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_btnEdit&quot; style=&quot;width:80px;&quot; /&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023$ctl00$btnDelete&quot; value=&quot;Delete&quot; onclick=&quot;return confirm('Are you sure you want to delete ?');&quot; id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_btnDelete&quot; style=&quot;width:80px;&quot; /&gt;
     &lt;br /&gt;
     &lt;br /&gt;
     
     &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-&lt;span id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_Label1&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
-&lt;br&gt;
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
+&lt;span id=&quot;FullPage_g_c5a3d0e5_2967_4b9a_9a63_5a22f5669023_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+
+
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -87,7 +86,7 @@
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
@@ -147,9 +146,14 @@
 									<ul>
 										<li><a href="">Timesheets Summary</a></li>
 										<li><a href="">Attendace Summary</a></li>
-										<li><a href="">Evaluate Employees</a></li>
+										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+											<ul>
+												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+											</ul>
+										</li>
 									</ul>
-								</li>	
+								</li>
 							</ul>
 							</div>
 							
@@ -217,14 +221,14 @@
 
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{146dc92e-e27f-493a-aa61-bcd4af5765ac}" WebPart="true" __designer:IsClosed="false" id="g_146dc92e_e27f_493a_aa61_bcd4af5765ac" __designer:Preview="&lt;div id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{146dc92e-e27f-493a-aa61-bcd4af5765ac}&quot; WebPart=&quot;true&quot;&gt;
 	
-&amp;nbsp;&lt;a id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac_ctl00_LinkButton1&quot; Href=&quot;javascript:__doPostBack('g_146dc92e_e27f_493a_aa61_bcd4af5765ac$ctl00$LinkButton1','')&quot;&gt;&lt;/a&gt;
+&amp;nbsp;&lt;a id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_146dc92e_e27f_493a_aa61_bcd4af5765ac$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac_ctl00_LinkButton2&quot; Href=&quot;javascript:__doPostBack('g_146dc92e_e27f_493a_aa61_bcd4af5765ac$ctl00$LinkButton2','')&quot;&gt;Change Passwod&lt;/a&gt;
+&lt;a id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_146dc92e_e27f_493a_aa61_bcd4af5765ac$ctl00$lbtnChangePassword','')&quot;&gt;Change Password&lt;/a&gt;
 &amp;nbsp;|
-&lt;a id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac_ctl00_LinkButton3&quot; Href=&quot;javascript:__doPostBack('g_146dc92e_e27f_493a_aa61_bcd4af5765ac$ctl00$LinkButton3','')&quot;&gt;Logout&lt;/a&gt;
+&lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_146dc92e_e27f_493a_aa61_bcd4af5765ac_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_146dc92e_e27f_493a_aa61_bcd4af5765ac$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_146dc92e_e27f_493a_aa61_bcd4af5765ac' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_146dc92e_e27f_493a_aa61_bcd4af5765ac' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 							
 </asp:Content>

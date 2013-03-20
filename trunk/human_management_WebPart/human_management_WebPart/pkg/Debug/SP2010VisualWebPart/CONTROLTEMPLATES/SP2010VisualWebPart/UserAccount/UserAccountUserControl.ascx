@@ -9,7 +9,7 @@
 &nbsp;<asp:LinkButton ID="lbtnUserName" runat="server" 
     onclick="lbtnUserName_Click"></asp:LinkButton>
 &nbsp;|
-<asp:LinkButton ID="lbtnChangePassword" runat="server" onclick="lbtnChangePassword_Click">Change Passwod</asp:LinkButton>
+<asp:LinkButton ID="lbtnChangePassword" runat="server" onclick="lbtnChangePassword_Click">Change Password</asp:LinkButton>
 &nbsp;|
 <asp:LinkButton ID="lbtnLogOut" runat="server" onclick="lbtnLogOut_Click" OnClientClick="return confirm('Are you sure you want to log out ?')">Logout</asp:LinkButton>
 
