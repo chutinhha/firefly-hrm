@@ -22,3 +22,9 @@ F:\trunk\human-management\human_management\bin\Debug\human_management.pdb
 F:\trunk\human-management\human_management\obj\Debug\ResolveAssemblyReference.cache
 F:\trunk\human-management\human_management\obj\Debug\human_management.dll
 F:\trunk\human-management\human_management\obj\Debug\human_management.pdb
+F:\firefly-hrm\human-management\human_management\bin\Debug\human_management.dll.config
+F:\firefly-hrm\human-management\human_management\bin\Debug\human_management.dll
+F:\firefly-hrm\human-management\human_management\bin\Debug\human_management.pdb
+F:\firefly-hrm\human-management\human_management\obj\Debug\ResolveAssemblyReference.cache
+F:\firefly-hrm\human-management\human_management\obj\Debug\human_management.dll
+F:\firefly-hrm\human-management\human_management\obj\Debug\human_management.pdb

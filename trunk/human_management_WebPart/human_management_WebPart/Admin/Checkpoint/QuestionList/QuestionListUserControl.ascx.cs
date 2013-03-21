@@ -28,6 +28,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                             _com.bindData(Message.QuestionIDColumn+","+Message.QuestionTitleColumn+","+Message.AnserTypeColumn
                                 +"","",Message.TableCheckpointQuestion,grdData);
                             _com.setGridViewStyle(grdData);
+                            grdData.HeaderRow.Cells[2].Text = "Question";
+                            grdData.HeaderRow.Cells[3].Text = "Answer Type";
                         }
                     }
                     catch (Exception ex)
@@ -85,6 +87,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                     _com.bindData(Message.QuestionIDColumn + "," + Message.QuestionTitleColumn + "," + Message.AnserTypeColumn
                                 + "", " where " + Message.AnserTypeColumn + "='Level'", Message.TableCheckpointQuestion, grdData);
                 }
+                grdData.HeaderRow.Cells[2].Text = "Question";
+                grdData.HeaderRow.Cells[3].Text = "Answer Type";
                 
             }
             catch (Exception ex) {
@@ -114,6 +118,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                 }
                 _com.bindData(Message.QuestionIDColumn + "," + Message.QuestionTitleColumn + "," + Message.AnserTypeColumn
                                 + "", "", Message.TableCheckpointQuestion, grdData);
+                grdData.HeaderRow.Cells[2].Text = "Question";
+                grdData.HeaderRow.Cells[3].Text = "Answer Type";
                 ddlAnswerType.SelectedIndex = 0;
             }
             catch (Exception ex)
