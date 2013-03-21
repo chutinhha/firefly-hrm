@@ -26,6 +26,9 @@ namespace SP2010VisualWebPart.JobTitles
                         {
                             _com.bindData(Message.JobTitleColumn + "," + Message.JobDescriptionColumn + "," + Message.JobCategoryColumn
                                 + "", "", Message.TableJobTitle, grdData);
+                            grdData.HeaderRow.Cells[1].Text = "Job Title";
+                            grdData.HeaderRow.Cells[2].Text = "Job Description";
+                            grdData.HeaderRow.Cells[3].Text = "Job Category";
                             lblError.Text = "";
                             Session.Remove("Name");
                             _com.setGridViewStyle(grdData);
@@ -79,6 +82,9 @@ namespace SP2010VisualWebPart.JobTitles
                     }
                 }
                 _com.bindData(Message.JobTitleColumn+","+Message.JobDescriptionColumn+"", "", Message.TableJobTitle, grdData);
+                grdData.HeaderRow.Cells[1].Text = "Job Title";
+                grdData.HeaderRow.Cells[2].Text = "Job Description";
+                grdData.HeaderRow.Cells[3].Text = "Job Category";
             }
             catch (Exception ex)
             {

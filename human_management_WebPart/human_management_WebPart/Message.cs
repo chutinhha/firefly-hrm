@@ -139,4 +139,5 @@
     internal const string NotAnswerAll = "You must answer all question";
     internal const string AveragePointColumn = "AveragePoint";
     internal const string TotalPointColumn = "TotalPoint";
+    internal const string NotExistData = "There is no data that match your request";
 }

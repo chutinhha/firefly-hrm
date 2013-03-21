@@ -50,6 +50,12 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             lblError.Text = "";
                             _com.bindDataAttendance("*", " where " + Message.EmployeeName + "=N'" + txtEmployeeName.Text
                                 + "'" + _condition, Message.TableAttendance, grdData);
+                            grdData.HeaderRow.Cells[1].Text = "Employee Name";
+                            grdData.HeaderRow.Cells[2].Text = "In Time";
+                            grdData.HeaderRow.Cells[3].Text = "In Note";
+                            grdData.HeaderRow.Cells[4].Text = "Out Time";
+                            grdData.HeaderRow.Cells[5].Text = "Out Note";
+                            grdData.HeaderRow.Cells[6].Text = "Last Modified";
                             pnlData.Visible = true;
                             Session.Remove(Message.EmployeeName);
                         }
@@ -203,8 +209,15 @@ namespace SP2010VisualWebPart.AttendanceRecord
             if (grdData.Rows.Count > 0 && check==true)
             {
                 pnlData.Visible = true;
+                grdData.HeaderRow.Cells[1].Text = "Employee Name";
+                grdData.HeaderRow.Cells[2].Text = "In Time";
+                grdData.HeaderRow.Cells[3].Text = "In Note";
+                grdData.HeaderRow.Cells[4].Text = "Out Time";
+                grdData.HeaderRow.Cells[5].Text = "Out Note";
+                grdData.HeaderRow.Cells[6].Text = "Last Modified";
             }
             else {
+                lblError.Text = Message.NotExistData;
                 pnlData.Visible = false;
             }
         }
@@ -240,6 +253,12 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
                 _com.bindDataAttendance("*", " where "+Message.EmployeeName+"=N'" + txtEmployeeName.Text 
                     + "'" + _condition, Message.TableAttendance, grdData);
+                grdData.HeaderRow.Cells[1].Text = "Employee Name";
+                grdData.HeaderRow.Cells[2].Text = "In Time";
+                grdData.HeaderRow.Cells[3].Text = "In Note";
+                grdData.HeaderRow.Cells[4].Text = "Out Time";
+                grdData.HeaderRow.Cells[5].Text = "Out Note";
+                grdData.HeaderRow.Cells[6].Text = "Last Modified";
             }
             catch (Exception ex)
             {
