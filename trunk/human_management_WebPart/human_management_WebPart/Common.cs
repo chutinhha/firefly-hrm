@@ -11,11 +11,12 @@ using System.Text;
 using System.Data.OleDb;
 using System.IO;
 
-public class Common
+public class CommonFunction
 {
     internal SqlConnection cnn;
-    
-    internal Common() {
+
+    internal CommonFunction()
+    {
         string connetionString = null;
         connetionString = Message.ConnectionString;
         cnn = new SqlConnection(connetionString);

@@ -102,6 +102,14 @@
     <Compile Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx.designer.cs">
       <DependentUpon>QuestionListUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Common\AccessDenied\AccessDenied.cs" />
+    <Compile Include="Admin\Common\AccessDenied\AccessDeniedUserControl.ascx.cs">
+      <DependentUpon>AccessDeniedUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Common\AccessDenied\AccessDeniedUserControl.ascx.designer.cs">
+      <DependentUpon>AccessDeniedUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployees.cs" />
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.cs">
       <DependentUpon>ImportEmployeesUserControl.ascx</DependentUpon>
@@ -255,6 +263,10 @@
     <None Include="Admin\Checkpoint\QuestionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f20955a4-c668-4ca1-b34d-efaa7e806991}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Common\AccessDenied\AccessDenied.webpart" />
+    <None Include="Admin\Common\AccessDenied\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\CSV\ImportEmployees\ImportEmployees.webpart" />
     <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
@@ -356,6 +368,10 @@
     <Content Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Admin\Common\AccessDenied\AccessDeniedUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Common\AccessDenied\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

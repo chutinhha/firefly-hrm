@@ -43,5 +43,7 @@
     <ElementFile Location="EditQuestion\EditQuestion.webpart" />
     <ElementManifest Location="EvaluateEmployee\Elements.xml" />
     <ElementFile Location="EvaluateEmployee\EvaluateEmployee.webpart" />
+    <ElementManifest Location="AccessDenied\Elements.xml" />
+    <ElementFile Location="AccessDenied\AccessDenied.webpart" />
   </ElementManifests>
 </Feature>

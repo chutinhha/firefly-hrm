@@ -11,12 +11,12 @@ namespace SP2010VisualWebPart.EditCandidate
 {
     public partial class EditCandidateUserControl : UserControl
     {
-        private Common _com = new Common();
+        private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.HomePage, true);
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -24,8 +24,7 @@ namespace SP2010VisualWebPart.EditCandidate
                 {
                     if (Session["Name"] == null)
                     {
-                        Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
-                        Response.Redirect(Session["Account"] + ".aspx", true);
+                        Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -73,8 +72,7 @@ namespace SP2010VisualWebPart.EditCandidate
                 {
                     Session.Remove("Name");
                     Session.Remove("Email");
-                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    Response.Redirect(Message.AccessDeniedPage);
                 }
             }
         }

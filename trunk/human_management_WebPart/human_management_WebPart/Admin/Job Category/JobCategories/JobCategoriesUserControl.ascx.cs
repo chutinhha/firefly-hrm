@@ -9,12 +9,12 @@ namespace SP2010VisualWebPart.JobCategories
 {
     public partial class JobCategoriesUserControl : UserControl
     {
-        private Common _com = new Common();
+        private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.HomePage, true);
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -37,8 +37,7 @@ namespace SP2010VisualWebPart.JobCategories
                 }
                 else
                 {
-                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    Response.Redirect(Message.AccessDeniedPage);
                 }
             }
         }
