@@ -1,7 +1,7 @@
 ﻿public class Message
 {
     //connection string
-    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=hr;Password=123456";
+    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=HR;Password=eatyoualive";
     internal const string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;";
     internal const string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;";
 
@@ -150,4 +150,12 @@
     internal const string NotEnterAllLevel = "You must enter all level";
     internal const string NotAnswerAll = "You must answer all question";
     internal const string NotExistData = "There is no data that match your request";
+    internal const string ProjectNameColumn = "ProjectName";
+    internal const string TableProject = "HumanResources.Project";
+    internal const string PersonNameColumn = "Name";
+    internal const string TaskNameColumn = "TaskName";
+    internal const string TableTask = "HumanResources.Task";
+    internal const string TablePersonProject = "HumanResource.PersonProject";
+    internal const string PersonProjectStartDateColumn = "StartDate";
+    internal const string PersonProjectEndDateColumn = "EndDate";
 }
