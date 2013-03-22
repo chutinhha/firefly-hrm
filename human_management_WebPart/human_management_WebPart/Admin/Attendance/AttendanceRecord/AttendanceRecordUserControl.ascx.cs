@@ -10,18 +10,19 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Web;
 using System.Text;
+using System.Web.UI.HtmlControls;
 
 
 namespace SP2010VisualWebPart.AttendanceRecord
 {
     public partial class AttendanceRecordUserControl : UserControl
     {
-        private Common _com = new Common();
+        private CommonFunction _com = new CommonFunction();
         private string _condition = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"] == null) {
-                Response.Redirect(Message.HomePage, true);
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -67,8 +68,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
                 else
                 {
-                    Response.Write("<script language='JavaScript'> alert('" + Message.AcessDenied + "'); </script>");
-                    Response.Redirect(Session["Account"] + ".aspx", true);
+                    Response.Redirect(Message.AccessDeniedPage);
                 }
             }
         }

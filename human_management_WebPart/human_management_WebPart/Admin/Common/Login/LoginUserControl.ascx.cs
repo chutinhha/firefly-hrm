@@ -10,7 +10,7 @@ namespace SP2010VisualWebPart.Login
 {
     public partial class LoginUserControl : UserControl
     {
-        private Common _com = new Common();
+        private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Remove("Account");

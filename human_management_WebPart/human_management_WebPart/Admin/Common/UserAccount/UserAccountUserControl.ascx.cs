@@ -9,7 +9,10 @@ namespace SP2010VisualWebPart.UserAccount
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lbtnUserName.Text = Message.Welcome + Session["AccountName"].ToString();
+            if (Session["AccountName"] != null)
+            {
+                lbtnUserName.Text = Message.Welcome + Session["AccountName"].ToString();
+            }
         }
 
         protected void lbtnLogOut_Click(object sender, EventArgs e)
