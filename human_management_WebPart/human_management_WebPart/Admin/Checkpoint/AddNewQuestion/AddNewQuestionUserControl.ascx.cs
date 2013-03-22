@@ -72,7 +72,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion
                 }
                 else
                 {
-                    DataTable dt = _com.getData(Message.TableCheckpointQuestion, " order by "+Message.QuestionIDColumn+" desc");
+                    DataTable dt = _com.getData(Message.TableCheckpointQuestion, "*", " order by " + Message.QuestionIDColumn + " desc");
                     int QuestionID=0;
                     if (dt.Rows.Count > 0)
                     {

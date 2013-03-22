@@ -37,7 +37,7 @@ namespace SP2010VisualWebPart.ChangePassword
                     MD5 md5Hash = MD5.Create();
                     string hashOldPassword = _com.GetMd5Hash(md5Hash, txtOldPassword.Text.Trim());
                     string hashNewPassword = _com.GetMd5Hash(md5Hash, txtConfirmPassword.Text.Trim());
-                    DataTable dt = _com.getData(Message.TableEmployee+" a join "+Message.TablePassword+" b", " on a."
+                    DataTable dt = _com.getData(Message.TableEmployee + " a join " + Message.TablePassword + " b", "*", " on a."
                         +Message.BusinessEntityIDColumn+"=b."+Message.BusinessEntityIDColumn+" and a."+Message.LoginIDColumn
                         +"='" + Session["AccountName"]+ "'");
                     if (hashOldPassword.ToUpper() != dt.Rows[0][13].ToString())

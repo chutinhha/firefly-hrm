@@ -26,7 +26,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
                         {
                             if (!IsPostBack)
                             {
-                                DataTable dt = _com.getData(Message.TableCheckpointQuestion, " where " + Message.QuestionIDColumn
+                                DataTable dt = _com.getData(Message.TableCheckpointQuestion,"*", " where " + Message.QuestionIDColumn
                                     + "='" + Session["QuestionID"].ToString().Trim() + "'");
                                 if (dt.Rows.Count > 0)
                                 {

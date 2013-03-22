@@ -27,7 +27,7 @@ namespace SP2010VisualWebPart.EditAttendance
                             if (!IsPostBack)
                             {
                                 txtEmployeeName.Text = Session["Name"].ToString();
-                                DataTable dt = _com.getData(Message.TableAttendance, " where " + Message.EmployeeName
+                                DataTable dt = _com.getData(Message.TableAttendance,"*", " where " + Message.EmployeeName
                                     + "=N'" + Session["Name"] + "' and " + Message.PunchInColumn + "='"
                                     + Session["In"] + "'");
                                 if (dt.Rows.Count > 0)
@@ -88,14 +88,14 @@ namespace SP2010VisualWebPart.EditAttendance
                     }
                     else {
                         //Case 1: Punch In Time is between an other Punch In and Punch Out Time
-                        DataTable dt = _com.getData(Message.TableAttendance," where "+Message.EmployeeName+"=N'"
+                        DataTable dt = _com.getData(Message.TableAttendance, "*", " where " + Message.EmployeeName + "=N'"
                             +Session["Name"].ToString()+"' and "+Message.PunchInColumn+" <='"
                             +txtPunchInDate.Text.Trim() + " " + txtPunchInHour.Text.Trim()+"' and "+Message.PunchOutColumn
                             +" >='"+txtPunchInDate.Text.Trim() + " " + txtPunchInHour.Text.Trim()+"' and "+Message.PunchInColumn
                             +" <> '"+Session["In"].ToString() + "' and "+Message.PunchOutColumn+" <> '"
                             +Session["Out"].ToString()+"'");
                         //Case 1: Punch Out Time is between an other Punch In and Punch Out Time
-                        DataTable dt1 = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName+"=N'"
+                        DataTable dt1 = _com.getData(Message.TableAttendance, "*", " where " + Message.EmployeeName + "=N'"
                             + Session["Name"].ToString() + "' and "+Message.PunchInColumn+" <='" 
                             + txtPunchInDate.Text.Trim() + " "+ txtPunchOut.Text.Trim() + "' and "+Message.PunchOutColumn
                             +" >='" + txtPunchInDate.Text.Trim() + " "+ txtPunchOut.Text.Trim() 
@@ -103,7 +103,7 @@ namespace SP2010VisualWebPart.EditAttendance
                             + "' and "+Message.PunchOutColumn+" <> '" + Session["Out"].ToString() + "'");
                         /*Case 1: Punch In Time is earlier than an other Punch In Time but Punch Out Time
                          is later than that other Punch Out Time*/
-                        DataTable dt2 = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName+"=N'"
+                        DataTable dt2 = _com.getData(Message.TableAttendance, "*", " where " + Message.EmployeeName + "=N'"
                             + Session["Name"].ToString() + "' and "+Message.PunchInColumn+" >='" 
                             + txtPunchInDate.Text.Trim() + " "+ txtPunchInHour.Text.Trim() + "' and "
                             +Message.PunchOutColumn+" <='" + txtPunchInDate.Text.Trim() + " "

@@ -54,7 +54,7 @@ namespace SP2010VisualWebPart.AddJobtitle
             else {
                 try
                 {
-                    DataTable dt = _com.getData(Message.TableJobTitle, " order by JobID desc");
+                    DataTable dt = _com.getData(Message.TableJobTitle, "*", " order by JobID desc");
                     int JobID = int.Parse(dt.Rows[0][0].ToString()) + 1;
                     _com.insertIntoTable(Message.TableJobTitle," ("+Message.JobIDColumn+","+Message.JobTitleColumn
                         +","+Message.JobDescriptionColumn+","+Message.NoteColumn+","+Message.JobCategoryColumn

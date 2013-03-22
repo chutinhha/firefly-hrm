@@ -31,7 +31,7 @@ namespace SP2010VisualWebPart.EditVacancy
                             if (!IsPostBack)
                             {
                                 _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
-                                DataTable dt = _com.getData(Message.TableVacancy, " where " + Message.VacancyNameColumn
+                                DataTable dt = _com.getData(Message.TableVacancy, "*", " where " + Message.VacancyNameColumn
                                     + "=N'" + Session["Name"] + "'");
                                 if (dt.Rows.Count > 0)
                                 {

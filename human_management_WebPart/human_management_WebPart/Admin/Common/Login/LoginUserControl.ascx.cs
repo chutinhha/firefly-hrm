@@ -33,15 +33,15 @@ namespace SP2010VisualWebPart.Login
                     {
                         MD5 md5Hash = MD5.Create();
                         string hash = _com.GetMd5Hash(md5Hash, txtPassword.Text);
-                        DataTable dt = _com.getData(Message.TableEmployee, " where "+Message.UserNameColumn+"=N'" 
+                        DataTable dt = _com.getData(Message.TableEmployee, "*", " where " + Message.UserNameColumn + "=N'" 
                             + txtUser.Text + "'");
                         if (dt.Rows.Count > 0)
                         {
-                            DataTable dt1 = _com.getData(Message.TablePassword, " where "+Message.BusinessEntityIDColumn
+                            DataTable dt1 = _com.getData(Message.TablePassword, "*", " where " + Message.BusinessEntityIDColumn
                                 +"='" + dt.Rows[0][0].ToString() + "' and "+Message.PasswordColumn+"='" + hash + "'");
                             if (dt1.Rows.Count > 0)
                             {
-                                DataTable dt2 = _com.getData(Message.TablePerson, " where "+Message.BusinessEntityIDColumn
+                                DataTable dt2 = _com.getData(Message.TablePerson, "*", " where " + Message.BusinessEntityIDColumn
                                     +"='" + dt.Rows[0][0].ToString() + "'");
                                 _com.closeConnection();
                                 Session["Account"] = dt2.Rows[0][1].ToString().Trim();
