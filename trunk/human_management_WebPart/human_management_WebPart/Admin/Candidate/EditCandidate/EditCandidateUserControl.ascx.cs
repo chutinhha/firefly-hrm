@@ -37,7 +37,7 @@ namespace SP2010VisualWebPart.EditCandidate
                                 _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
                                 _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
                                 _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
-                                DataTable dt = _com.getData(Message.TableJobCandidate, " where " + Message.FullNameColumn
+                                DataTable dt = _com.getData(Message.TableJobCandidate, "*", " where " + Message.FullNameColumn
                                     + "=N'" + Session["Name"] + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
                                 if (dt.Rows.Count > 0)
                                 {

@@ -217,7 +217,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                         int startColumn = int.Parse(txtStartColumn.Text.Trim()) - 1;
                         try
                         {
-                            DataTable loginID = _com.getData(Message.TableEmployee, "");
+                            DataTable loginID = _com.getData(Message.TableEmployee, "*", "");
                             int numberOfRowAffected = 0;
                             for (int i = startRow; i < dt.Rows.Count; i++)
                             {
@@ -302,7 +302,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                                 if (checkUpdate == true) { }
                                 else
                                 {
-                                    DataTable businessEntityID = _com.getData(Message.TableEmployee, " order by " + Message.BusinessEntityIDColumn + " desc");
+                                    DataTable businessEntityID = _com.getData(Message.TableEmployee, "*", " order by " + Message.BusinessEntityIDColumn + " desc");
                                     int ID = int.Parse(businessEntityID.Rows[0][0].ToString()) + 1;
                                     _com.insertIntoTable(Message.TableEmployee, "(" + Message.LoginIDColumn + "," + Message.JobIDColumn + "," + Message.BirthDateColumn
                                         + "," + Message.MaritalStatusColumn + "," + Message.GenderColumn + ""

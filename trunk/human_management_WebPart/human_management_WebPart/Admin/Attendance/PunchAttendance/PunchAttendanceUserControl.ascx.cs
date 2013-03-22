@@ -77,7 +77,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                             if (Session["In"] == null)
                             {
                                 //Only accept Punch In after last Punch Out in the same day
-                                DataTable data = _com.getData(Message.TableAttendance, " where "+Message.EmployeeName+"=N'"
+                                DataTable data = _com.getData(Message.TableAttendance, "*", " where " + Message.EmployeeName + "=N'"
                                     + Session["Name"].ToString() + "' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
                                     + "+CAST(MONTH("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                     +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "' and "+Message.PunchOutColumn

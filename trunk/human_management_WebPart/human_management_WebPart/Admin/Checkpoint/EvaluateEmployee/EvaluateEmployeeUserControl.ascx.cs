@@ -130,7 +130,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                     {
                         quarter = 4;
                     }
-                    DataTable haveCheckPoint = _com.getData(Message.TableEvaluatePoint, " where "+Message.QuarterColumn
+                    DataTable haveCheckPoint = _com.getData(Message.TableEvaluatePoint, "*", " where " + Message.QuarterColumn
                         +"='" + quarter + "' and "+Message.BusinessEntityIDColumn+"='" + gr.Cells[1].Text.Trim() + "'");
                     if (haveCheckPoint.Rows.Count > 0)
                     {
@@ -183,7 +183,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
             int countTxtNote = 1;
             bool checkAnswerAll = true;
             int quarter=_com.getQuarter();
-            DataTable question = _com.getData(Message.TableCheckpointQuestion, "");
+            DataTable question = _com.getData(Message.TableCheckpointQuestion, "*", "");
             for (int i = 0; i < question.Rows.Count; i++) {
                 if (question.Rows[i][2].ToString() == "YesNo")
                 {

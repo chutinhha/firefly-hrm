@@ -31,7 +31,7 @@ namespace SP2010VisualWebPart.EditJobTitle
                             if (!IsPostBack)
                             {
                                 _com.SetItemList(Message.NameColumn, Message.TableJobCategory, ddlJobCategory, "", false, "");
-                                DataTable dt = _com.getData(Message.TableJobTitle, " where " + Message.JobTitleColumn + "=N'" + Session["Name"] + "'");
+                                DataTable dt = _com.getData(Message.TableJobTitle, "*", " where " + Message.JobTitleColumn + "=N'" + Session["Name"] + "'");
                                 if (dt.Rows.Count > 0)
                                 {
                                     txtJobTitle.Text = dt.Rows[0][1].ToString().Trim();
