@@ -1,7 +1,7 @@
 ﻿public class Message
 {
     //connection string
-    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=HR;Password=eatyoualive";
+    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=hr;Password=123456";
     internal const string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;";
     internal const string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;";
 
@@ -104,6 +104,10 @@
     internal const string ChangePasswordPage = "ChangePassword";
     internal const string AccessDeniedPage = "AccessDenied.aspx";
 
+    //success sentences
+    internal const string AffectedRow = "Success! Number of row affected is ";
+    internal const string UpdateSuccess = "Update successfully!";
+
     //error sentences
     internal const string AcessDenied = "Access Denied";
     internal const string EmployeeNameError = "You must enter Employee Name";
@@ -144,7 +148,6 @@
     internal const string StartRowColumnError = "You must enter start row and start column";
     internal const string InvalidStartRowColumn = "Start row and start integer must be number";
     internal const string NotSelectSheet = "You must select excel sheet";
-    internal const string AffectedRow = "Success! Number of row affected is ";
     internal const string Excel2007Type = "This function only accept excel 2007 type. Please convert your file first";
     internal const string NotEnterQuestion = "You must enter question";
     internal const string NotEnterAllLevel = "You must enter all level";

@@ -45,5 +45,11 @@
     <ElementFile Location="EvaluateEmployee\EvaluateEmployee.webpart" />
     <ElementManifest Location="AccessDenied\Elements.xml" />
     <ElementFile Location="AccessDenied\AccessDenied.webpart" />
+    <ElementManifest Location="AssignEmployee\Elements.xml" />
+    <ElementFile Location="AssignEmployee\AssignEmployee.webpart" />
+    <ElementManifest Location="SalarySummary\Elements.xml" />
+    <ElementFile Location="SalarySummary\SalarySummary.webpart" />
+    <ElementManifest Location="UserList\Elements.xml" />
+    <ElementFile Location="UserList\UserList.webpart" />
   </ElementManifests>
 </Feature>

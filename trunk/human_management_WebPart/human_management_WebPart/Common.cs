@@ -94,6 +94,23 @@ public class CommonFunction
         GridView1.DataBind();
     }
 
+    //Bind data to a gridview with a blank column
+    internal void bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
+    {
+        string sql = @"SELECT " + column + " from " + table + condition + ";";
+        SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
+        DataSet ds = new DataSet();
+        da.Fill(ds, "data");
+        DataTable dt = ds.Tables["data"];
+        for (int i = 0; i < noOfBlankColumn; i++)
+        {
+            DataColumn dcol1 = new DataColumn(ColumnTitle[i], typeof(string));
+            dt.Columns.Add(dcol1);
+        }
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+    }
+
     //Bind data to gridview of Attendance screen
     internal void bindDataAttendance(string column, string condition, string table, GridView GridView1)
     {
@@ -144,9 +161,9 @@ public class CommonFunction
     }
 
     //Get data to a DataTable
-    internal DataTable getData(string table, string condition)
+    internal DataTable getData(string table,string column, string condition)
     {
-        string sql = @"SELECT * from "+table + condition+";";
+        string sql = @"SELECT "+column+" from "+table + condition+";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
         da.Fill(ds, "data");
@@ -293,7 +310,7 @@ public class CommonFunction
         return quarter;
     }
     internal void generateControl(Panel pnlGenerate, string isEdit, string BusinessID, int quarter) {
-        DataTable question = this.getData(Message.TableCheckpointQuestion, "");
+        DataTable question = this.getData(Message.TableCheckpointQuestion,"*", "");
         if (question.Rows.Count > 0)
         {
             int countRdoYesNo = 1;
@@ -323,7 +340,7 @@ public class CommonFunction
                     rdoNo.GroupName = "rdoYesNo" + countRdoYesNo;
                     if (isEdit == "true")
                     {
-                        DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, " where "+Message.BusinessEntityIDColumn+"='"
+                        DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
                             + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='" 
                             + question.Rows[i][0].ToString()+"'");
                         if (evaluatePoint.Rows[0][3].ToString() == "10")
@@ -360,7 +377,7 @@ public class CommonFunction
                     lblNotePoint.ID = "lblNotePoint" + countTxtNote;
                     lblNotePoint.Text = "Points for this question";
                     lblNotePoint.Width = 150;
-                    DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, " where "+Message.BusinessEntityIDColumn+"='"
+                    DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
                             + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
                             + question.Rows[i][0].ToString() + "'");
                     if (isEdit == "true")
@@ -407,7 +424,7 @@ public class CommonFunction
 
                     if (isEdit == "true")
                     {
-                        DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, " where "+Message.BusinessEntityIDColumn+"='"
+                        DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
                             + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
                             + question.Rows[i][0].ToString() + "'");
                         if (evaluatePoint.Rows[0][3].ToString() == "10") {
