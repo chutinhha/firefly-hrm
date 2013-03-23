@@ -70,6 +70,14 @@
     <Compile Include="Admin\Assign Project\AssignEmployee\AssignEmployeeUserControl.ascx.designer.cs">
       <DependentUpon>AssignEmployeeUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Attendance\AttendanceSummary\AttendanceSummary.cs" />
+    <Compile Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx.cs">
+      <DependentUpon>AttendanceSummaryUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx.designer.cs">
+      <DependentUpon>AttendanceSummaryUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Candidate\AddCandidate\AddCandidate.cs" />
     <Compile Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx.cs">
       <DependentUpon>AddCandidateUserControl.ascx</DependentUpon>
@@ -271,6 +279,10 @@
     <None Include="Admin\Assign Project\AssignEmployee\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f7b7602b-f515-4050-b22e-63a33189ef51}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Attendance\AttendanceSummary\AttendanceSummary.webpart" />
+    <None Include="Admin\Attendance\AttendanceSummary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e019298b-d5d2-4ba7-a108-8173584c1dd1}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Candidate\AddCandidate\AddCandidate.webpart" />
     <None Include="Admin\Candidate\AddCandidate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4b16b2e1-882c-48cd-b492-29a4fe53e3e7}</SharePointProjectItemId>
@@ -388,6 +400,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Assign Project\AssignEmployee\Elements.xml" />
+    <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Attendance\AttendanceSummary\Elements.xml" />
     <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

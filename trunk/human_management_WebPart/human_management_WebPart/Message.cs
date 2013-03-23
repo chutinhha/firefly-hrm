@@ -161,4 +161,5 @@
     internal const string TablePersonProject = "HumanResource.PersonProject";
     internal const string PersonProjectStartDateColumn = "StartDate";
     internal const string PersonProjectEndDateColumn = "EndDate";
+    internal const string ToDateAfterFrom = "From date must be earlier than To date";
 }

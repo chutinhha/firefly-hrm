@@ -94,6 +94,78 @@ public class CommonFunction
         GridView1.DataBind();
     }
 
+    //Bind data to a attendance summary
+    internal void bindDataAttendanceSummary(string column, string condition, string table, GridView GridView1)
+    {
+        string sql = @"SELECT " + column + " from " + table + condition + ";";
+        SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
+        DataSet ds = new DataSet();
+        da.Fill(ds, "data");
+        DataTable dt = ds.Tables["data"];
+        DataTable dt1 = new DataTable();
+        if (dt.Rows.Count > 0)
+        {
+            DataColumn dcName = new DataColumn("Name", typeof(string));
+            DataColumn dcTotalDay = new DataColumn("Total Day Present", typeof(string));
+            DataColumn dcTotalHour = new DataColumn("Total Time(Hours) Present", typeof(String));
+            dt1.Columns.Add(dcName);
+            dt1.Columns.Add(dcTotalHour);
+            dt1.Columns.Add(dcTotalDay);
+            TimeSpan totalTime = TimeSpan.Zero;
+            int totalDay = 1;
+            string Day = DateTime.Parse(dt.Rows[0][1].ToString()).Day + "-" + DateTime.Parse(dt.Rows[0][1].ToString()).Month
+                + "-" + DateTime.Parse(dt.Rows[0][1].ToString()).Year;
+            string name = dt.Rows[0][0].ToString();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (name == dt.Rows[i][0].ToString())
+                {
+                    DateTime punchIn = DateTime.Parse(dt.Rows[i][1].ToString());
+                    DateTime punchOut = DateTime.Parse(dt.Rows[i][2].ToString());
+                    if (Day != punchIn.Day + "-" + punchIn.Month + "-" + punchIn.Year)
+                    {
+                        totalDay++;
+                        Day = punchIn.Day + "-" + punchIn.Month + "-" + punchIn.Year;
+                    }
+                    TimeSpan diff = punchOut - punchIn;
+                    totalTime = totalTime + diff;
+                    if (i == dt.Rows.Count - 1)
+                    {
+                        DataRow dr = dt1.NewRow();
+                        dr[0] = name;
+                        dr[1] = totalTime;
+                        dr[2] = totalDay;
+                        dt1.Rows.Add(dr);
+                    }
+                }
+                else
+                {
+                    DataRow dr = dt1.NewRow();
+                    dr[0] = name;
+                    dr[1] = totalTime;
+                    dr[2] = totalDay;
+                    dt1.Rows.Add(dr);
+                    name = dt.Rows[i][0].ToString();
+                    totalDay = 1;
+                    DateTime punchIn = DateTime.Parse(dt.Rows[i][1].ToString());
+                    DateTime punchOut = DateTime.Parse(dt.Rows[i][2].ToString());
+                    TimeSpan diff = punchOut - punchIn;
+                    totalTime = diff;
+                    if (i == dt.Rows.Count - 1)
+                    {
+                        DataRow dr1 = dt1.NewRow();
+                        dr1[0] = name;
+                        dr1[1] = totalTime;
+                        dr1[2] = totalDay;
+                        dt1.Rows.Add(dr1);
+                    }
+                }
+            }
+        }
+        GridView1.DataSource = dt1;
+        GridView1.DataBind();
+    }
+
     //Bind data to a gridview with a blank column
     internal void bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
     {
