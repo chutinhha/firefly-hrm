@@ -51,5 +51,7 @@
     <ElementFile Location="SalarySummary\SalarySummary.webpart" />
     <ElementManifest Location="UserList\Elements.xml" />
     <ElementFile Location="UserList\UserList.webpart" />
+    <ElementManifest Location="AttendanceSummary\Elements.xml" />
+    <ElementFile Location="AttendanceSummary\AttendanceSummary.webpart" />
   </ElementManifests>
 </Feature>
