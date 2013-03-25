@@ -69,12 +69,12 @@ public class CommonFunction
         DataSet ds = new DataSet();
         da.Fill(ds, "items");
         DataTable dt = ds.Tables["items"];
+        if (addItem == true)
+        {
+            ddl.Items.Add(Item);
+        }
         if (dt.Rows.Count > 0)
         {
-            if (addItem == true)
-            {
-                ddl.Items.Add(Item);
-            }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 ddl.Items.Add(dt.Rows[i][0].ToString());
@@ -198,18 +198,18 @@ public class CommonFunction
         for (int i = 0; i < dt.Rows.Count;i++ )
         {
             TimeSpan total;
-            DateTime punchIn = DateTime.Parse(dt.Rows[i][3].ToString());
+            DateTime punchIn = DateTime.Parse(dt.Rows[i][2].ToString());
             DateTime punchOut = DateTime.Parse(dt.Rows[i][1].ToString());
             TimeSpan diff = punchIn.Subtract(punchOut);
             total = diff;
-            dt.Rows[i][6] = diff.ToString();
+            dt.Rows[i][4] = diff.ToString();
             if (rowTotal <= i) {
                 rowTotal = i;
             }
             for (int j = 0; j < dt.Rows.Count; j++)
             {
                 if (dt.Rows[i][0].ToString().Equals(dt.Rows[j][0])&&i!=j) {
-                    DateTime punchIn1 = DateTime.Parse(dt.Rows[j][3].ToString());
+                    DateTime punchIn1 = DateTime.Parse(dt.Rows[j][2].ToString());
                     DateTime punchOut1 = DateTime.Parse(dt.Rows[j][1].ToString());
                     if (punchIn.Day == punchIn1.Day && punchIn.Month == punchIn1.Month && punchIn.Year == punchIn1.Year)
                     {
@@ -225,7 +225,7 @@ public class CommonFunction
             }
             if (rowTotal == i)
             {
-                dt.Rows[i][7] = total.ToString();
+                dt.Rows[i][5] = total.ToString();
             }
         }
         GridView1.DataSource = dt;
@@ -440,7 +440,7 @@ public class CommonFunction
                     txtNote.Height = 100;
                     DropDownList ddlNotePoint = new DropDownList();
                     ddlNotePoint.ID = "ddlNotePoint" + countTxtNote;
-                    ddlNotePoint.Width = 200;
+                    //ddlNotePoint.Width = 200;
                     for (int k = 0; k < 11; k++)
                     {
                         ddlNotePoint.Items.Add(k.ToString());
@@ -448,7 +448,7 @@ public class CommonFunction
                     Label lblNotePoint = new Label();
                     lblNotePoint.ID = "lblNotePoint" + countTxtNote;
                     lblNotePoint.Text = "Points for this question";
-                    lblNotePoint.Width = 150;
+                    lblNotePoint.Width = 200;
                     DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
                             + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
                             + question.Rows[i][0].ToString() + "'");
@@ -461,9 +461,12 @@ public class CommonFunction
                     pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
                     pnlGenerate.Controls.Add(txtNote);
                     pnlGenerate.Controls.Add(new LiteralControl("<br>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<br>"));
                     pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
                     pnlGenerate.Controls.Add(lblNotePoint);
+                    pnlGenerate.Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                     pnlGenerate.Controls.Add(ddlNotePoint);
+                    pnlGenerate.Controls.Add(new LiteralControl("</div>"));
                     if (isEdit == "true")
                     {
                         ddlNotePoint.SelectedValue = evaluatePoint.Rows[0][3].ToString();

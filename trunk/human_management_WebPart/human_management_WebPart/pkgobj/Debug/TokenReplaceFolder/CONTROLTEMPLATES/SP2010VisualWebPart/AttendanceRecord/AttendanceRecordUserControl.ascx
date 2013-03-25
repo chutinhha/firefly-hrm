@@ -22,10 +22,10 @@
         });
     });
 </script>
-<asp:Panel ID="Panel1" runat="server" 
+<br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnView" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">View Attendance Records</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">View Attendance Records</font></td></tr></table>
     <br />
 
     
@@ -58,20 +58,19 @@
     <span style="padding-left:160px;"></span><asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
     <div class="borderTop">
     <span style="padding-left:155px;"></span><asp:Button ID="btnView" runat="server" Text="View" Width="80px" 
-        onclick="btnView_Click" />
+        onclick="btnView_Click" class="addButton" />
     </div>
     
 
 </td></tr></table></asp:Panel>
-<br><br>
-<br /><asp:Panel ID="pnlData" runat="server" Visible="False">
+<br><asp:Panel ID="pnlData" runat="server" Visible="False">
 <table class="fieldTitleDiv"><tr><td>
 	<div class="borderBottom">
-<asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+<asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" Width="80px" 
     onclick="btnAdd_Click" />
-<asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+<asp:Button ID="btnEdit" class="addButton" runat="server" Text="Edit" Width="80px" 
     onclick="btnEdit_Click" />
-<asp:Button ID="btnDelete" runat="server" onclick="btnDelete_Click" Text="Delete" 
+<asp:Button ID="btnDelete" class="deleteButton" runat="server" onclick="btnDelete_Click" Text="Delete" 
     Width="80px" OnClientClick="return confirm('Are you sure you want to delete ?')" />
     </div>
 <br />
@@ -80,15 +79,15 @@
             <asp:TemplateField>
                 <HeaderStyle Width="25" />
                 <HeaderTemplate>
-                    <asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="true" 
+                    &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="true" 
                         OnCheckedChanged="CheckUncheckAll" />
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:CheckBox ID="myCheckBox" runat="server" />
+                    &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
     </td></tr></table></asp:Panel>
     <br />
     <br />

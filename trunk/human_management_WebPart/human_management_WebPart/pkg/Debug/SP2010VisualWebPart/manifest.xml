@@ -29,6 +29,7 @@
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Salary.SalarySummary" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.User.UserList" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Attendance.AttendanceSummary" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.NotifyEmployee" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>
@@ -59,6 +60,7 @@
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Salary\SalarySummary\SalarySummaryUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.User\UserList\UserListUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin\NotifyEmployee\NotifyEmployeeUserControl.ascx" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="human_management_WebPart_Feature1\Feature.xml" />

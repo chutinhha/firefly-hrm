@@ -142,6 +142,14 @@
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx.designer.cs">
       <DependentUpon>AddJobtitleUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployee.cs" />
+    <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.cs">
+      <DependentUpon>NotifyEmployeeUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.designer.cs">
+      <DependentUpon>NotifyEmployeeUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Salary\SalarySummary\SalarySummary.cs" />
     <Compile Include="Admin\Salary\SalarySummary\SalarySummaryUserControl.ascx.cs">
       <DependentUpon>SalarySummaryUserControl.ascx</DependentUpon>
@@ -315,6 +323,10 @@
     <None Include="Admin\Job Title\AddJobtitle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ef23c689-5313-4f4e-b7ce-2611ac5dbfe6}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Common\NotifyEmployee\NotifyEmployee.webpart" />
+    <None Include="Admin\Common\NotifyEmployee\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2d66c28d-0e63-4da4-aa2e-11f28325f725}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Salary\SalarySummary\SalarySummary.webpart" />
     <None Include="Admin\Salary\SalarySummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5c0a6bf8-f4c5-474f-aa69-c227a91c9d66}</SharePointProjectItemId>
@@ -436,6 +448,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Job Title\AddJobtitle\Elements.xml" />
+    <Content Include="Admin\Common\NotifyEmployee\Elements.xml" />
+    <Content Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Salary\SalarySummary\Elements.xml" />
     <Content Include="Admin\Salary\SalarySummary\SalarySummaryUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

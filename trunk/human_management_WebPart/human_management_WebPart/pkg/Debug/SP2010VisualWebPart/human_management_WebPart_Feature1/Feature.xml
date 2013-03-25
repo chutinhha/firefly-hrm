@@ -53,5 +53,7 @@
     <ElementFile Location="UserList\UserList.webpart" />
     <ElementManifest Location="AttendanceSummary\Elements.xml" />
     <ElementFile Location="AttendanceSummary\AttendanceSummary.webpart" />
+    <ElementManifest Location="NotifyEmployee\Elements.xml" />
+    <ElementFile Location="NotifyEmployee\NotifyEmployee.webpart" />
   </ElementManifests>
 </Feature>
