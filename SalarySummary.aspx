@@ -1,5 +1,6 @@
 ﻿<%@ Register tagprefix="SalarySummary" namespace="SP2010VisualWebPart.Admin.Salary.SalarySummary" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="NotifyEmployee" namespace="SP2010VisualWebPart.Admin.NotifyEmployee" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
 <%-- _LocalBinding --%>
 <%@ Page language="C#" MasterPageFile="../_catalogs/masterpage/212ob.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
@@ -56,6 +57,10 @@
 &lt;span id=&quot;FullPage_g_f52e8f17_c211_4baa_95b8_6c47487a2da0_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 
 
+&lt;span id=&quot;FullPage_g_f52e8f17_c211_4baa_95b8_6c47487a2da0_ctl00_lblSuccess&quot; style=&quot;color:Green;&quot;&gt;&lt;/span&gt;
+
+
+
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -81,32 +86,36 @@
                                         <li><a href="">Organization</a>
                                             <ul>
                                                 <li><a href="">General 
+												
 												Information</a></li>
                                                 <li><a href="">Location</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="">Job</a>
+                                        <li><a href="JobCategories.aspx">Job</a>
                                             <ul>
                                                 <li><a href="JobCategories.aspx">
 												Job Categories</a></li>
                                                 <li><a href="JobTitles.aspx">
 												Position</a></li>
-                                                <li><a href="SalarySummary.aspx">Salary Summary</a></li>
+                                                <li><a href="SalarySummary.aspx">
+												Salary Summary</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">
+												Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="">Users</a>
+                                        <li><a href="ManageUser.aspx">Users</a>
                                             <ul>
-                                                <li><a href="ManageUser.aspx">Manage Users</a></li>
+                                                <li><a href="ManageUser.aspx">
+												Manage Users</a></li>
                                                 <li><a href="">Assign User To 
+												
 												Project</a></li>
-                                                <li><a href="">Notice Workflow</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -118,8 +127,10 @@
 										<li><a href="">Timesheets</a>
 											<ul>
 												<li><a href="">Employee 
+												
 												Timesheets</a>
 												<li><a href="">Timesheets Report</a></li>
+												<li><a href="">Timesheets Summary</a></li>
 											</ul>
 										</li>
 										<li><a href="">Configure Leave</a>
@@ -135,14 +146,14 @@
 											<ul>
 												<li><a href="AttendanceRecord.aspx">
 												Employee Records</a></li>
-												<li><a href="">Attendance 
-												Summary</a></li>
+												<li><a href="AttendanceSummary.aspx">
+												Attendance Summary</a></li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								<li class="menuNav"><a class="qmparent" href="Candidates.aspx" style="padding-left:8px; padding-right:8px;">
 								RECRUITMENT</a>
 									<ul>
 										<li><a href="Candidates.aspx">Candidates</a></li>
@@ -150,15 +161,16 @@
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								<li class="menuNav"><a class="qmparent" href="EvaluateEmployee.aspx"" style="padding-left:8px; padding-right:8px;">
 								CHECKPOINT</a>
 									<ul>
-										<li><a href="">Timesheets Summary</a></li>
-										<li><a href="">Attendace Summary</a></li>
-										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+										<li><a href="QuestionList.aspx">Evaluate 
+										Employees</a>
 											<ul>
-												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
-												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+												<li><a href="QuestionList.aspx">
+												Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">
+												Evaluate An Employee</a></li>
 											</ul>
 										</li>
 									</ul>
@@ -229,6 +241,24 @@
 
 <asp:Content id="Content2" runat="server" contentplaceholderid="PlaceHolderSearchArea">
 
+
+<NotifyEmployee:NotifyEmployee runat="server" Description="NotifyEmployee" Title="NotifyEmployee" __MarkupType="vsattributemarkup" __WebPartId="{d0d61d65-d9cf-4baf-bae4-199ddc61a28e}" WebPart="true" __designer:IsClosed="false" id="g_d0d61d65_d9cf_4baf_bae4_199ddc61a28e" __designer:Preview="&lt;div id=&quot;g_d0d61d65_d9cf_4baf_bae4_199ddc61a28e&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{d0d61d65-d9cf-4baf-bae4-199ddc61a28e}&quot; WebPart=&quot;true&quot;&gt;
+	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
+
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+	var statusID;
+	function showNotif() {
+	    var value = &quot;&quot;.split(&quot;;&quot;);
+        for(i=0;i&lt;value.length;i++){
+	        if (value[i] != &quot;&quot;) {
+	            SP.UI.Notify.addNotification(value[i], true);
+	        }
+        }
+	}
+&lt;/script&gt;
+&lt;span id=&quot;g_d0d61d65_d9cf_4baf_bae4_199ddc61a28e_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
+
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_d0d61d65_d9cf_4baf_bae4_199ddc61a28e' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{2868f2c7-7e2a-4078-a7ac-c836d06dee6a}" WebPart="true" __designer:IsClosed="false" id="g_2868f2c7_7e2a_4078_a7ac_c836d06dee6a" __designer:Preview="&lt;div id=&quot;g_2868f2c7_7e2a_4078_a7ac_c836d06dee6a&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{2868f2c7-7e2a-4078-a7ac-c836d06dee6a}&quot; WebPart=&quot;true&quot;&gt;
 	

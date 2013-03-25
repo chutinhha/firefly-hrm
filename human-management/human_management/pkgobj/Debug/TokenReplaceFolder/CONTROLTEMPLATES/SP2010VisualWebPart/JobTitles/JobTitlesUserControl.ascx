@@ -6,15 +6,15 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobTitlesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.JobTitles.JobTitlesUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<br><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Job Titles</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Job Titles</font></td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+    <span style="padding-left:5px;"></span><asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" Width="80px" 
         onclick="btnAdd_Click" />
-    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+    <asp:Button ID="btnEdit" runat="server" Text="Edit" class="addButton" Width="80px" 
         onclick="btnEdit_Click" />
-    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
+    <asp:Button ID="btnDelete" runat="server" Text="Delete" class="deleteButton" Width="80px" 
         onclick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
     <br />
     <br />

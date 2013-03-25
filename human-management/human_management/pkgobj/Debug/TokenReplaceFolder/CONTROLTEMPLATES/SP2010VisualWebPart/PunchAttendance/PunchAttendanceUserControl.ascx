@@ -18,10 +18,10 @@
         });
     });
 </script>
-<asp:Panel ID="Panel1" runat="server" 
+<br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnInOut" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd"><asp:Label ID="Label1" runat="server" Text="Punch In"></asp:Label></td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white"><asp:Label ID="Label1" runat="server" Text="Punch In"></asp:Label></font></td></tr></table>
 <p>
     <span style="padding-left:5px;"></span><asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
     <asp:TextBox ID="txtEmployeeName" runat="server" ReadOnly="True" Width="200px" 
@@ -44,7 +44,7 @@
 <p>
     <span style="padding-left:160px;"></span>
     <asp:Button ID="btnInOut" 
-        runat="server" Text="In" Width="80px" onclick="btnInOut_Click" />
+        runat="server" Text="In" Width="80px" class="addButton" onclick="btnInOut_Click" />
 </p>
 </td></tr></table></asp:Panel><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

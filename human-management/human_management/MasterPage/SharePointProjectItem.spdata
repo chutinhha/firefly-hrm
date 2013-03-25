@@ -3,5 +3,7 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="MasterPage\" Type="ElementManifest" />
     <ProjectItemFile Source="212ob.master" Target="MasterPage\" Type="ElementFile" />
+    <ProjectItemFile Source="Admin.master" Target="MasterPage\" Type="ElementFile" />
+    <ProjectItemFile Source="Member.master" Target="MasterPage\" Type="ElementFile" />
   </Files>
 </ProjectItem>

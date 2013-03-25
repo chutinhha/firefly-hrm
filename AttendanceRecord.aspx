@@ -1,8 +1,9 @@
-﻿<%@ Register tagprefix="AttendanceRecord" namespace="SP2010VisualWebPart.AttendanceRecord" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="AttendanceRecord" namespace="SP2010VisualWebPart.AttendanceRecord" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="NotifyEmployee" namespace="SP2010VisualWebPart.Admin.NotifyEmployee" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
 <%-- _LocalBinding --%>
-<%@ Page language="C#" MasterPageFile="~masterurl/default.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
+<%@ Page language="C#" MasterPageFile="../_catalogs/masterpage/212ob.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
 <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 		<table cellpadding="4" cellspacing="0" border="0" width="100%">
@@ -115,33 +116,36 @@
                                         <li><a href="">Organization</a>
                                             <ul>
                                                 <li><a href="">General 
+												
 												Information</a></li>
                                                 <li><a href="">Location</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="">Job</a>
+                                        <li><a href="JobCategories.aspx">Job</a>
                                             <ul>
                                                 <li><a href="JobCategories.aspx">
 												Job Categories</a></li>
                                                 <li><a href="JobTitles.aspx">
 												Position</a></li>
-                                                <li><a href="">Pay Grades</a></li>
+                                                <li><a href="SalarySummary.aspx">
+												Salary Summary</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="">Employees</a>
                                             <ul>
-                                                <li><a href="ImportEmployee.aspx">Import From CSV</a></li>
+                                                <li><a href="ImportEmployee.aspx">
+												Import From CSV</a></li>
                                                 <li><a href="">Employees List</a></li>
                                                 <li><a href="">Add Employee</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="">Users</a>
+                                        <li><a href="ManageUser.aspx">Users</a>
                                             <ul>
-                                                <li><a href="">Users List</a></li>
-                                                <li><a href="">Create User</a></li>
+                                                <li><a href="ManageUser.aspx">
+												Manage Users</a></li>
                                                 <li><a href="">Assign User To 
+												
 												Project</a></li>
-                                                <li><a href="">Notice Workflow</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -153,8 +157,10 @@
 										<li><a href="">Timesheets</a>
 											<ul>
 												<li><a href="">Employee 
+												
 												Timesheets</a>
 												<li><a href="">Timesheets Report</a></li>
+												<li><a href="">Timesheets Summary</a></li>
 											</ul>
 										</li>
 										<li><a href="">Configure Leave</a>
@@ -170,14 +176,14 @@
 											<ul>
 												<li><a href="AttendanceRecord.aspx">
 												Employee Records</a></li>
-												<li><a href="">Attendance 
-												Summary</a></li>
+												<li><a href="AttendanceSummary.aspx">
+												Attendance Summary</a></li>
 											</ul>
 										</li>
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								<li class="menuNav"><a class="qmparent" href="Candidates.aspx" style="padding-left:8px; padding-right:8px;">
 								RECRUITMENT</a>
 									<ul>
 										<li><a href="Candidates.aspx">Candidates</a></li>
@@ -185,15 +191,16 @@
 									</ul>
 								</li>
 								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="" style="padding-left:8px; padding-right:8px;">
+								<li class="menuNav"><a class="qmparent" href="EvaluateEmployee.aspx"" style="padding-left:8px; padding-right:8px;">
 								CHECKPOINT</a>
 									<ul>
-										<li><a href="">Timesheets Summary</a></li>
-										<li><a href="">Attendace Summary</a></li>
-										<li><a href="QuestionList.aspx">Evaluate Employees</a>
+										<li><a href="QuestionList.aspx">Evaluate 
+										Employees</a>
 											<ul>
-												<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
-												<li><a href="EvaluateEmployee.aspx">Evaluate An Employee</a></li>
+												<li><a href="QuestionList.aspx">
+												Checkpoint Question List</a></li>
+												<li><a href="EvaluateEmployee.aspx">
+												Evaluate An Employee</a></li>
 											</ul>
 										</li>
 									</ul>
@@ -263,6 +270,23 @@
 
 <asp:Content id="Content2" runat="server" contentplaceholderid="PlaceHolderSearchArea">
 
+<NotifyEmployee:NotifyEmployee runat="server" Description="NotifyEmployee" Title="NotifyEmployee" __MarkupType="vsattributemarkup" __WebPartId="{d0968965-7be5-4c72-8786-af5d355a1164}" WebPart="true" __designer:IsClosed="false" id="g_d0968965_7be5_4c72_8786_af5d355a1164" __designer:Preview="&lt;div id=&quot;g_d0968965_7be5_4c72_8786_af5d355a1164&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{d0968965-7be5-4c72-8786-af5d355a1164}&quot; WebPart=&quot;true&quot;&gt;
+	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
+
+&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
+	var statusID;
+	function showNotif() {
+	    var value = &quot;&quot;.split(&quot;;&quot;);
+        for(i=0;i&lt;value.length;i++){
+	        if (value[i] != &quot;&quot;) {
+	            SP.UI.Notify.addNotification(value[i], true);
+	        }
+        }
+	}
+&lt;/script&gt;
+&lt;span id=&quot;g_d0968965_7be5_4c72_8786_af5d355a1164_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
+
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_d0968965_7be5_4c72_8786_af5d355a1164' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{bbf784eb-7103-4089-9a62-705e69909468}" WebPart="true" __designer:IsClosed="false" id="g_bbf784eb_7103_4089_9a62_705e69909468" __designer:Preview="&lt;div id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{bbf784eb-7103-4089-9a62-705e69909468}&quot; WebPart=&quot;true&quot;&gt;
 	
 &amp;nbsp;&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
@@ -272,7 +296,7 @@
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_bbf784eb_7103_4089_9a62_705e69909468' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_bbf784eb_7103_4089_9a62_705e69909468' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 						
 </asp:Content>
