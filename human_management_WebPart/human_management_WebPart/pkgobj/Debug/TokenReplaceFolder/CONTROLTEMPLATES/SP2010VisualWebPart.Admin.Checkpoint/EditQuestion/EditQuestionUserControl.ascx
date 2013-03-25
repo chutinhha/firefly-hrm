@@ -6,9 +6,9 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditQuestionUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Admin.Checkpoint.EditQuestion.EditQuestionUserControl" %>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<br><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Edit Checkpoint Question</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Edit Checkpoint Question</font></td></tr></table>
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblQuestion" runat="server" Text="Question" Width="150px"></asp:Label>
 <br />
@@ -26,7 +26,7 @@
     Text="Write note" Width="100px" 
     oncheckedchanged="rdoNote_CheckedChanged" />
 <asp:RadioButton ID="rdoLevel" runat="server" GroupName="rdoGroup" 
-    Text="Choose level" Width="100px" 
+    Text="Choose level" 
     oncheckedchanged="rdoLevel_CheckedChanged" />
 <p>
     &nbsp;</p>
@@ -54,8 +54,8 @@
 </asp:Panel>
 <div class="borderTop">
     <span style="padding-left:155px;"></span><asp:Button ID="btnSave" 
-        runat="server" Text="Save" Width="80px" onclick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')"/>
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnCancel_Click"/>
+        runat="server" Text="Save" Width="80px" onclick="btnSave_Click" class="addButton" OnClientClick="return confirm('Are you sure you want to save ?')"/>
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="resetButton" Width="80px" OnClick="btnCancel_Click"/>
     </div>
 </td></tr></table>
 <p>

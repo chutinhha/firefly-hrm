@@ -18,6 +18,9 @@
     internal const string TablePerson = "HumanResources.Person";
     internal const string TableCheckpointQuestion = "HumanResources.CheckpointQuestion";
     internal const string TableEvaluatePoint = "HumanResources.EvaluatePoint";
+    internal const string TablePersonProject = "HumanResources.PersonProject";
+    internal const string TableTask = "HumanResources.Task";
+    internal const string TableProject = "HumanResources.Project";
 
     //database column
     internal const string PunchInColumn = "PunchIn";
@@ -80,6 +83,13 @@
     internal const string PointColumn = "Point";
     internal const string AveragePointColumn = "AveragePoint";
     internal const string TotalPointColumn = "TotalPoint";
+    internal const string TaskIdColumn = "TaskId";
+    internal const string ProjectIDColumn = "ProjectID";
+    internal const string ProjectNameColumn = "ProjectName";
+    internal const string PersonNameColumn = "Name";
+    internal const string TaskNameColumn = "TaskName";
+    internal const string PersonProjectStartDateColumn = "StartDate";
+    internal const string PersonProjectEndDateColumn = "EndDate";
 
     //Page
     internal const string HomePage = "Home.aspx";
@@ -153,13 +163,5 @@
     internal const string NotEnterAllLevel = "You must enter all level";
     internal const string NotAnswerAll = "You must answer all question";
     internal const string NotExistData = "There is no data that match your request";
-    internal const string ProjectNameColumn = "ProjectName";
-    internal const string TableProject = "HumanResources.Project";
-    internal const string PersonNameColumn = "Name";
-    internal const string TaskNameColumn = "TaskName";
-    internal const string TableTask = "HumanResources.Task";
-    internal const string TablePersonProject = "HumanResource.PersonProject";
-    internal const string PersonProjectStartDateColumn = "StartDate";
-    internal const string PersonProjectEndDateColumn = "EndDate";
     internal const string ToDateAfterFrom = "From date must be earlier than To date";
 }

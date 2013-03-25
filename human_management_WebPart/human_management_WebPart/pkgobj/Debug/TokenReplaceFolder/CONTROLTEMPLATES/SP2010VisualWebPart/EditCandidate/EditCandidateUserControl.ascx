@@ -18,10 +18,10 @@
         });
     });
 </script>
-<asp:Panel ID="Panel1" runat="server" 
+<br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnSave" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Edit Candidate</td></tr></table><br>
+<tr><td class="fieldTitleTd"><font color="white">Edit Candidate</font></td></tr></table><br>
 <span style="padding-left:5px;"></span><asp:Label ID="lblFullName" runat="server" Text="Full Name(*)" Width="120px"></asp:Label>
 <asp:TextBox ID="txtFullName" runat="server" Width="200px"></asp:TextBox>
 <span style="padding-left:100px;"></span><asp:Label ID="lblAddress" runat="server" 
@@ -39,83 +39,106 @@
 </p>
 <p>
     &nbsp;</p>
-<p>
+
     <span style="padding-left:5px;"></span><asp:Label ID="lblZipCode" runat="server" Text="Zip Code" Width="120px"></asp:Label>
     <asp:TextBox ID="txtZipCode" runat="server" Width="200px"></asp:TextBox>
     <span style="padding-left:100px;"></span><asp:Label ID="lblCountry" runat="server" Text="Country" Width="120px"></asp:Label>
-    <asp:DropDownList ID="ddlCountry" runat="server" 
-        onselectedindexchanged="ddlCountry_SelectedIndexChanged" Width="205px">
-    </asp:DropDownList>
-</p>
-<p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblHomePhone" runat="server" Text="Home Phone" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtHomePhone" runat="server" Width="200px"></asp:TextBox>
-    <span style="padding-left:100px;"></span><asp:Label ID="lblMobile" runat="server" 
-        Text="Mobile" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtMobile" runat="server" Width="200px"></asp:TextBox>
-</p>
-<p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblWorkPhone" runat="server" Text="Work Phone" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtWorkPhone" runat="server" Width="200px"></asp:TextBox>
-    <span style="padding-left:100px;"></span>
-    <asp:Label ID="lblEmail" runat="server" 
-        Text="Email(*)" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtEmail" runat="server" Width="200px"></asp:TextBox>
-</p>
-<p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblVacancy" runat="server" Text="Job Vacancy" Width="120px"></asp:Label>
-    <asp:DropDownList ID="ddlVacancy" runat="server" Width="205px">
-    </asp:DropDownList>
-    <span style="padding-left:100px;"></span><asp:Label ID="lblKeyword" runat="server" Text="Keywords" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtKeyword" runat="server" Width="200px"></asp:TextBox>
-</p>
-<p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="120px"></asp:Label>
-    <asp:DropDownList ID="ddlJobTitle" runat="server" Width="205px">
-    </asp:DropDownList>
-    <span style="padding-left:100px;"></span><asp:Label ID="lblHiringManager" runat="server" Text="Hiring Manager" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtHiringManager" runat="server" Width="200px"></asp:TextBox>
-</p>
-<p>
-    &nbsp;</p>
-<p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblStatus" runat="server" Text="Status" Width="120px"></asp:Label>
-    <asp:DropDownList ID="ddlStatus" runat="server" Width="205px">
-    </asp:DropDownList>
-    <span style="padding-left:100px;"></span><asp:Label ID="lblApplyMethod" runat="server" 
-        Text="Apply Method" Width="120px"></asp:Label>
-    <asp:DropDownList ID="ddlApplyMethod" runat="server" Width="205px">
-        <asp:ListItem Selected="True">Online</asp:ListItem>
-        <asp:ListItem>Manual</asp:ListItem>
-    </asp:DropDownList>
-</p>
-<p>
-    &nbsp;</p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblApplyDate" runat="server" Text="Apply Date" Width="120px"></asp:Label>
-    <asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" id="txtDate" name="txtDate" size="30" value="<%= this.inputValue %>"/></asp:Panel>
+    <div class="styled-selectLong">
+        <asp:DropDownList ID="ddlCountry" runat="server" 
+        onselectedindexchanged="ddlCountry_SelectedIndexChanged">
+    </asp:DropDownList></div>
+    <p>
+        &nbsp;</p>
+    <p>
+        <span style="padding-left:5px;"></span>
+        <asp:Label ID="lblHomePhone" runat="server" Text="Home Phone" Width="120px"></asp:Label>
+        <asp:TextBox ID="txtHomePhone" runat="server" Width="200px"></asp:TextBox>
+        <span style="padding-left:100px;"></span>
+        <asp:Label ID="lblMobile" runat="server" Text="Mobile" Width="120px"></asp:Label>
+        <asp:TextBox ID="txtMobile" runat="server" Width="200px"></asp:TextBox>
+    </p>
+    <p>
+        &nbsp;</p>
+    <p>
+        <span style="padding-left:5px;"></span>
+        <asp:Label ID="lblWorkPhone" runat="server" Text="Work Phone" Width="120px"></asp:Label>
+        <asp:TextBox ID="txtWorkPhone" runat="server" Width="200px"></asp:TextBox>
+        <span style="padding-left:100px;"></span>
+        <asp:Label ID="lblEmail" runat="server" Text="Email(*)" Width="120px"></asp:Label>
+        <asp:TextBox ID="txtEmail" runat="server" Width="200px"></asp:TextBox>
+    </p>
+    <p>
+        &nbsp;</p>
 
-<p>
-    &nbsp;</p><p>
-<span style="padding-left:5px;"></span><asp:Label ID="lblComment" runat="server" Text="Comment" Width="120px" valign="top"></asp:Label>
-</p>
-<span style="padding-left:130px;"></span><asp:TextBox ID="txtComment" runat="server" Height="100px" Width="630px" 
-    TextMode="MultiLine"  ></asp:TextBox><br><br>
+        <span style="padding-left:5px;"></span>
+        <asp:Label ID="lblVacancy" runat="server" Text="Job Vacancy" Width="120px"></asp:Label>
+        <div class="styled-selectLong">
+            <asp:DropDownList ID="ddlVacancy" runat="server">
+            </asp:DropDownList>
+        </div>
+        <span style="padding-left:100px;"></span>
+        <asp:Label ID="lblKeyword" runat="server" Text="Keywords" Width="120px"></asp:Label>
+        <asp:TextBox ID="txtKeyword" runat="server" Width="200px"></asp:TextBox>
+ 
+        <p>
+            &nbsp;</p>
+            <span style="padding-left:5px;"></span>
+            <asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="120px"></asp:Label>
+            <div class="styled-selectLong">
+                <asp:DropDownList ID="ddlJobTitle" runat="server">
+                </asp:DropDownList>
+            </div>
+            <span style="padding-left:100px;"></span>
+            <asp:Label ID="lblHiringManager" runat="server" Text="Hiring Manager" 
+                Width="120px"></asp:Label>
+            <asp:TextBox ID="txtHiringManager" runat="server" Width="200px"></asp:TextBox>
+    
+            <p>
+                &nbsp;</p>
+                <span style="padding-left:5px;"></span>
+                <asp:Label ID="lblStatus" runat="server" Text="Status" Width="120px"></asp:Label>
+                <div class="styled-selectLong">
+                    <asp:DropDownList ID="ddlStatus" runat="server">
+                    </asp:DropDownList>
+                </div>
+                <span style="padding-left:100px;"></span>
+                <asp:Label ID="lblApplyMethod" runat="server" Text="Apply Method" Width="120px"></asp:Label>
+                <div class="styled-selectLong">
+                    <asp:DropDownList ID="ddlApplyMethod" runat="server">
+                        <asp:ListItem Selected="True">Online</asp:ListItem>
+                        <asp:ListItem>Manual</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+     
+                <p>
+                    &nbsp;</p>
+                <span style="padding-left:5px;"></span>
+                <asp:Label ID="lblApplyDate" runat="server" Text="Apply Date" Width="120px"></asp:Label>
+                <asp:Panel ID="pnlDate" runat="server" style="display:inline;">
+                    <input type="text" id="txtDate" name="txtDate" size="30" value="<%= this.inputValue %>"/>
+                </asp:Panel>
+                <p>
+                    &nbsp;</p>
+                <p>
+                    <span style="padding-left:5px;"></span>
+                    <asp:Label ID="lblComment" runat="server" Text="Comment" valign="top" 
+                        Width="120px"></asp:Label>
+                </p>
+                <span style="padding-left:130px;"></span>
+                <asp:TextBox ID="txtComment" runat="server" Height="100px" TextMode="MultiLine" 
+                    Width="650px"></asp:TextBox>
+                <br>
+                <br>
+                <div class="borderTop">
+                    <span style="padding-left:125px;"></span>
+                    <asp:Button ID="btnSave" runat="server" class="addButton" 
+                        onclick="btnSave_Click" 
+                        OnClientClick="return confirm('Are you sure you want to save ?')" Text="Save" 
+                        Width="80px" />
+                    <asp:Button ID="btnCancel" runat="server" class="resetButton" 
+                        onclick="btnCancel_Click" Text="Cancel" Width="80px" />
+                </div>
 
-
-
-    <div class="borderTop">
-    <span style="padding-left:125px;"></span><asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" 
-        onclick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
-        onclick="btnCancel_Click" /></div>
 </td></tr></table></asp:Panel>
 <br>
 <p>
