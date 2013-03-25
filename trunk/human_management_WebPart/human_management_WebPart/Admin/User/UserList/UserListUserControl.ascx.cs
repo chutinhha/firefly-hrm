@@ -68,12 +68,14 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                             grdData.Rows[i].Cells[2].Controls.Add(txtUser);
                             DropDownList ddlRank = new DropDownList();
                             ddlRank.ID = "ddlRank" + i;
-                            ddlRank.Width = 200;
+                            //ddlRank.Width = 200;
                             ddlRank.Items.Add("Admin");
                             ddlRank.Items.Add("User");
                             ddlRank.AutoPostBack=true;
                             ddlRank.SelectedValue = dt.Rows[i][3].ToString();
+                            grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                             grdData.Rows[i].Cells[3].Controls.Add(ddlRank);
+                            grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("</div>"));
                         }
                         _com.setGridViewStyle(grdData);
                         ddlType.AutoPostBack = true;
@@ -144,12 +146,14 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 grdData.Rows[i].Cells[2].Controls.Add(txtUser);
                 DropDownList ddlRank = new DropDownList();
                 ddlRank.ID = "ddlRank" + i;
-                ddlRank.Width = 200;
+                //ddlRank.Width = 200;
                 ddlRank.Items.Add("Admin");
                 ddlRank.Items.Add("User");
                 ddlRank.AutoPostBack = true;
                 ddlRank.SelectedValue = dt.Rows[i][3].ToString();
+                grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                 grdData.Rows[i].Cells[3].Controls.Add(ddlRank);
+                grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("</div>"));
             }
         }
 
@@ -248,12 +252,14 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 grdData.Rows[i].Cells[2].Controls.Add(txtUser);
                 DropDownList ddlRank = new DropDownList();
                 ddlRank.ID = "ddlRank" + i;
-                ddlRank.Width = 200;
+                //ddlRank.Width = 200;
                 ddlRank.Items.Add("Admin");
                 ddlRank.Items.Add("User");
                 ddlRank.AutoPostBack = true;
                 ddlRank.SelectedValue = dt.Rows[i][3].ToString();
+                grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                 grdData.Rows[i].Cells[3].Controls.Add(ddlRank);
+                grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("</div>"));
             }
         }
     }

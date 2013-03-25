@@ -18,7 +18,7 @@
 </p>
 <span style="padding-left:128px;"></span>
 <asp:Button ID="btnLogin" runat="server" 
-    Text="Login" onclick="btnLogin_Click1" Width="80px" />
+    Text="Login" onclick="btnLogin_Click1" Width="80px" class="addButton" />
     </asp:Panel>
     <br><br>
 <p>

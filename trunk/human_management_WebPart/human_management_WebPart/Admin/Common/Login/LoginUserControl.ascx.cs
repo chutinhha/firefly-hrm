@@ -15,6 +15,7 @@ namespace SP2010VisualWebPart.Login
         {
             Session.Remove("Account");
             Session.Remove("AcountName");
+            Session.Remove("AccountID");
         }
         
         protected void btnLogin_Click1(object sender, EventArgs e)
@@ -44,6 +45,7 @@ namespace SP2010VisualWebPart.Login
                                 DataTable dt2 = _com.getData(Message.TablePerson, "*", " where " + Message.BusinessEntityIDColumn
                                     +"='" + dt.Rows[0][0].ToString() + "'");
                                 _com.closeConnection();
+                                Session["AccountID"] = dt1.Rows[0][0].ToString();
                                 Session["Account"] = dt2.Rows[0][1].ToString().Trim();
                                 Session["AccountName"] = txtUser.Text.Trim();
                                 Response.Redirect(dt2.Rows[0][1].ToString().Trim() + ".aspx");

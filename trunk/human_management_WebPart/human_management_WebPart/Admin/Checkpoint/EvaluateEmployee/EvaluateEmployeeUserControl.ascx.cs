@@ -67,9 +67,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
             else {
                 try
                 {
-                    _com.bindData(Message.BusinessEntityIDColumn+",("+Message.FirstNameColumn+" + ' ' + "+Message.MiddleNameColumn
-                        +" + ' ' + "+Message.LastNameColumn+") as Name", " where ("+Message.FirstNameColumn
-                        +" + ' ' + "+Message.MiddleNameColumn+" + ' ' + "+Message.LastNameColumn+") like N'%"
+                    _com.bindData(Message.BusinessEntityIDColumn+","+Message.NameColumn, " where "+Message.NameColumn+" like N'%"
                         + txtEmployeeName.Text.Trim() + "%'", Message.TablePerson, grdData);
                     if (grdData.Rows.Count > 0)
                     {

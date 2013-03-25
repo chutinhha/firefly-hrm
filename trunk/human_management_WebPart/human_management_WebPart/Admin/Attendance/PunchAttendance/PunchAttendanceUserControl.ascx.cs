@@ -77,7 +77,9 @@ namespace SP2010VisualWebPart.PunchAttendance
                             if (Session["In"] == null)
                             {
                                 //Only accept Punch In after last Punch Out in the same day
-                                DataTable data = _com.getData(Message.TableAttendance, "*", " where " + Message.EmployeeName + "=N'"
+                                DataTable data = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
+                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
                                     + Session["Name"].ToString() + "' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
                                     + "+CAST(MONTH("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                     +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "' and "+Message.PunchOutColumn
@@ -109,7 +111,10 @@ namespace SP2010VisualWebPart.PunchAttendance
                                         + Message.PunchInAfterTime;
                                 }
                                 else {
-                                    _com.insertIntoTable(Message.TableAttendance,"", "N'" + Session["Name"].ToString()
+                                    DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
+                                            + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
+                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "'");
+                                    _com.insertIntoTable(Message.TableAttendance,"", "N'" + getID.Rows[0][0].ToString()
                                             + "','" + Session["In"].ToString() + "',N'" + Session["NoteIn"].ToString()
                                             + "','" + Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim() + "'"
                                             + ",N'" + txtNote.Text.Trim() + "','"+DateTime.Now+"'",false);
