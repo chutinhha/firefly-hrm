@@ -6,14 +6,14 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditVacancyUserControl.ascx.cs" Inherits="SP2010VisualWebPart.EditVacancy.EditVacancyUserControl" %>
-<asp:Panel ID="Panel1" runat="server" 
+<br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnSave" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Edit Vancancy</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Edit Vancancy</font></td></tr></table>
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title(*)" Width="150px"></asp:Label>
-    <asp:DropDownList ID="ddlJobTitle" runat="server" Width="200px">
-    </asp:DropDownList>
+    <div class="styled-selectLong"><asp:DropDownList ID="ddlJobTitle" runat="server">
+    </asp:DropDownList></div>
     <br />
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblVacancy" runat="server" Text="Vacancy Name(*)" Width="150px"></asp:Label>
@@ -38,9 +38,9 @@
     <asp:CheckBox ID="chkActive" runat="server" Checked="True" />
     <br />
     <br /><div class="borderTop">
-    <span style="padding-left:155px;"></span><asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="Save" 
+    <span style="padding-left:155px;"></span><asp:Button ID="btnSave" class="addButton" runat="server" onclick="btnSave_Click" Text="Save" 
         Width="80px" OnClientClick="return confirm('Are you sure you want to save ?')" />
-    <asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" Text="Cancel" 
+    <asp:Button ID="btnCancel" runat="server" class="resetButton" onclick="btnCancel_Click" Text="Cancel" 
         Width="80px" /></div>
     
 </td></tr></table></asp:Panel>

@@ -8,52 +8,53 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobCategoriesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.JobCategories.JobCategoriesUserControl" %>
 <asp:Panel ID="Panel1" runat="server"  
     Visible="False" DefaultButton="btnSave">
-    <table class="fieldTitleDiv" cellpadding="0"><tr><td>
+    <br><table class="fieldTitleDiv" cellpadding="0"><tr><td>
     <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd"><asp:Label ID="lblTitle" runat="server" Text="Add Job Category"></asp:Label></td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white"><asp:Label ID="lblTitle" runat="server" Text="Add Job Category"></asp:Label></font></td></tr></table>
     <br><span style="padding-left:10px;"></span><asp:Label ID="lblName" runat="server" Text="Name(*)" 
         Width="150px"></asp:Label>
     <asp:TextBox ID="txtName" runat="server" Width="200px"></asp:TextBox>
     <br />
     <br />
     <div class="borderTop">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" 
+    <asp:Button ID="btnSave" class="addButton" runat="server" Text="Save" Width="80px" 
         onclick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
-        onclick="btnCancel_Click" /></div><br></td></tr></table>
+    <asp:Button ID="btnCancel" class="resetButton" runat="server" Text="Cancel" Width="80px" 
+        onclick="btnCancel_Click" /></div></td></tr></table>
 </asp:Panel><br>
 <table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Job Categories</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Job Categories</font></td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" 
+    <span style="padding-left:5px;"></span><asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" Width="80px" 
         onclick="btnAdd_Click" />
-    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" 
+    <asp:Button ID="btnEdit" class="addButton" runat="server" Text="Edit" Width="80px" 
         onclick="btnEdit_Click" />
-    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" 
+    <asp:Button ID="btnDelete" class="deleteButton" runat="server" Text="Delete" Width="80px" 
         onclick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
     <br />
     <br />
     <asp:GridView ID="grdData" runat="server" Width="100%">
-        <Columns >
+        <Columns>
 
                         <asp:TemplateField>
-                        <HeaderStyle Width="25" />
+                        <HeaderStyle Width="25"/>
                         <HeaderTemplate >
-            <asp:CheckBox 
+            &nbsp;<asp:CheckBox 
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
-                AutoPostBack="true" 
+                AutoPostBack="true"  
                 />
         </HeaderTemplate>
+        <ItemStyle/>
                             <ItemTemplate>
-                                <asp:CheckBox ID="myCheckBox" runat="server" />
+                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
 
                   </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
     </td></tr></table>
 <br><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

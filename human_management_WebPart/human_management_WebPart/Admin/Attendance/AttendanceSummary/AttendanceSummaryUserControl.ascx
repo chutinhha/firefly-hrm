@@ -22,9 +22,9 @@
         });
     });
 </script>
-<table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<br><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Attendance Total Summary Report</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Attendance Total Summary Report</font></td></tr></table>
     <br />
 <span style="padding-left:5px;"></span><asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" 
     Width="150px"></asp:Label>
@@ -32,8 +32,8 @@
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="150px"></asp:Label>
-<asp:DropDownList ID="ddlJobTitle" runat="server" Width="205px">
-</asp:DropDownList>
+<div class="styled-selectLong"><asp:DropDownList ID="ddlJobTitle" runat="server">
+</asp:DropDownList></div>
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblFrom" runat="server" Text="From" Width="150px"></asp:Label>
@@ -48,7 +48,7 @@
 <br />
 <div class="borderTop">
 
-<asp:Button ID="btnView" runat="server" Text="View" Width="80px" 
+<asp:Button ID="btnView" class="addButton" runat="server" Text="View" Width="80px" 
         onclick="btnView_Click" /></div>
 </td></tr></table>
 <p>
@@ -59,7 +59,7 @@
     <table class="fieldTitleDiv" cellpadding="0"><tr><td>
         
 <asp:GridView ID="grdData" runat="server" Width="100%">
-</asp:GridView>
+</asp:GridView><table><tr><td></td></tr></table>
 </td></tr></table></asp:Panel>
 <p>
     &nbsp;</p>

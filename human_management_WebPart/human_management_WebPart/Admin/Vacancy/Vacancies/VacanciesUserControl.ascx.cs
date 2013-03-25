@@ -32,10 +32,17 @@ namespace SP2010VisualWebPart.Vacancies
                             _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
                                 + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
                             _com.setGridViewStyle(grdData);
-                            grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                            grdData.HeaderRow.Cells[2].Text = "Job Title";
-                            grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                            grdData.HeaderRow.Cells[4].Text = "Status";
+                            if (grdData.Rows.Count > 0)
+                            {
+                                grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
+                                grdData.HeaderRow.Cells[2].Text = "Job Title";
+                                grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
+                                grdData.HeaderRow.Cells[4].Text = "Status";
+                            }
+                            else
+                            {
+                                lblError.Text = Message.NotExistData;
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -85,10 +92,17 @@ namespace SP2010VisualWebPart.Vacancies
                 }
                 _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
                             + "," + Message.StatusColumn + "",condition, Message.TableVacancy, grdData);
-                grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                grdData.HeaderRow.Cells[2].Text = "Job Title";
-                grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                grdData.HeaderRow.Cells[4].Text = "Status";
+                if (grdData.Rows.Count > 0)
+                {
+                    grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
+                    grdData.HeaderRow.Cells[2].Text = "Job Title";
+                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
+                    grdData.HeaderRow.Cells[4].Text = "Status";
+                }
+                else
+                {
+                    lblError.Text = Message.NotExistData;
+                }
             }
             catch (Exception ex)
             {
@@ -106,10 +120,17 @@ namespace SP2010VisualWebPart.Vacancies
                 txtHiringManager.Text = "";
                 _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
                             + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
-                grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                grdData.HeaderRow.Cells[2].Text = "Job Title";
-                grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                grdData.HeaderRow.Cells[4].Text = "Status";
+                if (grdData.Rows.Count > 0)
+                {
+                    grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
+                    grdData.HeaderRow.Cells[2].Text = "Job Title";
+                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
+                    grdData.HeaderRow.Cells[4].Text = "Status";
+                }
+                else
+                {
+                    lblError.Text = Message.NotExistData;
+                }
             }
             catch (Exception ex)
             {
@@ -172,10 +193,17 @@ namespace SP2010VisualWebPart.Vacancies
                 }
                 _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
                             + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
-                grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                grdData.HeaderRow.Cells[2].Text = "Job Title";
-                grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                grdData.HeaderRow.Cells[4].Text = "Status";
+                if (grdData.Rows.Count > 0)
+                {
+                    grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
+                    grdData.HeaderRow.Cells[2].Text = "Job Title";
+                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
+                    grdData.HeaderRow.Cells[4].Text = "Status";
+                }
+                else
+                {
+                    lblError.Text = Message.NotExistData;
+                }
             }
             catch (Exception ex)
             {
