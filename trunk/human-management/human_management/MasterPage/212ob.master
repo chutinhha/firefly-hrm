@@ -5,6 +5,7 @@
 <%@ Register TagPrefix="wssuc" TagName="Welcome" src="~/_controltemplates/Welcome.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="MUISelector" src="~/_controltemplates/MUISelector.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="DesignModeConsole" src="~/_controltemplates/DesignModeConsole.ascx" %>
+<SharePoint:CssRegistration ID="CssRegistration" name="/_layouts/STYLES/human_management/menuStyles.css" After="corev4.css" runat="server"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="<%$Resources:wss,language_value%>" dir="<%$Resources:wss,multipages_direction_dir_value%>" runat="server" xmlns:o="urn:schemas-microsoft-com:office:office" __expr-val-dir="ltr">
@@ -15,6 +16,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="Expires" content="0"/>
 	<SharePoint:RobotsMetaTag runat="server"/>
+    <SharePoint:CssRegistration ID="CssRegistration0" name="/_layouts/STYLES/human_management/menuStyles.css" After="corev4.css" runat="server"/>
 	<title id="onetidTitle"><asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"/></title>
 	<SharePoint:CssLink runat="server" Version="4"/>
 	<SharePoint:Theme runat="server"/>
@@ -34,8 +36,8 @@
 	<SharePoint:SPHelpPageComponent Visible="false" runat="server"/>
     <link href="/_layouts/STYLES/human_management/222ob.css" rel="stylesheet" type="text/css" />
     <link href="/_layouts/STYLES/human_management/QM_styles.css" rel="stylesheet" type="text/css" />
-    <link href="/_layouts/STYLES/human_management/menuStyles.css" rel="stylesheet" type="text/css" />
-    
+    <link href="/_layouts/STYLES/human_management/mainMenu.css" rel="stylesheet" type="text/css" />
+    <link href="/_layouts/STYLES/human_management/reset.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" language="javascript" src="/_layouts/Layouts/human_management/dropdown.js"></script>			
     <script type="text/javascript" language="javascript" src="/_layouts/Layouts/human_management/QM_script.js"></script>	
 </head>

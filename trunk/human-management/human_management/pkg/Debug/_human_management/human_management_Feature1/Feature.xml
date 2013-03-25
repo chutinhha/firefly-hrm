@@ -3,6 +3,8 @@
   <ElementManifests>
     <ElementManifest Location="MasterPage\Elements.xml" />
     <ElementFile Location="MasterPage\212ob.master" />
+    <ElementFile Location="MasterPage\Admin.master" />
+    <ElementFile Location="MasterPage\Member.master" />
     <ElementManifest Location="AttendanceRecord\Elements.xml" />
     <ElementFile Location="AttendanceRecord\AttendanceRecord.webpart" />
     <ElementManifest Location="EditAttendance\Elements.xml" />

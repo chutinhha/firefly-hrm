@@ -1,0 +1,391 @@
+p a,
+ul.redlinks li a {
+	padding:0;
+	background:none;
+	color:#cb0438;
+	text-decoration: underline;
+}
+
+	p a:hover,
+	ul.redlinks li a:hover {
+		color: #19655b;
+	}
+ul {
+	padding-bottom: 15px;
+}
+
+	ul li {
+		background: url(/_layouts/Images/21_2_ob/bullet.gif) no-repeat 0 6px;
+		padding-left: 20px;
+	}
+	
+		ul li a {
+			color: #454545;
+		}
+		
+		ul li a:hover {
+			color: #cb0438;
+		}
+		
+		ul ul {
+			padding-bottom: 0;
+		}
+
+
+
+#header {
+	height: 305px;
+}
+
+	#header h1 {
+		float: left;
+		position: relative;
+	}
+
+	#header h1,
+	#header h1 a {
+		width: 260px;
+		height: 77px;
+		display: block;
+	}
+	
+	#header h1 a {
+		background: url(/_layouts/Images/21_2_ob/rbh.png) no-repeat 0 0;
+		text-indent: -9999px;
+	}
+	
+	#header h2 {
+		clear: left;
+		height: 25px;
+		float: left;
+		padding: 10px;
+		background: url(/_layouts/Images/21_2_ob/h2_blue_trans.png) repeat 0 0;
+		position: relative;
+		margin-top: 30px;
+	}
+	
+		#header h2 span {
+			display: block;
+			height: 25px;
+			text-indent: -9999px;
+		}	
+	ul#nav {
+		float: left;
+		height: 30px;
+		padding: 0px;
+		margin: 0;
+		position: relative;
+		z-index: 1000;
+	}
+	
+		ul#nav li,
+		ul#nav li a {
+			display: block;
+			float: left;
+			line-height: 10px;
+		}
+		
+		ul#nav li {
+			background: url(/_layouts/Images/21_2_ob/nav_separator.png) no-repeat right 0;
+			padding-left: 0;
+			padding-right: 2px;
+			height: 30px;
+			position: relative;
+		}
+		
+		ul#nav li a {
+			text-transform: uppercase;
+			text-decoration: none;
+			font-weight: bold;
+			color: #787878;
+			padding: 8px;
+			background: none;
+		}
+		
+			ul#nav li.active a {
+				color: #3c9b8d;
+			}
+			
+		/*-- Blog link --*/
+		ul#nav li.blog a {
+			color: #32648d;
+			background: url(/_layouts/Images/21_2_ob/blog-arrow.png) no-repeat 20px 13px;
+			padding-left: 45px;
+		}
+		ul#nav li.blog:hover a{
+			background: url(/_layouts/Images/21_2_ob/blog-arrow-hover.png) no-repeat 20px 13px;
+		}
+		/*-- Dropdowns --*/
+		ul#nav li .dropdown {
+			display:none;
+			position: absolute;
+			width: 205px;
+			top: 30px;
+			left: -4px;
+			overflow: hidden;
+			clear: left;
+			background: url(/_layouts/Images/21_2_ob/nav_dropdown_grad.png) no-repeat 2px 0;
+			padding-top: 1px;
+			z-index: 1000;
+		}
+		
+		ul#nav li ul {
+			width: 205px;
+			background: url(/_layouts/Images/21_2_ob/nav_dropdown_li.png) repeat-y 0 0;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			display: block;
+			float: left;
+		}
+
+		    
+		ul#nav li:hover .dropdown,
+		ul#nav li.over .dropdown {
+			display: block;
+		}
+		
+		/* FIX: add styling? */
+		ul#nav li:hover a,
+		ul#nav li.over a {
+			color: #353535;
+		}
+		
+		ul#nav li:hover ul li a,
+		ul#nav li.over ul li a {
+			color: #454545;
+		}
+		
+		/* get a clean slate for the dropdowns */
+		ul#nav li ul li,
+		ul#nav li ul li a {
+			float:none;
+			height: 1%;
+			background: none;
+			margin: 0;
+			padding: 0;
+			text-transform: none;
+			font-weight: normal;
+		}
+		
+		ul#nav li ul li {
+			margin:0;
+			padding:5px 0 7px 8px;
+			background: url(/_layouts/Images/21_2_ob/nav_dropdown_sep.gif) repeat-x 0 bottom;
+		}
+		
+			ul#nav li ul li.last { 
+				background: none;
+				padding-bottom: 4px;
+			}
+		
+			ul#nav li ul li a {
+				font-size: 12px;
+				line-height: 12px;
+				padding: 5px 7px 6px 7px;
+				color: #454545;
+				margin: 0;
+				background: url(/_layouts/Images/21_2_ob/nav_dropdown_hover.gif) no-repeat left -23px;
+			}
+			
+			ul#nav li ul li a:hover {
+				background-position: left center;
+				color: #fff;
+			}
+			
+			ul#nav li .dropdown .bottom {
+				float: left;
+				width: 205px;
+				background: url(/_layouts/Images/21_2_ob/nav_dropdown_bottom.png) no-repeat left top;
+				height: 11px;
+				line-height:1px;
+			}
+
+		#news ul {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#news li {
+			clear: both;
+			background: none;
+			padding-left: 0;
+			width: 100%;
+			overflow: hidden;
+			padding-bottom: 10px;
+		}
+		
+		#news li div {
+			float: left;
+			text-align:center;
+			background: url(/_layouts/Images/21_2_ob/grass.gif) repeat 0 0;
+			padding: 12px;
+			color: #fff;
+			margin-right: 15px;
+			width: 60px;
+		}
+		
+			#news li div.inner {
+				float: none;
+				background: none;
+				width: 100%;
+				color: #333;
+				text-align: left;
+			}
+			
+				#news li div.inner ul {
+					list-style-type: disc;
+					margin-left: 15px;
+				}
+				
+				#news li div.inner ul li {
+					background: url(/_layouts/Images/21_2_ob/bullet.gif) no-repeat 0 6px;
+					padding-left: 20px;
+					list-style: none;
+				}
+		
+			#news li div span {
+				text-align:center;
+				display: block;
+				font-style: italic;
+			}
+		
+		#news li a {
+			display: block;
+			float: left;
+			font-size: 14px;
+			width: 600px;
+		}
+		
+		#news li span.reg {
+			color:#999;
+			font-size:11px;
+		}	
+		
+		#news li a.download {
+			color: #19655b;
+			font-size: 11px;
+		}
+/*------------------ @subnav ------------------*/
+#subnav {
+	width: 200px;
+	float: left;
+	overflow: hidden;
+	padding-top: 15px;
+}
+
+	#subnav ul {
+		width: 100%;
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	
+		#subnav li,
+		#subnav li a {
+			display: block;
+			height: 1%;
+		}
+	
+		#subnav li {
+			background: none;
+			padding: 0 0 0 18px;
+		}
+		
+		#subnav li.active {
+			background: url(/_layouts/Images/21_2_ob/subnav_active.png) no-repeat 0 0;
+			height: 47px;
+		}
+		
+			#subnav li.active a {
+				color: #de2757;
+			}
+		
+			#subnav li a {
+				color: #454545;
+				font-size: 14px;
+				line-height: 14px;
+				text-decoration: none;
+				padding-top: 13px;
+				padding-bottom: 20px;
+			}
+			
+				#subnav li a:hover { color: #66a59a; }
+				
+			#subnav ul ul {
+				display: none;
+				float: left;
+				clear: left;
+				padding: 0;
+			}
+			
+				#subnav li.active ul {
+					padding-top: 20px;
+				}
+			
+			#subnav ul ul li {
+				background: url(/_layouts/Images/21_2_ob/bullet.gif) no-repeat 0 6px;
+				padding-left: 20px;
+				padding-bottom: 5px;
+			}
+			
+				#subnav ul ul li a {
+					color: #555;
+					padding: 0;
+					font-size: 12px;
+				}
+				
+					#subnav ul ul li a:hover {
+						text-decoration: underline;
+					}
+				
+				#subnav li.active ul li a {
+					color: #555;
+					padding-top: 4px;
+				}
+
+	.clients li {
+		padding: 0;
+		margin: 0;
+		background: none;
+		width: 180px;
+		height: 140px;
+		float: left;
+		display: block;
+		border-top: 1px solid #e1e1e1;
+		background: url(/_layouts/Images/21_2_ob/shade.gif) repeat-x left bottom;
+	}
+
+	.clients li a {
+		float: left;
+		display: block;
+		width: 140px;
+		height: 100px;
+		padding: 20px 20px 20px 19px;
+		text-indent: -9999px;
+		text-align:center;
+		background-position: center center;
+		background-repeat: no-repeat;
+		border-right: 1px solid #e1e1e1;
+	}
+	.clients li span {
+		float: left;
+		display: block;
+		width: 140px;
+		height: 100px;
+		padding: 40px 20px 0px 19px;
+		text-align:center;
+		background-position: center center;
+		background-repeat: no-repeat;
+		border-right: 1px solid #e1e1e1;
+	}
+
+		#twitter ul#twitter_update_list {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#twitter ul#twitter_update_list li {
+			background: none;
+			padding: 0;
+		}

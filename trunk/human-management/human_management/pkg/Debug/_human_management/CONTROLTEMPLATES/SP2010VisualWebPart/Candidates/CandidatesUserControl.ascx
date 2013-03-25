@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css" />
 <script>
     $(function () {
         $("#txtDateFrom").datepicker({
@@ -22,20 +21,20 @@
         });
     });
 </script>
-<asp:Panel ID="Panel1" runat="server" 
+<br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnSearch" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Candidates</td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Candidates</font></td></tr></table>
 							<br />
 							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Job Title" id="lblJobTitle" Width="145px"></asp:Label>
-							<asp:DropDownList runat="server" id="ddlJobTitle" Width="120px" Height="20px" 
+							<div class="styled-selectShort"><asp:DropDownList runat="server" id="ddlJobTitle" 
                                     onselectedindexchanged="ddlJobTitle_SelectedIndexChanged">
-							</asp:DropDownList>
+							</asp:DropDownList></div>
 							<span style="padding-left:80px;"></span>
 							<asp:Label runat="server" Text="Vacancy" id="lblVacancy" Width="120px">
 							</asp:Label>
-							<asp:DropDownList runat="server" id="ddlVacancy" Width="120px" Height="20px">
-							</asp:DropDownList>
+							<div class="styled-selectShort"><asp:DropDownList runat="server" id="ddlVacancy">
+							</asp:DropDownList></div>
 							<span style="padding-left:80px;"></span>
 							<asp:Label runat="server" Text="Hiring Manager" id="lblHiringManager" Width="120px">
 							</asp:Label>
@@ -46,36 +45,37 @@
 							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Candidate Name" id="lblCandidateName" Width="145px"></asp:Label>
 							<asp:TextBox runat="server" id="txtCandidateName" Width="115px"></asp:TextBox>
 							<span style="padding-left:80px;"></span>
-							<asp:Label runat="server" Text="Keywords" id="lblKeyword" Width="120px">
-							</asp:Label>
+							<asp:Label runat="server" Text="Keywords" id="lblKeyword" 
+            Width="118px"></asp:Label>
 							<asp:TextBox runat="server" id="txtKeyword" Width="115px"></asp:TextBox>
 							<span style="padding-left:80px;"></span>
 							<asp:Label runat="server" Text="Status" id="lblStatus" Width="120px">
 							</asp:Label>
-							<asp:DropDownList runat="server" id="ddlStatus" Width="150px" Height="20px">
-							</asp:DropDownList>
+							<div class="styled-selectMedium"><asp:DropDownList runat="server" id="ddlStatus">
+							</asp:DropDownList></div>
 							    <br />
                                 <br />
 							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Method of Application" id="lblApplyMethod" Width="145px"></asp:Label>
-							<asp:DropDownList runat="server" id="ddlApplyMethod" Width="120px" Height="20px">
+							<div class="styled-selectShort"><asp:DropDownList runat="server" id="ddlApplyMethod">
 								<asp:ListItem Selected="True">All</asp:ListItem>
 								<asp:ListItem>Online</asp:ListItem>
 								<asp:ListItem>Manual</asp:ListItem>
-							</asp:DropDownList>
+							</asp:DropDownList></div>
 							<span style="padding-left:80px;"></span>
-							<asp:Label runat="server" Text="Date of Application" id="lblApplyDate" Width="120px">
-							</asp:Label>
+							<asp:Label runat="server" Text="Apply Date" 
+            id="lblApplyDate" Width="120px"></asp:Label>
 							<asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;"><input type="text" id="txtDateFrom" name="txtDateFrom" style="width:115px;" value=""/></asp:Panel>
-                                <span style="padding-left:50px;"></span><asp:Panel ID="txtDateTo" runat="server" style="display:inline;"><input type="text" id="txtDateTo" name="txtDateTo" style="width:115px;" value=""/></asp:Panel>
+                                <span style="padding-left:40px;"></span><input type="text" id="txtDateTo" name="txtDateTo" style="width:115px;" value=""/></asp:Panel>
                                 <br />
-                                <span style="padding-left:480px;"></span><asp:Label ID="lblDateFrom" runat="server" 
-                                    Text="From" Width="200px" Height="20px"></asp:Label>
+                                <span style="padding-left:490px;"></span>
+<asp:Label ID="lblDateFrom" runat="server" 
+                                    Text="From" Width="170px" Height="20px"></asp:Label>
 							    <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
 							    <br />
                                 <div class="borderTop">
                                 <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" 
-                                    onclick="btnSearch_Click" />
-                                <asp:Button ID="btnReset" runat="server" onclick="btnReset_Click" Text="Reset" 
+                                    onclick="btnSearch_Click" class="addButton" />
+                                <asp:Button ID="btnReset" class="resetButton" runat="server" onclick="btnReset_Click" Text="Reset" 
                                     Width="70px" />
                                     </div>
 							</td></tr></table></asp:Panel>
@@ -84,11 +84,11 @@
     &nbsp;</p>
 <table class="fieldTitleDiv"><tr><td>
 	<div class="borderBottom">
-    <asp:Button ID="btnAdd" runat="server" Text="Add" Width="70px" 
+    <asp:Button ID="btnAdd" runat="server" class="addButton" Text="Add" Width="70px" 
         onclick="btnAdd_Click" />
-    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="70px" 
+    <asp:Button ID="btnEdit" class="addButton" runat="server" Text="Edit" Width="70px" 
         onclick="btnEdit_Click" />
-    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="70px" 
+    <asp:Button ID="btnDelete" class="deleteButton" runat="server" Text="Delete" Width="70px" 
         onclick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')"/>
     </div>
     <br />

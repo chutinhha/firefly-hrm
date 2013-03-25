@@ -35,9 +35,11 @@
 .fieldTitleDiv
 {
     border:2px solid #2CA6CD;
-    width:100%;
+    width:99%;
     border-radius:8px;
     border-spacing:0; 
+    margin-left: auto;
+    margin-right: auto;
 }
 .fieldTitleTd
 {
@@ -60,4 +62,191 @@
 textarea
 {
 resize: none;
+}
+input[type="text"]
+{
+    background-color: #FFFFFF;
+    border: 1px solid #D2D1D1;
+    border-radius: 3px 3px 3px 3px;
+    color: #5D5D5D;
+    font-size: 13px;
+    outline: medium none;
+    padding: 4px 6px;
+    height: 16px;
+}
+input[type="password"]
+{
+    background-color: #FFFFFF;
+    border: 1px solid #D2D1D1;
+    border-radius: 3px 3px 3px 3px;
+    color: #5D5D5D;
+    font-size: 13px;
+    outline: medium none;
+    padding: 4px 6px;
+    height: 16px;
+}
+#notificationArea
+{
+    position: absolute;
+    right: -15px;
+    text-align: left;
+    white-space: inherit;
+    z-index: 10;
+    width:175px;
+}
+.s4-noti-noti
+{
+    border-color: #FDD20E #EBC61B #EBC61B #FDD20E;
+    border-style: solid;
+    border-width: 1px;
+    display: table;
+    margin: 0px;
+    min-width: 173px;
+    position: relative;
+}
+.s4-noti-in2
+{
+    background: none repeat scroll 0 0 white;
+    border-top: 1px solid #FFDE00;
+    color: #000000;
+    padding: 3px 10px;
+    text-align: left;
+}
+.s4-noti-in3
+{
+    min-height: 16px;
+    vertical-align: middle;
+    width: 150px;
+}
+.ms-WPBody td {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 13px;
+    color:Black;
+}
+.ms-WPBody
+{
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 13px;
+    color:Black;
+}
+.s4-help
+{
+    display:none;    
+}
+.s4-rp div, .s4-lpi div
+{
+    display: inline-block;
+    padding-top: 10px;
+    padding-right:10px;
+}
+.addButton
+{
+    background: -moz-linear-gradient(center top , #79BBFF 5%, #378DE5 100%) repeat scroll 0 0 #79BBFF;
+    border: 1px solid #84BBF3;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 0 #BBDAF7 inset;
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #528ECC;  
+    cursor:pointer;  
+}
+.deleteButton
+{
+    background: -moz-linear-gradient(center top , #F24537 5%, #C62D1F 100%) repeat scroll 0 0 #F24537;
+    border: 1px solid #84BBF3;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 0 #BBDAF7 inset;
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #528ECC;  
+    cursor:pointer;  
+}
+.resetButton
+{
+    background: -moz-linear-gradient(center top , #EDEDED 5%, #DFDFDF 100%) repeat scroll 0 0 #EDEDED;
+    border: 1px solid #84BBF3;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 0 #BBDAF7 inset;
+    color: transparent;
+    display: inline-block;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #528ECC;  
+    cursor:pointer;  
+}
+.styled-selectShort
+{
+    background: url("/_layouts/Images/21_2_ob/down_arrow_select.jpg") no-repeat scroll right center #DDDDDD;
+    border: 1px solid #CCCCCC;
+    height: 20px;
+    overflow: hidden;
+    width: 125px;
+    display: inline-block; 
+}
+.styled-selectShort select {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    font-size: 13px;
+    height: 34px;
+    line-height: 1;
+    width: 268px;
+}
+.styled-selectMedium
+{
+    background: url("/_layouts/Images/21_2_ob/down_arrow_select.jpg") no-repeat scroll right center #DDDDDD;
+    border: 1px solid #CCCCCC;
+    height: 20px;
+    overflow: hidden;
+    width: 155px;
+    display: inline-block; 
+}
+.styled-selectMedium select {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    font-size: 13px;
+    height: 34px;
+    line-height: 1;
+    width: 268px;
+}
+.styled-selectLong
+{
+    background: url("/_layouts/Images/21_2_ob/down_arrow_select.jpg") no-repeat scroll right center #DDDDDD;
+    border: 1px solid #CCCCCC;
+    height: 20px;
+    overflow: hidden;
+    width: 210px;
+    display: inline-block; 
+}
+.styled-selectLong select {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    font-size: 13px;
+    height: 34px;
+    line-height: 1;
+    width: 268px;
+}
+select
+{
+    color: #555555;
+    display: inline-block;    
+}
+body
+{
+    font-size:13px;    
 }
