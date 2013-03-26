@@ -1,7 +1,7 @@
 ﻿public class Message
 {
     //connection string
-    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=hr;Password=123456";
+    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=HR;Password=eatyoualive";
     internal const string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;";
     internal const string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;";
 
@@ -55,7 +55,7 @@
     internal const string JobCategoryColumn = "JobCategory";
     internal const string NumberOfPositionColumn = "NoOfPos";
     internal const string DescriptionColumn = "Description";
-    internal const string BusinessEntityIDColumn = "BusinessEntityID";
+    internal const string BusinessEntityIDColumn = "BusinessEntityId";
     internal const string JobIDColumn = "JobID";
     internal const string LastModifiedColumn = "LastModified";
     internal const string BirthDateColumn = "BirthDate";
@@ -88,8 +88,8 @@
     internal const string ProjectNameColumn = "ProjectName";
     internal const string PersonNameColumn = "Name";
     internal const string TaskNameColumn = "TaskName";
-    internal const string PersonProjectStartDateColumn = "StartDate";
-    internal const string PersonProjectEndDateColumn = "EndDate";
+    internal const string StartDateColumn = "StartDate";
+    internal const string EndDateColumn = "EndDate";
 
     //Page
     internal const string HomePage = "Home.aspx";
@@ -113,6 +113,8 @@
     internal const string EvaluateEmployeePage = "EvaluateEmployee.aspx";
     internal const string ChangePasswordPage = "ChangePassword";
     internal const string AccessDeniedPage = "AccessDenied.aspx";
+    internal const string SearchEmployeePage = "SearchEmployee.aspx";
+    internal const string PersonProjectPage = "PersonProject.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
