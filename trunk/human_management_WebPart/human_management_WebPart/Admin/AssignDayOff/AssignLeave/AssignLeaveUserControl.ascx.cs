@@ -7,9 +7,9 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
+namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
 {
-    public partial class SearchEmployeeUserControl : UserControl
+    public partial class AssignLeaveUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
@@ -32,8 +32,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                         {
                             if (!IsPostBack)
                             {
-                                txtProject.Text = Session["ProjectName"].ToString();
-                                txtTask.Text = Session["TaskName"].ToString();
+                                txtDayOff.Text = Session["TaskName"].ToString();
                                 string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                                 string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId";
                                 string table = "(" + Message.TableJobTitle;
@@ -53,7 +52,6 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                 }
                 else
                 {
-                    Session.Remove("ProjectName");
                     Session.Remove("TaskName");
                     Response.Redirect(Message.AccessDeniedPage);
                 }
@@ -171,7 +169,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
         {
             try
             {
-                DataTable myData = _com.getData(Message.TaskIdColumn, Message.TableProject, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%" + txtProject.Text.ToString() + "%' and TaskName like '%" + txtTask.Text.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TaskIdColumn, Message.TableProject, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%Leave%' and TaskName like '%" + txtDayOff.Text.ToString() + "%'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
@@ -180,7 +178,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                         _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1", false);
                     }
                 }
-                Response.Redirect(Message.PersonProjectPage);
+                Response.Redirect(Message.DayOffPage);
             }
             catch (Exception ex)
             {
