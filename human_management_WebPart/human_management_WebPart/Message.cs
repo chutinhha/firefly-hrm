@@ -21,6 +21,7 @@
     internal const string TablePersonProject = "HumanResources.PersonProject";
     internal const string TableTask = "HumanResources.Task";
     internal const string TableProject = "HumanResources.Project";
+    internal const string TableTimesheet = "HumanResources.Timesheet";
 
     //database column
     internal const string PunchInColumn = "PunchIn";
@@ -57,12 +58,12 @@
     internal const string DescriptionColumn = "Description";
     internal const string BusinessEntityIDColumn = "BusinessEntityId";
     internal const string JobIDColumn = "JobID";
-    internal const string LastModifiedColumn = "LastModified";
+    internal const string LastModifiedColumn = "ModifiedDate";
     internal const string BirthDateColumn = "BirthDate";
     internal const string MaritalStatusColumn = "MaritalStatus";
     internal const string GenderColumn = "Gender";
     internal const string HireDateColumn = "HireDate";
-    internal const string SalariedFlagColumn = "SalariedFlag";
+    internal const string SalariedFlagColumn = "Salary";
     internal const string VacationHoursColumn = "VacationHours";
     internal const string SickLeaveHoursColumn = "SickLeaveHours";
     internal const string CurrentFlagColumn = "CurrentFlag";
@@ -90,6 +91,11 @@
     internal const string TaskNameColumn = "TaskName";
     internal const string StartDateColumn = "StartDate";
     internal const string EndDateColumn = "EndDate";
+    internal const string InterviewDateColumn = "InterviewDate";
+    internal const string ImageColumn = "Image";
+    internal const string EmailAddressColumn = "EmailAddress";
+    internal const string AddressColumn = "AddressStreet";
+    internal const string SSNNumberColumn = "SSNNumber";
 
     //Page
     internal const string HomePage = "Home.aspx";

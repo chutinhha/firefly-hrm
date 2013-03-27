@@ -74,6 +74,29 @@ namespace SP2010VisualWebPart.AddVacancy
                         {
                             lblError.Text = ex.Message;
                         }
+                    }else{
+                        try
+                        {
+                            string active;
+                            if (chkActive.Checked == true)
+                            {
+                                active = "Active";
+                            }
+                            else
+                            {
+                                active = "Closed";
+                            }
+                            _com.insertIntoTable(Message.TableVacancy, "", "N'" + ddlJobTitle.SelectedValue + "',N'"
+                                + txtVacancy.Text.Trim() + "',N'" + txtHiringManager.Text + "',N'" + txtNoOfPosition.Text
+                                + "',N'" + txtDescription.Text + "',"
+                                + "N'" + active + "','" + DateTime.Now + "'", false);
+                            _com.closeConnection();
+                            Response.Redirect(Message.VacancyPage, true);
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
                     }
                 }
                 catch (FormatException) {

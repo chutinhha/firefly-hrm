@@ -126,7 +126,7 @@
                 </p>
                 <span style="padding-left:130px;"></span>
                 <asp:TextBox ID="txtComment" runat="server" Height="100px" TextMode="MultiLine" 
-                    Width="630px"></asp:TextBox>
+                    Width="650px"></asp:TextBox>
                 <br>
                 <br>
                 <div class="borderTop">

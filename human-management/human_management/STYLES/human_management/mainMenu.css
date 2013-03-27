@@ -119,7 +119,7 @@ ul {
 		ul#nav li .dropdown {
 			display:none;
 			position: absolute;
-			width: 205px;
+			width: 215px;
 			top: 30px;
 			left: -4px;
 			overflow: hidden;
@@ -130,7 +130,7 @@ ul {
 		}
 		
 		ul#nav li ul {
-			width: 205px;
+			width: 215px;
 			background: url(/_layouts/Images/21_2_ob/nav_dropdown_li.png) repeat-y 0 0;
 			overflow: hidden;
 			margin: 0;
@@ -169,7 +169,7 @@ ul {
 		}
 		
 		ul#nav li ul li {
-			margin:0;
+			margin:0 5px 0 4px;
 			padding:5px 0 7px 8px;
 			background: url(/_layouts/Images/21_2_ob/nav_dropdown_sep.gif) repeat-x 0 bottom;
 		}
@@ -195,7 +195,7 @@ ul {
 			
 			ul#nav li .dropdown .bottom {
 				float: left;
-				width: 205px;
+				width: 215px;
 				background: url(/_layouts/Images/21_2_ob/nav_dropdown_bottom.png) no-repeat left top;
 				height: 11px;
 				line-height:1px;

@@ -54,6 +54,7 @@
     <TemplateFile Location="Images\21_2_ob\15457_Gondar_Pt1_Vid_HP.jpg" />
     <TemplateFile Location="Images\21_2_ob\4Star_Charity_Navigator.jpg" />
     <TemplateFile Location="Images\21_2_ob\Access-Denied.jpg" />
+    <TemplateFile Location="Images\21_2_ob\ApplyLeave.png" />
     <TemplateFile Location="Images\21_2_ob\bg-left-notches.gif" />
     <TemplateFile Location="Images\21_2_ob\bg-main.jpg" />
     <TemplateFile Location="Images\21_2_ob\bg-patient-profile.jpg" />
@@ -62,10 +63,12 @@
     <TemplateFile Location="Images\21_2_ob\bg_select.png" />
     <TemplateFile Location="Images\21_2_ob\brickhead-icon.gif" />
     <TemplateFile Location="Images\21_2_ob\btn-go1.gif" />
+    <TemplateFile Location="Images\21_2_ob\chart_bg.jpg" />
     <TemplateFile Location="Images\21_2_ob\corppartners4.jpg" />
     <TemplateFile Location="Images\21_2_ob\dmb_i.gif" />
     <TemplateFile Location="Images\21_2_ob\dmb_m.gif" />
     <TemplateFile Location="Images\21_2_ob\down_arrow_select.jpg" />
+    <TemplateFile Location="Images\21_2_ob\h1-bg.png" />
     <TemplateFile Location="Images\21_2_ob\header.gif" />
     <TemplateFile Location="Images\21_2_ob\headline1.jpg" />
     <TemplateFile Location="Images\21_2_ob\headline2.jpg" />
@@ -73,6 +76,8 @@
     <TemplateFile Location="Images\21_2_ob\logo1.jpg" />
     <TemplateFile Location="Images\21_2_ob\map1-over.jpg" />
     <TemplateFile Location="Images\21_2_ob\map1.jpg" />
+    <TemplateFile Location="Images\21_2_ob\MyLeave.png" />
+    <TemplateFile Location="Images\21_2_ob\MyTimesheet.png" />
     <TemplateFile Location="Images\21_2_ob\nav-bg1.jpg" />
     <TemplateFile Location="Images\21_2_ob\nav-bg2.jpg" />
     <TemplateFile Location="Images\21_2_ob\nav_dropdown_bottom.png" />
@@ -102,7 +107,13 @@
     <TemplateFile Location="Layouts\human_management\QM_script.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\222ob.css" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jd.gallery.css" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jqplot.donutRenderer.min.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jqplot.pieRenderer.min.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.flot.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.flot.pie.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.selectbox-0.5.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jscharts.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\main.css" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\mainMenu.css" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\menuStyles.css" />

@@ -63,8 +63,7 @@
     
 
 </td></tr></table></asp:Panel>
-<br><br>
-<br /><asp:Panel ID="pnlData" runat="server" Visible="False">
+<br><asp:Panel ID="pnlData" runat="server" Visible="False">
 <table class="fieldTitleDiv"><tr><td>
 	<div class="borderBottom">
 <asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" Width="80px" 
@@ -80,15 +79,15 @@
             <asp:TemplateField>
                 <HeaderStyle Width="25" />
                 <HeaderTemplate>
-                    <asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="true" 
+                    &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="true" 
                         OnCheckedChanged="CheckUncheckAll" />
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:CheckBox ID="myCheckBox" runat="server" />
+                    &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
     </td></tr></table></asp:Panel>
     <br />
     <br />

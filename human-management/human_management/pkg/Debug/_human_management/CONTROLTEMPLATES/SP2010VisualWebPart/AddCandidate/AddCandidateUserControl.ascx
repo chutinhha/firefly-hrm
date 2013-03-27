@@ -120,13 +120,13 @@
                 &nbsp;<p>
                 </p>
                 <p>
-                    <br><br><span style="padding-left:5px;"></span>
+                    <br><span style="padding-left:5px;"></span>
                     <asp:Label ID="lblComment" runat="server" Text="Comment" valign="top" 
                         Width="120px"></asp:Label>
                 </p>
                 <span style="padding-left:130px;"></span>
                 <asp:TextBox ID="txtComment" runat="server" Height="100px" TextMode="MultiLine" 
-                    Width="630px"></asp:TextBox>
+                    Width="650px"></asp:TextBox>
                 <br>
                 <br>
                 <div class="borderTop">
@@ -138,7 +138,7 @@
                     <asp:Button ID="btnCancel" runat="server" class="resetButton" 
                         onclick="btnCancel_Click" Text="Cancel" Width="80px" />
                 </div>
-                <br>
+                
         </td></tr></table></asp:Panel>
 <p>
     <asp:Label ID="lblError" runat="server" style="color:red;"></asp:Label>

@@ -24,7 +24,7 @@
                         <asp:TemplateField>
                         <HeaderStyle Width="25" />
                             <HeaderTemplate>
-            <asp:CheckBox 
+            &nbsp;<asp:CheckBox 
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
@@ -32,12 +32,12 @@
                 />
         </HeaderTemplate>
                             <ItemTemplate>
-                                <asp:CheckBox ID="myCheckBox" runat="server" />
+                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
 
                   </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
     </td></tr></table>
     <br />
     <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

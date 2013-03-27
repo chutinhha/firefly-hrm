@@ -30,7 +30,7 @@
 							<div class="styled-selectShort"><asp:DropDownList runat="server" id="ddlJobTitle" 
                                     onselectedindexchanged="ddlJobTitle_SelectedIndexChanged">
 							</asp:DropDownList></div>
-							<span style="padding-left:80px;"></span>
+							<span style="padding-left:70px;"></span>
 							<asp:Label runat="server" Text="Vacancy" id="lblVacancy" Width="120px">
 							</asp:Label>
 							<div class="styled-selectShort"><asp:DropDownList runat="server" id="ddlVacancy">
@@ -44,7 +44,7 @@
 							<br />
 							<span style="padding-left:5px;"></span><asp:Label runat="server" Text="Candidate Name" id="lblCandidateName" Width="145px"></asp:Label>
 							<asp:TextBox runat="server" id="txtCandidateName" Width="115px"></asp:TextBox>
-							<span style="padding-left:80px;"></span>
+							<span style="padding-left:70px;"></span>
 							<asp:Label runat="server" Text="Keywords" id="lblKeyword" 
             Width="118px"></asp:Label>
 							<asp:TextBox runat="server" id="txtKeyword" Width="115px"></asp:TextBox>
@@ -61,13 +61,13 @@
 								<asp:ListItem>Online</asp:ListItem>
 								<asp:ListItem>Manual</asp:ListItem>
 							</asp:DropDownList></div>
-							<span style="padding-left:80px;"></span>
+							<span style="padding-left:70px;"></span>
 							<asp:Label runat="server" Text="Apply Date" 
             id="lblApplyDate" Width="120px"></asp:Label>
 							<asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;"><input type="text" id="txtDateFrom" name="txtDateFrom" style="width:115px;" value=""/></asp:Panel>
                                 <span style="padding-left:40px;"></span><input type="text" id="txtDateTo" name="txtDateTo" style="width:115px;" value=""/></asp:Panel>
                                 <br />
-                                <span style="padding-left:490px;"></span>
+                                <span style="padding-left:480px;"></span>
 <asp:Label ID="lblDateFrom" runat="server" 
                                     Text="From" Width="170px" Height="20px"></asp:Label>
 							    <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
@@ -100,7 +100,7 @@
                         <asp:TemplateField>
                         <HeaderStyle Width="25" />
                             <HeaderTemplate>
-            <asp:CheckBox 
+            &nbsp;<asp:CheckBox 
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
@@ -108,12 +108,12 @@
                 />
         </HeaderTemplate>
                             <ItemTemplate>
-                                <asp:CheckBox ID="myCheckBox" runat="server" />
+                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
 
                   </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
 </td></tr></table>
 <br><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

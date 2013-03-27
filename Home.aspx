@@ -1,5 +1,4 @@
-﻿<%@ Register TagPrefix="WpNs0" Namespace="SP2010WebPart.WebPartUsingRenderContents" Assembly="SP2010WebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c3b1e5def5f2858b"%>
-<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="~masterurl/default.master" meta:progid="SharePoint.WebPartPage.Document"       %>
+﻿<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="../_catalogs/masterpage/212ob.master" meta:progid="SharePoint.WebPartPage.Document"       %>
 <%@ Import Namespace="Microsoft.SharePoint.WebPartPages" %> <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register tagprefix="Login" namespace="SP2010VisualWebPart.Login" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
@@ -35,21 +34,61 @@
 			<SharePoint:EmbeddedFormField id="WikiField" FieldName="WikiField" ControlMode="Display" runat="server"><div class="ExternalClassA6E2B85F942E4A7E978B1AD11185906D">
                 <table id="layoutsTable" style="width:100%"><tbody><tr style="vertical-align:top"><td style="width:66.6%"><div class="ms-rte-layoutszone-outer" style="width:100%"><div class="ms-rte-layoutszone-inner">
 <Login:Login runat="server" ID="g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7" Description="            This Web Part has a User Control to render the UI.          " ChromeType="None" Title="Login" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='            This Web Part has a User Control to render the UI.          ' /&gt;&lt;P N='DisplayTitle' ID='1' T='Login' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' ID='2' T='g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7&quot;&gt;
-	
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label1&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;User&lt;/span&gt;
-&lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$TextBox1&quot; type=&quot;text&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_TextBox1&quot; style=&quot;width:200px;&quot; /&gt;
+	&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+		
+&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblUser&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;User&lt;/span&gt;
+&lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$txtUser&quot; type=&quot;text&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_txtUser&quot; style=&quot;width:200px;&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;
 &lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label3&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Password&lt;/span&gt;
-    &lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$TextBox2&quot; type=&quot;password&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_TextBox2&quot; style=&quot;width:200px;&quot; /&gt;
+    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblPassword&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Password&lt;/span&gt;
+    &lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$txtPassword&quot; type=&quot;password&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_txtPassword&quot; style=&quot;width:200px;&quot; /&gt;
 &lt;/p&gt;
 &lt;span style=&quot;padding-left:128px;&quot;&gt;&lt;/span&gt;
-&lt;input type=&quot;submit&quot; name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$Button1&quot; value=&quot;Login&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Button1&quot; style=&quot;width:80px;&quot; /&gt;
+&lt;input type=&quot;submit&quot; name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$btnLogin&quot; value=&quot;Login&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_btnLogin&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
+    
+	&lt;/div&gt;
+    &lt;br&gt;&lt;br&gt;
 &lt;p&gt;
-    &lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Label2&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+    &lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
 
 &lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{1179F2C7-EE84-4A3E-98BD-E827E2D708E7}" WebPart="true" __designer:IsClosed="false"></Login:Login>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,74 +138,97 @@
  </asp:UpdatePanel>
 </asp:Content>
 <asp:Content id="Content1" runat="server" contentplaceholderid="PlaceHolderHorizontalNav">
-
-                            
-							<!-- menu -->
-							<div id="ctl00_theMainNav_homeNav">
-					
-							<div style="float:left;">
-							<ul id="qm0" class="qmmc" style="line-height:15px;width:100%">
-								<li class="menuNav"><a class="qmparent" href="/ob3/SitePages/Home.aspx" style="padding-left:8px; padding-right:8px;">
-								HOME</a>                                </li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="/ob3/Lists/Calendar/calendar.aspx" style="padding-left:8px; padding-right:8px;">
-								WHO WE ARE</a><ul><li><a href="/ob3/Lists/Calendar/calendar.aspx">
-									About ORBIS International</a></li><li><a href="/Default.aspx?cid=4830&lang=1">
-									History</a></li><li><a href="/Default.aspx?cid=4831&lang=1">
-									What Makes Us Different</a></li><li><a href="/Default.aspx?cid=4836&lang=1">
-									Global Leadership</a></li><li><a href="/Default.aspx?cid=4833&lang=1">
-									Financial Information</a></li><li><a href="/Default.aspx?cid=4840&lang=1">
-									Corporate Sponsors</a></li><li><a href="/Default.aspx?cid=4834&lang=1">
-									Contact Us</a></li><li><a href="/Default.aspx?cid=4835&lang=1">
-									Employment</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="/Default.aspx?cid=4825-4860" style="padding-left:8px; padding-right:8px;">
-								WHAT WE DO</a><ul><li><a href="/Default.aspx?cid=4860&lang=1">
-									Where We Work</a></li><li><a href="/Default.aspx?cid=4855&lang=1">
-									Flying Eye Hospital</a></li><li><a href="/Default.aspx?cid=4858&lang=1">
-									Capacity Building</a></li><li><a href="/Default.aspx?cid=4859&lang=1">
-									Training</a></li><li><a href="/Default.aspx?cid=5607&lang=1">
-									Diseases We Treat</a></li><li><a href="/Default.aspx?cid=4867&lang=1">
-									Cyber-Sight®</a></li><li><a href="/Default.aspx?cid=4841&lang=1">
-									Success Stories</a></li><li><a href="/default.aspx?cid=8639&lang=1">
-									Videos: Eye Reports</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4825-4855" style="padding-left:8px; padding-right:8px;">
-								FLYING EYE HOSPITAL</a><ul><li><a href="/Default.aspx?cid=4825-4855">
-									Flying Eye Hospital</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=9656&lang=1">
-									MD-10: The New Plane</a></li><li><a href="/Default.aspx?cid=4825-4855-4856">
-									Who&#39;s On Board?</a></li><li><a href="/Default.aspx?cid=4825-4855-8526">
-									Itinerary</a></li><li><a href="/Default.aspx?cid=4825-4855-6893">
-									Employment</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://www.orbis.org/Default.aspx?cid=4839&lang=1" style="padding-left:8px; padding-right:8px;">
-								GET INVOLVED</a><ul><li><a href="/Default.aspx?cid=4839&lang=1">
-									In Your Community: Advocates for Sight</a></li><li><a href="/Default.aspx?cid=4837&lang=1">
-									Medical Volunteers</a></li><li><a href="/Default.aspx?cid=4838&lang=1">
-									Volunteer Pilots</a></li><li><a href="/Default.aspx?cid=5617&lang=1">
-									Corporate Opportunities</a></li><li><a href="/Default.aspx?cid=7967&lang=1">
-									Publications</a></li><li><a href="/Default.aspx?cid=8315&lang=1">
-									Volunteer Opportunities</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="https://www.orbis.org/Default.aspx?cid=5856" style="padding-left:8px; padding-right:8px;">
-								DONATE NOW</a><ul><li><a href="https://www.orbis.org/Default.aspx?cid=5856">
-									Make a Donation</a></li><li><a href="/Default.aspx?cid=7974&lang=1">
-									Donate Frequent Flyer Miles</a></li><li><a href="/Default.aspx?cid=7965&lang=1">
-									Other Ways of Giving</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4827-4869" style="padding-left:8px; padding-right:8px;">
-								NEWSROOM</a><ul><li><a href="/Default.aspx?cid=4869&lang=1">
-									Media contacts</a></li><li><a href="/Default.aspx?cid=4870&lang=1">
-									Fact Sheet</a></li><li><a href="/Default.aspx?cid=4871&lang=1">
-									Press Releases</a></li><li><a href="/Default.aspx?cid=8029&lang=1">
-									What&#39;s New</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=5630&lang=1">
-									Video Gallery</a></li><li><a href="http://blog.orbis.org/">
-									Blog</a></li></ul></li>                
-							</ul>
-							</div>
-							
-				            </div>
-							
+<table style="background-color:#E2E2E2;"><tbody><tr><td>
+			<ul id="nav">
+	<li>
+		<a href="Home.aspx">HOME</a>	
+	</li>
+	<li>
+		<a href="">WHO WE ARE</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="">About ORBIS International</a></li>
+				<li><a href="">History</a></li>
+				<li><a href="">What Makes Us Different</a></li>
+				<li><a href="">Global Leadership</a></li>
+				<li><a href="">Financial Information</a></li>
+				<li><a href="">Corporate Sponsors</a></li>
+				<li><a href="">Contact Us</a></li>
+				<li style="background:none;"><a href="">Employment</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="">WHAT WE DO</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="">Where We Work</a></li>
+				<li><a href="">Flying Eye Hospital</a></li>
+				<li><a href="">Capacity Building</a></li>
+				<li><a href="">Training</a></li>
+				<li><a href="">Diseases We Treat</a></li>
+				<li><a href="">Cyber-Sight®</a></li>
+				<li><a href="">Success Stories</a></li>
+				<li style="background:none;"><a href="">Videos: Eye Reports</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="">FLYING EYE HOSPITAL</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="">Flying Eye Hospital</a></li>
+				<li><a href="">MD-10: The New Plane</a></li>
+				<li><a href="">Who&#39;s On Board?</a></li>
+				<li><a href="">Itinerary</a></li>
+				<li style="background:none;"><a href="">Employment</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="">GET INVOLVED</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="">In Your Community: Advocates for Sight</a></li>
+				<li><a href="">Medical Volunteers</a></li>
+				<li><a href="">Volunteer Pilots</a></li>
+				<li><a href="">Corporate Opportunities</a></li>
+				<li><a href="">Publications</a></li>
+				<li style="background:none;"><a href="">Volunteer Opportunities</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="">DONATE NOW</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="">Make a Donation</a></li>
+				<li><a href="">Donate Frequent Flyer Miles</a></li>
+				<li style="background:none;"><a href="">Other Ways of Giving</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li style="background:none;">
+		<a href="">NEWSROOM</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="">Media contacts</a></li>
+				<li><a href="">Fact Sheet</a></li>
+				<li><a href="">Press Releases</a></li>
+				<li><a href="">What&#39;s New</a></li>
+				<li><a href="">Video Gallery</a></li>
+				<li style="background:none;"><a href="">Blog</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+</ul>                            
+	</td></tr></table>						
 							
 							
 							
@@ -224,4 +286,12 @@
     </SharePoint:DelegateControl>
 								
 </asp:Content>
+
+
+
+<asp:Content id="Content2" runat="server" contentplaceholderid="PlaceHolderSearchArea">
+</asp:Content>
+
+
+
 

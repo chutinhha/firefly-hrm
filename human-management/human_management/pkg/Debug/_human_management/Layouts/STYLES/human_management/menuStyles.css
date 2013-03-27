@@ -150,15 +150,23 @@ input[type="password"]
     font-family: arial;
     font-size: 15px;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 6px 0px;
     text-decoration: none;
     text-shadow: 1px 1px 0 #528ECC;  
     cursor:pointer;  
+    
+   -webkit-box-shadow:#BBDAF7 0 1px 0 0 inset;
+  background-color:#79BBFF;
+  background-image:-webkit-gradient(linear, 0 0%, 0 100%, color-stop(0.05, #79BBFF), to(#378DE5));
 }
 .deleteButton
 {
+    -webkit-box-shadow:#BBDAF7 0 1px 0 0 inset;
+  background-color:#F24537;
+  background-image:-webkit-gradient(linear, 0 0%, 0 100%, color-stop(0.05, #F24537), to(#C62D1F));
+  
     background: -moz-linear-gradient(center top , #F24537 5%, #C62D1F 100%) repeat scroll 0 0 #F24537;
-    border: 1px solid #84BBF3;
+    border: 1px solid #C62D1F;
     border-radius: 6px 6px 6px 6px;
     box-shadow: 0 1px 0 0 #BBDAF7 inset;
     color: #FFFFFF;
@@ -166,13 +174,17 @@ input[type="password"]
     font-family: arial;
     font-size: 15px;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 6px 0px;
     text-decoration: none;
     text-shadow: 1px 1px 0 #528ECC;  
     cursor:pointer;  
 }
 .resetButton
 {
+      -webkit-box-shadow:#BBDAF7 0 1px 0 0 inset;
+  background-color:#EDEDED;
+  background-image:-webkit-gradient(linear, 0 0%, 0 100%, color-stop(0.05, #EDEDED), to(#DFDFDF));
+    
     background: -moz-linear-gradient(center top , #EDEDED 5%, #DFDFDF 100%) repeat scroll 0 0 #EDEDED;
     border: 1px solid #84BBF3;
     border-radius: 6px 6px 6px 6px;
@@ -182,7 +194,7 @@ input[type="password"]
     font-family: arial;
     font-size: 15px;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 6px 0px;
     text-decoration: none;
     text-shadow: 1px 1px 0 #528ECC;  
     cursor:pointer;  
@@ -201,7 +213,7 @@ input[type="password"]
     border: 0 none;
     border-radius: 0 0 0 0;
     font-size: 13px;
-    height: 34px;
+    height: 14px;
     line-height: 1;
     width: 268px;
 }
@@ -219,7 +231,7 @@ input[type="password"]
     border: 0 none;
     border-radius: 0 0 0 0;
     font-size: 13px;
-    height: 34px;
+    height: 14px;
     line-height: 1;
     width: 268px;
 }
@@ -237,7 +249,7 @@ input[type="password"]
     border: 0 none;
     border-radius: 0 0 0 0;
     font-size: 13px;
-    height: 34px;
+    height: 14px;
     line-height: 1;
     width: 268px;
 }
@@ -249,4 +261,8 @@ select
 body
 {
     font-size:13px;    
+}
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }

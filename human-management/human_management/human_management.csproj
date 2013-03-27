@@ -65,10 +65,10 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7d93d4c0-792b-445c-a3c8-fcedcafaf80d}</SharePointProjectItemId>
     </None>
-    <None Include="MasterPage\Admin.master">
+    <None Include="MasterPage\Admin.master" />
+    <None Include="MasterPage\Member.master">
       <SubType>ASPXCodeBehind</SubType>
     </None>
-    <None Include="MasterPage\Member.master" />
     <None Include="MasterPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54ad75c4-c932-42ff-bfac-1e5f812256ea}</SharePointProjectItemId>
     </None>
@@ -78,7 +78,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MasterPage\212ob.master" />
+    <None Include="MasterPage\212ob.master">
+      <SubType>ASPXCodeBehind</SubType>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{958e8086-3a42-41c4-b1ed-0854da2b8ba1}</PackageId>
     </None>
@@ -108,6 +110,7 @@
     <Content Include="Images\21_2_ob\15457_Gondar_Pt1_Vid_HP.jpg" />
     <Content Include="Images\21_2_ob\4Star_Charity_Navigator.jpg" />
     <Content Include="Images\21_2_ob\Access-Denied.jpg" />
+    <Content Include="Images\21_2_ob\ApplyLeave.png" />
     <Content Include="Images\21_2_ob\bg-left-notches.gif" />
     <Content Include="Images\21_2_ob\bg-main.jpg" />
     <Content Include="Images\21_2_ob\bg-patient-profile.jpg" />
@@ -116,10 +119,12 @@
     <Content Include="Images\21_2_ob\bg_select.png" />
     <Content Include="Images\21_2_ob\brickhead-icon.gif" />
     <Content Include="Images\21_2_ob\btn-go1.gif" />
+    <Content Include="Images\21_2_ob\chart_bg.jpg" />
     <Content Include="Images\21_2_ob\corppartners4.jpg" />
     <Content Include="Images\21_2_ob\dmb_i.gif" />
     <Content Include="Images\21_2_ob\dmb_m.gif" />
     <Content Include="Images\21_2_ob\down_arrow_select.jpg" />
+    <Content Include="Images\21_2_ob\h1-bg.png" />
     <Content Include="Images\21_2_ob\header.gif" />
     <Content Include="Images\21_2_ob\headline1.jpg" />
     <Content Include="Images\21_2_ob\headline2.jpg" />
@@ -127,6 +132,8 @@
     <Content Include="Images\21_2_ob\logo1.jpg" />
     <Content Include="Images\21_2_ob\map1-over.jpg" />
     <Content Include="Images\21_2_ob\map1.jpg" />
+    <Content Include="Images\21_2_ob\MyLeave.png" />
+    <Content Include="Images\21_2_ob\MyTimesheet.png" />
     <Content Include="Images\21_2_ob\nav-bg1.jpg" />
     <Content Include="Images\21_2_ob\nav-bg2.jpg" />
     <Content Include="Images\21_2_ob\nav_dropdown_bottom.png" />
@@ -156,7 +163,13 @@
     <Content Include="Layouts\human_management\QM_script.js" />
     <Content Include="STYLES\human_management\222ob.css" />
     <Content Include="STYLES\human_management\jd.gallery.css" />
+    <Content Include="STYLES\human_management\jqplot.donutRenderer.min.js" />
+    <Content Include="STYLES\human_management\jqplot.pieRenderer.min.js" />
+    <Content Include="STYLES\human_management\jquery.flot.js" />
+    <Content Include="STYLES\human_management\jquery.flot.pie.js" />
+    <Content Include="STYLES\human_management\jquery.js" />
     <Content Include="STYLES\human_management\jquery.selectbox-0.5.js" />
+    <Content Include="STYLES\human_management\jscharts.js" />
     <Content Include="STYLES\human_management\main.css" />
     <Content Include="STYLES\human_management\mainMenu.css" />
     <Content Include="STYLES\human_management\menuStyles.css" />

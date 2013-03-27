@@ -88,11 +88,81 @@ namespace SP2010VisualWebPart.EditVacancy
                             {
                                 active = "Closed";
                             }
-                            _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn+"=N'" + txtVacancy.Text + "',"
-                                + Message.HiringManagerColumn+"=N'" + txtHiringManager.Text + "',"+Message.NumberOfPositionColumn
-                                +"='" + txtNoOfPosition.Text + "',"+ Message.DescriptionColumn+"=N'" + txtDescription.Text 
-                                + "',"+Message.JobTitleColumn+"=N'" + ddlJobTitle.SelectedValue + "',"+Message.StatusColumn
-                                +"='"+ active + "',LastModified='"+DateTime.Now+"' where "+Message.VacancyNameColumn+"=N'" + Session["Name"] + "'");
+                            DataTable jobCandidate = _com.getData(Message.TableJobCandidate, Message.FullNameColumn + ","
+                                + Message.EmailColumn, " where " + Message.JobVacancyColumn + "=N'" + Session["Name"]+"';");
+                            _com.updateTable(Message.TableJobCandidate, " " + Message.JobVacancyColumn + "=NULL where " + Message.JobVacancyColumn
+                                + "=N'" + Session["Name"] + "';");
+                            if (ddlJobTitle.SelectedValue != "NULL")
+                            {
+                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
+                                    + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
+                                    + "='" + active + "',LastModified='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                            }
+                            else
+                            {
+                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
+                                    + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
+                                    + "='" + active + "',LastModified='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                            }
+                            if (jobCandidate.Rows.Count > 0) {
+                                for (int i = 0; i < jobCandidate.Rows.Count; i++) {
+                                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobVacancyColumn + "=N'"
+                                        + txtVacancy.Text + "' where " + Message.FullNameColumn + "=N'" + jobCandidate.Rows[i][0].ToString()
+                                        + "' and " + Message.EmailColumn + "=N'" + jobCandidate.Rows[i][1].ToString() + "';");
+                                }
+                            }
+                            Session.Remove("Name");
+                            _com.closeConnection();
+                            Response.Redirect(Message.VacancyPage, true);
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
+                    }else{
+                        try
+                        {
+                            string active;
+                            if (chkActive.Checked == true)
+                            {
+                                active = "Active";
+                            }
+                            else
+                            {
+                                active = "Closed";
+                            }
+                            DataTable jobCandidate = _com.getData(Message.TableJobCandidate, Message.FullNameColumn + ","
+                                + Message.EmailColumn, " where " + Message.JobVacancyColumn + "=N'" + Session["Name"] + "';");
+                            _com.updateTable(Message.TableJobCandidate, " " + Message.JobVacancyColumn + "=NULL where " + Message.JobVacancyColumn
+                                + "=N'" + Session["Name"] + "';");
+                            if (ddlJobTitle.SelectedValue != "NULL")
+                            {
+                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
+                                    + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
+                                    + "='" + active + "',LastModified='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                            }
+                            else {
+                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
+                                    + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
+                                    + "='" + active + "',LastModified='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                            }
+                            if (jobCandidate.Rows.Count > 0)
+                            {
+                                for (int i = 0; i < jobCandidate.Rows.Count; i++)
+                                {
+                                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobVacancyColumn + "=N'"
+                                        + txtVacancy.Text + "' where " + Message.FullNameColumn + "=N'" + jobCandidate.Rows[i][0].ToString()
+                                        + "' and " + Message.EmailColumn + "=N'" + jobCandidate.Rows[i][1].ToString() + "';");
+                                }
+                            }
                             Session.Remove("Name");
                             _com.closeConnection();
                             Response.Redirect(Message.VacancyPage, true);

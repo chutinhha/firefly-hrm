@@ -68,9 +68,20 @@ namespace SP2010VisualWebPart.JobCategories
                     {
                         _com.insertIntoTable(Message.TableJobCategory,"", "N'" + txtName.Text.Trim() + "','"+DateTime.Now+"'",false);
                     }
-                    else { 
+                    else {
+                        DataTable JobTitles = _com.getData(Message.TableJobTitle, Message.JobTitleColumn + "," + Message.JobIDColumn
+                            , " where " + Message.JobCategoryColumn + "='" + Session["Name"].ToString() + "';");
+                        _com.updateTable(Message.TableJobTitle, " " + Message.JobCategoryColumn + "=NULL where " + Message.JobCategoryColumn
+                            + "='" + Session["Name"].ToString() + "';");
                         _com.updateTable(Message.TableJobCategory,Message.NameColumn+"=N'"+txtName.Text.Trim()
                             +"',LastModified='"+DateTime.Now+"' where "+Message.NameColumn+"=N'"+Session["Name"]+"'");
+                        if (JobTitles.Rows.Count > 0) {
+                            for (int i = 0; i < JobTitles.Rows.Count; i++)
+                            {
+                                _com.updateTable(Message.TableJobTitle, " " + Message.JobCategoryColumn + "=N'" + txtName.Text.Trim() + "' where "
+                                    + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString() + "';");
+                            }
+                        }
                     }
                     Panel1.Visible = false;
                     _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
@@ -110,9 +121,25 @@ namespace SP2010VisualWebPart.JobCategories
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        string sql = @"delete from "+Message.TableJobCategory+" where "+Message.NameColumn+"=N'" 
+                        string sql;
+                        SqlCommand command;
+                        DataTable JobTitles = _com.getData(Message.TableJobTitle,Message.JobTitleColumn+","+Message.JobIDColumn
+                            ," where "+Message.JobCategoryColumn+"='"+Server.HtmlDecode(gr.Cells[1].Text) + "';");
+                        if (JobTitles.Rows.Count > 0) {
+                            for (int i = 0; i < JobTitles.Rows.Count; i++) {
+                                _com.updateTable(Message.TableJobCandidate, " "+Message.JobTitleColumn+"=NULL where JobTitle='" + JobTitles.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableVacancy, " "+Message.JobTitleColumn + "=NULL where JobTitle='" + JobTitles.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableEmployee, " "+Message.JobIDColumn+"=NULL where " + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString()
+                                    + "'");
+                            }
+                            sql = @"delete from "+Message.TableJobTitle+" where "+Message.JobCategoryColumn+"='"
+                                + Server.HtmlDecode(gr.Cells[1].Text)+"';";
+                            command = new SqlCommand(sql, _com.cnn);
+                            command.ExecuteNonQuery();
+                        }
+                        sql = @"delete from "+Message.TableJobCategory+" where "+Message.NameColumn+"=N'" 
                             + Server.HtmlDecode(gr.Cells[1].Text) + "';";
-                        SqlCommand command = new SqlCommand(sql, _com.cnn);
+                        command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                         lblError.Text = "";
                     }
