@@ -27,7 +27,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                         {
                             _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, "");
                             Session.Remove("ProjectName");
-                            Session.Remove("TaskId");
+                            Session.Remove("TaskName");
                         }
                     }
                     catch (Exception ex)
@@ -58,7 +58,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
             }
         }
 
-        protected void ddlTask_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlDayOff_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
