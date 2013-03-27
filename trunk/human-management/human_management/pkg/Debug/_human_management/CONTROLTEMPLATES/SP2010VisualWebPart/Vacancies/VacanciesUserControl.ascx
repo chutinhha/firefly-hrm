@@ -14,17 +14,17 @@
     <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="80px"></asp:Label>
     <div class="styled-selectShort"><asp:DropDownList ID="ddlJobTitle" runat="server">
     </asp:DropDownList></div>
-    <span style="padding-left:40px;"></span>
+    <span style="padding-left:30px;"></span>
     <asp:Label ID="lblVacancy" runat="server" 
         Text="Vacancy" Width="80px"></asp:Label>
     <div class="styled-selectShort"><asp:DropDownList ID="ddlVacancy" runat="server">
     </asp:DropDownList></div>
-    <span style="padding-left:40px;"></span><asp:Label ID="lblHiringManager" runat="server" 
+    <span style="padding-left:30px;"></span><asp:Label ID="lblHiringManager" runat="server" 
         Text="Hiring Manager" Width="120px"></asp:Label>
     <asp:TextBox ID="txtHiringManager" runat="server" Width="110px"></asp:TextBox>
-    <span style="padding-left:40px;"></span>
+    <span style="padding-left:30px;"></span>
     <asp:Label ID="lblStatus" runat="server" 
-        Text="Status" Width="80px"></asp:Label>
+        Text="Status" Width="65px"></asp:Label>
     <div class="styled-selectShort"><asp:DropDownList ID="ddlStatus" runat="server">
         <asp:ListItem Selected="True">All</asp:ListItem>
         <asp:ListItem>Active</asp:ListItem>
@@ -39,7 +39,7 @@
         onclick="btnReset_Click" />
         </div>
 </td></tr></table></asp:Panel>
-<br><br><br>
+<br>
 <table class="fieldTitleDiv"><tr><td>
     <div class="borderBottom">
     <asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" Width="80px" 
@@ -55,7 +55,7 @@
             <asp:TemplateField>
             <HeaderStyle Width="25" />
                             <HeaderTemplate>
-            <asp:CheckBox 
+           &nbsp;<asp:CheckBox 
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
@@ -63,11 +63,11 @@
                 />
         </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:CheckBox ID="myCheckBox" runat="server" />
+                    &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
 </td></tr></table>
 
 <br><br>

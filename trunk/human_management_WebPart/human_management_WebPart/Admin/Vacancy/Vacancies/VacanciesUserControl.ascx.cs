@@ -185,6 +185,8 @@ namespace SP2010VisualWebPart.Vacancies
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        _com.updateTable(Message.TableJobCandidate, " " + Message.JobVacancyColumn + "=NULL where "
+                            + Message.JobVacancyColumn + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
                         string sql = @"delete from "+Message.TableVacancy+" where "+Message.VacancyNameColumn+"=N'" 
                             + Server.HtmlDecode(gr.Cells[1].Text) + "';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);

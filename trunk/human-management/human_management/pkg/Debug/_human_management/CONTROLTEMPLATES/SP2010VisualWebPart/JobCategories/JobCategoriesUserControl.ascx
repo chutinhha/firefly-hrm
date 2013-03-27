@@ -8,7 +8,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobCategoriesUserControl.ascx.cs" Inherits="SP2010VisualWebPart.JobCategories.JobCategoriesUserControl" %>
 <asp:Panel ID="Panel1" runat="server"  
     Visible="False" DefaultButton="btnSave">
-    <table class="fieldTitleDiv" cellpadding="0"><tr><td>
+    <br><table class="fieldTitleDiv" cellpadding="0"><tr><td>
     <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><font color="white"><asp:Label ID="lblTitle" runat="server" Text="Add Job Category"></asp:Label></font></td></tr></table>
     <br><span style="padding-left:10px;"></span><asp:Label ID="lblName" runat="server" Text="Name(*)" 
@@ -20,7 +20,7 @@
     <asp:Button ID="btnSave" class="addButton" runat="server" Text="Save" Width="80px" 
         onclick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
     <asp:Button ID="btnCancel" class="resetButton" runat="server" Text="Cancel" Width="80px" 
-        onclick="btnCancel_Click" /></div><br></td></tr></table>
+        onclick="btnCancel_Click" /></div></td></tr></table>
 </asp:Panel><br>
 <table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
@@ -35,26 +35,26 @@
     <br />
     <br />
     <asp:GridView ID="grdData" runat="server" Width="100%">
-        <Columns style="text-align:center" >
+        <Columns>
 
-                        <asp:TemplateFiel HeaderStyle-HorizontalAlign="center">
-                        <HeaderStyle Width="25" HorizontalAlign="center" />
+                        <asp:TemplateField>
+                        <HeaderStyle Width="25"/>
                         <HeaderTemplate >
-            <asp:CheckBox 
+            &nbsp;<asp:CheckBox 
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
                 AutoPostBack="true"  
                 />
         </HeaderTemplate>
-        <ItemStyle HorizontalAlign=Center />
+        <ItemStyle/>
                             <ItemTemplate>
-                                <asp:CheckBox ID="myCheckBox" runat="server" />
+                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
 
                   </Columns>
-    </asp:GridView>
+    </asp:GridView><table><tr><td></td></tr></table>
     </td></tr></table>
 <br><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

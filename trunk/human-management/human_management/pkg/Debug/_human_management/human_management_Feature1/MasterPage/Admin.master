@@ -408,7 +408,7 @@
 					
 				<li style="background:none"><a href="JobTitles.aspx">Job</a></li>
 					<li style="padding-left:40px;background:none;"><a href="JobCategories.aspx">Job Categories</a></li>
-					<li style="padding-left:40px;background:none;"><a href="JobTitles.aspx">Position</a></li>
+					<li style="padding-left:40px;background:none;"><a href="JobTitles.aspx">Job Titles</a></li>
 					<li style="padding-left:40px;"><a href="SalarySummary.aspx">Salary Summary</a></li>
 				
 				<li style="background:none"><a href="">Employees</a></li>
@@ -418,7 +418,7 @@
 				
 				<li style="background:none"><a href="ManageUser.aspx">Users</a></li>
 					<li style="padding-left:40px;background:none;"><a href="ManageUser.aspx">Manage Users</a></li>
-					<li style="padding-left:40px;"><a href="">Assign User To Project</a></li>
+					<li style="padding-left:40px;background:none;"><a href="">Assign User To Project</a></li>
 				
 			</ul>
 			<div class="bottom"></div>
@@ -442,7 +442,7 @@
 				<li><a href="">Assign Leave</a></li>
 				<li style="background:none"><a href="AttendanceRecord.aspx">Attendance</a></li>
 					<li style="padding-left:40px;background:none;"><a href="AttendanceRecord.aspx">Employee Records</a></li>
-					<li style="padding-left:40px;"><a href="AttendanceSummary.aspx">Attendance Summary</a></li>
+					<li style="padding-left:40px;background:none;"><a href="AttendanceSummary.aspx">Attendance Summary</a></li>
 				
 			</ul>
 			<div class="bottom"></div>
@@ -453,7 +453,7 @@
 		<div class="dropdown">
 			<ul>
 				<li><a href="Candidates.aspx">Candidates</a></li>
-				<li><a href="Vacancies.aspx">Vacancies</a></li>
+				<li style="background:none;"><a href="Vacancies.aspx">Vacancies</a></li>
 			</ul>
 			<div class="bottom"></div>
 		</div>		
@@ -463,7 +463,7 @@
 		<div class="dropdown">
 			<ul>
 				<li><a href="EvaluateEmployee.aspx">Evaluate Employees</a></li>
-				<li><a href="QuestionList.aspx">Checkpoint Question List</a></li>
+				<li style="background:none;"><a href="QuestionList.aspx">Checkpoint Question List</a></li>
 			</ul>
 			<div class="bottom"></div>
 		</div>		

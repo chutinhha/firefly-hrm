@@ -36,7 +36,7 @@ namespace SP2010VisualWebPart.Candidates
                             if (grdData.Rows.Count > 0)
                             {
                                 grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
-                                grdData.HeaderRow.Cells[2].Text = "Employee Name";
+                                grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                                 grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
                                 grdData.HeaderRow.Cells[5].Text = "Apply Date";
                             }
@@ -110,7 +110,7 @@ namespace SP2010VisualWebPart.Candidates
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
-                    grdData.HeaderRow.Cells[2].Text = "Employee Name";
+                    grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                     grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
                     grdData.HeaderRow.Cells[5].Text = "Apply Date";
                 }
@@ -207,7 +207,7 @@ namespace SP2010VisualWebPart.Candidates
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
-                    grdData.HeaderRow.Cells[2].Text = "Employee Name";
+                    grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                     grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
                     grdData.HeaderRow.Cells[5].Text = "Apply Date";
                 }
@@ -248,7 +248,7 @@ namespace SP2010VisualWebPart.Candidates
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
-                    grdData.HeaderRow.Cells[2].Text = "Employee Name";
+                    grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                     grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
                     grdData.HeaderRow.Cells[5].Text = "Apply Date";
                 }

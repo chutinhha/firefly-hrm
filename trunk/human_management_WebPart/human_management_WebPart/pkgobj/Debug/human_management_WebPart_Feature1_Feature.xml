@@ -55,5 +55,7 @@
     <ElementFile Location="AttendanceSummary\AttendanceSummary.webpart" />
     <ElementManifest Location="NotifyEmployee\Elements.xml" />
     <ElementFile Location="NotifyEmployee\NotifyEmployee.webpart" />
+    <ElementManifest Location="QuickLaunch\Elements.xml" />
+    <ElementFile Location="QuickLaunch\QuickLaunch.webpart" />
   </ElementManifests>
 </Feature>

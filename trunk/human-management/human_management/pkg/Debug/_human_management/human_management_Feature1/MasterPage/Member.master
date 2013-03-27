@@ -411,7 +411,7 @@
 					
 				<li style="background:none"><a href="">Leave Information</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Leave Summary</a></li>
-					<li style="padding-left:40px;"><a href="">Leave List</a></li>				
+					<li style="padding-left:40px;background:none;"><a href="">Leave List</a></li>				
 			</ul>
 			<div class="bottom"></div>
 		</div>		
@@ -426,7 +426,7 @@
 					<li style="padding-left:40px;"><a href="">My Records</a></li>	
 				<li style="background:none"><a href="">Leave</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">My leave</a></li>
-					<li style="padding-left:40px;"><a href="">Apply Leave</a></li>			
+					<li style="padding-left:40px;background:none;"><a href="">Apply Leave</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		
@@ -438,7 +438,7 @@
 				<li style="background:none"><a href="">Reviews</a></li>					
 					<li style="padding-left:40px;background:none;"><a href="">Timesheets Summary</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Attendance Summary</a></li>
-					<li style="padding-left:40px;"><a href="">Supervisor Judgment</a></li>			
+					<li style="padding-left:40px;background:none;"><a href="">Supervisor Judgment</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		

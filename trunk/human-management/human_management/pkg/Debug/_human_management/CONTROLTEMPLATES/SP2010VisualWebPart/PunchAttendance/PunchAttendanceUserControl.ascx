@@ -22,33 +22,33 @@
        DefaultButton="btnInOut" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><font color="white"><asp:Label ID="Label1" runat="server" Text="Punch In"></asp:Label></font></td></tr></table>
+<br>
 <p>
     <span style="padding-left:5px;"></span><asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
     <asp:TextBox ID="txtEmployeeName" runat="server" ReadOnly="True" Width="200px" 
         Enabled="False"></asp:TextBox>
 </p>
-<span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date(*)" Width="150px"></asp:Label>
+<br><span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date(*)" Width="150px"></asp:Label>
 <asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" id="<%= this.inputID %>" name="txtDate" size="30" value="<%= this.inputValue %>"/></asp:Panel>
-<p>
+<br><br><p>
     <span style="padding-left:5px;"></span><asp:Label ID="lblTime" runat="server" Text="Time(*)" Width="150px"></asp:Label>
     <asp:TextBox ID="txtTime" runat="server" Width="200px"></asp:TextBox>
     <asp:Label ID="Label5" runat="server" Text="HH:MM"></asp:Label>
 </p>
-<p>
+<br><p>
     <span style="padding-left:5px;"></span><asp:Label ID="lblNote" runat="server" Text="Note"></asp:Label>
 </p>
 <p>
-    <span style="padding-left:160px;"></span><asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
-        Width="300px"  ></asp:TextBox>
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtNote" 
+        runat="server" Height="100px" TextMode="MultiLine" 
+        Width="410px"  ></asp:TextBox>
 </p>
-<p>
+<div class="borderTop">
     <span style="padding-left:160px;"></span>
     <asp:Button ID="btnInOut" 
         runat="server" Text="In" Width="80px" class="addButton" onclick="btnInOut_Click" />
-</p>
+        </div>
 </td></tr></table></asp:Panel><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
-<p>
-    &nbsp;</p>
 
 

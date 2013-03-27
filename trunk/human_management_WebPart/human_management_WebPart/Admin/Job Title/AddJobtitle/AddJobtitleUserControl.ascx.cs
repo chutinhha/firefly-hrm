@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace SP2010VisualWebPart.AddJobtitle
 {
@@ -54,7 +55,7 @@ namespace SP2010VisualWebPart.AddJobtitle
             else {
                 try
                 {
-                    DataTable dt = _com.getData(Message.TableJobTitle, "*", " order by JobID desc");
+                    DataTable dt = _com.getTopID(Message.TableJobTitle);
                     int JobID = int.Parse(dt.Rows[0][0].ToString()) + 1;
                     _com.insertIntoTable(Message.TableJobTitle," ("+Message.JobIDColumn+","+Message.JobTitleColumn
                         +","+Message.JobDescriptionColumn+","+Message.NoteColumn+","+Message.JobCategoryColumn

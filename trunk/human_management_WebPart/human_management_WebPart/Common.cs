@@ -79,6 +79,10 @@ public class CommonFunction
             {
                 ddl.Items.Add(dt.Rows[i][0].ToString());
             }
+        }else{
+            if (addItem == false) {
+                ddl.Items.Add("NULL");
+            }
         }
     }
 
@@ -243,6 +247,14 @@ public class CommonFunction
         return dt;
     }
 
+    internal DataTable getTopID(string table) {
+        string sql = @"select IDENT_CURRENT('"+table+"')";
+        SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
+        DataSet ds = new DataSet();
+        da.Fill(ds, "data");
+        DataTable dt = ds.Tables["data"];
+        return dt;
+    }
     //Update a table
     internal void updateTable(string table, string condition)
     {

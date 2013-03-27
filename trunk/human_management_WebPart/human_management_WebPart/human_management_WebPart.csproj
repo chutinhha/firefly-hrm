@@ -134,6 +134,14 @@
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.designer.cs">
       <DependentUpon>ImportEmployeesUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\DashBoard\QuickLaunch\QuickLaunch.cs" />
+    <Compile Include="Admin\DashBoard\QuickLaunch\QuickLaunchUserControl.ascx.cs">
+      <DependentUpon>QuickLaunchUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DashBoard\QuickLaunch\QuickLaunchUserControl.ascx.designer.cs">
+      <DependentUpon>QuickLaunchUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitle.cs" />
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx.cs">
       <DependentUpon>AddJobtitleUserControl.ascx</DependentUpon>
@@ -319,6 +327,10 @@
     <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\DashBoard\QuickLaunch\QuickLaunch.webpart" />
+    <None Include="Admin\DashBoard\QuickLaunch\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4ce9481e-63f2-4a7b-813c-ada265a638b9}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Job Title\AddJobtitle\AddJobtitle.webpart" />
     <None Include="Admin\Job Title\AddJobtitle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ef23c689-5313-4f4e-b7ce-2611ac5dbfe6}</SharePointProjectItemId>
@@ -375,6 +387,7 @@
     <None Include="Admin\Job Title\JobTitles\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6a98034-ff31-4015-b9e1-9db49f438a68}</SharePointProjectItemId>
     </None>
+    <None Include="app.config" />
     <None Include="key.snk" />
     <None Include="Admin\Common\Login\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f8c01da9-8061-45c1-91e5-0afa8642ac0c}</SharePointProjectItemId>
@@ -444,6 +457,10 @@
     <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Admin\DashBoard\QuickLaunch\Elements.xml" />
+    <Content Include="Admin\DashBoard\QuickLaunch\QuickLaunchUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -501,9 +518,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Common\Login\Elements.xml" />
-    <Content Include="Admin\Common\Login\LoginUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Common\Login\LoginUserControl.ascx" />
     <Content Include="Admin\Attendance\PunchAttendance\Elements.xml" />
     <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

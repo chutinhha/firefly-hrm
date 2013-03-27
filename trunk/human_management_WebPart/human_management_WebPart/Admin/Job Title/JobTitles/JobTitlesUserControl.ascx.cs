@@ -80,6 +80,20 @@ namespace SP2010VisualWebPart.JobTitles
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        DataTable jobCandidate = _com.getData(Message.TableJobCandidate, Message.FullNameColumn + "," + Message.EmailColumn
+                       , " where " + Message.JobTitleColumn + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
+                        DataTable jobVacancy = _com.getData(Message.TableVacancy, Message.VacancyNameColumn
+                            , " where " + Message.JobTitleColumn + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
+                        _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Server.HtmlDecode(gr.Cells[1].Text) + "'");
+                        _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Server.HtmlDecode(gr.Cells[1].Text) + "'");
+                        DataTable employee = _com.getData(Message.TableJobTitle, Message.JobIDColumn, " where " + Message.JobTitleColumn
+                            + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
+                        if (employee.Rows.Count > 0) {
+                            for (int i = 0; i < employee.Rows.Count; i++) {
+                                _com.updateTable(Message.TableEmployee, " "+Message.JobIDColumn
+                                    +"=NULL where "+Message.JobIDColumn+"='" + employee.Rows[i][0].ToString() + "';");
+                            }
+                        }
                         string sql = @"delete from "+Message.TableJobTitle+" where "+Message.JobTitleColumn+"=N'" 
                             + Server.HtmlDecode(gr.Cells[1].Text) + "';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);

@@ -29,7 +29,7 @@
     <p>
         <span style="padding-left:160px;"></span>
         <asp:TextBox ID="txtJobDescription" runat="server" Height="100px" 
-            TextMode="MultiLine" Width="400px"></asp:TextBox>
+            TextMode="MultiLine" Width="410px"></asp:TextBox>
     </p>
     <p>
         &nbsp;</p>
@@ -40,7 +40,7 @@
     <p>
         <span style="padding-left:160px;"></span>
         <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
-            Width="400px"></asp:TextBox>
+            Width="410px"></asp:TextBox>
     </p>
     <div class="borderTop">
         <span style="padding-left:155px;"></span>

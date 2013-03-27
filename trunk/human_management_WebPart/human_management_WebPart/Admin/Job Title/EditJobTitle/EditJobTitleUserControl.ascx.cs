@@ -71,10 +71,30 @@ namespace SP2010VisualWebPart.EditJobTitle
             else {
                 try
                 {
+                    DataTable jobCandidate = _com.getData(Message.TableJobCandidate, Message.FullNameColumn + "," + Message.EmailColumn
+                        , " where " + Message.JobTitleColumn + "=N'" + Session["Name"].ToString() + "';");
+                    DataTable jobVacancy = _com.getData(Message.TableVacancy, Message.VacancyNameColumn
+                        , " where " + Message.JobTitleColumn + "=N'" + Session["Name"].ToString() + "';");
+                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Session["Name"].ToString() + "'");
+                    _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Session["Name"].ToString() + "'");
                     _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn+"=N'" + txtJobTitle.Text + "',"
                         + Message.JobDescriptionColumn+"=N'" + txtJobDescription.Text + "',"+Message.NoteColumn+"=N'" 
                         + txtNote.Text + "',"+ Message.JobCategoryColumn+"=N'" + ddlJobCategory.SelectedValue 
                         + "',LastModified='"+DateTime.Now+"' where "+Message.JobTitleColumn+"=N'"+Session["Name"]+"'");
+                    if (jobCandidate.Rows.Count > 0) {
+                        for (int i = 0; i < jobCandidate.Rows.Count; i++)
+                        {
+                            _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=N'" + txtJobTitle.Text
+                                + "' where " + Message.FullNameColumn + "='" + jobCandidate.Rows[i][0].ToString() + "' and "
+                                + Message.EmailColumn + "=N'" + jobCandidate.Rows[i][1].ToString() + "';");
+                        }
+                    }
+                    if (jobVacancy.Rows.Count > 0) {
+                        for (int i = 0; i < jobVacancy.Rows.Count; i++) {
+                            _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=N'" + txtJobTitle.Text
+                                +"' where "+Message.VacancyNameColumn+"='" + jobVacancy.Rows[i][0].ToString() + "'");
+                        }
+                    }
                     Session.Remove("Name");
                     lblError.Text = "";
                     _com.closeConnection();

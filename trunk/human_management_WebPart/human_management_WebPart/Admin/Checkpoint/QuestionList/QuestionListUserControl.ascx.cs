@@ -123,9 +123,13 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        string sql = @"delete from " + Message.TableCheckpointQuestion + " where " + Message.QuestionIDColumn + "='"
+                        string sql=@"delete from "+Message.TableEvaluatePoint+" where "+Message.QuestionIDColumn+"='"
                             + Server.HtmlDecode(gr.Cells[1].Text) + "';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);
+                        command.ExecuteNonQuery();
+                        sql = @"delete from " + Message.TableCheckpointQuestion + " where " + Message.QuestionIDColumn + "='"
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "';";
+                        command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                     }
                 }
