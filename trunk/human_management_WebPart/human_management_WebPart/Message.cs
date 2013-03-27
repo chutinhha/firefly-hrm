@@ -121,6 +121,8 @@
     internal const string AccessDeniedPage = "AccessDenied.aspx";
     internal const string SearchEmployeePage = "SearchEmployee.aspx";
     internal const string PersonProjectPage = "PersonProject.aspx";
+    internal const string AssignLeavePage = "AssignLeave.aspx";
+    internal const string DayOffPage = "DayOff.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
