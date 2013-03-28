@@ -62,16 +62,16 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                             lblError.Text = ex.Message;
                         }
                     }
-                /
-                else
-                {
-                    Session.Remove("ProjectName");
-                    Session.Remove("TaskName");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    else
+                    {
+                        Session.Remove("ProjectName");
+                        Session.Remove("TaskName");
+                        Response.Redirect(Message.AccessDeniedPage);
+                    }
                 }
+                ddlProject.AutoPostBack = true;
+                ddlTask.AutoPostBack = true;
             }
-            ddlProject.AutoPostBack = true;
-            ddlTask.AutoPostBack = true;
         }
 
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
