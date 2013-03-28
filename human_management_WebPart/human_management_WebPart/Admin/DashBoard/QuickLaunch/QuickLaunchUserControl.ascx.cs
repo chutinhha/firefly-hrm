@@ -213,7 +213,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                     pnlUpcoming.Controls.Add(new LiteralControl("<div style=\"height:300px; \" id=\"task-list-group-panel-container\">"));
                     pnlUpcoming.Controls.Add(new LiteralControl("<div style=\"height:89%; overflow-x: hidden; overflow-y: auto;\" class=\"task-list-group-panel-menu_holder\" id=\"task-list-group-panel-menu_holder\">"));
                     pnlUpcoming.Controls.Add(new LiteralControl("<table class=\"table hover\"><tbody>"));
-                    for (int i = 0; i < interviewSchedule.Rows.Count; i++)
+                    for (int i = 0; i < upcomingTask.Rows.Count; i++)
                     {
                         pnlUpcoming.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
                         pnlUpcoming.Controls.Add(new LiteralControl("<a href=\"\">"));
