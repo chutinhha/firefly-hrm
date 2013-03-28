@@ -41,12 +41,12 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                     {
                         _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, "");
                         ddlProject.SelectedValue = Session["ProjectName"].ToString();
-                        DataTable myData = _com.getData(Message.TableProject, " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                        DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                         _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], true, "");
                         ddlTask.SelectedValue = Session["TaskName"].ToString();
                         try
                         {
-                            DataTable myDatatmp = _com.getData(Message.TableTask, " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                            DataTable myDatatmp = _com.getData(Message.TableTask, " * " , " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                             string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                             string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1";
                             string table = "(((" + Message.TableJobTitle;
@@ -78,7 +78,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableProject, " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                 _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], true, "");
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                 string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                 string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1";
                 string table = "(((" + Message.TableJobTitle;
@@ -120,7 +120,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
