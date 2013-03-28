@@ -27,7 +27,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                         {
                             if (!IsPostBack)
                             {
-                                DataTable myData = _com.getData(Message.TableProject, " WHERE ProjectName like '%Leave%'");
+                                DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName like '%Leave%'");
                                 _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "");
                                 Session.Remove("TaskName");
                             }
@@ -39,12 +39,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     }
                     else
                     {
-                        DataTable myData = _com.getData(Message.TableProject, " WHERE ProjectName like '%Leave%'");
+                        DataTable myData = _com.getData(Message.TableProject, " * " ," WHERE ProjectName like '%Leave%'");
                         _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "");
                         ddlDayOff.SelectedValue = Session["TaskName"].ToString();
                         try
                         {
-                            DataTable myDatatmp = _com.getData(Message.TableTask, " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
+                            DataTable myDatatmp = _com.getData(Message.TableTask, " * " , " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
                             string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                             string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1";
                             string table = "(((" + Message.TableJobTitle;
@@ -74,7 +74,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
+                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
                 string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                 string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1";
                 string table = "(((" + Message.TableJobTitle;
@@ -102,7 +102,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
+                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
