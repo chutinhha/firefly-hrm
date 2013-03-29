@@ -126,7 +126,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                         +",tas."+Message.TaskNameColumn;
                     _com.bindDataTimesheetSummary("per."+Message.NameColumn+" as 'Employee Name',pro."+Message.ProjectNameColumn
                         + " as 'Project Name',tas." + Message.TaskNameColumn + " as 'Task Name',tim." + Message.TimesheetTimeColumn + " as 'Time(Hours)',CONVERT"
-                        + "(varchar(10),tim."+Message.TimesheetDateColumn+", 20) as Date", condition, " "
+                        + "(varchar(10),tim."+Message.TimesheetDateColumn+", 20) as Date,per."+Message.BusinessEntityIDColumn, condition, " "
                         +Message.TableProject+" pro join "+Message.TableTask+" tas on pro."+Message.ProjectIDColumn
                         +"=tas."+Message.ProjectIDColumn+" join "+Message.TableTimesheet+" tim on tim."
                         +Message.TaskIdColumn+" = tas."+Message.TaskIdColumn+" join "+Message.TablePerson

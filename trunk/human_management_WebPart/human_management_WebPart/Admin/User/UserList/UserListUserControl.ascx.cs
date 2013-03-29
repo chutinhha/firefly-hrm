@@ -95,6 +95,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false;
+            e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
         }
 
         protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)

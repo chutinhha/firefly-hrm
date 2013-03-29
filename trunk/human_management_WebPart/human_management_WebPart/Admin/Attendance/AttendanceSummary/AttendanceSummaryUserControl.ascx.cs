@@ -42,6 +42,11 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
             }
         }
 
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
+        }
+
         protected void btnView_Click(object sender, EventArgs e)
         {
             try
@@ -107,7 +112,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     }
                     condition = condition + " order by p." + Message.NameColumn;
                     _com.bindDataAttendanceSummary("p." + Message.NameColumn + ",a." + Message.PunchInColumn
-                        + ",a." + Message.PunchOutColumn, condition, Message.TableAttendance + " a join "
+                        + ",a." + Message.PunchOutColumn+",p."+Message.BusinessEntityIDColumn+",p."+Message.EmailAddressColumn, condition, Message.TableAttendance + " a join "
                         + Message.TablePerson + " p on a." + Message.BusinessEntityIDColumn + " = p."
                         + Message.BusinessEntityIDColumn + " join " + Message.TableEmployee + " e on a."
                         + Message.BusinessEntityIDColumn + " = e." + Message.BusinessEntityIDColumn + " join "

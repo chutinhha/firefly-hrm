@@ -111,18 +111,22 @@ public class CommonFunction
         {
             DataColumn dcName = new DataColumn("Name", typeof(string));
             DataColumn dcTotalDay = new DataColumn("Total Day Present", typeof(string));
-            DataColumn dcTotalHour = new DataColumn("Total Time(Hours) Present", typeof(String));
+            DataColumn dcTotalHour = new DataColumn("Total Time Present(Hours)", typeof(double));
+            DataColumn dcEmail = new DataColumn("Email", typeof(string));
             dt1.Columns.Add(dcName);
             dt1.Columns.Add(dcTotalHour);
             dt1.Columns.Add(dcTotalDay);
+            dt1.Columns.Add(dcEmail);
             TimeSpan totalTime = TimeSpan.Zero;
             int totalDay = 1;
             string Day = DateTime.Parse(dt.Rows[0][1].ToString()).Day + "-" + DateTime.Parse(dt.Rows[0][1].ToString()).Month
                 + "-" + DateTime.Parse(dt.Rows[0][1].ToString()).Year;
             string name = dt.Rows[0][0].ToString();
+            string businessID = dt.Rows[0][3].ToString();
+            string email = dt.Rows[0][4].ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (name == dt.Rows[i][0].ToString())
+                if (businessID == dt.Rows[i][3].ToString())
                 {
                     DateTime punchIn = DateTime.Parse(dt.Rows[i][1].ToString());
                     DateTime punchOut = DateTime.Parse(dt.Rows[i][2].ToString());
@@ -137,8 +141,9 @@ public class CommonFunction
                     {
                         DataRow dr = dt1.NewRow();
                         dr[0] = name;
-                        dr[1] = totalTime;
+                        dr[1] = totalTime.TotalHours;
                         dr[2] = totalDay;
+                        dr[3] = email;
                         dt1.Rows.Add(dr);
                     }
                 }
@@ -146,10 +151,12 @@ public class CommonFunction
                 {
                     DataRow dr = dt1.NewRow();
                     dr[0] = name;
-                    dr[1] = totalTime;
+                    dr[3] = email;
+                    dr[1] = totalTime.TotalHours;
                     dr[2] = totalDay;
                     dt1.Rows.Add(dr);
                     name = dt.Rows[i][0].ToString();
+                    email = dt.Rows[i][4].ToString();
                     totalDay = 1;
                     DateTime punchIn = DateTime.Parse(dt.Rows[i][1].ToString());
                     DateTime punchOut = DateTime.Parse(dt.Rows[i][2].ToString());
@@ -159,13 +166,15 @@ public class CommonFunction
                     {
                         DataRow dr1 = dt1.NewRow();
                         dr1[0] = name;
-                        dr1[1] = totalTime;
+                        dr1[1] = totalTime.TotalHours;
                         dr1[2] = totalDay;
+                        dr1[3] = email;
                         dt1.Rows.Add(dr1);
                     }
                 }
             }
         }
+        dt1.Columns[3].SetOrdinal(1);
         GridView1.DataSource = dt1;
         GridView1.DataBind();
     }
@@ -184,13 +193,15 @@ public class CommonFunction
             DataColumn totalTimeOnProject = new DataColumn("Time On Project", typeof(string));
             dt.Columns.Add(totalTimeOnTask);
             dt.Columns.Add(totalTimeOnProject);
+            dt.Columns[5].SetOrdinal(7);
             int totalTimeTask = 0;
             int totalTimeProject = 0;
             string employeeName= dt.Rows[0][0].ToString();
+            string businessID = dt.Rows[0][7].ToString();
             string projectName = dt.Rows[0][1].ToString();
             string taskName = dt.Rows[0][2].ToString();
             for (int i = 0; i < dt.Rows.Count; i++) {
-                if (employeeName == dt.Rows[i][0].ToString())
+                if (employeeName == dt.Rows[i][0].ToString() && businessID == dt.Rows[i][7].ToString())
                 {
                     if (projectName == dt.Rows[i][1].ToString())
                     {
@@ -224,6 +235,7 @@ public class CommonFunction
                     taskName = dt.Rows[i][2].ToString();
                     projectName = dt.Rows[i][1].ToString();
                     employeeName=dt.Rows[i][0].ToString();
+                    businessID = dt.Rows[i][7].ToString();
                 }
                 if (i == dt.Rows.Count - 1) {
                     dt.Rows[i][5] = totalTimeTask + " (Hours)";
@@ -231,6 +243,7 @@ public class CommonFunction
                 }
             }
         }
+        dt.Columns.RemoveAt(7);
         GridView1.DataSource = dt;
         GridView1.DataBind();
     }

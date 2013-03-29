@@ -58,7 +58,7 @@
         <br /><br>
     <table class="fieldTitleDiv" cellpadding="0"><tr><td>
         
-<asp:GridView ID="grdData" runat="server" Width="100%">
+<asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
 </asp:GridView><table><tr><td></td></tr></table>
 </td></tr></table></asp:Panel>
 <p>

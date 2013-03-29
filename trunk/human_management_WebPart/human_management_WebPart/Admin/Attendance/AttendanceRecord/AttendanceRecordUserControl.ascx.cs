@@ -50,7 +50,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             rdoViewAll.Checked = true;
                             lblError.Text = "";
                             _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                + Message.PunchOutColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
+                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
                                 + "'" + _condition, Message.TableAttendance+" a join "+Message.TablePerson+" p on a."
                                 + Message.BusinessEntityIDColumn+"=p."+Message.BusinessEntityIDColumn, grdData);
                             if (grdData.Rows.Count > 0)
@@ -58,7 +58,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                 grdData.HeaderRow.Cells[1].Text = "Employee Name";
                                 grdData.HeaderRow.Cells[2].Text = "In Time";
                                 grdData.HeaderRow.Cells[3].Text = "Out Time";
-                                grdData.HeaderRow.Cells[4].Text = "Last Modified";
+                                grdData.HeaderRow.Cells[4].Text = "Email";
                             }
                             pnlData.Visible = true;
                             Session.Remove(Message.EmployeeName);
@@ -145,7 +145,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         //Case 1: View All Attendance of a Employee
                         lblError.Text = "";
                         _com.bindDataAttendance("p."+Message.NameColumn+",a."+Message.PunchInColumn+",a."
-                            +Message.PunchOutColumn+",a."+Message.LastModifiedColumn
+                            +Message.PunchOutColumn+",p."+Message.EmailAddressColumn
                             , " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
                             + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
@@ -168,7 +168,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                 +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                                 lblError.Text = "";
                                 _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                    + Message.PunchOutColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
+                                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
                                     + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                 check = true;
@@ -198,7 +198,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         + dt1.Day + "-" + dt1.Year + "'";
                                     lblError.Text = "";
                                     _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                        + Message.PunchOutColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
+                                        + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'"
                                         + txtEmployeeName.Text + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                     check = true;
@@ -222,7 +222,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 grdData.HeaderRow.Cells[1].Text = "Employee Name";
                 grdData.HeaderRow.Cells[2].Text = "In Time";
                 grdData.HeaderRow.Cells[3].Text = "Out Time";
-                grdData.HeaderRow.Cells[4].Text = "Last Modified";
+                grdData.HeaderRow.Cells[4].Text = "Email";
             }
             else {
                 lblError.Text = Message.NotExistData;
@@ -266,7 +266,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     }
                 }
                 _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                    + Message.PunchOutColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
+                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
                     + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                 if (grdData.Rows.Count > 0)
@@ -274,7 +274,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     grdData.HeaderRow.Cells[1].Text = "Employee Name";
                     grdData.HeaderRow.Cells[2].Text = "In Time";
                     grdData.HeaderRow.Cells[3].Text = "Out Time";
-                    grdData.HeaderRow.Cells[4].Text = "Last Modified";
+                    grdData.HeaderRow.Cells[4].Text = "Email";
                 }
                 else
                 {

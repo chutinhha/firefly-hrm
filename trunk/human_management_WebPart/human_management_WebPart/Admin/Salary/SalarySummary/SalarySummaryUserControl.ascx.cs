@@ -39,13 +39,17 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                         DataTable dt = _com.getData(Message.TableEmployee + " e join "
                             + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
                             + Message.BusinessEntityIDColumn + " order by "+sort);
-                        _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name", " on e." + Message.BusinessEntityIDColumn + "=p." 
+                        _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn
+                            , " on e." + Message.BusinessEntityIDColumn + "=p." 
                             + Message.BusinessEntityIDColumn + " order by "+sort, Message.TableEmployee + " e join "
                             + Message.TablePerson + " p", grdData, 1, ColumnTitle);
                         float totalCostPerMonth = 0;
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
+                            if (dt.Rows[i][1].ToString() != "")
+                            {
+                                totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
+                            }
                         }
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -53,7 +57,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                             txtSalary.ID = "txtSalary" + i;
                             txtSalary.Text = dt.Rows[i][1].ToString();
                             txtSalary.Width = 200;
-                            grdData.Rows[i].Cells[2].Controls.Add(txtSalary);
+                            grdData.Rows[i].Cells[3].Controls.Add(txtSalary);
                         }
                         DataRow newRow = dt.NewRow();
                         newRow[0] = totalCostPerMonth;
@@ -85,6 +89,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false;
+            e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
         }
 
         protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,7 +111,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             }
             string[] ColumnTitle = new string[1];
             ColumnTitle[0] = "Salary";
-            _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name", " on e." + Message.BusinessEntityIDColumn + "=p."
+            _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn, " on e." + Message.BusinessEntityIDColumn + "=p."
                 + Message.BusinessEntityIDColumn + " order by " + sort, Message.TableEmployee + " e join "
                 + Message.TablePerson + " p", grdData,1, ColumnTitle);
             DataTable dt = _com.getData(Message.TableEmployee + " e join "
@@ -119,7 +124,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 txtSalary.ID = "txtSalary" + i;
                 txtSalary.Text = dt.Rows[i][1].ToString();
                 txtSalary.Width = 200;
-                grdData.Rows[i].Cells[2].Controls.Add(txtSalary);
+                grdData.Rows[i].Cells[3].Controls.Add(txtSalary);
             }
             float totalCostPerMonth = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
