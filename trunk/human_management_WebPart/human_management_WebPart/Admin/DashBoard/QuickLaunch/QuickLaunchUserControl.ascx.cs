@@ -17,7 +17,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                 this.inputValue = "";
                 this.inputTitle = "";
                 int quarter = _com.getQuarter();
-                lblQuarter.Text = " " + quarter;
+                lblQuarter.Text = " quarter " + quarter;
                 DataTable AverageCheckPoint = _com.getData(Message.TableEvaluatePoint, " distinct " + Message.BusinessEntityIDColumn
                     + "," + Message.AveragePointColumn, " where Month(" + Message.ModifiedDateColumn + ")<=" + (4 * quarter)
                     + " and MONTH(" + Message.ModifiedDateColumn + ")>=" + (4 * quarter - 3));

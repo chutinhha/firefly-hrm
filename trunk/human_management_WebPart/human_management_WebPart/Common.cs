@@ -170,6 +170,71 @@ public class CommonFunction
         GridView1.DataBind();
     }
 
+    //Bind data to a timesheet summary
+    internal void bindDataTimesheetSummary(string column, string condition, string table, GridView GridView1)
+    {
+        string sql = @"SELECT " + column + " from " + table + condition + ";";
+        SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
+        DataSet ds = new DataSet();
+        da.Fill(ds, "data");
+        DataTable dt = ds.Tables["data"];
+        if (dt.Rows.Count > 0)
+        {
+            DataColumn totalTimeOnTask = new DataColumn("Time On Task", typeof(string));
+            DataColumn totalTimeOnProject = new DataColumn("Time On Project", typeof(string));
+            dt.Columns.Add(totalTimeOnTask);
+            dt.Columns.Add(totalTimeOnProject);
+            int totalTimeTask = 0;
+            int totalTimeProject = 0;
+            string employeeName= dt.Rows[0][0].ToString();
+            string projectName = dt.Rows[0][1].ToString();
+            string taskName = dt.Rows[0][2].ToString();
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                if (employeeName == dt.Rows[i][0].ToString())
+                {
+                    if (projectName == dt.Rows[i][1].ToString())
+                    {
+                        totalTimeProject = totalTimeProject + int.Parse(dt.Rows[i][3].ToString());
+                        if (taskName == dt.Rows[i][2].ToString())
+                        {
+                            totalTimeTask = totalTimeTask + int.Parse(dt.Rows[i][3].ToString());
+                        }
+                        else
+                        {
+                            dt.Rows[i - 1][5] = totalTimeTask+" (Hours)";
+                            totalTimeTask = int.Parse(dt.Rows[i][3].ToString());
+                            taskName = dt.Rows[i][2].ToString();
+                        }
+                    }
+                    else
+                    {
+                        dt.Rows[i - 1][5] = totalTimeTask + " (Hours)";
+                        dt.Rows[i - 1][6] = totalTimeProject + " (Hours)";
+                        totalTimeTask = int.Parse(dt.Rows[i][3].ToString());
+                        totalTimeProject = totalTimeTask;
+                        taskName = dt.Rows[i][2].ToString();
+                        projectName = dt.Rows[i][1].ToString();
+                    }
+                }
+                else {
+                    dt.Rows[i - 1][5] = totalTimeTask + " (Hours)";
+                    dt.Rows[i - 1][6] = totalTimeProject + " (Hours)";
+                    totalTimeTask = int.Parse(dt.Rows[i][3].ToString());
+                    totalTimeProject = totalTimeTask;
+                    taskName = dt.Rows[i][2].ToString();
+                    projectName = dt.Rows[i][1].ToString();
+                    employeeName=dt.Rows[i][0].ToString();
+                }
+                if (i == dt.Rows.Count - 1) {
+                    dt.Rows[i][5] = totalTimeTask + " (Hours)";
+                    dt.Rows[i][6] = totalTimeProject + " (Hours)";
+                }
+            }
+        }
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+    }
+
     //Bind data to a gridview with a blank column
     internal void bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
     {

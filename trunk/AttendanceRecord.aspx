@@ -120,7 +120,7 @@
 &lt;/script&gt;
 &lt;span id=&quot;g_d0968965_7be5_4c72_8786_af5d355a1164_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_d0968965_7be5_4c72_8786_af5d355a1164' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_d0968965_7be5_4c72_8786_af5d355a1164' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{bbf784eb-7103-4089-9a62-705e69909468}" WebPart="true" __designer:IsClosed="false" id="g_bbf784eb_7103_4089_9a62_705e69909468" __designer:Preview="&lt;div id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{bbf784eb-7103-4089-9a62-705e69909468}&quot; WebPart=&quot;true&quot;&gt;
 	
 &amp;nbsp;&lt;a id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
@@ -130,7 +130,7 @@
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_bbf784eb_7103_4089_9a62_705e69909468_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_bbf784eb_7103_4089_9a62_705e69909468$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_bbf784eb_7103_4089_9a62_705e69909468' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_bbf784eb_7103_4089_9a62_705e69909468' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 						
 </asp:Content>

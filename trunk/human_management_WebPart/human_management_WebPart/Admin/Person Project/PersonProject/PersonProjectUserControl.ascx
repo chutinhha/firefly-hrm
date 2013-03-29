@@ -6,25 +6,32 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PersonProjectUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Admin.Person_Project.PersonProject.PersonProjectUserControl" %>
-<table class="fieldTitleDiv"><tr><td>  
+<br><table class="fieldTitleDiv"><tr><td>  
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Project Personnel</td></tr>
+<tr><td class="fieldTitleTd"><font color="white">Project Personnel</font></td></tr>
 </table>  
 <br>
 <span style="padding-left:5px"></span><asp:Label ID="lblProject" runat="server" Text="Project" Width="100px"></asp:Label>
 <span style="padding-left:50px"></span>
-<asp:DropDownList runat="server" id="ddlProject" Width="120px" Height="20px" 
+<div class="styled-selectLong">
+<asp:DropDownList runat="server" id="ddlProject" 
 onselectedindexchanged="ddlProject_SelectedIndexChanged">
 </asp:DropDownList>
+</div>
 <span style="padding-left:50px"></span></span><asp:Label ID="lblTask" runat="server" Text="Task" Width="100px"></asp:Label>
 <span style="padding-left:50px"></span>
-<asp:DropDownList runat="server" id="ddlTask" Width="120px" Height="20px" 
+<div class="styled-selectLong">
+<asp:DropDownList runat="server" id="ddlTask" 
 onselectedindexchanged="ddlTask_SelectedIndexChanged">
-</asp:DropDownList>
-<br/>
-<asp:Button ID="btnAdd" runat="server" Text="Add" Width="70px" onclick="btnAdd_Click" />
-<asp:Button ID="btnDelete" runat="server" Text="Delete" Width="70px" onclick="btnDelete_Click" />
-<br>
+</asp:DropDownList></div>
+<br/><br>
+<div class="borderTop">
+<asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" class="addButton" 
+        onclick="btnAdd_Click" />
+<asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" class="deleteButton" 
+        onclick="btnDelete_Click" />
+        </div>
+
     <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True" 
         onselectedindexchanged="grdData_SelectedIndexChanged" 
         Width="100%" BorderStyle="None" BorderWidth="0px">

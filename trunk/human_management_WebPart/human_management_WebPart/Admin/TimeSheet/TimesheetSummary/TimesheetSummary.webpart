@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary.TimesheetSummary, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">TimesheetSummary</property>
+        <property name="Description" type="string">TimesheetSummary</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

@@ -98,6 +98,10 @@
     internal const string SSNNumberColumn = "SSNNumber";
     internal const string PersonProjectStartDateColumn = "StartDate";
     internal const string PersonProjectEndDateColumn = "EndDate";
+    internal const string TaskDescriptionColumn = "TaskDes";
+    internal const string TimesheetDateColumn = "Date";
+    internal const string TimesheetTimeColumn = "Time";
+    internal const string TimesheetIDColumn = "TimesheetId";
 
     //Page
     internal const string HomePage = "Home.aspx";
@@ -121,7 +125,7 @@
     internal const string EvaluateEmployeePage = "EvaluateEmployee.aspx";
     internal const string ChangePasswordPage = "ChangePassword";
     internal const string AccessDeniedPage = "AccessDenied.aspx";
-    internal const string SearchEmployeePage = "SearchEmployee.aspx";
+    internal const string SearchEmployeePage = "AssignEmployee.aspx";
     internal const string PersonProjectPage = "PersonProject.aspx";
     internal const string AssignLeavePage = "AssignLeave.aspx";
     internal const string DayOffPage = "DayOff.aspx";

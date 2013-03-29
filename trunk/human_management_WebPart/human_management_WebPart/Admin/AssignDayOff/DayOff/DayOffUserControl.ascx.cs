@@ -28,7 +28,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             if (!IsPostBack)
                             {
                                 DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName like '%Leave%'");
-                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "");
+                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), false, "");
                                 Session.Remove("TaskName");
                             }
                         }
