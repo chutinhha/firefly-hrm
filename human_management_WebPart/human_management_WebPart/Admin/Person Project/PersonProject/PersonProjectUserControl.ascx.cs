@@ -27,7 +27,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                         {
                             if (!IsPostBack)
                             {
-                                _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, "");
+                                _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", false, "");
                                 Session.Remove("ProjectName");
                                 Session.Remove("TaskName");
                             }
@@ -39,10 +39,10 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                     }
                     else if (Session["ProjectName"] != null && Session["TaskName"] != null)
                     {
-                        _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, "");
+                        _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", false, "");
                         ddlProject.SelectedValue = Session["ProjectName"].ToString();
                         DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                        _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], true, "");
+                        _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], false, "");
                         ddlTask.SelectedValue = Session["TaskName"].ToString();
                         try
                         {
@@ -79,7 +79,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
             try
             {
                 DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], true, "");
+                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], false, "");
             }
             catch (Exception ex)
             {

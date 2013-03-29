@@ -45,8 +45,6 @@
     <ElementFile Location="EvaluateEmployee\EvaluateEmployee.webpart" />
     <ElementManifest Location="AccessDenied\Elements.xml" />
     <ElementFile Location="AccessDenied\AccessDenied.webpart" />
-    <ElementManifest Location="AssignEmployee\Elements.xml" />
-    <ElementFile Location="AssignEmployee\AssignEmployee.webpart" />
     <ElementManifest Location="SalarySummary\Elements.xml" />
     <ElementFile Location="SalarySummary\SalarySummary.webpart" />
     <ElementManifest Location="UserList\Elements.xml" />
@@ -57,5 +55,17 @@
     <ElementFile Location="NotifyEmployee\NotifyEmployee.webpart" />
     <ElementManifest Location="QuickLaunch\Elements.xml" />
     <ElementFile Location="QuickLaunch\QuickLaunch.webpart" />
+    <ElementManifest Location="PersonProject\Elements.xml" />
+    <ElementFile Location="PersonProject\PersonProject.webpart" />
+    <ElementManifest Location="SearchEmployee\Elements.xml" />
+    <ElementFile Location="SearchEmployee\SearchEmployee.webpart" />
+    <ElementManifest Location="AssignLeave\Elements.xml" />
+    <ElementFile Location="AssignLeave\AssignLeave.webpart" />
+    <ElementManifest Location="DayOff\Elements.xml" />
+    <ElementFile Location="DayOff\DayOff.webpart" />
+    <ElementManifest Location="ApproveTimesheet\Elements.xml" />
+    <ElementFile Location="ApproveTimesheet\ApproveTimesheet.webpart" />
+    <ElementManifest Location="TimesheetSummary\Elements.xml" />
+    <ElementFile Location="TimesheetSummary\TimesheetSummary.webpart" />
   </ElementManifests>
 </Feature>

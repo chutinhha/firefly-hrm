@@ -22,33 +22,39 @@
         });
     });
 </script>
-<table class="fieldTitleDiv" cellpadding="0">
+<br><table class="fieldTitleDiv" cellpadding="0">
 <tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd">Search Employees By Free Time</td></tr>
+<tr><td class="fieldTitleTd"><font color="white">Search Employees By Free Time</font></td></tr>
 </table>
 <br>
-<span style="padding-left:5px"></span><asp:Label ID="lblFrom" runat="server" Text="From" Width="100px"></asp:Label>
-<span style="padding-left:50px"></span>
-    <asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;"><input type="text" id="txtDateFrom" name="txtDateFrom" style="width:115px;" value="" onclick="return txtDateFrom_onclick()" /></asp:Panel>
+<span style="padding-left:5px"></span><asp:Label ID="lblFrom" runat="server" 
+        Text="From" Width="70px"></asp:Label>
+    <asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;">
+        <input type="text" id="txtDateFrom" name="txtDateFrom" style="width:200px;" value="" onclick="return txtDateFrom_onclick()" /></asp:Panel>
     <span style="padding-left: 50px"></span>
-    <asp:Label ID="lblDateTo" runat="server" Text="To" Width="100px"></asp:Label>
-    <span style="padding-left: 50px"></span>
-    <asp:Panel ID="pnlDateTo" runat="server" style="display:inline;"><input type="text" id="txtDateTo" name="txtDateTo" style="width:115px;" value=""/></asp:Panel>
-    <br>
-    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" onclick="btnSearch_Click" />
-    <asp:Button ID="btnReset" runat="server" onclick="btnReset_Click" Text="Reset" Width="70px" />
+    <asp:Label ID="lblDateTo" runat="server" Text="To" Width="70px"></asp:Label>
+    <asp:Panel ID="pnlDateTo" runat="server" style="display:inline;"><input type="text" id="txtDateTo" name="txtDateTo" style="width:200px;" value=""/></asp:Panel>
+    <br><br>
+    <div class="borderTop">
+    <asp:Button ID="btnSearch" runat="server" class="addButton" Text="Search" Width="70px" onclick="btnSearch_Click" />
+    <asp:Button ID="btnReset" runat="server" class="resetButton" onclick="btnReset_Click" Text="Reset" Width="70px" />
+    </div>
 </td></tr></table>
 <br>
 <table class="fieldTitleDiv"><tr><td>    
 <br>
-<span style="padding-left:5px"></span><asp:Label ID="lblProject" runat="server" Text="Project" Width="100px"></asp:Label>
-    <asp:TextBox ID="txtProject" runat="server" Width="100px" ReadOnly="True"></asp:TextBox>
-<span style="padding-left:50px"></span></span><asp:Label ID="lblTask" runat="server" Text="Task" Width="100px"></asp:Label>
-    <asp:TextBox ID="txtTask" runat="server" Width="100px" ReadOnly="True"></asp:TextBox>
-<br/>
-<asp:Button ID="btnAssign" runat="server" Text="Assign" Width="70px" onclick="btnAssign_Click" />
-<br>
+<span style="padding-left:5px"></span><asp:Label ID="lblProject" runat="server" 
+        Text="Project" Width="70px"></asp:Label>
+    <asp:TextBox ID="txtProject" runat="server" Width="200px" ReadOnly="True"></asp:TextBox>
+<span style="padding-left:50px"></span></span><asp:Label ID="lblTask" 
+        runat="server" Text="Task" Width="70px"></asp:Label>
+    <asp:TextBox ID="txtTask" runat="server" Width="200px" ReadOnly="True"></asp:TextBox>
+<br/><br>
+<div class="borderTop">
+<asp:Button class="addButton" ID="btnAssign" runat="server" Text="Assign" Width="70px" onclick="btnAssign_Click" />
+</div>
+
     <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True" 
         onselectedindexchanged="grdData_SelectedIndexChanged" 
         Width="100%" BorderStyle="None" BorderWidth="0px">
@@ -57,7 +63,7 @@
                         <asp:TemplateField>
                         <HeaderStyle Width="25" />
                             <HeaderTemplate>
-            <asp:CheckBox 
+            &nbsp;<asp:CheckBox 
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
@@ -65,7 +71,7 @@
                 />
         </HeaderTemplate>
                             <ItemTemplate>
-                                <asp:CheckBox ID="myCheckBox" runat="server" />
+                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
 

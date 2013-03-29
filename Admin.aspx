@@ -349,7 +349,7 @@ table tbody tr.total td
 	&lt;/div&gt;
     &lt;/fieldset&gt;
     &lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -384,7 +384,7 @@ table tbody tr.total td
 &lt;/script&gt;
 &lt;span id=&quot;g_2475d79b_4513_4fc8_a285_026e2b1d00a4_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_2475d79b_4513_4fc8_a285_026e2b1d00a4' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_2475d79b_4513_4fc8_a285_026e2b1d00a4' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 							<UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{d7d58236-9aa9-4cce-8261-1f71b21eb269}" WebPart="true" __designer:IsClosed="false" id="g_d7d58236_9aa9_4cce_8261_1f71b21eb269" __designer:Preview="&lt;div id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{d7d58236-9aa9-4cce-8261-1f71b21eb269}&quot; WebPart=&quot;true&quot;&gt;
 	
 &amp;nbsp;&lt;a id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
@@ -394,7 +394,7 @@ table tbody tr.total td
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_d7d58236_9aa9_4cce_8261_1f71b21eb269_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_d7d58236_9aa9_4cce_8261_1f71b21eb269$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_d7d58236_9aa9_4cce_8261_1f71b21eb269' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>						
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_d7d58236_9aa9_4cce_8261_1f71b21eb269' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>						
 </asp:Content>
 
 

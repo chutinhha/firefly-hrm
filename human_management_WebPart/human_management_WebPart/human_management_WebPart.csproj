@@ -62,13 +62,21 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Assign Project\AssignEmployee\AssignEmployee.cs" />
-    <Compile Include="Admin\Assign Project\AssignEmployee\AssignEmployeeUserControl.ascx.cs">
-      <DependentUpon>AssignEmployeeUserControl.ascx</DependentUpon>
+    <Compile Include="Admin\AssignDayOff\AssignLeave\AssignLeave.cs" />
+    <Compile Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx.cs">
+      <DependentUpon>AssignLeaveUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Assign Project\AssignEmployee\AssignEmployeeUserControl.ascx.designer.cs">
-      <DependentUpon>AssignEmployeeUserControl.ascx.cs</DependentUpon>
+    <Compile Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx.designer.cs">
+      <DependentUpon>AssignLeaveUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AssignDayOff\DayOff\DayOff.cs" />
+    <Compile Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx.cs">
+      <DependentUpon>DayOffUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx.designer.cs">
+      <DependentUpon>DayOffUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Attendance\AttendanceSummary\AttendanceSummary.cs" />
     <Compile Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx.cs">
@@ -158,6 +166,22 @@
     <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.designer.cs">
       <DependentUpon>NotifyEmployeeUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Person Project\PersonProject\PersonProject.cs" />
+    <Compile Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx.cs">
+      <DependentUpon>PersonProjectUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx.designer.cs">
+      <DependentUpon>PersonProjectUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployee.cs" />
+    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx.cs">
+      <DependentUpon>SearchEmployeeUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx.designer.cs">
+      <DependentUpon>SearchEmployeeUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Salary\SalarySummary\SalarySummary.cs" />
     <Compile Include="Admin\Salary\SalarySummary\SalarySummaryUserControl.ascx.cs">
       <DependentUpon>SalarySummaryUserControl.ascx</DependentUpon>
@@ -165,6 +189,22 @@
     </Compile>
     <Compile Include="Admin\Salary\SalarySummary\SalarySummaryUserControl.ascx.designer.cs">
       <DependentUpon>SalarySummaryUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TimeSheet\ApproveTimesheet\ApproveTimesheet.cs" />
+    <Compile Include="Admin\TimeSheet\ApproveTimesheet\ApproveTimesheetUserControl.ascx.cs">
+      <DependentUpon>ApproveTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TimeSheet\ApproveTimesheet\ApproveTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>ApproveTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummary.cs" />
+    <Compile Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx.cs">
+      <DependentUpon>TimesheetSummaryUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx.designer.cs">
+      <DependentUpon>TimesheetSummaryUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\User\UserList\UserList.cs" />
     <Compile Include="Admin\User\UserList\UserListUserControl.ascx.cs">
@@ -291,9 +331,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Admin\Assign Project\AssignEmployee\AssignEmployee.webpart" />
-    <None Include="Admin\Assign Project\AssignEmployee\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f7b7602b-f515-4050-b22e-63a33189ef51}</SharePointProjectItemId>
+    <None Include="Admin\AssignDayOff\AssignLeave\AssignLeave.webpart" />
+    <None Include="Admin\AssignDayOff\AssignLeave\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b356c345-5a55-49d6-8aec-5d9c2415e522}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\AssignDayOff\DayOff\DayOff.webpart" />
+    <None Include="Admin\AssignDayOff\DayOff\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8738fb02-b195-44b3-8097-fe1dfccffe7a}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Attendance\AttendanceSummary\AttendanceSummary.webpart" />
     <None Include="Admin\Attendance\AttendanceSummary\SharePointProjectItem.spdata">
@@ -339,10 +383,26 @@
     <None Include="Admin\Common\NotifyEmployee\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2d66c28d-0e63-4da4-aa2e-11f28325f725}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Person Project\PersonProject\PersonProject.webpart" />
+    <None Include="Admin\Person Project\PersonProject\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{08f96392-7375-41ec-ab44-8f3bde2652ca}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Person Project\SearchEmployee\SearchEmployee.webpart" />
+    <None Include="Admin\Person Project\SearchEmployee\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{17bbbd55-2893-4005-b883-068e67805fb3}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Salary\SalarySummary\SalarySummary.webpart" />
     <None Include="Admin\Salary\SalarySummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5c0a6bf8-f4c5-474f-aa69-c227a91c9d66}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\TimeSheet\ApproveTimesheet\ApproveTimesheet.webpart" />
+    <None Include="Admin\TimeSheet\ApproveTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7851ac7c-7bf7-4b3b-873b-557becc0f3cd}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\TimeSheet\TimesheetSummary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{36b787d1-304f-49c6-b641-3569fd340116}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummary.webpart" />
     <None Include="Admin\User\UserList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{648b647f-953a-4065-a426-5ac995d4dec2}</SharePointProjectItemId>
     </None>
@@ -421,10 +481,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Assign Project\AssignEmployee\AssignEmployeeUserControl.ascx">
+    <Content Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Assign Project\AssignEmployee\Elements.xml" />
+    <Content Include="Admin\AssignDayOff\AssignLeave\Elements.xml" />
+    <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\AssignDayOff\DayOff\Elements.xml" />
     <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -469,8 +533,24 @@
     <Content Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
+    <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Person Project\SearchEmployee\Elements.xml" />
+    <Content Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Salary\SalarySummary\Elements.xml" />
     <Content Include="Admin\Salary\SalarySummary\SalarySummaryUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\TimeSheet\ApproveTimesheet\ApproveTimesheetUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\TimeSheet\ApproveTimesheet\Elements.xml" />
+    <Content Include="Admin\TimeSheet\TimesheetSummary\Elements.xml" />
+    <Content Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\User\UserList\Elements.xml" />

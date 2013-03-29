@@ -429,8 +429,7 @@
 		<div class="dropdown">
 			<ul>
 				<li style="background:none"><a href="">Timesheets</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Employee Timesheets</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Timesheets Report</a></li>
+					<li style="padding-left:40px;background:none;"><a href="">Approve Timesheets</a></li>
 					<li style="padding-left:40px;"><a href="">Timesheets Summary</a></li>
 				
 				<li style="background:none"><a href="">Configure Leave</a></li>

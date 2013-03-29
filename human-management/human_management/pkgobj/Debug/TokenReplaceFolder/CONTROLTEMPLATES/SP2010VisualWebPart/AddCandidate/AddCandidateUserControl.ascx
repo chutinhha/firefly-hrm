@@ -16,6 +16,10 @@
             changeMonth: true,
             changeYear: true
         });
+        $("#txtInterviewDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
     });
 </script>
 <br><asp:Panel ID="Panel1" runat="server" 
@@ -119,14 +123,28 @@
                 </asp:Panel>
                 &nbsp;<p>
                 </p>
-                <p>
-                    <br><span style="padding-left:5px;"></span>
-                    <asp:Label ID="lblComment" runat="server" Text="Comment" valign="top" 
+                <br>
+                    <span style="padding-left:5px;"></span><asp:Label ID="lblInterviewDate" runat="server" Text="Interview Date" 
                         Width="120px"></asp:Label>
-                </p>
-                <span style="padding-left:130px;"></span>
-                <asp:TextBox ID="txtComment" runat="server" Height="100px" TextMode="MultiLine" 
-                    Width="650px"></asp:TextBox>
+                    <asp:Panel ID="pnlInterview" runat="server" style="display:inline;">
+                    <input type="text" id="txtInterviewDate" name="txtInterviewDate" size="30" value=""/>
+                </asp:Panel>
+                <span style="padding-left:100px;"></span>
+                <asp:Label ID="lblInterviewTime" runat="server" Text="Time" 
+            Width="120px"></asp:Label>
+        <asp:TextBox ID="txtInterviewTime" runat="server" Width="200px"></asp:TextBox>
+        <p>
+            &nbsp;</p>
+        <p>
+            <br><span style="padding-left:5px;"></span>
+            <asp:Label ID="lblComment" runat="server" Text="Comment" valign="top" 
+                Width="120px"></asp:Label>
+            <br></br>
+            </br>
+        </p>
+        <span style="padding-left:130px;"></span>
+        <asp:TextBox ID="txtComment" runat="server" Height="100px" TextMode="MultiLine" 
+            Width="650px"></asp:TextBox>
                 <br>
                 <br>
                 <div class="borderTop">

@@ -402,10 +402,6 @@
 		<a href="Admin.aspx">ADMIN</a>
 		<div class="dropdown">
 			<ul>
-				<li style="background:none"><a href="">Organization</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">General Information</a></li>
-					<li style="padding-left:40px;"><a href="">Location</a></li>
-					
 				<li style="background:none"><a href="JobTitles.aspx">Job</a></li>
 					<li style="padding-left:40px;background:none;"><a href="JobCategories.aspx">Job Categories</a></li>
 					<li style="padding-left:40px;background:none;"><a href="JobTitles.aspx">Job Titles</a></li>
@@ -418,7 +414,7 @@
 				
 				<li style="background:none"><a href="ManageUser.aspx">Users</a></li>
 					<li style="padding-left:40px;background:none;"><a href="ManageUser.aspx">Manage Users</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Assign User To Project</a></li>
+					<li style="padding-left:40px;background:none;"><a href="ChooseTask.aspx">Assign User To Project</a></li>
 				
 			</ul>
 			<div class="bottom"></div>
@@ -428,18 +424,16 @@
 		<a href="">TIME</a>
 		<div class="dropdown">
 			<ul>
-				<li style="background:none"><a href="">Timesheets</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Employee Timesheets</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Timesheets Report</a></li>
-					<li style="padding-left:40px;"><a href="">Timesheets Summary</a></li>
+				<li style="background:none"><a href="ApproveTimesheet.aspx">Timesheets</a></li>
+					<li style="padding-left:40px;background:none;"><a href="ApproveTimesheet.aspx">Approve Timesheets</a></li>
+					<li style="padding-left:40px;"><a href="TimesheetSummary.aspx">Timesheets Summary</a></li>
 				
-				<li style="background:none"><a href="">Configure Leave</a></li>
+				<li style="background:none"><a href="ConfigDayOff.aspx">Configure Days Off</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Leave Period</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Leave Types</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Work Week</a></li>
-					<li style="padding-left:40px;"><a href="">Holidays</a></li>
-				
-				<li><a href="">Assign Leave</a></li>
+					<li style="padding-left:40px;"><a href="AssignDayOff.aspx">Assign Day Off</a></li>
+				<li><a href="AssignLeave.aspx">Assign Leave</a></li>
 				<li style="background:none"><a href="AttendanceRecord.aspx">Attendance</a></li>
 					<li style="padding-left:40px;background:none;"><a href="AttendanceRecord.aspx">Employee Records</a></li>
 					<li style="padding-left:40px;background:none;"><a href="AttendanceSummary.aspx">Attendance Summary</a></li>
