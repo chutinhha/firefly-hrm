@@ -99,7 +99,7 @@
     internal const string PersonProjectStartDateColumn = "StartDate";
     internal const string PersonProjectEndDateColumn = "EndDate";
     internal const string TaskDescriptionColumn = "TaskDes";
-    internal const string TimesheetDateColumn = "Date";
+    internal const string TimesheetDateColumn = "WorkDate";
     internal const string TimesheetTimeColumn = "Time";
     internal const string TimesheetIDColumn = "TimesheetId";
 
