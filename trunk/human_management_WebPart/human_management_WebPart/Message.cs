@@ -129,6 +129,7 @@
     internal const string PersonProjectPage = "PersonProject.aspx";
     internal const string AssignLeavePage = "AssignLeave.aspx";
     internal const string DayOffPage = "DayOff.aspx";
+    internal const string UserHomePage = "User.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
