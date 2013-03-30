@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee {
+namespace SP2010VisualWebPart.Admin.Test.SearchEmployee {
     
     
     public partial class SearchEmployeeUserControl {

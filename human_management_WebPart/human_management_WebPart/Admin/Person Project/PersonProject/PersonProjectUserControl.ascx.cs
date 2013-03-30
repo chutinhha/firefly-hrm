@@ -6,21 +6,21 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 
-namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
+namespace SP2010VisualWebPart.Admin.Test.PersonProject
 {
     public partial class PersonProjectUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"] == null)
+            /*if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
                 if (Session["Account"].ToString() == "Admin")
-                {
+                {*/
                     if (Session["ProjectName"] == null || Session["TaskName"] == null)
                     {
                         try
@@ -46,7 +46,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                         ddlTask.SelectedValue = Session["TaskName"].ToString();
                         try
                         {
-                            DataTable myDatatmp = _com.getData(Message.TableTask, " * " , " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                            DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                             string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                             string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1";
                             string table = "(((" + Message.TableJobTitle;
@@ -62,23 +62,23 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                             lblError.Text = ex.Message;
                         }
                     }
-                    else
-                    {
-                        Session.Remove("ProjectName");
-                        Session.Remove("TaskName");
-                        Response.Redirect(Message.AccessDeniedPage);
-                    }
-                }
+               /* }
+                else
+                {
+                    Session.Remove("ProjectName");
+                    Session.Remove("TaskName");
+                    Response.Redirect(Message.AccessDeniedPage);
+                }*/
                 ddlProject.AutoPostBack = true;
                 ddlTask.AutoPostBack = true;
             }
-        }
 
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblError.Text = "";
             try
             {
-                DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                 _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], false, "");
             }
             catch (Exception ex)
@@ -89,13 +89,16 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
 
         protected void ddlTask_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Boolean checkEmpty = false;
+            lblError.Text = "";
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                 string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
                 string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1";
                 string table = "(((" + Message.TableJobTitle;
                 _com.bindData(column, condition, table, grdData);
+                if (grdData.Rows.Count == 0) checkEmpty = true;
                 _com.setGridViewStyle(grdData);
                 grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
                 grdData.HeaderRow.Cells[2].Text = "Employee Name";
@@ -104,7 +107,9 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message;
+                if (checkEmpty == true) lblError.Text = "There is no consistent data!";
+                else
+                    lblError.Text = ex.Message;
             }
         }
 
@@ -120,13 +125,13 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        _com.updateTable(Message.TablePersonProject,Message.CurrentFlagColumn + " = 0 WHERE " + Message.BusinessEntityIDColumn + " = " + gr.Cells[1].ToString().Trim() + " and TaskId = " + myData.Rows[0][0].ToString());
+                        _com.updateTable(Message.TablePersonProject, Message.CurrentFlagColumn + " = 0 WHERE " + Message.BusinessEntityIDColumn + " = " + gr.Cells[1].ToString().Trim() + " and TaskId = " + myData.Rows[0][0].ToString());
                     }
                 }
                 string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;

@@ -7,21 +7,21 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
+namespace SP2010VisualWebPart.Admin.Test.SearchEmployee
 {
     public partial class SearchEmployeeUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"] == null)
+            /*if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
                 if (Session["Account"].ToString() == "Admin")
-                {
+                {*/
                     if (Session["ProjectName"] == null || Session["TaskName"] == null)
                     {
                         Response.Redirect(Message.AccessDeniedPage);
@@ -50,15 +50,14 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                             lblError.Text = ex.Message;
                         }
                     }
-                }
+               /* }
                 else
                 {
                     Session.Remove("ProjectName");
                     Session.Remove("TaskName");
                     Response.Redirect(Message.AccessDeniedPage);
-                }
-            }
-        }
+                }*/
+            }        
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -78,8 +77,8 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                 }
                 else
                 {
-                    DataTable myData = _com.getData("HumanResources.Employee.BusinessEntityId," + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn
-                    , "((((" + Message.TableTask,
+                    DataTable myData = _com.getData("((((" + Message.TableTask,
+                    "HumanResources.Employee.BusinessEntityId," + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn,
                     " INNER JOIN HumanResources.PersonProject ON HumanResources.Task.TaskId = HumanResources.PersonProject.TaskId ) INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.Person ON HumanResources.Employee.BusinessEntityId = HumanResources.Person.BusinessEntityId) INNER JOIN HumanResources.JobTitle ON HumanResources.Employee.JobId = HumanResources.JobTitle.JobId) WHERE HumanResources.PersonProject.CurrentFlag = 1");
                     List<DataRow> rowsToDelete = new List<DataRow>();
                     foreach (DataRow myRow in myData.Select())
@@ -171,7 +170,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
         {
             try
             {
-                DataTable myData = _com.getData(Message.TaskIdColumn, Message.TableProject, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%" + txtProject.Text.ToString() + "%' and TaskName like '%" + txtTask.Text.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableProject,Message.TaskIdColumn, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%" + txtProject.Text.ToString() + "%' and TaskName like '%" + txtTask.Text.ToString() + "%'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
