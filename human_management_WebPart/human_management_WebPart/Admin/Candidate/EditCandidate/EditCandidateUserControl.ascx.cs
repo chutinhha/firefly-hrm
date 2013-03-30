@@ -234,10 +234,10 @@ namespace SP2010VisualWebPart.EditCandidate
                                             + "','" + txtEmail.Text.Trim() + "','" + txtHomePhone.Text.Trim() + "','" + txtMobile.Text.Trim()
                                             + "',NULL,'" + txtCity.Text.Trim() + "','" + ddlCountry.SelectedValue + "','" + txtAddress.Text.Trim()
                                             + "','" + DateTime.Now + "'", false);
-                                        string sql = @"delete from " + Message.TableJobCandidate + " where " + Message.FullNameColumn + "=N'"
+                                        /*string sql = @"delete from " + Message.TableJobCandidate + " where " + Message.FullNameColumn + "=N'"
                                             + Session["Name"].ToString() + "' and " + Message.EmailColumn + "='" + Session["Email"].ToString() + "';";
                                         SqlCommand command = new SqlCommand(sql, _com.cnn);
-                                        command.ExecuteNonQuery();
+                                        command.ExecuteNonQuery();*/
                                     }
                                     Session.Remove("Name");
                                     Session.Remove("Email");

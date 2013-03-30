@@ -67,5 +67,7 @@
     <ElementFile Location="ApproveTimesheet\ApproveTimesheet.webpart" />
     <ElementManifest Location="TimesheetSummary\Elements.xml" />
     <ElementFile Location="TimesheetSummary\TimesheetSummary.webpart" />
+    <ElementManifest Location="Attendance\Elements.xml" />
+    <ElementFile Location="Attendance\Attendance.webpart" />
   </ElementManifests>
 </Feature>
