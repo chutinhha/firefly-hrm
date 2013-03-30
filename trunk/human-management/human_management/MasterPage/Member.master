@@ -431,14 +431,14 @@
 			<div class="bottom"></div>
 		</div>		
 	</li>
-<li>
+<li style="background:none">
 		<a href="">PERFORMANCE</a>
 		<div class="dropdown">
 			<ul>
-				<li style="background:none"><a href="">Reviews</a></li>					
-					<li style="padding-left:40px;background:none;"><a href="">Timesheets Summary</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Attendance Summary</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Supervisor Judgment</a></li>			
+				<li style="background:none"><a href="SupervisorJudgment.aspx">Reviews</a></li>					
+					<li style="padding-left:40px;background:none;"><a href="ReviewTimesheet.aspx">Timesheets Summary</a></li>
+					<li style="padding-left:40px;background:none;"><a href="ReviewAttendance.aspx">Attendance Summary</a></li>
+					<li style="padding-left:40px;background:none;"><a href="SupervisorJudgment.aspx">Supervisor Judgment</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		

@@ -69,5 +69,11 @@
     <ElementFile Location="TimesheetSummary\TimesheetSummary.webpart" />
     <ElementManifest Location="Attendance\Elements.xml" />
     <ElementFile Location="Attendance\Attendance.webpart" />
+    <ElementManifest Location="ReviewTimesheet\Elements.xml" />
+    <ElementFile Location="ReviewTimesheet\ReviewTimesheet.webpart" />
+    <ElementManifest Location="ReviewAttendance\Elements.xml" />
+    <ElementFile Location="ReviewAttendance\ReviewAttendance.webpart" />
+    <ElementManifest Location="SupervisorJudgment\Elements.xml" />
+    <ElementFile Location="SupervisorJudgment\SupervisorJudgment.webpart" />
   </ElementManifests>
 </Feature>

@@ -128,8 +128,13 @@
     internal const string SearchEmployeePage = "AssignEmployee.aspx";
     internal const string PersonProjectPage = "PersonProject.aspx";
     internal const string AssignLeavePage = "AssignLeave.aspx";
-    internal const string DayOffPage = "DayOff.aspx";
+    internal const string AssignDayOffPage = "DayOff.aspx";
     internal const string UserHomePage = "User.aspx";
+    internal const string SupervisorJudgmentPage = "SupervisorJudgment.aspx";
+    internal const string ApplyLeavePage = "ApplyLeave.aspx";
+    internal const string MyLeavePage = "MyLeave.aspx";
+    internal const string TimesheetPage = "LogTimesheet.aspx";
+    internal const string ApproveTimesheetPage = "ApproveTimesheet.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -181,4 +186,5 @@
     internal const string NotAnswerAll = "You must answer all question";
     internal const string NotExistData = "There is no data that match your request";
     internal const string ToDateAfterFrom = "From date must be earlier than To date";
+    internal const string NotHaveCheckPointYet = "You haven't got supervisor judgment of this quarter<br><br>";
 }
