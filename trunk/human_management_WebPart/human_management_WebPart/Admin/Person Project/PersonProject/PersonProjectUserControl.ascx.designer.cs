@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject {
+namespace SP2010VisualWebPart.Admin.Test.PersonProject {
     
     
     public partial class PersonProjectUserControl {

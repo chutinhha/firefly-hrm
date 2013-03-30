@@ -7,13 +7,13 @@ using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
-namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
+namespace SP2010VisualWebPart.Admin.Test.PersonProject
 {
     [ToolboxItemAttribute(false)]
     public class PersonProject : WebPart
     {
         // Visual Studio might automatically update this path when you change the Visual Web Part project item.
-        private const string _ascxPath = @"~/_CONTROLTEMPLATES/SP2010VisualWebPart.Admin.Person_Project/PersonProject/PersonProjectUserControl.ascx";
+        private const string _ascxPath = @"~/_CONTROLTEMPLATES/SP2010VisualWebPart.Admin.Test/PersonProject/PersonProjectUserControl.ascx";
 
         protected override void CreateChildControls()
         {

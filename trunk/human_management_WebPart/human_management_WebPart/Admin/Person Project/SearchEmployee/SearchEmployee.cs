@@ -7,13 +7,13 @@ using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
-namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
+namespace SP2010VisualWebPart.Admin.Test.SearchEmployee
 {
     [ToolboxItemAttribute(false)]
     public class SearchEmployee : WebPart
     {
         // Visual Studio might automatically update this path when you change the Visual Web Part project item.
-        private const string _ascxPath = @"~/_CONTROLTEMPLATES/SP2010VisualWebPart.Admin.Person_Project/SearchEmployee/SearchEmployeeUserControl.ascx";
+        private const string _ascxPath = @"~/_CONTROLTEMPLATES/SP2010VisualWebPart.Admin.Test/SearchEmployee/SearchEmployeeUserControl.ascx";
 
         protected override void CreateChildControls()
         {
