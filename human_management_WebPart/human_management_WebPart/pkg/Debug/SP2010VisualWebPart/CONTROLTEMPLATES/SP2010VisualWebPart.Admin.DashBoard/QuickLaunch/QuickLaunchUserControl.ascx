@@ -208,7 +208,7 @@ table tbody tr.total td
     </div>
     <div class="inner">
 <fieldset id="panel_resizable_0_6" class="panel_resizable panel-preview" 
-    style="width:autopx; height:90.8px;width:300px; ">
+    style="height:90.8px;width:<%= this.quickLaunchWidth %>px;">
     <legend>Quick Launch</legend>
     <div id="dashboard-quick-launch-panel-container">
         <div id="dashboard-quick-launch-panel-menu_holder">
@@ -216,24 +216,28 @@ table tbody tr.total td
                 <tr>
                     <td>
                         <div class="quickLaunge">
-                            <a href="" target="_self">
+                            <a href="<%= this.assignLeave %>" target="_self">
                             <img src="/_layouts/Images/21_2_ob/ApplyLeave.png" />
-                            <span class="quickLinkText">Assign Leave</span> </a>
+                            <span class="quickLinkText">
+                                <asp:Label ID="lblAssignLeave" runat="server" Text="Assign Leave"></asp:Label></span> </a>
                         </div>
                     </td>
+                    <asp:Panel ID="pnlLeaveList" runat="server">
+                    
                     <td>
                         <div class="quickLaunge">
-                            <a href="" target="_self">
+                            <a href="<%= this.leaveList %>" target="_self">
                             <img src="/_layouts/Images/21_2_ob/MyLeave.png" />
-                            <span class="quickLinkText">Leave List</span> </a>
+                            <span class="quickLinkText"><asp:Label ID="lblLeaveList" runat="server" Text="Leave List"></asp:Label></span> </a>
                         </div>
                     </td>
+                    </asp:Panel>
                     <td>
                         <div class="quickLaunge">
-                            <a href="" 
+                            <a href="<%= this.timeSheet %>" 
                                 target="_self">
                             <img src="/_layouts/Images/21_2_ob/MyTimesheet.png" />
-                            <span class="quickLinkText">Timesheets</span> </a>
+                            <span class="quickLinkText"><asp:Label ID="lblTimesheet" runat="server" Text="Timesheets"></asp:Label></span> </a>
                         </div>
                     </td>
                 </tr>
@@ -243,17 +247,19 @@ table tbody tr.total td
 </fieldset>
         <br />
         <br />
+        
+        
         <div class="outerbox no-border">
 <div class="maincontent group-wrapper" id="Div1">
-<div class="panel_wrapper" id="Div2">
-    <div style="left:0px; 2px; 2px;" class="panel_draggable panel-preview" id="Div3">
+<div class="panel_wrapper" id="Div2"><asp:Panel ID="pnlCheckPoint" runat="server" Visible="True">
+    <div style="left:0px;" class="panel_draggable panel-preview" id="Div3">
         <fieldset id="Fieldset2" class="panel_resizable panel-preview" 
     style="width:autopx;width:400px; ">
     <legend>Checkpoint<asp:Label ID="lblQuarter" runat="server" Text=""></asp:Label></legend>
 <div id="graph1" class="graph"></div>
 </fieldset>
-    </div>
-    <div style="left:6px; 2px; 2px;" class="panel_draggable panel-preview" id="Div4">
+    </div></asp:Panel>
+    <div style="left:<%= this.leftWidth %>px;" class="panel_draggable panel-preview" id="Div4">
         <fieldset id="Fieldset1" class="panel_resizable panel-preview" 
     style="width:autopx;width:510px;height: 315px; ">
     <legend>Upcoming Deadline Task</legend>
@@ -263,6 +269,7 @@ table tbody tr.total td
     </div>
 </div></div></div>
 <br>
+<asp:Panel ID="pnlUser" runat="server" Visible="True">
 <div class="outerbox no-border">
 <div class="maincontent group-wrapper" id="group_2">
 <div style="height:280px;" class="panel_wrapper" id="panel_wrapper_2">
@@ -287,4 +294,4 @@ table tbody tr.total td
         </asp:Panel>
     </fieldset>
     </div>
-</div></div></div></div></div>
+</div></div></div></asp:Panel></div></div>

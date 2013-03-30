@@ -431,9 +431,8 @@
 				<li style="background:none"><a href="ConfigDayOff.aspx">Configure Days Off</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Leave Period</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Leave Types</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Work Week</a></li>
-					<li style="padding-left:40px;"><a href="AssignDayOff.aspx">Assign Day Off</a></li>
-				<li><a href="AssignLeave.aspx">Assign Leave</a></li>
+					<li style="padding-left:40px;"><a href="">Work Week</a></li>
+				<li><a href="DayOff.aspx">Assign Leave</a></li>
 				<li style="background:none"><a href="AttendanceRecord.aspx">Attendance</a></li>
 					<li style="padding-left:40px;background:none;"><a href="AttendanceRecord.aspx">Employee Records</a></li>
 					<li style="padding-left:40px;background:none;"><a href="AttendanceSummary.aspx">Attendance Summary</a></li>

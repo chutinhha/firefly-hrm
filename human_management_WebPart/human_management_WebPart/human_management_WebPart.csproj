@@ -126,12 +126,12 @@
     <Compile Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx.designer.cs">
       <DependentUpon>QuestionListUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Common\AccessDenied\AccessDenied.cs" />
-    <Compile Include="Admin\Common\AccessDenied\AccessDeniedUserControl.ascx.cs">
+    <Compile Include="Common\AccessDenied\AccessDenied.cs" />
+    <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.cs">
       <DependentUpon>AccessDeniedUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Common\AccessDenied\AccessDeniedUserControl.ascx.designer.cs">
+    <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.designer.cs">
       <DependentUpon>AccessDeniedUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployees.cs" />
@@ -142,12 +142,12 @@
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.designer.cs">
       <DependentUpon>ImportEmployeesUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\DashBoard\QuickLaunch\QuickLaunch.cs" />
-    <Compile Include="Admin\DashBoard\QuickLaunch\QuickLaunchUserControl.ascx.cs">
+    <Compile Include="Common\QuickLaunch\QuickLaunch.cs" />
+    <Compile Include="Common\QuickLaunch\QuickLaunchUserControl.ascx.cs">
       <DependentUpon>QuickLaunchUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\DashBoard\QuickLaunch\QuickLaunchUserControl.ascx.designer.cs">
+    <Compile Include="Common\QuickLaunch\QuickLaunchUserControl.ascx.designer.cs">
       <DependentUpon>QuickLaunchUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitle.cs" />
@@ -158,12 +158,12 @@
     <Compile Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx.designer.cs">
       <DependentUpon>AddJobtitleUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployee.cs" />
-    <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.cs">
+    <Compile Include="Common\NotifyEmployee\NotifyEmployee.cs" />
+    <Compile Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.cs">
       <DependentUpon>NotifyEmployeeUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.designer.cs">
+    <Compile Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.designer.cs">
       <DependentUpon>NotifyEmployeeUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Person Project\PersonProject\PersonProject.cs" />
@@ -238,12 +238,12 @@
     <Compile Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx.designer.cs">
       <DependentUpon>CandidatesUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Common\ChangePassword\ChangePassword.cs" />
-    <Compile Include="Admin\Common\ChangePassword\ChangePasswordUserControl.ascx.cs">
+    <Compile Include="Common\ChangePassword\ChangePassword.cs" />
+    <Compile Include="Common\ChangePassword\ChangePasswordUserControl.ascx.cs">
       <DependentUpon>ChangePasswordUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Common\ChangePassword\ChangePasswordUserControl.ascx.designer.cs">
+    <Compile Include="Common\ChangePassword\ChangePasswordUserControl.ascx.designer.cs">
       <DependentUpon>ChangePasswordUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.cs" />
@@ -297,12 +297,12 @@
     </Compile>
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Admin\Common\Login\Login.cs" />
-    <Compile Include="Admin\Common\Login\LoginUserControl.ascx.cs">
+    <Compile Include="Common\Login\Login.cs" />
+    <Compile Include="Common\Login\LoginUserControl.ascx.cs">
       <DependentUpon>LoginUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Common\Login\LoginUserControl.ascx.designer.cs">
+    <Compile Include="Common\Login\LoginUserControl.ascx.designer.cs">
       <DependentUpon>LoginUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Attendance\PunchAttendance\PunchAttendance.cs" />
@@ -313,12 +313,12 @@
     <Compile Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx.designer.cs">
       <DependentUpon>PunchAttendanceUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Common\UserAccount\UserAccount.cs" />
-    <Compile Include="Admin\Common\UserAccount\UserAccountUserControl.ascx.cs">
+    <Compile Include="Common\UserAccount\UserAccount.cs" />
+    <Compile Include="Common\UserAccount\UserAccountUserControl.ascx.cs">
       <DependentUpon>UserAccountUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Common\UserAccount\UserAccountUserControl.ascx.designer.cs">
+    <Compile Include="Common\UserAccount\UserAccountUserControl.ascx.designer.cs">
       <DependentUpon>UserAccountUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Vacancy\Vacancies\Vacancies.cs" />
@@ -329,13 +329,37 @@
     <Compile Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx.designer.cs">
       <DependentUpon>VacanciesUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\Attendance\Attendance.cs" />
-    <Compile Include="User\Attendance\AttendanceUserControl.ascx.cs">
+    <Compile Include="User\EmployeeAttendance\Attendance\Attendance.cs" />
+    <Compile Include="User\EmployeeAttendance\Attendance\AttendanceUserControl.ascx.cs">
       <DependentUpon>AttendanceUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User\Attendance\AttendanceUserControl.ascx.designer.cs">
+    <Compile Include="User\EmployeeAttendance\Attendance\AttendanceUserControl.ascx.designer.cs">
       <DependentUpon>AttendanceUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Performance\ReviewAttendance\ReviewAttendance.cs" />
+    <Compile Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx.cs">
+      <DependentUpon>ReviewAttendanceUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx.designer.cs">
+      <DependentUpon>ReviewAttendanceUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Performance\ReviewTimesheet\ReviewTimesheet.cs" />
+    <Compile Include="User\Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx.cs">
+      <DependentUpon>ReviewTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>ReviewTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Performance\SupervisorJudgment\SupervisorJudgment.cs" />
+    <Compile Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx.cs">
+      <DependentUpon>SupervisorJudgmentUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx.designer.cs">
+      <DependentUpon>SupervisorJudgmentUserControl.ascx.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -371,24 +395,24 @@
     <None Include="Admin\Checkpoint\QuestionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f20955a4-c668-4ca1-b34d-efaa7e806991}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Common\AccessDenied\AccessDenied.webpart" />
-    <None Include="Admin\Common\AccessDenied\SharePointProjectItem.spdata">
+    <None Include="Common\AccessDenied\AccessDenied.webpart" />
+    <None Include="Common\AccessDenied\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
     </None>
     <None Include="Admin\CSV\ImportEmployees\ImportEmployees.webpart" />
     <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\DashBoard\QuickLaunch\QuickLaunch.webpart" />
-    <None Include="Admin\DashBoard\QuickLaunch\SharePointProjectItem.spdata">
+    <None Include="Common\QuickLaunch\QuickLaunch.webpart" />
+    <None Include="Common\QuickLaunch\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4ce9481e-63f2-4a7b-813c-ada265a638b9}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Job Title\AddJobtitle\AddJobtitle.webpart" />
     <None Include="Admin\Job Title\AddJobtitle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ef23c689-5313-4f4e-b7ce-2611ac5dbfe6}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Common\NotifyEmployee\NotifyEmployee.webpart" />
-    <None Include="Admin\Common\NotifyEmployee\SharePointProjectItem.spdata">
+    <None Include="Common\NotifyEmployee\NotifyEmployee.webpart" />
+    <None Include="Common\NotifyEmployee\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2d66c28d-0e63-4da4-aa2e-11f28325f725}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Person Project\PersonProject\PersonProject.webpart" />
@@ -427,8 +451,8 @@
     <None Include="Admin\Candidate\Candidates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ccc65a0d-f925-49a1-91a7-c4c9576805d0}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Common\ChangePassword\ChangePassword.webpart" />
-    <None Include="Admin\Common\ChangePassword\SharePointProjectItem.spdata">
+    <None Include="Common\ChangePassword\ChangePassword.webpart" />
+    <None Include="Common\ChangePassword\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e0bd07ab-6519-4e4a-86f1-76c16f5acee0}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Attendance\EditAttendance\EditAttendance.webpart" />
@@ -457,26 +481,38 @@
     </None>
     <None Include="app.config" />
     <None Include="key.snk" />
-    <None Include="Admin\Common\Login\SharePointProjectItem.spdata">
+    <None Include="Common\Login\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f8c01da9-8061-45c1-91e5-0afa8642ac0c}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Common\Login\Login.webpart" />
+    <None Include="Common\Login\Login.webpart" />
     <None Include="Admin\Attendance\PunchAttendance\PunchAttendance.webpart" />
     <None Include="Admin\Attendance\PunchAttendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d4f74f66-32fa-4341-ac72-55fe13909859}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Common\UserAccount\SharePointProjectItem.spdata">
+    <None Include="Common\UserAccount\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{70fb110d-7aee-4216-998a-179092904049}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Common\UserAccount\UserAccount.webpart" />
+    <None Include="Common\UserAccount\UserAccount.webpart" />
     <None Include="Admin\Vacancy\Vacancies\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6fb3e01b-018b-4b22-9f51-4d5f2ce4e5f8}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Vacancy\Vacancies\Vacancies.webpart" />
-    <None Include="User\Attendance\Attendance.webpart" />
-    <None Include="User\Attendance\SharePointProjectItem.spdata">
+    <None Include="User\EmployeeAttendance\Attendance\Attendance.webpart" />
+    <None Include="User\EmployeeAttendance\Attendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ec4aaa5f-a53a-44af-a6d2-3ee11aeafd71}</SharePointProjectItemId>
     </None>
+    <None Include="User\Performance\ReviewAttendance\ReviewAttendance.webpart" />
+    <None Include="User\Performance\ReviewAttendance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{503478c9-6073-45b6-bc85-ebb90e6bbc14}</SharePointProjectItemId>
+    </None>
+    <None Include="User\Performance\ReviewTimesheet\ReviewTimesheet.webpart" />
+    <None Include="User\Performance\ReviewTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{99e15eee-9257-48d3-bff5-4b061850fda1}</SharePointProjectItemId>
+    </None>
+    <None Include="User\Performance\SupervisorJudgment\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{37ed1f71-14a2-4488-979a-982a5d0db91e}</SharePointProjectItemId>
+    </None>
+    <None Include="User\Performance\SupervisorJudgment\SupervisorJudgment.webpart" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
@@ -525,24 +561,24 @@
     <Content Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Common\AccessDenied\AccessDeniedUserControl.ascx">
+    <Content Include="Common\AccessDenied\AccessDeniedUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Common\AccessDenied\Elements.xml" />
+    <Content Include="Common\AccessDenied\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\DashBoard\QuickLaunch\Elements.xml" />
-    <Content Include="Admin\DashBoard\QuickLaunch\QuickLaunchUserControl.ascx">
+    <Content Include="Common\QuickLaunch\Elements.xml" />
+    <Content Include="Common\QuickLaunch\QuickLaunchUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Job Title\AddJobtitle\Elements.xml" />
-    <Content Include="Admin\Common\NotifyEmployee\Elements.xml" />
-    <Content Include="Admin\Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
+    <Content Include="Common\NotifyEmployee\Elements.xml" />
+    <Content Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
@@ -581,10 +617,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Candidate\Candidates\Elements.xml" />
-    <Content Include="Admin\Common\ChangePassword\ChangePasswordUserControl.ascx">
+    <Content Include="Common\ChangePassword\ChangePasswordUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Common\ChangePassword\Elements.xml" />
+    <Content Include="Common\ChangePassword\Elements.xml" />
     <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -609,24 +645,36 @@
     <Content Include="Admin\Job Title\JobTitles\JobTitlesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Common\Login\Elements.xml" />
-    <Content Include="Admin\Common\Login\LoginUserControl.ascx" />
+    <Content Include="Common\Login\Elements.xml" />
+    <Content Include="Common\Login\LoginUserControl.ascx" />
     <Content Include="Admin\Attendance\PunchAttendance\Elements.xml" />
     <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Common\UserAccount\Elements.xml" />
-    <Content Include="Admin\Common\UserAccount\UserAccountUserControl.ascx">
+    <Content Include="Common\UserAccount\Elements.xml" />
+    <Content Include="Common\UserAccount\UserAccountUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Vacancy\Vacancies\Elements.xml" />
     <Content Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="User\Attendance\AttendanceUserControl.ascx">
+    <Content Include="User\EmployeeAttendance\Attendance\AttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="User\Attendance\Elements.xml" />
+    <Content Include="User\EmployeeAttendance\Attendance\Elements.xml" />
+    <Content Include="User\Performance\ReviewAttendance\Elements.xml" />
+    <Content Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="User\Performance\ReviewTimesheet\Elements.xml" />
+    <Content Include="User\Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="User\Performance\SupervisorJudgment\Elements.xml" />
+    <Content Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
