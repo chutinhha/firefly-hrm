@@ -178,7 +178,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                         _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1", false);
                     }
                 }
-                Response.Redirect(Message.DayOffPage);
+                Response.Redirect(Message.AssignDayOffPage);
             }
             catch (Exception ex)
             {
