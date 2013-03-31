@@ -156,7 +156,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 {
                                     DateTime time = DateTime.Parse(pendingTime.Rows[i][1].ToString());
                                     pnlTime.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
-                                    pnlTime.Controls.Add(new LiteralControl("<a href=\"\">"));
+                                    pnlTime.Controls.Add(new LiteralControl("<a href=\""+Message.ApproveTimesheetPage+"\">"));
                                     pnlTime.Controls.Add(new LiteralControl(i + 1 + ". " + pendingTime.Rows[i][0].ToString() + " " + time.Day + "/" + time.Month + "/" + time.Year));
                                     pnlTime.Controls.Add(new LiteralControl("</a></td></tr>"));
                                 }
