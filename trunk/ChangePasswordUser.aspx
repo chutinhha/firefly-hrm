@@ -1,9 +1,9 @@
-<%@ Register tagprefix="ChangePassword" namespace="SP2010VisualWebPart.ChangePassword" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+﻿<%@ Register tagprefix="ChangePassword" namespace="SP2010VisualWebPart.ChangePassword" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="NotifyEmployee" namespace="SP2010VisualWebPart.Admin.NotifyEmployee" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
 <%-- _LocalBinding --%>
-<%@ Page language="C#" MasterPageFile="../_catalogs/masterpage/Admin.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
+<%@ Page language="C#" MasterPageFile="../_catalogs/masterpage/Member.master"    Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document"  %>
 <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 		<table cellpadding="4" cellspacing="0" border="0" width="100%">
@@ -27,12 +27,12 @@
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __designer:Values="&lt;P N='Title' ID='1' T='Full Page' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='ID' ID='2' T='FullPage' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><ChangePassword:ChangePassword runat="server" ID="g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea" Description="ChangePassword" ChromeType="None" Title="ChangePassword" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' ID='1' T='ChangePassword' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;/table&gt;" __designer:Values="&lt;P N='Title' ID='1' T='Full Page' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='ID' ID='2' T='FullPage' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><ChangePassword:ChangePassword runat="server" ID="g_b9476491_f3a9_4d87_a3d3_93f6d6753907" Description="ChangePassword" ChromeType="None" Title="ChangePassword" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' ID='1' T='ChangePassword' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_b9476491_f3a9_4d87_a3d3_93f6d6753907' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
 	&lt;tr&gt;
-		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
-			&lt;div id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea&quot;&gt;
+		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
+			&lt;div id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907&quot;&gt;
 	
-&lt;br&gt;&lt;div id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+&lt;br&gt;&lt;div id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
 		&lt;table cellpadding=&quot;0&quot; class=&quot;fieldTitleDiv&quot;&gt;
     &lt;tr&gt;
         &lt;td&gt;
@@ -43,21 +43,21 @@
                 &lt;/tr&gt;
             &lt;/table&gt;
             &lt;br&gt;
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_lblOldPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Old Password&lt;/span&gt;
+            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblOldPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Old Password&lt;/span&gt;
             
 
-            &lt;input name=&quot;FullPage$g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea$ctl00$txtOldPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_txtOldPassword&quot; style=&quot;width:200px;&quot; /&gt;
+            &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtOldPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtOldPassword&quot; style=&quot;width:200px;&quot; /&gt;
             &lt;br /&gt;
             &lt;br /&gt;
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_lblNewPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;New Password&lt;/span&gt;
-            &lt;input name=&quot;FullPage$g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea$ctl00$txtNewPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_txtNewPassword&quot; style=&quot;width:200px;&quot; /&gt;
+            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblNewPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;New Password&lt;/span&gt;
+            &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtNewPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtNewPassword&quot; style=&quot;width:200px;&quot; /&gt;
             &lt;br /&gt;
             &lt;br /&gt;
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_lblConfirmPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Confirm Password&lt;/span&gt;
-            &lt;input name=&quot;FullPage$g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea$ctl00$txtConfirmPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_txtConfirmPassword&quot; style=&quot;width:200px;&quot; /&gt;
+            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblConfirmPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Confirm Password&lt;/span&gt;
+            &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtConfirmPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtConfirmPassword&quot; style=&quot;width:200px;&quot; /&gt;
             &lt;br /&gt;
             &lt;br /&gt;
-            &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea$ctl00$btnChangePassword&quot; value=&quot;Change Password&quot; onclick=&quot;return confirm('Are you sure you want to change password ?');&quot; id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_btnChangePassword&quot; class=&quot;addButton&quot; style=&quot;width:150px;&quot; /&gt;
+            &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$btnChangePassword&quot; value=&quot;Change Password&quot; onclick=&quot;return confirm('Are you sure you want to change password ?');&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_btnChangePassword&quot; class=&quot;addButton&quot; style=&quot;width:150px;&quot; /&gt;
             
 	&lt;/div&gt;&lt;br&gt;&lt;br&gt;
 
@@ -68,13 +68,13 @@
     &lt;/tr&gt;
 &lt;/table&gt;
             &lt;br /&gt;&lt;br&gt;
-            &lt;span id=&quot;FullPage_g_34d773c9_9c43_4ecb_bfa6_f0607c8835ea_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+            &lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __MarkupType="vsattributemarkup" __WebPartId="{34D773C9-9C43-4ECB-BFA6-F0607C8835EA}" WebPart="true" __designer:IsClosed="false"></ChangePassword:ChangePassword>
+&lt;/table&gt;" __MarkupType="vsattributemarkup" __WebPartId="{B9476491-F3A9-4D87-A3D3-93F6D6753907}" WebPart="true" __designer:IsClosed="false"></ChangePassword:ChangePassword>
 
 </ZoneTemplate></WebPartPages:WebPartZone> </td>
 				</tr>
@@ -93,7 +93,7 @@
 
 &lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_eb1da1e7_2682_4809_8433_d647a9a9725b' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 						
-<NotifyEmployee:NotifyEmployee runat="server" Description="NotifyEmployee" Title="NotifyEmployee" __MarkupType="vsattributemarkup" __WebPartId="{15c58851-1cce-4b2b-9fad-dbd4b97f90d1}" WebPart="true" __designer:IsClosed="false" id="g_15c58851_1cce_4b2b_9fad_dbd4b97f90d1" __designer:Preview="&lt;div id=&quot;g_15c58851_1cce_4b2b_9fad_dbd4b97f90d1&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{15c58851-1cce-4b2b-9fad-dbd4b97f90d1}&quot; WebPart=&quot;true&quot;&gt;
+<NotifyEmployee:NotifyEmployee runat="server" Description="NotifyEmployee" Title="NotifyEmployee" __MarkupType="vsattributemarkup" __WebPartId="{0a738b13-fd5b-4671-89da-dbee50531644}" WebPart="true" __designer:IsClosed="false" id="g_0a738b13_fd5b_4671_89da_dbee50531644" __designer:Preview="&lt;div id=&quot;g_0a738b13_fd5b_4671_89da_dbee50531644&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{0a738b13-fd5b-4671-89da-dbee50531644}&quot; WebPart=&quot;true&quot;&gt;
 	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
 
 &lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
@@ -107,9 +107,9 @@
         }
 	}
 &lt;/script&gt;
-&lt;span id=&quot;g_15c58851_1cce_4b2b_9fad_dbd4b97f90d1_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
+&lt;span id=&quot;g_0a738b13_fd5b_4671_89da_dbee50531644_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_15c58851_1cce_4b2b_9fad_dbd4b97f90d1' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_0a738b13_fd5b_4671_89da_dbee50531644' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 						
 </asp:Content>
 
