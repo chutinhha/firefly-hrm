@@ -102,13 +102,13 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
                     if (rdoYesNo.Checked == true)
                     {
                         _com.updateTable(Message.TableCheckpointQuestion, Message.QuestionTitleColumn + "=N'"
-                            + txtQuestion.Text.Trim() + "'," + Message.AnserTypeColumn + "='" + "YesNo' where "
+                            + txtQuestion.Text.Trim().Replace("'","''") + "'," + Message.AnserTypeColumn + "='" + "YesNo' where "
                             + Message.QuestionIDColumn + "='" + Session["QuestionID"].ToString().Trim() + "'");
                     }
                     else if (rdoNote.Checked == true)
                     {
                         _com.updateTable(Message.TableCheckpointQuestion, Message.QuestionTitleColumn + "=N'"
-                            + txtQuestion.Text.Trim() + "'," + Message.AnserTypeColumn + "='" + "Note' where "
+                            + txtQuestion.Text.Trim().Replace("'", "''") + "'," + Message.AnserTypeColumn + "='" + "Note' where "
                             + Message.QuestionIDColumn + "='" + Session["QuestionID"].ToString().Trim() + "'");
                     }
                     else {
@@ -120,7 +120,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
                         else
                         {
                             _com.updateTable(Message.TableCheckpointQuestion, Message.QuestionTitleColumn + "=N'"
-                            + txtQuestion.Text.Trim() + "'," + Message.AnserTypeColumn + "='" + "Level',PerfectLevel=N'"
+                            + txtQuestion.Text.Trim().Replace("'", "''") + "'," + Message.AnserTypeColumn + "='" + "Level',PerfectLevel=N'"
                             +txtPerfect.Text.Trim()+ "',GreatLevel=N'"+txtGreat.Text.Trim()+"',NormalLevel=N'"
                             +txtNormal.Text.Trim()+"',BadLevel=N'"+txtBad.Text.Trim()+"',VeryBad=N'"+txtVeryBad.Text.Trim()+ "' where "
                             + Message.QuestionIDColumn + "='" + Session["QuestionID"].ToString().Trim() + "'");

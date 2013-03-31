@@ -166,22 +166,6 @@
     <Compile Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx.designer.cs">
       <DependentUpon>NotifyEmployeeUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Person Project\PersonProject\PersonProject.cs" />
-    <Compile Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx.cs">
-      <DependentUpon>PersonProjectUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx.designer.cs">
-      <DependentUpon>PersonProjectUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployee.cs" />
-    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx.cs">
-      <DependentUpon>SearchEmployeeUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx.designer.cs">
-      <DependentUpon>SearchEmployeeUserControl.ascx.cs</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Salary\SalarySummary\SalarySummary.cs" />
     <Compile Include="Admin\Salary\SalarySummary\SalarySummaryUserControl.ascx.cs">
       <DependentUpon>SalarySummaryUserControl.ascx</DependentUpon>
@@ -415,14 +399,6 @@
     <None Include="Common\NotifyEmployee\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2d66c28d-0e63-4da4-aa2e-11f28325f725}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Person Project\PersonProject\PersonProject.webpart" />
-    <None Include="Admin\Person Project\PersonProject\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{08f96392-7375-41ec-ab44-8f3bde2652ca}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\Person Project\SearchEmployee\SearchEmployee.webpart" />
-    <None Include="Admin\Person Project\SearchEmployee\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{17bbbd55-2893-4005-b883-068e67805fb3}</SharePointProjectItemId>
-    </None>
     <None Include="Admin\Salary\SalarySummary\SalarySummary.webpart" />
     <None Include="Admin\Salary\SalarySummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5c0a6bf8-f4c5-474f-aa69-c227a91c9d66}</SharePointProjectItemId>
@@ -579,14 +555,6 @@
     <Content Include="Admin\Job Title\AddJobtitle\Elements.xml" />
     <Content Include="Common\NotifyEmployee\Elements.xml" />
     <Content Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
-    <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\Person Project\SearchEmployee\Elements.xml" />
-    <Content Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Salary\SalarySummary\Elements.xml" />

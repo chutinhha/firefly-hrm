@@ -117,11 +117,11 @@ namespace SP2010VisualWebPart.Admin.User.UserList
             }
             else if (ddlType.SelectedValue == "Have " + Message.LoginIDColumn)
             {
-                condition = " where " + Message.LoginIDColumn + "<>'' and " + Message.LoginIDColumn + "<>'NULL'";
+                condition = " where " + Message.LoginIDColumn + "<>'' or " + Message.LoginIDColumn + "<>NULL";
             }
             else
             {
-                condition = " where (" + Message.LoginIDColumn + "='' or " + Message.LoginIDColumn + "='NULL')";
+                condition = " where (" + Message.LoginIDColumn + "='' or " + Message.LoginIDColumn + "=NULL)";
             }
             if (ddlRankUser.SelectedValue == "All")
             {
@@ -138,15 +138,16 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 }
             }
             condition = condition + " order by Name";
-            string[] ColumnTitle = new string[2];
+            string[] ColumnTitle = new string[3];
             ColumnTitle[0] = "LoginID";
             ColumnTitle[1] = "Rank";
+            ColumnTitle[2] = "Reset Password";
             DataTable dt = _com.getData(Message.TableEmployee + " e join " + Message.TablePerson
                 + " p on e." + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "e."
                 + Message.BusinessEntityIDColumn + ", p." + Message.NameColumn + ", " + Message.LoginIDColumn + ",p." + Message.RankColumn, condition);
             _com.bindDataBlankColumn("e." + Message.BusinessEntityIDColumn + ", p." + Message.NameColumn
                 , condition, Message.TableEmployee + " e join " + Message.TablePerson
-                + " p on e." + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData,2, ColumnTitle);
+                + " p on e." + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData,3, ColumnTitle);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 TextBox txtUser = new TextBox();
@@ -293,15 +294,16 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 }
             }
             condition = condition + " order by Name";
-            string[] ColumnTitle = new string[2];
+            string[] ColumnTitle = new string[3];
             ColumnTitle[0] = "LoginID";
             ColumnTitle[1] = "Rank";
+            ColumnTitle[2] = "Reset Password";
             DataTable dt = _com.getData(Message.TableEmployee + " e join " + Message.TablePerson
                 + " p on e." + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "e."
                 + Message.BusinessEntityIDColumn + ", p." + Message.NameColumn + ", " + Message.LoginIDColumn + ",p." + Message.RankColumn, condition);
             _com.bindDataBlankColumn("e." + Message.BusinessEntityIDColumn + ", p." + Message.NameColumn
                 , condition, Message.TableEmployee + " e join " + Message.TablePerson
-                + " p on e." + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 2, ColumnTitle);
+                + " p on e." + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 3, ColumnTitle);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 TextBox txtUser = new TextBox();

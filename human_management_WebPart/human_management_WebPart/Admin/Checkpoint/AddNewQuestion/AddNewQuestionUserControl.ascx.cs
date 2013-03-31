@@ -82,7 +82,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion
                     {
                         _com.insertIntoTable(Message.TableCheckpointQuestion, "("+Message.QuestionIDColumn+","
                             +Message.QuestionTitleColumn+","+Message.AnserTypeColumn+")", QuestionID
-                            + ",N'" + txtQuestion.Text.Trim() + "','YesNo'", true);
+                            + ",N'" + txtQuestion.Text.Trim().Replace("'", "''") + "','YesNo'", true);
                         _com.closeConnection();
                         Response.Redirect(Message.ListCheckpointQuestionPage, true);
                     }
@@ -90,7 +90,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion
                     {
                         _com.insertIntoTable(Message.TableCheckpointQuestion, "(" + Message.QuestionIDColumn + ","
                             + Message.QuestionTitleColumn + "," + Message.AnserTypeColumn + ")", QuestionID
-                            + ",N'" + txtQuestion.Text.Trim() + "','Note'", true);
+                            + ",N'" + txtQuestion.Text.Trim().Replace("'", "''") + "','Note'", true);
                         _com.closeConnection();
                         Response.Redirect(Message.ListCheckpointQuestionPage, true);
                     }
@@ -106,7 +106,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion
                             _com.insertIntoTable(Message.TableCheckpointQuestion, "(" + Message.QuestionIDColumn + ","
                             + Message.QuestionTitleColumn + "," + Message.AnserTypeColumn +","+Message.PerfectLevelColumn
                             + ","+Message.GreatLevelColumn+","+Message.NormalLevelColumn+","+Message.BadLevelColumn
-                            +","+Message.VeryBadLevelColumn+")", QuestionID + ",N'" + txtQuestion.Text.Trim() 
+                            +","+Message.VeryBadLevelColumn+")", QuestionID + ",N'" + txtQuestion.Text.Trim().Replace("'","''") 
                             + "','Level',N'" + txtPerfect.Text.Trim() + "',N'" + txtGreat.Text.Trim() + "',N'" 
                             + txtNormal.Text.Trim() + "',N'" + txtBad.Text.Trim() + "',N'" + txtVeryBad.Text.Trim() + "'", true);
                             _com.closeConnection();

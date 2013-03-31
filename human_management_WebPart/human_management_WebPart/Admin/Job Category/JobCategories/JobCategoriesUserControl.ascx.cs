@@ -74,7 +74,7 @@ namespace SP2010VisualWebPart.JobCategories
                         _com.updateTable(Message.TableJobTitle, " " + Message.JobCategoryColumn + "=NULL where " + Message.JobCategoryColumn
                             + "='" + Session["Name"].ToString() + "';");
                         _com.updateTable(Message.TableJobCategory,Message.NameColumn+"=N'"+txtName.Text.Trim()
-                            +"',LastModified='"+DateTime.Now+"' where "+Message.NameColumn+"=N'"+Session["Name"]+"'");
+                            +"',"+Message.ModifiedDateColumn+"='"+DateTime.Now+"' where "+Message.NameColumn+"=N'"+Session["Name"]+"'");
                         if (JobTitles.Rows.Count > 0) {
                             for (int i = 0; i < JobTitles.Rows.Count; i++)
                             {
@@ -127,8 +127,8 @@ namespace SP2010VisualWebPart.JobCategories
                             ," where "+Message.JobCategoryColumn+"='"+Server.HtmlDecode(gr.Cells[1].Text) + "';");
                         if (JobTitles.Rows.Count > 0) {
                             for (int i = 0; i < JobTitles.Rows.Count; i++) {
-                                _com.updateTable(Message.TableJobCandidate, " "+Message.JobTitleColumn+"=NULL where JobTitle='" + JobTitles.Rows[i][0].ToString() + "'");
-                                _com.updateTable(Message.TableVacancy, " "+Message.JobTitleColumn + "=NULL where JobTitle='" + JobTitles.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableJobCandidate, " "+Message.JobTitleColumn+"=NULL where "+Message.JobTitleColumn+"='" + JobTitles.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableVacancy, " "+Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn+"='" + JobTitles.Rows[i][0].ToString() + "'");
                                 _com.updateTable(Message.TableEmployee, " "+Message.JobIDColumn+"=NULL where " + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString()
                                     + "'");
                             }

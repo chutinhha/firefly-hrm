@@ -157,6 +157,7 @@ public class CommonFunction
                     dt1.Rows.Add(dr);
                     name = dt.Rows[i][0].ToString();
                     email = dt.Rows[i][4].ToString();
+                    businessID = dt.Rows[i][3].ToString();
                     totalDay = 1;
                     DateTime punchIn = DateTime.Parse(dt.Rows[i][1].ToString());
                     DateTime punchOut = DateTime.Parse(dt.Rows[i][2].ToString());
@@ -482,7 +483,7 @@ public class CommonFunction
             {
                 Label lblQuestion = new Label();
                 lblQuestion.ID = "lblQuestion" + (i + 1).ToString();
-                lblQuestion.Width = 150;
+                lblQuestion.Width = new Unit("100%");
                 pnlGenerate.Controls.Add(new LiteralControl("<br/>"));
                 pnlGenerate.Controls.Add(new LiteralControl("<div class=\"borderTop\">"));
                 pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
