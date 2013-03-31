@@ -75,12 +75,13 @@ namespace SP2010VisualWebPart.EditJobTitle
                         , " where " + Message.JobTitleColumn + "=N'" + Session["Name"].ToString() + "';");
                     DataTable jobVacancy = _com.getData(Message.TableVacancy, Message.VacancyNameColumn
                         , " where " + Message.JobTitleColumn + "=N'" + Session["Name"].ToString() + "';");
-                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Session["Name"].ToString() + "'");
-                    _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Session["Name"].ToString() + "'");
+                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn+"='" + Session["Name"].ToString() + "'");
+                    _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn
+                        +"='" + Session["Name"].ToString() + "'");
                     _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn+"=N'" + txtJobTitle.Text + "',"
                         + Message.JobDescriptionColumn+"=N'" + txtJobDescription.Text + "',"+Message.NoteColumn+"=N'" 
                         + txtNote.Text + "',"+ Message.JobCategoryColumn+"=N'" + ddlJobCategory.SelectedValue 
-                        + "',LastModified='"+DateTime.Now+"' where "+Message.JobTitleColumn+"=N'"+Session["Name"]+"'");
+                        + "',"+Message.ModifiedDateColumn+"='"+DateTime.Now+"' where "+Message.JobTitleColumn+"=N'"+Session["Name"]+"'");
                     if (jobCandidate.Rows.Count > 0) {
                         for (int i = 0; i < jobCandidate.Rows.Count; i++)
                         {

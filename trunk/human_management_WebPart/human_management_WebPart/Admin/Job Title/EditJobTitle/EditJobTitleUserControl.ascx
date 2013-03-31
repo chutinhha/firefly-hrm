@@ -9,7 +9,7 @@
 <br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnSave" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd"><font color="white">Candidates</font></td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Edit Job Title</font></td></tr></table>
 							<br />
 <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title(*)" Width="150px"></asp:Label>
 <asp:TextBox ID="txtJobTitle" runat="server" Width="400px"></asp:TextBox>

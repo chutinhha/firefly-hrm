@@ -1,7 +1,7 @@
 ﻿public class Message
 {
     //connection string
-    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=HR;Password=eatyoualive";
+    internal const string ConnectionString = "Data Source=localhost;Initial Catalog=HRMORBIS;User ID=hr;Password=123456";
     internal const string Excel03ConString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;";
     internal const string Excel07ConString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;";
 

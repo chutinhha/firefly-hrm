@@ -65,7 +65,9 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7d93d4c0-792b-445c-a3c8-fcedcafaf80d}</SharePointProjectItemId>
     </None>
-    <None Include="MasterPage\Admin.master" />
+    <None Include="MasterPage\Admin.master">
+      <SubType>ASPXCodeBehind</SubType>
+    </None>
     <None Include="MasterPage\Member.master">
       <SubType>ASPXCodeBehind</SubType>
     </None>

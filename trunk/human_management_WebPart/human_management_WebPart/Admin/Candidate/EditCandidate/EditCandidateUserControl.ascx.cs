@@ -59,9 +59,15 @@ namespace SP2010VisualWebPart.EditCandidate
                                     ddlApplyMethod.SelectedValue = dt.Rows[0][17].ToString().Trim();
                                     this.inputValue = dt.Rows[0][13].ToString().Trim();
                                     txtComment.Text = dt.Rows[0][12].ToString().Trim();
-                                    DateTime interviewDate = DateTime.Parse(dt.Rows[0][19].ToString().Trim());
-                                    this.interviewDate = interviewDate.Month + "-" + interviewDate.Day + "-" + interviewDate.Year;
-                                    txtInterviewTime.Text = interviewDate.TimeOfDay.ToString();
+                                    if (dt.Rows[0][19].ToString().Trim() != "")
+                                    {
+                                        DateTime interviewDate = DateTime.Parse(dt.Rows[0][19].ToString().Trim());
+                                        this.interviewDate = interviewDate.Month + "-" + interviewDate.Day + "-" + interviewDate.Year;
+                                        txtInterviewTime.Text = interviewDate.TimeOfDay.ToString();
+                                    }
+                                    else {
+                                        this.interviewDate = "";
+                                    }
                                 }
                             }
                         }

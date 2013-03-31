@@ -55,10 +55,6 @@
     <ElementFile Location="NotifyEmployee\NotifyEmployee.webpart" />
     <ElementManifest Location="QuickLaunch\Elements.xml" />
     <ElementFile Location="QuickLaunch\QuickLaunch.webpart" />
-    <ElementManifest Location="PersonProject\Elements.xml" />
-    <ElementFile Location="PersonProject\PersonProject.webpart" />
-    <ElementManifest Location="SearchEmployee\Elements.xml" />
-    <ElementFile Location="SearchEmployee\SearchEmployee.webpart" />
     <ElementManifest Location="AssignLeave\Elements.xml" />
     <ElementFile Location="AssignLeave\AssignLeave.webpart" />
     <ElementManifest Location="DayOff\Elements.xml" />
