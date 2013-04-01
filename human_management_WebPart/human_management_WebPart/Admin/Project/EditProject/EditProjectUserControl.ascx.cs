@@ -69,33 +69,22 @@ namespace SP2010VisualWebPart.Admin.Project.EditProject
                 }
                 else
                 {
-                    if (Session["SameProject"] == null)
+                    DateTime start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
+                    DateTime end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
+                    if (DateTime.Compare(start, end) > 0)
                     {
-                        DataTable dt = _com.getData(Message.TableProject, "*", " where " + Message.ProjectNameColumn
-                            + "='" + txtProjectName.Text.Trim() + "' and "+Message.ProjectIDColumn+"<>'"
-                            +Session["ProjectID"].ToString()+"'");
-                        if (dt.Rows.Count > 0)
-                        {
-                            lblError.Text = Message.AlreadyExistProject;
-                            Session["SameProject"] = true;
-                            Session["ProjectName"] = txtProjectName.Text;
-                        }
-                        else
-                        {
-                            _com.updateTable(Message.TableProject," "+Message.ProjectNameColumn+"=N'"
-                                +txtProjectName.Text+"',"+Message.NoteColumn+"=N'"+txtNote.Text+"',"
-                                + Message.StartDateColumn + "='" + Request.Form["txtStartDate"].ToString().Trim()
-                                + "'," + Message.EndDateColumn + "='" + Request.Form["txtEndDate"].ToString().Trim()
-                                +"' where "+Message.ProjectIDColumn+"='"+Session["ProjectID"].ToString()+"'");
-                            Session.Remove("ProjectID");
-                            Session.Remove("SameProject");
-                            Session.Remove("ProjectName");
-                            Response.Redirect(Message.ProjectListPage, true);
-                        }
+                        lblError.Text = Message.StartLargeThanEnd;
                     }
                     else
                     {
-                        if (txtProjectName.Text == Session["ProjectName"].ToString())
+                        DataTable dt = _com.getData(Message.TableProject, "*", " where " + Message.ProjectNameColumn
+                            + "='" + txtProjectName.Text.Trim() + "' and " + Message.ProjectIDColumn + "<>'"
+                            + Session["ProjectID"].ToString() + "'");
+                        if (dt.Rows.Count > 0)
+                        {
+                            lblError.Text = Message.AlreadyExistProject;
+                        }
+                        else
                         {
                             _com.updateTable(Message.TableProject, " " + Message.ProjectNameColumn + "=N'"
                                 + txtProjectName.Text + "'," + Message.NoteColumn + "=N'" + txtNote.Text + "',"
@@ -103,33 +92,7 @@ namespace SP2010VisualWebPart.Admin.Project.EditProject
                                 + "'," + Message.EndDateColumn + "='" + Request.Form["txtEndDate"].ToString().Trim()
                                 + "' where " + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
                             Session.Remove("ProjectID");
-                            Session.Remove("SameProject");
-                            Session.Remove("ProjectName");
                             Response.Redirect(Message.ProjectListPage, true);
-                        }
-                        else
-                        {
-                            DataTable dt = _com.getData(Message.TableProject, "*", " where " + Message.ProjectNameColumn
-                            + "='" + txtProjectName.Text.Trim() + "' and " + Message.ProjectIDColumn + "<>'"
-                            + Session["ProjectID"].ToString() + "'");
-                            if (dt.Rows.Count > 0)
-                            {
-                                lblError.Text = Message.AlreadyExistProject;
-                                Session["SameProject"] = true;
-                                Session["ProjectName"] = txtProjectName.Text;
-                            }
-                            else
-                            {
-                                _com.updateTable(Message.TableProject, " " + Message.ProjectNameColumn + "=N'"
-                                + txtProjectName.Text + "'," + Message.NoteColumn + "=N'" + txtNote.Text + "',"
-                                + Message.StartDateColumn + "='" + Request.Form["txtStartDate"].ToString().Trim()
-                                + "'," + Message.EndDateColumn + "='" + Request.Form["txtEndDate"].ToString().Trim()
-                                + "' where " + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
-                                Session.Remove("ProjectID");
-                                Session.Remove("SameProject");
-                                Session.Remove("ProjectName");
-                                Response.Redirect(Message.ProjectListPage, true);
-                            }
                         }
                     }
                 }
