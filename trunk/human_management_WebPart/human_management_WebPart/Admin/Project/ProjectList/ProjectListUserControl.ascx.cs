@@ -27,6 +27,7 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
                                 + " and '" + DateTime.Today + "'<=" + Message.EndDateColumn, Message.TableProject, grdData);
                             _com.setGridViewStyle(grdData);
                             ddlType.AutoPostBack = true;
+                            Session.Remove("ProjectID");
                         }
                     }
                     catch (Exception ex)
@@ -104,6 +105,7 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
                     Response.Redirect(Message.EditProjectPage, true);
                 }
             }
+            lblError.Text = Message.NotSelectProject;
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
