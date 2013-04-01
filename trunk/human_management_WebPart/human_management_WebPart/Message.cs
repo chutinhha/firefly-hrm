@@ -138,6 +138,9 @@
     internal const string ApproveTimesheetPage = "ApproveTimesheet.aspx";
     internal const string ViewEmployeeReportPage = "ViewEmployeeReport.aspx";
     internal const string ViewProjectReportPage = "ViewProjectReport.aspx";
+    internal const string ProjectListPage = "ProjectList.aspx";
+    internal const string AddProjectPage = "AddProject.aspx";
+    internal const string EditProjectPage = "EditProject.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -193,4 +196,7 @@
     internal const string NotHaveLoginID = "This person doesn't have login ID";
     internal const string NotExistLoginID = "This login ID is not exist. If you just change employee login ID, please save first";
     internal const string AlreadyExistLoginID = "There are 2 or more person with the same login ID";
+    internal const string NotEnterProjectName = "You must enter project name";
+    internal const string NotEnterStartEndDate = "You must enter start date and end date";
+    internal const string AlreadyExistProject = "There are another project with the same name already exist, if you want to save this project, click 'Save' again";
 }

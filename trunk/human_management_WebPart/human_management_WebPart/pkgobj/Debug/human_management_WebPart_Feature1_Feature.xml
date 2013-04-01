@@ -71,5 +71,11 @@
     <ElementFile Location="ReviewAttendance\ReviewAttendance.webpart" />
     <ElementManifest Location="SupervisorJudgment\Elements.xml" />
     <ElementFile Location="SupervisorJudgment\SupervisorJudgment.webpart" />
+    <ElementManifest Location="ProjectList\Elements.xml" />
+    <ElementFile Location="ProjectList\ProjectList.webpart" />
+    <ElementManifest Location="AddProject\Elements.xml" />
+    <ElementFile Location="AddProject\AddProject.webpart" />
+    <ElementManifest Location="EditProject\Elements.xml" />
+    <ElementFile Location="EditProject\EditProject.webpart" />
   </ElementManifests>
 </Feature>
