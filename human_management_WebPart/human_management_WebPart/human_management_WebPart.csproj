@@ -126,6 +126,30 @@
     <Compile Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx.designer.cs">
       <DependentUpon>QuestionListUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Project\AddProject\AddProject.cs" />
+    <Compile Include="Admin\Project\AddProject\AddProjectUserControl.ascx.cs">
+      <DependentUpon>AddProjectUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Project\AddProject\AddProjectUserControl.ascx.designer.cs">
+      <DependentUpon>AddProjectUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Project\EditProject\EditProject.cs" />
+    <Compile Include="Admin\Project\EditProject\EditProjectUserControl.ascx.cs">
+      <DependentUpon>EditProjectUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Project\EditProject\EditProjectUserControl.ascx.designer.cs">
+      <DependentUpon>EditProjectUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Project\ProjectList\ProjectList.cs" />
+    <Compile Include="Admin\Project\ProjectList\ProjectListUserControl.ascx.cs">
+      <DependentUpon>ProjectListUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Project\ProjectList\ProjectListUserControl.ascx.designer.cs">
+      <DependentUpon>ProjectListUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\AccessDenied\AccessDenied.cs" />
     <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.cs">
       <DependentUpon>AccessDeniedUserControl.ascx</DependentUpon>
@@ -379,6 +403,18 @@
     <None Include="Admin\Checkpoint\QuestionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f20955a4-c668-4ca1-b34d-efaa7e806991}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Project\AddProject\AddProject.webpart" />
+    <None Include="Admin\Project\AddProject\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6ea254f3-6454-46fe-89d1-38cb20fb67eb}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Project\EditProject\EditProject.webpart" />
+    <None Include="Admin\Project\EditProject\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{09e129af-db3d-42ad-a618-189574fefab7}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Project\ProjectList\ProjectList.webpart" />
+    <None Include="Admin\Project\ProjectList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{75360e21-ba50-4f4f-a3ca-49dbaf68faa0}</SharePointProjectItemId>
+    </None>
     <None Include="Common\AccessDenied\AccessDenied.webpart" />
     <None Include="Common\AccessDenied\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
@@ -535,6 +571,18 @@
     </Content>
     <Content Include="Admin\Checkpoint\QuestionList\Elements.xml" />
     <Content Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Project\AddProject\AddProjectUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Project\AddProject\Elements.xml" />
+    <Content Include="Admin\Project\EditProject\EditProjectUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Project\EditProject\Elements.xml" />
+    <Content Include="Admin\Project\ProjectList\Elements.xml" />
+    <Content Include="Admin\Project\ProjectList\ProjectListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\AccessDenied\AccessDeniedUserControl.ascx">
