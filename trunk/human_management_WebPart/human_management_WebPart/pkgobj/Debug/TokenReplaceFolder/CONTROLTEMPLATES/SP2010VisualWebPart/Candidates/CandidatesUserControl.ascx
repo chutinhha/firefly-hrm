@@ -38,42 +38,35 @@
                 </table>
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label runat="server" Text="Job Title" ID="lblJobTitle" Width="145px"></asp:Label>
-                <div class="styled-selectShort">
+                <asp:Label runat="server" Text="Job Title" ID="lblJobTitle" Width="150px"></asp:Label>
+                <div class="styled-selectLong">
                     <asp:DropDownList runat="server" ID="ddlJobTitle" OnSelectedIndexChanged="ddlJobTitle_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
                 <span style="padding-left: 70px;"></span>
-                <asp:Label runat="server" Text="Vacancy" ID="lblVacancy" Width="120px">
+                <asp:Label runat="server" Text="Vacancy" ID="lblVacancy" Width="150px">
                 </asp:Label>
-                <div class="styled-selectShort">
+                <div class="styled-selectLong">
                     <asp:DropDownList runat="server" ID="ddlVacancy">
                     </asp:DropDownList>
                 </div>
-                <span style="padding-left: 80px;"></span>
-                <asp:Label runat="server" Text="Hiring Manager" ID="lblHiringManager" Width="120px">
-                </asp:Label>
-                <asp:TextBox runat="server" ID="txtHiringManager" Width="145px" OnTextChanged="txtHiringManager_TextChanged"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label runat="server" Text="Candidate Name" ID="lblCandidateName" Width="145px"></asp:Label>
-                <asp:TextBox runat="server" ID="txtCandidateName" Width="115px"></asp:TextBox>
+                <asp:Label runat="server" Text="Candidate Name" ID="lblCandidateName" Width="150px"></asp:Label>
+                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px"></asp:TextBox>
                 <span style="padding-left: 70px;"></span>
-                <asp:Label runat="server" Text="Keywords" ID="lblKeyword" Width="118px"></asp:Label>
-                <asp:TextBox runat="server" ID="txtKeyword" Width="115px"></asp:TextBox>
-                <span style="padding-left: 80px;"></span>
-                <asp:Label runat="server" Text="Status" ID="lblStatus" Width="120px">
+                <asp:Label runat="server" Text="Status" ID="lblStatus" Width="150px">
                 </asp:Label>
-                <div class="styled-selectMedium">
+                <div class="styled-selectLong">
                     <asp:DropDownList runat="server" ID="ddlStatus">
                     </asp:DropDownList>
                 </div>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label runat="server" Text="Method of Application" ID="lblApplyMethod" Width="145px"></asp:Label>
-                <div class="styled-selectShort">
+                <asp:Label runat="server" Text="Method of Application" ID="lblApplyMethod" Width="150px"></asp:Label>
+                <div class="styled-selectLong">
                     <asp:DropDownList runat="server" ID="ddlApplyMethod">
                         <asp:ListItem Selected="True">All</asp:ListItem>
                         <asp:ListItem>Online</asp:ListItem>
@@ -81,15 +74,14 @@
                     </asp:DropDownList>
                 </div>
                 <span style="padding-left: 70px;"></span>
-                <asp:Label runat="server" Text="Apply Date" ID="lblApplyDate" Width="120px"></asp:Label>
+                <asp:Label runat="server" Text="Apply Date" ID="lblApplyDate" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 115px;" value="" /></asp:Panel>
+                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 150px;" value="" /></asp:Panel>
                 <span style="padding-left: 40px;"></span>
-                <input type="text" id="txtDateTo" name="txtDateTo" style="width: 115px;" value="" />
-</asp:Panel>
+                <input type="text" id="txtDateTo" name="txtDateTo" style="width: 150px;" value="" />
 <br />
-<span style="padding-left: 480px;"></span>
-<asp:Label ID="lblDateFrom" runat="server" Text="From" Width="170px" Height="20px"></asp:Label>
+<span style="padding-left: 600px;"></span>
+<asp:Label ID="lblDateFrom" runat="server" Text="From" Width="205px" Height="20px"></asp:Label>
 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
 <br />
 <div class="borderTop">

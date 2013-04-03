@@ -25,16 +25,16 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><font color="white">Daily Attendance</font></td></tr></table>
     <br />
-    <span style="padding-left:5px;"><asp:Label ID="lblNote" runat="server" 
+    <span style="padding-left:5px;"></span><asp:Label ID="lblNote" runat="server" 
         Text="Note" Width="150px"></asp:Label>
 <br />
-<br />
-<span style="padding-left:155px;"><asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
+
+<span style="padding-left:155px;"></span><asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
     Width="500px"></asp:TextBox>
-<br />
-<br />
+<br /><br />
+
 <div class="borderTop">
-<span style="padding-left:155px;"><asp:Button class="addButton" ID="btnInOut" runat="server" Text="In" Width="80px" 
+<span style="padding-left:155px;"></span><asp:Button class="addButton" ID="btnInOut" runat="server" Text="In" Width="80px" 
     onclick="btnInOut_Click" /></div></td></tr></table>
 <p>
     &nbsp;</p>

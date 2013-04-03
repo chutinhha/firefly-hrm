@@ -28,8 +28,8 @@ namespace SP2010VisualWebPart.Candidates
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
                             _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
                             _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", true, "All");
-                            _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.HiringManagerColumn
-                                + "," + Message.EmailColumn + "," + Message.ApplyDateColumn + "," + Message.StatusColumn + "", "", Message.TableJobCandidate, grdData);
+                            _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.EmailColumn 
+                                + "," + Message.ApplyDateColumn + "," + Message.StatusColumn + "", "", Message.TableJobCandidate, grdData);
                             Session.Remove("Name");
                             Session.Remove("Email");
                             _com.setGridViewStyle(grdData);
@@ -37,8 +37,7 @@ namespace SP2010VisualWebPart.Candidates
                             {
                                 grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                                 grdData.HeaderRow.Cells[2].Text = "Candidate Name";
-                                grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                                grdData.HeaderRow.Cells[5].Text = "Apply Date";
+                                grdData.HeaderRow.Cells[4].Text = "Apply Date";
                             }
                             else
                             {
@@ -101,18 +100,14 @@ namespace SP2010VisualWebPart.Candidates
                 ddlVacancy.SelectedIndex = 0;
                 ddlStatus.SelectedIndex = 0;
                 ddlApplyMethod.SelectedIndex = 0;
-                txtHiringManager.Text = "";
                 txtCandidateName.Text = "";
-                txtKeyword.Text = "";
-                _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.HiringManagerColumn
-                            + "," + Message.EmailColumn + "," + Message.ApplyDateColumn + "," + Message.StatusColumn 
-                            + "", "", Message.TableJobCandidate, grdData);
+                _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.EmailColumn + "," 
+                    + Message.ApplyDateColumn + "," + Message.StatusColumn + "", "", Message.TableJobCandidate, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                     grdData.HeaderRow.Cells[2].Text = "Candidate Name";
-                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                    grdData.HeaderRow.Cells[5].Text = "Apply Date";
+                    grdData.HeaderRow.Cells[4].Text = "Apply Date";
                 }
                 else
                 {
@@ -168,20 +163,10 @@ namespace SP2010VisualWebPart.Candidates
                 {
                     condition = condition + Message.MethodOfApplyColumn+"='" + ddlApplyMethod.SelectedItem.Text + "' and ";
                 }
-                if (txtHiringManager.Text.Trim() == "") { }
-                else
-                {
-                    condition = condition + Message.HiringManagerColumn+" like'%" + txtHiringManager.Text + "%' and ";
-                }
                 if (txtCandidateName.Text.Trim() == "") { }
                 else
                 {
                     condition = condition + Message.FullNameColumn+" like'%" + txtCandidateName.Text + "%' and ";
-                }
-                if (txtKeyword.Text.Trim() == "") { }
-                else
-                {
-                    condition = condition + Message.KeywordColumn+" like'%" + txtKeyword.Text + "%' and ";
                 }
                 if (Request.Form["txtDateFrom"].ToString().Trim() == "") { }
                 else
@@ -201,15 +186,13 @@ namespace SP2010VisualWebPart.Candidates
                 {
                     condition = condition.Substring(0, condition.Length - 4);
                 }
-                _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.HiringManagerColumn
-                            + "," + Message.EmailColumn + "," + Message.ApplyDateColumn + "," + Message.StatusColumn 
-                            + "",condition, Message.TableJobCandidate, grdData);
+                _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn +"," + Message.EmailColumn + "," 
+                    + Message.ApplyDateColumn + "," + Message.StatusColumn + "",condition, Message.TableJobCandidate, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                     grdData.HeaderRow.Cells[2].Text = "Candidate Name";
-                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                    grdData.HeaderRow.Cells[5].Text = "Apply Date";
+                    grdData.HeaderRow.Cells[4].Text = "Apply Date";
                 }
                 else
                 {
@@ -237,20 +220,18 @@ namespace SP2010VisualWebPart.Candidates
                     if (cb.Checked)
                     {
                         string sql = @"delete from "+Message.TableJobCandidate+" where "+Message.FullNameColumn+"=N'" 
-                            + Server.HtmlDecode(gr.Cells[2].Text)+"' and "+Message.EmailColumn+"='"+gr.Cells[4].Text+"';";
+                            + Server.HtmlDecode(gr.Cells[2].Text)+"' and "+Message.EmailColumn+"=N'"+Server.HtmlDecode(gr.Cells[3].Text)+"';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                     }
                 }
-                _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.HiringManagerColumn
-                            + "," + Message.EmailColumn + "," + Message.ApplyDateColumn + "," + Message.StatusColumn 
-                            + "", "", Message.TableJobCandidate, grdData);
+                _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.EmailColumn 
+                    + "," + Message.ApplyDateColumn + "," + Message.StatusColumn + "", "", Message.TableJobCandidate, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                     grdData.HeaderRow.Cells[2].Text = "Candidate Name";
-                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                    grdData.HeaderRow.Cells[5].Text = "Apply Date";
+                    grdData.HeaderRow.Cells[4].Text = "Apply Date";
                 }
                 else
                 {
@@ -271,7 +252,7 @@ namespace SP2010VisualWebPart.Candidates
                 if (cb.Checked)
                 {
                     Session["Name"] = Server.HtmlDecode(gr.Cells[2].Text);
-                    Session["Email"] = Server.HtmlDecode(gr.Cells[4].Text);
+                    Session["Email"] = Server.HtmlDecode(gr.Cells[3].Text);
                     _com.closeConnection();
                     Response.Redirect(Message.EditCandidatePage,true);
                 }

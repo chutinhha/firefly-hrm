@@ -76,22 +76,22 @@ namespace SP2010VisualWebPart.PunchAttendance {
         protected global::System.Web.UI.WebControls.Label lblTime;
         
         /// <summary>
-        /// txtTime control.
+        /// ddlHourIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTime;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHourIn;
         
         /// <summary>
-        /// Label5 control.
+        /// ddlMinutesIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMinutesIn;
         
         /// <summary>
         /// lblNote control.

@@ -146,8 +146,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         lblError.Text = "";
                         _com.bindDataAttendance("p."+Message.NameColumn+",a."+Message.PunchInColumn+",a."
                             +Message.PunchOutColumn+",p."+Message.EmailAddressColumn
-                            , " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
-                            + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                            , " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                            + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                         check = true;
                     }
@@ -168,8 +168,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                 +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                                 lblError.Text = "";
                                 _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
-                                    + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                    + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                 check = true;
                             }
@@ -198,8 +198,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         + dt1.Day + "-" + dt1.Year + "'";
                                     lblError.Text = "";
                                     _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                        + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'"
-                                        + txtEmployeeName.Text + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                        + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%"
+                                        + txtEmployeeName.Text + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                     check = true;
                                 }
@@ -229,7 +229,12 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 pnlData.Visible = false;
             }
             if (check == true) {
-                pnlData.Visible = true;
+                DataTable employee = _com.getData(Message.TablePerson, Message.NameColumn, " where "
+                    + Message.NameColumn + "=N'" + txtEmployeeName.Text + "'");
+                if (employee.Rows.Count > 0)
+                {
+                    pnlData.Visible = true;
+                }
             }
         }
 
@@ -257,7 +262,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     {
                         DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
                                             + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                                            , " where p." + Message.NameColumn + "='" + Server.HtmlDecode(gr.Cells[1].Text) + "'");
+                                            , " where p." + Message.NameColumn + "='" + Server.HtmlDecode(gr.Cells[1].Text) + "'"
+                                            + " and p." + Message.EmailAddressColumn + "=N'" + Server.HtmlDecode(gr.Cells[4].Text)+"'");
                         string sql = @"delete from "+Message.TableAttendance+" where "+Message.BusinessEntityIDColumn+"=N'" 
                             + getID.Rows[0][0].ToString() + "' and "+Message.PunchInColumn+"='"+gr.Cells[2].Text
                             +"' and "+Message.PunchOutColumn+"='"+gr.Cells[3].Text+"';";
@@ -266,8 +272,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     }
                 }
                 _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
-                    + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                    + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                 if (grdData.Rows.Count > 0)
                 {

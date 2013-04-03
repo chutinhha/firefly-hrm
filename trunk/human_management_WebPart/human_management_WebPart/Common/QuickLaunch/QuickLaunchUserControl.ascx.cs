@@ -36,8 +36,8 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             int quarter = _com.getQuarter();
                             lblQuarter.Text = " quarter " + quarter;
                             DataTable AverageCheckPoint = _com.getData(Message.TableEvaluatePoint, " distinct " + Message.BusinessEntityIDColumn
-                                + "," + Message.AveragePointColumn, " where Month(" + Message.ModifiedDateColumn + ")<=" + (4 * quarter)
-                                + " and MONTH(" + Message.ModifiedDateColumn + ")>=" + (4 * quarter - 3));
+                                + "," + Message.AveragePointColumn, " where Month(" + Message.ModifiedDateColumn + ")<=" + (3 * quarter)
+                                + " and MONTH(" + Message.ModifiedDateColumn + ")>=" + (3 * quarter - 2));
                             if (AverageCheckPoint.Rows.Count == 0)
                             {
                                 this.inputValue = "Not have data yet;";

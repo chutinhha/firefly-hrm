@@ -28,7 +28,7 @@
      
     </asp:GridView>
     <br />
-    <asp:GridView ID="grdTotal" runat="server" Width="100%">
+    <asp:GridView ID="grdTotal" runat="server" Width="100%" OnRowDataBound="grdTotal_RowDataBound">
     </asp:GridView><table><tr><td></td></tr></table>
 </td></tr></table>
 <p>

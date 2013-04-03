@@ -45,9 +45,10 @@
 
     <br />
 
-    <span style="padding-left:157px;"></span>
+    <span style="padding-left:160px;"></span>
     <asp:Button ID="btnShow" 
-        runat="server" Text="Show custom info" class="addButton" onclick="btnShow_Click" />
+        runat="server" Text="Show custom info" class="addButton" 
+        onclick="btnShow_Click" Width="150px" />
 
     <br />
 
@@ -64,18 +65,18 @@
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="Label1" runat="server" Text="Map column" Width="150px"></asp:Label>
         <asp:Label ID="lblColumnName" runat="server" Text="Column name" Width="210px"></asp:Label>
-        <span style="padding-left:20px;"></span><asp:Label ID="lblColumnNumber" 
+        <span style="padding-left:25px;"></span><asp:Label ID="lblColumnNumber" 
             runat="server" Text="Column number in excel"></asp:Label>
         <br />
         <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtLoginID" runat="server" Enabled="False" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtLoginID" runat="server" Enabled="False" 
         style="margin-top: 1px" Width="200px">Login ID</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlLoginID" runat="server">
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtJobID" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtJobID" 
         runat="server" Enabled="False" Width="200px">Job ID</asp:TextBox>
 
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
@@ -85,7 +86,7 @@
 
     <br />
     <br />
-    <span style="padding-left:157px;"></span>
+    <span style="padding-left:160px;"></span>
     <asp:TextBox ID="txtBirthDate" 
         runat="server" Width="200px" Enabled="False">Birth Date</asp:TextBox>
     <span style="padding-left:20px;"></span>
@@ -93,7 +94,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtMaritalStatus" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtMaritalStatus" 
         runat="server" Enabled="False" Width="200px">Marital Status</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlMaritalStatus" 
@@ -101,7 +102,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtGender" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtGender" 
         runat="server" Enabled="False" Width="200px">Gender</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlGender" 
@@ -109,7 +110,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtHireDate" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtHireDate" 
         runat="server" Width="200px" Enabled="False">Hire Date</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlHireDate" 
@@ -117,7 +118,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span>
+    <span style="padding-left:160px;"></span>
     <asp:TextBox ID="txtSalaryFlag" 
         runat="server" Enabled="False" Width="200px">Salary Flag</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
@@ -126,7 +127,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtVacationHours" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtVacationHours" 
         runat="server" Enabled="False" Width="200px">Vacation Hours</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlVacationHours" 
@@ -134,7 +135,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtSickLeaveHours" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtSickLeaveHours" 
         runat="server" Enabled="False" Width="200px">Sick Leave Hours</asp:TextBox>
     <span style="padding-left:20px;"></span>
     <div class="styled-selectLong"><asp:DropDownList ID="ddlSickLeaveHours" 
@@ -142,7 +143,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtCurrentFlag" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtCurrentFlag" 
         runat="server" Enabled="False" Width="200px">Current Flag</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlCurrentFlag" 
@@ -150,7 +151,7 @@
     </asp:DropDownList></div>
     <br />
     <br />
-    <span style="padding-left:157px;"></span><asp:TextBox ID="txtModifyDate" 
+    <span style="padding-left:160px;"></span><asp:TextBox ID="txtModifyDate" 
         runat="server" Enabled="False" Width="200px">Modify Date</asp:TextBox>
     <span style="padding-left:20px;"></span><div class="styled-selectLong">
             <asp:DropDownList ID="ddlModifyDate" 
@@ -166,7 +167,7 @@
         <br />
     
  </asp:Panel><asp:Panel ID="Panel4" runat="server" Visible="False" ><div class="borderTop">
-    <span style="padding-left:152px;"></span>
+    <span style="padding-left:155px;"></span>
         <asp:Button ID="btnSave" 
         runat="server" Text="Import"
 

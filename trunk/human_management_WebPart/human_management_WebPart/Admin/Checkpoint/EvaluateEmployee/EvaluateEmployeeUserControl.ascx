@@ -28,7 +28,7 @@
                         <asp:TemplateField>
                         <HeaderStyle Width="25" />
                             <ItemTemplate>
-                                <asp:RadioButton OnCheckedChanged="rdoEmployee_CheckedChanged" ID="rdoEmployee" runat="server" GroupName="rdoGroup" AutoPostBack="true">
+                                &nbsp;<asp:RadioButton OnCheckedChanged="rdoEmployee_CheckedChanged" ID="rdoEmployee" runat="server" GroupName="rdoGroup">
                                 </asp:RadioButton>
                             </ItemTemplate>
                         </asp:TemplateField>

@@ -77,5 +77,13 @@
     <ElementFile Location="AddProject\AddProject.webpart" />
     <ElementManifest Location="EditProject\Elements.xml" />
     <ElementFile Location="EditProject\EditProject.webpart" />
+    <ElementManifest Location="TaskList\Elements.xml" />
+    <ElementFile Location="TaskList\TaskList.webpart" />
+    <ElementManifest Location="AddTask\Elements.xml" />
+    <ElementFile Location="AddTask\AddTask.webpart" />
+    <ElementManifest Location="EditTask\Elements.xml" />
+    <ElementFile Location="EditTask\EditTask.webpart" />
+    <ElementManifest Location="ManageUser\Elements.xml" />
+    <ElementFile Location="ManageUser\ManageUser.webpart" />
   </ElementManifests>
 </Feature>

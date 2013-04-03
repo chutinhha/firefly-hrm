@@ -58,13 +58,22 @@ namespace SP2010VisualWebPart.EditAttendance {
         protected global::System.Web.UI.WebControls.TextBox txtPunchInDate;
         
         /// <summary>
-        /// txtPunchInHour control.
+        /// ddlHourIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPunchInHour;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHourIn;
+        
+        /// <summary>
+        /// ddlMinutesIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMinutesIn;
         
         /// <summary>
         /// lblPunchInNote control.
@@ -94,13 +103,22 @@ namespace SP2010VisualWebPart.EditAttendance {
         protected global::System.Web.UI.WebControls.Label lblPunchOut;
         
         /// <summary>
-        /// txtPunchOut control.
+        /// ddlHourOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPunchOut;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHourOut;
+        
+        /// <summary>
+        /// ddlMinutesOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMinutesOut;
         
         /// <summary>
         /// lblPunchOutNote control.

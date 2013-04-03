@@ -25,7 +25,7 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><font color="white">Review Timesheet</font></td></tr></table>
     <br />
-    <span style="padding-left:5px;"><asp:Label ID="lblProjectName" runat="server" Text="Project Name" Width="150px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblProjectName" runat="server" Text="Project Name" Width="150px"></asp:Label>
 <div class="styled-selectLong">
 <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" 
         onselectedindexchanged="ddlProjectName_SelectedIndexChanged">
@@ -33,7 +33,7 @@
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblTaskName" runat="server" Text="Task Name" Width="150px"></asp:Label>
-<div class="styled-selectLong"><asp:DropDownList ID="ddlTaskName" runat="server" AutoPostBack="True">
+<div class="styled-selectLong"><asp:DropDownList ID="ddlTaskName" runat="server">
 </asp:DropDownList></div>
 <p>
     &nbsp;</p>

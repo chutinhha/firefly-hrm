@@ -37,10 +37,9 @@ namespace SP2010VisualWebPart.EditVacancy
                                 {
                                     ddlJobTitle.SelectedValue = dt.Rows[0][0].ToString().Trim();
                                     txtVacancy.Text = dt.Rows[0][1].ToString().Trim();
-                                    txtHiringManager.Text = dt.Rows[0][2].ToString().Trim();
-                                    txtNoOfPosition.Text = dt.Rows[0][3].ToString().Trim();
-                                    txtDescription.Text = dt.Rows[0][4].ToString().Trim();
-                                    if (dt.Rows[0][5].ToString().Trim() == "Active")
+                                    txtNoOfPosition.Text = dt.Rows[0][2].ToString().Trim();
+                                    txtDescription.Text = dt.Rows[0][3].ToString().Trim();
+                                    if (dt.Rows[0][4].ToString().Trim() == "Active")
                                     {
                                         chkActive.Checked = true;
                                     }
@@ -95,7 +94,7 @@ namespace SP2010VisualWebPart.EditVacancy
                             if (ddlJobTitle.SelectedValue != "NULL")
                             {
                                 _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
                                     + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
@@ -103,7 +102,7 @@ namespace SP2010VisualWebPart.EditVacancy
                             else
                             {
                                 _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
                                     + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
@@ -142,14 +141,14 @@ namespace SP2010VisualWebPart.EditVacancy
                             if (ddlJobTitle.SelectedValue != "NULL")
                             {
                                 _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
                                     + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                             }
                             else {
                                 _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.HiringManagerColumn + "=N'" + txtHiringManager.Text + "'," + Message.NumberOfPositionColumn
+                                    + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
                                     + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");

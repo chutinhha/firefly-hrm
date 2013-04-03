@@ -26,18 +26,16 @@ namespace SP2010VisualWebPart.Vacancies
                         {
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
                             _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
-                            txtHiringManager.Text = "";
                             ddlStatus.SelectedIndex = 0;
                             Session.Remove("Name");
-                            _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
-                                + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
+                            _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                                + "", "", Message.TableVacancy, grdData);
                             _com.setGridViewStyle(grdData);
                             if (grdData.Rows.Count > 0)
                             {
                                 grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
                                 grdData.HeaderRow.Cells[2].Text = "Job Title";
-                                grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                                grdData.HeaderRow.Cells[4].Text = "Status";
+                                grdData.HeaderRow.Cells[3].Text = "Status";
                             }
                             else
                             {
@@ -77,11 +75,6 @@ namespace SP2010VisualWebPart.Vacancies
                 {
                     condition = condition + Message.StatusColumn+"='" + ddlStatus.SelectedValue + "' and ";
                 }
-                if (txtHiringManager.Text.Trim() == "") { }
-                else
-                {
-                    condition = condition + Message.HiringManagerColumn+" like'%" + txtHiringManager.Text + "%' and ";
-                }
                 if (condition == " where ")
                 {
                     condition = "";
@@ -90,14 +83,13 @@ namespace SP2010VisualWebPart.Vacancies
                 {
                     condition = condition.Substring(0, condition.Length - 4);
                 }
-                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
-                            + "," + Message.StatusColumn + "",condition, Message.TableVacancy, grdData);
+                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                    + "",condition, Message.TableVacancy, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
                     grdData.HeaderRow.Cells[2].Text = "Job Title";
-                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                    grdData.HeaderRow.Cells[4].Text = "Status";
+                    grdData.HeaderRow.Cells[3].Text = "Status";
                 }
                 else
                 {
@@ -117,15 +109,13 @@ namespace SP2010VisualWebPart.Vacancies
                 ddlJobTitle.SelectedIndex = 0;
                 ddlVacancy.SelectedIndex = 0;
                 ddlStatus.SelectedIndex = 0;
-                txtHiringManager.Text = "";
-                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
-                            + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
+                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                    + "", "", Message.TableVacancy, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
                     grdData.HeaderRow.Cells[2].Text = "Job Title";
-                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                    grdData.HeaderRow.Cells[4].Text = "Status";
+                    grdData.HeaderRow.Cells[3].Text = "Status";
                 }
                 else
                 {
@@ -193,14 +183,13 @@ namespace SP2010VisualWebPart.Vacancies
                         command.ExecuteNonQuery();
                     }
                 }
-                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.HiringManagerColumn
-                            + "," + Message.StatusColumn + "", "", Message.TableVacancy, grdData);
+                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                    + "", "", Message.TableVacancy, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
                     grdData.HeaderRow.Cells[2].Text = "Job Title";
-                    grdData.HeaderRow.Cells[3].Text = "Hiring Manager";
-                    grdData.HeaderRow.Cells[4].Text = "Status";
+                    grdData.HeaderRow.Cells[3].Text = "Status";
                 }
                 else
                 {

@@ -141,6 +141,9 @@
     internal const string ProjectListPage = "ProjectList.aspx";
     internal const string AddProjectPage = "AddProject.aspx";
     internal const string EditProjectPage = "EditProject.aspx";
+    internal const string AddTaskPage = "AddTask.aspx";
+    internal const string EditTaskPage = "EditTask.aspx";
+    internal const string TaskListPage = "TaskList.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -198,5 +201,8 @@
     internal const string AlreadyExistLoginID = "There are 2 or more person with the same login ID";
     internal const string NotEnterProjectName = "You must enter project name";
     internal const string NotEnterStartEndDate = "You must enter start date and end date";
-    internal const string AlreadyExistProject = "There are another project with the same name already exist, if you want to save this project, click 'Save' again";
+    internal const string AlreadyExistProject = "There are another project with the same name already exist, please choose another name";
+    internal const string NotSelectProject = "You must select a project first";
+    internal const string AlreadyExistTask = "There are another task in this project with the same name already exist, please choose another name";
+    internal const string StartLargeThanEnd = "Start date must be earlier than end date";
 }

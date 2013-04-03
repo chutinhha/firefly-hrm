@@ -37,14 +37,14 @@
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblFrom" runat="server" Text="From" Width="150px"></asp:Label>
-    <input id="txtDateFrom" name="txtDateFrom" size="30" type="text" value="" />
+    <input id="txtDateFrom" name="txtDateFrom" style="width:200px;" type="text" value="" />
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblTo" runat="server" 
-        Text="To" Width="155px"></asp:Label><input type="text" id="txtDateTo" name="txtDateTo" value="" size="30"/>
+        Text="To" Width="155px"></asp:Label><input type="text" id="txtDateTo" name="txtDateTo" value="" style="width:200px;"/>
 <br />
 <br />
-<span style="color:Red;">(*): Required field</span><br />
+<span style="color:Red;">&nbsp;(*): Required field</span><br />
 <br />
 <div class="borderTop">
 

@@ -33,33 +33,33 @@
                 </tr>
             </table>
             <br />
-            <span style="padding-left: 5px;">
+            <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblTaskName" runat="server" Text="Task Name(*)" 
                 Width="150px"></asp:Label>
                 <asp:TextBox ID="txtTaskName" runat="server" Width="200px"></asp:TextBox>
                 <p>
                     &nbsp;</p>
-                <span style="padding-left: 5px;">
+                <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label>
                     <p>
-                        <span style="padding-left: 160px;">
-                            <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="500px"></asp:TextBox>
+                        <span style="padding-left: 160px;"></span>
+                            <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="800px"></asp:TextBox>
                     </p>
                     <p>
                         &nbsp;</p>
-                    <span style="padding-left: 5px;">
+                    <span style="padding-left: 5px;"></span>
                         <asp:Label ID="lblStartDate" runat="server" Text="Start Date(*)" Width="155px"></asp:Label><input
                             type="text" id="txtStartDate" name="txtStartDate" style="width: 200px;" value="<%= this.startDate %>" />
                         <p>
                             &nbsp;</p>
-                        <span style="padding-left: 5px;">
+                        <span style="padding-left: 5px;"></span>
                             <asp:Label ID="lblEndDate" runat="server" Text="End Date(*)" Width="150px"></asp:Label>
                             </asp:Label><input type="text" id="txtEndDate" name="txtEndDate" style="width: 200px;"
                                 value="<%= this.endDate %>" />
                             <p>
                                 &nbsp;</p>
                             <div class="borderTop">
-                                <span style="padding-left: 155px;">
+                                <span style="padding-left: 155px;"></span>
                                     <asp:Button ID="btnSave" class="addButton" runat="server" Text="Save" Width="80px"
                                         OnClick="btnSave_Click" />
                                     <asp:Button ID="btnCancel" class="addButton" runat="server" Text="Cancel" Width="80px"

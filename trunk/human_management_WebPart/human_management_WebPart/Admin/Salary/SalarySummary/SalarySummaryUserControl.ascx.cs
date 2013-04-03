@@ -59,12 +59,13 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                             txtSalary.Width = 200;
                             grdData.Rows[i].Cells[3].Controls.Add(txtSalary);
                         }
-                        DataRow newRow = dt.NewRow();
+                        DataTable dtCloned = dt.Clone();
+                        dtCloned.Columns[0].DataType = typeof(double);
+                        DataRow newRow = dtCloned.NewRow();
                         newRow[0] = totalCostPerMonth;
                         newRow[1] = totalCostPerMonth*12;
-                        dt.Rows.Clear();
-                        dt.Rows.Add(newRow);
-                        grdTotal.DataSource = dt;
+                        dtCloned.Rows.Add(newRow);
+                        grdTotal.DataSource = dtCloned;
                         grdTotal.DataBind();
                         grdTotal.HeaderRow.Cells[0].Text = "Total cost/Month";
                         grdTotal.HeaderRow.Cells[1].Text = "Total cost/Year";
@@ -90,6 +91,12 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
         {
             e.Row.Cells[0].Visible = false;
             e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
+            e.Row.Cells[3].Attributes.Add("style", "padding-top:5px;padding-bottom:5px;");
+        }
+
+        protected void grdTotal_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
         }
 
         protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,12 +138,13 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             {
                 totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
             }
-            DataRow newRow = dt.NewRow();
+            DataTable dtCloned = dt.Clone();
+            dtCloned.Columns[0].DataType = typeof(double);
+            DataRow newRow = dtCloned.NewRow();
             newRow[0] = totalCostPerMonth;
             newRow[1] = totalCostPerMonth * 12;
-            dt.Rows.Clear();
-            dt.Rows.Add(newRow);
-            grdTotal.DataSource = dt;
+            dtCloned.Rows.Add(newRow);
+            grdTotal.DataSource = dtCloned;
             grdTotal.DataBind();
             grdTotal.HeaderRow.Cells[0].Text = "Total cost/Month";
             grdTotal.HeaderRow.Cells[1].Text = "Total cost/Year";
@@ -175,12 +183,13 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 {
                     totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
                 }
-                DataRow newRow = dt.NewRow();
+                DataTable dtCloned = dt.Clone();
+                dtCloned.Columns[0].DataType = typeof(double);
+                DataRow newRow = dtCloned.NewRow();
                 newRow[0] = totalCostPerMonth;
                 newRow[1] = totalCostPerMonth * 12;
-                dt.Rows.Clear();
-                dt.Rows.Add(newRow);
-                grdTotal.DataSource = dt;
+                dtCloned.Rows.Add(newRow);
+                grdTotal.DataSource = dtCloned;
                 grdTotal.DataBind();
                 grdTotal.HeaderRow.Cells[0].Text = "Total cost/Month";
                 grdTotal.HeaderRow.Cells[1].Text = "Total cost/Year";
