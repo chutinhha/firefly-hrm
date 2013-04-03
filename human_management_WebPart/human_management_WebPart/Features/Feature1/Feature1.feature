@@ -39,5 +39,9 @@
     <projectItemReference itemId="75360e21-ba50-4f4f-a3ca-49dbaf68faa0" />
     <projectItemReference itemId="6ea254f3-6454-46fe-89d1-38cb20fb67eb" />
     <projectItemReference itemId="09e129af-db3d-42ad-a618-189574fefab7" />
+    <projectItemReference itemId="5dd6fb14-b14b-4d09-a405-6d3c0e560eec" />
+    <projectItemReference itemId="c7b1c34b-5b70-4411-adfa-707a7540bde3" />
+    <projectItemReference itemId="5052564b-99de-4282-aba6-4f6b18c9db3e" />
+    <projectItemReference itemId="3b0cb28f-ff0e-4621-953b-7220605fbcd2" />
   </projectItems>
 </feature>

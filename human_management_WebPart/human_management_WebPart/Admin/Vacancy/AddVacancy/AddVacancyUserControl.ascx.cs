@@ -64,7 +64,7 @@ namespace SP2010VisualWebPart.AddVacancy
                                 active = "Closed";
                             }
                             _com.insertIntoTable(Message.TableVacancy,"", "N'" + ddlJobTitle.SelectedValue + "',N'"
-                                + txtVacancy.Text.Trim() + "',N'" + txtHiringManager.Text + "',N'" + txtNoOfPosition.Text 
+                                + txtVacancy.Text.Trim() + "',N'" + txtNoOfPosition.Text 
                                 + "',N'" + txtDescription.Text + "',"
                                 + "N'" + active + "','"+DateTime.Now+"'",false);
                             _com.closeConnection();
@@ -87,7 +87,7 @@ namespace SP2010VisualWebPart.AddVacancy
                                 active = "Closed";
                             }
                             _com.insertIntoTable(Message.TableVacancy, "", "N'" + ddlJobTitle.SelectedValue + "',N'"
-                                + txtVacancy.Text.Trim() + "',N'" + txtHiringManager.Text + "',N'" + txtNoOfPosition.Text
+                                + txtVacancy.Text.Trim() + "',N'" + txtNoOfPosition.Text
                                 + "',N'" + txtDescription.Text + "',"
                                 + "N'" + active + "','" + DateTime.Now + "'", false);
                             _com.closeConnection();

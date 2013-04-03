@@ -10,6 +10,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Data.OleDb;
 using System.IO;
+using Microsoft.SharePoint.WebControls;
+using Microsoft.SharePoint;
+using System.Text;
 
 public class CommonFunction
 {
@@ -174,8 +177,8 @@ public class CommonFunction
                     }
                 }
             }
+            dt1.Columns[3].SetOrdinal(1);
         }
-        dt1.Columns[3].SetOrdinal(1);
         GridView1.DataSource = dt1;
         GridView1.DataBind();
     }
@@ -243,8 +246,8 @@ public class CommonFunction
                     dt.Rows[i][6] = totalTimeProject + " (Hours)";
                 }
             }
+            dt.Columns.RemoveAt(7);
         }
-        dt.Columns.RemoveAt(7);
         GridView1.DataSource = dt;
         GridView1.DataBind();
     }
@@ -471,6 +474,25 @@ public class CommonFunction
             quarter = 4;
         }
         return quarter;
+    }
+
+    internal string getRank(SPWeb context ) {
+        SPWeb web = context;
+        SPRoleAssignment assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser);
+        StringBuilder sb = new StringBuilder("");
+        foreach (SPRoleDefinition role in assignment.RoleDefinitionBindings)
+        {
+            if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
+            {
+                return "Admin";
+            }
+            else return "User";
+        }
+        return "";
+    }
+    internal string getCurrentUser()
+    {
+        return System.Environment.UserName;
     }
     internal void generateControl(Panel pnlGenerate, string isEdit, string BusinessID, int quarter) {
         DataTable question = this.getData(Message.TableCheckpointQuestion,"*", "");

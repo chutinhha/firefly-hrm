@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
 using System.Security.Cryptography;
+using System.DirectoryServices.AccountManagement;
 
 namespace SP2010VisualWebPart.Admin.User.UserList
 {
@@ -72,7 +73,6 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                             //ddlRank.Width = 200;
                             ddlRank.Items.Add("Admin");
                             ddlRank.Items.Add("User");
-                            ddlRank.AutoPostBack=true;
                             ddlRank.SelectedValue = dt.Rows[i][3].ToString();
                             grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                             grdData.Rows[i].Cells[3].Controls.Add(ddlRank);
@@ -160,7 +160,6 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 //ddlRank.Width = 200;
                 ddlRank.Items.Add("Admin");
                 ddlRank.Items.Add("User");
-                ddlRank.AutoPostBack = true;
                 ddlRank.SelectedValue = dt.Rows[i][3].ToString();
                 grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                 grdData.Rows[i].Cells[3].Controls.Add(ddlRank);
@@ -232,6 +231,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                         _com.updateTable(Message.TablePerson, " " + Message.RankColumn + "='" + ddlRank.SelectedValue
                             + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
                                 + Message.BusinessEntityIDColumn + "='" + grdData.Rows[i].Cells[0].Text + "'");
+                        
                         if (user.Rows[0][1] != null && user.Rows[0][1].ToString().Trim() != "")
                         { }
                         else
@@ -316,7 +316,6 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 //ddlRank.Width = 200;
                 ddlRank.Items.Add("Admin");
                 ddlRank.Items.Add("User");
-                ddlRank.AutoPostBack = true;
                 ddlRank.SelectedValue = dt.Rows[i][3].ToString();
                 grdData.Rows[i].Cells[3].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                 grdData.Rows[i].Cells[3].Controls.Add(ddlRank);

@@ -32,6 +32,28 @@ namespace SP2010VisualWebPart.PunchAttendance
                             pnlDate.Enabled = true;
                             Label1.Text = "Punch In";
                             btnInOut.Text = "In";
+                            for (int i = 0; i < 25; i++)
+                            {
+                                if (i < 10)
+                                {
+                                    ddlHourIn.Items.Add("0" + i);
+                                }
+                                else
+                                {
+                                    ddlHourIn.Items.Add(i.ToString());
+                                }
+                            }
+                            for (int i = 0; i < 61; i++)
+                            {
+                                if (i < 10)
+                                {
+                                    ddlMinutesIn.Items.Add("0" + i);
+                                }
+                                else
+                                {
+                                    ddlMinutesIn.Items.Add(i.ToString());
+                                }
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -64,7 +86,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                 lblError.Text = Message.NotChooseDate;
             }
             else {
-                if (txtTime.Text.Trim() == "")
+                if (ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue == "")
                 {
                     lblError.Text = Message.NotChooseTime;
                 }
@@ -73,7 +95,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                     {
                         try
                         {
-                            DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim());
+                            DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue);
                             if (Session["In"] == null)
                             {
                                 //Only accept Punch In after last Punch Out in the same day
@@ -83,7 +105,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     + Session["Name"].ToString() + "' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
                                     + "+CAST(MONTH("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                     +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "' and "+Message.PunchOutColumn
-                                    + " >'" + Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim() + "' order by " + Message.PunchOutColumn + " desc");
+                                    + " >'" + Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "' order by " + Message.PunchOutColumn + " desc");
                                 if (data.Rows.Count > 0)
                                 {
                                     lblError.Text = Message.LastPunchOut + data.Rows[0][3].ToString()
@@ -91,11 +113,12 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 }
                                 else
                                 {
-                                    Session["In"] = Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim();
+                                    Session["In"] = Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue;
                                     Session["NoteIn"] = txtNote.Text.Trim();
                                     Label1.Text = "Punch Out";
                                     btnInOut.Text = "Out";
-                                    txtTime.Text = "";
+                                    ddlHourIn.SelectedIndex = 0;
+                                    ddlMinutesIn.SelectedIndex = 0;
                                     txtNote.Text = "";
                                     this.readOnly = "readonly";
                                     this.inputValue = Request.Form["txtDate"].ToString().Trim();
@@ -116,7 +139,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                             , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "'");
                                     _com.insertIntoTable(Message.TableAttendance,"", "N'" + getID.Rows[0][0].ToString()
                                             + "','" + Session["In"].ToString() + "',N'" + Session["NoteIn"].ToString()
-                                            + "','" + Request.Form["txtDate"].ToString().Trim() + " " + txtTime.Text.Trim() + "'"
+                                            + "','" + Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "'"
                                             + ",N'" + txtNote.Text.Trim() + "','"+DateTime.Now+"'",false);
                                     _com.closeConnection();
                                     Session.Remove("In");

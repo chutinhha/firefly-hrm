@@ -28,10 +28,31 @@ namespace SP2010VisualWebPart.AddCandidate
                         {
                             ddlCountry.DataSource = _com.getCountryList();
                             ddlCountry.DataBind();
+                            ddlCountry.SelectedValue = "Vietnam";
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
                             _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
                             _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
                             lblError.Text = "";
+                            for (int i = 0; i < 25; i++) {
+                                if (i < 10)
+                                {
+                                    ddlHour.Items.Add("0" + i);
+                                }
+                                else {
+                                    ddlHour.Items.Add(i.ToString());
+                                }
+                            }
+                            for (int i = 0; i < 61; i++)
+                            {
+                                if (i < 10)
+                                {
+                                    ddlMinutes.Items.Add("0" + i);
+                                }
+                                else
+                                {
+                                    ddlMinutes.Items.Add(i.ToString());
+                                }
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -105,8 +126,8 @@ namespace SP2010VisualWebPart.AddCandidate
                                 }
                                 if (Request.Form["txtInterviewDate"].ToString().Trim() != "")
                                 {
-                                    DateTime dt1 = DateTime.Parse((Request.Form["txtInterviewDate"].ToString().Trim()
-                                        +" "+txtInterviewTime.Text.Trim()).Trim());
+                                    DateTime dt1 = DateTime.Parse(Request.Form["txtInterviewDate"].ToString().Trim()
+                                        +" "+ddlHour.SelectedValue+":"+ddlMinutes.SelectedValue);
                                 }
                                 try
                                 {
@@ -114,49 +135,41 @@ namespace SP2010VisualWebPart.AddCandidate
                                     {
                                         _com.insertIntoTable(Message.TableJobCandidate, "", "N'" + txtFullName.Text + "',"
                                             + "N'" + txtAddress.Text + "',N'" + txtCity.Text + "',"
-                                            + "N'" + txtState.Text + "','" + txtZipCode.Text + "',"
                                             + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
-                                            + "'" + ddlVacancy.SelectedValue + "',N'" + txtKeyword.Text + "',"
+                                            + "'" + ddlVacancy.SelectedValue + "',"
                                             + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() + "','" + ddlJobTitle.SelectedValue + "',"
-                                            + "N'" + txtHiringManager.Text + "',"
                                             + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "','"
-                                            + (Request.Form["txtInterviewDate"].ToString().Trim() + " " +txtInterviewTime.Text.Trim()).Trim()+ "'", false);
+                                            + Request.Form["txtInterviewDate"].ToString().Trim() + " " +ddlHour.SelectedValue+":"+ddlMinutes.SelectedValue+ "'", false);
                                     }
                                     else if (Request.Form["txtApplyDate"].ToString().Trim() == "" && Request.Form["txtInterviewDate"].ToString().Trim() != "")
                                     {
                                         _com.insertIntoTable(Message.TableJobCandidate, "", "N'" + txtFullName.Text + "',"
                                             + "N'" + txtAddress.Text + "',N'" + txtCity.Text + "',"
-                                            + "N'" + txtState.Text + "','" + txtZipCode.Text + "',"
                                             + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
-                                            + "'" + ddlVacancy.SelectedValue + "',N'" + txtKeyword.Text + "',"
+                                            + "'" + ddlVacancy.SelectedValue + "',"
                                             + "N'" + txtComment.Text + "',NULL,'" + ddlJobTitle.SelectedValue + "',"
-                                            + "N'" + txtHiringManager.Text + "',"
                                             + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "','"
-                                            + (Request.Form["txtInterviewDate"].ToString().Trim() + " " + txtInterviewTime.Text.Trim()).Trim() + "'", false);
+                                            + Request.Form["txtInterviewDate"].ToString().Trim() + " " + ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue + "'", false);
                                     }
                                     else if (Request.Form["txtApplyDate"].ToString().Trim() != "" && Request.Form["txtInterviewDate"].ToString().Trim() == "")
                                     {
                                         _com.insertIntoTable(Message.TableJobCandidate, "", "N'" + txtFullName.Text + "',"
                                             + "N'" + txtAddress.Text + "',N'" + txtCity.Text + "',"
-                                            + "N'" + txtState.Text + "','" + txtZipCode.Text + "',"
                                             + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
-                                            + "'" + ddlVacancy.SelectedValue + "',N'" + txtKeyword.Text + "',"
+                                            + "'" + ddlVacancy.SelectedValue + "',"
                                             + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() + "','" + ddlJobTitle.SelectedValue + "',"
-                                            + "N'" + txtHiringManager.Text + "',"
                                             + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "',NULL", false);
                                     }
                                     else {
                                         _com.insertIntoTable(Message.TableJobCandidate, "", "N'" + txtFullName.Text + "',"
                                             + "N'" + txtAddress.Text + "',N'" + txtCity.Text + "',"
-                                            + "N'" + txtState.Text + "','" + txtZipCode.Text + "',"
                                             + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
-                                            + "'" + ddlVacancy.SelectedValue + "',N'" + txtKeyword.Text + "',"
+                                            + "'" + ddlVacancy.SelectedValue + "',"
                                             + "N'" + txtComment.Text + "',NULL,'" + ddlJobTitle.SelectedValue + "',"
-                                            + "N'" + txtHiringManager.Text + "',"
                                             + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "',NULL", false);
                                     }
                                     _com.closeConnection();

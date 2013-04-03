@@ -58,24 +58,6 @@ namespace SP2010VisualWebPart.Candidates {
         protected global::System.Web.UI.WebControls.DropDownList ddlVacancy;
         
         /// <summary>
-        /// lblHiringManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHiringManager;
-        
-        /// <summary>
-        /// txtHiringManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHiringManager;
-        
-        /// <summary>
         /// lblCandidateName control.
         /// </summary>
         /// <remarks>
@@ -92,24 +74,6 @@ namespace SP2010VisualWebPart.Candidates {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCandidateName;
-        
-        /// <summary>
-        /// lblKeyword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblKeyword;
-        
-        /// <summary>
-        /// txtKeyword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtKeyword;
         
         /// <summary>
         /// lblStatus control.

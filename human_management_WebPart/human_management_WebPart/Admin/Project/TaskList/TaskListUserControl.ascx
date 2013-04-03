@@ -18,13 +18,13 @@
                 </tr>
             </table>
             <br />
-            <span style="padding-left: 5px;">
+            <span style="padding-left: 5px;"></span>
 <asp:Label ID="lblProjectName" runat="server" Text="Project Name" Width="150px"></asp:Label>
 <div class="styled-selectLong">
 <asp:DropDownList ID="ddlProjectName" runat="server" 
                 onselectedindexchanged="ddlProjectName_SelectedIndexChanged">
 </asp:DropDownList></div>
-<br />
+<br /><br>
 <div class="borderTop">
     <asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" 
         Width="80px" onclick="btnAdd_Click" />

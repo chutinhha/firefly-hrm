@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
@@ -134,6 +135,14 @@
     <Compile Include="Admin\Project\AddProject\AddProjectUserControl.ascx.designer.cs">
       <DependentUpon>AddProjectUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Project\AddTask\AddTask.cs" />
+    <Compile Include="Admin\Project\AddTask\AddTaskUserControl.ascx.cs">
+      <DependentUpon>AddTaskUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Project\AddTask\AddTaskUserControl.ascx.designer.cs">
+      <DependentUpon>AddTaskUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Project\EditProject\EditProject.cs" />
     <Compile Include="Admin\Project\EditProject\EditProjectUserControl.ascx.cs">
       <DependentUpon>EditProjectUserControl.ascx</DependentUpon>
@@ -142,6 +151,14 @@
     <Compile Include="Admin\Project\EditProject\EditProjectUserControl.ascx.designer.cs">
       <DependentUpon>EditProjectUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Project\EditTask\EditTask.cs" />
+    <Compile Include="Admin\Project\EditTask\EditTaskUserControl.ascx.cs">
+      <DependentUpon>EditTaskUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Project\EditTask\EditTaskUserControl.ascx.designer.cs">
+      <DependentUpon>EditTaskUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Project\ProjectList\ProjectList.cs" />
     <Compile Include="Admin\Project\ProjectList\ProjectListUserControl.ascx.cs">
       <DependentUpon>ProjectListUserControl.ascx</DependentUpon>
@@ -149,6 +166,14 @@
     </Compile>
     <Compile Include="Admin\Project\ProjectList\ProjectListUserControl.ascx.designer.cs">
       <DependentUpon>ProjectListUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Project\TaskList\TaskList.cs" />
+    <Compile Include="Admin\Project\TaskList\TaskListUserControl.ascx.cs">
+      <DependentUpon>TaskListUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Project\TaskList\TaskListUserControl.ascx.designer.cs">
+      <DependentUpon>TaskListUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\AccessDenied\AccessDenied.cs" />
     <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.cs">
@@ -165,6 +190,14 @@
     </Compile>
     <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.designer.cs">
       <DependentUpon>ImportEmployeesUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ManageUser\ManageUser.cs" />
+    <Compile Include="Common\ManageUser\ManageUserUserControl.ascx.cs">
+      <DependentUpon>ManageUserUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\ManageUser\ManageUserUserControl.ascx.designer.cs">
+      <DependentUpon>ManageUserUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\QuickLaunch\QuickLaunch.cs" />
     <Compile Include="Common\QuickLaunch\QuickLaunchUserControl.ascx.cs">
@@ -407,14 +440,26 @@
     <None Include="Admin\Project\AddProject\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6ea254f3-6454-46fe-89d1-38cb20fb67eb}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Project\AddTask\AddTask.webpart" />
+    <None Include="Admin\Project\AddTask\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c7b1c34b-5b70-4411-adfa-707a7540bde3}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Project\EditProject\EditProject.webpart" />
     <None Include="Admin\Project\EditProject\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{09e129af-db3d-42ad-a618-189574fefab7}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Project\EditTask\EditTask.webpart" />
+    <None Include="Admin\Project\EditTask\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5052564b-99de-4282-aba6-4f6b18c9db3e}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Project\ProjectList\ProjectList.webpart" />
     <None Include="Admin\Project\ProjectList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{75360e21-ba50-4f4f-a3ca-49dbaf68faa0}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Project\TaskList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5dd6fb14-b14b-4d09-a405-6d3c0e560eec}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Project\TaskList\TaskList.webpart" />
     <None Include="Common\AccessDenied\AccessDenied.webpart" />
     <None Include="Common\AccessDenied\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
@@ -422,6 +467,10 @@
     <None Include="Admin\CSV\ImportEmployees\ImportEmployees.webpart" />
     <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
+    </None>
+    <None Include="Common\ManageUser\ManageUser.webpart" />
+    <None Include="Common\ManageUser\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3b0cb28f-ff0e-4621-953b-7220605fbcd2}</SharePointProjectItemId>
     </None>
     <None Include="Common\QuickLaunch\QuickLaunch.webpart" />
     <None Include="Common\QuickLaunch\SharePointProjectItem.spdata">
@@ -577,12 +626,24 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Project\AddProject\Elements.xml" />
+    <Content Include="Admin\Project\AddTask\AddTaskUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Project\AddTask\Elements.xml" />
     <Content Include="Admin\Project\EditProject\EditProjectUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Project\EditProject\Elements.xml" />
+    <Content Include="Admin\Project\EditTask\EditTaskUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Project\EditTask\Elements.xml" />
     <Content Include="Admin\Project\ProjectList\Elements.xml" />
     <Content Include="Admin\Project\ProjectList\ProjectListUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Project\TaskList\Elements.xml" />
+    <Content Include="Admin\Project\TaskList\TaskListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\AccessDenied\AccessDeniedUserControl.ascx">
@@ -591,6 +652,10 @@
     <Content Include="Common\AccessDenied\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\Elements.xml" />
     <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Common\ManageUser\Elements.xml" />
+    <Content Include="Common\ManageUser\ManageUserUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\QuickLaunch\Elements.xml" />
@@ -629,9 +694,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Attendance\AttendanceRecord\Elements.xml" />
-    <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx" />
     <Content Include="Admin\Candidate\Candidates\Elements.xml" />
     <Content Include="Common\ChangePassword\ChangePasswordUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -662,7 +725,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\Login\Elements.xml" />
-    <Content Include="Common\Login\LoginUserControl.ascx" />
+    <Content Include="Common\Login\LoginUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Attendance\PunchAttendance\Elements.xml" />
     <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

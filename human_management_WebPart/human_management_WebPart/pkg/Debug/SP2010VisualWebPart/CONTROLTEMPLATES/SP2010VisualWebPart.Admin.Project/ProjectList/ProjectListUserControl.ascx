@@ -21,7 +21,7 @@
                 </tr>
             </table>
             <br />
-            <span style="padding-left: 5px;">
+            <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblShow" runat="server" Text="Show" Width="150px"></asp:Label>
                 <div class="styled-selectLong">
                 <asp:DropDownList ID="ddlType" runat="server" Height="16px" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
@@ -31,8 +31,7 @@
                     <asp:ListItem>On Schedule Project</asp:ListItem>
                 </asp:DropDownList>
                 </div>
-                <br />
-                <br />
+                <br /><br>
                 <div class="borderTop">
                     <asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" 
                         Width="80px" onclick="btnAdd_Click" />
@@ -40,7 +39,6 @@
                         Width="80px" onclick="btnEdit_Click" />
                     <br />
                 </div>
-                <br>
                 <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
