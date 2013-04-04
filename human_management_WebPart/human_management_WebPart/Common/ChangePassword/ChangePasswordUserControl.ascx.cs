@@ -21,6 +21,7 @@ namespace SP2010VisualWebPart.ChangePassword
                 if (!IsPostBack)
                 {
                     lblError.Text = "";
+                    lblSuccess.Text = "";
                 }
             }
         }
@@ -29,38 +30,29 @@ namespace SP2010VisualWebPart.ChangePassword
         {
             if (txtOldPassword.Text.Trim() == "" || txtNewPassword.Text.Trim() == "" || txtConfirmPassword.Text.Trim() == "")
             {
+                lblSuccess.Text = "";
                 lblError.Text = Message.OldPassword;
             }
             else {
                 try
                 {
-                    MD5 md5Hash = MD5.Create();
-                    string hashOldPassword = _com.GetMd5Hash(md5Hash, txtOldPassword.Text.Trim()).ToUpper();
-                    string hashNewPassword = _com.GetMd5Hash(md5Hash, txtConfirmPassword.Text.Trim()).ToUpper();
-                    DataTable dt = _com.getData(Message.TableEmployee + " a join " + Message.TablePassword + " b", " b."+Message.PasswordColumn
-                        +",b."+Message.BusinessEntityIDColumn, " on a."
-                        +Message.BusinessEntityIDColumn+"=b."+Message.BusinessEntityIDColumn+" and a."+Message.LoginIDColumn
-                        +"='" + Session["AccountName"]+ "'");
-                    if (hashOldPassword.ToUpper() != dt.Rows[0][0].ToString())
+                    if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
                     {
-                        lblError.Text = Message.OldPasswordError;
-                        txtOldPassword.Text = "";
+                        lblSuccess.Text = "";
+                        lblError.Text = Message.ConfirmPassword;
+                        txtNewPassword.Text = "";
+                        txtConfirmPassword.Text = "";
                     }
                     else {
-                        if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
+                        lblError.Text = _com.ChangePassword(txtOldPassword.Text,txtNewPassword.Text,Session["AccountName"].ToString());
+                        if (lblError.Text == "")
                         {
-                            lblError.Text = Message.ConfirmPassword;
-                            txtNewPassword.Text = "";
-                            txtConfirmPassword.Text = "";
-                        }
-                        else {
-                            _com.updateTable(Message.TablePassword, " "+Message.PasswordColumn+"=N'"+hashNewPassword.ToUpper()+"'"
-                                +" where "+Message.BusinessEntityIDColumn+"=N'"+dt.Rows[0][1].ToString()+"'");
-                            Response.Redirect(Session["Account"] + ".aspx", true);
+                            lblSuccess.Text = Message.UpdateSuccess;
                         }
                     }
                 }
                 catch (Exception ex) {
+                    lblSuccess.Text = "";
                     lblError.Text = ex.Message;
                 }
             }

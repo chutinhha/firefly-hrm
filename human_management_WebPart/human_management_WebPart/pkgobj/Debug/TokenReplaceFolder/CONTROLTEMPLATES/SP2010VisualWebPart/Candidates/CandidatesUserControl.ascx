@@ -54,7 +54,7 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label runat="server" Text="Candidate Name" ID="lblCandidateName" Width="150px"></asp:Label>
-                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px" class="tb"></asp:TextBox>
                 <span style="padding-left: 70px;"></span>
                 <asp:Label runat="server" Text="Status" ID="lblStatus" Width="150px">
                 </asp:Label>
@@ -133,3 +133,4 @@
 <br>
 <br>
 <asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+

@@ -9,6 +9,7 @@ using Microsoft.SharePoint;
 using System.Security.Principal;
 using Microsoft.SharePoint.WebControls;
 using System.Text;
+using System.Web;
 namespace SP2010VisualWebPart.Login
 {
     public partial class LoginUserControl : UserControl
@@ -24,11 +25,17 @@ namespace SP2010VisualWebPart.Login
             DataTable dt = _com.getData(Message.TableEmployee + " e join " + Message.TablePerson + " p on e."
                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "e." + Message.BusinessEntityIDColumn
                 + ",p." + Message.NameColumn, " where e." + Message.LoginIDColumn + "='" + user + "'");
-            Session["AccountID"] = dt.Rows[0][0].ToString();
-            Session["Account"] = _com.getRank(SPControl.GetContextWeb(this.Context));
-            Session["PersonName"] = dt.Rows[0][1].ToString().Trim();
-            Session["AccountName"] = user;
-            Response.Redirect(Session["Account"].ToString() + ".aspx");
+            if (dt.Rows.Count > 0)
+            {
+                Session["AccountID"] = dt.Rows[0][0].ToString();
+                Session["Account"] = _com.getRank(SPControl.GetContextWeb(this.Context));
+                Session["PersonName"] = dt.Rows[0][1].ToString().Trim();
+                Session["AccountName"] = user;
+                if (Session["Account"].ToString() != "")
+                {
+                    Response.Redirect(Session["Account"].ToString() + ".aspx");
+                }
+            }
         }
     }
 }

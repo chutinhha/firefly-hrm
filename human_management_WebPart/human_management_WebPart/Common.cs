@@ -13,6 +13,9 @@ using System.IO;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint;
 using System.Text;
+using Microsoft.Office.Server.UserProfiles;
+using Microsoft.Office.Server;
+using System.DirectoryServices.AccountManagement;
 
 public class CommonFunction
 {
@@ -654,6 +657,43 @@ public class CommonFunction
                     countRdoLevel++;
                 }
             }
+        }
+    }
+    /*internal string[] GetUserInfo(string AccountNameWithDomain)
+    {
+        using (SPSite site = new SPSite("tungda:9999"))
+        {
+            ServerContext context = ServerContext.GetContext(site);
+            UserProfileManager profileManager = new UserProfileManager(context);
+            UserProfile myProfile = profileManager.GetUserProfile(AccountNameWithDomain);
+            string[] profile = new string[8];
+            profile[0] = Convert.ToString(myProfile[PropertyConstants.JobTitle].Value);
+            profile[1] = Convert.ToString(myProfile[PropertyConstants.Birthday].Value);
+            profile[2] = Convert.ToString(myProfile[PropertyConstants.HireDate].Value);
+            profile[3] = Convert.ToString(myProfile[PropertyConstants.PictureUrl].Value);
+            profile[4] = Convert.ToString(myProfile[PropertyConstants.FirstName].Value)
+                +" "+Convert.ToString(myProfile[PropertyConstants.LastName].Value);
+            profile[5] = Convert.ToString(myProfile[PropertyConstants.WorkEmail].Value);
+            profile[6] = Convert.ToString(myProfile[PropertyConstants.HomePhone].Value);
+            profile[7] = Convert.ToString(myProfile[PropertyConstants.WorkPhone].Value);
+            return profile;
+        }
+    }*/
+    internal string ChangePassword(string oldPassword, string newPassword, string userNameWithoutDomain)
+    {
+        try
+        {
+            using (var context = new PrincipalContext(ContextType.Domain))
+            using (var user = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, userNameWithoutDomain))
+            {
+                user.ChangePassword(oldPassword, newPassword);
+            }
+            return "";
+
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
         }
     }
 }
