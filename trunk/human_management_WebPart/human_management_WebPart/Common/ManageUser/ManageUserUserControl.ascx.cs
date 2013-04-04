@@ -81,8 +81,8 @@ namespace SP2010VisualWebPart.Common.ManageUser
                                 }
                             }
                         }
-                        if (isAccountExist == false && account[i] != "Farm Administrators" && account[i] != "Delegated Administrators"
-                            && account[i] != "system")
+                        if (isAccountExist == false && account[i] != "system" && !account[i].Contains("administrator")
+                            &&!account[i].Contains("Administrator"))
                         {
                             _com.insertIntoTable(Message.TableEmployee + " (" + Message.LoginIDColumn + "," + Message.CurrentFlagColumn + ","
                                 + Message.ModifiedDateColumn + ") ", "", "'" + account[i] + "','True','" + DateTime.Now + "'", false);

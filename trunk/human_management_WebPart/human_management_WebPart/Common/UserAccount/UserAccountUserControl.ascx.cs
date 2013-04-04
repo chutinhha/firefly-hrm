@@ -2,6 +2,7 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Web;
 
 namespace SP2010VisualWebPart.UserAccount
 {
@@ -19,7 +20,8 @@ namespace SP2010VisualWebPart.UserAccount
         {
             Session.Remove("Account");
             Session.Remove("AccountName");
-            Response.Redirect(Message.HomePage,true);
+            string[] url = HttpContext.Current.Request.Url.ToString().Split('/');
+            Response.Redirect("http://"+url[2]+"/"+url[3]+"/"+"_layouts/SignOut.aspx");
         }
 
         protected void lbtnUserName_Click(object sender, EventArgs e)
