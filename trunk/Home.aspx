@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="../_catalogs/masterpage/212ob.master" meta:progid="SharePoint.WebPartPage.Document"       %>
 <%@ Import Namespace="Microsoft.SharePoint.WebPartPages" %> <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register tagprefix="ManageUser" namespace="SP2010VisualWebPart.Common.ManageUser" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="Login" namespace="SP2010VisualWebPart.Login" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 	<SharePoint:UIVersionedContent runat="server" UIVersion="3" Id="PlaceHolderWebDescription" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' ID='1' T='PlaceHolderWebDescription' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
@@ -34,25 +35,73 @@
 			<SharePoint:EmbeddedFormField id="WikiField" FieldName="WikiField" ControlMode="Display" runat="server"><div class="ExternalClassA6E2B85F942E4A7E978B1AD11185906D">
                 <table id="layoutsTable" style="width:100%"><tbody><tr style="vertical-align:top"><td style="width:66.6%"><div class="ms-rte-layoutszone-outer" style="width:100%"><div class="ms-rte-layoutszone-inner">
 <Login:Login runat="server" ID="g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7" Description="            This Web Part has a User Control to render the UI.          " ChromeType="None" Title="Login" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='            This Web Part has a User Control to render the UI.          ' /&gt;&lt;P N='DisplayTitle' ID='1' T='Login' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' ID='2' T='g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7&quot;&gt;
-	&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
-		
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblUser&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;User&lt;/span&gt;
-&lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$txtUser&quot; type=&quot;text&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_txtUser&quot; style=&quot;width:200px;&quot; /&gt;
-&lt;br /&gt;&lt;br /&gt;
-&lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblPassword&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Password&lt;/span&gt;
-    &lt;input name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$txtPassword&quot; type=&quot;password&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_txtPassword&quot; style=&quot;width:200px;&quot; /&gt;
-&lt;/p&gt;
-&lt;span style=&quot;padding-left:128px;&quot;&gt;&lt;/span&gt;
-&lt;input type=&quot;submit&quot; name=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7$ctl00$btnLogin&quot; value=&quot;Login&quot; id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_btnLogin&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
-    
-	&lt;/div&gt;
-    &lt;br&gt;&lt;br&gt;
+	
 &lt;p&gt;
     &lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
 
 &lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{1179F2C7-EE84-4A3E-98BD-E827E2D708E7}" WebPart="true" __designer:IsClosed="false"></Login:Login>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ManageUser:ManageUser runat="server" ID="g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f" Description="My Visual WebPart" ChromeType="None" Title="ManageUser" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='My Visual WebPart' /&gt;&lt;P N='DisplayTitle' ID='1' T='ManageUser' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='2' /&gt;&lt;P N='ID' ID='2' T='g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f&quot;&gt;
+	&lt;span id=&quot;g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+
+
+&lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{C8DF396D-87D6-4F6E-ACE5-5CB6901EE19F}" WebPart="true" __designer:IsClosed="false"></ManageUser:ManageUser>
+
+
+
+
+
+
 
 
 
@@ -128,7 +177,7 @@
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __designer:Values="&lt;P N='Title' ID='1' T='Bottom' /&gt;&lt;P N='HeaderText' T='loc:Bottom' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='ID' R='1' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate></ZoneTemplate></WebPartPages:WebPartZone>
+&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='Bottom' /&gt;&lt;P N='HeaderText' T='loc:Bottom' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate></ZoneTemplate></WebPartPages:WebPartZone>
 	</ContentTemplate>
 	<Triggers>
 	    <asp:PostBackTrigger ControlID="WikiField" />
