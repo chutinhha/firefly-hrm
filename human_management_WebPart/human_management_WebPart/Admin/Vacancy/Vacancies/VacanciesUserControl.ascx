@@ -69,5 +69,5 @@
 </td></tr></table>
 
 <br><br>
-<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 <br>

@@ -23,6 +23,11 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     {
                         if (!IsPostBack) {
                             _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, "", false, "");
+                            if (Session["ProjectID"] != null) {
+                                DataTable projectName = _com.getData(Message.TableProject, Message.ProjectNameColumn, " where "
+                                + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
+                                ddlProjectName.SelectedValue = projectName.Rows[0][0].ToString();
+                            }
                             DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
                                 + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
                             _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn

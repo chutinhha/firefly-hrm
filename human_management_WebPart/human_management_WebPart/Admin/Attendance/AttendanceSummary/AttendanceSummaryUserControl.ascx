@@ -37,11 +37,11 @@
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblFrom" runat="server" Text="From" Width="150px"></asp:Label>
-    <input id="txtDateFrom" name="txtDateFrom" style="width:200px;" type="text" value="" />
+    <input id="txtDateFrom" name="txtDateFrom" style="width:200px;" type="text" value="<%= this.fromDate %>" />
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblTo" runat="server" 
-        Text="To" Width="155px"></asp:Label><input type="text" id="txtDateTo" name="txtDateTo" value="" style="width:200px;"/>
+        Text="To" Width="155px"></asp:Label><input type="text" id="txtDateTo" name="txtDateTo" value="<%= this.toDate %>" style="width:200px;"/>
 <br />
 <br />
 <span style="color:Red;">&nbsp;(*): Required field</span><br />
@@ -63,5 +63,5 @@
 </td></tr></table></asp:Panel>
 <p>
     &nbsp;</p>
-<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 

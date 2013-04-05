@@ -30,7 +30,9 @@
 
     
 
-    <span style="padding-left:5px;"></span><asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" Width="150px"></asp:Label>
+    <span style="padding-left:5px;"></span><asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" Width="150px">
+    
+    </asp:Label>
     <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" 
         ontextchanged="txtEmployeeName_TextChanged"></asp:TextBox>
     <br />
@@ -46,16 +48,20 @@
         oncheckedchanged="rdoViewAll_CheckedChanged" Text="View all" />
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
-    <asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;"><input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value=""/></asp:Panel>
+    <asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;"><input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value="<%=this.startDate %>"/></asp:Panel>
     <span style="padding-left:5px;"></span>
-    <asp:Panel ID="pnlDateTo" runat="server" style="display:inline;"><input type="text" id="txtDateTo" name="txtDateTo" value="" size="30"/></asp:Panel>
+    <asp:Panel ID="pnlDateTo" runat="server" style="display:inline;"><input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" size="30"/></asp:Panel>
 
     <br />
+    
     <span style="padding-left:5px;"></span><asp:Label ID="lblDateDescription" runat="server" 
         Text="(mm-dd-yyyy)" Width="155px" Height="20px"></asp:Label><asp:Label ID="lblDateFrom" runat="server" 
         Text="From" Width="50px"></asp:Label>
 
     <span style="padding-left:160px;"></span><asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
+    <br><br>
+    &nbsp;<font color="Red">(*) is required</font>
+    <br><br>
     <div class="borderTop">
     <span style="padding-left:155px;"></span><asp:Button ID="btnView" runat="server" Text="View" Width="80px" 
         onclick="btnView_Click" class="addButton" />
@@ -88,9 +94,9 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView><table><tr><td></td></tr></table>
-    </td></tr></table></asp:Panel>
-    <br />
-    <br />
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    </td></tr></table><br />
+    <br /></asp:Panel>
+    
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 
 

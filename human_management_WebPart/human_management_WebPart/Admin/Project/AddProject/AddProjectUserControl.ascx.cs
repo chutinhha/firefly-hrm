@@ -31,9 +31,12 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
         {
             Response.Redirect(Message.ProjectListPage, true);
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtStartDate"].ToString().Trim();
+            this.endDate = Request.Form["txtEndDate"].ToString().Trim();
             try
             {
                 if (txtProjectName.Text.Trim() == "")

@@ -9,7 +9,7 @@
 <br><asp:Panel ID="Panel1" runat="server" 
        DefaultButton="btnSave" Width="100%" ><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd"><font color="white">Candidates</font></td></tr></table>
+<tr><td class="fieldTitleTd"><font color="white">Edit Job Title</font></td></tr></table>
 							<br />
 <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title(*)" Width="150px"></asp:Label>
 <asp:TextBox ID="txtJobTitle" runat="server" Width="400px"></asp:TextBox>
@@ -26,10 +26,10 @@
         <asp:Label ID="lblJobDescription" runat="server" Text="Job Description" 
             Width="150px"></asp:Label>
     </p>
-    <p>
+    <p><br>
         <span style="padding-left:160px;"></span>
         <asp:TextBox ID="txtJobDescription" runat="server" Height="100px" 
-            TextMode="MultiLine" Width="410px"></asp:TextBox>
+            TextMode="MultiLine" Width="800px"></asp:TextBox>
     </p>
     <p>
         &nbsp;</p>
@@ -40,8 +40,10 @@
     <p>
         <span style="padding-left:160px;"></span>
         <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
-            Width="410px"></asp:TextBox>
+            Width="800px"></asp:TextBox>
     </p>
+    <p>
+        &nbsp;</p>
     <div class="borderTop">
         <span style="padding-left:155px;"></span>
         <asp:Button ID="btnSave" runat="server" class="addButton" 
@@ -55,7 +57,7 @@
 <p>
     &nbsp;</p>
 <p>
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 </p>
 
 

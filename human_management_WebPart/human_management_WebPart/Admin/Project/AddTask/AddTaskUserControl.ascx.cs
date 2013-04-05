@@ -26,7 +26,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
                 }
             }
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect(Message.TaskListPage, true);
@@ -36,6 +37,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
         {
             try
             {
+                this.startDate = Request.Form["txtStartDate"].ToString().Trim();
+                this.endDate = Request.Form["txtEndDate"].ToString().Trim();
                 if (txtTaskName.Text.Trim() == "")
                 {
                     lblError.Text = Message.NotEnterProjectName;
@@ -65,7 +68,6 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
                             _com.insertIntoTable(Message.TableTask, "", "'" + Session["ProjectID"].ToString() + "','" + txtTaskName.Text + "','" + txtNote.Text
                                 + "','" + Request.Form["txtStartDate"].ToString().Trim() + "','" + Request.Form["txtEndDate"].ToString().Trim()
                                 + "'", false);
-                            Session.Remove("ProjectID");
                             Response.Redirect(Message.TaskListPage, true);
                         }
                     }

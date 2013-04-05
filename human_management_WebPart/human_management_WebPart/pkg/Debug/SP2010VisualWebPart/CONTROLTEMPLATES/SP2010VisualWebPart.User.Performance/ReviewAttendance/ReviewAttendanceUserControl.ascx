@@ -40,11 +40,11 @@
         <span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" 
             Text="Date" Width="150px"></asp:Label>
         <asp:Panel ID="pnlDateFrom" runat="server" style="display:inline;">
-            <input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value=""/>
+            <input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value="<%=this.startDate %>"/>
         </asp:Panel>
         <span style="padding-left:5px;"></span>
         <asp:Panel ID="pnlDateTo" runat="server" style="display:inline;">
-            <input type="text" id="txtDateTo" name="txtDateTo" value="" size="30"/>
+            <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" size="30"/>
         </asp:Panel>
     <br />
     <span style="padding-left:5px;"></span>
@@ -67,4 +67,4 @@
     </td></tr></table></asp:Panel>
     <br />
     <br />
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

@@ -42,5 +42,8 @@
     </tr>
 </table>
             <br /><br>
-            <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+            &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+
+<asp:Label ID="lblSuccess" runat="server" style="color:Green;"></asp:Label>
+
 

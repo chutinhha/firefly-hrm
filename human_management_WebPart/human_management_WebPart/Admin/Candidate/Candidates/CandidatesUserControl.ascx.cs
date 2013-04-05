@@ -25,6 +25,8 @@ namespace SP2010VisualWebPart.Candidates
                     {
                         if (!IsPostBack)
                         {
+                            this.fromDate = "";
+                            this.toDate = "";
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
                             _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
                             _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", true, "All");
@@ -73,6 +75,8 @@ namespace SP2010VisualWebPart.Candidates
                     cbSelected.Checked = false;
                 }       
             }
+            this.fromDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.toDate = Request.Form["txtDateTo"].ToString().Trim();
         }
 
         protected void ddlJobTitle_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,11 +95,14 @@ namespace SP2010VisualWebPart.Candidates
         protected void btnDateTo_Click(object sender, EventArgs e)
         {
         }
-
+        protected string fromDate { get; set; }
+        protected string toDate { get; set; }
         protected void btnReset_Click(object sender, EventArgs e)
         {
             try
             {
+                this.fromDate = "";
+                this.toDate = "";
                 ddlJobTitle.SelectedIndex = 0;
                 ddlVacancy.SelectedIndex = 0;
                 ddlStatus.SelectedIndex = 0;
@@ -108,6 +115,7 @@ namespace SP2010VisualWebPart.Candidates
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                     grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                     grdData.HeaderRow.Cells[4].Text = "Apply Date";
+                    lblError.Text = "";
                 }
                 else
                 {
@@ -142,6 +150,8 @@ namespace SP2010VisualWebPart.Candidates
         {
             try
             {
+                this.fromDate = Request.Form["txtDateFrom"].ToString().Trim();
+                this.toDate = Request.Form["txtDateTo"].ToString().Trim();
                 string condition = " where ";
                 if (ddlJobTitle.SelectedValue == "All") { }
                 else
@@ -193,6 +203,7 @@ namespace SP2010VisualWebPart.Candidates
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                     grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                     grdData.HeaderRow.Cells[4].Text = "Apply Date";
+                    lblError.Text = "";
                 }
                 else
                 {
@@ -208,12 +219,13 @@ namespace SP2010VisualWebPart.Candidates
 
         protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             try{
+                this.fromDate = Request.Form["txtDateFrom"].ToString().Trim();
+                this.toDate = Request.Form["txtDateTo"].ToString().Trim();
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
@@ -232,6 +244,7 @@ namespace SP2010VisualWebPart.Candidates
                     grdData.HeaderRow.Cells[1].Text = "Job Vacancy";
                     grdData.HeaderRow.Cells[2].Text = "Candidate Name";
                     grdData.HeaderRow.Cells[4].Text = "Apply Date";
+                    lblError.Text = "";
                 }
                 else
                 {

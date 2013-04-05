@@ -123,20 +123,9 @@ namespace SP2010VisualWebPart.JobCategories
                     {
                         string sql;
                         SqlCommand command;
-                        DataTable JobTitles = _com.getData(Message.TableJobTitle,Message.JobTitleColumn+","+Message.JobIDColumn
-                            ," where "+Message.JobCategoryColumn+"='"+Server.HtmlDecode(gr.Cells[1].Text) + "';");
-                        if (JobTitles.Rows.Count > 0) {
-                            for (int i = 0; i < JobTitles.Rows.Count; i++) {
-                                _com.updateTable(Message.TableJobCandidate, " "+Message.JobTitleColumn+"=NULL where "+Message.JobTitleColumn+"='" + JobTitles.Rows[i][0].ToString() + "'");
-                                _com.updateTable(Message.TableVacancy, " "+Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn+"='" + JobTitles.Rows[i][0].ToString() + "'");
-                                _com.updateTable(Message.TableEmployee, " "+Message.JobIDColumn+"=NULL where " + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString()
-                                    + "'");
-                            }
-                            sql = @"delete from "+Message.TableJobTitle+" where "+Message.JobCategoryColumn+"='"
-                                + Server.HtmlDecode(gr.Cells[1].Text)+"';";
-                            command = new SqlCommand(sql, _com.cnn);
-                            command.ExecuteNonQuery();
-                        }
+                        _com.updateTable(Message.TableJobTitle, " "+Message.JobCategoryColumn+"=NULL where " 
+                            + Message.JobCategoryColumn + "='"
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "';");
                         sql = @"delete from "+Message.TableJobCategory+" where "+Message.NameColumn+"=N'" 
                             + Server.HtmlDecode(gr.Cells[1].Text) + "';";
                         command = new SqlCommand(sql, _com.cnn);

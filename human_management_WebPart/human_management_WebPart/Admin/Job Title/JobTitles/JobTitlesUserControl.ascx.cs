@@ -101,7 +101,8 @@ namespace SP2010VisualWebPart.JobTitles
                         lblError.Text = "";
                     }
                 }
-                _com.bindData(Message.JobTitleColumn+","+Message.JobDescriptionColumn+"", "", Message.TableJobTitle, grdData);
+                _com.bindData(Message.JobTitleColumn + "," + Message.JobDescriptionColumn + "," 
+                    + Message.JobCategoryColumn, "", Message.TableJobTitle, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Job Title";

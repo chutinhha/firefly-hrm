@@ -54,7 +54,7 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label runat="server" Text="Candidate Name" ID="lblCandidateName" Width="150px"></asp:Label>
-                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px" class="tb"></asp:TextBox>
                 <span style="padding-left: 70px;"></span>
                 <asp:Label runat="server" Text="Status" ID="lblStatus" Width="150px">
                 </asp:Label>
@@ -76,9 +76,9 @@
                 <span style="padding-left: 70px;"></span>
                 <asp:Label runat="server" Text="Apply Date" ID="lblApplyDate" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 150px;" value="" /></asp:Panel>
+                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 150px;" value="<%= this.fromDate %>" /></asp:Panel>
                 <span style="padding-left: 40px;"></span>
-                <input type="text" id="txtDateTo" name="txtDateTo" style="width: 150px;" value="" />
+                <input type="text" id="txtDateTo" name="txtDateTo" style="width: 150px;" value="<%= this.toDate %>" />
 <br />
 <span style="padding-left: 600px;"></span>
 <asp:Label ID="lblDateFrom" runat="server" Text="From" Width="205px" Height="20px"></asp:Label>
@@ -132,4 +132,5 @@
 </table>
 <br>
 <br>
-<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+

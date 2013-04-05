@@ -81,8 +81,20 @@ namespace SP2010VisualWebPart.EditCandidate
                                     {
                                         DateTime interviewDate = DateTime.Parse(dt.Rows[0][15].ToString().Trim());
                                         this.interviewDate = interviewDate.Month + "-" + interviewDate.Day + "-" + interviewDate.Year;
-                                        ddlHour.SelectedValue = interviewDate.Hour.ToString();
-                                        ddlMinutes.SelectedValue = interviewDate.Minute.ToString();
+                                        if (interviewDate.Hour >= 10)
+                                        {
+                                            ddlHour.SelectedValue = interviewDate.Hour.ToString();
+                                        }
+                                        else {
+                                            ddlHour.SelectedValue = "0"+interviewDate.Hour.ToString();
+                                        }
+                                        if (interviewDate.Minute >= 10)
+                                        {
+                                            ddlMinutes.SelectedValue = interviewDate.Minute.ToString();
+                                        }
+                                        else {
+                                            ddlMinutes.SelectedValue = "0" + interviewDate.Minute.ToString();
+                                        }
                                     }
                                     else {
                                         this.interviewDate = "";
@@ -129,7 +141,7 @@ namespace SP2010VisualWebPart.EditCandidate
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            this.inputValue = Request.Form["txtDate"].ToString().Trim();
+            this.inputValue = Request.Form["txtApplyDate"].ToString().Trim();
             this.interviewDate = Request.Form["txtInterviewDate"].ToString().Trim();
             if (txtFullName.Text.Trim() == "")
             {
@@ -163,9 +175,9 @@ namespace SP2010VisualWebPart.EditCandidate
                         }
                         else {
                             try{
-                                if (Request.Form["txtDate"].ToString().Trim() != "")
+                                if (Request.Form["txtApplyDate"].ToString().Trim() != "")
                                 {
-                                    DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim());
+                                    DateTime dt = DateTime.Parse(Request.Form["txtApplyDate"].ToString().Trim());
                                 }
                                 if (Request.Form["txtInterviewDate"].ToString().Trim() != "")
                                 {
@@ -173,11 +185,55 @@ namespace SP2010VisualWebPart.EditCandidate
                                 }
                                 try
                                 {
-                                    if (ddlStatus.SelectedValue != "Hired")
+                                    if (Request.Form["txtApplyDate"].ToString().Trim() != "" && Request.Form["txtInterviewDate"].ToString().Trim() != "")
                                     {
-                                        if (Request.Form["txtDate"].ToString().Trim() != "" && Request.Form["txtInterviewDate"].ToString().Trim() != "")
-                                        {
-                                            _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
+                                        _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
+                                            + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
+                                            + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
+                                            + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
+                                            + "'," + Message.EmailColumn + "='" + txtEmail.Text + "',"
+                                            + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
+                                            + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
+                                            + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
+                                            + Message.ApplyDateColumn + "='" + Request.Form["txtApplyDate"].ToString().Trim() + "'," + Message.CommentColumn + "=N'" + txtComment.Text
+                                            + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "='" + Request.Form["txtInterviewDate"].ToString().Trim()
+                                            + " " + ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue
+                                            + "' where " + Message.FullNameColumn + "=N'" + Session["Name"]
+                                            + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
+                                    }
+                                    else if (Request.Form["txtApplyDate"].ToString().Trim() == "" && Request.Form["txtInterviewDate"].ToString().Trim() != "")
+                                    {
+                                        _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
+                                               + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
+                                               + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
+                                               + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
+                                               + "'," + Message.EmailColumn + "='" + txtEmail.Text + "',"
+                                               + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
+                                               + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
+                                               + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
+                                               + Message.ApplyDateColumn + "=NULL," + Message.CommentColumn + "=N'" + txtComment.Text
+                                               + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "='" + Request.Form["txtInterviewDate"].ToString().Trim()
+                                               + " " + ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue
+                                               + "' where " + Message.FullNameColumn + "=N'" + Session["Name"]
+                                               + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
+                                    }
+                                    else if (Request.Form["txtApplyDate"].ToString().Trim() != "" && Request.Form["txtInterviewDate"].ToString().Trim() == "")
+                                    {
+                                        _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
+                                            + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
+                                            + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
+                                            + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
+                                            + "'," + Message.EmailColumn + "='" + txtEmail.Text + "',"
+                                            + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
+                                            + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
+                                            + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
+                                            + Message.ApplyDateColumn + "='" + Request.Form["txtApplyDate"].ToString().Trim() + "'," + Message.CommentColumn + "=N'" + txtComment.Text
+                                            + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "=NULL where " + Message.FullNameColumn + "=N'" + Session["Name"]
+                                            + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
+                                    }
+                                    else
+                                    {
+                                        _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
                                                 + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
                                                 + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
                                                 + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
@@ -185,58 +241,15 @@ namespace SP2010VisualWebPart.EditCandidate
                                                 + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
                                                 + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
                                                 + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
-                                                + Message.ApplyDateColumn + "='" + Request.Form["txtDate"].ToString().Trim() + "'," + Message.CommentColumn + "=N'" + txtComment.Text
-                                                + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "='" + Request.Form["txtInterviewDate"].ToString().Trim()
-                                                + " " + ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue
-                                                + "' where " + Message.FullNameColumn + "=N'" + Session["Name"]
-                                                + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
-                                        }
-                                        else if (Request.Form["txtDate"].ToString().Trim() == "" && Request.Form["txtInterviewDate"].ToString().Trim() != "")
-                                        {
-                                            _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
-                                                   + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
-                                                   + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
-                                                   + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
-                                                   + "'," + Message.EmailColumn + "='" + txtEmail.Text + "',"
-                                                   + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
-                                                   + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
-                                                   + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
-                                                   + Message.ApplyDateColumn + "=NULL," + Message.CommentColumn + "=N'" + txtComment.Text
-                                                   + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "='" + Request.Form["txtInterviewDate"].ToString().Trim()
-                                                   + " " + ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue
-                                                   + "' where " + Message.FullNameColumn + "=N'" + Session["Name"]
-                                                   + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
-                                        }
-                                        else if (Request.Form["txtDate"].ToString().Trim() != "" && Request.Form["txtInterviewDate"].ToString().Trim() == "")
-                                        {
-                                            _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
-                                                + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
-                                                + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
-                                                + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
-                                                + "'," + Message.EmailColumn + "='" + txtEmail.Text + "',"
-                                                + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
-                                                + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
-                                                + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
-                                                + Message.ApplyDateColumn + "='" + Request.Form["txtDate"].ToString().Trim() + "'," + Message.CommentColumn + "=N'" + txtComment.Text
+                                                + Message.ApplyDateColumn + "=NULL," + Message.CommentColumn + "=N'" + txtComment.Text
                                                 + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "=NULL where " + Message.FullNameColumn + "=N'" + Session["Name"]
                                                 + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
-                                        }
-                                        else
-                                        {
-                                            _com.updateTable(Message.TableJobCandidate, Message.FullNameColumn + "=N'" + txtFullName.Text + "',"
-                                                    + Message.StreetColumn + "=N'" + txtAddress.Text + "'," + Message.CityColumn + "=N'" + txtCity.Text + "',"
-                                                    + Message.CountryColumn + "='" + ddlCountry.SelectedValue + "'," + Message.HomePhoneColumn + "='" + txtHomePhone.Text
-                                                    + "'," + Message.MobileColumn + "='" + txtMobile.Text + "'," + Message.WorkPhoneColumn + "='" + txtWorkPhone.Text
-                                                    + "'," + Message.EmailColumn + "='" + txtEmail.Text + "',"
-                                                    + Message.JobVacancyColumn + "='" + ddlVacancy.SelectedValue + "',"
-                                                    + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "',"
-                                                    + Message.StatusColumn + "='" + ddlStatus.SelectedValue + "'," + Message.MethodOfApplyColumn + "='" + ddlApplyMethod.SelectedValue + "',"
-                                                    + Message.ApplyDateColumn + "=NULL," + Message.CommentColumn + "=N'" + txtComment.Text
-                                                    + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "'," + Message.InterviewDateColumn + "=NULL where " + Message.FullNameColumn + "=N'" + Session["Name"]
-                                                    + "' and " + Message.EmailColumn + "='" + Session["Email"] + "'");
-                                        }
+                                    }
+                                    if (ddlStatus.SelectedValue != "Hired")
+                                    {  
                                     }
                                     else { 
+                                        /*
                                         DataTable employeeTopID = _com.getTopID(Message.TableEmployee);
                                         DataTable jobID = _com.getData(Message.TableJobCandidate+" jca join "
                                             +Message.TableJobTitle+" jti on jca."+Message.JobTitleColumn+" = jti."
@@ -254,11 +267,7 @@ namespace SP2010VisualWebPart.EditCandidate
                                             , "'" + (int.Parse(employeeTopID.Rows[0][0].ToString()) + 1) + "','User','" + txtFullName.Text.Trim()
                                             + "','" + txtEmail.Text.Trim() + "','" + txtHomePhone.Text.Trim() + "','" + txtMobile.Text.Trim()
                                             + "',NULL,'" + txtCity.Text.Trim() + "','" + ddlCountry.SelectedValue + "','" + txtAddress.Text.Trim()
-                                            + "','" + DateTime.Now + "'", false);
-                                        /*string sql = @"delete from " + Message.TableJobCandidate + " where " + Message.FullNameColumn + "=N'"
-                                            + Session["Name"].ToString() + "' and " + Message.EmailColumn + "='" + Session["Email"].ToString() + "';";
-                                        SqlCommand command = new SqlCommand(sql, _com.cnn);
-                                        command.ExecuteNonQuery();*/
+                                            + "','" + DateTime.Now + "'", false);*/
                                     }
                                     Session.Remove("Name");
                                     Session.Remove("Email");

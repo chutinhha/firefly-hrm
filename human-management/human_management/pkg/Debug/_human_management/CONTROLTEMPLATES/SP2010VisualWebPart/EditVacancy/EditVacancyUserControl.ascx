@@ -20,10 +20,6 @@
     <asp:TextBox ID="txtVacancy" runat="server" Width="200px"></asp:TextBox>
     <br />
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="lblHiringManager" runat="server" Text="Hiring Manager" Width="150px"></asp:Label>
-    <asp:TextBox ID="txtHiringManager" runat="server" Width="200px"></asp:TextBox>
-    <br />
-    <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblNoOfPosition" runat="server" Text="Number of Positions" Width="150px"></asp:Label>
     <asp:TextBox ID="txtNoOfPosition" runat="server" Width="200px"></asp:TextBox>
     <br />
@@ -31,7 +27,7 @@
     <span style="padding-left:5px;"></span><asp:Label ID="lblDescription" runat="server" Text="Description" Width="150px"></asp:Label>
     <br />
     <span style="padding-left:160px;"></span><asp:TextBox ID="txtDescription" 
-        runat="server" Height="100px" Width="500px" TextMode="MultiLine"  ></asp:TextBox>
+        runat="server" Height="100px" Width="800px" TextMode="MultiLine"  ></asp:TextBox>
     <br />
     <br />
     <span style="padding-left:5px;"></span><asp:Label ID="lblActive" runat="server" Text="Active" Width="150px"></asp:Label>
@@ -46,4 +42,4 @@
 </td></tr></table></asp:Panel>
 <br />
     <br />
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

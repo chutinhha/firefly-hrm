@@ -6,5 +6,5 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ManageUserUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Common.ManageUser.ManageUserUserControl" %>
-<asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label>
 

@@ -29,26 +29,36 @@
         Enabled="False"></asp:TextBox>
 </p>
 <br><span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date(*)" Width="150px"></asp:Label>
-<asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" id="<%= this.inputID %>" name="txtDate" size="30" value="<%= this.inputValue %>"/></asp:Panel>
-<br><br><p>
+<asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" <%= this.readOnly %> id="<%= this.inputID %>" name="txtDate" style="width:200px;" value="<%= this.inputValue %>"/></asp:Panel>
+<br><br>
     <span style="padding-left:5px;"></span><asp:Label ID="lblTime" runat="server" Text="Time(*)" Width="150px"></asp:Label>
-    <asp:TextBox ID="txtTime" runat="server" Width="200px"></asp:TextBox>
-    <asp:Label ID="Label5" runat="server" Text="HH:MM"></asp:Label>
-</p>
-<br><p>
-    <span style="padding-left:5px;"></span><asp:Label ID="lblNote" runat="server" Text="Note"></asp:Label>
-</p>
-<p>
-    <span style="padding-left:160px;"></span><asp:TextBox ID="txtNote" 
-        runat="server" Height="100px" TextMode="MultiLine" 
-        Width="410px"  ></asp:TextBox>
-</p>
-<div class="borderTop">
-    <span style="padding-left:160px;"></span>
-    <asp:Button ID="btnInOut" 
-        runat="server" Text="In" Width="80px" class="addButton" onclick="btnInOut_Click" />
-        </div>
+            <div class="styled-selectShort" style="width:50px;">
+            <asp:DropDownList ID="ddlHourIn" runat="server">
+            </asp:DropDownList></div>
+            <div class="styled-selectShort" style="width:50px;">
+            <asp:DropDownList ID="ddlMinutesIn" runat="server">
+            </asp:DropDownList></div>
+            <p>
+            </p>
+            <br>
+            <p>
+                <span style="padding-left:5px;"></span>
+                <asp:Label ID="lblNote" runat="server" Text="Note"></asp:Label>
+            </p>
+            <p>
+                <span style="padding-left:160px;"></span>
+                <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
+                    Width="410px"></asp:TextBox>
+            </p><br>
+            &nbsp;<font color="Red">(*) is required</font><br><br>
+            <div class="borderTop">
+                <span style="padding-left:160px;"></span>
+                <asp:Button ID="btnInOut" runat="server" class="addButton" 
+                    onclick="btnInOut_Click" Text="In" Width="80px" />
+            </div>
+            
+
 </td></tr></table></asp:Panel><br>
-<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 
 

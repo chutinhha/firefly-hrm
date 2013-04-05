@@ -20,7 +20,7 @@
     </asp:DropDownList></div>
     <p>
         &nbsp;</p>
-    <p>
+    <p><br>
         <span style="padding-left:5px;"></span>
         <asp:Label ID="lblJobDescription" runat="server" Text="Job Description" 
             Width="150px"></asp:Label>
@@ -28,7 +28,7 @@
     <p>
         <span style="padding-left:160px;"></span>
         <asp:TextBox ID="txtJobDescription" runat="server" Height="100px" 
-            TextMode="MultiLine" Width="410px"></asp:TextBox>
+            TextMode="MultiLine" Width="800px"></asp:TextBox>
     </p>
     <p>
         &nbsp;</p>
@@ -39,7 +39,7 @@
     <p>
         <span style="padding-left:160px;"></span>
         <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
-            Width="410px"></asp:TextBox>
+            Width="800px"></asp:TextBox>
     </p>
     <p>
         &nbsp;</p>
@@ -55,7 +55,7 @@
 
 </td></tr></table></asp:Panel>
 <p>
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    <br>&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 </p>
 
 

@@ -8,7 +8,6 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
     public partial class AttendanceSummaryUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
-        private string _condition = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Account"] == null)
@@ -23,8 +22,9 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     {
                         if (!IsPostBack)
                         {
+                            this.fromDate = "";
+                            this.toDate = "";
                             txtEmployeeName.Text = "All";
-                            ddlJobTitle.AutoPostBack = true;
                             lblError.Text = "";
                             _com.setGridViewStyle(grdData);
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "",true, "All");
@@ -46,7 +46,8 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
         {
             e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
         }
-
+        protected string fromDate { get; set; }
+        protected string toDate { get; set; }
         protected void btnView_Click(object sender, EventArgs e)
         {
             try
@@ -89,6 +90,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                                 condition = condition + " and a." + Message.PunchInColumn + " >='" + dt.Month + "-" + dt.Day + "-"
                                     + dt.Year + "'";
                             }
+                            this.fromDate = Request.Form["txtDateFrom"].ToString().Trim();
                         }
                         if (Request.Form["txtDateTo"].ToString().Trim() != "")
                         {
@@ -104,6 +106,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                                 condition = condition + " and a." + Message.PunchOutColumn + "<='" + dt1.Month + "-" + dt1.Day
                                     + "-" + dt1.Year + "'";
                             }
+                            this.toDate = Request.Form["txtDateTo"].ToString().Trim();
                         }
                     }
                     catch (FormatException)
@@ -121,12 +124,12 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     {
                         lblError.Text = "";
                         pnlData.Visible = true;
-                        lblDate.Text = "Search Employee: " + txtEmployeeName.Text.Trim();
+                        lblDate.Text = "&nbsp;Search Employee: " + txtEmployeeName.Text.Trim();
                         if (Request.Form["txtDateFrom"].ToString().Trim() != "") {
-                            lblDate.Text = lblDate.Text + "<br> From " + Request.Form["txtDateFrom"].ToString().Trim();
+                            lblDate.Text = lblDate.Text + "<br>&nbsp;From " + Request.Form["txtDateFrom"].ToString().Trim();
                         }
                         if (Request.Form["txtDateTo"].ToString().Trim() != "") {
-                            lblDate.Text = lblDate.Text + "<br> To " + Request.Form["txtDateTo"].ToString().Trim();
+                            lblDate.Text = lblDate.Text + "<br>&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
                         }
                     }
                     else

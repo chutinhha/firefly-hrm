@@ -10,10 +10,10 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><font color="white">Approve Timesheet</font></td></tr></table>
     <br />
-    <asp:Label ID="lblShow" runat="server" Text="Show timesheet" Width="150px"></asp:Label>
+    &nbsp;<asp:Label ID="lblShow" runat="server" Text="Show timesheet" Width="150px"></asp:Label>
 <div class="styled-selectLong">
     <asp:DropDownList ID="ddlShow" runat="server" 
-        onselectedindexchanged="ddlShow_SelectedIndexChanged" AutoPostBack="True">
+        onselectedindexchanged="ddlShow_SelectedIndexChanged">
     <asp:ListItem>All</asp:ListItem>
     <asp:ListItem Selected="True">Not Approve</asp:ListItem>
     <asp:ListItem>Approved</asp:ListItem>
@@ -34,7 +34,7 @@
 
 
 
-<asp:Label ID="lblSuccess" runat="server" style="color:Green;"></asp:Label>
+&nbsp;<asp:Label ID="lblSuccess" runat="server" style="color:Green;"></asp:Label>
 
 
 

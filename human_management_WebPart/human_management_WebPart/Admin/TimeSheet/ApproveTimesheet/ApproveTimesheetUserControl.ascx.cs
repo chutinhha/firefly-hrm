@@ -62,7 +62,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                             ddlApprove.ID = "ddlApprove" + i;
                             ddlApprove.Items.Add("Approve");
                             ddlApprove.Items.Add("Not Approve");
-                            ddlApprove.AutoPostBack = true;
+                            //ddlApprove.AutoPostBack = true;
                             if (dt.Rows[i][0].ToString() == "True")
                             {
                                 ddlApprove.SelectedValue = "Approve";
@@ -141,7 +141,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                 ddlApprove.ID = "ddlApprove" + i;
                 ddlApprove.Items.Add("Approve");
                 ddlApprove.Items.Add("Not Approve");
-                ddlApprove.AutoPostBack = true;
+                //ddlApprove.AutoPostBack = true;
                 if (dt.Rows[i][0].ToString() == "True")
                 {
                     ddlApprove.SelectedValue = "Approve";
@@ -213,7 +213,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                     ddlApprove.ID = "ddlApprove" + i;
                     ddlApprove.Items.Add("Approve");
                     ddlApprove.Items.Add("Not Approve");
-                    ddlApprove.AutoPostBack = true;
+                    //ddlApprove.AutoPostBack = true;
                     if (dt.Rows[i][0].ToString() == "True")
                     {
                         ddlApprove.SelectedValue = "Approve";

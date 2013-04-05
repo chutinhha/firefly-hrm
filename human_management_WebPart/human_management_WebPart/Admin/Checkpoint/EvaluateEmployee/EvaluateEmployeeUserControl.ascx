@@ -28,7 +28,7 @@
                         <asp:TemplateField>
                         <HeaderStyle Width="25" />
                             <ItemTemplate>
-                                &nbsp;<asp:RadioButton OnCheckedChanged="rdoEmployee_CheckedChanged" ID="rdoEmployee" runat="server" GroupName="rdoGroup">
+                                &nbsp;<asp:RadioButton AutoPostBack="True" OnCheckedChanged="rdoEmployee_CheckedChanged" ID="rdoEmployee" runat="server" GroupName="rdoGroup">
                                 </asp:RadioButton>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -48,8 +48,8 @@
         <asp:Button ID="btnCancel1" class="resetButton" runat="server" Text="Cancel" Width="80px" OnClick="btnCancel_Click" /></div>
     </asp:Panel>
 
-    </td></tr></table>
+    </td></tr></table><br>
 <p>
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 </p>
 

@@ -51,6 +51,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
         {
             try
             {
+                this.startDate = Request.Form["txtStartDate"].ToString().Trim();
+                this.endDate = Request.Form["txtEndDate"].ToString().Trim();
                 if (txtTaskName.Text.Trim() == "")
                 {
                     lblError.Text = Message.NotEnterProjectName;
@@ -84,7 +86,6 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                                 + Request.Form["txtStartDate"].ToString().Trim() + "'," + Message.EndDateColumn + "='"
                                 + Request.Form["txtEndDate"].ToString().Trim() + "' where " + Message.TaskIdColumn
                                 + "='" + Session["TaskID"].ToString() + "'");
-                            Session.Remove("ProjectID");
                             Session.Remove("TaskID");
                             Response.Redirect(Message.TaskListPage, true);
                         }
