@@ -13,14 +13,14 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (Session["Account"] == null)
+            if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
                 if (Session["Account"].ToString() == "Admin")
-                {*/
+                {
                     if (Session["TaskName"] == null)
                     {
                         try
@@ -72,13 +72,13 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             lblError.Text = ex.Message;
                         }
                     }
-                /*}
+                }
                 else
                 {
                     Session.Remove("TaskName");
                     Response.Redirect(Message.AccessDeniedPage);
                 }
-            }*/
+            }
             ddlDayOff.AutoPostBack = true;
         }
 
