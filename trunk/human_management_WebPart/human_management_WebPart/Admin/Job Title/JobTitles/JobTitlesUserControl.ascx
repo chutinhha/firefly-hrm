@@ -39,5 +39,5 @@
                   </Columns>
     </asp:GridView><table><tr><td></td></tr></table>
     </td></tr></table>
-    <br />
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    <br /><br>
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>

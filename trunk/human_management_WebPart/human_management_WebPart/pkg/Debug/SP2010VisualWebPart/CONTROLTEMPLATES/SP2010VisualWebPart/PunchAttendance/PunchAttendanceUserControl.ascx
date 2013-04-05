@@ -29,7 +29,7 @@
         Enabled="False"></asp:TextBox>
 </p>
 <br><span style="padding-left:5px;"></span><asp:Label ID="lblDate" runat="server" Text="Date(*)" Width="150px"></asp:Label>
-<asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" id="<%= this.inputID %>" name="txtDate" style="width:200px;" value="<%= this.inputValue %>"/></asp:Panel>
+<asp:Panel ID="pnlDate" runat="server" style="display:inline;"><input type="text" <%= this.readOnly %> id="<%= this.inputID %>" name="txtDate" style="width:200px;" value="<%= this.inputValue %>"/></asp:Panel>
 <br><br>
     <span style="padding-left:5px;"></span><asp:Label ID="lblTime" runat="server" Text="Time(*)" Width="150px"></asp:Label>
             <div class="styled-selectShort" style="width:50px;">
@@ -50,6 +50,7 @@
                 <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" 
                     Width="410px"></asp:TextBox>
             </p><br>
+            &nbsp;<font color="Red">(*) is required</font><br><br>
             <div class="borderTop">
                 <span style="padding-left:160px;"></span>
                 <asp:Button ID="btnInOut" runat="server" class="addButton" 
@@ -58,6 +59,6 @@
             
 
 </td></tr></table></asp:Panel><br>
-<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 
 

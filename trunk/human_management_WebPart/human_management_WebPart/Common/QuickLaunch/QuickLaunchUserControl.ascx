@@ -240,6 +240,16 @@ table tbody tr.total td
                             <span class="quickLinkText"><asp:Label ID="lblTimesheet" runat="server" Text="Timesheets"></asp:Label></span> </a>
                         </div>
                     </td>
+                    <asp:Panel ID="pnlAttendance" runat="server">
+                    <td>
+                        <div class="quickLaunge">
+                            <a href="DailyAttendance.aspx" 
+                                target="_self">
+                            <img src="/_layouts/Images/21_2_ob/HourGlass.png" />
+                            <span class="quickLinkText"><asp:Label ID="lblAttendance" runat="server" Text="Attendance"></asp:Label></span> </a>
+                        </div>
+                    </td>
+                    </asp:Panel>
                 </tr>
             </table>
         </div>

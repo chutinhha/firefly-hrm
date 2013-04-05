@@ -64,10 +64,10 @@
                                 <span style="padding-left: 155px;"></span>
                                     <asp:Button ID="btnSave" class="addButton" runat="server" Text="Save" Width="80px"
                                         OnClick="btnSave_Click" />
-                                    <asp:Button ID="btnCancel" class="addButton" runat="server" Text="Cancel" Width="80px"
+                                    <asp:Button ID="btnCancel" class="resetButton" runat="server" Text="Cancel" Width="80px"
                                         OnClick="btnCancel_Click" /></div>
         </td>
     </tr>
 </table>
-<br>
-<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
+<br><br>
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

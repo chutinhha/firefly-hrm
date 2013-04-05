@@ -75,7 +75,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
             }
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {
         }
@@ -134,7 +135,10 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void btnView_Click(object sender, EventArgs e)
         {
+            
+            
             Boolean check = false;
+            lblError.Text = "";
             if(txtEmployeeName.Text.Trim()==""){
                 lblError.Text=Message.EmployeeNameError;
             }
@@ -162,6 +166,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         {
                             try
                             {
+                                this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
                                 DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
                                 _condition = " and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(MONTH("
                                 + Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
@@ -189,6 +194,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         {
                             try
                             {
+                                this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+                                this.endDate = Request.Form["txtDateTo"].ToString().Trim();
                                 DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
                                 DateTime dt1 = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
                                 dt1 = dt1.AddDays(1.0);
@@ -225,7 +232,10 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 grdData.HeaderRow.Cells[4].Text = "Email";
             }
             else {
-                lblError.Text = Message.NotExistData;
+                if (lblError.Text == "")
+                {
+                    lblError.Text = Message.NotExistData;
+                }
                 pnlData.Visible = false;
             }
             if (check == true) {
@@ -240,6 +250,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void rdoViewAll_CheckedChanged(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             if (rdoViewAll.Checked == true)
             {
                 pnlDateTo.Visible = false;
@@ -253,6 +265,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             try
             {
                 foreach (GridViewRow gr in grdData.Rows)
@@ -296,16 +310,18 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (txtEmployeeName.Text.Trim() == "") {
-                lblError.Text = Message.EmployeeNameError;
-            }
-            else
+            foreach (GridViewRow gr in grdData.Rows)
             {
-                Session["Name"] = Server.HtmlDecode(txtEmployeeName.Text.Trim());
-                Response.Redirect(Message.PunchAttendancePage, true);
-            }
+                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                if (cb.Checked)
+                {
+                    Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
+                    Session["Email"] = Server.HtmlDecode(gr.Cells[4].Text);
+                    _com.closeConnection();
+                    Response.Redirect(Message.PunchAttendancePage, true);
+                }
+            }           
         }
-
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow gr in grdData.Rows)
@@ -314,6 +330,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 if (cb.Checked)
                 {
                     Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
+                    Session["Email"] = Server.HtmlDecode(gr.Cells[4].Text);
                     Session["In"] = gr.Cells[2].Text;
                     Session["Out"] = gr.Cells[3].Text;
                     _com.closeConnection();

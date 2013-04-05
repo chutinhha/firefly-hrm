@@ -79,5 +79,5 @@
 <p>
     &nbsp;</p>
 <p>
-    <asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 </p>

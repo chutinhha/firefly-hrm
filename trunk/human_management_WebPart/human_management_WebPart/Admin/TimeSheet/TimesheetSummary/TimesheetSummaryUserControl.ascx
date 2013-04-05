@@ -38,7 +38,7 @@
 <p>
     &nbsp;</p>
 <span style="padding-left:5px;"></span><asp:Label ID="lblTaskName" runat="server" Text="Task Name" Width="150px"></asp:Label>
-<div class="styled-selectLong"><asp:DropDownList ID="ddlTaskName" runat="server" AutoPostBack="True">
+<div class="styled-selectLong"><asp:DropDownList ID="ddlTaskName" runat="server">
 </asp:DropDownList></div>
 <p>
     &nbsp;</p>
@@ -57,7 +57,7 @@
     &nbsp;</p>
 <span style="padding-left:5px;"></span>
     <asp:CheckBox ID="chkApprove" runat="server" 
-    Text="Only include approved timesheet" AutoPostBack="True" />
+    Text="Only include approved timesheet"/>
 <p>
     &nbsp;</p>
     <div class="borderTop">
@@ -74,4 +74,4 @@
     </asp:Panel>
 </td></tr></table>
 <br>
-<asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label>

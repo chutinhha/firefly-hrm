@@ -73,6 +73,7 @@
     <TemplateFile Location="Images\21_2_ob\headline1.jpg" />
     <TemplateFile Location="Images\21_2_ob\headline2.jpg" />
     <TemplateFile Location="Images\21_2_ob\headline3.jpg" />
+    <TemplateFile Location="Images\21_2_ob\HourGlass.png" />
     <TemplateFile Location="Images\21_2_ob\logo1.jpg" />
     <TemplateFile Location="Images\21_2_ob\map1-over.jpg" />
     <TemplateFile Location="Images\21_2_ob\map1.jpg" />
@@ -109,6 +110,7 @@
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jd.gallery.css" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jqplot.donutRenderer.min.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jqplot.pieRenderer.min.js" />
+    <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery-1.9.1.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.flot.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.flot.pie.js" />
     <TemplateFile Location="LAYOUTS\STYLES\human_management\jquery.js" />

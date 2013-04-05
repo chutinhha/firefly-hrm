@@ -48,6 +48,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -55,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="STYLES\human_management\PredictiveSearch.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -131,6 +137,7 @@
     <Content Include="Images\21_2_ob\headline1.jpg" />
     <Content Include="Images\21_2_ob\headline2.jpg" />
     <Content Include="Images\21_2_ob\headline3.jpg" />
+    <Content Include="Images\21_2_ob\HourGlass.png" />
     <Content Include="Images\21_2_ob\logo1.jpg" />
     <Content Include="Images\21_2_ob\map1-over.jpg" />
     <Content Include="Images\21_2_ob\map1.jpg" />
@@ -167,6 +174,7 @@
     <Content Include="STYLES\human_management\jd.gallery.css" />
     <Content Include="STYLES\human_management\jqplot.donutRenderer.min.js" />
     <Content Include="STYLES\human_management\jqplot.pieRenderer.min.js" />
+    <Content Include="STYLES\human_management\jquery-1.9.1.js" />
     <Content Include="STYLES\human_management\jquery.flot.js" />
     <Content Include="STYLES\human_management\jquery.flot.pie.js" />
     <Content Include="STYLES\human_management\jquery.js" />

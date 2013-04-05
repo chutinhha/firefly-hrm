@@ -21,6 +21,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                     {
                         if (Session["Account"].ToString() == "Admin")
                         {
+                            pnlAttendance.Visible = false;
                             this.leftWidth = 6;
                             this.quickLaunchWidth = 200;
                             lblAssignLeave.Text = "Assign Leave";
@@ -271,8 +272,9 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             pnlLeaveList.Visible = true;
                             pnlCheckPoint.Visible = false;
                             pnlUser.Visible = false;
+                            pnlAttendance.Visible = true;
                             this.leftWidth = 0;
-                            this.quickLaunchWidth = 310;
+                            this.quickLaunchWidth = 410;
                             //Upcoming Task
                             DataTable upcomingTask = _com.getData(Message.TableTask+" tas join "+Message.TablePersonProject+" pp on tas."
                                 +Message.TaskIdColumn+"=pp."+Message.TaskIdColumn

@@ -83,7 +83,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                 lblDateDescription.Visible = true;
             }
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnView_Click(object sender, EventArgs e)
         {
             Boolean check = false;
@@ -111,6 +112,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                     {
                         try
                         {
+                            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
                             DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
                             _condition = " and CAST(DAY(" + Message.PunchInColumn + ") as varchar(50))+'-'+CAST(MONTH("
                             + Message.PunchInColumn + ") as varchar(50))+'-'+CAST(YEAR(" + Message.PunchInColumn
@@ -139,6 +141,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                     {
                         try
                         {
+                            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+                            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
                             DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
                             DateTime dt1 = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
                             dt1 = dt1.AddDays(1.0);

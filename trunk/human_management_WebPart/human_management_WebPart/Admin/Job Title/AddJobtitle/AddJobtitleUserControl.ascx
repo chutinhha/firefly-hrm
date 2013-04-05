@@ -55,7 +55,7 @@
 
 </td></tr></table></asp:Panel>
 <p>
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    <br>&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 </p>
 
 

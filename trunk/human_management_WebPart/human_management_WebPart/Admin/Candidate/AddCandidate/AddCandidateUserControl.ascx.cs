@@ -26,6 +26,8 @@ namespace SP2010VisualWebPart.AddCandidate
                     {
                         if (!IsPostBack)
                         {
+                            this.applyDate = "";
+                            this.interviewDate = "";
                             ddlCountry.DataSource = _com.getCountryList();
                             ddlCountry.DataBind();
                             ddlCountry.SelectedValue = "Vietnam";
@@ -66,7 +68,8 @@ namespace SP2010VisualWebPart.AddCandidate
                 }
             }
         }
-
+        protected string applyDate { get; set; }
+        protected string interviewDate { get; set; }
         protected void btnApplyDate_Click(object sender, EventArgs e)
         {
         }
@@ -88,6 +91,8 @@ namespace SP2010VisualWebPart.AddCandidate
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            this.applyDate = Request.Form["txtApplyDate"].ToString().Trim();
+            this.interviewDate = Request.Form["txtInterviewDate"].ToString().Trim();
             if (txtFullName.Text.Trim() == "")
             {
                 lblError.Text = Message.CandidateNameError;

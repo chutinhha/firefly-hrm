@@ -16,7 +16,7 @@
 <br />
 <br />
 <span style="padding-left:5px;"></span><asp:Label ID="lblPunchIn" runat="server" Text="Punch In" Width="150px"></asp:Label>
-    <asp:TextBox ID="txtPunchInDate" runat="server" Width="140px"></asp:TextBox>
+    <asp:TextBox ID="txtPunchInDate" runat="server" Width="140px" ReadOnly=true></asp:TextBox>
     <div class="styled-selectShort" style="width:50px;">
         <asp:DropDownList ID="ddlHourIn" runat="server">
         </asp:DropDownList></div>
@@ -70,7 +70,7 @@
 <p>
     &nbsp;</p>
 <p>
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 </p>
 
 

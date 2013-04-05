@@ -30,7 +30,8 @@ namespace SP2010VisualWebPart.EditAttendance
                                 DataTable dt = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                     + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
                                     + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn
-                                    + "=N'" + Session["Name"] + "' and " + Message.PunchInColumn + "='"
+                                    + "=N'" + Session["Name"] + "' and p."+Message.EmailAddressColumn+"=N'"+Session["Email"].ToString()
+                                    +"' and " + Message.PunchInColumn + "='"
                                     + Session["In"] + "'");
                                 for (int i = 0; i < 25; i++)
                                 {
@@ -63,11 +64,34 @@ namespace SP2010VisualWebPart.EditAttendance
                                     DateTime PunchIn = DateTime.Parse(dt.Rows[0][1].ToString().Trim());
                                     DateTime PunchOut = DateTime.Parse(dt.Rows[0][3].ToString().Trim());
                                     txtPunchInDate.Text = PunchIn.Month + "-" + PunchIn.Day + "-" + PunchIn.Year;
-                                    ddlHourIn.SelectedValue = PunchIn.Hour.ToString();
-                                    ddlMinutesIn.SelectedValue = PunchIn.Minute.ToString();
+                                    if (PunchIn.Hour >= 10)
+                                    {
+                                        ddlHourIn.SelectedValue = PunchIn.Hour.ToString();
+                                    }
+                                    else {
+                                        ddlHourIn.SelectedValue = "0"+PunchIn.Hour.ToString();
+                                    }
+                                    if (PunchIn.Minute >= 10)
+                                    {
+                                        ddlMinutesIn.SelectedValue = PunchIn.Minute.ToString();
+                                    }else{
+                                        ddlMinutesIn.SelectedValue = "0" + PunchIn.Minute.ToString();
+                                    }
                                     txtPunchInNote.Text = dt.Rows[0][2].ToString().Trim();
-                                    ddlHourOut.SelectedValue = PunchOut.Hour.ToString();
-                                    ddlMinutesOut.SelectedValue = PunchOut.Minute.ToString();
+                                    if (PunchOut.Hour >= 10)
+                                    {
+                                        ddlHourOut.SelectedValue = PunchOut.Hour.ToString();
+                                    }
+                                    else {
+                                        ddlHourOut.SelectedValue = "0" + PunchOut.Hour.ToString();
+                                    }
+                                    if (PunchOut.Minute >= 10)
+                                    {
+                                        ddlMinutesOut.SelectedValue = PunchOut.Minute.ToString();
+                                    }
+                                    else {
+                                        ddlMinutesOut.SelectedValue = "0" + PunchOut.Minute.ToString();
+                                    }
                                     txtPunchOutNote.Text = dt.Rows[0][4].ToString().Trim();
                                 }
                                 lblError.Text = "";
@@ -95,6 +119,7 @@ namespace SP2010VisualWebPart.EditAttendance
             _com.closeConnection();
             Session[Message.EmployeeName]=Session["Name"];
             Session.Remove("Name");
+            Session.Remove("Email");
             Session.Remove("In");
             Session.Remove("Out");
             Response.Redirect(Message.AttendancePage,true);
@@ -121,7 +146,8 @@ namespace SP2010VisualWebPart.EditAttendance
                         DataTable dt = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
                             + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                            +Session["Name"].ToString()+"' and "+Message.PunchInColumn+" <='"
+                            +Session["Name"].ToString()+"' and p."+Message.EmailAddressColumn+"=N'"+Session["Email"].ToString()
+                            +"' and "+Message.PunchInColumn+" <='"
                             +txtPunchInDate.Text.Trim() + " " + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue+"' and "+Message.PunchOutColumn
                             +" >='"+txtPunchInDate.Text.Trim() + " " + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue+"' and "+Message.PunchInColumn
                             +" <> '"+Session["In"].ToString() + "' and "+Message.PunchOutColumn+" <> '"
@@ -130,7 +156,8 @@ namespace SP2010VisualWebPart.EditAttendance
                         DataTable dt1 = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
                             + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                            + Session["Name"].ToString() + "' and "+Message.PunchInColumn+" <='" 
+                            + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn + "=N'" + Session["Email"].ToString()
+                            + "' and " + Message.PunchInColumn + " <='" 
                             + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue + "' and "+Message.PunchOutColumn
                             +" >='" + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue 
                             + "' and "+Message.PunchInColumn+" <> '" + Session["In"].ToString()
@@ -140,7 +167,8 @@ namespace SP2010VisualWebPart.EditAttendance
                         DataTable dt2 = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
                             + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                            + Session["Name"].ToString() + "' and "+Message.PunchInColumn+" >='" 
+                            + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn + "=N'" + Session["Email"].ToString()
+                            + "' and " + Message.PunchInColumn + " >='" 
                             + txtPunchInDate.Text.Trim() + " "+ ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue + "' and "
                             +Message.PunchOutColumn+" <='" + txtPunchInDate.Text.Trim() + " "
                             + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue + "' and "+Message.PunchInColumn+" <> '" + Session["In"].ToString()
@@ -177,7 +205,8 @@ namespace SP2010VisualWebPart.EditAttendance
                                     {
                                         DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
                                             + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "'");
+                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn 
+                                            + "=N'" + Session["Email"].ToString()+ "'");
                                         _com.updateTable(Message.TableAttendance, " "+Message.PunchInColumn+"='" 
                                             + txtPunchInDate.Text.Trim() + " "+ ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue + "',"
                                             +Message.PunchInNoteColumn+"=N'" + txtPunchInNote.Text.Trim() + "',"
@@ -190,6 +219,7 @@ namespace SP2010VisualWebPart.EditAttendance
                                         _com.closeConnection();
                                         Session[Message.EmployeeName] = Session["Name"];
                                         Session.Remove("Name");
+                                        Session.Remove("Email");
                                         Session.Remove("In");
                                         Session.Remove("Out");
                                         Response.Redirect(Message.AttendancePage, true);

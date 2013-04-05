@@ -11,21 +11,19 @@
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><font color="white">Vacancies</font></td></tr></table>
     <br />
-    <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="80px"></asp:Label>
-    <div class="styled-selectShort"><asp:DropDownList ID="ddlJobTitle" runat="server">
+    <span style="padding-left:5px;"></span><asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="120px"></asp:Label>
+    <div class="styled-selectMedium"><asp:DropDownList ID="ddlJobTitle" runat="server">
     </asp:DropDownList></div>
     <span style="padding-left:30px;"></span>
     <asp:Label ID="lblVacancy" runat="server" 
-        Text="Vacancy" Width="80px"></asp:Label>
-    <div class="styled-selectShort"><asp:DropDownList ID="ddlVacancy" runat="server">
+        Text="Vacancy" Width="120px"></asp:Label>
+    <div class="styled-selectMedium"><asp:DropDownList ID="ddlVacancy" runat="server">
     </asp:DropDownList></div>
-    <span style="padding-left:30px;"></span><asp:Label ID="lblHiringManager" runat="server" 
-        Text="Hiring Manager" Width="120px"></asp:Label>
-    <asp:TextBox ID="txtHiringManager" runat="server" Width="110px"></asp:TextBox>
+    <span style="padding-left:30px;"></span>
     <span style="padding-left:30px;"></span>
     <asp:Label ID="lblStatus" runat="server" 
-        Text="Status" Width="65px"></asp:Label>
-    <div class="styled-selectShort"><asp:DropDownList ID="ddlStatus" runat="server">
+        Text="Status" Width="120px"></asp:Label>
+    <div class="styled-selectMedium"><asp:DropDownList ID="ddlStatus" runat="server">
         <asp:ListItem Selected="True">All</asp:ListItem>
         <asp:ListItem>Active</asp:ListItem>
         <asp:ListItem>Closed</asp:ListItem>
@@ -71,5 +69,5 @@
 </td></tr></table>
 
 <br><br>
-<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
 <br>

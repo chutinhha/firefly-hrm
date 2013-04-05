@@ -112,7 +112,7 @@
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblApplyDate" runat="server" Text="Apply Date" Width="120px"></asp:Label>
                     <asp:Panel ID="pnlApplyDate" runat="server" Style="display: inline;">
-                        <input type="text" id="txtApplyDate" style="width:200px;" name="txtApplyDate" value="" />
+                        <input type="text" id="txtApplyDate" style="width:200px;" name="txtApplyDate" value="<%=this.applyDate %>" />
                     </asp:Panel>
                     &nbsp;<p>
                     </p>
@@ -120,7 +120,7 @@
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblInterviewDate" runat="server" Text="Interview Date" Width="120px"></asp:Label>
                     <asp:Panel ID="pnlInterview" runat="server" Style="display: inline;">
-                        <input type="text" id="txtInterviewDate" style="width:200px;" name="txtInterviewDate" value="" />
+                        <input type="text" id="txtInterviewDate" style="width:200px;" name="txtInterviewDate" value="<%=this.interviewDate %>" />
                     </asp:Panel>
                     <span style="padding-left: 100px;"></span>
                     <asp:Label ID="lblInterviewTime" runat="server" Text="Time" Width="120px"></asp:Label>
@@ -154,5 +154,5 @@
     </table>
 </asp:Panel>
 <p>
-    <asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
 </p>

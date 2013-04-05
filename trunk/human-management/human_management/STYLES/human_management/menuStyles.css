@@ -203,10 +203,11 @@ input[type="password"]
 {
     background: url("/_layouts/Images/21_2_ob/down_arrow_select.jpg") no-repeat scroll right center #DDDDDD;
     border: 1px solid #CCCCCC;
-    height: 20px;
+    height: 24px;
     overflow: hidden;
     width: 125px;
     display: inline-block; 
+    vertical-align: bottom;
 }
 .styled-selectShort select {
     background: none repeat scroll 0 0 transparent;
@@ -216,15 +217,17 @@ input[type="password"]
     height: 17px;
     line-height: 1;
     width: 268px;
+    vertical-align: middle;
 }
 .styled-selectMedium
 {
     background: url("/_layouts/Images/21_2_ob/down_arrow_select.jpg") no-repeat scroll right center #DDDDDD;
     border: 1px solid #CCCCCC;
-    height: 20px;
+    height: 24px;
     overflow: hidden;
     width: 155px;
     display: inline-block; 
+    vertical-align: bottom;
 }
 .styled-selectMedium select {
     background: none repeat scroll 0 0 transparent;
@@ -234,15 +237,17 @@ input[type="password"]
     height: 17px;
     line-height: 1;
     width: 268px;
+    vertical-align: middle;
 }
 .styled-selectLong
 {
     background: url("/_layouts/Images/21_2_ob/down_arrow_select.jpg") no-repeat scroll right center #DDDDDD;
     border: 1px solid #CCCCCC;
-    height: 20px;
+    height: 24px;
     overflow: hidden;
-    width: 210px;
+    width: 212px;
     display: inline-block; 
+    vertical-align: bottom;
 }
 .styled-selectLong select {
     background: none repeat scroll 0 0 transparent;
@@ -252,6 +257,7 @@ input[type="password"]
     height: 17px;
     line-height: 1;
     width: 268px;
+    vertical-align: middle;
 }
 select
 {

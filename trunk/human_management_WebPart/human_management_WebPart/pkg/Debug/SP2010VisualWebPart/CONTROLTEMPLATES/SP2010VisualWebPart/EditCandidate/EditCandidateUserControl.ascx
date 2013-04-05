@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css" />
 <script>
     $(function () {
-        $("#txtDate").datepicker({
+        $("#txtApplyDate").datepicker({
             changeMonth: true,
             changeYear: true
         });
@@ -156,5 +156,5 @@
     </table>
 </asp:Panel>
 <p>
-    <asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
+    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
 </p>

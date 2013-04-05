@@ -40,13 +40,13 @@
 <span style="padding-left:5px;"></span><asp:Label ID="lblFrom" runat="server" Text="From" Width="150px"></asp:Label>
 
 <input id="txtDateFrom" name="txtDateFrom" style="width:200px;" type="text" 
-    value="" />
+    value="<%=this.startDate %>" />
 
 <span style="padding-left:50px;"></span><asp:Label ID="lblTo" runat="server" 
         Text="To" Width="50px"></asp:Label>
 
 <input id="txtDateTo" name="txtDateTo" style="width:200px;" type="text" 
-    value="" />
+    value="<%=this.endDate %>" />
 
 <p>
     &nbsp;</p>
@@ -71,4 +71,4 @@
     </asp:Panel>
 </td></tr></table>
 <br>
-<asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label>

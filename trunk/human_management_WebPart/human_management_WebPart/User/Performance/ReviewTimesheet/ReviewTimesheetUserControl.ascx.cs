@@ -44,9 +44,12 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                 }
             }
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnView_Click(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             lblDetail.Text = "";
             string condition = " where per." + Message.NameColumn + "=N'" + Session["PersonName"].ToString()+"'";
             try
@@ -106,16 +109,16 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                     pnlData.Visible = true;
                     if (Request.Form["txtDateFrom"].ToString().Trim() != "")
                     {
-                        lblDetail.Text = "From " + Request.Form["txtDateFrom"].ToString().Trim();
+                        lblDetail.Text = "&nbsp;From " + Request.Form["txtDateFrom"].ToString().Trim();
                     }
                     if (Request.Form["txtDateTo"].ToString().Trim() != "")
                     {
                         if (lblDetail.Text != "")
                         {
-                            lblDetail.Text = lblDetail.Text + "<br>To " + Request.Form["txtDateTo"].ToString().Trim();
+                            lblDetail.Text = lblDetail.Text + "<br>&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
                         }
                         else {
-                            lblDetail.Text = " To " + Request.Form["txtDateTo"].ToString().Trim(); 
+                            lblDetail.Text = "&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim(); 
                         }
                     }
                     if (lblDetail.Text != "")
@@ -145,6 +148,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             if (ddlProjectName.SelectedValue == "All")
             {
                 ddlTaskName.Items.Clear();

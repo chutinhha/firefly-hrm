@@ -643,9 +643,7 @@
     </Content>
     <Content Include="Admin\Project\EditTask\Elements.xml" />
     <Content Include="Admin\Project\ProjectList\Elements.xml" />
-    <Content Include="Admin\Project\ProjectList\ProjectListUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Project\ProjectList\ProjectListUserControl.ascx" />
     <Content Include="Admin\Project\TaskList\Elements.xml" />
     <Content Include="Admin\Project\TaskList\TaskListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -694,9 +692,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Vacancy\AddVacancy\Elements.xml" />
-    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx" />
     <Content Include="Admin\Attendance\AttendanceRecord\Elements.xml" />
     <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -706,9 +702,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\ChangePassword\Elements.xml" />
-    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx" />
     <Content Include="Admin\Attendance\EditAttendance\Elements.xml" />
     <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -735,11 +729,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Attendance\PunchAttendance\Elements.xml" />
-    <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx">
+    <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx" />
+    <Content Include="Common\UserAccount\Elements.xml" />
+    <Content Include="Common\UserAccount\UserAccountUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Common\UserAccount\Elements.xml" />
-    <Content Include="Common\UserAccount\UserAccountUserControl.ascx" />
     <Content Include="Admin\Vacancy\Vacancies\Elements.xml" />
     <Content Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

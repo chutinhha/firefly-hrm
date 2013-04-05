@@ -102,7 +102,8 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 DataTable data = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
                             + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                                    + Session["Name"].ToString() + "' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
+                                    + Session["Name"].ToString() + "' and "+Message.EmailAddressColumn+"='"+Session["Email"].ToString()
+                                    +"' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
                                     + "+CAST(MONTH("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                     +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "' and "+Message.PunchOutColumn
                                     + " >'" + Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "' order by " + Message.PunchOutColumn + " desc");
@@ -132,11 +133,15 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 if (dt1.CompareTo(dt)>=0) {
                                     lblError.Text = Message.LastPunchIn + Session["In"].ToString() 
                                         + Message.PunchInAfterTime;
+                                    this.inputValue = Request.Form["txtDate"].ToString().Trim();
+                                    this.readOnly = "readonly";
+                                    this.inputID = "txtDateDisable";
                                 }
                                 else {
                                     DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
                                             + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "'");
+                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "' and p."+Message.EmailAddressColumn
+                                            +"='"+Session["Email"].ToString()+"'");
                                     _com.insertIntoTable(Message.TableAttendance,"", "N'" + getID.Rows[0][0].ToString()
                                             + "','" + Session["In"].ToString() + "',N'" + Session["NoteIn"].ToString()
                                             + "','" + Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "'"
@@ -146,6 +151,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     Session.Remove("NoteIn");
                                     Session[Message.EmployeeName] = Session["Name"].ToString();
                                     Session.Remove("Name");
+                                    Session.Remove("Email");
                                     Response.Redirect(Message.AttendancePage,false);
                                 }
                             }

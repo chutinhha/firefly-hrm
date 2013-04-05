@@ -30,6 +30,43 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             Session.Remove("BusinessID");
                             Session.Remove("isEdit");
                         }
+                        foreach (GridViewRow gr in grdData.Rows)
+                        {
+                            RadioButton rdo = (RadioButton)gr.Cells[0].FindControl("rdoEmployee");
+                            if (rdo.Checked == true)
+                            {
+                                Session["BusinessID"] = gr.Cells[1].Text.Trim();
+                                DateTime dt = DateTime.Now;
+                                int quarter;
+                                if (dt.Month <= 3)
+                                {
+                                    quarter = 1;
+                                }
+                                else if (dt.Month <= 6)
+                                {
+                                    quarter = 2;
+                                }
+                                else if (dt.Month <= 9)
+                                {
+                                    quarter = 3;
+                                }
+                                else
+                                {
+                                    quarter = 4;
+                                }
+                                DataTable haveCheckPoint = _com.getData(Message.TableEvaluatePoint, "*", " where " + Message.QuarterColumn
+                                    + "='" + quarter + "' and " + Message.BusinessEntityIDColumn + "='" + gr.Cells[1].Text.Trim() + "'");
+                                if (haveCheckPoint.Rows.Count > 0)
+                                {
+                                    Session["isEdit"] = "true";
+                                }
+                                else
+                                {
+                                    Session["isEdit"] = "false";
+                                }
+                                break;
+                            }
+                        }
                         if (Session["BusinessID"] != null)
                         {
                             int quarter=_com.getQuarter();
@@ -60,6 +97,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             if (txtEmployeeName.Text.Trim() == "")
             {
                 lblError.Text = Message.EmployeeNameError;
@@ -78,6 +116,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                     }
                     else {
                         pnlData.Visible = false;
+                        lblError.Text = Message.NotExistData;
                     }
                     _com.setGridViewStyle(grdData);
                 }
@@ -144,6 +183,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
         } 
         protected void btnEvaluate_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             foreach (GridViewRow gr in grdData.Rows)
             {
                 RadioButton rdo = (RadioButton)gr.Cells[0].FindControl("rdoEmployee");
@@ -174,6 +214,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             int point = 0;
             float averagePoint = 0;
             int countRdoYesNo = 1;

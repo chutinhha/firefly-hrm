@@ -12,7 +12,6 @@ using System.Data.OleDb;
 using System.IO;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint;
-using System.Text;
 using Microsoft.Office.Server.UserProfiles;
 using Microsoft.Office.Server;
 using System.DirectoryServices.AccountManagement;
