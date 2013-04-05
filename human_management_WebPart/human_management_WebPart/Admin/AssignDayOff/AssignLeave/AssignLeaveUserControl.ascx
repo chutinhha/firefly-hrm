@@ -9,22 +9,6 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AssignLeaveUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave.AssignLeaveUserControl" %>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/resources/demos/style.css" />
-<script>
-    $(function () {
-        $("#txtDateFrom").datepicker({
-            changeMonth: true,
-            changeYear: true
-        });
-        $("#txtDateTo").datepicker({
-            changeMonth: true,
-            changeYear: true
-        });
-    });
-</script>
 <br>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -32,27 +16,21 @@
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <font color="white">Search Employees By Free Time</font>
+                        <font color="white">Search Employee</font>
                     </td>
                 </tr>
             </table>
             <br>
             <span style="padding-left: 5px"></span>
-            <asp:Label ID="lblFrom" runat="server" Text="From" Width="70px"></asp:Label>
-            <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
-                <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 200px;" value=""
-                    onclick="return txtDateFrom_onclick()" /></asp:Panel>
-            <span style="padding-left: 50px"></span>
-            <asp:Label ID="lblDateTo" runat="server" Text="To" Width="70px"></asp:Label>
-            <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
-                <input type="text" id="txtDateTo" name="txtDateTo" style="width: 200px;" value="" /></asp:Panel>
+            <asp:Label ID="lblEmployee" runat="server" Text="Employee" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtEmployee" runat="server" Width="200px"></asp:TextBox>
+            <span style= "padding-left:50px">
+            
             <br>
             <br>
             <div class="borderTop">
                 <asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
-                <asp:Button ID="btnReset" runat="server" class="resetButton" OnClick="btnReset_Click"
-                    Text="Reset" Width="80px" />
             </div>
         </td>
     </tr>

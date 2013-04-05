@@ -35,7 +35,7 @@ onselectedindexchanged="ddlDayOff_SelectedIndexChanged">
                 ID="CheckBox2" 
                 runat="server"
                 OnCheckedChanged="CheckUncheckAll"
-                AutoPostBack="true" 
+                AutoPostBack="true"
                 />
         </HeaderTemplate>
                             <ItemTemplate>
