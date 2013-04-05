@@ -13,40 +13,22 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave {
     public partial class AssignLeaveUserControl {
         
         /// <summary>
-        /// lblFrom control.
+        /// lblEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFrom;
+        protected global::System.Web.UI.WebControls.Label lblEmployee;
         
         /// <summary>
-        /// pnlDateFrom control.
+        /// txtEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDateFrom;
-        
-        /// <summary>
-        /// lblDateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateTo;
-        
-        /// <summary>
-        /// pnlDateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDateTo;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployee;
         
         /// <summary>
         /// btnSearch control.
@@ -56,15 +38,6 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// btnReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
         
         /// <summary>
         /// lblDayOff control.
