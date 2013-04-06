@@ -28,11 +28,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.ViewEmployeeReport
                         {
                             lblEmployeeText.Text = Session["EmployeeName"].ToString();
                             string condition = " where ";
-                            condition = condition + Message.NameColumn + " like '%" + Session["EmployeeName"].ToString() + "%' and ";
-                            if (Session["Email"].ToString() != "")
-                            {
-                                condition = condition + Message.EmailAddressColumn + " like '%" + Session["Email"].ToString() + "%' and ";
-                            }
+                            condition = condition + Message.PersonNameColumn + " like '%" + Session["EmployeeName"].ToString() + "%' and " + Message.BusinessEntityIDColumn + " = " + Session["EmployeeId"].ToString() + " and ";
                             if (Session["ProjectName"].ToString() == "All") { }
                             else
                                 condition = condition + Message.ProjectNameColumn + " like '%" + Session["ProjectName"].ToString() + "%' and ";
@@ -41,7 +37,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.ViewEmployeeReport
                             {
                                 condition = condition + Message.TaskNameColumn + " like '%" + Session["TaskName"].ToString() + "%' and ";
                             }
-                            if (Session["Approved"].ToString() == "false") { }
+                            if (Session["Approved"].ToString() == "False") { }
                             else
                                 condition = condition + " HumanResources.Timesheet.CurrentFlag = 1 and ";
                             if (Session["DateFrom"].ToString() == "") { }

@@ -36,12 +36,30 @@
     <span style="padding-left:50px"></span>
     <asp:TextBox ID="txtEmployee" runat="server" Width="200px" Text="" 
         ontextchanged="txtEmployee_TextChanged"></asp:TextBox>
-    <span style="padding-left:50px"></span>
-    </span>
-    <asp:Label ID="lblEmail" runat="server" Text="Email(*)" Width="80px"></asp:Label>
-    <asp:TextBox ID="txtEmail" runat="server" Width="150px" 
-        ontextchanged="txtEmail_TextChanged"></asp:TextBox>
     <br/>
+        <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True" 
+        onselectedindexchanged="grdData_SelectedIndexChanged" 
+        Width="100%" BorderStyle="None" BorderWidth="0px" Visible="false">
+    <Columns>
+
+                        <asp:TemplateField>
+                        <HeaderStyle Width="25" />
+                            <HeaderTemplate>
+            <asp:CheckBox 
+                ID="CheckBox2" 
+                runat="server"
+                OnCheckedChanged="CheckUncheckAll"
+                AutoPostBack="true" 
+                />
+        </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="myCheckBox" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                  </Columns>
+    </asp:GridView>
+    <br />
     <span style="padding-left:5px"></span><asp:Label ID="lblProject" runat="server" Text="Project Name(*)" Width="120px"></asp:Label>
     <span style="padding-left:50px"></span>
     <asp:DropDownList ID="ddlProject" runat="server" Width="200px" Height="20px" onselectedindexchanged="ddlProject_SelectedIndexChanged">

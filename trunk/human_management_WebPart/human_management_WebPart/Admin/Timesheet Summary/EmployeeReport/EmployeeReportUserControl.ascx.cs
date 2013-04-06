@@ -27,12 +27,15 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport
                         {
                             txtEmployee.Text = "";
                             CheckBox1.Checked = false;
-                            txtEmail.Text = "";
-                            lblEmail.Visible = false;
-                            txtEmail.Visible = false;
                             _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, "All");
                             ddlTask.Items.Clear();
                             ddlTask.Items.Add("All");
+                            Session.Remove("EmployeeId");
+                            Session.Remove("ProjectName");
+                            Session.Remove("TaskName");
+                            Session.Remove("Approved");
+                            Session.Remove("DateFrom");
+                            Session.Remove("DateFrom");
                         }
                     }
                     catch (Exception ex)
@@ -46,6 +49,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport
                 }
             }
             ddlProject.AutoPostBack = true;
+            txtEmployee.AutoPostBack = true;
         }
 
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,42 +81,89 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            Session ["EmployeeName"] = Server.HtmlDecode(txtEmployee.Attributes["value"].ToString().Trim());
-            if (txtEmail.Attributes["value"] != null)
+            lblError.Text = "";
+            int check = 0;
+            if (grdData.Rows.Count > 0)
             {
-                Session["Email"] = Server.HtmlDecode(txtEmail.Attributes["value"].ToString().Trim());
+                foreach (GridViewRow gr in grdData.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        Session["EmployeeId"] = Server.HtmlDecode(gr.Cells[1].Text.ToString());
+                        Session["EmployeeName"] = Server.HtmlDecode(gr.Cells[2].Text.ToString());
+                        check++;
+                    }
+                }
+                if (check == 1)
+                {
+                    Session["ProjectName"] = Server.HtmlDecode(ddlProject.SelectedValue.ToString());
+                    Session["TaskName"] = Server.HtmlDecode(ddlTask.SelectedValue.ToString());
+                    Session["Approved"] = Server.HtmlDecode(CheckBox1.Checked.ToString());
+                    Session["DateFrom"] = Server.HtmlDecode(Request.Form["txtDateFrom"].ToString().Trim());
+                    Session["DateTo"] = Server.HtmlDecode(Request.Form["txtDateTo"].ToString().Trim());
+                    _com.closeConnection();
+                    Response.Redirect(Message.ViewEmployeeReportPage, true);
+                }
+                else if (check == 0) { lblError.Text = "Please select one employee first!"; }
+                else if (check > 1) lblError.Text = "Please select only one employee!";
             }
-            else Session["Email"] = "";
-            Session ["ProjectName"] = Server.HtmlDecode(ddlProject.SelectedValue.ToString());
-            Session ["TaskName"] = Server.HtmlDecode(ddlTask.SelectedValue.ToString());
-            Session ["Approved"] = Server.HtmlDecode(CheckBox1.Checked.ToString());
-            Session ["DateFrom"] = Server.HtmlDecode(Request.Form["txtDateFrom"].ToString().Trim());
-            Session ["DateTo"] = Server.HtmlDecode(Request.Form["txtDateTo"].ToString().Trim());
-            _com.closeConnection();
-            Response.Redirect(Message.ViewEmployeeReportPage, true);
+            else lblError.Text = "Please select one employee first!";
         }
 
         protected void txtEmployee_TextChanged(object sender, EventArgs e)
         {
             txtEmployee.Attributes["value"] = txtEmployee.Text;
+            lblError.Text = "";
+            grdData.Visible = true;
             try
             {
-                DataTable myData = _com.getData(Message.TablePerson, " * ", " WHERE Name like '%" + txtEmployee.ToString().Trim() + "%'");
-                if (myData.Rows.Count >= 2)
+                DataTable myData = _com.getData(Message.TablePerson, " * ", " WHERE Name like '%" + txtEmployee.Attributes["value"].ToString() + "%'");
+                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn + ",CAST(" + Message.CurrentFlagColumn + " AS NVARCHAR(5))";
+                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Person.Name like '%" + txtEmployee.Text.ToString().Trim() + "%'";
+                string table = "((" + Message.TableJobTitle;
+                _com.bindData(column, condition, table, grdData);
+                if (grdData.Rows.Count == 0) lblError.Text = "There is no consistent data!";
+                _com.setGridViewStyle(grdData);
+                grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
+                grdData.HeaderRow.Cells[2].Text = "Employee Name";
+                grdData.HeaderRow.Cells[3].Text = "Email";
+                grdData.HeaderRow.Cells[4].Text = "Job Title";
+                grdData.HeaderRow.Cells[5].Text = "Status";
+                foreach (GridViewRow myRow in grdData.Rows)
                 {
-                    lblEmail.Visible = true;
-                    txtEmail.Visible = true;
+                    if (myRow.Cells[5].Text.ToString() == "1") myRow.Cells[5].Text = "Active";
+                    else myRow.Cells[5].Text = "Inactive";
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message;
+                lblError.Text = "There is no consistent data!";
             }
         }
 
-        protected void txtEmail_TextChanged(object sender, EventArgs e)
+        protected void CheckUncheckAll(object sender, EventArgs e)
         {
-            txtEmail.Attributes["value"] = txtEmail.Text;
+            //Check or uncheck all checkbox
+            CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
+            foreach (GridViewRow row in grdData.Rows)
+            {
+                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                if (cbSelectedHeader.Checked == true)
+                {
+                    cbSelected.Checked = true;
+                }
+                else
+                {
+                    cbSelected.Checked = false;
+                }
+            }
         }
+
+        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
