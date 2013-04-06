@@ -144,6 +144,7 @@
     internal const string AddTaskPage = "AddTask.aspx";
     internal const string EditTaskPage = "EditTask.aspx";
     internal const string TaskListPage = "TaskList.aspx";
+    internal const string DailyAttendancePage = "DailyAttendance.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -195,7 +196,7 @@
     internal const string NotAnswerAll = "You must answer all question";
     internal const string NotExistData = "There is no data that match your request";
     internal const string ToDateAfterFrom = "From date must be earlier than To date";
-    internal const string NotHaveCheckPointYet = "You haven't got supervisor judgment of this quarter<br><br>";
+    internal const string NotHaveCheckPointYet = "You haven't got supervisor judgment of this quarter<br /><br />";
     internal const string NotHaveLoginID = "This person doesn't have login ID";
     internal const string NotExistLoginID = "This login ID is not exist. If you just change employee login ID, please save first";
     internal const string AlreadyExistLoginID = "There are 2 or more person with the same login ID";

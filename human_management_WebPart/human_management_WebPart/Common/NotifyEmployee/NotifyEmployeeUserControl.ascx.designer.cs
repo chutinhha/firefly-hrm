@@ -20,14 +20,5 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration0;
-        
-        /// <summary>
-        /// lblScript control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblScript;
     }
 }

@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Data;
-using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.DirectoryServices.AccountManagement;
 using System.Globalization;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Data.OleDb;
-using System.IO;
-using Microsoft.SharePoint.WebControls;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using Microsoft.SharePoint;
-using Microsoft.Office.Server.UserProfiles;
-using Microsoft.Office.Server;
-using System.DirectoryServices.AccountManagement;
 
 public class CommonFunction
 {
@@ -28,6 +24,7 @@ public class CommonFunction
         cnn.Open();
     }
 
+    //Close db connection
     internal void closeConnection() {
         cnn.Close();
     }
@@ -331,6 +328,7 @@ public class CommonFunction
         return dt;
     }
 
+    //get largest ID of a identity column in a table
     internal DataTable getTopID(string table) {
         string sql = @"select IDENT_CURRENT('"+table+"')";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
@@ -339,6 +337,7 @@ public class CommonFunction
         DataTable dt = ds.Tables["data"];
         return dt;
     }
+    
     //Update a table
     internal void updateTable(string table, string condition)
     {
@@ -356,6 +355,7 @@ public class CommonFunction
         grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
     }
 
+    //Generate Md5 string
     internal string GetMd5Hash(MD5 md5Hash, string input)
     {
         // Convert the input string to a byte array and compute the hash. 
@@ -395,6 +395,7 @@ public class CommonFunction
         }
     }
 
+    //Get Sheets in excel file
     internal void GetExcelSheets(string FilePath, string Extension, string isHDR, DropDownList ddlSheets, 
         Label lblFileName, Panel Panel1, Panel Panel2)
     {
@@ -432,6 +433,7 @@ public class CommonFunction
         Panel2.Visible = true;
     }
 
+    //Get data in a excel sheet
     internal DataTable getDataFromExcel(string _conStr, string sheet) {
         OleDbConnection con = new OleDbConnection(_conStr);
         OleDbDataAdapter da = new OleDbDataAdapter("select * from ["+sheet+"]", con);
@@ -440,6 +442,7 @@ public class CommonFunction
         return dt;
     }
 
+    //Set item list form Import CSV webpart
     internal void setItemListCSV(DropDownList ddl, bool zeroValue) {
         ddl.Items.Clear();
         for (int i = 0; i < 51; i++) {
@@ -456,6 +459,7 @@ public class CommonFunction
         }
     }
 
+    //Get current quarter of the year
     internal int getQuarter() {
         DateTime dt = DateTime.Now;
         int quarter;
@@ -478,6 +482,7 @@ public class CommonFunction
         return quarter;
     }
 
+    //Get current user rank
     internal string getRank(SPWeb context ) {
         SPWeb web = context;
         SPRoleAssignment assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser);
@@ -492,10 +497,14 @@ public class CommonFunction
         }
         return "";
     }
+
+    //Get current user account
     internal string getCurrentUser()
     {
         return System.Environment.UserName;
     }
+
+    //Generate control for evaluate employee checkpoint webpart
     internal void generateControl(Panel pnlGenerate, string isEdit, string BusinessID, int quarter) {
         DataTable question = this.getData(Message.TableCheckpointQuestion,"*", "");
         if (question.Rows.Count > 0)
@@ -575,8 +584,8 @@ public class CommonFunction
 
                     pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
                     pnlGenerate.Controls.Add(txtNote);
-                    pnlGenerate.Controls.Add(new LiteralControl("<br>"));
-                    pnlGenerate.Controls.Add(new LiteralControl("<br>"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<br />"));
+                    pnlGenerate.Controls.Add(new LiteralControl("<br />"));
                     pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
                     pnlGenerate.Controls.Add(lblNotePoint);
                     pnlGenerate.Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
@@ -658,6 +667,8 @@ public class CommonFunction
             }
         }
     }
+
+    //Get user information
     /*internal string[] GetUserInfo(string AccountNameWithDomain)
     {
         using (SPSite site = new SPSite("tungda:9999"))
@@ -678,6 +689,8 @@ public class CommonFunction
             return profile;
         }
     }*/
+
+    //Change user password
     internal string ChangePassword(string oldPassword, string newPassword, string userNameWithoutDomain)
     {
         try

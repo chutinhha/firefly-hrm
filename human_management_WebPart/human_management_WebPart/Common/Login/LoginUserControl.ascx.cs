@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Data.SqlClient;
 using System.Data;
-using System.Security.Cryptography;
-using Microsoft.SharePoint;
-using System.Security.Principal;
+using System.Web.UI;
 using Microsoft.SharePoint.WebControls;
-using System.Text;
-using System.Web;
 namespace SP2010VisualWebPart.Login
 {
     public partial class LoginUserControl : UserControl

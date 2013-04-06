@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Data;
 
 namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
 {
@@ -115,7 +114,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                     {
                         if (lblDetail.Text != "")
                         {
-                            lblDetail.Text = lblDetail.Text + "<br>&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
+                            lblDetail.Text = lblDetail.Text + "<br />&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
                         }
                         else {
                             lblDetail.Text = "&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim(); 

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Data;
+using System.Web.UI;
 
 namespace SP2010VisualWebPart.Admin.NotifyEmployee
 {
@@ -30,7 +28,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     count = count + department.Rows.Count;
                     for (int i = 0; i < department.Rows.Count; i++) {
                         this.inputValue = this.inputValue + "Assign to Department: "+department.Rows[i][3].ToString()
-                            + "<br>From " + department.Rows[i][0].ToString() + "<br>To " + department.Rows[i][1].ToString()+";";
+                            + "<br />From " + department.Rows[i][0].ToString() + "<br />To " + department.Rows[i][1].ToString()+";";
                     }
                 }*/
                 //Check evaluate point
@@ -44,8 +42,8 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     {
                         this.inputValue = this.inputValue + "<a href='" + Message.SupervisorJudgmentPage + "'>Checkpoint quarter "
                             + evaluatePoint.Rows[i][2].ToString()
-                            + "<br>Receive " + evaluatePoint.Rows[i][0].ToString()
-                            + " point<br>Average: " + evaluatePoint.Rows[i][1].ToString() + "</a>;";
+                            + "<br />Receive " + evaluatePoint.Rows[i][0].ToString()
+                            + " point<br />Average: " + evaluatePoint.Rows[i][1].ToString() + "</a>;";
                     }
                 }
                 //Check assign project
@@ -65,7 +63,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     for (int i = 0; i < assignProject.Rows.Count; i++)
                     {
                         this.inputValue = this.inputValue + "Assign to Project: " + assignProject.Rows[i][0].ToString()
-                            + "<br>Task: " + assignProject.Rows[i][1].ToString() + "<br>Deadline: " + assignProject.Rows[i][3].ToString() + ";";
+                            + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + ";";
                     }
                 }
             }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using Microsoft.SharePoint;
-using System.Security.Principal;
-using Microsoft.SharePoint.WebControls;
 using System.Data;
+using System.Web.UI;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.WebControls;
 
 namespace SP2010VisualWebPart.Common.ManageUser
 {
