@@ -32,7 +32,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.ViewProjectReport
                             if (Session["ProjectName"].ToString() == "All") { }
                             else
                                 condition = condition + Message.ProjectNameColumn + " like '%" + Session["ProjectName"].ToString() + "%' and ";
-                            if (Session["Approved"].ToString() == "false") { }
+                            if (Session["Approved"].ToString() == "False") { }
                             else
                                 condition = condition + " HumanResources.Timesheet.CurrentFlag = 1 and ";
                             if (Session["DateFrom"].ToString() == "") { }

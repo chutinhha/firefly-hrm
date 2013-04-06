@@ -40,22 +40,13 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport {
         protected global::System.Web.UI.WebControls.TextBox txtEmployee;
         
         /// <summary>
-        /// lblEmail control.
+        /// grdData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmail;
-        
-        /// <summary>
-        /// txtEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.GridView grdData;
         
         /// <summary>
         /// lblProject control.
