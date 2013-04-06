@@ -41,11 +41,23 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 + " and MONTH(" + Message.ModifiedDateColumn + ")>=" + (3 * quarter - 2));
                             if (AverageCheckPoint.Rows.Count == 0)
                             {
-                                this.inputValue = "Not have data yet;";
-                                this.inputTitle = ";";
+                                this.displayValue = "style=\"display:none\"";
+                                graph1.Controls.Add(new LiteralControl("<div style=\"height:300px; \" id=\"task-list-group-panel-container\">"));
+                                graph1.Controls.Add(new LiteralControl("<div style=\"height:89%; overflow-x: hidden; overflow-y: auto;\" class=\"task-list-group-panel-menu_holder\" id=\"task-list-group-panel-menu_holder\">"));
+                                graph1.Controls.Add(new LiteralControl("<table class=\"table hover\"><tbody>"));
+                                graph1.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
+                                graph1.Controls.Add(new LiteralControl("No Records are Available"));
+                                graph1.Controls.Add(new LiteralControl("</td></tr>"));
+                                graph1.Controls.Add(new LiteralControl("</tbody></table></div>"));
+                                graph1.Controls.Add(new LiteralControl("<div id=\"total\">"));
+                                graph1.Controls.Add(new LiteralControl("<table class=\"table\"><tbody><tr class=\"total\">"));
+                                graph1.Controls.Add(new LiteralControl("<td style=\"text-align:right;padding-right:20px;\">"));
+                                graph1.Controls.Add(new LiteralControl("Total: 0"));
+                                graph1.Controls.Add(new LiteralControl("</td></tr></tbody></table></div></div>"));
                             }
                             else
                             {
+                                this.displayValue = "";
                                 int large9 = 0;
                                 int large8 = 0;
                                 int large7 = 0;
@@ -327,5 +339,6 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
         protected string timeSheet { get; set; }
         protected int leftWidth { get; set; }
         protected int quickLaunchWidth { get; set; }
+        protected string displayValue { get; set; }
     }
 }
