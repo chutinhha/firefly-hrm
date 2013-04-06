@@ -34,15 +34,8 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                             {
                                 txtProject.Text = Session["ProjectName"].ToString();
                                 txtTask.Text = Session["TaskName"].ToString();
-                                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
-                                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId";
-                                string table = "(" + Message.TableJobTitle;
-                                _com.bindData(column, condition, table, grdData);
-                                _com.setGridViewStyle(grdData);
-                                grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                                grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                                grdData.HeaderRow.Cells[3].Text = "Birthdate";
-                                grdData.HeaderRow.Cells[4].Text = "Job Title";
+                                txtEmployee.Text = "";
+                                lblError.Text = "";
                             }
                         }
                         catch (Exception ex)
@@ -62,104 +55,26 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
             try
             {
-                if (Request.Form["txtDateFrom"].ToString().Trim() == "" && Request.Form["txtDateTo"].ToString().Trim() == "")
+                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
+                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId WHERE HumanResources.Employee.CurrentFlag = 1";
+                string table = "(" + Message.TableJobTitle;
+                if (txtEmployee.Text != "")
                 {
-                    string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn;
-                    string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId";
-                    string table = "(" + Message.TableJobTitle;
-                    _com.bindData(column, condition, table, grdData);
-                    _com.setGridViewStyle(grdData);
-                    grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                    grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                    grdData.HeaderRow.Cells[3].Text = "Birthdate";
-                    grdData.HeaderRow.Cells[4].Text = "Job Title";
+                    condition = condition + " and " + Message.PersonNameColumn + " LIKE  '%" + txtEmployee.Text.ToString().Trim() + "%'";
                 }
+                _com.bindData(column, condition, table, grdData);
+                if (grdData.Rows.Count == 0) lblError.Text = "There is no consistent data!";
                 else
                 {
-                    DataTable myData = _com.getData("((((" + Message.TableTask,
-                    "HumanResources.Employee.BusinessEntityId," + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn,
-                    " INNER JOIN HumanResources.PersonProject ON HumanResources.Task.TaskId = HumanResources.PersonProject.TaskId ) INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.Person ON HumanResources.Employee.BusinessEntityId = HumanResources.Person.BusinessEntityId) INNER JOIN HumanResources.JobTitle ON HumanResources.Employee.JobId = HumanResources.JobTitle.JobId) WHERE HumanResources.PersonProject.CurrentFlag = 1");
-                    List<DataRow> rowsToDelete = new List<DataRow>();
-                    foreach (DataRow myRow in myData.Select())
-                    {
-                        if (Request.Form["txtDateFrom"].ToString().Trim() != "" && Request.Form["txtDateTo"].ToString().Trim() != "")
-                        {
-                            if (((DateTime)myRow[4] < Convert.ToDateTime(Request.Form["txtDateFrom"].ToString().Trim()) && (DateTime)myRow[5] > Convert.ToDateTime(Request.Form["txtDateFrom"].ToString().Trim()))
-                                || ((DateTime)myRow[4] >= Convert.ToDateTime(Request.Form["txtDateFrom"].ToString().Trim()) && (DateTime)myRow[5] <= Convert.ToDateTime(Request.Form["txtDateTo"].ToString().Trim()))
-                                || ((DateTime)myRow[4] < Convert.ToDateTime(Request.Form["txtDateTo"].ToString().Trim()) && (DateTime)myRow[5] > Convert.ToDateTime(Request.Form["txtDateTo"].ToString().Trim())))
-                            {
-                                foreach (DataRow myRowtmp in myData.Select())
-                                {
-                                    if ((int)myRowtmp[0] == (int)myRow[0])
-                                    {
-                                        rowsToDelete.Add(myRowtmp);
-                                    }
-                                }
-                            }
-                        }
-                        else if (Request.Form["txtDateFrom"].ToString().Trim() != "")
-                        {
-                            if ((DateTime)myRow[4] < Convert.ToDateTime(Request.Form["txtDateFrom"].ToString().Trim()) && (DateTime)myRow[5] > Convert.ToDateTime(Request.Form["txtDateFrom"].ToString().Trim()))
-                            {
-                                foreach (DataRow myRowtmp in myData.Select())
-                                {
-                                    if ((int)myRowtmp[0] == (int)myRow[0])
-                                    {
-                                        rowsToDelete.Add(myRowtmp);
-                                    }
-                                }
-                            }
-                        }
-                        else if (Request.Form["txtDateTo"].ToString().Trim() != "")
-                        {
-                            if ((DateTime)myRow[4] < Convert.ToDateTime(Request.Form["txtDateTo"].ToString().Trim()) && (DateTime)myRow[5] > Convert.ToDateTime(Request.Form["txtDateTo"].ToString().Trim()))
-                            {
-                                foreach (DataRow myRowtmp in myData.Select())
-                                {
-                                    if ((int)myRowtmp[0] == (int)myRow[0])
-                                    {
-                                        rowsToDelete.Add(myRowtmp);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    foreach (DataRow myRow in rowsToDelete)
-                    {
-                        myRow.Delete();
-                    }
-                    myData.AcceptChanges();
-                    DataTable dt = myData.DefaultView.ToTable("dt", true, Message.BusinessEntityIDColumn, Message.PersonNameColumn, Message.BirthDateColumn, Message.JobTitleColumn);
-                    grdData.DataSource = dt;
-                    grdData.DataBind();
                     _com.setGridViewStyle(grdData);
                     grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
                     grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                    grdData.HeaderRow.Cells[3].Text = "Birthdate";
+                    grdData.HeaderRow.Cells[3].Text = "Email";
                     grdData.HeaderRow.Cells[4].Text = "Job Title";
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message;
-            }
-        }
-
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _com.bindData("HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.BirthDateColumn + "," + Message.JobTitleColumn
-                  , "INNER JOIN " + Message.TableEmployee + "ON  HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId", "(" + Message.TableJobTitle, grdData);
-                Session.Remove("Name");
-                Session.Remove("Email");
-                _com.setGridViewStyle(grdData);
-                grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                grdData.HeaderRow.Cells[3].Text = "Birthdate";
-                grdData.HeaderRow.Cells[4].Text = "Job Title";
+                }  
             }
             catch (Exception ex)
             {
@@ -169,6 +84,8 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
 
         protected void btnAssign_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
+            bool checkRedirect = false;
             try
             {
                 DataTable myData = _com.getData(Message.TableProject, Message.TaskIdColumn, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%" + txtProject.Text.ToString() + "%' and TaskName like '%" + txtTask.Text.ToString() + "%'");
@@ -177,10 +94,30 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1", false);
+                        DataTable myDatatmp = _com.getData(Message.TablePersonProject, Message.CurrentFlagColumn, " where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
+                        if (myDatatmp.Rows.Count > 0)
+                        {
+                            if (myDatatmp.Rows[0][0].ToString() == "True")
+                            {
+                                lblError.Text = "This employee has been assigned in this project !";
+                            }
+                            else if (myDatatmp.Rows[0][0].ToString() == "False")
+                            {
+                                _com.updateTable(Message.TablePersonProject, " CurrentFlag = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
+                                checkRedirect = true;
+                            }
+                        }
+                        else
+                        {
+                            _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1,CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) ", false);
+                            checkRedirect = true;
+                        }
                     }
                 }
-                Response.Redirect(Message.PersonProjectPage);
+                if (checkRedirect == true)
+                {
+                    Response.Redirect(Message.PersonProjectPage);
+                }
             }
             catch (Exception ex)
             {
