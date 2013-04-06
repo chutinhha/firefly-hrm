@@ -410,11 +410,9 @@
 				<li style="background:none"><a href="">Employees</a></li>
 					<li style="padding-left:40px;background:none;"><a href="">Employees List</a></li>
 					<li style="padding-left:40px;"><a href="">Add Employee</a></li>
-				
-				<li style="background:none"><a href="ManageUser.aspx">Users</a></li>
-					<li style="padding-left:40px;background:none;"><a href="ChooseTask.aspx">Assign User To Project</a></li>
 				<li style="background:none"><a href="ProjectList.aspx">Projects</a></li>
                 <li style="background:none"><a href="TaskList.aspx">Project Task</a></li>
+                    <li style="padding-left:40px;background:none;"><a href="ChooseTask.aspx">Assign User To Task</a></li>
 			</ul>
 			<div class="bottom"></div>
 		</div>		

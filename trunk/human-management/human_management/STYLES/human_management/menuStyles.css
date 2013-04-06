@@ -272,3 +272,47 @@ a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
 }
+.box {
+    margin: 20px;
+    position: relative;
+}
+
+.box .head {
+    position: relative;
+}
+.box .inner
+{
+        -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #F7F6F6;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-color: -moz-use-text-color #DEDEDE #DEDEDE;
+    border-image: none;
+    border-right: 1px solid #DEDEDE;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    margin-bottom: 19px;
+    overflow: hidden;
+    padding: 15px;
+    
+      border-bottom-color:#DEDEDE;
+  border-bottom-width:1px;
+  border-left-color:#DEDEDE;
+  border-left-width:1px;
+  border-right-color:#DEDEDE;
+  border-right-width:1px;
+}
+.box .head h1
+{
+        background: url("/_layouts/Images/21_2_ob/h1-bg.png") repeat-x scroll left bottom #F3F3F3;
+    border: 1px solid #DEDEDE;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #5D5D5D;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 9px 15px;
+}
