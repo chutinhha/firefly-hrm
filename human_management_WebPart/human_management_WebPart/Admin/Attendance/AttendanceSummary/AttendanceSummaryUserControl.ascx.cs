@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 
 namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
 {
@@ -126,10 +125,10 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                         pnlData.Visible = true;
                         lblDate.Text = "&nbsp;Search Employee: " + txtEmployeeName.Text.Trim();
                         if (Request.Form["txtDateFrom"].ToString().Trim() != "") {
-                            lblDate.Text = lblDate.Text + "<br>&nbsp;From " + Request.Form["txtDateFrom"].ToString().Trim();
+                            lblDate.Text = lblDate.Text + "<br />&nbsp;From " + Request.Form["txtDateFrom"].ToString().Trim();
                         }
                         if (Request.Form["txtDateTo"].ToString().Trim() != "") {
-                            lblDate.Text = lblDate.Text + "<br>&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
+                            lblDate.Text = lblDate.Text + "<br />&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
                         }
                     }
                     else

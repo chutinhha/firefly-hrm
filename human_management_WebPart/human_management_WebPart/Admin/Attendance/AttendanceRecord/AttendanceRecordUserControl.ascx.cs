@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web.Services;
-using System.Web.Services.Protocols;
-using System.Web;
-using System.Text;
-using System.Web.UI.HtmlControls;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 
 namespace SP2010VisualWebPart.AttendanceRecord
@@ -75,6 +67,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
             }
         }
+        //For text in input textbox
         protected string startDate { get; set; }
         protected string endDate { get; set; }
         protected void btnDateFrom_Click(object sender, EventArgs e)
@@ -135,8 +128,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            
-            
             Boolean check = false;
             lblError.Text = "";
             if(txtEmployeeName.Text.Trim()==""){
