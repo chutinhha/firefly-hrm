@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Data;
 
 namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
 {
@@ -137,10 +136,10 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                         pnlData.Visible = true;
                         lblDetail.Text = "Search Employee: " + txtEmployeeName.Text.Trim();
                         if (Request.Form["txtDateFrom"].ToString().Trim() != "") {
-                            lblDetail.Text = lblDetail.Text + "<br> From " + Request.Form["txtDateFrom"].ToString().Trim();
+                            lblDetail.Text = lblDetail.Text + "<br /> From " + Request.Form["txtDateFrom"].ToString().Trim();
                         }
                         if (Request.Form["txtDateTo"].ToString().Trim() != "") {
-                            lblDetail.Text = lblDetail.Text + "<br> To " + Request.Form["txtDateTo"].ToString().Trim();
+                            lblDetail.Text = lblDetail.Text + "<br /> To " + Request.Form["txtDateTo"].ToString().Trim();
                         }
                     }
                     else

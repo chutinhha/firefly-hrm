@@ -9,14 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditQuestionUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Checkpoint.EditQuestion.EditQuestionUserControl" %>
-<br>
+<br />
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <font color="white">Edit Checkpoint Question</font>
+                        <span style="color: white;">Edit Checkpoint Question</span>
                     </td>
                 </tr>
             </table>
@@ -64,13 +64,14 @@
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblVeryBad" runat="server" Text="Very bad level" Width="143px"></asp:Label>
                     <asp:TextBox ID="txtVeryBad" runat="server" Width="200px">Very bad</asp:TextBox>
-                </p><br>
+                </p>
+                <br />
             </asp:Panel>
             <div class="borderTop">
                 <span style="padding-left: 150px;"></span>
                 <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" OnClick="btnSave_Click"
-                    class="addButton" OnClientClick="return confirm('Are you sure you want to save ?')" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="resetButton" Width="80px"
+                    CssClass="addButton" OnClientClick="return confirm('Are you sure you want to save ?')" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="resetButton" Width="80px"
                     OnClick="btnCancel_Click" />
             </div>
         </td>

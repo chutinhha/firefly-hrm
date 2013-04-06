@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Data;
-using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace SP2010VisualWebPart.EditCandidate
 {

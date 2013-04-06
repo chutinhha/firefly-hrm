@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Data;
-using System.Data.OleDb;
 using System.IO;
+using System.Web.UI;
 
 namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
 {

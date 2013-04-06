@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Data;
 
 namespace SP2010VisualWebPart.Admin.Project.ProjectList
 {
