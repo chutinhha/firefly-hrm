@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Data;
+using System.Web.UI;
 
 namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
 {
@@ -32,8 +30,8 @@ namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
                         if (checkExist.Rows.Count > 0)
                         {
                             lblDetail.Text = "You got total "+checkExist.Rows[0][6].ToString()+" point in checkpoint quarter "+quarter
-                                + "<br><br>&nbsp;Average Point is " + checkExist.Rows[0][5].ToString()
-                                +"<br><br>&nbsp;Detail:";
+                                + "<br /><br />&nbsp;Average Point is " + checkExist.Rows[0][5].ToString()
+                                +"<br /><br />&nbsp;Detail:";
                             _com.generateControl(pnlGenerate, "true", Session["AccountID"].ToString(), quarter);
                         }
                         else {
@@ -43,7 +41,7 @@ namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
                     }
                     catch (Exception ex)
                     {
-                        lblError.Text = ex.Message+"<br><br>";
+                        lblError.Text = ex.Message+"<br /><br />";
                     }
                 }
                 else

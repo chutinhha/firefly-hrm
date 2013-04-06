@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Data;
+using System.Web.UI;
 
 namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
 {
@@ -11,6 +9,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            dailyAttendance = Message.DailyAttendancePage;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -340,5 +339,6 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
         protected int leftWidth { get; set; }
         protected int quickLaunchWidth { get; set; }
         protected string displayValue { get; set; }
+        protected string dailyAttendance { get; set; }
     }
 }
