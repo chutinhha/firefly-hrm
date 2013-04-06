@@ -396,58 +396,94 @@
 								<asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" runat="server">
                             
 							<!-- menu -->
-							<div id="ctl00_theMainNav_homeNav">
-					
-							<div style="float:left;">
-							<ul id="qm0" class="qmmc" style="line-height:15px;width:100%">
-								<li class="menuNav"><a class="qmparent" href="/ob3/SitePages/Home.aspx" style="padding-left:8px; padding-right:8px;">ADMIN</a>
-                                    <ul>
-                                        <li><a href="">ORGANIZATION</a>
-                                            <ul>
-                                                <li><a href="">GENERAL INFORMATION</a></li>
-                                                <li><a href="">LOCATION</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="">JOB</a>
-                                            <ul>
-                                                <li><a href="">JOB CATEGORIES</a></li>
-                                                <li><a href="">POSITION</a></li>
-                                                <li><a href="">PAY GRADES</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="">EMPLOYEES</a>
-                                            <ul>
-                                                <li><a href="">IMPORT FROM CSV</a></li>
-                                                <li><a href="">EMPLOYEES LIST</a></li>
-                                                <li><a href="">ADD EMPLOYEE</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="">USERS</a>
-                                            <ul>
-                                                <li><a href="">USERS LIST</a></li>
-                                                <li><a href="">CREATE USER</a></li>
-                                                <li><a href="">ASSIGN USER TO PROJECT</a></li>
-                                                <li><a href="">NOTICE WORKFLOW</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="/ob3/Lists/Calendar/calendar.aspx" style="padding-left:8px; padding-right:8px;">WHO WE ARE</a><ul><li><a href="/ob3/Lists/Calendar/calendar.aspx">About ORBIS International</a></li><li><a href="/Default.aspx?cid=4830&lang=1">History</a></li><li><a href="/Default.aspx?cid=4831&lang=1">What Makes Us Different</a></li><li><a href="/Default.aspx?cid=4836&lang=1">Global Leadership</a></li><li><a href="/Default.aspx?cid=4833&lang=1">Financial Information</a></li><li><a href="/Default.aspx?cid=4840&lang=1">Corporate Sponsors</a></li><li><a href="/Default.aspx?cid=4834&lang=1">Contact Us</a></li><li><a href="/Default.aspx?cid=4835&lang=1">Employment</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="/Default.aspx?cid=4825-4860" style="padding-left:8px; padding-right:8px;">WHAT WE DO</a><ul><li><a href="/Default.aspx?cid=4860&lang=1">Where We Work</a></li><li><a href="/Default.aspx?cid=4855&lang=1">Flying Eye Hospital</a></li><li><a href="/Default.aspx?cid=4858&lang=1">Capacity Building</a></li><li><a href="/Default.aspx?cid=4859&lang=1">Training</a></li><li><a href="/Default.aspx?cid=5607&lang=1">Diseases We Treat</a></li><li><a href="/Default.aspx?cid=4867&lang=1">Cyber-Sight&#174;</a></li><li><a href="/Default.aspx?cid=4841&lang=1">Success Stories</a></li><li><a href="/default.aspx?cid=8639&lang=1">Videos: Eye Reports</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4825-4855" style="padding-left:8px; padding-right:8px;">FLYING EYE HOSPITAL</a><ul><li><a href="/Default.aspx?cid=4825-4855">Flying Eye Hospital</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=9656&lang=1">MD-10: The New Plane</a></li><li><a href="/Default.aspx?cid=4825-4855-4856">Who's On Board?</a></li><li><a href="/Default.aspx?cid=4825-4855-8526">Itinerary</a></li><li><a href="/Default.aspx?cid=4825-4855-6893">Employment</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://www.orbis.org/Default.aspx?cid=4839&lang=1" style="padding-left:8px; padding-right:8px;">GET INVOLVED</a><ul><li><a href="/Default.aspx?cid=4839&lang=1">In Your Community: Advocates for Sight</a></li><li><a href="/Default.aspx?cid=4837&lang=1">Medical Volunteers</a></li><li><a href="/Default.aspx?cid=4838&lang=1">Volunteer Pilots</a></li><li><a href="/Default.aspx?cid=5617&lang=1">Corporate Opportunities</a></li><li><a href="/Default.aspx?cid=7967&lang=1">Publications</a></li><li><a href="/Default.aspx?cid=8315&lang=1">Volunteer Opportunities</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="https://www.orbis.org/Default.aspx?cid=5856" style="padding-left:8px; padding-right:8px;">DONATE NOW</a><ul><li><a href="https://www.orbis.org/Default.aspx?cid=5856">Make a Donation</a></li><li><a href="/Default.aspx?cid=7974&lang=1">Donate Frequent Flyer Miles</a></li><li><a href="/Default.aspx?cid=7965&lang=1">Other Ways of Giving</a></li></ul></li>
-								<li><span class="qmdivider qmdividery" ></span></li>
-								<li class="menuNav"><a class="qmparent" href="http://208.106.216.89/Default.aspx?cid=4827-4869" style="padding-left:8px; padding-right:8px;">NEWSROOM</a><ul><li><a href="/Default.aspx?cid=4869&lang=1">Media contacts</a></li><li><a href="/Default.aspx?cid=4870&lang=1">Fact Sheet</a></li><li><a href="/Default.aspx?cid=4871&lang=1">Press Releases</a></li><li><a href="/Default.aspx?cid=8029&lang=1">What's New</a></li><li><a href="http://www.orbis.org/Default.aspx?cid=5630&lang=1">Video Gallery</a></li><li><a href="http://blog.orbis.org/">Blog</a></li></ul></li>                
-							</ul>
-							</div>
-							
-				            </div>
+							<table style="background-color:#E2E2E2;"><tbody><tr><td>
+			<ul id="nav">
+	<li>
+		<a href="http://orbis.org/blindness.aspx?lang=1">HOME</a>	
+	</li>
+	<li>
+		<a href="http://www.orbis.org/Default.aspx?cid=4824-4829">WHO WE ARE</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4829&lang=1">About ORBIS International</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4830&lang=1">History</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4831&lang=1">What Makes Us Different</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4836&lang=1">Global Leadership</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4833&lang=1">Financial Information</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4840&lang=1">Corporate Sponsors</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4834&lang=1">Contact Us</a></li>
+				<li style="background:none;"><a href="http://www.orbis.org/Default.aspx?cid=4835&lang=1">Employment</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="http://www.orbis.org/Default.aspx?cid=4825-4860">WHAT WE DO</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4860&lang=1">Where We Work</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4855&lang=1">Flying Eye Hospital</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4858&lang=1">Capacity Building</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4859&lang=1">Training</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=5607&lang=1">Diseases We Treat</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4867&lang=1">Cyber-Sight®</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4841&lang=1">Success Stories</a></li>
+				<li style="background:none;"><a href="http://www.orbis.org/default.aspx?cid=8639&lang=1">Videos: Eye Reports</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="http://www.orbis.org/Default.aspx?cid=4825-4855">FLYING EYE HOSPITAL</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4825-4855">Flying Eye Hospital</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=9656&lang=1">MD-10: The New Plane</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4825-4855-4856">Who&#39;s On Board?</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4825-4855-8526">Itinerary</a></li>
+				<li style="background:none;"><a href="http://www.orbis.org/Default.aspx?cid=4825-4855-6893">Employment</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="http://www.orbis.org/Default.aspx?cid=4839&lang=1">GET INVOLVED</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4839&lang=1">In Your Community: Advocates for Sight</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4837&lang=1">Medical Volunteers</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4838&lang=1">Volunteer Pilots</a></li>
+				<li style="background:none;"><a href="http://www.orbis.org/Default.aspx?cid=7967&lang=1">Publications</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li>
+		<a href="https://www.orbis.org/Default.aspx?cid=5856">DONATE NOW</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="https://www.orbis.org/Default.aspx?cid=5856">Make a Donation</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=7974&lang=1">Donate Frequent Flyer Miles</a></li>
+				<li style="background:none;"><a href="http://www.orbis.org/Default.aspx?cid=7965&lang=1">Other Ways of Giving</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+	<li style="background:none;">
+		<a href="http://www.orbis.org/Default.aspx?cid=4827-4869">NEWSROOM</a>
+		<div class="dropdown">
+			<ul>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4869&lang=1">Media contacts</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4870&lang=1">Fact Sheet</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=4871&lang=1">Press Releases</a></li>
+				<li><a href="http://www.orbis.org/Default.aspx?cid=8029&lang=1">What&#39;s New</a></li>
+				<li style="background:none;"><a href="http://blog.orbis.org/">Blog</a></li>
+			</ul>
+			<div class="bottom"></div>
+		</div>
+	</li>
+</ul>                            
+	</td></tr></table>			
 							
 							
 							
