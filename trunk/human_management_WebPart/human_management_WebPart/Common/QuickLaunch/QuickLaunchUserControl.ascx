@@ -19,7 +19,7 @@
             data[i] = { label: title[i], data: parseInt(average[i]) }
         }
         // GRAPH 1
-        $.plot($("#graph1"), data,
+        $.plot($("#graph2"), data,
 	{
 	    series: {
 	        pie: {
@@ -266,7 +266,9 @@ table tbody tr.total td
         <fieldset id="Fieldset2" class="panel_resizable panel-preview" 
     style="width:autopx;width:400px; ">
     <legend>Checkpoint<asp:Label ID="lblQuarter" runat="server" Text=""></asp:Label></legend>
-<div id="graph1" class="graph"></div>
+    <div id="graph2" class="graph" <%=this.displayValue %>></div>
+<asp:Panel ID="graph1" class="graph" runat="server" style="height:100%;">
+        </asp:Panel>
 </fieldset>
     </div></asp:Panel>
     <div style="left:<%= this.leftWidth %>px;" class="panel_draggable panel-preview" id="Div4">
