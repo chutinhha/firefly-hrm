@@ -70,7 +70,16 @@ namespace SP2010VisualWebPart.JobCategories
                 {
                     if (Session["type"].ToString() == "Add")
                     {
-                        _com.insertIntoTable(Message.TableJobCategory,"", "N'" + txtName.Text.Trim() + "','"+DateTime.Now+"'",false);
+                        DataTable existCategories = _com.getData(Message.TableJobCategory, "*", " where " + Message.NameColumn
+                            + "='" + txtName.Text.Trim() + "'");
+                        if (existCategories.Rows.Count == 0)
+                        {
+                            _com.insertIntoTable(Message.TableJobCategory, "", "N'" + txtName.Text.Trim() + "','" + DateTime.Now + "'", false);
+                        }
+                        else {
+                            lblError.Text = Message.AlreadyExistCategory;
+                            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                        }
                     }
                     else {
                         DataTable JobTitles = _com.getData(Message.TableJobTitle, Message.JobTitleColumn + "," + Message.JobIDColumn
@@ -94,7 +103,14 @@ namespace SP2010VisualWebPart.JobCategories
                 }
                 catch (Exception ex)
                 {
-                    lblError.Text = ex.Message;
+                    if (ex.Message.Contains("duplicate key"))
+                    {
+                        lblError.Text = Message.AlreadyExistCategory;
+                    }
+                    else
+                    {
+                        lblError.Text = ex.Message;
+                    }
 					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
