@@ -14,6 +14,18 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDate").datepicker({
             changeMonth: true,
@@ -70,7 +82,7 @@
                     <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="410px"></asp:TextBox>
                 </p>
                 <br />
-                &nbsp;<span color="Red">(*) is required</span><br />
+                &nbsp;<span style="color:Red;">(*) is required</span><br />
                 <br />
                 <div class="borderTop">
                     <span style="padding-left: 160px;"></span>

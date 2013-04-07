@@ -44,6 +44,7 @@ namespace SP2010VisualWebPart.User.Attendance
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -78,7 +79,8 @@ namespace SP2010VisualWebPart.User.Attendance
                     lblSuccess.Text = Message.UpdateSuccess;
                 }
             }catch(Exception ex){
-                lblNote.Text=ex.Message;
+                lblError.Text=ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
         }
     }

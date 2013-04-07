@@ -13,6 +13,18 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -32,7 +44,7 @@
                 <table class="fieldTitleTable">
                     <tr>
                         <td class="fieldTitleTd">
-                            <span style="color:white;">View Attendance Records</span>
+                            <span style="color: white;">View Attendance Records</span>
                         </td>
                     </tr>
                 </table>
@@ -68,7 +80,7 @@
                 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
                 <br />
                 <br />
-                &nbsp;<span color="Red">(*) is required</span>
+                &nbsp;<span style="color: Red;">(*) is required</span>
                 <br />
                 <br />
                 <div class="borderTop">
@@ -91,7 +103,7 @@
                     <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" Width="80px"
                         OnClick="btnEdit_Click" />
                     <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" OnClick="btnDelete_Click"
-                        Text="Delete" Width="80px" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                        Text="Delete" Width="80px" OnClientClick="return ConfirmOnDelete();" />
                 </div>
                 <br />
                 <asp:GridView ID="grdData" runat="server" Width="100%">

@@ -6,9 +6,23 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ApproveTimesheetUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet.ApproveTimesheetUserControl" %>
-<br><table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
+<br /><table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
-<tr><td class="fieldTitleTd"><font color="white">Approve Timesheet</font></td></tr></table>
+<tr><td class="fieldTitleTd"><span style="color:white;">Approve Timesheet</span></td></tr></table>
     <br />
     &nbsp;<asp:Label ID="lblShow" runat="server" Text="Show timesheet" Width="150px"></asp:Label>
 <div class="styled-selectLong">
@@ -19,12 +33,12 @@
     <asp:ListItem>Approved</asp:ListItem>
 </asp:DropDownList></div>
     <br />
-    <br>
+    <br />
 
 	<div class="borderTop" style="border-bottom:1px solid #2CA6CD;">
-<asp:Button ID="btnSave" runat="server" class="addButton" Text="Save" Width="80px" 
-            onclick="btnSave_Click" />
-</div><br>
+<asp:Button ID="btnSave" runat="server" CssClass="addButton" Text="Save" Width="80px" 
+            onclick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
+</div><br />
     <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
      
     </asp:GridView><table><tr><td></td></tr></table>

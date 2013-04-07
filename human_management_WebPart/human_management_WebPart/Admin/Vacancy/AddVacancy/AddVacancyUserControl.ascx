@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AddVacancyUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.AddVacancy.AddVacancyUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
@@ -52,10 +66,13 @@
                 <asp:CheckBox ID="chkActive" runat="server" Checked="True" />
                 <br />
                 <br />
+                &nbsp;<span style="color: Red;">(*) is required</span>
+                <br />
+                <br />
                 <div class="borderTop">
                     <span style="padding-left: 150px;"></span>
                     <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" Width="80px"
-                        CssClass="addButton" OnClientClick="return confirm('Are you sure you want to save ?')" />
+                        CssClass="addButton" OnClientClick="return ConfirmOnSave();" />
                     <asp:Button ID="btnCancel" CssClass="resetButton" runat="server" OnClick="btnCancel_Click"
                         Text="Cancel" Width="80px" />
                 </div>

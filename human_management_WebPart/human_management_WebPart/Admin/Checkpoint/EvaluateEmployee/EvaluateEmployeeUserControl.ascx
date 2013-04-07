@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EvaluateEmployeeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee.EvaluateEmployeeUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -24,7 +38,8 @@
             <asp:Panel ID="pnlSearch" runat="server">
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
+                <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" 
+                    Width="150px"></asp:Label>
                 <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px"></asp:TextBox><br />
                 <br />
                 <div class="borderTop">
@@ -67,7 +82,7 @@
                 </asp:Panel>
                 <div class="borderTop" align="center">
                     <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px"
-                        OnClick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
+                        OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
                     <asp:Button ID="btnCancel1" CssClass="resetButton" runat="server" Text="Cancel" Width="80px"
                         OnClick="btnCancel_Click" /></div>
             </asp:Panel>

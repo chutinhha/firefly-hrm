@@ -40,6 +40,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     }
                     catch (Exception ex) {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -61,6 +62,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -87,7 +89,8 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     Response.Redirect(Message.EditTaskPage, true);
                 }
             }
-            lblError.Text = Message.NotSelectProject;
+            lblError.Text = Message.NotChooseItemEdit;
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {

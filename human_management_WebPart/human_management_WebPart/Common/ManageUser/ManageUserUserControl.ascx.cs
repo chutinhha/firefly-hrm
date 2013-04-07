@@ -93,6 +93,7 @@ namespace SP2010VisualWebPart.Common.ManageUser
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
     }

@@ -10,6 +10,8 @@ namespace SP2010VisualWebPart.Vacancies
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -38,12 +40,14 @@ namespace SP2010VisualWebPart.Vacancies
                             else
                             {
                                 lblError.Text = Message.NotExistData;
+								ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
                         }
                     }
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -52,7 +56,8 @@ namespace SP2010VisualWebPart.Vacancies
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -92,11 +97,13 @@ namespace SP2010VisualWebPart.Vacancies
                 else
                 {
                     lblError.Text = Message.NotExistData;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -118,11 +125,13 @@ namespace SP2010VisualWebPart.Vacancies
                 else
                 {
                     lblError.Text = Message.NotExistData;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -162,17 +171,21 @@ namespace SP2010VisualWebPart.Vacancies
                     break;
                 }
             }
+            lblError.Text = Message.NotChooseItemEdit;
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                bool isCheck = false;
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        isCheck = true;
                         _com.updateTable(Message.TableJobCandidate, " " + Message.JobVacancyColumn + "=NULL where "
                             + Message.JobVacancyColumn + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
                         string sql = @"delete from "+Message.TableVacancy+" where "+Message.VacancyNameColumn+"=N'" 
@@ -181,22 +194,31 @@ namespace SP2010VisualWebPart.Vacancies
                         command.ExecuteNonQuery();
                     }
                 }
-                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
-                    + "", "", Message.TableVacancy, grdData);
-                if (grdData.Rows.Count > 0)
+                if (isCheck == true)
                 {
-                    grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                    grdData.HeaderRow.Cells[2].Text = "Job Title";
-                    grdData.HeaderRow.Cells[3].Text = "Status";
+                    _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn
+                        + "", "", Message.TableVacancy, grdData);
+                    if (grdData.Rows.Count > 0)
+                    {
+                        grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
+                        grdData.HeaderRow.Cells[2].Text = "Job Title";
+                        grdData.HeaderRow.Cells[3].Text = "Status";
+                    }
+                    else
+                    {
+                        lblError.Text = Message.NotExistData;
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                    }
                 }
-                else
-                {
-                    lblError.Text = Message.NotExistData;
+                else {
+                    lblError.Text = Message.NotChooseItemDelete;
+                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
     }

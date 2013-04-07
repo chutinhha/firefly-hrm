@@ -8,6 +8,7 @@ namespace SP2010VisualWebPart.ChangePassword
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmChangePassword = Message.ConfirmChangePassword;
             if (Session["Account"] == null) {
                 Response.Redirect(Message.AccessDeniedPage);
             }
@@ -20,13 +21,14 @@ namespace SP2010VisualWebPart.ChangePassword
                 }
             }
         }
-
+        protected string confirmChangePassword { get; set; }
         protected void btnChangePassword_Click(object sender, EventArgs e)
         {
             if (txtOldPassword.Text.Trim() == "" || txtNewPassword.Text.Trim() == "" || txtConfirmPassword.Text.Trim() == "")
             {
                 lblSuccess.Text = "";
                 lblError.Text = Message.OldPassword;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 try
@@ -35,6 +37,7 @@ namespace SP2010VisualWebPart.ChangePassword
                     {
                         lblSuccess.Text = "";
                         lblError.Text = Message.ConfirmPassword;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         txtNewPassword.Text = "";
                         txtConfirmPassword.Text = "";
                     }
@@ -43,12 +46,15 @@ namespace SP2010VisualWebPart.ChangePassword
                         if (lblError.Text == "")
                         {
                             lblSuccess.Text = Message.UpdateSuccess;
-                        }
+                        }else{
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						}
                     }
                 }
                 catch (Exception ex) {
                     lblSuccess.Text = "";
                     lblError.Text = ex.Message;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
         }

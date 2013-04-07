@@ -139,6 +139,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -167,6 +168,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                     }
                     else if (Extension == ".xls") {
                         lblError.Text = Message.Excel2007Type;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         lblSuccess.Text = "";
                         Panel2.Visible = false;
                         Panel3.Visible = false;
@@ -175,6 +177,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                     else
                     {
                         lblError.Text = Message.InvalidExcel;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         lblSuccess.Text = "";
                         Panel2.Visible = false;
                         Panel3.Visible = false;
@@ -184,6 +187,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 lblSuccess.Text = "";
                 Panel2.Visible = false;
                 Panel3.Visible = false;
@@ -198,6 +202,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
             if (ddlSheets.SelectedValue == "")
             {
                 lblError.Text = Message.NotSelectSheet;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else
             {
@@ -205,6 +210,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                 if (txtStartRow.Text.Trim() == "" || txtStartColumn.Text.Trim() == "")
                 {
                     lblError.Text = Message.StartRowColumnError;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else
                 {
@@ -342,11 +348,13 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                         catch (Exception ex)
                         {
                             lblError.Text = ex.Message;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                         }
                     }
                     catch (FormatException)
                     {
                         lblError.Text = Message.InvalidStartRowColumn;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                 }
             }

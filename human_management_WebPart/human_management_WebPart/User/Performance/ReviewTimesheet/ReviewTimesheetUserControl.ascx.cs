@@ -35,6 +35,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -87,6 +88,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                 catch (FormatException)
                 {
                     lblError.Text = Message.InvalidDate;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 if (chkApprove.Checked == false) { }
                 else
@@ -131,12 +133,14 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                 else
                 {
                     lblError.Text = Message.NotExistData;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     pnlData.Visible = false;
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)

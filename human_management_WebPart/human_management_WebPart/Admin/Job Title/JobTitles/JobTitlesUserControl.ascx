@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobTitlesUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.JobTitles.JobTitlesUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -27,7 +41,7 @@
             <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="addButton" Width="80px"
                 OnClick="btnEdit_Click" />
             <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="deleteButton" Width="80px"
-                OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             <br />
             <br />
             <asp:GridView ID="grdData" runat="server" Width="100%">

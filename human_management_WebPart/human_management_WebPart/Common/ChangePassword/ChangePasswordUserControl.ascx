@@ -9,6 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChangePasswordUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.ChangePassword.ChangePasswordUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnChangePassword() {
+        if (confirm("<%=this.confirmChangePassword %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnChangePassword" Width="100%">
     <table cellpadding="0" class="fieldTitleDiv">
@@ -23,23 +31,29 @@
                 </table>
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblOldPassword" runat="server" Text="Old Password" Width="150px"></asp:Label>
+                <asp:Label ID="lblOldPassword" runat="server" Text="Old Password(*)" 
+                    Width="150px"></asp:Label>
                 <asp:TextBox ID="txtOldPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblNewPassword" runat="server" Text="New Password" Width="150px"></asp:Label>
+                <asp:Label ID="lblNewPassword" runat="server" Text="New Password(*)" 
+                    Width="150px"></asp:Label>
                 <asp:TextBox ID="txtNewPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password" Width="150px"></asp:Label>
+                <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password(*)" 
+                    Width="150px"></asp:Label>
                 <asp:TextBox ID="txtConfirmPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
+                <br />
+                <br />
+                &nbsp;<span style="color: Red;">(*) is required</span>
                 <br />
                 <br />
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnChangePassword" runat="server" Text="Change Password" CssClass="addButton"
-                    Width="150px" OnClick="btnChangePassword_Click" OnClientClick="return confirm('Are you sure you want to change password ?')" />
+                    Width="150px" OnClick="btnChangePassword_Click" OnClientClick="return ConfirmOnChangePassword();" />
 </asp:Panel>
 <br />
 <br />

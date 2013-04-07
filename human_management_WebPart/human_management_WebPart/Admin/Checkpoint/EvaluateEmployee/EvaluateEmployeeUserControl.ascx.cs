@@ -10,6 +10,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -84,6 +86,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -92,13 +95,15 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
             if (txtEmployeeName.Text.Trim() == "")
             {
                 lblError.Text = Message.EmployeeNameError;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 try
@@ -115,11 +120,13 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                     else {
                         pnlData.Visible = false;
                         lblError.Text = Message.NotExistData;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     _com.setGridViewStyle(grdData);
                 }
                 catch (Exception ex) {
                     lblError.Text = ex.Message;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
         }
@@ -437,6 +444,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                 }
                 if (checkAnswerAll == false) {
                     lblError.Text = Message.NotAnswerAll;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     break;
                 }
             }

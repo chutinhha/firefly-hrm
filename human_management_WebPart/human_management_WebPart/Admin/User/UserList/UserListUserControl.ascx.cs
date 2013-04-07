@@ -89,6 +89,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -182,6 +183,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
             if (loginID.Trim() == "")
             {
                 lblError.Text = Message.NotHaveLoginID;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 DataTable BusinessID = _com.getData(Message.TableEmployee, Message.BusinessEntityIDColumn
@@ -189,6 +191,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 if (BusinessID.Rows.Count == 0)
                 {
                     lblError.Text = Message.NotExistLoginID;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else { 
                     MD5 md5Hash = MD5.Create();
@@ -218,6 +221,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                     if (BusinessID.Rows.Count > 0)
                     {
                         lblError.Text = Message.AlreadyExistLoginID;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         lblSuccess.Text = "";
                         break;
                     }
@@ -258,6 +262,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
