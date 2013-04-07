@@ -102,11 +102,13 @@ namespace SP2010VisualWebPart.JobCategories
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            bool isCheck = false;
             foreach (GridViewRow gr in grdData.Rows)
             {
                 CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                 if (cb.Checked)
                 {
+                    isCheck = true;
                     Session["Name"] = Server.HtmlDecode(gr.Cells[1].Text);
                     Session["type"] = "Edit";
                     Panel1.Visible = true;
@@ -115,8 +117,11 @@ namespace SP2010VisualWebPart.JobCategories
                     break;
                 }
             }
-            lblError.Text = Message.NotChooseItemEdit;
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+            if (isCheck == false)
+            {
+                lblError.Text = Message.NotChooseItemEdit;
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+            }
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
