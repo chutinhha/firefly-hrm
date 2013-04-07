@@ -9,6 +9,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -24,7 +26,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect(Message.ProjectListPage, true);
@@ -40,19 +43,50 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
                 if (txtProjectName.Text.Trim() == "")
                 {
                     lblError.Text = Message.NotEnterProjectName;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else if (Request.Form["txtStartDate"].ToString().Trim() == ""
                     || Request.Form["txtEndDate"].ToString().Trim() == "")
                 {
-                    lblError.Text = Message.NotEnterStartEndDate;
+                    if (Request.Form["txtStartDate"].ToString().Trim() == ""
+                    && Request.Form["txtEndDate"].ToString().Trim() == "")
+                    {
+                        DataTable dt = _com.getData(Message.TableProject, "*", " where " + Message.ProjectNameColumn
+                                + "='" + txtProjectName.Text.Trim() + "'");
+                        if (dt.Rows.Count > 0)
+                        {
+                            lblError.Text = Message.AlreadyExistProject;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                        }
+                        else
+                        {
+                            _com.insertIntoTable(Message.TableProject, "", "'" + txtProjectName.Text + "','" + txtNote.Text
+                                + "',NULL,NULL", false);
+                            Response.Redirect(Message.ProjectListPage, true);
+                        }
+                    }
+                    else {
+                        lblError.Text = Message.ConfirmProject;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                    }
                 }
                 else
                 {
-                    DateTime start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
-                    DateTime end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
+                    DateTime start=DateTime.Now;
+                    DateTime end=DateTime.Now;
+                    try
+                    {
+                        start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
+                        end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
+                    }
+                    catch (FormatException) {
+                        lblError.Text = Message.InvalidDate;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                    }
                     if (DateTime.Compare(start, end) > 0)
                     {
                         lblError.Text = Message.StartLargeThanEnd;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     else
                     {
@@ -61,6 +95,7 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
                         if (dt.Rows.Count > 0)
                         {
                             lblError.Text = Message.AlreadyExistProject;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                         else
                         {
@@ -74,6 +109,7 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 

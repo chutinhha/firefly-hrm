@@ -46,7 +46,7 @@
                     Text="View all" />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
+                <asp:Label ID="lblDate" runat="server" Text="Date(*)" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
                     <input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value="<%=this.startDate %>" />
                 </asp:Panel>
@@ -61,6 +61,8 @@
                 <asp:Label ID="lblDateFrom" runat="server" Text="From" Width="50px"></asp:Label>
                 <span style="padding-left: 160px;"></span>
                 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
+                <br />
+                <br />
                 <div class="borderTop">
                     <span style="padding-left: 155px;"></span>
                     <asp:Button ID="btnView" runat="server" Text="View" Width="80px" OnClick="btnView_Click"

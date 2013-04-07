@@ -13,6 +13,18 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtStartDate").datepicker({
             changeMonth: true,
@@ -59,10 +71,13 @@
             <input type="text" id="txtEndDate" name="txtEndDate" style="width: 200px;" value="<%= this.endDate %>" />
             <p>
                 &nbsp;</p>
+                &nbsp;<span style="color: Red;">(*) is required</span>
+                <br />
+                <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px"
-                    OnClick="btnSave_Click" />
+                    OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
                 <asp:Button ID="btnCancel" CssClass="resetButton" runat="server" Text="Cancel" Width="80px"
                     OnClick="btnCancel_Click" /></div>
         </td>

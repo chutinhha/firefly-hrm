@@ -10,6 +10,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -34,12 +36,14 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                             else
                             {
                                 lblError.Text = Message.NotExistData;
+								ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
                         }
                     }
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -48,7 +52,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
             //Check or uncheck all checkbox
@@ -99,11 +104,13 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                 else
                 {
                     lblError.Text = Message.NotExistData;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -116,11 +123,13 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
         {
             try
             {
+                bool isCheck = false;
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        isCheck = true;
                         string sql=@"delete from "+Message.TableEvaluatePoint+" where "+Message.QuestionIDColumn+"='"
                             + Server.HtmlDecode(gr.Cells[1].Text) + "';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);
@@ -131,22 +140,31 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                         command.ExecuteNonQuery();
                     }
                 }
-                _com.bindData(Message.QuestionIDColumn + "," + Message.QuestionTitleColumn + "," + Message.AnserTypeColumn
-                                + "", "", Message.TableCheckpointQuestion, grdData);
-                if (grdData.Rows.Count > 0)
+                if (isCheck == true)
                 {
-                    grdData.HeaderRow.Cells[2].Text = "Question";
-                    grdData.HeaderRow.Cells[3].Text = "Answer Type";
+                    _com.bindData(Message.QuestionIDColumn + "," + Message.QuestionTitleColumn + "," + Message.AnserTypeColumn
+                                    + "", "", Message.TableCheckpointQuestion, grdData);
+                    if (grdData.Rows.Count > 0)
+                    {
+                        grdData.HeaderRow.Cells[2].Text = "Question";
+                        grdData.HeaderRow.Cells[3].Text = "Answer Type";
+                    }
+                    else
+                    {
+                        lblError.Text = Message.NotExistData;
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                    }
+                    ddlAnswerType.SelectedIndex = 0;
                 }
-                else
-                {
-                    lblError.Text = Message.NotExistData;
+                else {
+                    lblError.Text = Message.NotChooseItemDelete;
+                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                 }
-                ddlAnswerType.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -168,6 +186,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                     break;
                 }
             }
+            lblError.Text = Message.NotChooseItemEdit;
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
     }
 }

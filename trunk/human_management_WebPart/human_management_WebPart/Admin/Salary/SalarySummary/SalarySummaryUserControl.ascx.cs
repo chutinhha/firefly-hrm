@@ -10,6 +10,8 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -77,6 +79,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -85,7 +88,8 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false;
@@ -196,6 +200,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
     }

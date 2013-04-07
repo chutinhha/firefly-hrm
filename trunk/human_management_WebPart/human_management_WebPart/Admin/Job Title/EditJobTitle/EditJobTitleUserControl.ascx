@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditJobTitleUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.EditJobTitle.EditJobTitleUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
@@ -57,10 +71,13 @@
                 </p>
                 <p>
                     &nbsp;</p>
+                    &nbsp;<span style="color: Red;">(*) is required</span>
+                <br />
+                <br />
                 <div class="borderTop">
                     <span style="padding-left: 155px;"></span>
                     <asp:Button ID="btnSave" runat="server" CssClass="addButton" OnClick="btnSave_Click"
-                        OnClientClick="return confirm('Are you sure you want to save ?')" Text="Save"
+                        OnClientClick="return ConfirmOnSave();" Text="Save"
                         Width="80px" />
                     <asp:Button ID="btnCancel" runat="server" CssClass="resetButton" OnClick="btnCancel_Click"
                         Text="Cancel" Width="80px" />

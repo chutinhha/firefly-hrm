@@ -9,6 +9,8 @@ namespace SP2010VisualWebPart.PunchAttendance
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -55,6 +57,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -63,7 +66,8 @@ namespace SP2010VisualWebPart.PunchAttendance
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected string readOnly { get; set; }
         protected string inputValue { get; set; }
         protected string inputID { get; set; }
@@ -80,11 +84,13 @@ namespace SP2010VisualWebPart.PunchAttendance
             if (Request.Form["txtDate"].ToString().Trim() == "")
             {
                 lblError.Text = Message.NotChooseDate;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 if (ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue == "")
                 {
                     lblError.Text = Message.NotChooseTime;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else {
                     try
@@ -107,6 +113,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 {
                                     lblError.Text = Message.LastPunchOut + data.Rows[0][3].ToString()
                                         + Message.PunchOutError;
+									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                 }
                                 else
                                 {
@@ -121,6 +128,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     this.inputValue = Request.Form["txtDate"].ToString().Trim();
                                     this.inputID = "txtDateDisable";
                                     lblError.Text = Message.LastPunchIn + Session["In"].ToString();
+									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                 }
                             }
                             else {
@@ -129,6 +137,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 if (dt1.CompareTo(dt)>=0) {
                                     lblError.Text = Message.LastPunchIn + Session["In"].ToString() 
                                         + Message.PunchInAfterTime;
+									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                     this.inputValue = Request.Form["txtDate"].ToString().Trim();
                                     this.readOnly = "readonly";
                                     this.inputID = "txtDateDisable";
@@ -154,10 +163,12 @@ namespace SP2010VisualWebPart.PunchAttendance
                         }
                         catch (FormatException) {
                             lblError.Text = Message.InvalidDateTime;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                     }
                     catch (Exception ex) {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
             }

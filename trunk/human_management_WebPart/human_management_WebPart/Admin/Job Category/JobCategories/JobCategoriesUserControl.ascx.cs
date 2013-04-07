@@ -11,6 +11,8 @@ namespace SP2010VisualWebPart.JobCategories
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -32,6 +34,7 @@ namespace SP2010VisualWebPart.JobCategories
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -40,7 +43,8 @@ namespace SP2010VisualWebPart.JobCategories
                 }
             }
         }
-
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             Panel1.Visible = true;
@@ -58,6 +62,7 @@ namespace SP2010VisualWebPart.JobCategories
         {
             if (txtName.Text.Trim() == "") {
                 lblError.Text = Message.CategoryNameError;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else
             {
@@ -90,6 +95,7 @@ namespace SP2010VisualWebPart.JobCategories
                 catch (Exception ex)
                 {
                     lblError.Text = ex.Message;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
         }
@@ -109,17 +115,21 @@ namespace SP2010VisualWebPart.JobCategories
                     break;
                 }
             }
+            lblError.Text = Message.NotChooseItemEdit;
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                bool isCheck = false;
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        isCheck = true;
                         string sql;
                         SqlCommand command;
                         _com.updateTable(Message.TableJobTitle, " "+Message.JobCategoryColumn+"=NULL where " 
@@ -132,11 +142,19 @@ namespace SP2010VisualWebPart.JobCategories
                         lblError.Text = "";
                     }
                 }
-                _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
+                if (isCheck == true)
+                {
+                    _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
+                }
+                else {
+                    lblError.Text = Message.NotChooseItemDelete;
+                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)

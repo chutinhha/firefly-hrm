@@ -10,9 +10,21 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AddProjectUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Project.AddProject.AddProjectUserControl" %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtStartDate").datepicker({
             changeMonth: true,
@@ -24,14 +36,14 @@
         });
     });
 </script>
-<br>
+<br />
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <font color="white">Add New Project</font>
+                        <span style="color: white;">Add New Project</span>
                     </td>
                 </tr>
             </table>
@@ -50,24 +62,27 @@
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblStartDate" runat="server" Text="Start Date(*)" Width="155px"></asp:Label><input
+            <asp:Label ID="lblStartDate" runat="server" Text="Start Date" Width="155px"></asp:Label><input
                 type="text" id="txtStartDate" name="txtStartDate" style="width: 200px;" value="<%=this.startDate %>" />
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblEndDate" runat="server" Text="End Date(*)" Width="150px"></asp:Label>
-            <input type="text" id="txtEndDate" name="txtEndDate" style="width: 200px;"
-                value="<%=this.endDate %>" />
+            <asp:Label ID="lblEndDate" runat="server" Text="End Date" Width="150px"></asp:Label>
+            <input type="text" id="txtEndDate" name="txtEndDate" style="width: 200px;" value="<%=this.endDate %>" />
             <p>
                 &nbsp;</p>
+                &nbsp;<span style="color: Red;">(*) is required</span>
+                <br />
+                <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
-                <asp:Button ID="btnSave" class="addButton" runat="server" Text="Save" Width="80px"
-                    OnClick="btnSave_Click" />
-                <asp:Button ID="btnCancel" class="resetButton" runat="server" Text="Cancel" Width="80px"
+                <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px"
+                    OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
+                <asp:Button ID="btnCancel" CssClass="resetButton" runat="server" Text="Cancel" Width="80px"
                     OnClick="btnCancel_Click" /></div>
         </td>
     </tr>
 </table>
-<br><br>
+<br />
+<br />
 &nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

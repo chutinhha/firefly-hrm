@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalarySummaryUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Salary.SalarySummary.SalarySummaryUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -34,7 +48,7 @@
             <div class="borderBottom">
                 <span style="padding-left: 105px"></span>
                 <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="addButton" Width="80px"
-                    OnClick="btnSave_Click" />
+                    OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
             </div>
             <br />
             <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">

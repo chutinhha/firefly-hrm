@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobCategoriesUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.JobCategories.JobCategoriesUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <asp:Panel ID="Panel1" runat="server" Visible="False" DefaultButton="btnSave">
     <br />
     <table class="fieldTitleDiv" cellpadding="0">
@@ -28,9 +42,12 @@
                 <asp:TextBox ID="txtName" runat="server" Width="200px"></asp:TextBox>
                 <br />
                 <br />
+                &nbsp;<span style="color: Red;">(*) is required</span>
+                <br />
+                <br />
                 <div class="borderTop">
                     <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px"
-                        OnClick="btnSave_Click" OnClientClick="return confirm('Are you sure you want to save ?')" />
+                        OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
                     <asp:Button ID="btnCancel" CssClass="resetButton" runat="server" Text="Cancel" Width="80px"
                         OnClick="btnCancel_Click" /></div>
             </td>
@@ -55,7 +72,7 @@
             <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" Width="80px"
                 OnClick="btnEdit_Click" />
             <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" Width="80px"
-                OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             <br />
             <br />
             <asp:GridView ID="grdData" runat="server" Width="100%">

@@ -37,11 +37,13 @@ namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
                         else {
                             pnlGenerate.Visible = false;
                             lblError.Text = Message.NotHaveCheckPointYet;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                     }
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message+"<br /><br />";
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                 }
                 else

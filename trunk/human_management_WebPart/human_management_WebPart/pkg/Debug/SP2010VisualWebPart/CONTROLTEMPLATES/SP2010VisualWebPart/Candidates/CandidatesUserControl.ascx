@@ -10,9 +10,21 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CandidatesUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Candidates.CandidatesUserControl" %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -24,7 +36,7 @@
         });
     });
 </script>
-<br>
+<br />
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -32,7 +44,7 @@
                 <table class="fieldTitleTable">
                     <tr>
                         <td class="fieldTitleTd">
-                            <font color="white">Candidates</font>
+                            <span style="color: white;">Candidates</span>
                         </td>
                     </tr>
                 </table>
@@ -79,30 +91,33 @@
                     <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 150px;" value="<%= this.fromDate %>" /></asp:Panel>
                 <span style="padding-left: 40px;"></span>
                 <input type="text" id="txtDateTo" name="txtDateTo" style="width: 150px;" value="<%= this.toDate %>" />
-<br />
-<span style="padding-left: 600px;"></span>
-<asp:Label ID="lblDateFrom" runat="server" Text="From" Width="205px" Height="20px"></asp:Label>
-<asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
-<br />
-<div class="borderTop">
-    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
-        class="addButton" />
-    <asp:Button ID="btnReset" class="resetButton" runat="server" OnClick="btnReset_Click"
-        Text="Reset" Width="70px" />
-</div>
-</td></tr></table></asp:Panel>
+                <br />
+                <span style="padding-left: 600px;"></span>
+                <asp:Label ID="lblDateFrom" runat="server" Text="From" Width="205px" Height="20px"></asp:Label>
+                <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
+                <br />
+                <div class="borderTop">
+                    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
+                        CssClass="addButton" />
+                    <asp:Button ID="btnReset" CssClass="resetButton" runat="server" OnClick="btnReset_Click"
+                        Text="Reset" Width="70px" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</asp:Panel>
 <p>
     &nbsp;</p>
 <table class="fieldTitleDiv">
     <tr>
         <td>
             <div class="borderBottom">
-                <asp:Button ID="btnAdd" runat="server" class="addButton" Text="Add" Width="70px"
+                <asp:Button ID="btnAdd" runat="server" CssClass="addButton" Text="Add" Width="70px"
                     OnClick="btnAdd_Click" />
-                <asp:Button ID="btnEdit" class="addButton" runat="server" Text="Edit" Width="70px"
+                <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" Width="70px"
                     OnClick="btnEdit_Click" />
-                <asp:Button ID="btnDelete" class="deleteButton" runat="server" Text="Delete" Width="70px"
-                    OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" Width="70px"
+                    OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <br />
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
@@ -130,7 +145,6 @@
         </td>
     </tr>
 </table>
-<br>
-<br>
+<br />
+<br />
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
-

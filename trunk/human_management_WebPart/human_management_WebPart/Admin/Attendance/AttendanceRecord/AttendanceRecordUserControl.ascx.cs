@@ -13,6 +13,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
         private string _condition = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null) {
                 Response.Redirect(Message.AccessDeniedPage);
             }
@@ -59,6 +61,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
+						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -70,6 +73,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
         //For text in input textbox
         protected string startDate { get; set; }
         protected string endDate { get; set; }
+        protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {
         }
@@ -132,6 +137,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
             lblError.Text = "";
             if(txtEmployeeName.Text.Trim()==""){
                 lblError.Text=Message.EmployeeNameError;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else{
                 try
@@ -152,6 +158,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         if (Request.Form["txtDateFrom"].ToString().Trim() == "")
                         {
                             lblError.Text = Message.NotChooseDate;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                         else
                         {
@@ -172,6 +179,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             catch (FormatException)
                             {
                                 lblError.Text = Message.InvalidDate;
+								ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
                         }
                     }
@@ -180,6 +188,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         if (Request.Form["txtDateFrom"].ToString().Trim() == "" || Request.Form["txtDateTo"].ToString().Trim() == "")
                         {
                             lblError.Text = Message.NotChooseFromToDate;
+							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                         else
                         {
@@ -205,12 +214,14 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             catch (FormatException)
                             {
                                 lblError.Text = Message.InvalidDate;
+								ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
                         }
                     }
                 }
                 catch (Exception ex) {
                     lblError.Text = ex.Message;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
             //Show Data if Gridview have data and bindDataAttendance method success
@@ -226,6 +237,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 if (lblError.Text == "")
                 {
                     lblError.Text = Message.NotExistData;
+					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 pnlData.Visible = false;
             }
@@ -241,8 +253,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void rdoViewAll_CheckedChanged(object sender, EventArgs e)
         {
-            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
-            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             if (rdoViewAll.Checked == true)
             {
                 pnlDateTo.Visible = false;
@@ -256,19 +266,19 @@ namespace SP2010VisualWebPart.AttendanceRecord
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
-            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             try
             {
+                bool isCheck = false;
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        isCheck = true;
                         DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
-                                            + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                                            , " where p." + Message.NameColumn + "='" + Server.HtmlDecode(gr.Cells[1].Text) + "'"
-                                            + " and p." + Message.EmailAddressColumn + "=N'" + Server.HtmlDecode(gr.Cells[4].Text)+"'");
+                            + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
+                            , " where p." + Message.NameColumn + "='" + Server.HtmlDecode(gr.Cells[1].Text).Trim() + "'"
+                            + " and (p." + Message.EmailAddressColumn + "=N'" + Server.HtmlDecode(gr.Cells[4].Text).Trim() + "' or p."+Message.EmailAddressColumn+" is NULL)");
                         string sql = @"delete from "+Message.TableAttendance+" where "+Message.BusinessEntityIDColumn+"=N'" 
                             + getID.Rows[0][0].ToString() + "' and "+Message.PunchInColumn+"='"+gr.Cells[2].Text
                             +"' and "+Message.PunchOutColumn+"='"+gr.Cells[3].Text+"';";
@@ -276,26 +286,35 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         command.ExecuteNonQuery();
                     }
                 }
-                _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
-                    + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
-                if (grdData.Rows.Count > 0)
+                if (isCheck == true)
                 {
-                    grdData.HeaderRow.Cells[1].Text = "Employee Name";
-                    grdData.HeaderRow.Cells[2].Text = "In Time";
-                    grdData.HeaderRow.Cells[3].Text = "Out Time";
-                    grdData.HeaderRow.Cells[4].Text = "Email";
+                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
+                        + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                        + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                    if (grdData.Rows.Count > 0)
+                    {
+                        grdData.HeaderRow.Cells[1].Text = "Employee Name";
+                        grdData.HeaderRow.Cells[2].Text = "In Time";
+                        grdData.HeaderRow.Cells[3].Text = "Out Time";
+                        grdData.HeaderRow.Cells[4].Text = "Email";
+                    }
+                    else
+                    {
+                        lblError.Text = Message.NotExistData;
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                        pnlData.Visible = false;
+                    }
                 }
-                else
-                {
-                    lblError.Text = Message.NotExistData;
-                    pnlData.Visible = false;
+                else {
+                    lblError.Text = Message.NotChooseItemDelete;
+                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -328,6 +347,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     Response.Redirect(Message.EditAttendancePage, true);
                 }
             }
+            lblError.Text = Message.NotChooseItemEdit;
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
 
         protected void txtEmployeeName_TextChanged(object sender, EventArgs e)

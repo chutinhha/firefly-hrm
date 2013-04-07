@@ -9,6 +9,20 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditQuestionUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Checkpoint.EditQuestion.EditQuestionUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <br />
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -22,7 +36,7 @@
             </table>
             <br />
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblQuestion" runat="server" Text="Question" Width="150px"></asp:Label>
+            <asp:Label ID="lblQuestion" runat="server" Text="Question(*)" Width="150px"></asp:Label>
             <br />
             <span style="padding-left: 155px;"></span>
             <asp:TextBox ID="txtQuestion" runat="server" Height="100px" TextMode="MultiLine"
@@ -67,10 +81,13 @@
                 </p>
                 <br />
             </asp:Panel>
+            &nbsp;<span style="color: Red;">(*) is required</span>
+                <br />
+                <br />
             <div class="borderTop">
                 <span style="padding-left: 150px;"></span>
                 <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" OnClick="btnSave_Click"
-                    CssClass="addButton" OnClientClick="return confirm('Are you sure you want to save ?')" />
+                    CssClass="addButton" OnClientClick="return ConfirmOnSave();" />
                 <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="resetButton" Width="80px"
                     OnClick="btnCancel_Click" />
             </div>
