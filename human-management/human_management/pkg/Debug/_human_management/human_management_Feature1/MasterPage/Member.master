@@ -404,14 +404,9 @@
 		<div class="dropdown">
 			<ul>
 				<li style="background:none"><a href="">Personal Information</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Personal Details</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Contact Details</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Job</a></li>
-					<li style="padding-left:40px;"><a href="">Salary</a></li>
-					
+					<li style="padding-left:40px;"><a class="small" href="">Personal Details</a></li>					
 				<li style="background:none"><a href="">Leave Information</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Leave Summary</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Leave List</a></li>				
+					<li style="padding-left:40px;"><a class="small" href="">Leave Summary</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		
@@ -421,12 +416,8 @@
 		<div class="dropdown">
 			<ul>
 				<li style="background:none"><a href="">Timesheets</a></li>					
-				<li style="background:none"><a href="">Attendance</a></li>
-					<li style="padding-left:40px;background:none;"><a href="DailyAttendance.aspx">Daily Attendance</a></li>
-					<li style="padding-left:40px;"><a href="">My Records</a></li>	
-				<li style="background:none"><a href="">Leave</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">My leave</a></li>
-					<li style="padding-left:40px;background:none;"><a href="">Apply Leave</a></li>			
+				<li style="background:none;"><a href="DailyAttendance.aspx">Daily Attendance</a></li>
+				<li style="background:none;"><a href="">Apply Leave</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		
@@ -436,9 +427,9 @@
 		<div class="dropdown">
 			<ul>
 				<li style="background:none"><a href="SupervisorJudgment.aspx">Reviews</a></li>					
-					<li style="padding-left:40px;background:none;"><a href="ReviewTimesheet.aspx">Timesheets Summary</a></li>
-					<li style="padding-left:40px;background:none;"><a href="ReviewAttendance.aspx">Attendance Summary</a></li>
-					<li style="padding-left:40px;background:none;"><a href="SupervisorJudgment.aspx">Supervisor Judgment</a></li>			
+					<li style="padding-left:40px;background:none;"><a class="small" href="ReviewTimesheet.aspx">Timesheets Summary</a></li>
+					<li style="padding-left:40px;background:none;"><a class="small" href="ReviewAttendance.aspx">Attendance Summary</a></li>
+					<li style="padding-left:40px;"><a class="small" href="SupervisorJudgment.aspx">Supervisor Judgment</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		

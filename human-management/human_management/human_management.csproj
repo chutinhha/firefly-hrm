@@ -58,9 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="STYLES\human_management\PredictiveSearch.cs">
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -71,12 +68,8 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7d93d4c0-792b-445c-a3c8-fcedcafaf80d}</SharePointProjectItemId>
     </None>
-    <None Include="MasterPage\Admin.master">
-      <SubType>ASPXCodeBehind</SubType>
-    </None>
-    <None Include="MasterPage\Member.master">
-      <SubType>ASPXCodeBehind</SubType>
-    </None>
+    <None Include="MasterPage\Admin.master" />
+    <None Include="MasterPage\Member.master" />
     <None Include="MasterPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54ad75c4-c932-42ff-bfac-1e5f812256ea}</SharePointProjectItemId>
     </None>
@@ -86,9 +79,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MasterPage\212ob.master">
-      <SubType>ASPXCodeBehind</SubType>
-    </None>
+    <None Include="MasterPage\212ob.master" />
     <None Include="Package\Package.package">
       <PackageId>{958e8086-3a42-41c4-b1ed-0854da2b8ba1}</PackageId>
     </None>
@@ -147,7 +138,9 @@
     <Content Include="Images\21_2_ob\nav-bg2.jpg" />
     <Content Include="Images\21_2_ob\nav_dropdown_bottom.png" />
     <Content Include="Images\21_2_ob\nav_dropdown_grad.png" />
+    <Content Include="Images\21_2_ob\nav_dropdown_hover.bmp" />
     <Content Include="Images\21_2_ob\nav_dropdown_hover.gif" />
+    <Content Include="Images\21_2_ob\nav_dropdown_hover_small.gif" />
     <Content Include="Images\21_2_ob\nav_dropdown_li.png" />
     <Content Include="Images\21_2_ob\nav_dropdown_sep.gif" />
     <Content Include="Images\21_2_ob\nav_separator.png" />

@@ -83,7 +83,9 @@
     <TemplateFile Location="Images\21_2_ob\nav-bg2.jpg" />
     <TemplateFile Location="Images\21_2_ob\nav_dropdown_bottom.png" />
     <TemplateFile Location="Images\21_2_ob\nav_dropdown_grad.png" />
+    <TemplateFile Location="Images\21_2_ob\nav_dropdown_hover.bmp" />
     <TemplateFile Location="Images\21_2_ob\nav_dropdown_hover.gif" />
+    <TemplateFile Location="Images\21_2_ob\nav_dropdown_hover_small.gif" />
     <TemplateFile Location="Images\21_2_ob\nav_dropdown_li.png" />
     <TemplateFile Location="Images\21_2_ob\nav_dropdown_sep.gif" />
     <TemplateFile Location="Images\21_2_ob\nav_separator.png" />
