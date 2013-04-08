@@ -25,10 +25,10 @@
     </tr>
     <tr>
         <td>
-            <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>            
         </td>
         <td>
-            <asp:DropDownList ID="ddl" runat="server">
+            <asp:DropDownList ID="ddlCurrentFlag" runat="server">
                 <asp:ListItem Selected="True">--Select</asp:ListItem>
                 <asp:ListItem>Active</asp:ListItem>
                 <asp:ListItem>Inactive</asp:ListItem>
@@ -66,10 +66,12 @@
     </tr>
     <tr>
         <td>
-            <asp:Button ID="btnSearch" runat="server" Text="Search" />
+            <asp:Button ID="btnSearch" runat="server" Text="Search" 
+                onclick="btnSearch_Click" />
         </td>
         <td>
-            <asp:Button ID="btnReset" runat="server" Text="Reset" />
+            <asp:Button ID="btnReset" runat="server" Text="Reset" 
+                onclick="btnReset_Click" />
         </td>
         <td>
         </td>
@@ -80,26 +82,14 @@
 <table>
     <tr>
         <td>
-            <asp:Button ID="btnAdd" runat="server" Text="Add" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add" onclick="btnAdd_Click" />
         </td>
         <td>
-            <asp:Button ID="btnDelete" runat="server" Text="Delete" />
-        </td>
+            &nbsp;</td>
     </tr>
     <tr>
         <td colspan="2">
-            <asp:GridView ID="grdEmployee" runat="server" Width="100%">
-                <Columns>
-                    <asp:TemplateField>
-                        <HeaderStyle Width="25" />
-                        <HeaderTemplate>
-                            &nbsp;<asp:CheckBox ID="chkAll" runat="server" AutoPostBack="true" OnCheckedChanged="chkAll_CheckedChanged" />
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            &nbsp;<asp:CheckBox ID="chkItem" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
+            <asp:GridView ID="grdEmployee" runat="server" Width="100%">                
             </asp:GridView>
         </td>
     </tr>
