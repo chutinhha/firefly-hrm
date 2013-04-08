@@ -17,34 +17,31 @@
 <asp:DropDownList runat="server" id="ddlDayOff" 
 onselectedindexchanged="ddlDayOff_SelectedIndexChanged">
 </asp:DropDownList></div>
-<br/><br>
+<span style="padding-left:5px"></span><asp:Label ID="lblStatus" runat="server" Text="Leave Status" Width="150px"></asp:Label>
+<div class="styled-selectLong">
+    <asp:DropDownList ID="ddlShow" runat="server" 
+        onselectedindexchanged="ddlShow_SelectedIndexChanged">
+    <asp:ListItem>All</asp:ListItem>
+    <asp:ListItem Selected="True">Approve</asp:ListItem>
+    <asp:ListItem>Not Approved</asp:ListItem>
+    <asp:ListItem>Reject</asp:ListItem>
+</asp:DropDownList></div>
+<br>
 <div class="borderTop">
-<asp:Button ID="btnAdd" class="addButton" runat="server" Text="Add" Width="80px" onclick="btnAdd_Click" />
-<asp:Button ID="btnDelete" runat="server" class="deleteButton" Text="Delete" Width="80px" onclick="btnDelete_Click" />
+<asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px" onclick="btnSearch_Click" />
+<asp:Button ID="btnAssign" class="addButton" runat="server" Text="Assign" Width="80px" onclick="btnAssign_Click"  Visible = "false" />
 </div>
 
-    <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True" 
-        onselectedindexchanged="grdData_SelectedIndexChanged" 
-        Width="100%" BorderStyle="None" BorderWidth="0px">
-    <Columns>
-
-                        <asp:TemplateField>
-                        <HeaderStyle Width="25" />
-                            <HeaderTemplate>
-            &nbsp;<asp:CheckBox 
-                ID="CheckBox2" 
-                runat="server"
-                OnCheckedChanged="CheckUncheckAll"
-                AutoPostBack="true"
-                />
-        </HeaderTemplate>
-                            <ItemTemplate>
-                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                  </Columns>
+    <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
+     
     </asp:GridView>
+        <br />
+
+	<div class="borderTop">
+<asp:Button ID="btnSave" runat="server" CssClass="addButton" Text="Save" Width="80px" 
+            onclick="btnSave_Click" />
+</div>
     </tr></td></table>
 <br><br>
 <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblSuccess" runat="server" style="color:Green;"></asp:Label>
