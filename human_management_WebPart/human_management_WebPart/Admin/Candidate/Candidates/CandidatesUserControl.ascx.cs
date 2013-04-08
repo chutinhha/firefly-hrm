@@ -278,7 +278,7 @@ namespace SP2010VisualWebPart.Candidates
         {
             foreach (GridViewRow gr in grdData.Rows)
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("chkItem");
                 if (cb.Checked)
                 {
                     Session["Name"] = Server.HtmlDecode(gr.Cells[2].Text);
