@@ -54,27 +54,58 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
                 }
                 else
                 {
-                    DateTime start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
-                    DateTime end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
-                    if (DateTime.Compare(start, end) > 0) {
-                        lblError.Text = Message.StartLargeThanEnd;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
-                    }
-                    else
+                    bool checkFormat = true;
+                    DateTime start = DateTime.Now;
+                    DateTime end = DateTime.Now;
+                    try
                     {
-                        DataTable dt = _com.getData(Message.TableTask, "*", " where " + Message.TaskNameColumn
-                            + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
-                        if (dt.Rows.Count > 0)
+                        start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
+                        end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
+                    }
+                    catch (FormatException) {
+                        lblError.Text = Message.InvalidDate;
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                        checkFormat = false;
+                    }
+                    if (checkFormat == true)
+                    {
+                        try
                         {
-                            lblError.Text = Message.AlreadyExistTask;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                            if (txtLimitDate.Text.Trim() != "")
+                            {
+                                int LimitDate = int.Parse(txtLimitDate.Text.Trim());
+                            }
                         }
-                        else
+                        catch (FormatException)
                         {
-                            _com.insertIntoTable(Message.TableTask, "", "'" + Session["ProjectID"].ToString() + "','" + txtTaskName.Text + "','" + txtNote.Text
-                                + "','" + Request.Form["txtStartDate"].ToString().Trim() + "','" + Request.Form["txtEndDate"].ToString().Trim()
-                                + "'", false);
-                            Response.Redirect(Message.TaskListPage, true);
+                            lblError.Text = Message.LitmitDateError;
+                            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                            checkFormat = false;
+                        }
+                        if (checkFormat == true)
+                        {
+                            if (DateTime.Compare(start, end) > 0)
+                            {
+                                lblError.Text = Message.StartLargeThanEnd;
+                                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                            }
+                            else
+                            {
+                                DataTable dt = _com.getData(Message.TableTask, "*", " where " + Message.TaskNameColumn
+                                    + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    lblError.Text = Message.AlreadyExistTask;
+                                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                                }
+                                else
+                                {
+                                    _com.insertIntoTable(Message.TableTask, "", "'" + Session["ProjectID"].ToString() + "','" + txtTaskName.Text + "','" + txtNote.Text
+                                        + "','" + Request.Form["txtStartDate"].ToString().Trim() + "','" + Request.Form["txtEndDate"].ToString().Trim()
+                                        + "','" + txtLimitDate.Text.Trim() + "'", false);
+                                    Response.Redirect(Message.TaskListPage, true);
+                                }
+                            }
                         }
                     }
                 }

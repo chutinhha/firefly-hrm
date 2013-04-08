@@ -1,4 +1,4 @@
-<%@ Register tagprefix="AddCandidate" namespace="SP2010VisualWebPart.AddCandidate" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+﻿<%@ Register tagprefix="AddCandidate" namespace="SP2010VisualWebPart.AddCandidate" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="NotifyEmployee" namespace="SP2010VisualWebPart.Admin.NotifyEmployee" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
@@ -27,16 +27,27 @@
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __designer:Values="&lt;P N='Title' ID='1' T='Full Page' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='ID' ID='2' T='FullPage' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><AddCandidate:AddCandidate runat="server" ID="g_986c56b5_83fa_412e_93ea_44ff0479ae53" Description="AddCandidate" ChromeType="None" Title="AddCandidate" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' ID='1' T='AddCandidate' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_986c56b5_83fa_412e_93ea_44ff0479ae53' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='FullPage' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' ID='2' T='Full Page' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='Title' R='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><AddCandidate:AddCandidate runat="server" ID="g_986c56b5_83fa_412e_93ea_44ff0479ae53" Description="AddCandidate" ChromeType="None" Title="AddCandidate" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' ID='1' T='AddCandidate' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_986c56b5_83fa_412e_93ea_44ff0479ae53' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
 	&lt;tr&gt;
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53&quot;&gt;
 	
 &lt;link rel=&quot;stylesheet&quot; href=&quot;http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css&quot; /&gt;
-&lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;http://code.jquery.com/ui/1.10.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;/resources/demos/style.css&quot; /&gt;
-&lt;script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/ui/1.10.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    function ConfirmOnDelete() {
+        if (confirm(&quot;&quot;) == true)
+            return true;
+        else
+            return false;
+    }
+    function ConfirmOnSave() {
+        if (confirm(&quot;&quot;) == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $(&quot;#txtApplyDate&quot;).datepicker({
             changeMonth: true,
@@ -48,89 +59,84 @@
         });
     });
 &lt;/script&gt;
-&lt;br&gt;&lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
-		&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
-&lt;table class=&quot;fieldTitleTable&quot;&gt;
-&lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;&lt;font color=&quot;white&quot;&gt;Add Candidate&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblFullName&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Full Name(*)&lt;/span&gt;
-&lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtFullName&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtFullName&quot; style=&quot;width:200px;&quot; /&gt;
-&lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblAddress&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Address Street&lt;/span&gt;
-
-&lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtAddress&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtAddress&quot; style=&quot;width:200px;&quot; /&gt;
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-&lt;p&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblCity&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;City&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtCity&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtCity&quot; style=&quot;width:200px;&quot; /&gt;
-    &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblState&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;State&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtState&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtState&quot; style=&quot;width:200px;&quot; /&gt;
-&lt;/p&gt;
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblZipCode&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Zip Code&lt;/span&gt;
-    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtZipCode&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtZipCode&quot; style=&quot;width:200px;&quot; /&gt;
-    &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblCountry&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Country&lt;/span&gt;
-    &lt;div class=&quot;styled-selectLong&quot;&gt;
-        &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlCountry&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlCountry&quot;&gt;
-
-		&lt;/select&gt;&lt;/div&gt;
-    &lt;p&gt;
-        &amp;nbsp;&lt;/p&gt;
-    &lt;p&gt;
-        &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
-        &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblHomePhone&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Home Phone&lt;/span&gt;
-        &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtHomePhone&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtHomePhone&quot; style=&quot;width:200px;&quot; /&gt;
-        &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;
-        &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblMobile&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Mobile&lt;/span&gt;
-        &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtMobile&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtMobile&quot; style=&quot;width:200px;&quot; /&gt;
-    &lt;/p&gt;
-    &lt;p&gt;
-        &amp;nbsp;&lt;/p&gt;
-    &lt;p&gt;
-        &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
-        &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblWorkPhone&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Work Phone&lt;/span&gt;
-        &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtWorkPhone&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtWorkPhone&quot; style=&quot;width:200px;&quot; /&gt;
-        &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;
-        &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblEmail&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Email(*)&lt;/span&gt;
-        &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtEmail&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtEmail&quot; style=&quot;width:200px;&quot; /&gt;
-    &lt;/p&gt;
-    &lt;p&gt;
-        &amp;nbsp;&lt;/p&gt;
-        &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
-        &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblVacancy&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Job Vacancy&lt;/span&gt;
-        &lt;div class=&quot;styled-selectLong&quot;&gt;
-            &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlVacancy&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlVacancy&quot;&gt;
+&lt;br /&gt;
+&lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+		
+    &lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;table class=&quot;fieldTitleTable&quot;&gt;
+                    &lt;tr&gt;
+                        &lt;td class=&quot;fieldTitleTd&quot;&gt;
+                            &lt;span style=&quot;color: white;&quot;&gt;Add Candidate&lt;/span&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+                &lt;br /&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblFullName&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Full Name(*)&lt;/span&gt;
+                &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtFullName&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtFullName&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblAddress&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Address Street&lt;/span&gt;
+                &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtAddress&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtAddress&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;p&gt;
+                    &amp;nbsp;&lt;/p&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblCountry&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Country&lt;/span&gt;
+                &lt;div class=&quot;styled-selectLong&quot;&gt;
+                    &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlCountry&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlCountry&quot;&gt;
 
 		&lt;/select&gt;
-        &lt;/div&gt;
-        &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;
-        &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblKeyword&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Keywords&lt;/span&gt;
-        &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtKeyword&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtKeyword&quot; style=&quot;width:200px;&quot; /&gt;
-        &lt;p&gt;
-            &amp;nbsp;&lt;/p&gt;
-    
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
-            &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblJobTitle&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Job Title&lt;/span&gt;
-            &lt;div class=&quot;styled-selectLong&quot;&gt;
-                &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlJobTitle&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlJobTitle&quot;&gt;
+                &lt;/div&gt;
+                &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblCity&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;City&lt;/span&gt;
+                &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtCity&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtCity&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;p&gt;
+                    &amp;nbsp;&lt;/p&gt;
+                &lt;p&gt;
+                    &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblHomePhone&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Home Phone&lt;/span&gt;
+                    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtHomePhone&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtHomePhone&quot; style=&quot;width:200px;&quot; /&gt;
+                    &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
+                    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblMobile&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Mobile&lt;/span&gt;
+                    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtMobile&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtMobile&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;/p&gt;
+                &lt;p&gt;
+                    &amp;nbsp;&lt;/p&gt;
+                &lt;p&gt;
+                    &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblWorkPhone&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Work Phone&lt;/span&gt;
+                    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtWorkPhone&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtWorkPhone&quot; style=&quot;width:200px;&quot; /&gt;
+                    &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
+                    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblEmail&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Email(*)&lt;/span&gt;
+                    &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtEmail&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtEmail&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;/p&gt;
+                &lt;p&gt;
+                    &amp;nbsp;&lt;/p&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblVacancy&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Job Vacancy&lt;/span&gt;
+                &lt;div class=&quot;styled-selectLong&quot;&gt;
+                    &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlVacancy&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlVacancy&quot;&gt;
 
 		&lt;/select&gt;
-            &lt;/div&gt;
-            &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;
-            &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblHiringManager&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Hiring Manager&lt;/span&gt;
-            &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtHiringManager&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtHiringManager&quot; style=&quot;width:200px;&quot; /&gt;
-            &lt;p&gt;
-                &amp;nbsp;&lt;/p&gt;
-        
-                &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblJobTitle&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Job Title&lt;/span&gt;
+                &lt;div class=&quot;styled-selectLong&quot;&gt;
+                    &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlJobTitle&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlJobTitle&quot;&gt;
+
+		&lt;/select&gt;
+                &lt;/div&gt;
+                &lt;p&gt;
+                    &amp;nbsp;&lt;/p&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
                 &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblStatus&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Status&lt;/span&gt;
                 &lt;div class=&quot;styled-selectLong&quot;&gt;
                     &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlStatus&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlStatus&quot;&gt;
 
 		&lt;/select&gt;
                 &lt;/div&gt;
-                &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;
+                &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
                 &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblApplyMethod&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Apply Method&lt;/span&gt;
                 &lt;div class=&quot;styled-selectLong&quot;&gt;
                     &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlApplyMethod&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlApplyMethod&quot;&gt;
@@ -143,52 +149,61 @@
                 &lt;/p&gt;
                 &lt;p&gt;
                     &amp;nbsp;&lt;/p&gt;
-                &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
                 &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblApplyDate&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Apply Date&lt;/span&gt;
-                &lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_pnlApplyDate&quot; style=&quot;display:inline;&quot;&gt;
+                &lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_pnlApplyDate&quot; style=&quot;display: inline;&quot;&gt;
 			
-                    &lt;input type=&quot;text&quot; id=&quot;txtApplyDate&quot; name=&quot;txtApplyDate&quot; size=&quot;30&quot; value=&quot;&quot;/&gt;
+                    &lt;input type=&quot;text&quot; id=&quot;txtApplyDate&quot; style=&quot;width: 200px;&quot; name=&quot;txtApplyDate&quot; value=&quot;&quot; /&gt;
                 
 		&lt;/div&gt;
                 &amp;nbsp;&lt;p&gt;
                 &lt;/p&gt;
-                &lt;br&gt;
-                    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblInterviewDate&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Interview Date&lt;/span&gt;
-                    &lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_pnlInterview&quot; style=&quot;display:inline;&quot;&gt;
+                &lt;br /&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblInterviewDate&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Interview Date&lt;/span&gt;
+                &lt;div id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_pnlInterview&quot; style=&quot;display: inline;&quot;&gt;
 			
-                    &lt;input type=&quot;text&quot; id=&quot;txtInterviewDate&quot; name=&quot;txtInterviewDate&quot; size=&quot;30&quot; value=&quot;&quot;/&gt;
+                    &lt;input type=&quot;text&quot; id=&quot;txtInterviewDate&quot; style=&quot;width: 200px;&quot; name=&quot;txtInterviewDate&quot;
+                        value=&quot;&quot; /&gt;
                 
 		&lt;/div&gt;
-                &lt;span style=&quot;padding-left:100px;&quot;&gt;&lt;/span&gt;
+                &lt;span style=&quot;padding-left: 100px;&quot;&gt;&lt;/span&gt;
                 &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblInterviewTime&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Time&lt;/span&gt;
-        &lt;input name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtInterviewTime&quot; type=&quot;text&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtInterviewTime&quot; style=&quot;width:200px;&quot; /&gt;
-        &lt;p&gt;
-            &amp;nbsp;&lt;/p&gt;
-        &lt;p&gt;
-            &lt;br&gt;&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
-            &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblComment&quot; valign=&quot;top&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Comment&lt;/span&gt;
-            &lt;br&gt;&lt;/br&gt;
-            &lt;/br&gt;
-        &lt;/p&gt;
-        &lt;span style=&quot;padding-left:130px;&quot;&gt;&lt;/span&gt;
-        &lt;textarea name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtComment&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtComment&quot; style=&quot;height:100px;width:650px;&quot;&gt;&lt;/textarea&gt;
-                &lt;br&gt;
-                &lt;br&gt;
+                &lt;div class=&quot;styled-selectShort&quot; style=&quot;width: 50px;&quot;&gt;
+                    &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlHour&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlHour&quot;&gt;
+
+		&lt;/select&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;styled-selectShort&quot; style=&quot;width: 50px;&quot;&gt;
+                    &lt;select name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$ddlMinutes&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_ddlMinutes&quot;&gt;
+
+		&lt;/select&gt;
+                &lt;/div&gt;
+                &lt;p&gt;
+                    &lt;br /&gt;
+                    &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblComment&quot; style=&quot;display:inline-block;width:120px;&quot;&gt;Comment&lt;/span&gt;
+                &lt;/p&gt;
+                &lt;span style=&quot;padding-left: 130px;&quot;&gt;&lt;/span&gt;
+                &lt;textarea name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$txtComment&quot; rows=&quot;2&quot; cols=&quot;20&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_txtComment&quot; style=&quot;height:100px;width:650px;&quot;&gt;&lt;/textarea&gt;
+                &lt;br /&gt;
+                &lt;br /&gt;
+                &amp;nbsp;&lt;span style=&quot;color: Red;&quot;&gt;(*) is required&lt;/span&gt;
+                &lt;br /&gt;
+                &lt;br /&gt;
                 &lt;div class=&quot;borderTop&quot;&gt;
-                    &lt;span style=&quot;padding-left:130px;&quot;&gt;&lt;/span&gt;
-                    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$btnSave&quot; value=&quot;Save&quot; onclick=&quot;return confirm('Are you sure you want to save ?');&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_btnSave&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
+                    &lt;span style=&quot;padding-left: 130px;&quot;&gt;&lt;/span&gt;
+                    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$btnSave&quot; value=&quot;Save&quot; onclick=&quot;return ConfirmOnSave();&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_btnSave&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
                     &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_986c56b5_83fa_412e_93ea_44ff0479ae53$ctl00$btnCancel&quot; value=&quot;Cancel&quot; id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_btnCancel&quot; class=&quot;resetButton&quot; style=&quot;width:80px;&quot; /&gt;
                 &lt;/div&gt;
-                
-        &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-	&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+
+	&lt;/div&gt;&lt;br&gt;
 &lt;p&gt;
-    &lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblError&quot; style=&quot;color:red;&quot;&gt;&lt;/span&gt;
+    &amp;nbsp;&lt;span id=&quot;FullPage_g_986c56b5_83fa_412e_93ea_44ff0479ae53_ctl00_lblError&quot; style=&quot;color: red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
-
-
-
-
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -207,19 +222,19 @@
 	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
 
 &lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
-	var statusID;
-	function showNotif() {
-	    var value = &quot;&quot;.split(&quot;;&quot;);
-        for(i=0;i&lt;value.length;i++){
-	        if (value[i] != &quot;&quot;) {
-	            SP.UI.Notify.addNotification(value[i], true);
-	        }
+    ExecuteOrDelayUntilScriptLoaded(showNotif, 'sp.js');
+    var statusID;
+    function showNotif() {
+        var value = &quot;&quot;.split(&quot;;&quot;);
+        for (i = 0; i &lt; value.length; i++) {
+            if (value[i] != &quot;&quot;) {
+                SP.UI.Notify.addNotification(value[i], true);
+            }
         }
-	}
+    }
 &lt;/script&gt;
-&lt;span id=&quot;g_204072f0_66df_42ae_982d_ab8d4655edfa_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_204072f0_66df_42ae_982d_ab8d4655edfa' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_204072f0_66df_42ae_982d_ab8d4655edfa' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{2b75a3c9-b3a8-4643-90fb-c6a04b604379}" WebPart="true" __designer:IsClosed="false" id="g_2b75a3c9_b3a8_4643_90fb_c6a04b604379" __designer:Preview="&lt;div id=&quot;g_2b75a3c9_b3a8_4643_90fb_c6a04b604379&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{2b75a3c9-b3a8-4643-90fb-c6a04b604379}&quot; WebPart=&quot;true&quot;&gt;
 	
 &amp;nbsp;&lt;a id=&quot;g_2b75a3c9_b3a8_4643_90fb_c6a04b604379_ctl00_lbtnUserName&quot; Href=&quot;javascript:__doPostBack('g_2b75a3c9_b3a8_4643_90fb_c6a04b604379$ctl00$lbtnUserName','')&quot;&gt;&lt;/a&gt;
@@ -228,8 +243,7 @@
 &amp;nbsp;|
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_2b75a3c9_b3a8_4643_90fb_c6a04b604379_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_2b75a3c9_b3a8_4643_90fb_c6a04b604379$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
-
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_2b75a3c9_b3a8_4643_90fb_c6a04b604379' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>					
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_2b75a3c9_b3a8_4643_90fb_c6a04b604379' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>					
 </asp:Content>
 
 

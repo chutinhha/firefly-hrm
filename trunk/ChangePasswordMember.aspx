@@ -32,44 +32,57 @@
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907&quot;&gt;
 	
-&lt;br&gt;&lt;div id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
-		&lt;table cellpadding=&quot;0&quot; class=&quot;fieldTitleDiv&quot;&gt;
-    &lt;tr&gt;
-        &lt;td&gt;
-            &lt;table class=&quot;fieldTitleTable&quot;&gt;
-                &lt;tr&gt;
-                    &lt;td class=&quot;fieldTitleTd&quot;&gt;
-                        &lt;font color=&quot;white&quot;&gt;Change Password&lt;/font&gt;&lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;/table&gt;
-            &lt;br&gt;
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblOldPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Old Password&lt;/span&gt;
-            
+&lt;script type=&quot;text/javascript&quot;&gt;
+    function ConfirmOnChangePassword() {
+        if (confirm(&quot;&quot;) == true)
+            return true;
+        else
+            return false;
+    }
+&lt;/script&gt;
+&lt;br /&gt;
+&lt;div id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_Panel1&quot; style=&quot;width:100%;&quot;&gt;
+		
+    &lt;table cellpadding=&quot;0&quot; class=&quot;fieldTitleDiv&quot;&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;table class=&quot;fieldTitleTable&quot;&gt;
+                    &lt;tr&gt;
+                        &lt;td class=&quot;fieldTitleTd&quot;&gt;
+                            &lt;span style=&quot;color: white;&quot;&gt;Change Password&lt;/span&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+                &lt;br /&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblOldPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Old Password(*)&lt;/span&gt;
+                &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtOldPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtOldPassword&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;br /&gt;
+                &lt;br /&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblNewPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;New Password(*)&lt;/span&gt;
+                &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtNewPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtNewPassword&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;br /&gt;
+                &lt;br /&gt;
+                &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+                &lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblConfirmPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Confirm Password(*)&lt;/span&gt;
+                &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtConfirmPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtConfirmPassword&quot; style=&quot;width:200px;&quot; /&gt;
+                &lt;br /&gt;
+                &lt;br /&gt;
+                &amp;nbsp;&lt;span style=&quot;color: Red;&quot;&gt;(*) is required&lt;/span&gt;
+                &lt;br /&gt;
+                &lt;br /&gt;
+                &lt;span style=&quot;padding-left: 155px;&quot;&gt;&lt;/span&gt;
+                &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$btnChangePassword&quot; value=&quot;Change Password&quot; onclick=&quot;return ConfirmOnChangePassword();&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_btnChangePassword&quot; class=&quot;addButton&quot; style=&quot;width:150px;&quot; /&gt;
 
-            &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtOldPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtOldPassword&quot; style=&quot;width:200px;&quot; /&gt;
-            &lt;br /&gt;
-            &lt;br /&gt;
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblNewPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;New Password&lt;/span&gt;
-            &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtNewPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtNewPassword&quot; style=&quot;width:200px;&quot; /&gt;
-            &lt;br /&gt;
-            &lt;br /&gt;
-            &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblConfirmPassword&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Confirm Password&lt;/span&gt;
-            &lt;input name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$txtConfirmPassword&quot; type=&quot;password&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_txtConfirmPassword&quot; style=&quot;width:200px;&quot; /&gt;
-            &lt;br /&gt;
-            &lt;br /&gt;
-            &lt;span style=&quot;padding-left:155px;&quot;&gt;&lt;/span&gt;&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_b9476491_f3a9_4d87_a3d3_93f6d6753907$ctl00$btnChangePassword&quot; value=&quot;Change Password&quot; onclick=&quot;return confirm('Are you sure you want to change password ?');&quot; id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_btnChangePassword&quot; class=&quot;addButton&quot; style=&quot;width:150px;&quot; /&gt;
-            
-	&lt;/div&gt;&lt;br&gt;&lt;br&gt;
-
-            
-            
-
-        &lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-            &lt;br /&gt;&lt;br&gt;
-            &lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
-
+	&lt;/div&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&amp;nbsp;&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblError&quot; style=&quot;color: Red;&quot;&gt;&lt;/span&gt;
+&lt;span id=&quot;FullPage_g_b9476491_f3a9_4d87_a3d3_93f6d6753907_ctl00_lblSuccess&quot; style=&quot;color: Green;&quot;&gt;&lt;/span&gt;
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -90,24 +103,23 @@
 &amp;nbsp;|
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_eb1da1e7_2682_4809_8433_d647a9a9725b_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_eb1da1e7_2682_4809_8433_d647a9a9725b$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
-
 &lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_eb1da1e7_2682_4809_8433_d647a9a9725b' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 						
 <NotifyEmployee:NotifyEmployee runat="server" Description="NotifyEmployee" Title="NotifyEmployee" __MarkupType="vsattributemarkup" __WebPartId="{0a738b13-fd5b-4671-89da-dbee50531644}" WebPart="true" __designer:IsClosed="false" id="g_0a738b13_fd5b_4671_89da_dbee50531644" __designer:Preview="&lt;div id=&quot;g_0a738b13_fd5b_4671_89da_dbee50531644&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{0a738b13-fd5b-4671-89da-dbee50531644}&quot; WebPart=&quot;true&quot;&gt;
 	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
 
 &lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
-	var statusID;
-	function showNotif() {
-	    var value = &quot;&quot;.split(&quot;;&quot;);
-        for(i=0;i&lt;value.length;i++){
-	        if (value[i] != &quot;&quot;) {
-	            SP.UI.Notify.addNotification(value[i], true);
-	        }
+    ExecuteOrDelayUntilScriptLoaded(showNotif, 'sp.js');
+    var statusID;
+    function showNotif() {
+        var value = &quot;&quot;.split(&quot;;&quot;);
+        for (i = 0; i &lt; value.length; i++) {
+            if (value[i] != &quot;&quot;) {
+                SP.UI.Notify.addNotification(value[i], true);
+            }
         }
-	}
+    }
 &lt;/script&gt;
-&lt;span id=&quot;g_0a738b13_fd5b_4671_89da_dbee50531644_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
 &lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_0a738b13_fd5b_4671_89da_dbee50531644' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 						

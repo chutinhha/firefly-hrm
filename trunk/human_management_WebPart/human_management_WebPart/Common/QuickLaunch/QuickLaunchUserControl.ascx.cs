@@ -118,7 +118,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 + " on t." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TablePerson + " per"
                                 + " on per." + Message.BusinessEntityIDColumn + "=pp." + Message.BusinessEntityIDColumn, "per." + Message.NameColumn
                                 + ",pp." + Message.ModifiedDateColumn, " where " + Message.ProjectNameColumn + "='Leave' and pp."
-                                + Message.CurrentFlagColumn + "='False'");
+                                + Message.CurrentFlagColumn + "='0'");
                             if (pendingLeave.Rows.Count > 0)
                             {
                                 pnlLeave.Controls.Add(new LiteralControl("<div style=\"height:223px; \" id=\"task-list-group-panel-container\">"));

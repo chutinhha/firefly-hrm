@@ -77,7 +77,31 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                 ddlProject.AutoPostBack = true;
                 ddlTask.AutoPostBack = true;
         }
-
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //string Location = "EditCandidate.aspx/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
+               //+ "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;");
+                    //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
+        }
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblError.Text = "";

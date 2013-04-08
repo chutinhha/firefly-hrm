@@ -44,7 +44,7 @@
                 OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             <br />
             <br />
-            <asp:GridView ID="grdData" runat="server" Width="100%">
+            <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />

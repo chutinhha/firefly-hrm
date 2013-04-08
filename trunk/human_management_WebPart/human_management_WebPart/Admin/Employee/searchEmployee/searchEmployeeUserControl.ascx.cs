@@ -34,17 +34,17 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
             {
                 for (int i = 0; i < grdEmployee.Rows.Count; i++)
                 {
-                    grdEmployee.Rows[i].Cells[6].Visible = false;
-                    if (grdEmployee.Rows[i].Cells[1].Text.Equals("1")) grdEmployee.Rows[i].Cells[1].Text = "Active";
-                    else grdEmployee.Rows[i].Cells[1].Text = "Inactive";
+                    grdEmployee.Rows[i].Cells[7].Visible = false;
+                    if (grdEmployee.Rows[i].Cells[2].Text.Equals("1")) grdEmployee.Rows[i].Cells[2].Text = "Active";
+                    else grdEmployee.Rows[i].Cells[2].Text = "Inactive";
                 }
-                grdEmployee.HeaderRow.Cells[0].Text = "Employee Name";
-                grdEmployee.HeaderRow.Cells[1].Text = "Employee Status";
-                grdEmployee.HeaderRow.Cells[2].Text = "Rank";
-                grdEmployee.HeaderRow.Cells[3].Text = "City";
-                grdEmployee.HeaderRow.Cells[4].Text = "Country";
-                grdEmployee.HeaderRow.Cells[5].Text = "AddressStreet";
-                grdEmployee.HeaderRow.Cells[6].Visible = false;
+                grdEmployee.HeaderRow.Cells[1].Text = "Employee Name";
+                grdEmployee.HeaderRow.Cells[2].Text = "Employee Status";
+                grdEmployee.HeaderRow.Cells[3].Text = "Rank";
+                grdEmployee.HeaderRow.Cells[4].Text = "City";
+                grdEmployee.HeaderRow.Cells[5].Text = "Country";
+                grdEmployee.HeaderRow.Cells[6].Text = "AddressStreet";
+                grdEmployee.HeaderRow.Cells[7].Visible = false;
             }
             _com.setGridViewStyle(grdEmployee);
         }
@@ -53,6 +53,10 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
         {
             if (!IsPostBack)
             {
+                ddlCountry.DataSource = _com.getCountryList();
+                ddlCountry.DataBind();
+                ddlCountry.Items.Insert(0, "All");
+                ddlCountry.SelectedValue = "All";
                 binDatatoGridView();
             }
         }        
@@ -61,38 +65,45 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
         {
             binDatatoGridView();            
         }
-
-        //protected void chkAll_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    CheckBox cbSelectedHeader = (CheckBox)grdEmployee.HeaderRow.FindControl("chkAll");
-        //    foreach (GridViewRow row in grdEmployee.Rows)
-        //    {
-        //        CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
-        //        if (cbSelectedHeader.Checked == true)
-        //        {
-        //            cbSelected.Checked = true;
-        //        }
-        //        else
-        //        {
-        //            cbSelected.Checked = false;
-        //        }
-        //    }
-        //}
-
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = Message.EditEmployeePage+"/?LoginID=" + Server.HtmlDecode(e.Row.Cells[2].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
+        }
         protected void btnReset_Click(object sender, EventArgs e)
         {
             txtEmployeeName.Text = "";
             txtCity.Text = "";
-            txtCountry.Text = "";
+            ddlCountry.SelectedValue = "All";
             txtAddressStreet.Text = "";
             ddlRank.ClearSelection();
             ddlCurrentFlag.ClearSelection();
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
+        protected void btnEdit_Click(object sender, EventArgs e)
         {
             _com.closeConnection();
-            Response.Redirect("addEmployee.aspx", true);
+            Response.Redirect(Message.EditEmployeePage, true);
         }
 
         //protected void btnDelete_Click(object sender, EventArgs e)

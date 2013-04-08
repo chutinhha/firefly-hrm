@@ -122,7 +122,7 @@
             <br />
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
                 OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
-                BorderWidth="0px">
+                BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />

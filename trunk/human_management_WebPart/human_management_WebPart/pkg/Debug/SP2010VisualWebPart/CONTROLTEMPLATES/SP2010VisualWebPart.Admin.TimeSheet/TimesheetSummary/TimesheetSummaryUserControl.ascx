@@ -86,6 +86,12 @@
                 <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                 </asp:GridView>
             </asp:Panel>
+            <table>
+                <tr>
+                    <td>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>

@@ -13,15 +13,6 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType {
     public partial class addLeaveTypeUserControl {
         
         /// <summary>
-        /// lblPageTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPageTitle;
-        
-        /// <summary>
         /// lblLeaveName control.
         /// </summary>
         /// <remarks>
@@ -40,24 +31,6 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType {
         protected global::System.Web.UI.WebControls.TextBox txtLeaveName;
         
         /// <summary>
-        /// lblNote control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNote;
-        
-        /// <summary>
-        /// txtNote control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNote;
-        
-        /// <summary>
         /// lblLimited control.
         /// </summary>
         /// <remarks>
@@ -67,15 +40,6 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType {
         protected global::System.Web.UI.WebControls.Label lblLimited;
         
         /// <summary>
-        /// rdbLimitedNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbLimitedNo;
-        
-        /// <summary>
         /// rdbLimitedYes control.
         /// </summary>
         /// <remarks>
@@ -83,6 +47,15 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rdbLimitedYes;
+        
+        /// <summary>
+        /// rdbLimitedNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbLimitedNo;
         
         /// <summary>
         /// pnlLimitedYes control.
@@ -110,6 +83,24 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLimitDay;
+        
+        /// <summary>
+        /// lblNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNote;
+        
+        /// <summary>
+        /// txtNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNote;
         
         /// <summary>
         /// lblUserGuide control.

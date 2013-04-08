@@ -146,6 +146,9 @@
     internal const string EditTaskPage = "EditTask.aspx";
     internal const string TaskListPage = "TaskList.aspx";
     internal const string DailyAttendancePage = "DailyAttendance.aspx";
+    internal const string EditEmployeePage = "EditEmployee.aspx";
+    internal const string AddLeaveTypePage = "AddLeaveType.aspx";
+    internal const string EditLeaveTypePage = "EditLeaveType.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -213,4 +216,6 @@
     internal const string ConfirmChangePassword = "Are you sure that you want to change password?";
     internal const string NotChooseItemEdit = "You must choose an item";
     internal const string NotChooseItemDelete = "You must choose one or more items";
+    internal const string AlreadyExistCategory = "There is another Job Category with the same name exists!";
+    internal const string LitmitDateError = "Limit Date must be a natural number";
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Id="89cb42dc-f275-4dbc-9615-904a9499eb83" Scope="Site" Title="human_management_WebPart Feature2">
+  <ElementManifests>
+    <ElementManifest Location="SearchEmployee\Elements.xml" />
+    <ElementFile Location="SearchEmployee\SearchEmployee.webpart" />
+    <ElementManifest Location="EmployeeReport\Elements.xml" />
+    <ElementFile Location="EmployeeReport\EmployeeReport.webpart" />
+    <ElementManifest Location="ProjectReport\Elements.xml" />
+    <ElementFile Location="ProjectReport\ProjectReport.webpart" />
+    <ElementManifest Location="ViewEmployeeReport\Elements.xml" />
+    <ElementFile Location="ViewEmployeeReport\ViewEmployeeReport.webpart" />
+    <ElementManifest Location="ViewProjectReport\Elements.xml" />
+    <ElementFile Location="ViewProjectReport\ViewProjectReport.webpart" />
+    <ElementManifest Location="addLeaveType\Elements.xml" />
+    <ElementFile Location="addLeaveType\addLeaveType.webpart" />
+    <ElementManifest Location="searchLeaveType\Elements.xml" />
+    <ElementFile Location="searchLeaveType\searchLeaveType.webpart" />
+  </ElementManifests>
+</Feature>

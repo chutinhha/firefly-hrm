@@ -56,7 +56,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     + end.Month.ToString() + "-" + end.Day.ToString() + "') or (t." + Message.PersonProjectEndDateColumn + ">='"
                     + start.Year.ToString() + "-" + start.Month.ToString() + "-" + start.Day.ToString() + "'"
                     + " and t." + Message.PersonProjectEndDateColumn + "<='" + end.Year.ToString() + "-" + end.Month.ToString()
-                    + "-" + end.Day.ToString() + "')) and pp." + Message.CurrentFlagColumn + "='True'");
+                    + "-" + end.Day.ToString() + "')) and pp." + Message.CurrentFlagColumn + "<>'2'");
                 if (assignProject.Rows.Count > 0)
                 {
                     count = count + assignProject.Rows.Count;

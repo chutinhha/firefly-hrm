@@ -65,13 +65,53 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
             else
                 btnDelete.Visible = false;
         }
-
+        protected void CheckUncheckAll(object sender, EventArgs e)
+        {
+            //Check or uncheck all checkbox
+            CheckBox cbSelectedHeader = (CheckBox)grdLeaveType.HeaderRow.FindControl("chkAll");
+            foreach (GridViewRow row in grdLeaveType.Rows)
+            {
+                CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
+                if (cbSelectedHeader.Checked == true)
+                {
+                    cbSelected.Checked = true;
+                }
+                else
+                {
+                    cbSelected.Checked = false;
+                }
+            }
+        }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             _com.closeConnection();
-            Response.Redirect("addLeaveType.aspx", true);
+            Response.Redirect(Message.AddLeaveTypePage, true);
         }
-
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = Message.EditLeaveTypePage+"/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
+               + "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;");
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
+        }
         protected void chkItem_CheckedChanged(object sender, EventArgs e)
         {
             bool isCheckState = false;
@@ -100,7 +140,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 if (cbSelected.Checked == true)
                 {
                     strCondition = "TaskId = " + row.Cells[4].Text;
-                    _com.deleteIntoTable(strTableName, strCondition);
+                    //_com.deleteIntoTable(strTableName, strCondition);
                 }
             }
             binDataLeaveTypeToGrd();
