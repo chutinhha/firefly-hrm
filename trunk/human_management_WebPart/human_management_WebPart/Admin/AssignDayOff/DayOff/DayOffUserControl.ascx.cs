@@ -27,20 +27,11 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                         {
                             if (!IsPostBack)
                             {
-                                DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName like '%Leave%'");
-                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), false, "");
+                                DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName = 'Leave'");
+                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "All");
                                 Session.Remove("TaskName");
-                                DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
-                                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
-                                string table = "(((" + Message.TableJobTitle;
-                                _com.bindData(column, condition, table, grdData);
-                                _com.setGridViewStyle(grdData);
-                                grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                                grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                                grdData.HeaderRow.Cells[3].Text = "Email";
-                                grdData.HeaderRow.Cells[4].Text = "Job Title";
                                 lblError.Text = "";
+                                ddlShow.SelectedValue = "All";
                             }
                         }
                         catch (Exception ex)
@@ -50,22 +41,99 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     }
                     else
                     {
-                        DataTable myData = _com.getData(Message.TableProject, " * " ," WHERE ProjectName like '%Leave%'");
+                        DataTable myData = _com.getData(Message.TableProject, " * " ," WHERE ProjectName = 'Leave'");
                         _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "");
                         ddlDayOff.SelectedValue = Session["TaskName"].ToString();
                         Session.Remove("TaskName");
                         try
                         {
-                            DataTable myDatatmp = _com.getData(Message.TableTask, " * " , " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
-                            string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                            string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
+                            string[] col = new string[1];
+                            col[0] = "Status";
+                            DataTable dt = new DataTable();
+                            string column = Message.PersonProjectIdColumn + "," + Message.PersonNameColumn + "," + Message.TaskNameColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + ", HumanResources.PersonProject.Note";
+                            string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Employee.CurrentFlag = 1";
                             string table = "(((" + Message.TableJobTitle;
-                            _com.bindData(column, condition, table, grdData);
-                            _com.setGridViewStyle(grdData);
-                            grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                            grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                            grdData.HeaderRow.Cells[3].Text = "Email";
-                            grdData.HeaderRow.Cells[4].Text = "Job Title";
+                            if (ddlDayOff.SelectedValue == "All")
+                            {
+                                if (ddlShow.SelectedValue == "All")
+                                {
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1");
+                                }
+                                else if (ddlShow.SelectedValue == "Approved")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1";
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1");
+                                }
+                                else if (ddlShow.SelectedValue == "Not Approved")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0";
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 0  and HumanResources.Employee.CurrentFlag = 1");
+                                }
+                                else if (ddlShow.SelectedValue == "Reject")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2";
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 2  and HumanResources.Employee.CurrentFlag = 1");
+                                }
+                            }
+                            else
+                            {
+                                DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                                if (ddlShow.SelectedValue == "All")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString());
+                                }
+                                else if (ddlShow.SelectedValue == "Approved")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1");
+                                }
+                                else if (ddlShow.SelectedValue == "Not Approved")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 0");
+                                }
+                                else if (ddlShow.SelectedValue == "Reject")
+                                {
+                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 2");
+                                }
+                            }
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                DropDownList ddlApprove = new DropDownList();
+                                ddlApprove.ID = "ddlApprove" + i;
+                                ddlApprove.Items.Add("Approve");
+                                ddlApprove.Items.Add("Not Approve");
+                                ddlApprove.Items.Add("Reject");
+                                if (dt.Rows[i][0].ToString() == "1")
+                                {
+                                    ddlApprove.SelectedValue = "Approve";
+                                }
+                                else if (dt.Rows[i][0].ToString() == "0")
+                                {
+                                    ddlApprove.SelectedValue = "Not Approve";
+                                }
+                                else if (dt.Rows[i][0].ToString() == "2")
+                                {
+                                    ddlApprove.SelectedValue = "Reject";
+                                }
+                                grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
+                                grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
+                                grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
+                            }
+                            grdData.GridLines = GridLines.None;
+                            grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                            grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                            grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                         }
                         catch (Exception ex)
                         {
@@ -79,59 +147,127 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     Response.Redirect(Message.AccessDeniedPage);
                 }
             }
-            ddlDayOff.AutoPostBack = true;
+                    ddlDayOff.AutoPostBack = true;
         }
 
         protected void ddlDayOff_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            DataTable myData = _com.getData(Message.TableTask, "LimitDate", " where TaskName = '" + ddlDayOff.SelectedValue.ToString() + "'");
+            if (myData.Rows[0][0].ToString() != "")
             {
-                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
-                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
-                string table = "(((" + Message.TableJobTitle;
-                _com.bindData(column, condition, table, grdData);
-                _com.setGridViewStyle(grdData);
-                grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                grdData.HeaderRow.Cells[3].Text = "Email";
-                grdData.HeaderRow.Cells[4].Text = "Job Title";
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message;
+                btnAssign.Visible = true;
             }
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
+        protected void btnAssign_Click(object sender, EventArgs e)
         {
             Session["TaskName"] = Server.HtmlDecode(ddlDayOff.SelectedValue.ToString());
             _com.closeConnection();
             Response.Redirect(Message.AssignLeavePage, true);
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false;
+            e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
+        }
+
+        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                DataTable myData = _com.getData(Message.TableTask, " * " ," INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlDayOff.SelectedValue.ToString() + "%' and ProjectName like '%Leave%'");
-                foreach (GridViewRow gr in grdData.Rows)
+                string[] col = new string[1];
+                col[0] = "Status";
+                DataTable dt = new DataTable();
+                string column = Message.PersonProjectIdColumn + "," + Message.PersonNameColumn + "," + Message.TaskNameColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + ", HumanResources.PersonProject.Note";
+                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Employee.CurrentFlag = 1";
+                string table = "(((" + Message.TableJobTitle;
+                if (ddlDayOff.SelectedValue == "All")
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    if (cb.Checked)
+                    if (ddlShow.SelectedValue == "All")
                     {
-                        _com.updateTable(Message.TablePersonProject, Message.CurrentFlagColumn + " = 0, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) WHERE " + Message.BusinessEntityIDColumn + " = " + gr.Cells[1].Text.ToString().Trim() + " and TaskId = " + myData.Rows[0][0].ToString());
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1";
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Not Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0";
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 0  and HumanResources.Employee.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Reject")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2";
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 2  and HumanResources.Employee.CurrentFlag = 1");
                     }
                 }
-                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0] + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
-                string table = "(((" + Message.TableJobTitle;
-                _com.bindData(column, condition, table, grdData);
-                _com.setGridViewStyle(grdData);
-                grdData.HeaderRow.Cells[1].Text = "BusinessEntityId";
-                grdData.HeaderRow.Cells[2].Text = "Employee Name";
-                grdData.HeaderRow.Cells[3].Text = "Email";
-                grdData.HeaderRow.Cells[4].Text = "Job Title";
+                else
+                {
+                    DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                    if (ddlShow.SelectedValue == "All")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString());
+                    }
+                    else if (ddlShow.SelectedValue == "Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Not Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 0");
+                    }
+                    else if (ddlShow.SelectedValue == "Reject")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 2");
+                    }
+                }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DropDownList ddlApprove = new DropDownList();
+                    ddlApprove.ID = "ddlApprove" + i;
+                    ddlApprove.Items.Add("Approve");
+                    ddlApprove.Items.Add("Not Approve");
+                    ddlApprove.Items.Add("Reject");
+                    if (dt.Rows[i][0].ToString() == "1")
+                    {
+                        ddlApprove.SelectedValue = "Approve";
+                    }
+                    else if (dt.Rows[i][0].ToString() == "0")
+                    {
+                        ddlApprove.SelectedValue = "Not Approve";
+                    }
+                    else if (dt.Rows[i][0].ToString() == "2")
+                    {
+                        ddlApprove.SelectedValue = "Reject";
+                    }
+                    grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
+                    grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
+                    grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
+                }
+                grdData.GridLines = GridLines.None;
+                grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
             }
             catch (Exception ex)
             {
@@ -139,27 +275,128 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             }
         }
 
-        protected void CheckUncheckAll(object sender, EventArgs e)
+        protected void ddlShow_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Check or uncheck all checkbox
-            CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
-            foreach (GridViewRow row in grdData.Rows)
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            lblSuccess.Text = "";
+            try
             {
-                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
-                if (cbSelectedHeader.Checked == true)
+                foreach (GridViewRow row in grdData.Rows)
                 {
-                    cbSelected.Checked = true;
+                    DropDownList ddlApprove = (DropDownList)row.FindControl("ddlApprove" + row.RowIndex);
+                    if (ddlApprove.SelectedValue == "Approve")
+                    {
+                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
+                            + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
+                    }
+                    else if (ddlApprove.SelectedValue == "Not Approve")
+                    {
+                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 0, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
+                            + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
+                    }
+                    else
+                    {
+                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 2, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
+                            + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
+                    }
+                }
+                string[] col = new string[1];
+                col[0] = "Status";
+                DataTable dt = new DataTable();
+                string column = Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + ", HumanResources.PersonProject.Note";
+                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Employee.CurrentFlag = 1";
+                string table = "(((" + Message.TableJobTitle;
+                if (ddlDayOff.SelectedValue == "All")
+                {
+                    if (ddlShow.SelectedValue == "All")
+                    {
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1";
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Not Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0";
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 0  and HumanResources.Employee.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Reject")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2";
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 2  and HumanResources.Employee.CurrentFlag = 1");
+                    }
                 }
                 else
                 {
-                    cbSelected.Checked = false;
+                    DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                    if (ddlShow.SelectedValue == "All")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString());
+                    }
+                    else if (ddlShow.SelectedValue == "Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1");
+                    }
+                    else if (ddlShow.SelectedValue == "Not Approved")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 0");
+                    }
+                    else if (ddlShow.SelectedValue == "Reject")
+                    {
+                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 2");
+                    }
                 }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DropDownList ddlApprove = new DropDownList();
+                    ddlApprove.ID = "ddlApprove" + i;
+                    ddlApprove.Items.Add("Approve");
+                    ddlApprove.Items.Add("Not Approve");
+                    ddlApprove.Items.Add("Reject");
+                    if (dt.Rows[i][0].ToString() == "1")
+                    {
+                        ddlApprove.SelectedValue = "Approve";
+                    }
+                    else if (dt.Rows[i][0].ToString() == "0")
+                    {
+                        ddlApprove.SelectedValue = "Not Approve";
+                    }
+                    else if (dt.Rows[i][0].ToString() == "2")
+                    {
+                        ddlApprove.SelectedValue = "Reject";
+                    }
+                    grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
+                    grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
+                    grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
+                }
+                grdData.GridLines = GridLines.None;
+                grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
+                grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                lblSuccess.Text = Message.UpdateSuccess;
             }
-        }
-
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
     }
 }

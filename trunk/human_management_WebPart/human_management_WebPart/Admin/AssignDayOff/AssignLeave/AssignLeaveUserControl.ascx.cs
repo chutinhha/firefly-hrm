@@ -86,7 +86,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
             bool checkRedirect = false;
             try
             {
-                DataTable myData = _com.getData(Message.TableProject, Message.TaskIdColumn, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%Leave%' and TaskName like '%" + txtDayOff.Text.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableProject, Message.TaskIdColumn, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName = 'Leave' and TaskName = '" + txtDayOff.Text.ToString() + "'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
@@ -95,11 +95,11 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                         DataTable myDatatmp = _com.getData(Message.TablePersonProject, Message.CurrentFlagColumn, " where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
                         if (myDatatmp.Rows.Count > 0)
                         {
-                            if (myDatatmp.Rows[0][0].ToString() == "True")
+                            if (myDatatmp.Rows[0][0].ToString() == "1")
                             {
                                 lblError.Text = "This employee has been assigned in this leave !";
                             }
-                            else if (myDatatmp.Rows[0][0].ToString() == "False")
+                            else if (myDatatmp.Rows[0][0].ToString() != "1")
                             {
                                 _com.updateTable(Message.TablePersonProject, " CurrentFlag = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
                                 checkRedirect = true;

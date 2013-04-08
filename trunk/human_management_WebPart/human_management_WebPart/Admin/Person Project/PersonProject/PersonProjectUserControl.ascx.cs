@@ -28,7 +28,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                             if (!IsPostBack)
                             {
                                 lblError.Text = "";
-                                _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, " ");
+                                _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, " where " + Message.ProjectNameColumn + " != 'Leave'", true, " ");
                                 Session.Remove("ProjectName");
                                 Session.Remove("TaskName");
                             }
@@ -41,7 +41,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                     else if (Session["ProjectName"] != null && Session["TaskName"] != null)
                     {
                         lblError.Text = "";
-                        _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", true, " ");
+                        _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, " where " + Message.ProjectNameColumn + " != 'Leave'", true, " ");
                         ddlProject.SelectedValue = Session["ProjectName"].ToString();
                         DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
                         _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], true, " ");
