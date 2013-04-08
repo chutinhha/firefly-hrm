@@ -49,13 +49,13 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee {
         protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
         
         /// <summary>
-        /// ddl control.
+        /// ddlCurrentFlag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCurrentFlag;
         
         /// <summary>
         /// ddlRank control.
@@ -146,15 +146,6 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
         /// grdEmployee control.

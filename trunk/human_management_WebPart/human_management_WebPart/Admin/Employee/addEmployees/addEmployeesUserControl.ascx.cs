@@ -49,6 +49,13 @@ namespace SP2010VisualWebPart.Admin.Employee.addEmployees
                 return;
             }
 
+            //BusinessEntityId
+            DataTable dt = _com.getTopID(Message.TableEmployee);
+            string strBusinessEntityId = dt.Rows[0][0].ToString();
+            int intBusinessEntityID = Convert.ToInt32(dt.Rows[0][0].ToString());
+            intBusinessEntityID = intBusinessEntityID + 1;
+            strBusinessEntityId = Convert.ToString(intBusinessEntityID);
+
             //Update Image to server
             string strImageURL = "";
             if (fucPhotograph.HasFile)
@@ -59,9 +66,9 @@ namespace SP2010VisualWebPart.Admin.Employee.addEmployees
                     {
                         if (fucPhotograph.PostedFile.ContentLength < 102400000)
                         {
-                            string filename = fucPhotograph.FileName;
-                            strImageURL = Server.MapPath("~/") + filename;
-                            fucPhotograph.SaveAs(strImageURL);                            
+                            strImageURL = strBusinessEntityId + "_" + fucPhotograph.FileName;
+                            string ImageURL = Server.MapPath("~/image/") + strImageURL;
+                            fucPhotograph.SaveAs(ImageURL);
                         }
                         else
                         {
@@ -89,9 +96,9 @@ namespace SP2010VisualWebPart.Admin.Employee.addEmployees
 
             //Insert Database to Employee Table
             string strTableName = Message.TableEmployee;
-            string strColumName = @"(BirthDate,MaritalStatus,Gender,CurrentFlag,ModifiedDate,Image)";            
+            string strColumName = @"(BirthDate,MaritalStatus,Gender,CurrentFlag,ModifiedDate,Image)";
             //BirthDate
-            string strBirtDate = cldBirthDate.SelectedDate.ToShortDateString();            
+            string strBirtDate = Request.Form["txtBirthDate"].ToString().Trim();
             strBirtDate = "'" + strBirtDate + "'";
             //MaritalStatus
             string strMaritalStatus = "";
@@ -112,12 +119,12 @@ namespace SP2010VisualWebPart.Admin.Employee.addEmployees
             strImageURL = strImageURL.Replace("\\\\", "\\");
             strImageURL = "'" + strImageURL + "'";
             // Create Condition
-            string strCondition = strBirtDate + "," + strMaritalStatus +","+strGender+","+strCurrentFlag+","+strModifiedDate+","+strImageURL;            
+            string strCondition = strBirtDate + "," + strMaritalStatus + "," + strGender + "," + strCurrentFlag + "," + strModifiedDate + "," + strImageURL;
             _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);
 
             //Insert Database to Person Table
             strTableName = Message.TablePerson;
-            strColumName = @"(BusinessEntityId,Rank,Name,EmailAddress,HomePhone,Mobile,SSNNumber,City,Country,AddressStreet,ModifiedDate)";   
+            strColumName = @"(BusinessEntityId,Rank,Name,EmailAddress,HomePhone,Mobile,SSNNumber,City,Country,AddressStreet,ModifiedDate)";
             //Name
             string strName = "'" + txtFullName.Text + "'";
             //EmailAddress
@@ -134,9 +141,6 @@ namespace SP2010VisualWebPart.Admin.Employee.addEmployees
             string strCountry = "'" + txtCountry.Text + "'";
             //AddressStreet
             string strAddressStreet = "'" + txtAddressStreet.Text + "'";
-            //BusinessEntityId
-            DataTable dt = _com.getTopID(Message.TableEmployee);
-            string strBusinessEntityId = dt.Rows[0][0].ToString();
             //Rank
             string strRank = "";
             if (ddlRank.SelectedIndex == 0) strRank = "Admin";
@@ -144,7 +148,9 @@ namespace SP2010VisualWebPart.Admin.Employee.addEmployees
             strRank = "'" + strRank + "'";
             // Create Condition
             strCondition = strBusinessEntityId + "," + strRank + "," + strName + "," + strEmailAddress + "," + strHomePhone + "," + strMobile + "," + strSSNNumber + "," + strCity + "," + strCountry + "," + strAddressStreet + "," + strModifiedDate;
-            _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);           
+            _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);
+
+            _com.closeConnection();
         }
     }
 }
