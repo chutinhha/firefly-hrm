@@ -103,6 +103,7 @@
     internal const string TimesheetTimeColumn = "Time";
     internal const string TimesheetIDColumn = "TimesheetId";
     internal const string WorkDateColumn = "WorkDate";
+    internal const string PersonProjectIdColumn = "PersonProjectId";
 
     //Page
     internal const string HomePage = "Home.aspx";
