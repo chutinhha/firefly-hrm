@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -59,7 +60,30 @@ namespace SP2010VisualWebPart.Candidates
                 }
             }
         }
-
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = "EditCandidate.aspx/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
+               + "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
+        }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
             //Check or uncheck all checkbox
@@ -240,8 +264,8 @@ namespace SP2010VisualWebPart.Candidates
                     if (cb.Checked)
                     {
                         isCheck = true;
-                        string sql = @"delete from "+Message.TableJobCandidate+" where "+Message.FullNameColumn+"=N'" 
-                            + Server.HtmlDecode(gr.Cells[2].Text)+"' and "+Message.EmailColumn+"=N'"+Server.HtmlDecode(gr.Cells[3].Text)+"';";
+                        string sql = @"delete from "+Message.TableJobCandidate+" where "+Message.FullNameColumn+"=N'"
+                            + Server.HtmlDecode(gr.Cells[2].Text) + "' and " + Message.EmailColumn + "=N'" + Server.HtmlDecode(gr.Cells[3].Text) + "';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                     }

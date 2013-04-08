@@ -19,6 +19,13 @@ namespace SP2010VisualWebPart.EditVacancy
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string Name = Request.QueryString["Name"];
+                    if (Name == null) { }
+                    else
+                    {
+                        Session["Name"] = Name;
+                        Response.Redirect(Message.EditVacancyPage);
+                    }
                     if (Session["Name"] == null)
                     {
                         Response.Redirect(Message.AccessDeniedPage);

@@ -78,7 +78,32 @@ namespace SP2010VisualWebPart.AttendanceRecord
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {
         }
-
+        protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = Message.EditAttendancePage+"/?Name=" + Server.HtmlDecode(e.Row.Cells[1].Text)
+                    + "&In=" + e.Row.Cells[2].Text + "&Out=" + e.Row.Cells[3].Text
+                    + "&Email=" + Server.HtmlDecode(e.Row.Cells[4].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
+        }
         protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
         {
         }

@@ -19,6 +19,14 @@ namespace SP2010VisualWebPart.EditCandidate
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string Name = Request.QueryString["Name"];
+                    string Email = Request.QueryString["Email"];
+                    if (Name == null) { }
+                    else {
+                        Session["Name"] = Name;
+                        Session["Email"] = Email;
+                        Response.Redirect(Message.EditCandidatePage);
+                    }
                     if (Session["Name"] == null)
                     {
                         Response.Redirect(Message.AccessDeniedPage);

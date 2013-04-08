@@ -19,6 +19,16 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string TaskID = Request.QueryString["TaskID"];
+                    if (TaskID == null) { }
+                    else
+                    {
+                        Session["TaskID"] = TaskID;
+                        DataTable ProjectID = _com.getData(Message.TableTask, Message.ProjectIDColumn
+                            , " where " + Message.TaskIdColumn + "='" + TaskID + "'");
+                        Session["ProjectID"]=ProjectID.Rows[0][0].ToString();
+                        Response.Redirect(Message.EditTaskPage);
+                    }
                     if (Session["TaskID"] == null)
                     {
                         Response.Redirect(Message.AccessDeniedPage);
@@ -31,6 +41,7 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                             txtNote.Text = dt.Rows[0][3].ToString();
                             this.startDate = dt.Rows[0][4].ToString();
                             this.endDate = dt.Rows[0][5].ToString();
+                            txtLimitDate.Text = dt.Rows[0][6].ToString();
                         }
                     }
                 }
@@ -68,32 +79,62 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                 }
                 else
                 {
-                    DateTime start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
-                    DateTime end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
-                    if (DateTime.Compare(start, end) > 0)
+                    bool checkFormat = true;
+                    DateTime start = DateTime.Now;
+                    DateTime end = DateTime.Now;
+                    try
                     {
-                        lblError.Text = Message.StartLargeThanEnd;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                        start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
+                        end = DateTime.Parse(Request.Form["txtEndDate"].ToString().Trim());
                     }
-                    else
+                    catch (FormatException) {
+                        lblError.Text = Message.InvalidDate;
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                        checkFormat = false;
+                    }
+                    if (checkFormat == true)
                     {
-                        DataTable dt = _com.getData(Message.TableTask, "*", " where " + Message.TaskNameColumn
-                            + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='" 
-                            + Session["ProjectID"].ToString() + "' and "+Message.TaskIdColumn+"<>'"+Session["TaskID"].ToString()+"'");
-                        if (dt.Rows.Count > 0)
+                        try
                         {
-                            lblError.Text = Message.AlreadyExistTask;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                            if (txtLimitDate.Text.Trim() != "")
+                            {
+                                int LimitDate = int.Parse(txtLimitDate.Text.Trim());
+                            }
                         }
-                        else
+                        catch (FormatException)
                         {
-                            _com.updateTable(Message.TableTask, " " + Message.TaskNameColumn + "=N'" + txtTaskName.Text
-                                + "'," + Message.NoteColumn + "=N'" + txtNote.Text + "'," + Message.StartDateColumn + "='"
-                                + Request.Form["txtStartDate"].ToString().Trim() + "'," + Message.EndDateColumn + "='"
-                                + Request.Form["txtEndDate"].ToString().Trim() + "' where " + Message.TaskIdColumn
-                                + "='" + Session["TaskID"].ToString() + "'");
-                            Session.Remove("TaskID");
-                            Response.Redirect(Message.TaskListPage, true);
+                            lblError.Text = Message.LitmitDateError;
+                            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                            checkFormat = false;
+                        }
+                        if (checkFormat == true)
+                        {
+                            if (DateTime.Compare(start, end) > 0)
+                            {
+                                lblError.Text = Message.StartLargeThanEnd;
+                                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                            }
+                            else
+                            {
+                                DataTable dt = _com.getData(Message.TableTask, "*", " where " + Message.TaskNameColumn
+                                    + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='"
+                                    + Session["ProjectID"].ToString() + "' and " + Message.TaskIdColumn + "<>'" + Session["TaskID"].ToString() + "'");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    lblError.Text = Message.AlreadyExistTask;
+                                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                                }
+                                else
+                                {
+                                    _com.updateTable(Message.TableTask, " " + Message.TaskNameColumn + "=N'" + txtTaskName.Text
+                                        + "'," + Message.NoteColumn + "=N'" + txtNote.Text + "'," + Message.StartDateColumn + "='"
+                                        + Request.Form["txtStartDate"].ToString().Trim() + "'," + Message.EndDateColumn + "='"
+                                        + Request.Form["txtEndDate"].ToString().Trim() + "' where " + Message.TaskIdColumn
+                                        + "='" + Session["TaskID"].ToString() + "'");
+                                    Session.Remove("TaskID");
+                                    Response.Redirect(Message.TaskListPage, true);
+                                }
+                            }
                         }
                     }
                 }

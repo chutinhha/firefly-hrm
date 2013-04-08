@@ -9,44 +9,44 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AssignLeaveUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave.AssignLeaveUserControl" %>
-<br />
+<br>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <span style="color:white;">Search Employee</span>
+                        <font color="white">Search Employee</font>
                     </td>
                 </tr>
             </table>
-            <br />
+            <br>
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblEmployee" runat="server" Text="Employee" Width="150px"></asp:Label>
             <asp:TextBox ID="txtEmployee" runat="server" Width="200px"></asp:TextBox>
             <span style= "padding-left:50px">
             
-            <br />
-            <br />
+            <br>
+            <br>
             <div class="borderTop">
-                <asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" Width="80px"
+                <asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
             </div>
         </td>
     </tr>
 </table>
-<br />
+<br>
 <table class="fieldTitleDiv">
     <tr>
         <td>
-            <br />
+            <br>
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblDayOff" runat="server" Text="Type of Days Off" Width="150px"></asp:Label>
             <asp:TextBox ID="txtDayOff" runat="server" Width="200px" ReadOnly="True"></asp:TextBox>
             <br />
-            <br />
+            <br>
             <div class="borderTop">
-                <asp:Button ID="btnAssign" runat="server" Text="Assign" Width="80px" CssClass="addButton"
+                <asp:Button ID="btnAssign" runat="server" Text="Assign" Width="80px" class="addButton"
                     OnClick="btnAssign_Click" />
             </div>
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
@@ -66,6 +66,6 @@
             </asp:GridView>
     </tr>
     </td></table>
-<br />
-<br />
-<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+<br>
+<br>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>

@@ -93,13 +93,62 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false;
-            e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
-            e.Row.Cells[3].Attributes.Add("style", "padding-top:5px;padding-bottom:5px;");
+            //e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
+            //e.Row.Cells[3].Attributes.Add("style", "padding-top:5px;padding-bottom:5px;");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //string Location = "EditCandidate.aspx/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
+                //+ "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    if (i != 1)
+                    {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    }else{
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;padding-left:5px;");
+                    }
+                    //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
         }
 
         protected void grdTotal_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //string Location = "EditCandidate.aspx/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
+               //+ "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+                if (e.Row.RowIndex % 2 != 0)
+                {
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+                }
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
         }
 
         protected void ddlSort_SelectedIndexChanged(object sender, EventArgs e)

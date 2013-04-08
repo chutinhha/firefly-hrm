@@ -106,7 +106,7 @@
                         Text="Delete" Width="80px" OnClientClick="return ConfirmOnDelete();" />
                 </div>
                 <br />
-                <asp:GridView ID="grdData" runat="server" Width="100%">
+                <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <HeaderStyle Width="25" />

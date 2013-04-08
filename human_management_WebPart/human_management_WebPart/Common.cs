@@ -351,7 +351,7 @@ public class CommonFunction
         grdData.GridLines = GridLines.None;
         grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
         grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-        grdData.HeaderStyle.Height = 25;
+        grdData.HeaderStyle.Height = 30;
         grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
     }
 

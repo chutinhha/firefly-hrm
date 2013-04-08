@@ -19,6 +19,19 @@ namespace SP2010VisualWebPart.EditAttendance
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string Name = Request.QueryString["Name"];
+                    string Email = Request.QueryString["Email"];
+                    string In = Request.QueryString["In"];
+                    string Out = Request.QueryString["Out"];
+                    if (Name == null) { }
+                    else
+                    {
+                        Session["Name"] = Name;
+                        Session["Email"] = Email;
+                        Session["In"] = In;
+                        Session["Out"] = Out;
+                        Response.Redirect(Message.EditAttendancePage);
+                    }
                     if (Session["Name"] != null)
                     {
                         try

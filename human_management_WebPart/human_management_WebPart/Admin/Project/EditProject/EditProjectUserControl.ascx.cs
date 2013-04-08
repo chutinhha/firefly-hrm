@@ -21,6 +21,13 @@ namespace SP2010VisualWebPart.Admin.Project.EditProject
                 {
                     if (Session["Account"].ToString() == "Admin")
                     {
+                        string ProjectID = Request.QueryString["ProjectID"];
+                        if (ProjectID == null) { }
+                        else
+                        {
+                            Session["ProjectID"] = ProjectID;
+                            Response.Redirect(Message.EditProjectPage);
+                        }
                         if (Session["ProjectID"] == null)
                         {
                             Response.Redirect(Message.AccessDeniedPage);

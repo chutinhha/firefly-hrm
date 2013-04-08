@@ -1,4 +1,4 @@
-﻿<%@ Register tagprefix="TaskList" namespace="SP2010VisualWebPart.Admin.Project.TaskList" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="TaskList" namespace="SP2010VisualWebPart.Admin.Project.TaskList" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="NotifyEmployee" namespace="SP2010VisualWebPart.Admin.NotifyEmployee" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
@@ -32,35 +32,44 @@
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_37249b48_88a2_49d0_b527_97582b0b064b&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b&quot;&gt;
 	
-&lt;br&gt;
+&lt;br /&gt;
 &lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;
     &lt;tr&gt;
         &lt;td&gt;
             &lt;table class=&quot;fieldTitleTable&quot;&gt;
                 &lt;tr&gt;
                     &lt;td class=&quot;fieldTitleTd&quot;&gt;
-                        &lt;font color=&quot;white&quot;&gt;Task List&lt;/font&gt;
+                        &lt;span style=&quot;color: white;&quot;&gt;Task List&lt;/span&gt;
                     &lt;/td&gt;
                 &lt;/tr&gt;
             &lt;/table&gt;
             &lt;br /&gt;
-            &lt;span style=&quot;padding-left: 5px;&quot;&gt;
-&lt;span id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_lblProjectName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Project Name&lt;/span&gt;
-&lt;div class=&quot;styled-selectLong&quot;&gt;
-&lt;select name=&quot;FullPage$g_37249b48_88a2_49d0_b527_97582b0b064b$ctl00$ddlProjectName&quot; id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_ddlProjectName&quot;&gt;
+            &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+            &lt;span id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_lblProjectName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Project Name&lt;/span&gt;
+            &lt;div class=&quot;styled-selectLong&quot;&gt;
+                &lt;select name=&quot;FullPage$g_37249b48_88a2_49d0_b527_97582b0b064b$ctl00$ddlProjectName&quot; id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_ddlProjectName&quot;&gt;
 
-	&lt;/select&gt;&lt;/div&gt;
-&lt;br /&gt;
-&lt;div class=&quot;borderTop&quot;&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_37249b48_88a2_49d0_b527_97582b0b064b$ctl00$btnAdd&quot; value=&quot;Add&quot; id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_btnAdd&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_37249b48_88a2_49d0_b527_97582b0b064b$ctl00$btnEdit&quot; value=&quot;Edit&quot; id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_btnEdit&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
-&lt;/div&gt;
-
-       &lt;/td&gt;
+	&lt;/select&gt;
+            &lt;/div&gt;
+            &lt;br /&gt;
+            &lt;br /&gt;
+            &lt;div class=&quot;borderTop&quot;&gt;
+                &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_37249b48_88a2_49d0_b527_97582b0b064b$ctl00$btnAdd&quot; value=&quot;Add&quot; id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_btnAdd&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
+                &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_37249b48_88a2_49d0_b527_97582b0b064b$ctl00$btnEdit&quot; value=&quot;Edit&quot; id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_btnEdit&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
+            &lt;/div&gt;
+            
+            &lt;table&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/td&gt;
     &lt;/tr&gt;
 &lt;/table&gt;
-&lt;br&gt;
-&lt;span id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_lblError&quot; style=&quot;color: Red;&quot;&gt;&lt;/span&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&amp;nbsp;&lt;span id=&quot;FullPage_g_37249b48_88a2_49d0_b527_97582b0b064b_ctl00_lblError&quot; style=&quot;color: Red;&quot;&gt;&lt;/span&gt;
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -80,19 +89,19 @@
 	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
 
 &lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
-	var statusID;
-	function showNotif() {
-	    var value = &quot;&quot;.split(&quot;;&quot;);
-        for(i=0;i&lt;value.length;i++){
-	        if (value[i] != &quot;&quot;) {
-	            SP.UI.Notify.addNotification(value[i], true);
-	        }
+    ExecuteOrDelayUntilScriptLoaded(showNotif, 'sp.js');
+    var statusID;
+    function showNotif() {
+        var value = &quot;&quot;.split(&quot;;&quot;);
+        for (i = 0; i &lt; value.length; i++) {
+            if (value[i] != &quot;&quot;) {
+                SP.UI.Notify.addNotification(value[i], true);
+            }
         }
-	}
+    }
 &lt;/script&gt;
-&lt;span id=&quot;g_f3384d77_f135_4d1c_ac5e_c99798d81b8f_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_f3384d77_f135_4d1c_ac5e_c99798d81b8f' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_f3384d77_f135_4d1c_ac5e_c99798d81b8f' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 
 						
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{0a98f4ac-e113-4130-8012-7e9040abab99}" WebPart="true" __designer:IsClosed="false" id="g_0a98f4ac_e113_4130_8012_7e9040abab99" __designer:Preview="&lt;div id=&quot;g_0a98f4ac_e113_4130_8012_7e9040abab99&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{0a98f4ac-e113-4130-8012-7e9040abab99}&quot; WebPart=&quot;true&quot;&gt;
@@ -103,8 +112,7 @@
 &amp;nbsp;|
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_0a98f4ac_e113_4130_8012_7e9040abab99_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_0a98f4ac_e113_4130_8012_7e9040abab99$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
-
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_0a98f4ac_e113_4130_8012_7e9040abab99' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_0a98f4ac_e113_4130_8012_7e9040abab99' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 						
 </asp:Content>

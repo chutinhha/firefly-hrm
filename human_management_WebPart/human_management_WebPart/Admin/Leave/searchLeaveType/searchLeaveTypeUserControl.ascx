@@ -9,37 +9,47 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="searchLeaveTypeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Leave.searchLeaveType.searchLeaveTypeUserControl" %>
-<table>
+<br />
+<table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
-            <asp:Label ID="lbl" runat="server" Text="Leave Types"></asp:Label>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
-        </td>
-        <td>
-            <asp:Button ID="btnDelete" runat="server" Text="Delete" 
-                onclick="btnDelete_Click" Visible="False" />
+            <table class="fieldTitleTable">
+                <tr>
+                    <td class="fieldTitleTd">
+                        <span style="color: white;">Leave Type</span>
+                    </td>
+                </tr>
+            </table>
+            <div class="borderBottom">
+            <asp:Button ID="btnAdd" CssClass="addButton" runat="server" Text="Add" 
+                    OnClick="btnAdd_Click" Width="80px" />
+            <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" 
+                    Width="80px" />
+            <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" 
+                    OnClick="btnDelete_Click" Width="80px" />
+            </div>
+            <br />
+            <asp:GridView ID="grdLeaveType" align="right" runat="server" EnableModelValidation="True"
+                Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
+                <Columns>
+                    <asp:TemplateField>
+                        <HeaderStyle Width="25" />
+                        <HeaderTemplate>
+                            &nbsp;<asp:CheckBox ID="chkAll" runat="server" OnCheckedChanged="CheckUncheckAll"
+                                AutoPostBack="true" />
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            &nbsp;<asp:CheckBox ID="chkItem" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            <table>
+                <tr>
+                    <td>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>
-<p>
-</p>
-<asp:GridView ID="grdLeaveType" align="right" runat="server" EnableModelValidation="True"
-     Width="100%" BorderStyle="None"
-    BorderWidth="0px">
-    <Columns>
-        <asp:TemplateField>
-            <HeaderStyle Width="25" />
-            <HeaderTemplate>
-                &nbsp;<asp:CheckBox ID="chkAll" runat="server" OnCheckedChanged="chkAll_CheckedChanged"
-                    AutoPostBack="true" />
-            </HeaderTemplate>
-            <ItemTemplate>
-                &nbsp;<asp:CheckBox ID="chkItem" runat="server" OnCheckedChanged="chkItem_CheckedChanged" AutoPostBack="true"/>
-            </ItemTemplate>
-        </asp:TemplateField>
-    </Columns>
-</asp:GridView>

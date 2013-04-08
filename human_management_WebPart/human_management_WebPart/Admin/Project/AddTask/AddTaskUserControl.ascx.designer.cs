@@ -67,6 +67,24 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask {
         protected global::System.Web.UI.WebControls.Label lblEndDate;
         
         /// <summary>
+        /// lblLimitDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLimitDate;
+        
+        /// <summary>
+        /// txtLimitDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLimitDate;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

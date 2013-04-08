@@ -1,4 +1,4 @@
-﻿<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="../_catalogs/masterpage/Member.master" meta:progid="SharePoint.WebPartPage.Document"       %>
+<%@ Assembly Name="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%> <%@ Page Language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WikiEditPage" MasterPageFile="../_catalogs/masterpage/Member.master" meta:progid="SharePoint.WebPartPage.Document"       %>
 <%@ Import Namespace="Microsoft.SharePoint.WebPartPages" %> <%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
@@ -67,17 +67,17 @@
 	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
 
 &lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
-	var statusID;
-	function showNotif() {
-	    var value = &quot;&quot;.split(&quot;;&quot;);
-        for(i=0;i&lt;value.length;i++){
-	        if (value[i] != &quot;&quot;) {
-	            SP.UI.Notify.addNotification(value[i], true);
-	        }
+    ExecuteOrDelayUntilScriptLoaded(showNotif, 'sp.js');
+    var statusID;
+    function showNotif() {
+        var value = &quot;&quot;.split(&quot;;&quot;);
+        for (i = 0; i &lt; value.length; i++) {
+            if (value[i] != &quot;&quot;) {
+                SP.UI.Notify.addNotification(value[i], true);
+            }
         }
-	}
+    }
 &lt;/script&gt;
-&lt;span id=&quot;g_be49f9de_5754_4e7c_a807_83576d4b69a8_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
 &lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_be49f9de_5754_4e7c_a807_83576d4b69a8' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></NotifyEmployee:NotifyEmployee>
 <UserAccount:UserAccount runat="server" Description="UserAccount" Title="UserAccount" __MarkupType="vsattributemarkup" __WebPartId="{c413c245-16aa-496f-9682-e86e48c8146b}" WebPart="true" __designer:IsClosed="false" id="g_c413c245_16aa_496f_9682_e86e48c8146b" __designer:Preview="&lt;div id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b&quot; __MarkupType=&quot;vsattributemarkup&quot; __WebPartId=&quot;{c413c245-16aa-496f-9682-e86e48c8146b}&quot; WebPart=&quot;true&quot;&gt;
@@ -87,7 +87,6 @@
 &lt;a id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b_ctl00_lbtnChangePassword&quot; Href=&quot;javascript:__doPostBack('g_c413c245_16aa_496f_9682_e86e48c8146b$ctl00$lbtnChangePassword','')&quot;&gt;Change Password&lt;/a&gt;
 &amp;nbsp;|
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_c413c245_16aa_496f_9682_e86e48c8146b_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_c413c245_16aa_496f_9682_e86e48c8146b$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
-
 
 &lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_c413c245_16aa_496f_9682_e86e48c8146b' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 

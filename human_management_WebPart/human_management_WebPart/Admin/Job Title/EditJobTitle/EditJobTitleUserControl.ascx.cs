@@ -19,6 +19,13 @@ namespace SP2010VisualWebPart.EditJobTitle
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string Name = Request.QueryString["Name"];
+                    if (Name == null) { }
+                    else
+                    {
+                        Session["Name"] = Name;
+                        Response.Redirect(Message.EditJobTitlePage);
+                    }
                     if (Session["Name"] == null)
                     {
                         Response.Redirect(Message.AccessDeniedPage);

@@ -19,6 +19,13 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string QuestionID = Request.QueryString["QuestionID"];
+                    if (QuestionID == null) { }
+                    else
+                    {
+                        Session["QuestionID"] = QuestionID;
+                        Response.Redirect(Message.EditCheckpointQuestionPage);
+                    }
                     if (Session["QuestionID"] != null)
                     {
                         try

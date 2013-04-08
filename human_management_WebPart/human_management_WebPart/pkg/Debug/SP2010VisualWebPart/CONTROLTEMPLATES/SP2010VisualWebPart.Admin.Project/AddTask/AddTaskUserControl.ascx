@@ -71,6 +71,11 @@
             <input type="text" id="txtEndDate" name="txtEndDate" style="width: 200px;" value="<%=this.endDate %>" />
             <p>
                 &nbsp;</p>
+            <span style="padding-left: 5px;"></span>
+            <asp:Label ID="lblLimitDate" runat="server" Text="Limit Date" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtLimitDate" runat="server" Width="200px"></asp:TextBox>
+            <p>
+                &nbsp;</p>
                 &nbsp;<span style="color: Red;">(*) is required</span>
                 <br />
                 <br />

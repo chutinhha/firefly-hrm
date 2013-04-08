@@ -1,4 +1,4 @@
-﻿<%@ Register tagprefix="ReviewTimesheet" namespace="SP2010VisualWebPart.User.Performance.ReviewTimesheet" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
+<%@ Register tagprefix="ReviewTimesheet" namespace="SP2010VisualWebPart.User.Performance.ReviewTimesheet" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="NotifyEmployee" namespace="SP2010VisualWebPart.Admin.NotifyEmployee" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%@ Register tagprefix="UserAccount" namespace="SP2010VisualWebPart.UserAccount" assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" %>
 <%-- _lcid="1033" _version="14.0.4762" _dal="1" --%>
@@ -27,21 +27,15 @@
 			&lt;/tr&gt;
 		&lt;/table&gt;&lt;/td&gt;
 	&lt;/tr&gt;
-&lt;/table&gt;" __designer:Values="&lt;P N='Title' ID='1' T='Full Page' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='ID' ID='2' T='FullPage' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><ReviewTimesheet:ReviewTimesheet runat="server" ID="g_0b2c7b73_b392_446d_9054_a1cd8377647a" Description="ReviewTimesheet" Title="ReviewTimesheet" __designer:Values="&lt;P N='Description' ID='1' T='ReviewTimesheet' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_0b2c7b73_b392_446d_9054_a1cd8377647a' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;/table&gt;" __designer:Values="&lt;P N='ID' ID='1' T='FullPage' /&gt;&lt;P N='HeaderText' T='loc:FullPage' /&gt;&lt;P N='DisplayTitle' ID='2' T='Full Page' /&gt;&lt;P N='FrameType' E='2' /&gt;&lt;P N='Title' R='2' /&gt;&lt;P N='PartChromeType' E='3' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;ZoneTemplate&quot;&gt;&lt;Template Name=&quot;ZoneTemplate&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"><ZoneTemplate><ReviewTimesheet:ReviewTimesheet runat="server" ID="g_0b2c7b73_b392_446d_9054_a1cd8377647a" Description="ReviewTimesheet" ChromeType="None" Title="ReviewTimesheet" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' ID='1' T='ReviewTimesheet' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' T='g_0b2c7b73_b392_446d_9054_a1cd8377647a' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
 	&lt;tr&gt;
-		&lt;td&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
-			&lt;tr class=&quot;ms-WPHeader&quot;&gt;
-				&lt;td align=&quot;left&quot; class=&quot;ms-wpTdSpace&quot;&gt;&amp;#160;&lt;/td&gt;&lt;td title=&quot;ReviewTimesheet - ReviewTimesheet&quot; id=&quot;WebPartTitleFullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a&quot; class=&quot;ms-WPHeaderTd&quot;&gt;&lt;div class=&quot;ms-WPTitle&quot;&gt;&lt;nobr&gt;&lt;span&gt;ReviewTimesheet&lt;/span&gt;&lt;span id=&quot;WebPartCaptionFullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a&quot;&gt;&lt;/span&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;/td&gt;&lt;td align=&quot;left&quot; class=&quot;ms-wpTdSpace&quot;&gt;&amp;#160;&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/table&gt;&lt;/td&gt;
-	&lt;/tr&gt;&lt;tr&gt;
-		&lt;td class=&quot;&quot; valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a&quot; width=&quot;100%&quot; class=&quot;ms-WPBody ms-wpContentDivSpace&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
+		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a&quot;&gt;
 	
 &lt;link rel=&quot;stylesheet&quot; href=&quot;http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css&quot; /&gt;
-&lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;http://code.jquery.com/ui/1.10.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/ui/1.10.2/jquery-ui.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
     $(function () {
         $(&quot;#txtDateFrom&quot;).datepicker({
             changeMonth: true,
@@ -53,72 +47,82 @@
         });
     });
 &lt;/script&gt;
-&lt;br&gt;&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;
-&lt;table class=&quot;fieldTitleTable&quot;&gt;
-&lt;tr&gt;&lt;td class=&quot;fieldTitleTd&quot;&gt;&lt;font color=&quot;white&quot;&gt;Review Timesheet&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-    &lt;br /&gt;
-    &lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblProjectName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Project Name&lt;/span&gt;
-&lt;div class=&quot;styled-selectLong&quot;&gt;
-&lt;select name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$ddlProjectName&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_ddlProjectName&quot;&gt;
+&lt;br /&gt;
+&lt;table class=&quot;fieldTitleDiv&quot; cellpadding=&quot;0&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;table class=&quot;fieldTitleTable&quot;&gt;
+                &lt;tr&gt;
+                    &lt;td class=&quot;fieldTitleTd&quot;&gt;
+                        &lt;span style=&quot;color: white;&quot;&gt;Review Timesheet&lt;/span&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;br /&gt;
+            &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+            &lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblProjectName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Project Name&lt;/span&gt;
+            &lt;div class=&quot;styled-selectLong&quot;&gt;
+                &lt;select name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$ddlProjectName&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_ddlProjectName&quot;&gt;
 
-	&lt;/select&gt;&lt;/div&gt;
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblTaskName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Task Name&lt;/span&gt;
-&lt;div class=&quot;styled-selectLong&quot;&gt;&lt;select name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$ddlTaskName&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_ddlTaskName&quot;&gt;
+	&lt;/select&gt;
+            &lt;/div&gt;
+            &lt;p&gt;
+                &amp;nbsp;&lt;/p&gt;
+            &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+            &lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblTaskName&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;Task Name&lt;/span&gt;
+            &lt;div class=&quot;styled-selectLong&quot;&gt;
+                &lt;select name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$ddlTaskName&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_ddlTaskName&quot;&gt;
 
-	&lt;/select&gt;&lt;/div&gt;
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblFrom&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;From&lt;/span&gt;
-
-&lt;input id=&quot;txtDateFrom&quot; name=&quot;txtDateFrom&quot; style=&quot;width:200px;&quot; type=&quot;text&quot; 
-    value=&quot;&quot; /&gt;
-
-&lt;span style=&quot;padding-left:50px;&quot;&gt;&lt;/span&gt;&lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblTo&quot; style=&quot;display:inline-block;width:50px;&quot;&gt;To&lt;/span&gt;
-
-&lt;input id=&quot;txtDateTo&quot; name=&quot;txtDateTo&quot; style=&quot;width:200px;&quot; type=&quot;text&quot; 
-    value=&quot;&quot; /&gt;
-
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-&lt;span style=&quot;padding-left:5px;&quot;&gt;&lt;/span&gt;
-    &lt;input id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_chkApprove&quot; type=&quot;checkbox&quot; name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$chkApprove&quot; /&gt;&lt;label for=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_chkApprove&quot;&gt;Only include approved timesheet&lt;/label&gt;
-&lt;p&gt;
-    &amp;nbsp;&lt;/p&gt;
-    &lt;div class=&quot;borderTop&quot;&gt;
-&lt;input type=&quot;submit&quot; name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$btnView&quot; value=&quot;View&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_btnView&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
-        &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$btnReset&quot; value=&quot;Reset&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_btnReset&quot; class=&quot;resetButton&quot; style=&quot;width:80px;&quot; /&gt;
-    &lt;/div&gt;
-
-    
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;br&gt;
-&lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+	&lt;/select&gt;
+            &lt;/div&gt;
+            &lt;p&gt;
+                &amp;nbsp;&lt;/p&gt;
+            &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+            &lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblFrom&quot; style=&quot;display:inline-block;width:150px;&quot;&gt;From&lt;/span&gt;
+            &lt;input id=&quot;txtDateFrom&quot; name=&quot;txtDateFrom&quot; style=&quot;width: 200px;&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+            &lt;span style=&quot;padding-left: 50px;&quot;&gt;&lt;/span&gt;
+            &lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblTo&quot; style=&quot;display:inline-block;width:50px;&quot;&gt;To&lt;/span&gt;
+            &lt;input id=&quot;txtDateTo&quot; name=&quot;txtDateTo&quot; style=&quot;width: 200px;&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;
+            &lt;p&gt;
+                &amp;nbsp;&lt;/p&gt;
+            &lt;span style=&quot;padding-left: 5px;&quot;&gt;&lt;/span&gt;
+            &lt;input id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_chkApprove&quot; type=&quot;checkbox&quot; name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$chkApprove&quot; /&gt;&lt;label for=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_chkApprove&quot;&gt;Only include approved timesheet&lt;/label&gt;
+            &lt;p&gt;
+                &amp;nbsp;&lt;/p&gt;
+            &lt;div class=&quot;borderTop&quot;&gt;
+                &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$btnView&quot; value=&quot;View&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_btnView&quot; class=&quot;addButton&quot; style=&quot;width:80px;&quot; /&gt;
+                &lt;input type=&quot;submit&quot; name=&quot;FullPage$g_0b2c7b73_b392_446d_9054_a1cd8377647a$ctl00$btnReset&quot; value=&quot;Reset&quot; id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_btnReset&quot; class=&quot;resetButton&quot; style=&quot;width:80px;&quot; /&gt;
+            &lt;/div&gt;
+            
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;br /&gt;
+&amp;nbsp;&lt;span id=&quot;FullPage_g_0b2c7b73_b392_446d_9054_a1cd8377647a_ctl00_lblError&quot; style=&quot;color: Red;&quot;&gt;&lt;/span&gt;
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;" __MarkupType="vsattributemarkup" __WebPartId="{0B2C7B73-B392-446D-9054-A1CD8377647A}" WebPart="true" __designer:IsClosed="false"></ReviewTimesheet:ReviewTimesheet>
 
-<NotifyEmployee:NotifyEmployee runat="server" ID="g_d31247db_9d50_4519_9e2b_b86d09576fa6" Description="NotifyEmployee" ChromeType="None" Title="NotifyEmployee" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='ChromeType' E='2' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='2' /&gt;&lt;P N='ID' T='g_d31247db_9d50_4519_9e2b_b86d09576fa6' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+<NotifyEmployee:NotifyEmployee runat="server" ID="g_d31247db_9d50_4519_9e2b_b86d09576fa6" Description="NotifyEmployee" ChromeType="None" Title="NotifyEmployee" __designer:Values="&lt;P N='Description' ID='1' T='NotifyEmployee' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' T='g_d31247db_9d50_4519_9e2b_b86d09576fa6' /&gt;&lt;P N='ChromeType' E='2' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='2' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;table class=&quot;s4-wpTopTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
 	&lt;tr&gt;
 		&lt;td valign=&quot;top&quot;&gt;&lt;div WebPartID=&quot;&quot; HasPers=&quot;false&quot; id=&quot;WebPartFullPage_g_d31247db_9d50_4519_9e2b_b86d09576fa6&quot; width=&quot;100%&quot; class=&quot;ms-WPBody&quot; allowDelete=&quot;false&quot; allowExport=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;
 			&lt;div id=&quot;FullPage_g_d31247db_9d50_4519_9e2b_b86d09576fa6&quot;&gt;
 	&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
 
 &lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot;&gt;
-	var statusID;
-	function showNotif() {
-	    var value = &quot;&quot;.split(&quot;;&quot;);
-        for(i=0;i&lt;value.length;i++){
-	        if (value[i] != &quot;&quot;) {
-	            SP.UI.Notify.addNotification(value[i], true);
-	        }
+    ExecuteOrDelayUntilScriptLoaded(showNotif, 'sp.js');
+    var statusID;
+    function showNotif() {
+        var value = &quot;&quot;.split(&quot;;&quot;);
+        for (i = 0; i &lt; value.length; i++) {
+            if (value[i] != &quot;&quot;) {
+                SP.UI.Notify.addNotification(value[i], true);
+            }
         }
-	}
+    }
 &lt;/script&gt;
-&lt;span id=&quot;FullPage_g_d31247db_9d50_4519_9e2b_b86d09576fa6_ctl00_lblScript&quot;&gt;&lt;script&gt;ExecuteOrDelayUntilScriptLoaded(showNotif,'sp.js');&lt;/script&gt;&lt;/span&gt;
 
 &lt;/div&gt;
 		&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
@@ -141,8 +145,7 @@
 &amp;nbsp;|
 &lt;a onclick=&quot;return confirm('Are you sure you want to log out ?');&quot; id=&quot;g_19ac7470_da56_42de_87cc_ff3430c6c160_ctl00_lbtnLogOut&quot; Href=&quot;javascript:__doPostBack('g_19ac7470_da56_42de_87cc_ff3430c6c160$ctl00$lbtnLogOut','')&quot;&gt;Logout&lt;/a&gt;
 
-
-&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='ID' ID='2' T='g_19ac7470_da56_42de_87cc_ff3430c6c160' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
+&lt;/div&gt;" __designer:Values="&lt;P N='Description' ID='1' T='UserAccount' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='ID' ID='2' T='g_19ac7470_da56_42de_87cc_ff3430c6c160' /&gt;&lt;P N='DisplayTitle' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='HasAttributes' T='True' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"></UserAccount:UserAccount>
 
 
 						

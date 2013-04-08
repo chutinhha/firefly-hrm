@@ -85,5 +85,11 @@
     <ElementFile Location="EditTask\EditTask.webpart" />
     <ElementManifest Location="ManageUser\Elements.xml" />
     <ElementFile Location="ManageUser\ManageUser.webpart" />
+    <ElementManifest Location="addEmployees\Elements.xml" />
+    <ElementFile Location="addEmployees\addEmployees.webpart" />
+    <ElementManifest Location="searchEmployee\Elements.xml" />
+    <ElementFile Location="searchEmployee\searchEmployee.webpart" />
+    <ElementManifest Location="PersonProject\Elements.xml" />
+    <ElementFile Location="PersonProject\PersonProject.webpart" />
   </ElementManifests>
 </Feature>

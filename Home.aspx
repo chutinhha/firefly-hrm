@@ -37,7 +37,7 @@
 <Login:Login runat="server" ID="g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7" Description="            This Web Part has a User Control to render the UI.          " ChromeType="None" Title="Login" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='            This Web Part has a User Control to render the UI.          ' /&gt;&lt;P N='DisplayTitle' ID='1' T='Login' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='1' /&gt;&lt;P N='ID' ID='2' T='g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7&quot;&gt;
 	
 &lt;p&gt;
-    &lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
+    &amp;nbsp;&lt;span id=&quot;g_1179f2c7_ee84_4a3e_98bd_e827e2d708e7_ctl00_lblError&quot; style=&quot;color: Red;&quot;&gt;&lt;/span&gt;
 &lt;/p&gt;
 
 &lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{1179F2C7-EE84-4A3E-98BD-E827E2D708E7}" WebPart="true" __designer:IsClosed="false"></Login:Login>
@@ -91,11 +91,15 @@
 
 
 
-<ManageUser:ManageUser runat="server" ID="g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f" Description="My Visual WebPart" ChromeType="None" Title="ManageUser" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='My Visual WebPart' /&gt;&lt;P N='DisplayTitle' ID='1' T='ManageUser' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='2' /&gt;&lt;P N='ID' ID='2' T='g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f&quot;&gt;
-	&lt;span id=&quot;g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f_ctl00_lblError&quot; style=&quot;color:Red;&quot;&gt;&lt;/span&gt;
 
+
+<ManageUser:ManageUser runat="server" ID="g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f" Description="My Visual WebPart" ChromeType="None" Title="ManageUser" __designer:Values="&lt;P N='ChromeType' E='2' /&gt;&lt;P N='Description' T='My Visual WebPart' /&gt;&lt;P N='DisplayTitle' ID='1' T='ManageUser' /&gt;&lt;P N='IsShared' T='True' /&gt;&lt;P N='IsStandalone' T='False' /&gt;&lt;P N='IsStatic' T='False' /&gt;&lt;P N='Title' R='1' /&gt;&lt;P N='WebBrowsableObject' R='0' /&gt;&lt;P N='ZoneIndex' T='2' /&gt;&lt;P N='ID' ID='2' T='g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f' /&gt;&lt;P N='Page' ID='3' /&gt;&lt;P N='TemplateControl' R='3' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Preview="&lt;div id=&quot;g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f&quot;&gt;
+	
+&amp;nbsp;&lt;span id=&quot;g_c8df396d_87d6_4f6e_ace5_5cb6901ee19f_ctl00_lblError&quot; style=&quot;color: Red;&quot;&gt;&lt;/span&gt;
 
 &lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{C8DF396D-87D6-4F6E-ACE5-5CB6901EE19F}" WebPart="true" __designer:IsClosed="false"></ManageUser:ManageUser>
+
+
 
 
 
@@ -185,155 +189,6 @@
 	    <asp:PostBackTrigger ControlID="btnWikiSave" />
 	</Triggers>
  </asp:UpdatePanel>
-</asp:Content>
-<asp:Content id="Content1" runat="server" contentplaceholderid="PlaceHolderHorizontalNav">
-<table style="background-color:#E2E2E2;"><tbody><tr><td>
-			<ul id="nav">
-	<li>
-		<a href="Home.aspx">HOME</a>	
-	</li>
-	<li>
-		<a href="">WHO WE ARE</a>
-		<div class="dropdown">
-			<ul>
-				<li><a href="">About ORBIS International</a></li>
-				<li><a href="">History</a></li>
-				<li><a href="">What Makes Us Different</a></li>
-				<li><a href="">Global Leadership</a></li>
-				<li><a href="">Financial Information</a></li>
-				<li><a href="">Corporate Sponsors</a></li>
-				<li><a href="">Contact Us</a></li>
-				<li style="background:none;"><a href="">Employment</a></li>
-			</ul>
-			<div class="bottom"></div>
-		</div>
-	</li>
-	<li>
-		<a href="">WHAT WE DO</a>
-		<div class="dropdown">
-			<ul>
-				<li><a href="">Where We Work</a></li>
-				<li><a href="">Flying Eye Hospital</a></li>
-				<li><a href="">Capacity Building</a></li>
-				<li><a href="">Training</a></li>
-				<li><a href="">Diseases We Treat</a></li>
-				<li><a href="">Cyber-Sight®</a></li>
-				<li><a href="">Success Stories</a></li>
-				<li style="background:none;"><a href="">Videos: Eye Reports</a></li>
-			</ul>
-			<div class="bottom"></div>
-		</div>
-	</li>
-	<li>
-		<a href="">FLYING EYE HOSPITAL</a>
-		<div class="dropdown">
-			<ul>
-				<li><a href="">Flying Eye Hospital</a></li>
-				<li><a href="">MD-10: The New Plane</a></li>
-				<li><a href="">Who&#39;s On Board?</a></li>
-				<li><a href="">Itinerary</a></li>
-				<li style="background:none;"><a href="">Employment</a></li>
-			</ul>
-			<div class="bottom"></div>
-		</div>
-	</li>
-	<li>
-		<a href="">GET INVOLVED</a>
-		<div class="dropdown">
-			<ul>
-				<li><a href="">In Your Community: Advocates for Sight</a></li>
-				<li><a href="">Medical Volunteers</a></li>
-				<li><a href="">Volunteer Pilots</a></li>
-				<li><a href="">Corporate Opportunities</a></li>
-				<li><a href="">Publications</a></li>
-				<li style="background:none;"><a href="">Volunteer Opportunities</a></li>
-			</ul>
-			<div class="bottom"></div>
-		</div>
-	</li>
-	<li>
-		<a href="">DONATE NOW</a>
-		<div class="dropdown">
-			<ul>
-				<li><a href="">Make a Donation</a></li>
-				<li><a href="">Donate Frequent Flyer Miles</a></li>
-				<li style="background:none;"><a href="">Other Ways of Giving</a></li>
-			</ul>
-			<div class="bottom"></div>
-		</div>
-	</li>
-	<li style="background:none;">
-		<a href="">NEWSROOM</a>
-		<div class="dropdown">
-			<ul>
-				<li><a href="">Media contacts</a></li>
-				<li><a href="">Fact Sheet</a></li>
-				<li><a href="">Press Releases</a></li>
-				<li><a href="">What&#39;s New</a></li>
-				<li><a href="">Video Gallery</a></li>
-				<li style="background:none;"><a href="">Blog</a></li>
-			</ul>
-			<div class="bottom"></div>
-		</div>
-	</li>
-</ul>                            
-	</td></tr></table>						
-							
-							
-							
-							<!-- Create Menu Settings: (Menu ID, Is Vertical, Show Timer, Hide Timer, On Click (options: 'all' * 'all-always-open' * 'main' * 'lev2'), Right to Left, Horizontal Subs, Flush Left, Flush Top) -->
-							<script type="text/javascript">qm_create(0,false,0,500,false,false,false,false,false);</script>
-											  
-							
-                            		
-								
-							
-						
-
-    
-    <!-- menu cua share point               
-	<SharePoint:AspMenu
-	  ID="TopNavigationMenuV4"
-	  Runat="server"
-	  EnableViewState="false"
-	  DataSourceID="topSiteMap"
-	  AccessKey="<%$Resources:wss,navigation_accesskey%>"
-	  UseSimpleRendering="true"
-	  UseSeparateCss="false"
-	  Orientation="Horizontal"
-	  StaticDisplayLevels="2"
-	  MaximumDynamicDisplayLevels="1"
-	  SkipLinkText=""
-	  CssClass="s4-tn" __designer:Preview="&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/1033/styles/menu-21.css&quot;/&gt;
-&lt;div id=&quot;zz3_TopNavigationMenuV4&quot; class=&quot;s4-tn&quot;&gt;
-	&lt;div class=&quot;menu horizontal menu-horizontal&quot;&gt;
-		&lt;ul class=&quot;root static&quot;&gt;
-			&lt;li class=&quot;static&quot;&gt;&lt;a class=&quot;static menu-item&quot; href=&quot;/hr/SitePages/Home.aspx&quot; accesskey=&quot;1&quot;&gt;&lt;span class=&quot;additional-background&quot;&gt;&lt;span class=&quot;menu-item-text&quot;&gt;hr&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-		&lt;/ul&gt;
-	&lt;/div&gt;
-&lt;/div&gt;" __designer:Values="&lt;P N='ID' ID='1' T='TopNavigationMenuV4' /&gt;&lt;P N='UseSimpleRendering' T='True' /&gt;&lt;P N='MaximumDynamicDisplayLevels' T='1' /&gt;&lt;P N='Orientation' E='0' /&gt;&lt;P N='SkipLinkText' R='-1' /&gt;&lt;P N='StaticDisplayLevels' T='2' /&gt;&lt;P N='DataSourceID' T='topSiteMap' /&gt;&lt;P N='AccessKey' Bound='True' T='Resources:wss,navigation_accesskey' /&gt;&lt;P N='CssClass' T='s4-tn' /&gt;&lt;P N='EnableViewState' T='False' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;" __designer:Templates="&lt;Group Name=&quot;Item Templates&quot;&gt;&lt;Template Name=&quot;StaticItemTemplate&quot; Flags=&quot;D&quot; Content=&quot;&quot; /&gt;&lt;Template Name=&quot;DynamicItemTemplate&quot; Flags=&quot;D&quot; Content=&quot;&quot; /&gt;&lt;/Group&gt;"/>
-      -->
-
-      
-
-
-    
-	<SharePoint:DelegateControl runat="server" ControlId="TopNavigationDataSource" Id="topNavigationDelegate" __designer:Preview="&lt;span style=&quot;display:none&quot;&gt;&lt;table cellpadding=4 cellspacing=0 style=&quot;font:messagebox;color:buttontext;background-color:buttonface;border: solid 1px;border-top-color:buttonhighlight;border-left-color:buttonhighlight;border-bottom-color:buttonshadow;border-right-color:buttonshadow&quot;&gt;
-              &lt;tr&gt;&lt;td nowrap&gt;&lt;span style=&quot;font-weight:bold&quot;&gt;PortalSiteMapDataSourceSwitch&lt;/span&gt; - topSiteMap&lt;/td&gt;&lt;/tr&gt;
-              &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-            &lt;/table&gt;&lt;/span&gt;" __designer:Values="&lt;P N='ControlId' T='TopNavigationDataSource' /&gt;&lt;P N='ID' ID='1' T='topNavigationDelegate' /&gt;&lt;P N='Page' ID='2' /&gt;&lt;P N='TemplateControl' R='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
-		<Template_Controls>
-			<asp:SiteMapDataSource
-			  ShowStartingNode="False"
-			  SiteMapProvider="SPNavigationProvider"
-			  id="topSiteMap"
-			  runat="server"
-			  StartingNodeUrl="sid:1002"/>
-		</Template_Controls>
-	
-    
-    </SharePoint:DelegateControl>
-								
 </asp:Content>
 
 

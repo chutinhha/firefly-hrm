@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="ViewProjectReport" List="113" Url="_catalogs/wp">
+    <File Path="ViewProjectReport\ViewProjectReport.webpart" Url="ViewProjectReport.webpart" Type="GhostableInLibrary" >
+      <Property Name="Group" Value="HR" />
+    </File>
+  </Module>
+</Elements>
