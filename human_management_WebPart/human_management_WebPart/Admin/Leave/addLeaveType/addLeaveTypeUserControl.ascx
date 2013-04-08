@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <td>
-            <asp:Label ID="lblLeaveName" runat="server" Text="Leave Name"></asp:Label>
+            <asp:Label ID="lblLeaveName" runat="server" Text="Leave Name*"></asp:Label>
         </td>
         <td>
             <asp:TextBox ID="txtLeaveName" runat="server"></asp:TextBox>
@@ -42,22 +42,22 @@
             <asp:RadioButton ID="rdbLimitedYes" runat="server" GroupName="Limited" 
                 Text="Yes" oncheckedchanged="rdbLimitedYes_CheckedChanged" AutoPostBack="true" />
         </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <asp:Label ID="lblUserGuide" runat="server" Text=""></asp:Label>
-        </td>
-    </tr>
+    </tr>    
     <asp:Panel ID="pnlLimitedYes" runat="server" Visible="false">
         <tr>
             <td>
-                <asp:Label ID="lblLimitDay" runat="server" Text="Day"></asp:Label>
+                <asp:Label ID="lblLimitDay" runat="server" Text="Limit Date*"></asp:Label>
             </td>
             <td>
                 <asp:TextBox ID="txtLimitDay" runat="server"></asp:TextBox>
             </td>
         </tr>
     </asp:Panel>
+    <tr>
+        <td colspan="2">
+            <asp:Label ID="lblUserGuide" runat="server" Text=""></asp:Label>
+        </td>
+    </tr>
     <tr>
         <td>
             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />

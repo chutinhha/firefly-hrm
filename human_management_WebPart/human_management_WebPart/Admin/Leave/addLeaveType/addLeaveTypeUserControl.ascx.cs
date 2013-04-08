@@ -2,6 +2,7 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Data;
 
 namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
 {
@@ -23,22 +24,36 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
                 return;
             }
             lblUserGuide.Text = "";
-
+            if (rdbLimitedYes.Checked == true)
+            {
+                if (txtLimitDay.Text == "")
+                {
+                    lblUserGuide.Text = "* Require Failed";
+                    return;
+                }
+            }
             //Insert Database
             bool isIDENTITY_INSERT = false;
 
             //Insert Database to Project Table
-            string strTableName = Message.TableProject;
-            string strColumName = @"(ProjectName,Note,EndDate)";
+            string strTableName = Message.TableTask;
+            string strColumName = @"(ProjectId,TaskName,Note,LimitDate)";
+
+            // ProjectId
+            DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 ProjectId", " where ProjectName like 'Leave%'");
+            string strProjectID = dtProjectId.Rows[0][0].ToString();
 
             //Leave Name
-            string strLeaveName = "N'" + "Leave_" + txtLeaveName.Text + "'";            
+            string strLeaveName = "N'" + txtLeaveName.Text + "'";
             //Leave Note
             string strNote = "N'" + txtNote.Text + "'";
             //LimitedDate            
-            string strLimitedDate = "'" + txtLimitDay + "'";
+            string strLimitedDate = "";
+            if (txtLimitDay.Text != "") strLimitedDate = txtLimitDay.Text;
+            else strLimitedDate = "0";
+
             //Condition
-            string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate;            
+            string strCondition = strProjectID + " , " + strLeaveName + " , " + strNote + " , " + strLimitedDate;
 
             //Insert command
             _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);

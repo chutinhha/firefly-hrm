@@ -2,6 +2,7 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Data;
 
 namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
 {
@@ -11,20 +12,25 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
 
         private void binDataLeaveTypeToGrd()
         {
-            string strColumn = "ProjectName, Note,ProjectId";
-            string strTable = "HumanResources.Project";
-            string strCondition = " where ProjectName LIKE 'Leave_%'";
+            // ProjectId
+            DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 ProjectId", " where ProjectName like 'Leave%'");
+            string strProjectID = dtProjectId.Rows[0][0].ToString();
+
+            string strColumn = "TaskName, Note,LimitDate,TaskId";
+            string strTable = "HumanResources.Task";
+            string strCondition = " where ProjectId = " + strProjectID;
             _com.bindData(strColumn, strCondition, strTable, grdLeaveType);
             if (grdLeaveType.Rows.Count > 0)
             {
                 for (int i = 0; i < grdLeaveType.Rows.Count; i++)
                 {
-                    grdLeaveType.Rows[i].Cells[3].Visible = false;
-                    grdLeaveType.Rows[i].Cells[1].Text = grdLeaveType.Rows[i].Cells[1].Text.Replace("Leave_","");                    
+                    grdLeaveType.Rows[i].Cells[4].Visible = false;
+                    if (grdLeaveType.Rows[i].Cells[3].Text == "0") grdLeaveType.Rows[i].Cells[3].Text = "Unlimited";                    
                 }
                 grdLeaveType.HeaderRow.Cells[1].Text = "Project Type";
                 grdLeaveType.HeaderRow.Cells[2].Text = "Note";
-                grdLeaveType.HeaderRow.Cells[3].Visible = false;
+                grdLeaveType.HeaderRow.Cells[2].Text = "Limit Date";
+                grdLeaveType.HeaderRow.Cells[4].Visible = false;
             }
             _com.setGridViewStyle(grdLeaveType);
         }
@@ -86,14 +92,14 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            string strTableName = Message.TableProject;
+            string strTableName = Message.TableTask;
             string strCondition = "";
             foreach (GridViewRow row in grdLeaveType.Rows)
             {
                 CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
                 if (cbSelected.Checked == true)
-                {                    
-                    strCondition = "ProjectId = " + row.Cells[3].Text;
+                {
+                    strCondition = "TaskId = " + row.Cells[4].Text;
                     _com.deleteIntoTable(strTableName, strCondition);
                 }
             }
