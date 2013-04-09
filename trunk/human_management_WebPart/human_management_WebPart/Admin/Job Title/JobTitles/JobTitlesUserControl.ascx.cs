@@ -51,7 +51,7 @@ namespace SP2010VisualWebPart.JobTitles
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

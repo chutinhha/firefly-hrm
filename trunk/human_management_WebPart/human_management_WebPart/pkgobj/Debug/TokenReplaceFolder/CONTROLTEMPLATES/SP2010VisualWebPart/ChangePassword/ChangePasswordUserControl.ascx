@@ -17,7 +17,7 @@
             return false;
     }
 </script>
-<br />
+
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnChangePassword" Width="100%">
     <table cellpadding="0" class="fieldTitleDiv">
         <tr>
@@ -31,20 +31,17 @@
                 </table>
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblOldPassword" runat="server" Text="Old Password(*)" 
-                    Width="150px"></asp:Label>
+                <asp:Label ID="lblOldPassword" runat="server" Text="Old Password(*)" Width="150px"></asp:Label>
                 <asp:TextBox ID="txtOldPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblNewPassword" runat="server" Text="New Password(*)" 
-                    Width="150px"></asp:Label>
+                <asp:Label ID="lblNewPassword" runat="server" Text="New Password(*)" Width="150px"></asp:Label>
                 <asp:TextBox ID="txtNewPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password(*)" 
-                    Width="150px"></asp:Label>
+                <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password(*)" Width="150px"></asp:Label>
                 <asp:TextBox ID="txtConfirmPassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
                 <br />
                 <br />
@@ -54,11 +51,13 @@
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnChangePassword" runat="server" Text="Change Password" CssClass="addButton"
                     Width="150px" OnClick="btnChangePassword_Click" OnClientClick="return ConfirmOnChangePassword();" />
+                <br />
+                <br />
+            </td>
+        </tr>
+    </table>
 </asp:Panel>
-<br />
-<br />
-</td> </tr> </table>
-<br />
 <br />
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label>
+<br />

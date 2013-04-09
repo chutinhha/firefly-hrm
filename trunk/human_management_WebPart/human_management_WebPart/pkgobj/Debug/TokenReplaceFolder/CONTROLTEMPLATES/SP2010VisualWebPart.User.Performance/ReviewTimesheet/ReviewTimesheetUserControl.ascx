@@ -24,7 +24,7 @@
         });
     });
 </script>
-<br />
+
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -84,4 +84,4 @@
     </tr>
 </table>
 <br />
-&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label><br />

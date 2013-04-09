@@ -66,7 +66,7 @@ namespace SP2010VisualWebPart.EditVacancy
                 else
                 {
                     Session.Remove("Name");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

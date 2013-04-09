@@ -38,7 +38,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

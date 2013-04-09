@@ -47,7 +47,7 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

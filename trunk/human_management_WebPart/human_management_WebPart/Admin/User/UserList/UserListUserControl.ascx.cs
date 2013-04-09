@@ -94,7 +94,7 @@ namespace SP2010VisualWebPart.Admin.User.UserList
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

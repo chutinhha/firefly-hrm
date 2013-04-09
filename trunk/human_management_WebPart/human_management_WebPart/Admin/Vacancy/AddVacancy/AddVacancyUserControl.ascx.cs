@@ -34,7 +34,7 @@ namespace SP2010VisualWebPart.AddVacancy
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

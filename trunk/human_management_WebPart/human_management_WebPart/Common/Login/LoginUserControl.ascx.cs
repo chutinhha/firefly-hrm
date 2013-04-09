@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web;
 using System.Web.UI;
 using Microsoft.SharePoint.WebControls;
 namespace SP2010VisualWebPart.Login
@@ -23,9 +24,15 @@ namespace SP2010VisualWebPart.Login
                 Session["Account"] = _com.getRank(SPControl.GetContextWeb(this.Context));
                 Session["PersonName"] = dt.Rows[0][1].ToString().Trim();
                 Session["AccountName"] = user;
-                if (Session["Account"].ToString() != "")
+                if (Session["Account"]!=null)
                 {
-                    Response.Redirect(Session["Account"].ToString() + ".aspx");
+                    if (HttpContext.Current.Request.Url.AbsoluteUri.Contains("Home.aspx"))
+                    {
+                        Response.Redirect(Session["Account"].ToString() + ".aspx");
+                    }
+                }
+                else {
+                    Response.Redirect(Message.HomePage);
                 }
             }
         }

@@ -61,7 +61,7 @@ namespace SP2010VisualWebPart.AddCandidate
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

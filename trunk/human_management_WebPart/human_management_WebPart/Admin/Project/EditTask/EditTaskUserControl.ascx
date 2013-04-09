@@ -36,14 +36,14 @@
         });
     });
 </script>
-<br />
+
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <span style="color: white;">Add New Project</span>
+                        <span style="color: white;">Edit Task</span>
                     </td>
                 </tr>
             </table>
@@ -89,5 +89,5 @@
     </tr>
 </table>
 <br />
-<br />
-&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
+
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label><br />

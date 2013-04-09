@@ -48,7 +48,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.SearchEmployee
                 {
                     Session.Remove("ProjectName");
                     Session.Remove("TaskName");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

@@ -20,7 +20,7 @@
             return false;
     }
 </script>
-<br /><table class="fieldTitleDiv" cellpadding="0"><tr><td>
+<table class="fieldTitleDiv" cellpadding="0"><tr><td>
 <table class="fieldTitleTable">
 <tr><td class="fieldTitleTd"><span style="color:white;">Approve Timesheet</span></td></tr></table>
     <br />
@@ -49,7 +49,7 @@
 
 
 &nbsp;<asp:Label ID="lblSuccess" runat="server" style="color:Green;"></asp:Label>
-
+<br />
 
 
 

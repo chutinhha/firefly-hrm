@@ -46,7 +46,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                 else
                 {
                     Session.Remove("TaskName");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

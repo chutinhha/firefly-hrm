@@ -22,7 +22,7 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

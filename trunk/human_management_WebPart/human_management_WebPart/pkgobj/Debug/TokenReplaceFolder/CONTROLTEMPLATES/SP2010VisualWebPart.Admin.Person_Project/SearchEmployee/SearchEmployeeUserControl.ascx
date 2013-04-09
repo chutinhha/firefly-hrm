@@ -9,7 +9,7 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchEmployeeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Person_Project.SearchEmployee.SearchEmployeeUserControl" %>
-<br>
+
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -77,6 +77,5 @@
         </td>
     </tr>
 </table>
-<br>
-<br>
-&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br />

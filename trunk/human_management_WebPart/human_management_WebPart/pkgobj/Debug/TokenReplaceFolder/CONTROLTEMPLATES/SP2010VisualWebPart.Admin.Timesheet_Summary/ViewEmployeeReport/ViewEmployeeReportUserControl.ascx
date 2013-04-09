@@ -6,7 +6,6 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewEmployeeReportUserControl.ascx.cs" Inherits="SP2010VisualWebPart.Admin.Timesheet_Summary.ViewEmployeeReport.ViewEmployeeReportUserControl" %>
-<br/>
 <table class="fieldTitleDiv" cellpadding="0">
 <tr><td>
 <table class="fieldTitleTable">
@@ -23,6 +22,5 @@
     </asp:GridView>
 </td></tr>
 </table>
-    <br />
-    <br />
-    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label>
+<br />
+    <asp:Label ID="lblError" runat="server" style="color:Red;"></asp:Label><br />

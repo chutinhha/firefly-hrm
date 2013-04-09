@@ -9,7 +9,7 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ImportEmployeesUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.CSV.ImportEmployees.ImportEmployeesUserControl" %>
-<br />
+
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -186,3 +186,4 @@
 <br />
 <asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label>
+<br />

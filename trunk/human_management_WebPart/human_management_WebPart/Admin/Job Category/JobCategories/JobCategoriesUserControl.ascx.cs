@@ -39,7 +39,7 @@ namespace SP2010VisualWebPart.JobCategories
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

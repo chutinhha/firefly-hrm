@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web;
 using System.Web.UI;
 
 namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
@@ -20,6 +21,10 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                     {
                         if (Session["Account"].ToString() == "Admin")
                         {
+                            if (HttpContext.Current.Request.Url.AbsoluteUri.Contains(Message.AdminHomePage)) { }
+                            else {
+                                Response.Redirect(Message.AdminHomePage,true);
+                            }
                             pnlAttendance.Visible = false;
                             this.leftWidth = 6;
                             this.quickLaunchWidth = 200;
@@ -274,6 +279,11 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                         }
                         else
                         {
+                            if (HttpContext.Current.Request.Url.AbsoluteUri.Contains(Message.UserHomePage)) { }
+                            else
+                            {
+                                Response.Redirect(Message.UserHomePage);
+                            }
                             lblAssignLeave.Text = "Apply Leave";
                             lblLeaveList.Text = "My Leave";
                             lblTimesheet.Text = "My Timesheet";
@@ -328,7 +338,8 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             }
                         }
                 }
-                catch (Exception) { }
+                catch (Exception ex) {
+                }
             }
         }
         protected string inputValue { get; set; }

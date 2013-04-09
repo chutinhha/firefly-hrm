@@ -84,7 +84,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

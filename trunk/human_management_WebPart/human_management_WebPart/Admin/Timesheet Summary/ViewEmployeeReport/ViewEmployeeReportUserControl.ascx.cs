@@ -97,7 +97,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.ViewEmployeeReport
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

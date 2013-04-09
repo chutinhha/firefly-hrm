@@ -48,7 +48,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

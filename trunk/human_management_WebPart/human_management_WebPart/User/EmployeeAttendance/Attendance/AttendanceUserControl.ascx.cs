@@ -49,7 +49,7 @@ namespace SP2010VisualWebPart.User.Attendance
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }

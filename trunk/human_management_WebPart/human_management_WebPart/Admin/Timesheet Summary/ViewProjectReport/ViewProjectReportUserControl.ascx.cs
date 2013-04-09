@@ -90,7 +90,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.ViewProjectReport
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

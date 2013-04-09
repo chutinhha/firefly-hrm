@@ -144,7 +144,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 else
                 {
                     Session.Remove("TaskName");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
                     ddlDayOff.AutoPostBack = true;

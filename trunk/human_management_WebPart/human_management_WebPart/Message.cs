@@ -132,6 +132,7 @@
     internal const string AssignLeavePage = "AssignLeave.aspx";
     internal const string AssignDayOffPage = "DayOff.aspx";
     internal const string UserHomePage = "User.aspx";
+    internal const string AdminHomePage = "Admin.aspx";
     internal const string SupervisorJudgmentPage = "SupervisorJudgment.aspx";
     internal const string ApplyLeavePage = "ApplyLeave.aspx";
     internal const string MyLeavePage = "MyLeave.aspx";

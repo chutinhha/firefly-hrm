@@ -62,7 +62,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }
