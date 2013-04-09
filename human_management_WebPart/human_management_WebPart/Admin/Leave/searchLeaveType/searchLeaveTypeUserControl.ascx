@@ -23,8 +23,6 @@
             <div class="borderBottom">
             <asp:Button ID="btnAdd" CssClass="addButton" runat="server" Text="Add" 
                     OnClick="btnAdd_Click" Width="80px" />
-            <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" 
-                    Width="80px" />
             <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" 
                     OnClick="btnDelete_Click" Width="80px" />
             </div>

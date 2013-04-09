@@ -59,13 +59,13 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
             _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);
 
             _com.closeConnection();
-            Response.Redirect("searchLeaveType.aspx", true);
+            Response.Redirect("LeaveTypeList.aspx", true);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             _com.closeConnection();
-            Response.Redirect("searchLeaveType.aspx", true);
+            Response.Redirect("LeaveTypeList.aspx", true);
         }
 
         protected void rdbLimitedYes_CheckedChanged(object sender, EventArgs e)
