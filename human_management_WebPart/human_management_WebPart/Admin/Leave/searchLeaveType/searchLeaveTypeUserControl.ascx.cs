@@ -25,11 +25,11 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 for (int i = 0; i < grdLeaveType.Rows.Count; i++)
                 {
                     grdLeaveType.Rows[i].Cells[4].Visible = false;
-                    if (grdLeaveType.Rows[i].Cells[3].Text == "0") grdLeaveType.Rows[i].Cells[3].Text = "Unlimited";                    
+                    if (grdLeaveType.Rows[i].Cells[3].Text == "0") grdLeaveType.Rows[i].Cells[3].Text = "Unlimited";
                 }
                 grdLeaveType.HeaderRow.Cells[1].Text = "Project Type";
                 grdLeaveType.HeaderRow.Cells[2].Text = "Note";
-                grdLeaveType.HeaderRow.Cells[2].Text = "Limit Date";
+                grdLeaveType.HeaderRow.Cells[3].Text = "Limit Date";
                 grdLeaveType.HeaderRow.Cells[4].Visible = false;
             }
             _com.setGridViewStyle(grdLeaveType);
@@ -37,9 +37,28 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            if (Session["Account"] == null)
             {
-                binDataLeaveTypeToGrd();
+                Response.Redirect(Message.AccessDeniedPage);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            binDataLeaveTypeToGrd();
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+                else
+                {
+                    Response.Redirect(Message.UserHomePage);
+                }
             }
         }
 
@@ -91,7 +110,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string Location = Message.EditLeaveTypePage+"/?TaskID=" + Server.HtmlDecode(e.Row.Cells[4].Text)
+                string Location = Message.EditLeaveTypePage + "/?TaskID=" + Server.HtmlDecode(e.Row.Cells[4].Text)
                + "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
                 e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
@@ -140,7 +159,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 if (cbSelected.Checked == true)
                 {
                     strCondition = "TaskId = " + row.Cells[4].Text;
-                    //_com.deleteIntoTable(strTableName, strCondition);
+                    _com.deleteIntoTable(strTableName, strCondition);
                 }
             }
             binDataLeaveTypeToGrd();
