@@ -9,7 +9,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
     public partial class inforEmployeeUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
-        private string strBusinessEntityId = "46";
+        private string strBusinessEntityId = "";
         protected string strBirthDateValue { get; set; }
         protected string strBirtDateEditable { get; set; }
         protected string strBirtDateID { get; set; }
@@ -201,9 +201,43 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            loadControlStateOfPersonDetailsData(true);
-            loadControlStateOfPersonContactData(true);
-            loadEmployeeImage();
+            if (Session["Account"] == null)
+            {
+                Response.Redirect(Message.AccessDeniedPage);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            // Get ID
+                            strBusinessEntityId = Request.QueryString["BusinessEntityId"];
+                            if (strBusinessEntityId == null) { }
+                            else
+                            {
+                                //Delete link ID
+                                Session["BusinessEntityId"] = strBusinessEntityId;
+                                Response.Redirect(Message.EditEmployeePage);
+                            }
+                            strBusinessEntityId = Session["BusinessEntityId"].ToString();
+                            loadControlStateOfPersonDetailsData(true);
+                            loadControlStateOfPersonContactData(true);
+                            loadEmployeeImage();
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+                else
+                {
+                    strBusinessEntityId = Session["AccountID"].ToString();
+                    loadControlStateOfPersonDetailsData(true);
+                    loadControlStateOfPersonContactData(true);
+                    loadEmployeeImage();
+                }
+            }
         }
 
 
