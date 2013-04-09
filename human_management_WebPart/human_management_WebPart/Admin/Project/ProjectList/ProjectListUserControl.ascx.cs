@@ -39,7 +39,7 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

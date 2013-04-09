@@ -48,7 +48,7 @@ namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }

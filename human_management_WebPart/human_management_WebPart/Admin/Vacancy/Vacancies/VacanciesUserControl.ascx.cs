@@ -52,7 +52,7 @@ namespace SP2010VisualWebPart.Vacancies
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

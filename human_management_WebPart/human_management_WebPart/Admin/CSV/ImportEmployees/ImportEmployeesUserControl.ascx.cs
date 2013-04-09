@@ -144,7 +144,7 @@ namespace SP2010VisualWebPart.Admin.CSV.ImportEmployees
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

@@ -781,9 +781,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Project\AddTask\Elements.xml" />
-    <Content Include="Admin\Project\EditProject\EditProjectUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Project\EditProject\EditProjectUserControl.ascx" />
     <Content Include="Admin\Project\EditProject\Elements.xml" />
     <Content Include="Admin\Project\EditTask\EditTaskUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

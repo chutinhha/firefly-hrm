@@ -87,7 +87,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

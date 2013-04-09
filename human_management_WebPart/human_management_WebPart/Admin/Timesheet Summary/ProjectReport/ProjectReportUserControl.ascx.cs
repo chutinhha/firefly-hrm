@@ -33,7 +33,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.ProjectReport
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
             ddlProject.AutoPostBack = true;

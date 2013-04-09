@@ -41,7 +41,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }

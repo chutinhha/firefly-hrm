@@ -36,7 +36,7 @@
         });
     });
 </script>
-<br />
+
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -146,5 +146,6 @@
     </tr>
 </table>
 <br />
-<br />
+
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+<br />

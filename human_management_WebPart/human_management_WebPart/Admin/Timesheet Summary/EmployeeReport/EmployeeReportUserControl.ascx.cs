@@ -45,7 +45,7 @@ namespace SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
             ddlProject.AutoPostBack = true;

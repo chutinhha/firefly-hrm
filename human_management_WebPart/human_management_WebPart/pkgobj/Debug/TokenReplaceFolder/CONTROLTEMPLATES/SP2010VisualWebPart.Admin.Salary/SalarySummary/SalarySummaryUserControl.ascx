@@ -23,7 +23,7 @@
             return false;
     }
 </script>
-<br />
+
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -65,7 +65,7 @@
         </td>
     </tr>
 </table>
-<p>
-    &nbsp;</p>
+<br />
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label>
+<br />

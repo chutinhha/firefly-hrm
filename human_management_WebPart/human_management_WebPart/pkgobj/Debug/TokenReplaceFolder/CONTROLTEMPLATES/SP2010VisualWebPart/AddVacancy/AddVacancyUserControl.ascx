@@ -23,7 +23,7 @@
             return false;
     }
 </script>
-<br />
+
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -81,4 +81,4 @@
     </table>
 </asp:Panel>
 <br />
-&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br />

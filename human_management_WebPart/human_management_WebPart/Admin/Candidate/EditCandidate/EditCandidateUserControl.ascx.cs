@@ -118,7 +118,7 @@ namespace SP2010VisualWebPart.EditCandidate
                 {
                     Session.Remove("Name");
                     Session.Remove("Email");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

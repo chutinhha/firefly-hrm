@@ -66,7 +66,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

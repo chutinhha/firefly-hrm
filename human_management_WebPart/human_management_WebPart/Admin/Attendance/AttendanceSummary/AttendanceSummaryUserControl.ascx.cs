@@ -37,7 +37,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

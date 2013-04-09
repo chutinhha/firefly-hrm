@@ -24,7 +24,6 @@
     }
 </script>
 <asp:Panel ID="Panel1" runat="server" Visible="False" DefaultButton="btnSave">
-    <br />
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
             <td>
@@ -100,5 +99,6 @@
     </tr>
 </table>
 <br />
-<br />
+
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+<br />

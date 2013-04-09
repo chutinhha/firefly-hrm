@@ -40,7 +40,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }

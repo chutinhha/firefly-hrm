@@ -495,7 +495,7 @@ public class CommonFunction
             }
             else return "User";
         }
-        return "";
+        return null;
     }
 
     //Get current user account

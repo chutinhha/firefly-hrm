@@ -57,7 +57,7 @@ namespace SP2010VisualWebPart.EditJobTitle
                 else
                 {
                     Session.Remove("Name");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

@@ -122,7 +122,7 @@ namespace SP2010VisualWebPart.EditAttendance
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

@@ -71,7 +71,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                 {
                     Session.Remove("ProjectName");
                     Session.Remove("TaskName");
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
                 ddlProject.AutoPostBack = true;

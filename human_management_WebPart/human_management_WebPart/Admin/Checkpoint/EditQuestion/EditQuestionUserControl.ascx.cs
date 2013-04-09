@@ -71,7 +71,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }

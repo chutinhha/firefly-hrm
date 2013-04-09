@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.UI;
 
 namespace SP2010VisualWebPart.ChangePassword
@@ -14,6 +15,21 @@ namespace SP2010VisualWebPart.ChangePassword
             }
             else
             {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    if (HttpContext.Current.Request.Url.AbsoluteUri.Contains(Message.AdminHomePage)) { }
+                    else
+                    {
+                        Response.Redirect(Message.AdminHomePage, true);
+                    }
+                }
+                else {
+                    if (HttpContext.Current.Request.Url.AbsoluteUri.Contains(Message.UserHomePage)) { }
+                    else
+                    {
+                        Response.Redirect(Message.UserHomePage);
+                    }
+                }
                 if (!IsPostBack)
                 {
                     lblError.Text = "";

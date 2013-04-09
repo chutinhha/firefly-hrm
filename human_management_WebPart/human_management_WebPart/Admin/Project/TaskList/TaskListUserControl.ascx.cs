@@ -48,7 +48,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.UserHomePage);
                 }
             }
         }
