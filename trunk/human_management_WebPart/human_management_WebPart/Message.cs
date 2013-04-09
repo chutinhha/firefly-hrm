@@ -23,6 +23,8 @@
     internal const string TableProject = "HumanResources.Project";
     internal const string TableTimesheet = "HumanResources.Timesheet";
     internal const string TableDepartment = "HumanResources.Department";
+    internal const string TableHistoryDepartment = "HumanResources.EmployeeDepartmentHistory";
+    internal const string TableShift = "HumanResources.Shift";
 
     //database column
     internal const string PunchInColumn = "PunchIn";
@@ -105,6 +107,8 @@
     internal const string TimesheetIDColumn = "TimesheetId";
     internal const string WorkDateColumn = "WorkDate";
     internal const string PersonProjectIdColumn = "PersonProjectId";
+    internal const string ShiftIDColumn = "ShiftID";
+    internal const string DepartmentIDColumn = "DepartmentID";
 
     //Page
     internal const string HomePage = "Home.aspx";
@@ -151,7 +155,7 @@
     internal const string EditEmployeePage = "EditEmployee.aspx";
     internal const string AddLeaveTypePage = "AddLeaveType.aspx";
     internal const string EditLeaveTypePage = "EditLeaveType.aspx";
-    internal const string MyTimesheetPage = "MyTimesheet.aspx";
+    internal const string MyTimesheetPage = "LogTimesheet.aspx";
     internal const string EditMyTimesheetPage = "EditTimesheet.aspx";
 
     //success sentences

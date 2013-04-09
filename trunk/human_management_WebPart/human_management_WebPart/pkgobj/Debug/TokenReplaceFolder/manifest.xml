@@ -58,6 +58,10 @@
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.DepartmentList" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.editLeaveType" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.inforEmployee" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Leave.ApplyLeave" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Leave.MyLeave" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Timesheet.EditTimesheet" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Timesheet.MyTimesheet" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>
@@ -117,6 +121,10 @@
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\DepartmentList\DepartmentListUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\editLeaveType\editLeaveTypeUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\inforEmployee\inforEmployeeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Leave\ApplyLeave\ApplyLeaveUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Leave\MyLeave\MyLeaveUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Timesheet\EditTimesheet\EditTimesheetUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Timesheet\MyTimesheet\MyTimesheetUserControl.ascx" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="human_management_WebPart_Feature1\Feature.xml" />

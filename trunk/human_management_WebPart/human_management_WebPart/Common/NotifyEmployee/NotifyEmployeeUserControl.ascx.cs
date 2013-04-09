@@ -17,18 +17,19 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                 DateTime end = now.AddDays(7);
                 DateTime start = now.AddDays(-7);
                 //Check department change
-                DataTable department = _com.getData("HumanResources.EmployeeDepartmentHistory edh join HumanResources.Shift s"
-                    + " on s.ShiftID = edh.ShiftID join HumanResources.Department d on d.DepartmentID = edh.DepartmentID"
-                    , "edh.StartDate,edh.EndDate,edh.ModifiedDate,d.Name", " where edh.BusinessEntityID='" 
-                    + Session["AccountID"].ToString() + "' and edh.StartDate >= '"+start.Year.ToString()+"-"+start.Month.ToString()+"-"+start.Day.ToString()
-                    + "' and edh.StartDate <= '" + end.Year.ToString() + "-" + end.Month.ToString() + "-" + end.Day.ToString()
-                    + "' and edh.ModifiedDate >= '" + start.Year.ToString() + "-" + start.Month.ToString() + "-" + start.Day.ToString()
-                    + "' and edh.ModifiedDate <= '" + end.Year.ToString() + "-" + end.Month.ToString() + "-" + end.Day.ToString() + "'");
+                DataTable department = _com.getData(Message.TableHistoryDepartment+" edh join "+Message.TableShift+" s"
+                    + " on s."+Message.ShiftIDColumn+" = edh."+Message.ShiftIDColumn+" join "+Message.TableDepartment
+                    +" d on d."+Message.DepartmentIDColumn+" = edh."+Message.DepartmentIDColumn
+                    , "edh."+Message.StartDateColumn+",edh."+Message.EndDateColumn+",edh."+Message.ModifiedDateColumn
+                    +",d."+Message.NameColumn, " where edh."+Message.BusinessEntityIDColumn+"='"
+                    + Session["AccountID"].ToString() + "' and ((edh."+Message.StartDateColumn+"<='"+end+"' and (edh."
+                    +Message.EndDateColumn+" is NULL or edh."+Message.EndDateColumn+"='')) or (edh."+Message.ModifiedDateColumn
+                    +"<='"+end+"') and (edh."+Message.EndDateColumn+" is NULL or edh."+Message.EndDateColumn+"=''))");
                 if (department.Rows.Count > 0) {
                     count = count + department.Rows.Count;
                     for (int i = 0; i < department.Rows.Count; i++) {
-                        this.inputValue = this.inputValue + "Assign to Department: "+department.Rows[i][3].ToString()
-                            + "<br />From " + department.Rows[i][0].ToString() + "<br />To " + department.Rows[i][1].ToString()+";";
+                        this.inputValue = this.inputValue + "Move to Department: "+department.Rows[i][3].ToString()
+                            + "<br />From " + department.Rows[i][0].ToString()+";";
                     }
                 }
                 //Check evaluate point
