@@ -67,58 +67,40 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee {
         protected global::System.Web.UI.WebControls.DropDownList ddlRank;
         
         /// <summary>
-        /// lblCountry control.
+        /// lblLoginID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountry;
+        protected global::System.Web.UI.WebControls.Label lblLoginID;
         
         /// <summary>
-        /// ddlCountry control.
+        /// txtLoginID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
+        protected global::System.Web.UI.WebControls.TextBox txtLoginID;
         
         /// <summary>
-        /// lblCity control.
+        /// lblJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCity;
+        protected global::System.Web.UI.WebControls.Label lblJobTitle;
         
         /// <summary>
-        /// txtCity control.
+        /// txtJobTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCity;
-        
-        /// <summary>
-        /// lblAddressStreet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddressStreet;
-        
-        /// <summary>
-        /// txtAddressStreet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddressStreet;
+        protected global::System.Web.UI.WebControls.TextBox txtJobTitle;
         
         /// <summary>
         /// btnSearch control.
@@ -137,15 +119,6 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReset;
-        
-        /// <summary>
-        /// btnEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
         
         /// <summary>
         /// grdEmployee control.
