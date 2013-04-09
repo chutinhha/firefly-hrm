@@ -55,6 +55,9 @@
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ViewProjectReport" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.addLeaveType" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.searchLeaveType" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.DepartmentList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.editLeaveType" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.inforEmployee" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>
@@ -111,6 +114,9 @@
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ViewProjectReport\ViewProjectReportUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\addLeaveType\addLeaveTypeUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\searchLeaveType\searchLeaveTypeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\DepartmentList\DepartmentListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\editLeaveType\editLeaveTypeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\inforEmployee\inforEmployeeUserControl.ascx" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="human_management_WebPart_Feature1\Feature.xml" />

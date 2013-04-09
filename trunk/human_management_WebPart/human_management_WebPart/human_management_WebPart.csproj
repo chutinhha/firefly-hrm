@@ -131,6 +131,14 @@
     <Compile Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx.designer.cs">
       <DependentUpon>QuestionListUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Department\DepartmentList\DepartmentList.cs" />
+    <Compile Include="Admin\Department\DepartmentList\DepartmentListUserControl.ascx.cs">
+      <DependentUpon>DepartmentListUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Department\DepartmentList\DepartmentListUserControl.ascx.designer.cs">
+      <DependentUpon>DepartmentListUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Employee\addEmployees\addEmployees.cs" />
     <Compile Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx.cs">
       <DependentUpon>addEmployeesUserControl.ascx</DependentUpon>
@@ -138,6 +146,14 @@
     </Compile>
     <Compile Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx.designer.cs">
       <DependentUpon>addEmployeesUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Employee\inforEmployee\inforEmployee.cs" />
+    <Compile Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx.cs">
+      <DependentUpon>inforEmployeeUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx.designer.cs">
+      <DependentUpon>inforEmployeeUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Employee\searchEmployee\searchEmployee.cs" />
     <Compile Include="Admin\Employee\searchEmployee\searchEmployeeUserControl.ascx.cs">
@@ -154,6 +170,14 @@
     </Compile>
     <Compile Include="Admin\Leave\addLeaveType\addLeaveTypeUserControl.ascx.designer.cs">
       <DependentUpon>addLeaveTypeUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Leave\editLeaveType\editLeaveType.cs" />
+    <Compile Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx.cs">
+      <DependentUpon>editLeaveTypeUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx.designer.cs">
+      <DependentUpon>editLeaveTypeUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Leave\searchLeaveType\searchLeaveType.cs" />
     <Compile Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx.cs">
@@ -520,9 +544,17 @@
     <None Include="Admin\Checkpoint\QuestionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f20955a4-c668-4ca1-b34d-efaa7e806991}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Department\DepartmentList\DepartmentList.webpart" />
+    <None Include="Admin\Department\DepartmentList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5a8d5e82-d94e-4301-afcb-39f6cd661592}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Employee\addEmployees\addEmployees.webpart" />
     <None Include="Admin\Employee\addEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{12381228-a41a-433d-9a5d-ebcf23d6d233}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Employee\inforEmployee\inforEmployee.webpart" />
+    <None Include="Admin\Employee\inforEmployee\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{67f1ab9c-6540-47e2-a230-531866e994a5}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Employee\searchEmployee\searchEmployee.webpart" />
     <None Include="Admin\Employee\searchEmployee\SharePointProjectItem.spdata">
@@ -531,6 +563,10 @@
     <None Include="Admin\Leave\addLeaveType\addLeaveType.webpart" />
     <None Include="Admin\Leave\addLeaveType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6ae7d45f-de1a-4483-a900-4ee3e2198d41}</SharePointProjectItemId>
+    </None>
+    <None Include="Admin\Leave\editLeaveType\editLeaveType.webpart" />
+    <None Include="Admin\Leave\editLeaveType\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0b1943ad-e700-4097-ab97-09f0ba770a9f}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Leave\searchLeaveType\searchLeaveType.webpart" />
     <None Include="Admin\Leave\searchLeaveType\SharePointProjectItem.spdata">
@@ -749,10 +785,18 @@
     <Content Include="Admin\Checkpoint\QuestionList\QuestionListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Admin\Department\DepartmentList\DepartmentListUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Department\DepartmentList\Elements.xml" />
     <Content Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Employee\addEmployees\Elements.xml" />
+    <Content Include="Admin\Employee\inforEmployee\Elements.xml" />
+    <Content Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Employee\searchEmployee\Elements.xml" />
     <Content Include="Admin\Employee\searchEmployee\searchEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -761,6 +805,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Leave\addLeaveType\Elements.xml" />
+    <Content Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Leave\editLeaveType\Elements.xml" />
     <Content Include="Admin\Leave\searchLeaveType\Elements.xml" />
     <Content Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

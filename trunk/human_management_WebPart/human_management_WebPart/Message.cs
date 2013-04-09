@@ -22,6 +22,7 @@
     internal const string TableTask = "HumanResources.Task";
     internal const string TableProject = "HumanResources.Project";
     internal const string TableTimesheet = "HumanResources.Timesheet";
+    internal const string TableDepartment = "HumanResources.Department";
 
     //database column
     internal const string PunchInColumn = "PunchIn";
@@ -221,4 +222,6 @@
     internal const string NotChooseItemDelete = "You must choose one or more items";
     internal const string AlreadyExistCategory = "There is another Job Category with the same name exists!";
     internal const string LitmitDateError = "Limit Date must be a natural number";
+    internal const string DepartmentNameError = "You must enter name of department";
+    internal const string AlreadyExistDepartment = "There is another Department with the same name exists!";
 }

@@ -13,15 +13,6 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
     public partial class inforEmployeeUserControl {
         
         /// <summary>
-        /// lblPageTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPageTitle;
-        
-        /// <summary>
         /// lblEmployeeImageTitle control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmployeeImage;
-        
-        /// <summary>
-        /// lblPersonDetailsTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPersonDetailsTitle;
         
         /// <summary>
         /// lblFullName control.
@@ -166,15 +148,6 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         protected global::System.Web.UI.WebControls.Button btnCancelPersonDetails;
         
         /// <summary>
-        /// lblContactDetailTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContactDetailTitle;
-        
-        /// <summary>
         /// lblEmail control.
         /// </summary>
         /// <remarks>
@@ -229,24 +202,6 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         protected global::System.Web.UI.WebControls.TextBox txtMobile;
         
         /// <summary>
-        /// lblCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCity;
-        
-        /// <summary>
-        /// txtCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCity;
-        
-        /// <summary>
         /// lblCountry control.
         /// </summary>
         /// <remarks>
@@ -263,6 +218,24 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCountry;
+        
+        /// <summary>
+        /// lblCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCity;
+        
+        /// <summary>
+        /// txtCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCity;
         
         /// <summary>
         /// lblAddressStreet control.

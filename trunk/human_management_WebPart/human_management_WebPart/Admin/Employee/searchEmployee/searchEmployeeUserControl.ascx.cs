@@ -16,7 +16,8 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
             string strColumn = "Name,CAST(CurrentFlag AS VARCHAR(1)),Rank,LoginID, JobTitle,CAST(HumanResources.Employee.BusinessEntityId AS VARCHAR(10))";
             string strTable = "HumanResources.Employee, HumanResources.Person, HumanResources.JobTitle";
             string strCondition = " where (HumanResources.Employee.BusinessEntityId = HumanResources.Person.BusinessEntityId) AND (HumanResources.JobTitle.JobId = HumanResources.Employee.JobId)";
-
+            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
+            _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", true, "All");
             // Check input
             // Check Name
             if (txtEmployeeName.Text != "") strCondition = strCondition + " AND (Name LIKE '%" + txtEmployeeName.Text + "%')";
@@ -31,7 +32,7 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
             // Check UserID
             if (txtLoginID.Text != "") strCondition = strCondition + " AND (LoginID LIKE '%" + txtLoginID.Text + "%')";
             // Check Job Title
-            if (txtJobTitle.Text != "") strCondition = strCondition + " AND (JobTitle LIKE '%" + txtJobTitle.Text + "%')";
+            if (ddlJobTitle.SelectedValue != "All") strCondition = strCondition + " AND (JobTitle LIKE '%" + ddlJobTitle.SelectedValue + "%')";
 
             _com.bindData(strColumn, strCondition, strTable, grdEmployee);
             if (grdEmployee.Rows.Count > 0)
@@ -102,9 +103,19 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                 }
                 for (int i = 0; i < e.Row.Cells.Count; i++)
                 {
-                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    if (i != 0)
+                    {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    }
+                    else
+                    {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;padding-left:5px;line-height: 20px;");
+                    }
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+            }
+            else {
+                e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");         
             }
         }
         protected void btnReset_Click(object sender, EventArgs e)

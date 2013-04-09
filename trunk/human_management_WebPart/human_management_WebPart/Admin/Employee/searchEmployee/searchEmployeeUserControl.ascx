@@ -44,15 +44,23 @@
                     <asp:ListItem>User</asp:ListItem>
                 </asp:DropDownList>
             </div>
+            <span style="padding-left: 100px;"></span>
+            <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>
+            <p>
+                &nbsp;</p>
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblLoginID" runat="server" Text="User Name"></asp:Label>
-            <asp:TextBox ID="txtLoginID" runat="server"></asp:TextBox>
-
-            <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblJobTitle" runat="server" Text="JobTitle"></asp:Label>
-            <asp:TextBox ID="txtJobTitle" runat="server"></asp:TextBox>
-
-           
+            <asp:Label ID="lblJobTitle" runat="server" Text="JobTitle" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+            <asp:DropDownList ID="ddlJobTitle" runat="server">
+            </asp:DropDownList>
+            </div>
+            <span style="padding-left: 100px;"></span>
+            <asp:Label ID="lblDepartment" runat="server" Text="Department" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+            <asp:DropDownList ID="ddlDepartment" runat="server">
+            </asp:DropDownList>
+            </div><br /><br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" OnClick="btnSearch_Click"
                     Width="80px" />

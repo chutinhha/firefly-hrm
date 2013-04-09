@@ -99,6 +99,7 @@ namespace SP2010VisualWebPart.JobCategories
                         if (existCategories.Rows.Count == 0)
                         {
                             _com.insertIntoTable(Message.TableJobCategory, "", "N'" + txtName.Text.Trim() + "','" + DateTime.Now + "'", false);
+                            Panel1.Visible = false;
                         }
                         else {
                             lblError.Text = Message.AlreadyExistCategory;
@@ -117,10 +118,10 @@ namespace SP2010VisualWebPart.JobCategories
                             {
                                 _com.updateTable(Message.TableJobTitle, " " + Message.JobCategoryColumn + "=N'" + txtName.Text.Trim() + "' where "
                                     + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString() + "';");
+                                Panel1.Visible = false;
                             }
                         }
                     }
-                    Panel1.Visible = false;
                     _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
                     lblError.Text = "";
                     txtName.Text = "";
