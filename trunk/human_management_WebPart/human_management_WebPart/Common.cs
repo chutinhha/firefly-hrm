@@ -49,6 +49,15 @@ public class CommonFunction
         return cultureList;
     }
 
+    // Delete row from table
+    internal void deleteIntoTable(string table, string condition)
+    {
+        string sql;
+        sql = @"DELETE  " + table + " WHERE " + condition + " ;";        
+        SqlCommand command = new SqlCommand(sql, cnn);
+        command.ExecuteNonQuery();
+    }
+
     //Insert new row to table
     internal void insertIntoTable(string table,string column, string condition, bool IDENTITY_INSERT)
     {
@@ -56,7 +65,7 @@ public class CommonFunction
         if (IDENTITY_INSERT == true) {
             sql = @"SET IDENTITY_INSERT "+table+" ON insert into " + table +column+ " values(" + condition + ");";
         }else{
-            sql = @"insert into " + table + " values(" + condition + ");";
+            sql = @"insert into " + table + " " + column +" values(" + condition + ");";
         }
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
