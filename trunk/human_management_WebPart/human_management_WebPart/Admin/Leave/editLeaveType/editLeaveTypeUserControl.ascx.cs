@@ -15,11 +15,11 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
         {
             string strTableName = Message.TableTask;
             string strColum = " TaskName,Note, LimitDate ";
-            string strCondition = " TaskId = " + strTaskID;
+            string strCondition = " WHERE TaskId = " + strTaskID;
             DataTable dt = _com.getData(strTableName, strColum, strCondition);
             txtLeaveName.Text = dt.Rows[0][0].ToString();
             txtNote.Text = dt.Rows[0][1].ToString();
-            if (dt.Rows[0][2].ToString().Equals("0"))
+            if (dt.Rows[0][2].ToString() == "0")
             {
                 rdbLimitedNo.Checked = true;
                 txtLimitDay.Text = "";
@@ -28,6 +28,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             else
             {
                 rdbLimitedYes.Checked = true;
+                rdbLimitedNo.Checked = false;
                 txtLimitDay.Text = dt.Rows[0][2].ToString();
                 pnlLimitedYes.Visible = true;
             }
@@ -56,9 +57,9 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                                 Session["TaskID"] = strTaskID;
                                 Response.Redirect(Message.EditLeaveTypePage);
                             }
-                            strTaskID = Session["TaskID"].ToString();                            
+                            strTaskID = Session["TaskID"].ToString();
+                            loadData();
                         }
-                        loadData();
                     }
                     catch (Exception ex) { }
                 }
@@ -96,9 +97,10 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             //LimitedDate            
             string strLimitedDate = "";
             if (txtLimitDay.Text != "") strLimitedDate = "LimitDate = " + txtLimitDay.Text;
-            else strLimitedDate = "0";
+            else strLimitedDate = "LimitDate = 0";            
 
             //Condition
+            strTaskID = Session["TaskID"].ToString();
             string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate + " where TaskId = " + strTaskID;
             _com.updateTable(strTableName, strCondition);           
 
@@ -125,7 +127,10 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
         protected void rdbLimitedNo_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbLimitedNo.Checked == true)
+            {
                 pnlLimitedYes.Visible = false;
+                txtLimitDay.Text = "";
+            }
             else
                 pnlLimitedYes.Visible = true;
         }

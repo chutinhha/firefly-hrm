@@ -12,6 +12,26 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Account"] == null)
+            {
+                Response.Redirect(Message.AccessDeniedPage);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    try
+                    {
+                        if (!IsPostBack)
+                        { }
+                    }
+                    catch (Exception ex) { }
+                }
+                else
+                {
+                    Response.Redirect(Message.UserHomePage);
+                }
+            }
         }
 
 
@@ -79,7 +99,10 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
         protected void rdbLimitedNo_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbLimitedNo.Checked == true)
+            {
                 pnlLimitedYes.Visible = false;
+                txtLimitDay.Text = "";
+            }
             else
                 pnlLimitedYes.Visible = true;
         }
