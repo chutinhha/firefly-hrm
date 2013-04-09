@@ -15,5 +15,11 @@
     <ElementFile Location="addLeaveType\addLeaveType.webpart" />
     <ElementManifest Location="searchLeaveType\Elements.xml" />
     <ElementFile Location="searchLeaveType\searchLeaveType.webpart" />
+    <ElementManifest Location="DepartmentList\Elements.xml" />
+    <ElementFile Location="DepartmentList\DepartmentList.webpart" />
+    <ElementManifest Location="editLeaveType\Elements.xml" />
+    <ElementFile Location="editLeaveType\editLeaveType.webpart" />
+    <ElementManifest Location="inforEmployee\Elements.xml" />
+    <ElementFile Location="inforEmployee\inforEmployee.webpart" />
   </ElementManifests>
 </Feature>

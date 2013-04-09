@@ -17,7 +17,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                 DateTime end = now.AddDays(7);
                 DateTime start = now.AddDays(-7);
                 //Check department change
-                /*DataTable department = _com.getData("HumanResources.EmployeeDepartmentHistory edh join HumanResources.Shift s"
+                DataTable department = _com.getData("HumanResources.EmployeeDepartmentHistory edh join HumanResources.Shift s"
                     + " on s.ShiftID = edh.ShiftID join HumanResources.Department d on d.DepartmentID = edh.DepartmentID"
                     , "edh.StartDate,edh.EndDate,edh.ModifiedDate,d.Name", " where edh.BusinessEntityID='" 
                     + Session["AccountID"].ToString() + "' and edh.StartDate >= '"+start.Year.ToString()+"-"+start.Month.ToString()+"-"+start.Day.ToString()
@@ -30,7 +30,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                         this.inputValue = this.inputValue + "Assign to Department: "+department.Rows[i][3].ToString()
                             + "<br />From " + department.Rows[i][0].ToString() + "<br />To " + department.Rows[i][1].ToString()+";";
                     }
-                }*/
+                }
                 //Check evaluate point
                 DataTable evaluatePoint = _com.getData(Message.TableEvaluatePoint, "distinct " + Message.TotalPointColumn
                     + "," + Message.AveragePointColumn + "," + Message.QuarterColumn, " where " + Message.BusinessEntityIDColumn + "='"

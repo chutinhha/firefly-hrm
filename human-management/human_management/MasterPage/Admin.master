@@ -406,7 +406,7 @@
 					<li style="padding-left:40px;background:none;"><a class="small" href="JobCategories.aspx">Job Categories</a></li>
 					<li style="padding-left:40px;background:none;"><a class="small" href="JobTitles.aspx">Job Titles</a></li>
 					<li style="padding-left:40px;"><a class="small" href="SalarySummary.aspx">Salary Summary</a></li>
-				
+				<li><a href="DepartmentList.aspx">Departments List</a></li>
 				<li><a href="EmployeeList.aspx">Employees List</a></li>
 				<li><a href="ProjectList.aspx">Projects</a></li>
                 <li style="background:none"><a href="TaskList.aspx">Project Task</a></li>

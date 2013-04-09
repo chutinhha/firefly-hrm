@@ -12,7 +12,7 @@
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <span style="color: white;">Add Leave Type</span>
+                        <span style="color: white;">Edit Leave Type</span>
                     </td>
                 </tr>
             </table>

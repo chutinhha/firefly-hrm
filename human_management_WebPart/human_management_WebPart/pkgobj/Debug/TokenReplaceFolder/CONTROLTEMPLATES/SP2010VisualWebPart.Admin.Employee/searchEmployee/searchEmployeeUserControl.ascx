@@ -45,21 +45,22 @@
                 </asp:DropDownList>
             </div>
             <span style="padding-left: 100px;"></span>
-            <asp:Label ID="lblCountry" runat="server" Text="Country" Width="150px"></asp:Label>
-            <div class="styled-selectLong">
-            <asp:DropDownList ID="ddlCountry" runat="server">
-            </asp:DropDownList>
-            </div>
+            <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblCity" runat="server" Text="City" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtCity" runat="server" Width="200px"></asp:TextBox>
+            <asp:Label ID="lblJobTitle" runat="server" Text="JobTitle" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+            <asp:DropDownList ID="ddlJobTitle" runat="server">
+            </asp:DropDownList>
+            </div>
             <span style="padding-left: 100px;"></span>
-            <asp:Label ID="lblAddressStreet" runat="server" Text="Address Street" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtAddressStreet" runat="server" Width="200px"></asp:TextBox>
-            <p>
-                &nbsp;</p>
+            <asp:Label ID="lblDepartment" runat="server" Text="Department" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+            <asp:DropDownList ID="ddlDepartment" runat="server">
+            </asp:DropDownList>
+            </div><br /><br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" OnClick="btnSearch_Click"
                     Width="80px" />
@@ -73,20 +74,8 @@
 <table class="fieldTitleDiv">
     <tr>
         <td>
-            <div class="borderBottom">
-                <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" OnClick="btnEdit_Click"
-                    Width="80px" />
-            </div>
-            <br />
+            
             <asp:GridView ID="grdEmployee" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
-                <Columns>
-                        <asp:TemplateField>
-                            <HeaderStyle Width="25" />
-                            <ItemTemplate>
-                                &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
             </asp:GridView>
             <table>
                 <tr>
