@@ -79,7 +79,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
         {
             Session.Remove("TimesheetId");
             _com.closeConnection();
-            Response.Redirect(Message.EditTimesheetPage);
+            Response.Redirect(Message.EditMyTimesheetPage);
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                 {
                     Session["TimesheetId"] = Server.HtmlDecode(gr.Cells[1].Text.ToString());
                     _com.closeConnection();
-                    Response.Redirect(Message.EditTimesheetPage);
+                    Response.Redirect(Message.EditMyTimesheetPage);
                     break;
                 }
             }
@@ -107,7 +107,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        _com.deleteTable(Message.TableTimesheet, " where TimesheetId = " + gr.Cells[1].Text.ToString());
+                        _com.deleteIntoTable(Message.TableTimesheet, " where TimesheetId = " + gr.Cells[1].Text.ToString());
                     }
                 }
                 string column = "HumanResource.Timesheet.TimesheetId,TimesheetHumanResources.Timesheet.WorkDate," + Message.ProjectNameColumn + "," + Message.TaskNameColumn + ",HumanResources.Timesheet.Time";
