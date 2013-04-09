@@ -47,7 +47,7 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                 DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId ", Message.TaskNameColumn + ",HumanResources.Task.StartDate,HumanResources.Task.EndDate,HumanResouces.Task.LimiDate", " where ProjectName = 'Leave' ");
                 if (ddlLeave.SelectedValue.ToString() == "Vacation")
                 {
-                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " HumanResouces.Employee.VacationDate ", " where BusinessEntityId =" + Session["AccountId"].ToString());
+                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " HumanResouces.Employee.VacationDate ", " where BusinessEntityId =" + Session["AccountID"].ToString());
                     lblLimitDate.Text = myDatatmp.Rows[0][0].ToString();
                     pnlLimit.Visible = true;
                     pnlLimit.Visible = true;
@@ -58,7 +58,7 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                 }
                 else if (ddlLeave.SelectedValue.ToString() == "Sick")
                 {
-                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " HumanResouces.Employee.SickLeaveDate ", " where BusinessEntityId =" + Session["AccountId"].ToString());
+                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " HumanResouces.Employee.SickLeaveDate ", " where BusinessEntityId =" + Session["AccountID"].ToString());
                     lblLimitDate.Text = myDatatmp.Rows[0][0].ToString();
                     pnlLimit.Visible = true;
                     pnlLimit.Visible = true;
@@ -110,7 +110,7 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
             {
                 DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId ", Message.TaskIdColumn, " where ProjectName = 'Leave' and TaskName = " + ddlLeave.SelectedValue.ToString());
                 string table = Message.TablePersonProject;
-                string condition = Session["AccountId"].ToString() + "," + myData.Rows[0][0].ToString();
+                string condition = Session["AccountID"].ToString() + "," + myData.Rows[0][0].ToString();
                 if (TextArea1.InnerText.ToString() != "")
                 {
                     condition = condition + "," + TextArea1.InnerText.ToString();
