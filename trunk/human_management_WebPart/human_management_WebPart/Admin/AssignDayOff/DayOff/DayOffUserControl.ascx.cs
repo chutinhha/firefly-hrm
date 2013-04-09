@@ -312,6 +312,19 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     DropDownList ddlApprove = (DropDownList)row.FindControl("ddlApprove" + row.RowIndex);
                     if (ddlApprove.SelectedValue == "Approve")
                     {
+                        DataTable myData = _com.getData(Message.TablePersonProject + " INNER JOIN " + Message.TableEmployee + " ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ",Message.BusinessEntityIDColumn + ",HumanResources.Employee.VacationDate,HumanResources.Employee.SickLeaveDate"," where PersonProjectId = " + row.Cells[0].Text.ToString());
+                        if (row.Cells[2].Text == "Vacation")
+                        {
+                            TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
+                            int tmp = Convert.ToInt16(myData.Rows[0][1].ToString()) - time.Days;
+                            _com.updateTable(Message.TableEmployee, " " + "HumanResources.Employee.VacationDate = " + tmp + " where " + Message.BusinessEntityIDColumn + " = " + myData.Rows[0][0].ToString());
+                        }
+                        if (row.Cells[2].Text == "Sick")
+                        {
+                            TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
+                            int tmp = Convert.ToInt16(myData.Rows[0][2].ToString()) - time.Days;
+                            _com.updateTable(Message.TableEmployee, " " + "HumanResources.Employee.SickLeaveDate = " + tmp + " where " + Message.BusinessEntityIDColumn + " = " + myData.Rows[0][0].ToString());
+                        }
                         _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
                             + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
                     }
