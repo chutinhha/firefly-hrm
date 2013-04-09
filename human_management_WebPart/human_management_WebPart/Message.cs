@@ -150,6 +150,8 @@
     internal const string EditEmployeePage = "EditEmployee.aspx";
     internal const string AddLeaveTypePage = "AddLeaveType.aspx";
     internal const string EditLeaveTypePage = "EditLeaveType.aspx";
+    internal const string MyTimesheetPage = "MyTimesheet.aspx";
+    internal const string EditMyTimesheetPage = "EditTimesheet.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
