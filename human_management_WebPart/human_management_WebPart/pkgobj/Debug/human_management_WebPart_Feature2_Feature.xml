@@ -21,5 +21,13 @@
     <ElementFile Location="editLeaveType\editLeaveType.webpart" />
     <ElementManifest Location="inforEmployee\Elements.xml" />
     <ElementFile Location="inforEmployee\inforEmployee.webpart" />
+    <ElementManifest Location="ApplyLeave\Elements.xml" />
+    <ElementFile Location="ApplyLeave\ApplyLeave.webpart" />
+    <ElementManifest Location="MyLeave\Elements.xml" />
+    <ElementFile Location="MyLeave\MyLeave.webpart" />
+    <ElementManifest Location="EditTimesheet\Elements.xml" />
+    <ElementFile Location="EditTimesheet\EditTimesheet.webpart" />
+    <ElementManifest Location="MyTimesheet\Elements.xml" />
+    <ElementFile Location="MyTimesheet\MyTimesheet.webpart" />
   </ElementManifests>
 </Feature>

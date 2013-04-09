@@ -486,6 +486,20 @@
     <Compile Include="User\EmployeeAttendance\Attendance\AttendanceUserControl.ascx.designer.cs">
       <DependentUpon>AttendanceUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="User\Leave\ApplyLeave\ApplyLeave.cs" />
+    <Compile Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx.cs">
+      <DependentUpon>ApplyLeaveUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx.designer.cs">
+      <DependentUpon>ApplyLeaveUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Leave\MyLeave\MyLeave.cs" />
+    <Compile Include="User\Leave\MyLeave\MyLeaveUserControl.ascx.cs">
+      <DependentUpon>MyLeaveUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Leave\MyLeave\MyLeaveUserControl.ascx.designer.cs">
+      <DependentUpon>MyLeaveUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\Performance\ReviewAttendance\ReviewAttendance.cs" />
     <Compile Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx.cs">
       <DependentUpon>ReviewAttendanceUserControl.ascx</DependentUpon>
@@ -509,6 +523,20 @@
     </Compile>
     <Compile Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx.designer.cs">
       <DependentUpon>SupervisorJudgmentUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Timesheet\EditTimesheet\EditTimesheet.cs" />
+    <Compile Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx.cs">
+      <DependentUpon>EditTimesheetUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>EditTimesheetUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Timesheet\MyTimesheet\MyTimesheet.cs" />
+    <Compile Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx.cs">
+      <DependentUpon>MyTimesheetUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx.designer.cs">
+      <DependentUpon>MyTimesheetUserControl.ascx.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -725,6 +753,14 @@
     <None Include="User\EmployeeAttendance\Attendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ec4aaa5f-a53a-44af-a6d2-3ee11aeafd71}</SharePointProjectItemId>
     </None>
+    <None Include="User\Leave\ApplyLeave\ApplyLeave.webpart" />
+    <None Include="User\Leave\ApplyLeave\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b5e5727a-6176-45a1-b407-cf97ed043e28}</SharePointProjectItemId>
+    </None>
+    <None Include="User\Leave\MyLeave\MyLeave.webpart" />
+    <None Include="User\Leave\MyLeave\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3c16d575-ecdb-4f3f-8aa6-2a5b963a50ca}</SharePointProjectItemId>
+    </None>
     <None Include="User\Performance\ReviewAttendance\ReviewAttendance.webpart" />
     <None Include="User\Performance\ReviewAttendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{503478c9-6073-45b6-bc85-ebb90e6bbc14}</SharePointProjectItemId>
@@ -737,6 +773,14 @@
       <SharePointProjectItemId>{37ed1f71-14a2-4488-979a-982a5d0db91e}</SharePointProjectItemId>
     </None>
     <None Include="User\Performance\SupervisorJudgment\SupervisorJudgment.webpart" />
+    <None Include="User\Timesheet\EditTimesheet\EditTimesheet.webpart" />
+    <None Include="User\Timesheet\EditTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4e7379bd-a9fa-4bce-8638-e4bcfa383177}</SharePointProjectItemId>
+    </None>
+    <None Include="User\Timesheet\MyTimesheet\MyTimesheet.webpart" />
+    <None Include="User\Timesheet\MyTimesheet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1cfa972a-bec4-4bb3-a295-13f94fd79ec8}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
@@ -956,6 +1000,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="User\EmployeeAttendance\Attendance\Elements.xml" />
+    <Content Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx" />
+    <Content Include="User\Leave\ApplyLeave\Elements.xml" />
+    <Content Include="User\Leave\MyLeave\Elements.xml" />
+    <Content Include="User\Leave\MyLeave\MyLeaveUserControl.ascx" />
     <Content Include="User\Performance\ReviewAttendance\Elements.xml" />
     <Content Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -968,6 +1016,10 @@
     <Content Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx" />
+    <Content Include="User\Timesheet\EditTimesheet\Elements.xml" />
+    <Content Include="User\Timesheet\MyTimesheet\Elements.xml" />
+    <Content Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
