@@ -13,6 +13,15 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
     public partial class inforEmployeeUserControl {
         
         /// <summary>
+        /// bntEmpListPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bntEmpListPage;
+        
+        /// <summary>
         /// lblEmployeeImageTitle control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,33 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmployeeImage;
+        
+        /// <summary>
+        /// lblPhotoDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPhotoDetail;
+        
+        /// <summary>
+        /// fudEmployeePhoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fudEmployeePhoto;
+        
+        /// <summary>
+        /// btnUpdateImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateImage;
         
         /// <summary>
         /// lblFullName control.
@@ -130,6 +166,33 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         protected global::System.Web.UI.WebControls.RadioButton rdbMaritalMerried;
         
         /// <summary>
+        /// lblRank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRank;
+        
+        /// <summary>
+        /// ddlRank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRank;
+        
+        /// <summary>
+        /// lblPersonDetailGuideLine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPersonDetailGuideLine;
+        
+        /// <summary>
         /// btnEditPersonDetails control.
         /// </summary>
         /// <remarks>
@@ -211,13 +274,13 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         protected global::System.Web.UI.WebControls.Label lblCountry;
         
         /// <summary>
-        /// txtCountry control.
+        /// ddlCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCountry;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
         /// lblCity control.
@@ -272,5 +335,86 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelEditContactDetails;
+        
+        /// <summary>
+        /// lblEmpStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmpStatus;
+        
+        /// <summary>
+        /// ddlCurrentFlag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCurrentFlag;
+        
+        /// <summary>
+        /// lblJobTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblJobTitle;
+        
+        /// <summary>
+        /// ddlJobTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobTitle;
+        
+        /// <summary>
+        /// pnlDepHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDepHistory;
+        
+        /// <summary>
+        /// lblDepHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDepHistory;
+        
+        /// <summary>
+        /// grdDepHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdDepHistory;
+        
+        /// <summary>
+        /// btnEditEmpState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditEmpState;
+        
+        /// <summary>
+        /// btnCancelEditEmpState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelEditEmpState;
     }
 }
