@@ -12,15 +12,13 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
         private CommonFunction _com = new CommonFunction();
 
         protected void binDatatoGridView()
-        {
-            string strColumn = "Name,CAST(CurrentFlag AS VARCHAR(1)),Rank,LoginID, JobTitle,CAST(HumanResources.Employee.BusinessEntityId AS VARCHAR(10))";
-            string strTable = "HumanResources.Employee, HumanResources.Person, HumanResources.JobTitle";
-            string strCondition = " where (HumanResources.Employee.BusinessEntityId = HumanResources.Person.BusinessEntityId) AND (HumanResources.JobTitle.JobId = HumanResources.Employee.JobId)";
-            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
-            _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", true, "All");
+        {           
+            string strColumn = "p.Name, CAST(CurrentFlag AS VARCHAR(1)), Rank, LoginID, JobTitle, CAST(e.BusinessEntityId AS VARCHAR(10)), d.Name";
+            string strTable = "((((HumanResources.Employee e LEFT JOIN HumanResources.Person p ON e.BusinessEntityId = p.BusinessEntityId) LEFT JOIN HumanResources.JobTitle j ON  e.JobId = j.JobId) LEFT JOIN HumanResources.EmployeeDepartmentHistory edh ON (e.BusinessEntityId = edh.BusinessEntityId AND ((edh.StartDate <= GETDATE() AND GETDATE() <= edh.EndDate) OR (edh.StartDate <= GETDATE() AND edh.EndDate = null)))) LEFT JOIN HumanResources.Department d ON edh.DepartmentID = D.DepartmentID)";
+            string strCondition = " where (E.LoginID != '')";            
             // Check input
             // Check Name
-            if (txtEmployeeName.Text != "") strCondition = strCondition + " AND (Name LIKE '%" + txtEmployeeName.Text + "%')";
+            if (txtEmployeeName.Text != "") strCondition = strCondition + " AND (p.Name LIKE '%" + txtEmployeeName.Text + "%')";
             // Check Employee Status
             if (ddlCurrentFlag.SelectedIndex != 0)
                 if (ddlCurrentFlag.SelectedIndex == 1) strCondition = strCondition + " AND (CurrentFlag = 1)";
@@ -31,8 +29,11 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                 else if (ddlRank.SelectedIndex == 2) strCondition = strCondition + " AND (Rank = 'User')";
             // Check UserID
             if (txtLoginID.Text != "") strCondition = strCondition + " AND (LoginID LIKE '%" + txtLoginID.Text + "%')";
+            if (IsPostBack)
             // Check Job Title
-            if (ddlJobTitle.SelectedValue != "All") strCondition = strCondition + " AND (JobTitle LIKE '%" + ddlJobTitle.SelectedValue + "%')";
+            if (ddlJobTitle.SelectedIndex != 0) strCondition = strCondition + " AND (JobTitle = '" + ddlJobTitle.SelectedValue + "')";
+            // Check Department
+            if (ddlDepartment.SelectedIndex != 0) strCondition = strCondition + " AND (d.Name = '" + ddlDepartment.SelectedValue + "')";
 
             _com.bindData(strColumn, strCondition, strTable, grdEmployee);
             if (grdEmployee.Rows.Count > 0)
@@ -49,34 +50,38 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                 grdEmployee.HeaderRow.Cells[3].Text = "User Name";
                 grdEmployee.HeaderRow.Cells[4].Text = "Job Title";
                 grdEmployee.HeaderRow.Cells[5].Visible = false;
+                grdEmployee.HeaderRow.Cells[6].Text = "Department";
             }
             _com.setGridViewStyle(grdEmployee);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Account"] == null)
-            {
-                Response.Redirect(Message.AccessDeniedPage);
-            }
-            else
-            {
-                if (Session["Account"].ToString() == "Admin")
-                {
-                    try
-                    {
+            //if (Session["Account"] == null)
+            //{
+            //    Response.Redirect(Message.AccessDeniedPage);
+            //}
+            //else
+            //{
+            //    if (Session["Account"].ToString() == "Admin")
+            //    {
+            //        try
+            //        {
                         if (!IsPostBack)
                         {
+                            //set data do dropdownlist
+                            _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
+                            _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", true, "All");
                             binDatatoGridView();
                         }
-                    }
-                    catch (Exception ex) { }
-                }
-                else
-                {
-                    Response.Redirect(Message.UserHomePage);
-                }
-            }
+            //        }
+            //        catch (Exception ex) { }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(Message.UserHomePage);
+            //    }
+            //}
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
