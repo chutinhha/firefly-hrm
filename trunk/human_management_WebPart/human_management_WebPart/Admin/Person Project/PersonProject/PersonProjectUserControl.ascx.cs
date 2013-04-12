@@ -97,7 +97,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                 }
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
-                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;");
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }

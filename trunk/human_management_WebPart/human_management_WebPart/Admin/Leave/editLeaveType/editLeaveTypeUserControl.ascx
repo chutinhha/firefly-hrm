@@ -33,11 +33,11 @@
                 <asp:TextBox ID="txtLimitDay" runat="server" Width="200px"></asp:TextBox>
                 <br /><br />
             </asp:Panel>
-            <span style="padding-left: 5px;"></span><asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br>
+            <span style="padding-left: 5px;"></span><asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br />
             <span style="padding-left: 155px;"></span><asp:TextBox ID="txtNote" 
                 runat="server" Height="100px" TextMode="MultiLine" Width="800px"></asp:TextBox>
             <br /><br />
-            &nbsp<span style="color:Red;">(*): Required field</span><br>
+            &nbsp<span style="color:Red;">(*): Required field</span><br />
             <asp:Label ID="lblUserGuide" runat="server" Text=""></asp:Label>
             <br />
             <div class="borderTop">

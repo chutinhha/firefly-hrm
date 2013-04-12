@@ -102,7 +102,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             if (dt.Rows.Count > 0)
             {
                 lblEmployeeImageTitle.Text = dt.Rows[0][0].ToString();
-                imgEmployeeImage.ImageUrl = "/image/" + dt.Rows[0][1].ToString();
+                imgEmployeeImage.ImageUrl = "/_layouts/Images/21_2_ob/" + dt.Rows[0][1].ToString();
                 //imgEmployeeImage.ImageUrl = "https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/601264_3903279919727_1220919926_n.jpg";
             }
         }
@@ -276,7 +276,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             if (dtJobTitle.Rows.Count > 0)
             {
                 string strJobTitle = dtJobTitle.Rows[0][0].ToString();
-                _com.SetItemListWithIndex(Message.JobIDColumn, Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "-----");
+                _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "-----");
                 DropDownList ddlTemp = ddlJobTitle;
                 if (strJobTitle != "") ddlJobTitle.SelectedValue = ddlTemp.Items.FindByText(strJobTitle).Value;
             }
@@ -293,9 +293,17 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 else
                     if (strCurrentFlag == "1") ddlCurrentFlag.SelectedValue = "Active";                    
             }
-
+            //Get current department
+            DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
+                                    + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, " dep."
+                                    + Message.NameColumn + ",edh." + Message.StartDateColumn, " where edh." + Message.BusinessEntityIDColumn + "='" + strBusinessEntityId
+                                    + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')");
+            if (dt.Rows.Count > 0)
+            {
+                txtDepartment.Text=dt.Rows[0][0].ToString();
+            }
             //Set data to Department History gridview
-            string strTableName = "(HumanResources.Department d INNER JOIN HumanResources.EmployeeDepartmentHistory edh ON D.DepartmentID = edh.DepartmentID)";
+            /*string strTableName = "(HumanResources.Department d INNER JOIN HumanResources.EmployeeDepartmentHistory edh ON D.DepartmentID = edh.DepartmentID)";
             strColumn = "d.Name, edh.StartDate, edh.EndDate";
             strCondition = " where edh.BusinessEntityId = " + strBusinessEntityId + " order by  StartDate DESC";
             _com.bindData(strColumn, strCondition, strTableName, grdDepHistory);
@@ -311,7 +319,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 grdDepHistory.HeaderRow.Cells[1].Text = "Start Date";
                 grdDepHistory.HeaderRow.Cells[2].Text = "End Date";
             }
-            _com.setGridViewStyle(grdDepHistory);
+            _com.setGridViewStyle(grdDepHistory);*/
         }
 
         protected void loadControlStateOfEmpStateData(bool isLoad)
@@ -335,47 +343,49 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Account"] == null)
-            //{
-            //    Response.Redirect(Message.AccessDeniedPage);
-            //}
-            //else
-            //{
-            //    if (Session["Account"].ToString() == "Admin")
-            //    {
-            //        isAdmin = true;
-            //        try
-            //        {
-            if (!IsPostBack)
+            if (Session["Account"] == null)
             {
-                // Get ID
-                strBusinessEntityId = Request.QueryString["BusinessEntityId"];
-                if (strBusinessEntityId == null) { }
+                Response.Redirect(Message.AccessDeniedPage);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    isAdmin = true;
+                    bntEmpListPage.Visible = true;
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            // Get ID
+                            strBusinessEntityId = Request.QueryString["BusinessEntityId"];
+                            if (strBusinessEntityId == null) { }
+                            else
+                            {
+                                //Delete link ID
+                                Session["BusinessEntityId"] = strBusinessEntityId;
+                                Response.Redirect(Message.EditEmployeePage);
+                            }
+                            strBusinessEntityId = Session["BusinessEntityId"].ToString();
+                            loadControlStateOfPersonDetailsData(true);
+                            loadControlStateOfPersonContactData(true);
+                            loadControlStateOfEmpStateData(true);
+                            loadEmployeeImage();
+                        }
+                        strBusinessEntityId = Session["BusinessEntityId"].ToString();
+                    }
+                    catch (Exception ex) { }
+                }
                 else
                 {
-                    //Delete link ID
-                    Session["BusinessEntityId"] = strBusinessEntityId;
-                    Response.Redirect(Message.EditEmployeePage);
+                    bntEmpListPage.Visible = false;
+                    isAdmin = false;
+                    strBusinessEntityId = Session["AccountID"].ToString();
+                    loadControlStateOfPersonDetailsData(true);
+                    loadControlStateOfPersonContactData(true);
+                    loadEmployeeImage();
                 }
-                strBusinessEntityId = Session["BusinessEntityId"].ToString();
-                loadControlStateOfPersonDetailsData(true);
-                loadControlStateOfPersonContactData(true);
-                loadControlStateOfEmpStateData(true);
-                loadEmployeeImage();
             }
-            strBusinessEntityId = Session["BusinessEntityId"].ToString();
-            //        }
-            //        catch (Exception ex) { }
-            //    }
-            //    else
-            //    {
-            //        isAdmin = false;
-            //        strBusinessEntityId = Session["AccountID"].ToString();
-            //        loadControlStateOfPersonDetailsData(true);
-            //        loadControlStateOfPersonContactData(true);
-            //        loadEmployeeImage();
-            //    }
-            //}
         }
 
         //Button action
@@ -453,6 +463,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             {
                 fudEmployeePhoto.Visible = true;
                 btnUpdateImage.Text = "Update";
+                btnUpdateImage.Width = 80;
             }
             else
             {
@@ -466,9 +477,9 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                             if (fudEmployeePhoto.PostedFile.ContentLength < 102400000)
                             {
                                 strImageURL = strBusinessEntityId + "_" + fudEmployeePhoto.FileName;
-                                string strURL = Server.MapPath("~/image/") + strImageURL;
-                                if (Directory.Exists(Server.MapPath("~/image/")) == false)
-                                    Directory.CreateDirectory(Server.MapPath("~/image/"));
+                                string strURL = Server.MapPath("/_layouts/Images/21_2_ob/") + strImageURL;
+                                if (Directory.Exists(Server.MapPath("/_layouts/Images/21_2_ob/")) == false)
+                                    Directory.CreateDirectory(Server.MapPath("/_layouts/Images/21_2_ob/"));
                                 if (File.Exists(strURL)) File.Delete(strURL);
                                 fudEmployeePhoto.SaveAs(strURL);
                                 lblPhotoDetail.Text = "";
@@ -496,6 +507,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 }
                 fudEmployeePhoto.Visible = false;
                 btnUpdateImage.Text = "Change Image";
+                btnUpdateImage.Width = 150;
             }
 
         }
@@ -504,14 +516,18 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Style["cursor"] = "pointer";                
+                //string Location = Message.EditEmployeePage + "/?BusinessEntityId=" + Server.HtmlDecode(e.Row.Cells[5].Text);
+                e.Row.Style["cursor"] = "pointer";
+                e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
                 if (e.Row.RowIndex % 2 != 0)
                 {
-                    e.Row.Attributes.Add("style", "background-color:#9AD5F7;");                    
+                    e.Row.Attributes.Add("style", "background-color:white;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
                 }
                 else
                 {
-                    e.Row.Attributes.Add("style", "background-color:white;");                    
+                    e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
                 }
                 for (int i = 0; i < e.Row.Cells.Count; i++)
                 {
@@ -523,6 +539,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                     {
                         e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;padding-left:5px;line-height: 20px;");
                     }
+                    //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
             else
@@ -572,6 +589,15 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             _com.closeConnection();
             Response.Redirect(Message.EmployeeListPage, true);
+        }
+
+        protected void lbtnDepartment_Click(object sender, EventArgs e)
+        {
+            Session["BusinessID"] = strBusinessEntityId;
+            DataTable dt = _com.getData(Message.TablePerson, Message.NameColumn, " where "
+                + Message.BusinessEntityIDColumn + "='"+strBusinessEntityId+"'");
+            Session["EmployeeName"] = dt.Rows[0][0].ToString();
+            Response.Redirect(Message.EditEmployeeDepartmentPage);
         }
     }
 }

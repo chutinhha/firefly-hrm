@@ -16,12 +16,6 @@
         else
             return false;
     }
-    function ConfirmOnSave() {
-        if (confirm("<%=this.confirmSave %>") == true)
-            return true;
-        else
-            return false;
-    }
 </script>
 
 <table class="fieldTitleDiv" cellpadding="0">

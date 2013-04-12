@@ -21,16 +21,21 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
             {
                 if (Session["Account"].ToString() == "User")
                 {
+                    if (!IsPostBack)
+                    {
+                        this.startDate = "";
+                        this.endDate = "";
+                    }
                     pnlFrom.Visible = false;
                     pnlLimit.Visible = false;
                     pnlTo.Visible = false;
                     pnlDateFrom.Visible = true;
                     pnlDateTo.Visible = true;
-                    TextArea1.InnerText = "";
+                    TextArea1.Text = "";
                     lblError.Text = "";
                     lblSuccess.Text = "";
                     DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where ProjectName = 'Leave' ");
-                    _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where ProjectId = " + myData.Rows[0][0].ToString(), true, "");
+                    _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where ProjectId = " + myData.Rows[0][0].ToString(), false, "");
                 }
                 else
                 {
@@ -101,22 +106,25 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                 lblError.Text = ex.Message;
             }
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnApply_Click(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             lblError.Text = "";
             lblSuccess.Text = "";
             try
             {
-                DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId ", Message.TaskIdColumn, " where ProjectName = 'Leave' and TaskName = " + ddlLeave.SelectedValue.ToString());
+                DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId ", Message.TaskIdColumn, " where ProjectName = 'Leave' and TaskName = '" + ddlLeave.SelectedValue.ToString()+"'");
                 string table = Message.TablePersonProject;
                 string condition = Session["AccountID"].ToString() + "," + myData.Rows[0][0].ToString();
-                if (TextArea1.InnerText.ToString() != "")
+                if (TextArea1.Text.ToString() != "")
                 {
-                    condition = condition + "," + TextArea1.InnerText.ToString();
+                    condition = condition + "," + TextArea1.Text.ToString();
                 }
                 else condition = condition + ",''";
-                condition = condition + ",0," + " CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATE ";
+                condition = condition + ",0," + " CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATE) ";
                 if (pnlFrom.Visible == true)
                 {
                     condition = condition + ",CAST('" + lblDateFrom + "' AS DATE),CAST('" + lblDateTo + "' AS DATE)";

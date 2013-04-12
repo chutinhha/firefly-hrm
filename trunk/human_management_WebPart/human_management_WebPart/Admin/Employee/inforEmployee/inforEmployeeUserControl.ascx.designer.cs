@@ -373,31 +373,31 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
         protected global::System.Web.UI.WebControls.DropDownList ddlJobTitle;
         
         /// <summary>
-        /// pnlDepHistory control.
+        /// lblDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDepHistory;
+        protected global::System.Web.UI.WebControls.Label lblDepartment;
         
         /// <summary>
-        /// lblDepHistory control.
+        /// txtDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDepHistory;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
         
         /// <summary>
-        /// grdDepHistory control.
+        /// lbtnDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdDepHistory;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnDepartment;
         
         /// <summary>
         /// btnEditEmpState control.

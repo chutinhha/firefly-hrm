@@ -26,23 +26,24 @@
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd" align="left">
-                        <asp:Button ID="bntEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
-                            Width="230px" onclick="bntEmpListPage_Click" />
-                    </td>
-                    <td class="fieldTitleTd" align="right">
                         <span style="color: white;">Employee Information</span>
                     </td>
+                    <td class="fieldTitleTd" align="right">
+                        <asp:Button ID="bntEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
+                            Width="230px" onclick="bntEmpListPage_Click" style="background:#2CA6CD;box-shadow: none;text-decoration: underline;border:none;" />
+                    </td>
+                    
                 </tr>
             </table>
             <table width="100%">
                 <tr>
                     <td style="width: 425px;">
-                        <br>
+                        <br />
                         <span style="padding-left: 10px;"></span>
                         <asp:Label ID="lblEmployeeImageTitle" runat="server" Text=""></asp:Label>
                     </td>
                     <td>
-                        <br>
+                        <br />
                         <div style="background-color: rgb(44, 166, 205); height: 30px; color: white; font-weight: bold;
                             line-height: 30px; border-radius: 5px 5px 5px 5px; padding-left: 5px; width: 99.5%">
                             Personal Detail</div>
@@ -55,10 +56,10 @@
                         <br />
                         <asp:Label ID="lblPhotoDetail" runat="server" ForeColor="#663300"></asp:Label>
                         <br />
-                        <asp:FileUpload ID="fudEmployeePhoto" runat="server" Visible="false" />
-                        <br />
-                        <asp:Button ID="btnUpdateImage" CssClass="addButton" runat="server" Text="Change Image"
-                            Width="150px" OnClick="btnUpdateImage_Click" />
+                        <span style="padding-left: 10px;"></span><asp:FileUpload ID="fudEmployeePhoto" runat="server" Visible="false" />
+                        <br /><br />
+                        <span style="padding-left: 10px;"></span><asp:Button ID="btnUpdateImage" CssClass="addButton" runat="server" Text="Change Image"
+                             OnClick="btnUpdateImage_Click" Width="150" />
                     </td>
                     <td>
                         <br />
@@ -167,15 +168,13 @@
             </div>
             <br />
             <br />
-            <asp:Panel ID="pnlDepHistory" runat="server" Visible="false">
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblDepHistory" runat="server" Text="Department History" Width="150px"></asp:Label>
-                <br />
-                <asp:GridView ID="grdDepHistory" runat="server" Width="100%" OnRowDataBound="grdDepHistory_RowDataBound">
-                </asp:GridView>
-                <br />
-                <br />
-            </asp:Panel>
+            <asp:Label ID="lblDepartment" runat="server" Text="Department" Width="150"></asp:Label>
+                <asp:TextBox ID="txtDepartment" runat="server" Width="200" Enabled="False"></asp:TextBox>
+                <span style="padding-left: 5px;"></span>
+                <asp:LinkButton ID="lbtnDepartment" runat="server" 
+                onclick="lbtnDepartment_Click">Edit Department</asp:LinkButton>
+                <br /><br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnEditEmpState" CssClass="addButton" runat="server" Text="Edit"

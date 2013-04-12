@@ -12,7 +12,6 @@ namespace SP2010VisualWebPart.JobTitles
         protected void Page_Load(object sender, EventArgs e)
         {
             this.confirmDelete = Message.ConfirmDelete;
-            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -55,7 +54,6 @@ namespace SP2010VisualWebPart.JobTitles
                 }
             }
         }
-        protected string confirmSave { get; set; }
         protected string confirmDelete { get; set; }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {

@@ -52,6 +52,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     + Message.TaskIdColumn + " = pp." + Message.TaskIdColumn + " join " + Message.TableProject + " p on t."
                     + Message.ProjectIDColumn + "=p." + Message.ProjectIDColumn, "p." + Message.ProjectNameColumn + ",t."
                     + Message.TaskNameColumn + ",t." + Message.PersonProjectStartDateColumn + ",t." + Message.PersonProjectEndDateColumn
+                    +",pp."+Message.CurrentFlagColumn
                     , " where " + Message.BusinessEntityIDColumn + "='" + Session["AccountID"].ToString() + "' and "
                     + "((pp." + Message.ModifiedDateColumn + " <='" + end.Year.ToString() + "-"
                     + end.Month.ToString() + "-" + end.Day.ToString() + "') or (t." + Message.PersonProjectEndDateColumn + ">='"
@@ -63,8 +64,16 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     count = count + assignProject.Rows.Count;
                     for (int i = 0; i < assignProject.Rows.Count; i++)
                     {
-                        this.inputValue = this.inputValue + "Assign to Project: " + assignProject.Rows[i][0].ToString()
-                            + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + ";";
+                        if (assignProject.Rows[i][4].ToString() == "1")
+                        {
+                            this.inputValue = this.inputValue + "Assign to Project: " + assignProject.Rows[i][0].ToString()
+                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + ";";
+                        }
+                        else
+                        {
+                            this.inputValue = this.inputValue + "Apply to Project: " + assignProject.Rows[i][0].ToString()
+                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + ";";
+                        }
                     }
                 }
             }

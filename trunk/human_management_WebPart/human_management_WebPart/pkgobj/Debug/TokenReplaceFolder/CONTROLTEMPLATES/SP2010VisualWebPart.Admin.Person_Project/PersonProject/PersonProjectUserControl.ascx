@@ -20,7 +20,7 @@
                     </td>
                 </tr>
             </table>
-            <br>
+            <br />
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblProject" runat="server" Text="Project" Width="100px"></asp:Label>
             <div class="styled-selectLong">
@@ -66,5 +66,5 @@
         </td>
     </tr>
 </table>
-<br>
+<br />
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br />

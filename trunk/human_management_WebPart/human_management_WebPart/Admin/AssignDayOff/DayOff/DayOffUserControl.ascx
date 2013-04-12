@@ -20,7 +20,7 @@
                     </td>
                 </tr>
             </table>
-            <br>
+            <br />
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblDayOff" runat="server" Text="Type of Days Off" Width="150px"></asp:Label>
             <div class="styled-selectLong">
@@ -57,7 +57,7 @@
         </td>
     </tr>
 </table>
-<br>
+<br />
 
 <asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
-&nbsp;<asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label><br>
+&nbsp;<asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label><br />

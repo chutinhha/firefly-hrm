@@ -11,6 +11,8 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.SharePoint;
+using Microsoft.Office.Server.UserProfiles;
+using Microsoft.Office.Server;
 
 public class CommonFunction
 {
@@ -678,9 +680,9 @@ public class CommonFunction
     }
 
     //Get user information
-    /*internal string[] GetUserInfo(string AccountNameWithDomain)
+    internal string[] GetUserInfo(string AccountNameWithDomain)
     {
-        using (SPSite site = new SPSite("tungda:9999"))
+        using (SPSite site = new SPSite("http://tungda:9999/"))
         {
             ServerContext context = ServerContext.GetContext(site);
             UserProfileManager profileManager = new UserProfileManager(context);
@@ -697,7 +699,7 @@ public class CommonFunction
             profile[7] = Convert.ToString(myProfile[PropertyConstants.WorkPhone].Value);
             return profile;
         }
-    }*/
+    }
 
     //Change user password
     internal string ChangePassword(string oldPassword, string newPassword, string userNameWithoutDomain)

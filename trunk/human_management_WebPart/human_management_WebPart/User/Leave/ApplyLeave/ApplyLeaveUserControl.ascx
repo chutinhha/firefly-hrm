@@ -21,8 +21,7 @@
         });
     });
 </script>
-<br />
-<asp:Panel ID="Panel1" runat="server" DefaultButton="btnView" Width="100%">
+<asp:Panel ID="Panel1" runat="server" DefaultButton="btnApply" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
             <td>
@@ -40,12 +39,13 @@
 <asp:DropDownList runat="server" id="ddlLeave" 
 onselectedindexchanged="ddlLeave_SelectedIndexChanged">
 </asp:DropDownList></div>
+<br /><br />
 <asp:Panel ID="pnlLimit" runat="server" Style="display: inline;" Visible ="false">
                 <span style="padding-left:5px"></span><asp:Label ID="lblLimit" runat="server" 
         Text="Limit Date" Width="150px"></asp:Label>
         <asp:Label ID="lblLimitDate" runat="server" 
         Text="" Width="150px"></asp:Label>        
-<br/>
+<br /><br />
 </asp:Panel>
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblFrom" runat="server" Text="From(*)" Width="150px"></asp:Label>
@@ -55,7 +55,7 @@ onselectedindexchanged="ddlLeave_SelectedIndexChanged">
             <asp:Panel ID="pnlFrom" runat="server" Style="display: inline;" Visible ="false">
             <asp:Label ID="lblDateFrom" runat="server" Width="200px"></asp:Label>
             </asp:Panel>
-            <br/>
+            <br /><br />
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblTo" runat="server" Text="To(*)" Width="150px"></asp:Label>
             <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
@@ -64,14 +64,16 @@ onselectedindexchanged="ddlLeave_SelectedIndexChanged">
             <asp:Panel ID="pnlTo" runat="server" Style="display: inline;" Visible ="false">
             <asp:Label ID="lblDateTo" runat="server" Width="200px"></asp:Label>
             </asp:Panel>
-            <br/>
+            <br /><br />
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label>
-            <textarea ID="TextArea1" cols="25" name="S1" rows="4" TextMode="multiline" runat="server"></textarea><br/>
+            <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br />
+            <span style="padding-left: 160px;"></span>
+                <asp:TextBox ID="TextArea1" runat="server" Width="800" Height="100" 
+                    TextMode="MultiLine"></asp:TextBox><br/>
              <br/>
-                    <asp:Label ID="lblRequire" runat="server" style="color:Red" 
+                    &nbsp;<asp:Label ID="lblRequire" runat="server" style="color:Red" 
                         Text="(*) is required field" Width="150px"></asp:Label>
-                        <br/>
+                        <br/><br/>
                         	<div class="borderTop">
 <asp:Button ID="btnApply" runat="server" CssClass="addButton" Text="Apply" Width="80px" 
             onclick="btnApply_Click" />

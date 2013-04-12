@@ -21,124 +21,155 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
-                    if (Session["TaskName"] == null)
+                    try
                     {
-                        try
+                        if (!IsPostBack)
                         {
-                            if (!IsPostBack)
+                            DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName = 'Leave'");
+                            _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "All");
+                            lblError.Text = "";
+                            ddlShow.SelectedValue = "All";
+                        }
+                        string[] col = new string[1];
+                        col[0] = "Status";
+                        DataTable dt = new DataTable();
+                        string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn + ",tas." + Message.TaskNameColumn
+                            + ",pp." + Message.StartDateColumn + ",pp." + Message.EndDateColumn + ",pp." + Message.NoteColumn;
+                        string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
+                        string table = Message.TableEmployee + " emp join " + Message.TablePerson
+                            + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePersonProject + " pp on pp." + Message.BusinessEntityIDColumn
+                            + "=emp." + Message.BusinessEntityIDColumn + " join " + Message.TableTask + " tas on tas."
+                            + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn;
+                        if (ddlDayOff.SelectedValue == "All")
+                        {
+                            if (ddlShow.SelectedValue == "All")
                             {
-                                DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName = 'Leave'");
-                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "All");
-                                Session.Remove("TaskName");
-                                lblError.Text = "";
-                                ddlShow.SelectedValue = "All";
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1");
+                            }
+                            else if (ddlShow.SelectedValue == "Approved")
+                            {
+                                condition = condition + " and pp." + Message.CurrentFlagColumn + " = 1";
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
+                                    + Message.CurrentFlagColumn + " = 1");
+                            }
+                            else if (ddlShow.SelectedValue == "Not Approved")
+                            {
+                                condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0";
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
+                                    + Message.CurrentFlagColumn + " = 1");
+                            }
+                            else if (ddlShow.SelectedValue == "Reject")
+                            {
+                                condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2";
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 2 and emp."
+                                    + Message.CurrentFlagColumn + " = 1");
                             }
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            lblError.Text = ex.Message;
+                            DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                            if (ddlShow.SelectedValue == "All")
+                            {
+                                condition = condition + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                                    + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString());
+                            }
+                            else if (ddlShow.SelectedValue == "Approved")
+                            {
+                                condition = condition + " and pp." + Message.CurrentFlagColumn + " = 1" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                                    + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 1");
+                            }
+                            else if (ddlShow.SelectedValue == "Not Approved")
+                            {
+                                condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                                    + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 0");
+                            }
+                            else if (ddlShow.SelectedValue == "Reject")
+                            {
+                                condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
+                                _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
+                                dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                                    + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                                    + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                                    + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                    + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                                    + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 2");
+                            }
                         }
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            DropDownList ddlApprove = new DropDownList();
+                            ddlApprove.ID = "ddlApprove" + i;
+                            ddlApprove.Items.Add("Approve");
+                            ddlApprove.Items.Add("Not Approve");
+                            ddlApprove.Items.Add("Reject");
+                            if (dt.Rows[i][0].ToString() == "1")
+                            {
+                                ddlApprove.SelectedValue = "Approve";
+                            }
+                            else if (dt.Rows[i][0].ToString() == "0")
+                            {
+                                ddlApprove.SelectedValue = "Not Approve";
+                            }
+                            else if (dt.Rows[i][0].ToString() == "2")
+                            {
+                                ddlApprove.SelectedValue = "Reject";
+                            }
+                            grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
+                            grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
+                            grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
+                        }
+                        _com.setGridViewStyle(grdData);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        DataTable myData = _com.getData(Message.TableProject, " * " ," WHERE ProjectName = 'Leave'");
-                        _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "");
-                        ddlDayOff.SelectedValue = Session["TaskName"].ToString();
-                        Session.Remove("TaskName");
-                        try
-                        {
-                            string[] col = new string[1];
-                            col[0] = "Status";
-                            DataTable dt = new DataTable();
-                            string column = Message.PersonProjectIdColumn + "," + Message.PersonNameColumn + "," + Message.TaskNameColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + ", HumanResources.PersonProject.Note";
-                            string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Employee.CurrentFlag = 1";
-                            string table = "(((" + Message.TableJobTitle;
-                            if (ddlDayOff.SelectedValue == "All")
-                            {
-                                if (ddlShow.SelectedValue == "All")
-                                {
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1");
-                                }
-                                else if (ddlShow.SelectedValue == "Approved")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1";
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1");
-                                }
-                                else if (ddlShow.SelectedValue == "Not Approved")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0";
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 0  and HumanResources.Employee.CurrentFlag = 1");
-                                }
-                                else if (ddlShow.SelectedValue == "Reject")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2";
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 2  and HumanResources.Employee.CurrentFlag = 1");
-                                }
-                            }
-                            else
-                            {
-                                DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
-                                if (ddlShow.SelectedValue == "All")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString());
-                                }
-                                else if (ddlShow.SelectedValue == "Approved")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1");
-                                }
-                                else if (ddlShow.SelectedValue == "Not Approved")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 0");
-                                }
-                                else if (ddlShow.SelectedValue == "Reject")
-                                {
-                                    condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
-                                    _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                                    dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 2");
-                                }
-                            }
-                            for (int i = 0; i < dt.Rows.Count; i++)
-                            {
-                                DropDownList ddlApprove = new DropDownList();
-                                ddlApprove.ID = "ddlApprove" + i;
-                                ddlApprove.Items.Add("Approve");
-                                ddlApprove.Items.Add("Not Approve");
-                                ddlApprove.Items.Add("Reject");
-                                if (dt.Rows[i][0].ToString() == "1")
-                                {
-                                    ddlApprove.SelectedValue = "Approve";
-                                }
-                                else if (dt.Rows[i][0].ToString() == "0")
-                                {
-                                    ddlApprove.SelectedValue = "Not Approve";
-                                }
-                                else if (dt.Rows[i][0].ToString() == "2")
-                                {
-                                    ddlApprove.SelectedValue = "Reject";
-                                }
-                                grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
-                                grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
-                                grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
-                            }
-                            grdData.GridLines = GridLines.None;
-                            grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                            grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                            grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
-                        }
-                        catch (Exception ex)
-                        {
-                            lblError.Text = ex.Message;
-                        }
+                        lblError.Text = ex.Message;
                     }
                 }
                 else
@@ -188,7 +219,13 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 }
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
-                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;");
+                    if (i != 1)
+                    {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    }
+                    else {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;padding-left:5px;line-height: 20px;");
+                    }
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
@@ -206,33 +243,61 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 string[] col = new string[1];
                 col[0] = "Status";
                 DataTable dt = new DataTable();
-                string column = Message.PersonProjectIdColumn + "," + Message.PersonNameColumn + "," + Message.TaskNameColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + ", HumanResources.PersonProject.Note";
-                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Employee.CurrentFlag = 1";
-                string table = "(((" + Message.TableJobTitle;
+                string column = " pp."+Message.PersonProjectIdColumn+",per."+Message.NameColumn+",tas."+Message.TaskNameColumn
+                    +",pp."+Message.StartDateColumn+",pp."+Message.EndDateColumn+",pp."+Message.NoteColumn;
+                string condition = " where emp."+Message.CurrentFlagColumn+"='1'";
+                string table = Message.TableEmployee+" emp join "+Message.TablePerson
+                    +" per on emp."+Message.BusinessEntityIDColumn+"=per."+Message.BusinessEntityIDColumn
+                    +" join "+Message.TablePersonProject+" pp on pp."+Message.BusinessEntityIDColumn
+                    +"=emp."+Message.BusinessEntityIDColumn+" join "+Message.TableTask+" tas on tas."
+                    +Message.TaskIdColumn+"=pp."+Message.TaskIdColumn;
                 if (ddlDayOff.SelectedValue == "All")
                 {
                     if (ddlShow.SelectedValue == "All")
                     {
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject+" pp join "+Message.TableEmployee
+                            +" emp on pp."+Message.BusinessEntityIDColumn+"=emp."+Message.BusinessEntityIDColumn
+                            +" join "+Message.TablePerson+" per on emp."+Message.BusinessEntityIDColumn
+                            +"=per."+Message.BusinessEntityIDColumn +" join "+Message.TableTask
+                            +" tas on tas."+Message.TaskIdColumn+"=pp."+Message.TaskIdColumn, " pp."
+                            +Message.CurrentFlagColumn, " where emp."+Message.CurrentFlagColumn+" = 1");
                     }
                     else if (ddlShow.SelectedValue == "Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1";
+                        condition = condition + " and pp."+Message.CurrentFlagColumn+" = 1";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where pp."+Message.CurrentFlagColumn+" = 1 and emp."
+                            +Message.CurrentFlagColumn+" = 1");
                     }
                     else if (ddlShow.SelectedValue == "Not Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0";
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 0  and HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
+                            + Message.CurrentFlagColumn + " = 1");
                     }
                     else if (ddlShow.SelectedValue == "Reject")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2";
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 2  and HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 2 and emp."
+                            + Message.CurrentFlagColumn + " = 1");
                     }
                 }
                 else
@@ -240,27 +305,51 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
                     if (ddlShow.SelectedValue == "All")
                     {
-                        condition = condition + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp."+Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString());
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp."+Message.CurrentFlagColumn+" = 1 and pp."
+                            +Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString());
                     }
                     else if (ddlShow.SelectedValue == "Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp."+Message.CurrentFlagColumn+" = 1" + " and pp."+Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp."+Message.CurrentFlagColumn+" = 1 and pp."
+                            +Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString() + " and pp."+Message.CurrentFlagColumn+" = 1");
                     }
                     else if (ddlShow.SelectedValue == "Not Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 0");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                            + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 0");
                     }
                     else if (ddlShow.SelectedValue == "Reject")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 2");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                            + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 2");
                     }
                 }
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -286,10 +375,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
                     grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
                 }
-                grdData.GridLines = GridLines.None;
-                grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                _com.setGridViewStyle(grdData);
             }
             catch (Exception ex)
             {
@@ -312,7 +398,11 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     DropDownList ddlApprove = (DropDownList)row.FindControl("ddlApprove" + row.RowIndex);
                     if (ddlApprove.SelectedValue == "Approve")
                     {
-                        DataTable myData = _com.getData(Message.TablePersonProject + " INNER JOIN " + Message.TableEmployee + " ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ",Message.BusinessEntityIDColumn + ",HumanResources.Employee.VacationDate,HumanResources.Employee.SickLeaveDate"," where PersonProjectId = " + row.Cells[0].Text.ToString());
+                        DataTable myData = _com.getData(Message.TablePersonProject+" pp INNER JOIN "+Message.TableEmployee+" emp "
+                            +"ON pp."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
+                            ," emp."+Message.BusinessEntityIDColumn+",emp."+Message.VacationHoursColumn+","
+                            +"emp."+Message.SickLeaveHoursColumn," where pp."+Message.PersonProjectIdColumn
+                            +" = " + row.Cells[0].Text.ToString());
                         if (row.Cells[2].Text == "Vacation")
                         {
                             TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
@@ -342,33 +432,61 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 string[] col = new string[1];
                 col[0] = "Status";
                 DataTable dt = new DataTable();
-                string column = Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + ", HumanResources.PersonProject.Note";
-                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.Employee.CurrentFlag = 1";
-                string table = "(((" + Message.TableJobTitle;
+                string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn + ",tas." + Message.TaskNameColumn
+                    + ",pp." + Message.StartDateColumn + ",pp." + Message.EndDateColumn + ",pp." + Message.NoteColumn;
+                string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
+                string table = Message.TableEmployee + " emp join " + Message.TablePerson
+                    + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
+                    + " join " + Message.TablePersonProject + " pp on pp." + Message.BusinessEntityIDColumn
+                    + "=emp." + Message.BusinessEntityIDColumn + " join " + Message.TableTask + " tas on tas."
+                    + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn;
                 if (ddlDayOff.SelectedValue == "All")
                 {
                     if (ddlShow.SelectedValue == "All")
                     {
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1");
                     }
                     else if (ddlShow.SelectedValue == "Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1";
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 1";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
+                            + Message.CurrentFlagColumn + " = 1");
                     }
                     else if (ddlShow.SelectedValue == "Not Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0";
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 0  and HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
+                            + Message.CurrentFlagColumn + " = 1");
                     }
                     else if (ddlShow.SelectedValue == "Reject")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2";
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.PersonProject.CurrentFlag = 2  and HumanResources.Employee.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 2 and emp."
+                            + Message.CurrentFlagColumn + " = 1");
                     }
                 }
                 else
@@ -376,27 +494,51 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
                     if (ddlShow.SelectedValue == "All")
                     {
-                        condition = condition + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString());
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                            + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString());
                     }
                     else if (ddlShow.SelectedValue == "Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 1" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 1" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                            + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 1");
                     }
                     else if (ddlShow.SelectedValue == "Not Approved")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 0" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 0");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                            + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 0");
                     }
                     else if (ddlShow.SelectedValue == "Reject")
                     {
-                        condition = condition + " and HumanResources.PersonProject.CurrentFlag = 2" + " and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString();
+                        condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
-                        dt = _com.getData(Message.TablePersonProject + " INNER JOIN HumanResources.Employee ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId ", "HumanResources.PersonProject.CurrentFlag", " where HumanResources.Employee.CurrentFlag = 1 and HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 2");
+                        dt = _com.getData(Message.TablePersonProject + " pp join " + Message.TableEmployee
+                            + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
+                            + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
+                            + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 2");
                     }
                 }
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -422,10 +564,6 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
                     grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
                 }
-                grdData.GridLines = GridLines.None;
-                grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
-                grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
-                grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
                 lblSuccess.Text = Message.UpdateSuccess;
             }
             catch (Exception ex)
