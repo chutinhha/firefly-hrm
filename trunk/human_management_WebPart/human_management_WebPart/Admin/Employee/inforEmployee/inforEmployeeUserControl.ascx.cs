@@ -102,20 +102,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             if (dt.Rows.Count > 0)
             {
                 lblEmployeeImageTitle.Text = dt.Rows[0][0].ToString();
-<<<<<<< .mine
-                if (dt.Rows[0][1].ToString() != "")
-                {
-                    string strURL = "/image/" + dt.Rows[0][1].ToString();
-                    if (File.Exists(Server.MapPath("~/image/") + dt.Rows[0][1].ToString())) imgEmployeeImage.ImageUrl = strURL;
-                    else
-                        imgEmployeeImage.ImageUrl = "/image/no_image.jpg";
-                }
-                else
-                    imgEmployeeImage.ImageUrl = "/image/no_image.jpg";
-=======
                 imgEmployeeImage.ImageUrl = "/_layouts/Images/21_2_ob/" + dt.Rows[0][1].ToString();
                 //imgEmployeeImage.ImageUrl = "https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/601264_3903279919727_1220919926_n.jpg";
->>>>>>> .r127
             }
         }
 
@@ -148,7 +136,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             //ModifiedDate
             string strModifiedDate = System.DateTime.Now.ToShortDateString() + " " + System.DateTime.Now.ToShortTimeString();
             strModifiedDate = "'" + strModifiedDate + "'";
-            strCondition = strCondition + " , ModifiedDate = " + strModifiedDate;
+            strCondition = strCondition + " , ModifiedDate = " + strModifiedDate;            
 
             strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
             _com.updateTable(strTableName, strCondition);
@@ -303,7 +291,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 string strCurrentFlag = dtCurrentFlag.Rows[0][0].ToString();
                 if (strCurrentFlag == "0") ddlCurrentFlag.SelectedValue = "Inactive";
                 else
-                    if (strCurrentFlag == "1") ddlCurrentFlag.SelectedValue = "Active";
+                    if (strCurrentFlag == "1") ddlCurrentFlag.SelectedValue = "Active";                    
             }
             //Get current department
             DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
@@ -528,30 +516,18 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-<<<<<<< .mine
-                e.Row.Style["cursor"] = "pointer";
-=======
                 //string Location = Message.EditEmployeePage + "/?BusinessEntityId=" + Server.HtmlDecode(e.Row.Cells[5].Text);
                 e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
->>>>>>> .r127
                 if (e.Row.RowIndex % 2 != 0)
                 {
-<<<<<<< .mine
-                    e.Row.Attributes.Add("style", "background-color:#9AD5F7;");
-=======
                     e.Row.Attributes.Add("style", "background-color:white;");
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
->>>>>>> .r127
                 }
                 else
                 {
-<<<<<<< .mine
-                    e.Row.Attributes.Add("style", "background-color:white;");
-=======
                     e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
->>>>>>> .r127
                 }
                 for (int i = 0; i < e.Row.Cells.Count; i++)
                 {
@@ -591,7 +567,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
         private void updateDateToEmpState()
         {
-            string strTableName = Message.TableEmployee;
+            string strTableName = Message.TableEmployee;            
             string strCondition = "";
             //Job Title
             string strJobID = ddlJobTitle.SelectedItem.Value;
@@ -605,8 +581,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
             strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
 
-            //Update
-            _com.updateTable(strTableName, strCondition);
+             //Update
+            _com.updateTable(strTableName, strCondition);                         
         }
 
         protected void bntEmpListPage_Click(object sender, EventArgs e)
