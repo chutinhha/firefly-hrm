@@ -13,13 +13,13 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave {
     public partial class MyLeaveUserControl {
         
         /// <summary>
-        /// lblFrom control.
+        /// lblStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFrom;
+        protected global::System.Web.UI.WebControls.Label lblStartDate;
         
         /// <summary>
         /// pnlDateFrom control.
@@ -31,15 +31,6 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave {
         protected global::System.Web.UI.WebControls.Panel pnlDateFrom;
         
         /// <summary>
-        /// lblTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTo;
-        
-        /// <summary>
         /// pnlDateTo control.
         /// </summary>
         /// <remarks>
@@ -49,13 +40,22 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave {
         protected global::System.Web.UI.WebControls.Panel pnlDateTo;
         
         /// <summary>
-        /// lblValidate control.
+        /// lblFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValidate;
+        protected global::System.Web.UI.WebControls.Label lblFrom;
+        
+        /// <summary>
+        /// lblTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTo;
         
         /// <summary>
         /// lblDayOff control.
@@ -74,6 +74,24 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDayOff;
+        
+        /// <summary>
+        /// lblStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
+        
+        /// <summary>
+        /// ddlStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
         
         /// <summary>
         /// btnSearch control.

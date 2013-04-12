@@ -3,131 +3,132 @@
   <Assemblies>
     <Assembly Location="SP2010VisualWebPart.dll" DeploymentTarget="GlobalAssemblyCache">
       <SafeControls>
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Login" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Candidates" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditCandidate" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddCandidate" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Vacancies" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddVacancy" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditVacancy" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.JobCategories" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.JobTitles" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddJobtitle" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditJobTitle" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AttendanceRecord" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.PunchAttendance" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditAttendance" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.UserAccount" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.ChangePassword" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.CSV.ImportEmployees" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.QuestionList" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.EditQuestion" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Common.AccessDenied" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Salary.SalarySummary" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.User.UserList" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Attendance.AttendanceSummary" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.NotifyEmployee" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.DashBoard.QuickLaunch" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.AssignDayOff.DayOff" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AttendanceRecord" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Attendance.AttendanceSummary" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditAttendance" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.PunchAttendance" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddCandidate" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Candidates" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditCandidate" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.CSV.ImportEmployees" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.EditQuestion" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.QuestionList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.DepartmentList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.EditDepartment" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.addEmployees" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.inforEmployee" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.searchEmployee" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.JobCategories" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddJobtitle" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditJobTitle" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.JobTitles" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.addLeaveType" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.editLeaveType" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.searchLeaveType" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Person_Project.PersonProject" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.AddProject" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.AddTask" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.EditProject" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.EditTask" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.ProjectList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.TaskList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Salary.SalarySummary" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Attendance" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Performance.ReviewTimesheet" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Performance.ReviewAttendance" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Performance.SupervisorJudgment" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.ProjectList" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.AddProject" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.EditProject" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.TaskList" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.AddTask" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Project.EditTask" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Common.ManageUser" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.addEmployees" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.searchEmployee" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Person_Project.PersonProject" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Person_Project.SearchEmployee" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ProjectReport" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ViewEmployeeReport" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ViewProjectReport" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.addLeaveType" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.searchLeaveType" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.DepartmentList" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Leave.editLeaveType" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.inforEmployee" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.User.UserList" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddVacancy" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditVacancy" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Vacancies" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Common.AccessDenied" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.ChangePassword" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Login" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Common.ManageUser" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.NotifyEmployee" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.DashBoard.QuickLaunch" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.UserAccount" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Attendance" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Leave.ApplyLeave" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Leave.MyLeave" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Performance.ReviewAttendance" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Performance.ReviewTimesheet" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Performance.SupervisorJudgment" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Timesheet.EditTimesheet" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.User.Timesheet.MyTimesheet" TypeName="*" />
+        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Person_Project.AssignEmployee" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>
   <TemplateFiles>
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Login\LoginUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Candidates\CandidatesUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditCandidate\EditCandidateUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddCandidate\AddCandidateUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Vacancies\VacanciesUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddVacancy\AddVacancyUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditVacancy\EditVacancyUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\JobCategories\JobCategoriesUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\JobTitles\JobTitlesUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddJobtitle\AddJobtitleUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditJobTitle\EditJobTitleUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AttendanceRecord\AttendanceRecordUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\PunchAttendance\PunchAttendanceUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditAttendance\EditAttendanceUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\UserAccount\UserAccountUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\ChangePassword\ChangePasswordUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.CSV\ImportEmployees\ImportEmployeesUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\QuestionList\QuestionListUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\EditQuestion\EditQuestionUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\EvaluateEmployee\EvaluateEmployeeUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Common\AccessDenied\AccessDeniedUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Salary\SalarySummary\SalarySummaryUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.User\UserList\UserListUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin\NotifyEmployee\NotifyEmployeeUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.DashBoard\QuickLaunch\QuickLaunchUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.AssignDayOff\DayOff\DayOffUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AttendanceRecord\AttendanceRecordUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditAttendance\EditAttendanceUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\PunchAttendance\PunchAttendanceUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddCandidate\AddCandidateUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Candidates\CandidatesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditCandidate\EditCandidateUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.CSV\ImportEmployees\ImportEmployeesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\EditQuestion\EditQuestionUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\EvaluateEmployee\EvaluateEmployeeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\QuestionList\QuestionListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\DepartmentList\DepartmentListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\EditDepartment\EditDepartmentUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\addEmployees\addEmployeesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\inforEmployee\inforEmployeeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\searchEmployee\searchEmployeeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\JobCategories\JobCategoriesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddJobtitle\AddJobtitleUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditJobTitle\EditJobTitleUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\JobTitles\JobTitlesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\addLeaveType\addLeaveTypeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\editLeaveType\editLeaveTypeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\searchLeaveType\searchLeaveTypeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Person_Project\PersonProject\PersonProjectUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\AddProject\AddProjectUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\AddTask\AddTaskUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\EditProject\EditProjectUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\EditTask\EditTaskUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\ProjectList\ProjectListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\TaskList\TaskListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Salary\SalarySummary\SalarySummaryUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.TimeSheet\ApproveTimesheet\ApproveTimesheetUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User\Attendance\AttendanceUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\ProjectList\ProjectListUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\AddProject\AddProjectUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\EditProject\EditProjectUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\TaskList\TaskListUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\AddTask\AddTaskUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Project\EditTask\EditTaskUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Common\ManageUser\ManageUserUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\addEmployees\addEmployeesUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\searchEmployee\searchEmployeeUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Person_Project\PersonProject\PersonProjectUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Person_Project\SearchEmployee\SearchEmployeeUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\EmployeeReport\EmployeeReportUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ProjectReport\ProjectReportUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ViewEmployeeReport\ViewEmployeeReportUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ViewProjectReport\ViewProjectReportUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\addLeaveType\addLeaveTypeUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\searchLeaveType\searchLeaveTypeUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\DepartmentList\DepartmentListUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Leave\editLeaveType\editLeaveTypeUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\inforEmployee\inforEmployeeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.User\UserList\UserListUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddVacancy\AddVacancyUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditVacancy\EditVacancyUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Vacancies\VacanciesUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Common\AccessDenied\AccessDeniedUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\ChangePassword\ChangePasswordUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Login\LoginUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Common\ManageUser\ManageUserUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin\NotifyEmployee\NotifyEmployeeUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.DashBoard\QuickLaunch\QuickLaunchUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\UserAccount\UserAccountUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User\Attendance\AttendanceUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Leave\ApplyLeave\ApplyLeaveUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Leave\MyLeave\MyLeaveUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Timesheet\EditTimesheet\EditTimesheetUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.User.Timesheet\MyTimesheet\MyTimesheetUserControl.ascx" />
+    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Person_Project\AssignEmployee\AssignEmployeeUserControl.ascx" />
   </TemplateFiles>
   <FeatureManifests>
     <FeatureManifest Location="human_management_WebPart_Feature1\Feature.xml" />
-    <FeatureManifest Location="human_management_WebPart_Feature2\Feature.xml" />
   </FeatureManifests>
 </Solution>

@@ -10,12 +10,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditJobTitleUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.EditJobTitle.EditJobTitleUserControl" %>
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;
@@ -86,6 +80,6 @@
         </tr>
     </table>
 </asp:Panel>
-<br>
+<br />
     &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
-<br>
+<br />

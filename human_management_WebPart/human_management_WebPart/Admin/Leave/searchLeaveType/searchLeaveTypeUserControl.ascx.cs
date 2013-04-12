@@ -110,8 +110,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string Location = Message.EditLeaveTypePage + "/?TaskID=" + Server.HtmlDecode(e.Row.Cells[4].Text)
-               + "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
+                string Location = Message.EditLeaveTypePage + "/?TaskID=" + Server.HtmlDecode(e.Row.Cells[4].Text);
                 e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
                 if (e.Row.RowIndex % 2 != 0)
@@ -126,7 +125,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 }
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
-                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;");
+                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }

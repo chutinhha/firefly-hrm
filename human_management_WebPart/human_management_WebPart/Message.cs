@@ -67,8 +67,8 @@
     internal const string GenderColumn = "Gender";
     internal const string HireDateColumn = "HireDate";
     internal const string SalariedFlagColumn = "Salary";
-    internal const string VacationHoursColumn = "VacationHours";
-    internal const string SickLeaveHoursColumn = "SickLeaveHours";
+    internal const string VacationHoursColumn = "VacationDate";
+    internal const string SickLeaveHoursColumn = "SickLeaveDate";
     internal const string CurrentFlagColumn = "CurrentFlag";
     internal const string ModifiedDateColumn = "ModifiedDate";
     internal const string LoginIDColumn = "LoginID";
@@ -141,7 +141,7 @@
     internal const string SupervisorJudgmentPage = "SupervisorJudgment.aspx";
     internal const string ApplyLeavePage = "ApplyLeave.aspx";
     internal const string MyLeavePage = "MyLeave.aspx";
-    internal const string TimesheetPage = "LogTimesheet.aspx";
+    internal const string TimesheetPage = "MyTimesheet.aspx";
     internal const string ApproveTimesheetPage = "ApproveTimesheet.aspx";
     internal const string ViewEmployeeReportPage = "ViewEmployeeReport.aspx";
     internal const string ViewProjectReportPage = "ViewProjectReport.aspx";
@@ -155,8 +155,9 @@
     internal const string EditEmployeePage = "EditEmployee.aspx";
     internal const string AddLeaveTypePage = "AddLeaveType.aspx";
     internal const string EditLeaveTypePage = "EditLeaveType.aspx";
-    internal const string MyTimesheetPage = "LogTimesheet.aspx";
-    internal const string EditMyTimesheetPage = "EditTimesheet.aspx";
+    internal const string MyTimesheetPage = "MyTimesheet.aspx";
+    internal const string EditMyTimesheetPage = "LogTimesheet.aspx";
+    internal const string EditEmployeeDepartmentPage = "EditDepartment.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -208,7 +209,7 @@
     internal const string NotAnswerAll = "You must answer all questions"; 
     internal const string NotExistData = "There is no data matching your request";
     internal const string ToDateAfterFrom = "From date must be earlier than To date";
-    internal const string NotHaveCheckPointYet = "You do not have supervisor judgment in this quarter<br><br>"; 
+    internal const string NotHaveCheckPointYet = "You do not have supervisor judgment in this quarter<br /><br />"; 
     internal const string NotHaveLoginID = "This person doesn't have login ID";
     internal const string NotExistLoginID = "This login ID does not exist. If you just change employee login ID, please save first"; 
     internal const string AlreadyExistLoginID = "There are 2 or more people having the same login ID";
@@ -228,4 +229,7 @@
     internal const string LitmitDateError = "Limit Date must be a natural number";
     internal const string DepartmentNameError = "You must enter name of department";
     internal const string AlreadyExistDepartment = "There is another Department with the same name exists!";
+    internal const string NotEnterTime = "You must enter time";
+    internal const string NotEnterWorkDate = "You must choose a work date";
+    internal const string InvalidTime = "Time must be a number that smaller than 24 and larger than 0";
 }

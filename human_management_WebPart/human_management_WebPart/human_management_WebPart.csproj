@@ -139,6 +139,14 @@
     <Compile Include="Admin\Department\DepartmentList\DepartmentListUserControl.ascx.designer.cs">
       <DependentUpon>DepartmentListUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Department\EditDepartment\EditDepartment.cs" />
+    <Compile Include="Admin\Department\EditDepartment\EditDepartmentUserControl.ascx.cs">
+      <DependentUpon>EditDepartmentUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Department\EditDepartment\EditDepartmentUserControl.ascx.designer.cs">
+      <DependentUpon>EditDepartmentUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Employee\addEmployees\addEmployees.cs" />
     <Compile Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx.cs">
       <DependentUpon>addEmployeesUserControl.ascx</DependentUpon>
@@ -187,6 +195,14 @@
     <Compile Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx.designer.cs">
       <DependentUpon>searchLeaveTypeUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Person Project\AssignEmployee\AssignEmployee.cs" />
+    <Compile Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx.cs">
+      <DependentUpon>AssignEmployeeUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx.designer.cs">
+      <DependentUpon>AssignEmployeeUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Person Project\PersonProject\PersonProject.cs" />
     <Compile Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx.cs">
       <DependentUpon>PersonProjectUserControl.ascx</DependentUpon>
@@ -194,14 +210,6 @@
     </Compile>
     <Compile Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx.designer.cs">
       <DependentUpon>PersonProjectUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployee.cs" />
-    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx.cs">
-      <DependentUpon>SearchEmployeeUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx.designer.cs">
-      <DependentUpon>SearchEmployeeUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Project\AddProject\AddProject.cs" />
     <Compile Include="Admin\Project\AddProject\AddProjectUserControl.ascx.cs">
@@ -489,6 +497,7 @@
     <Compile Include="User\Leave\ApplyLeave\ApplyLeave.cs" />
     <Compile Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx.cs">
       <DependentUpon>ApplyLeaveUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx.designer.cs">
       <DependentUpon>ApplyLeaveUserControl.ascx.cs</DependentUpon>
@@ -496,6 +505,7 @@
     <Compile Include="User\Leave\MyLeave\MyLeave.cs" />
     <Compile Include="User\Leave\MyLeave\MyLeaveUserControl.ascx.cs">
       <DependentUpon>MyLeaveUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\Leave\MyLeave\MyLeaveUserControl.ascx.designer.cs">
       <DependentUpon>MyLeaveUserControl.ascx.cs</DependentUpon>
@@ -527,6 +537,7 @@
     <Compile Include="User\Timesheet\EditTimesheet\EditTimesheet.cs" />
     <Compile Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx.cs">
       <DependentUpon>EditTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx.designer.cs">
       <DependentUpon>EditTimesheetUserControl.ascx.cs</DependentUpon>
@@ -534,6 +545,7 @@
     <Compile Include="User\Timesheet\MyTimesheet\MyTimesheet.cs" />
     <Compile Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx.cs">
       <DependentUpon>MyTimesheetUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx.designer.cs">
       <DependentUpon>MyTimesheetUserControl.ascx.cs</DependentUpon>
@@ -576,6 +588,10 @@
     <None Include="Admin\Department\DepartmentList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5a8d5e82-d94e-4301-afcb-39f6cd661592}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Department\EditDepartment\EditDepartment.webpart" />
+    <None Include="Admin\Department\EditDepartment\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e9ee606c-803c-4c5d-b26f-77dc3e9f59c0}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Employee\addEmployees\addEmployees.webpart" />
     <None Include="Admin\Employee\addEmployees\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{12381228-a41a-433d-9a5d-ebcf23d6d233}</SharePointProjectItemId>
@@ -600,13 +616,13 @@
     <None Include="Admin\Leave\searchLeaveType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{00d00890-96d4-4d82-96a0-89eb2f19dba7}</SharePointProjectItemId>
     </None>
+    <None Include="Admin\Person Project\AssignEmployee\AssignEmployee.webpart" />
+    <None Include="Admin\Person Project\AssignEmployee\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{880ea19e-6558-4ce8-82b2-8c39a707f904}</SharePointProjectItemId>
+    </None>
     <None Include="Admin\Person Project\PersonProject\PersonProject.webpart" />
     <None Include="Admin\Person Project\PersonProject\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9d9c27f1-4585-4aee-8083-b5346dcecef0}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\Person Project\SearchEmployee\SearchEmployee.webpart" />
-    <None Include="Admin\Person Project\SearchEmployee\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a606299f-dbd7-4266-9a5d-8d7ff2984ae1}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Project\AddProject\AddProject.webpart" />
     <None Include="Admin\Project\AddProject\SharePointProjectItem.spdata">
@@ -729,8 +745,8 @@
       <SharePointProjectItemId>{f6a98034-ff31-4015-b9e1-9db49f438a68}</SharePointProjectItemId>
     </None>
     <None Include="app.config" />
-    <None Include="Features\Feature2\Feature2.feature">
-      <FeatureId>{931ed2d8-e487-4408-83de-67fd6a56f5c1}</FeatureId>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{153c9f09-017a-44ea-8b68-ce5236f9d608}</FeatureId>
     </None>
     <None Include="key.snk" />
     <None Include="Common\Login\SharePointProjectItem.spdata">
@@ -789,29 +805,19 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{3412803a-0161-478b-bf17-b8ef50f9a9f1}</FeatureId>
-    </None>
-    <None Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\AssignDayOff\AssignLeave\Elements.xml" />
-    <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx" />
     <Content Include="Admin\AssignDayOff\DayOff\Elements.xml" />
     <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Attendance\AttendanceSummary\Elements.xml" />
-    <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx" />
     <Content Include="Admin\Candidate\AddCandidate\Elements.xml" />
     <Content Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -833,6 +839,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Department\DepartmentList\Elements.xml" />
+    <Content Include="Admin\Department\EditDepartment\EditDepartmentUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Admin\Department\EditDepartment\Elements.xml" />
     <Content Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -845,26 +855,18 @@
     <Content Include="Admin\Employee\searchEmployee\searchEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Leave\addLeaveType\addLeaveTypeUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Leave\addLeaveType\addLeaveTypeUserControl.ascx" />
     <Content Include="Admin\Leave\addLeaveType\Elements.xml" />
-    <Content Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx" />
     <Content Include="Admin\Leave\editLeaveType\Elements.xml" />
     <Content Include="Admin\Leave\searchLeaveType\Elements.xml" />
     <Content Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx" />
+    <Content Include="Admin\Person Project\AssignEmployee\Elements.xml" />
     <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
-    <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\Person Project\SearchEmployee\Elements.xml" />
-    <Content Include="Admin\Person Project\SearchEmployee\SearchEmployeeUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx" />
     <Content Include="Admin\Project\AddProject\AddProjectUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -953,17 +955,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\ChangePassword\Elements.xml" />
-    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx" />
     <Content Include="Admin\Attendance\EditAttendance\Elements.xml" />
-    <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx" />
     <Content Include="Admin\Candidate\EditCandidate\Elements.xml" />
-    <Content Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx" />
     <Content Include="Admin\Job Title\EditJobTitle\Elements.xml" />
     <Content Include="Admin\Vacancy\EditVacancy\EditVacancyUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -993,17 +989,21 @@
     <Content Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Features\Feature2\Feature2.Template.xml">
-      <DependentUpon>Feature2.feature</DependentUpon>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
     <Content Include="User\EmployeeAttendance\Attendance\AttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="User\EmployeeAttendance\Attendance\Elements.xml" />
-    <Content Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx" />
+    <Content Include="User\Leave\ApplyLeave\ApplyLeaveUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="User\Leave\ApplyLeave\Elements.xml" />
     <Content Include="User\Leave\MyLeave\Elements.xml" />
-    <Content Include="User\Leave\MyLeave\MyLeaveUserControl.ascx" />
+    <Content Include="User\Leave\MyLeave\MyLeaveUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="User\Performance\ReviewAttendance\Elements.xml" />
     <Content Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -1019,7 +1019,9 @@
     <Content Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx" />
     <Content Include="User\Timesheet\EditTimesheet\Elements.xml" />
     <Content Include="User\Timesheet\MyTimesheet\Elements.xml" />
-    <Content Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx" />
+    <Content Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

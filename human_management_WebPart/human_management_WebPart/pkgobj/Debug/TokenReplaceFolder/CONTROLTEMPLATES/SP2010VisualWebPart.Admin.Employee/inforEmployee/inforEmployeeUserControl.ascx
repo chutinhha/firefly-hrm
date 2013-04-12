@@ -25,22 +25,27 @@
         <td>
             <table class="fieldTitleTable">
                 <tr>
-                    <td class="fieldTitleTd">
-                        <span style="color: white;">Edit Employee Information</span>
+                    <td class="fieldTitleTd" align="left">
+                        <span style="color: white;">Employee Information</span>
                     </td>
+                    <td class="fieldTitleTd" align="right">
+                        <asp:Button ID="bntEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
+                            Width="230px" onclick="bntEmpListPage_Click" style="background:#2CA6CD;box-shadow: none;text-decoration: underline;border:none;" />
+                    </td>
+                    
                 </tr>
             </table>
             <table width="100%">
                 <tr>
                     <td style="width: 425px;">
-                        <br>
+                        <br />
                         <span style="padding-left: 10px;"></span>
                         <asp:Label ID="lblEmployeeImageTitle" runat="server" Text=""></asp:Label>
                     </td>
                     <td>
-                        <br>
+                        <br />
                         <div style="background-color: rgb(44, 166, 205); height: 30px; color: white; font-weight: bold;
-                            line-height: 30px; border-radius: 5px 5px 5px 5px; padding-left: 5px;width:99.5%">
+                            line-height: 30px; border-radius: 5px 5px 5px 5px; padding-left: 5px; width: 99.5%">
                             Personal Detail</div>
                     </td>
                 </tr>
@@ -48,9 +53,17 @@
                     <td>
                         <span style="padding-left: 10px;"></span>
                         <asp:Image ID="imgEmployeeImage" runat="server" Width="200px" Height="200px" />
+                        <br />
+                        <asp:Label ID="lblPhotoDetail" runat="server" ForeColor="#663300"></asp:Label>
+                        <br />
+                        <span style="padding-left: 10px;"></span><asp:FileUpload ID="fudEmployeePhoto" runat="server" Visible="false" />
+                        <br /><br />
+                        <span style="padding-left: 10px;"></span><asp:Button ID="btnUpdateImage" CssClass="addButton" runat="server" Text="Change Image"
+                             OnClick="btnUpdateImage_Click" Width="150" />
+                    </td>
                     <td>
-                        <br>
-                        <asp:Label ID="lblFullName" runat="server" Text="Full Name" Width="150px"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblFullName" runat="server" Text="Full Name *" Width="150px"></asp:Label>
                         <asp:TextBox ID="txtFullName" runat="server" Width="200px"></asp:TextBox>
                         <br />
                         <br />
@@ -75,6 +88,17 @@
                         <asp:RadioButton ID="rdbMaritalMerried" runat="server" Text="Married" GroupName="MaritalStatus" />
                         <br />
                         <br />
+                        <asp:Label ID="lblRank" runat="server" Text="Rank" Width="150px"></asp:Label>
+                        <div class="styled-selectLong">
+                            <asp:DropDownList ID="ddlRank" runat="server">
+                                <asp:ListItem Selected="True">User</asp:ListItem>
+                                <asp:ListItem>Admin</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <br />
+                        <br />
+                        <asp:Label ID="lblPersonDetailGuideLine" runat="server" Text="* Required Failed"
+                            Width="350px" Visible="False" ForeColor="#663300"></asp:Label>
                         <div class="borderTop" style="padding-left: 0px;">
                             <asp:Button ID="btnEditPersonDetails" CssClass="addButton" runat="server" Text="Edit"
                                 OnClick="btnEditPersonDetails_Click" Width="80px" />
@@ -102,7 +126,10 @@
             <asp:TextBox ID="txtMobile" runat="server" Width="200px"></asp:TextBox>
             <span style="padding-left: 50px;"></span>
             <asp:Label ID="lblCountry" runat="server" Text="Country" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtCountry" runat="server" Width="200px"></asp:TextBox>
+            <div class="styled-selectLong">
+                <asp:DropDownList ID="ddlCountry" runat="server">
+                </asp:DropDownList>
+            </div>
             <br />
             <br />
             <span style="padding-left: 5px;"></span>
@@ -119,6 +146,41 @@
                     OnClick="btnEditContactDetails_Click" Width="80px" />
                 <asp:Button ID="btnCancelEditContactDetails" runat="server" CssClass="resetButton"
                     Text="Cancel" OnClick="btnCancelEditContactDetails_Click" Visible="False" Width="80px" />
+            </div>
+            <div style="background-color: rgb(44, 166, 205); height: 30px; color: white; font-weight: bold;
+                line-height: 30px; border-radius: 5px 5px 5px 5px; padding-left: 5px;">
+                Employee State</div>
+            <br />
+            <br />
+            <span style="padding-left: 5px;"></span>
+            <asp:Label ID="lblEmpStatus" runat="server" Text="Employee Status" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+                <asp:DropDownList ID="ddlCurrentFlag" runat="server">
+                    <asp:ListItem>Active</asp:ListItem>
+                    <asp:ListItem>Inactive</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <span style="padding-left: 50px;"></span>
+            <asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+                <asp:DropDownList ID="ddlJobTitle" runat="server">
+                </asp:DropDownList>
+            </div>
+            <br />
+            <br />
+                <span style="padding-left: 5px;"></span>
+            <asp:Label ID="lblDepartment" runat="server" Text="Department" Width="150"></asp:Label>
+                <asp:TextBox ID="txtDepartment" runat="server" Width="200" Enabled="False"></asp:TextBox>
+                <span style="padding-left: 5px;"></span>
+                <asp:LinkButton ID="lbtnDepartment" runat="server" 
+                onclick="lbtnDepartment_Click">Edit Department</asp:LinkButton>
+                <br /><br />
+            <div class="borderTop">
+                <span style="padding-left: 155px;"></span>
+                <asp:Button ID="btnEditEmpState" CssClass="addButton" runat="server" Text="Edit"
+                    Width="80px" OnClick="btnEditEmpState_Click" />
+                <asp:Button ID="btnCancelEditEmpState" runat="server" CssClass="resetButton" Text="Cancel"
+                    Visible="False" Width="80px" />
             </div>
         </td>
     </tr>

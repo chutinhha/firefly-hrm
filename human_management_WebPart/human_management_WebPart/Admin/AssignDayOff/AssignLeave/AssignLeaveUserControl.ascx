@@ -20,52 +20,52 @@
                     </td>
                 </tr>
             </table>
-            <br>
+            <br />
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblEmployee" runat="server" Text="Employee" Width="150px"></asp:Label>
             <asp:TextBox ID="txtEmployee" runat="server" Width="200px"></asp:TextBox>
-            <span style= "padding-left:50px">
+            <span style= "padding-left:50px"></span>
             
-            <br>
-            <br>
+            <br />
+            <br />
             <div class="borderTop">
-                <asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
+                <span style="padding-left: 155px"></span><asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
             </div>
         </td>
     </tr>
 </table>
-<br>
+<br />
 <table class="fieldTitleDiv">
     <tr>
         <td>
-            <br>
+            <br />
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblDayOff" runat="server" Text="Type of Days Off" Width="150px"></asp:Label>
             <asp:TextBox ID="txtDayOff" runat="server" Width="200px" ReadOnly="True"></asp:TextBox>
             <br />
-            <br>
+            <br />
             <div class="borderTop">
-                <asp:Button ID="btnAssign" runat="server" Text="Assign" Width="80px" class="addButton"
+                <span style="padding-left: 155px"></span><asp:Button ID="btnAssign" runat="server" Text="Assign" Width="80px" class="addButton"
                     OnClick="btnAssign_Click" />
             </div>
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
                 OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
-                BorderWidth="0px">
+                BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />
                         <HeaderTemplate>
-                            <asp:CheckBox ID="CheckBox2" runat="server" OnCheckedChanged="CheckUncheckAll" AutoPostBack="true" />
+                            &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" OnCheckedChanged="CheckUncheckAll" AutoPostBack="true" />
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <asp:CheckBox ID="myCheckBox" runat="server" />
+                            &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
     </tr>
     </td></table>
-<br>
+<br />
 
-&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br />

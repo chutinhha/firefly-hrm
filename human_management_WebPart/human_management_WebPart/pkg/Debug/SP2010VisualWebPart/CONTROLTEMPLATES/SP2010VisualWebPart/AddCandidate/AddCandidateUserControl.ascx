@@ -167,7 +167,7 @@
             </td>
         </tr>
     </table>
-</asp:Panel><br>
+</asp:Panel><br />
 <br />
     &nbsp;<asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
 <br />
