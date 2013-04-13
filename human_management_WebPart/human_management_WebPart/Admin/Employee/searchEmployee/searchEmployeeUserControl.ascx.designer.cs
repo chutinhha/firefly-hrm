@@ -31,22 +31,22 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee {
         protected global::System.Web.UI.WebControls.TextBox txtEmployeeName;
         
         /// <summary>
-        /// lblCurrentFlag control.
+        /// lblLoginID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurrentFlag;
+        protected global::System.Web.UI.WebControls.Label lblLoginID;
         
         /// <summary>
-        /// ddlCurrentFlag control.
+        /// txtLoginID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCurrentFlag;
+        protected global::System.Web.UI.WebControls.TextBox txtLoginID;
         
         /// <summary>
         /// lblRank control.
@@ -67,22 +67,22 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee {
         protected global::System.Web.UI.WebControls.DropDownList ddlRank;
         
         /// <summary>
-        /// lblLoginID control.
+        /// lblCurrentFlag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLoginID;
+        protected global::System.Web.UI.WebControls.Label lblCurrentFlag;
         
         /// <summary>
-        /// txtLoginID control.
+        /// ddlCurrentFlag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoginID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCurrentFlag;
         
         /// <summary>
         /// lblJobTitle control.
