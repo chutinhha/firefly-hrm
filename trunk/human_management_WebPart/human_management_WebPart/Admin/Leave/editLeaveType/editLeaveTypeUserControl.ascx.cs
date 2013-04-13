@@ -10,7 +10,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
     {
         private string strTaskID = "";
         private CommonFunction _com = new CommonFunction();
-
+        
         protected void loadData()
         {
             string strTableName = Message.TableTask;

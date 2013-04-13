@@ -8,7 +8,7 @@
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="listLeaveTypeUserControl.ascx.cs"
-    Inherits="SP2010VisualWebPart.Admin.Leave.searchLeaveType.searchLeaveTypeUserControl" %>
+    Inherits="SP2010VisualWebPart.Admin.Leave.listLeaveType.listLeaveTypeUserControl" %>
 
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>

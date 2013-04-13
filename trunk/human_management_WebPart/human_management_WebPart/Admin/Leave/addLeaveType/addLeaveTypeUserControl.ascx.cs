@@ -9,6 +9,7 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
     public partial class addLeaveTypeUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType {
+namespace SP2010VisualWebPart.Admin.Leave.listLeaveType {
     
     
-    public partial class searchLeaveTypeUserControl {
+    public partial class listLeaveTypeUserControl {
         
         /// <summary>
         /// btnAdd control.

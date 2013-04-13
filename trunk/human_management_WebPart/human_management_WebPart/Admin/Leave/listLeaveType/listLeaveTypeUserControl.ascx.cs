@@ -4,9 +4,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
 
-namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
+namespace SP2010VisualWebPart.Admin.Leave.listLeaveType
 {
-    public partial class searchLeaveTypeUserControl : global::CommonFunction
+    public partial class listLeaveTypeUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
 
@@ -38,52 +38,30 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["Account"] == null)
-            {
-                Response.Redirect(Message.AccessDeniedPage);
-            }
-            else
-            {
-                if (Session["Account"].ToString() == "Admin")
-                {
-                    try
-                    {
+            //if (Session["Account"] == null)
+            //{
+            //    Response.Redirect(Message.AccessDeniedPage);
+            //}
+            //else
+            //{
+            //    if (Session["Account"].ToString() == "Admin")
+            //    {
+            //        try
+            //        {
                         if (!IsPostBack)
                         {
                             binDataLeaveTypeToGrd();
                         }
-                    }
-                    catch (Exception ex) { }
-                }
-                else
-                {
-                    Response.Redirect(Message.UserHomePage);
-                }
-            }
+            //        }
+            //        catch (Exception ex) { }
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect(Message.UserHomePage);
+            //    }
+            //}
         }
-
-        protected void chkAll_CheckedChanged(object sender, EventArgs e)
-        {
-            bool isCheckState = false;
-            CheckBox cbSelectedHeader = (CheckBox)grdLeaveType.HeaderRow.FindControl("chkAll");
-            foreach (GridViewRow row in grdLeaveType.Rows)
-            {
-                CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
-                if (cbSelectedHeader.Checked == true)
-                {
-                    cbSelected.Checked = true;
-                    isCheckState = true;
-                }
-                else
-                {
-                    cbSelected.Checked = false;
-                }
-            }
-            if (isCheckState == true)
-                btnDelete.Visible = true;
-            else
-                btnDelete.Visible = false;
-        }
+       
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
             //Check or uncheck all checkbox
@@ -131,23 +109,6 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 }
             }
         }
-        protected void chkItem_CheckedChanged(object sender, EventArgs e)
-        {
-            bool isCheckState = false;
-            foreach (GridViewRow row in grdLeaveType.Rows)
-            {
-                CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
-                if (cbSelected.Checked == true)
-                {
-                    isCheckState = true;
-                    break;
-                }
-            }
-            if (isCheckState == true)
-                btnDelete.Visible = true;
-            else
-                btnDelete.Visible = false;
-        }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
@@ -162,8 +123,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                     _com.deleteIntoTable(strTableName, strCondition);
                 }
             }
-            binDataLeaveTypeToGrd();
-            btnDelete.Visible = false;
+            binDataLeaveTypeToGrd();            
         }
 
     }
