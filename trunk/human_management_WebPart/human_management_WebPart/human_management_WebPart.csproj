@@ -510,6 +510,14 @@
     <Compile Include="User\Leave\MyLeave\MyLeaveUserControl.ascx.designer.cs">
       <DependentUpon>MyLeaveUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="User\MyTask\MyTask\MyTask.cs" />
+    <Compile Include="User\MyTask\MyTask\MyTaskUserControl.ascx.cs">
+      <DependentUpon>MyTaskUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\MyTask\MyTask\MyTaskUserControl.ascx.designer.cs">
+      <DependentUpon>MyTaskUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\Performance\ReviewAttendance\ReviewAttendance.cs" />
     <Compile Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx.cs">
       <DependentUpon>ReviewAttendanceUserControl.ascx</DependentUpon>
@@ -777,6 +785,10 @@
     <None Include="User\Leave\MyLeave\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3c16d575-ecdb-4f3f-8aa6-2a5b963a50ca}</SharePointProjectItemId>
     </None>
+    <None Include="User\MyTask\MyTask\MyTask.webpart" />
+    <None Include="User\MyTask\MyTask\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f1b330d8-4267-4c33-aa36-e9e8f76aa7e5}</SharePointProjectItemId>
+    </None>
     <None Include="User\Performance\ReviewAttendance\ReviewAttendance.webpart" />
     <None Include="User\Performance\ReviewAttendance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{503478c9-6073-45b6-bc85-ebb90e6bbc14}</SharePointProjectItemId>
@@ -811,13 +823,17 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\AssignDayOff\AssignLeave\Elements.xml" />
-    <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx" />
+    <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\AssignDayOff\DayOff\Elements.xml" />
     <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Attendance\AttendanceSummary\Elements.xml" />
-    <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx" />
+    <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Candidate\AddCandidate\Elements.xml" />
     <Content Include="Admin\Checkpoint\AddNewQuestion\AddNewQuestionUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -855,18 +871,26 @@
     <Content Include="Admin\Employee\searchEmployee\searchEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Leave\addLeaveType\addLeaveTypeUserControl.ascx" />
+    <Content Include="Admin\Leave\addLeaveType\addLeaveTypeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Leave\addLeaveType\Elements.xml" />
-    <Content Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx" />
+    <Content Include="Admin\Leave\editLeaveType\editLeaveTypeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Leave\editLeaveType\Elements.xml" />
     <Content Include="Admin\Leave\searchLeaveType\Elements.xml" />
     <Content Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx" />
+    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Person Project\AssignEmployee\Elements.xml" />
     <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
-    <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx" />
+    <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Project\AddProject\AddProjectUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -875,7 +899,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Project\AddTask\Elements.xml" />
-    <Content Include="Admin\Project\EditProject\EditProjectUserControl.ascx" />
+    <Content Include="Admin\Project\EditProject\EditProjectUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Project\EditProject\Elements.xml" />
     <Content Include="Admin\Project\EditTask\EditTaskUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -957,13 +983,17 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\ChangePassword\Elements.xml" />
-    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx" />
+    <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Attendance\EditAttendance\Elements.xml" />
     <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Candidate\EditCandidate\Elements.xml" />
-    <Content Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx" />
+    <Content Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Job Title\EditJobTitle\Elements.xml" />
     <Content Include="Admin\Vacancy\EditVacancy\EditVacancyUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -1008,6 +1038,10 @@
     <Content Include="User\Leave\MyLeave\MyLeaveUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="User\MyTask\MyTask\Elements.xml" />
+    <Content Include="User\MyTask\MyTask\MyTaskUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="User\Performance\ReviewAttendance\Elements.xml" />
     <Content Include="User\Performance\ReviewAttendance\ReviewAttendanceUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -1020,7 +1054,9 @@
     <Content Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx" />
+    <Content Include="User\Timesheet\EditTimesheet\EditTimesheetUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="User\Timesheet\EditTimesheet\Elements.xml" />
     <Content Include="User\Timesheet\MyTimesheet\Elements.xml" />
     <Content Include="User\Timesheet\MyTimesheet\MyTimesheetUserControl.ascx">

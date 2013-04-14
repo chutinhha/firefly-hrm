@@ -50,7 +50,8 @@
             <br />
             <br />
             <div class="borderTop">
-                <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" Width="80px"
+                <span style="padding-left: 155px;"></span>
+                <asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
             </div>
         </td>

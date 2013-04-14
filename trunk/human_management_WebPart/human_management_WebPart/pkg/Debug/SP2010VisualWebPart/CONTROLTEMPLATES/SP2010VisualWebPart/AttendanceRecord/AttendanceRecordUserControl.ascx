@@ -19,12 +19,6 @@
         else
             return false;
     }
-    function ConfirmOnSave() {
-        if (confirm("<%=this.confirmSave %>") == true)
-            return true;
-        else
-            return false;
-    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,

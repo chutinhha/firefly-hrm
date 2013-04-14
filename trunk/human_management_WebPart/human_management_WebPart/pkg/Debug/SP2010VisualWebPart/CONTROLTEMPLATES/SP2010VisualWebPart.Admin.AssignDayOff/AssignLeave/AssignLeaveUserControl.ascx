@@ -9,7 +9,6 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AssignLeaveUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave.AssignLeaveUserControl" %>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -24,12 +23,12 @@
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblEmployee" runat="server" Text="Employee" Width="150px"></asp:Label>
             <asp:TextBox ID="txtEmployee" runat="server" Width="200px"></asp:TextBox>
-            <span style= "padding-left:50px"></span>
-            
+            <span style="padding-left: 50px"></span>
             <br />
             <br />
             <div class="borderTop">
-                <span style="padding-left: 155px"></span><asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
+                <span style="padding-left: 155px"></span>
+                <asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
             </div>
         </td>
@@ -46,7 +45,8 @@
             <br />
             <br />
             <div class="borderTop">
-                <span style="padding-left: 155px"></span><asp:Button ID="btnAssign" runat="server" Text="Assign" Width="80px" class="addButton"
+                <span style="padding-left: 155px"></span>
+                <asp:Button ID="btnAssign" runat="server" Text="Assign" Width="80px" class="addButton"
                     OnClick="btnAssign_Click" />
             </div>
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
@@ -56,7 +56,8 @@
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />
                         <HeaderTemplate>
-                            &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" OnCheckedChanged="CheckUncheckAll" AutoPostBack="true" />
+                            &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" OnCheckedChanged="CheckUncheckAll"
+                                AutoPostBack="true" />
                         </HeaderTemplate>
                         <ItemTemplate>
                             &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
@@ -64,8 +65,8 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+        </td>
     </tr>
-    </td></table>
+</table>
 <br />
-
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br />

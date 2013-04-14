@@ -17,7 +17,6 @@
             return false;
     }
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnChangePassword" Width="100%">
     <table cellpadding="0" class="fieldTitleDiv">
         <tr>

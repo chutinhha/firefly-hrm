@@ -24,7 +24,6 @@
         });
     });
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -37,8 +36,7 @@
             </table>
             <br />
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" 
-                Width="150px"></asp:Label>
+            <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" Width="150px"></asp:Label>
             <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px">All</asp:TextBox>
             <p>
                 &nbsp;</p>
@@ -60,19 +58,19 @@
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblFrom" runat="server" Text="From" Width="150px"></asp:Label>
-            <input id="txtDateFrom" name="txtDateFrom" style="width: 200px;" type="text" value="" />
+            <input id="txtDateFrom" name="txtDateFrom" style="width: 200px;" type="text" value="<%=this.startDate %>" />
             <span style="padding-left: 50px;"></span>
             <asp:Label ID="lblTo" runat="server" Text="To" Width="50px"></asp:Label>
-            <input id="txtDateTo" name="txtDateTo" style="width: 200px;" type="text" value="" />
+            <input id="txtDateTo" name="txtDateTo" style="width: 200px;" type="text" value="<%=this.endDate %>" />
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
             <asp:CheckBox ID="chkApprove" runat="server" Text="Only include approved timesheet" />
             <p>
                 &nbsp;</p>
-                &nbsp;<span style="color: Red;">(*) is required</span>
-                <br />
-                <br />
+            &nbsp;<span style="color: Red;">(*) is required</span>
+            <br />
+            <br />
             <div class="borderTop">
                 <asp:Button ID="btnView" CssClass="addButton" runat="server" Text="View" Width="80px"
                     OnClick="btnView_Click" />

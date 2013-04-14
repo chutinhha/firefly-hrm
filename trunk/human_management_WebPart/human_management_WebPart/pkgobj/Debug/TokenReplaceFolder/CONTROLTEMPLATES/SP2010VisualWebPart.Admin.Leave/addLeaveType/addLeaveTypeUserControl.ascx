@@ -9,7 +9,6 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="addLeaveTypeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Leave.addLeaveType.addLeaveTypeUserControl" %>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -21,35 +20,41 @@
                 </tr>
             </table>
             <br />
-            <span style="padding-left: 5px;"></span><asp:Label ID="lblLeaveName" runat="server" Text="Leave Name(*)" Width="150px"></asp:Label>
+            <span style="padding-left: 5px;"></span>
+            <asp:Label ID="lblLeaveName" runat="server" Text="Leave Name(*)" Width="150px"></asp:Label>
             <asp:TextBox ID="txtLeaveName" runat="server" Width="200px"></asp:TextBox>
             <br />
-                <br />
-            <span style="padding-left: 5px;"></span><asp:Label ID="lblLimited" runat="server" Text="Limited" Width="150px"></asp:Label>
+            <br />
+            <span style="padding-left: 5px;"></span>
+            <asp:Label ID="lblLimited" runat="server" Text="Limited" Width="150px"></asp:Label>
             <asp:RadioButton ID="rdbLimitedYes" runat="server" GroupName="Limited" Text="Yes"
                 OnCheckedChanged="rdbLimitedYes_CheckedChanged" AutoPostBack="true" />
             <asp:RadioButton ID="rdbLimitedNo" runat="server" GroupName="Limited" Text="No" Checked="true"
                 AutoPostBack="true" OnCheckedChanged="rdbLimitedNo_CheckedChanged" />
             <br />
-                <br />
+            <br />
             <asp:Panel ID="pnlLimitedYes" runat="server" Visible="false">
-                <span style="padding-left: 5px;"></span><asp:Label ID="lblLimitDay" runat="server" Text="Limit Date(*)" Width="150px"></asp:Label>
+                <span style="padding-left: 5px;"></span>
+                <asp:Label ID="lblLimitDay" runat="server" Text="Limit Date(*)" Width="150px"></asp:Label>
                 <asp:TextBox ID="txtLimitDay" runat="server" Width="200px"></asp:TextBox>
-                <br /><br />
+                <br />
+                <br />
             </asp:Panel>
-            <span style="padding-left: 5px;"></span><asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br />
-            <span style="padding-left: 155px;"></span><asp:TextBox ID="txtNote" 
-                runat="server" Height="100px" TextMode="MultiLine" Width="800px"></asp:TextBox>
-            <br /><br />
-            &nbsp<span style="color:Red;">(*): Required field</span><br />
+            <span style="padding-left: 5px;"></span>
+            <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br />
+            <span style="padding-left: 155px;"></span>
+            <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="800px"></asp:TextBox>
+            <br />
+            <br />
+            &nbsp<span style="color: Red;">(*): Required field</span><br />
             <asp:Label ID="lblUserGuide" runat="server" Text=""></asp:Label>
             <br />
             <div class="borderTop">
-            <span style="padding-left: 155px;"></span><asp:Button ID="btnSave" 
-                    CssClass="addButton" runat="server" Text="Save" OnClick="btnSave_Click" 
+                <span style="padding-left: 155px;"></span>
+                <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" OnClick="btnSave_Click"
                     Width="80px" />
-            <asp:Button ID="btnCancel" runat="server" CssClass="resetButton" Text="Cancel" 
-                    OnClick="btnCancel_Click" Width="80px" />
+                <asp:Button ID="btnCancel" runat="server" CssClass="resetButton" Text="Cancel" OnClick="btnCancel_Click"
+                    Width="80px" />
             </div>
         </td>
     </tr>

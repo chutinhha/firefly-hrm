@@ -19,12 +19,6 @@
         else
             return false;
     }
-    function ConfirmOnSave() {
-        if (confirm("<%=this.confirmSave %>") == true)
-            return true;
-        else
-            return false;
-    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -36,7 +30,6 @@
         });
     });
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -121,8 +114,7 @@
             </div>
             <br />
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
-                Width="100%" BorderStyle="None"
-                BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
+                Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />
@@ -146,6 +138,5 @@
     </tr>
 </table>
 <br />
-
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />
