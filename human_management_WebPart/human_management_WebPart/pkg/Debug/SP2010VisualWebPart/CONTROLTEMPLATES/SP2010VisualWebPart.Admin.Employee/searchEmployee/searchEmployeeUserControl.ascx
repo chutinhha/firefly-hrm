@@ -24,14 +24,8 @@
             <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
             <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px"></asp:TextBox>
             <span style="padding-left: 100px;"></span>
-            <asp:Label ID="lblCurrentFlag" runat="server" Text="Employment Status" Width="150px"></asp:Label>
-            <div class="styled-selectLong">
-                <asp:DropDownList ID="ddlCurrentFlag" runat="server">
-                    <asp:ListItem Selected="True">All</asp:ListItem>
-                    <asp:ListItem>Active</asp:ListItem>
-                    <asp:ListItem>Inactive</asp:ListItem>
-                </asp:DropDownList>
-            </div>
+            <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>            
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
@@ -44,8 +38,14 @@
                 </asp:DropDownList>
             </div>
             <span style="padding-left: 100px;"></span>
-            <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>
+            <asp:Label ID="lblCurrentFlag" runat="server" Text="Employment Status" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+                <asp:DropDownList ID="ddlCurrentFlag" runat="server">
+                    <asp:ListItem Selected="True">All</asp:ListItem>
+                    <asp:ListItem>Active</asp:ListItem>
+                    <asp:ListItem>Inactive</asp:ListItem>
+                </asp:DropDownList>
+            </div>
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
