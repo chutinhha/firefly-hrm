@@ -406,7 +406,9 @@
 				<li style="background:none"><a href="MyInfo.aspx">Personal Information</a></li>
 					<li style="padding-left:40px;"><a class="small" href="MyInfo.aspx">Personal Details</a></li>					
 				<li style="background:none"><a href="MyLeave.aspx">Leave Information</a></li>
-					<li style="padding-left:40px;"><a class="small" href="MyLeave.aspx">My Leave</a></li>			
+					<li style="padding-left:40px;"><a class="small" href="MyLeave.aspx">My Leave</a></li>
+                <li style="background:none"><a href="MyTask.aspx">Task Information</a></li>
+					<li style="padding-left:40px;"><a class="small" href="MyTask.aspx">My Task</a></li>			
 			</ul>
 			<div class="bottom"></div>
 		</div>		
