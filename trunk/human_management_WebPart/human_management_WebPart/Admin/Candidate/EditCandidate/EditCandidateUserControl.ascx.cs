@@ -9,7 +9,6 @@ namespace SP2010VisualWebPart.EditCandidate
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.confirmDelete = Message.ConfirmDelete;
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
@@ -125,20 +124,6 @@ namespace SP2010VisualWebPart.EditCandidate
         protected string inputValue { get; set; }
         protected string interviewDate { get; set; }
         protected string confirmSave { get; set; }
-        protected string confirmDelete { get; set; }
-        protected void btnApplyDate_Click(object sender, EventArgs e)
-        {
-        }
-
-        protected void cldDate_SelectionChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             _com.closeConnection();

@@ -949,7 +949,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Attendance\AttendanceRecord\Elements.xml" />
-    <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx" />
+    <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Candidate\Candidates\Elements.xml" />
     <Content Include="Common\ChangePassword\ChangePasswordUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -957,7 +959,9 @@
     <Content Include="Common\ChangePassword\Elements.xml" />
     <Content Include="Admin\Attendance\EditAttendance\EditAttendanceUserControl.ascx" />
     <Content Include="Admin\Attendance\EditAttendance\Elements.xml" />
-    <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx" />
+    <Content Include="Admin\Candidate\EditCandidate\EditCandidateUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Candidate\EditCandidate\Elements.xml" />
     <Content Include="Admin\Job Title\EditJobTitle\EditJobTitleUserControl.ascx" />
     <Content Include="Admin\Job Title\EditJobTitle\Elements.xml" />
