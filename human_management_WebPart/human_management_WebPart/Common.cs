@@ -52,7 +52,7 @@ public class CommonFunction
     }
 
     // Delete row from table
-    internal void deleteIntoTable(string table, string condition)
+    internal void deleteFromTable(string table, string condition)
     {
         string sql;
         sql = @"DELETE  " + table + " WHERE " + condition + " ;";        
@@ -366,48 +366,8 @@ public class CommonFunction
         grdData.HeaderStyle.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
     }
 
-    //Generate Md5 string
-    internal string GetMd5Hash(MD5 md5Hash, string input)
-    {
-        // Convert the input string to a byte array and compute the hash. 
-        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-        // Create a new Stringbuilder to collect the bytes 
-        // and create a string.
-        StringBuilder sBuilder = new StringBuilder();
-
-        // Loop through each byte of the hashed data  
-        // and format each one as a hexadecimal string. 
-        for (int i = 0; i < data.Length; i++)
-        {
-            sBuilder.Append(data[i].ToString("x2"));
-        }
-
-        // Return the hexadecimal string. 
-        return sBuilder.ToString();
-    }
-
-    // Verify a hash against a string. 
-    internal bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
-    {
-        // Hash the input. 
-        string hashOfInput = GetMd5Hash(md5Hash, input);
-
-        // Create a StringComparer an compare the hashes.
-        StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-
-        if (0 == comparer.Compare(hashOfInput, hash))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     //Get Sheets in excel file
-    internal void GetExcelSheets(string FilePath, string Extension, string isHDR, DropDownList ddlSheets, 
+    /*internal void GetExcelSheets(string FilePath, string Extension, string isHDR, DropDownList ddlSheets, 
         Label lblFileName, Panel Panel1, Panel Panel2)
     {
 
@@ -442,19 +402,19 @@ public class CommonFunction
         connExcel.Close();
         lblFileName.Text = Path.GetFileName(FilePath);
         Panel2.Visible = true;
-    }
+    }*/
 
     //Get data in a excel sheet
-    internal DataTable getDataFromExcel(string _conStr, string sheet) {
+    /*internal DataTable getDataFromExcel(string _conStr, string sheet) {
         OleDbConnection con = new OleDbConnection(_conStr);
         OleDbDataAdapter da = new OleDbDataAdapter("select * from ["+sheet+"]", con);
         DataTable dt = new DataTable();
         da.Fill(dt);
         return dt;
-    }
+    }*/
 
     //Set item list form Import CSV webpart
-    internal void setItemListCSV(DropDownList ddl, bool zeroValue) {
+    /*internal void setItemListCSV(DropDownList ddl, bool zeroValue) {
         ddl.Items.Clear();
         for (int i = 0; i < 51; i++) {
             if (i == 0)
@@ -468,7 +428,7 @@ public class CommonFunction
                 ddl.Items.Add(i.ToString());
             }
         }
-    }
+    }*/
 
     //Get current quarter of the year
     internal int getQuarter() {
@@ -680,7 +640,7 @@ public class CommonFunction
     }
 
     //Get user information
-    internal string[] GetUserInfo(string AccountNameWithDomain)
+    /*internal string[] GetUserInfo(string AccountNameWithDomain)
     {
         using (SPSite site = new SPSite("http://tungda:9999/"))
         {
@@ -699,7 +659,7 @@ public class CommonFunction
             profile[7] = Convert.ToString(myProfile[PropertyConstants.WorkPhone].Value);
             return profile;
         }
-    }
+    }*/
 
     //Change user password
     internal string ChangePassword(string oldPassword, string newPassword, string userNameWithoutDomain)

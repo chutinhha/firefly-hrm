@@ -19,8 +19,6 @@
     <ElementFile Location="Candidates\Candidates.webpart" />
     <ElementManifest Location="EditCandidate\Elements.xml" />
     <ElementFile Location="EditCandidate\EditCandidate.webpart" />
-    <ElementManifest Location="ImportEmployees\Elements.xml" />
-    <ElementFile Location="ImportEmployees\ImportEmployees.webpart" />
     <ElementManifest Location="AddNewQuestion\Elements.xml" />
     <ElementFile Location="AddNewQuestion\AddNewQuestion.webpart" />
     <ElementManifest Location="EditQuestion\Elements.xml" />
@@ -81,8 +79,6 @@
     <ElementFile Location="ViewEmployeeReport\ViewEmployeeReport.webpart" />
     <ElementManifest Location="ViewProjectReport\Elements.xml" />
     <ElementFile Location="ViewProjectReport\ViewProjectReport.webpart" />
-    <ElementManifest Location="UserList\Elements.xml" />
-    <ElementFile Location="UserList\UserList.webpart" />
     <ElementManifest Location="AddVacancy\Elements.xml" />
     <ElementFile Location="AddVacancy\AddVacancy.webpart" />
     <ElementManifest Location="EditVacancy\Elements.xml" />

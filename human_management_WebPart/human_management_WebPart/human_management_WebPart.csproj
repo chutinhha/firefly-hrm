@@ -299,14 +299,6 @@
     <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.designer.cs">
       <DependentUpon>AccessDeniedUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\CSV\ImportEmployees\ImportEmployees.cs" />
-    <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.cs">
-      <DependentUpon>ImportEmployeesUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx.designer.cs">
-      <DependentUpon>ImportEmployeesUserControl.ascx.cs</DependentUpon>
-    </Compile>
     <Compile Include="Common\ManageUser\ManageUser.cs" />
     <Compile Include="Common\ManageUser\ManageUserUserControl.ascx.cs">
       <DependentUpon>ManageUserUserControl.ascx</DependentUpon>
@@ -362,14 +354,6 @@
     </Compile>
     <Compile Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx.designer.cs">
       <DependentUpon>TimesheetSummaryUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\User\UserList\UserList.cs" />
-    <Compile Include="Admin\User\UserList\UserListUserControl.ascx.cs">
-      <DependentUpon>UserListUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\User\UserList\UserListUserControl.ascx.designer.cs">
-      <DependentUpon>UserListUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Vacancy\AddVacancy\AddVacancy.cs" />
     <Compile Include="Admin\Vacancy\AddVacancy\AddVacancyUserControl.ascx.cs">
@@ -676,10 +660,6 @@
     <None Include="Common\AccessDenied\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\CSV\ImportEmployees\ImportEmployees.webpart" />
-    <None Include="Admin\CSV\ImportEmployees\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{44f62623-a917-48e8-8754-6c4789a79d67}</SharePointProjectItemId>
-    </None>
     <None Include="Common\ManageUser\ManageUser.webpart" />
     <None Include="Common\ManageUser\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3b0cb28f-ff0e-4621-953b-7220605fbcd2}</SharePointProjectItemId>
@@ -708,10 +688,6 @@
       <SharePointProjectItemId>{36b787d1-304f-49c6-b641-3569fd340116}</SharePointProjectItemId>
     </None>
     <None Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummary.webpart" />
-    <None Include="Admin\User\UserList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{648b647f-953a-4065-a426-5ac995d4dec2}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\User\UserList\UserList.webpart" />
     <None Include="Admin\Vacancy\AddVacancy\AddVacancy.webpart" />
     <None Include="Admin\Vacancy\AddVacancy\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cf5222bc-a4b4-4851-82a1-7bf3410321cc}</SharePointProjectItemId>
@@ -931,10 +907,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\AccessDenied\Elements.xml" />
-    <Content Include="Admin\CSV\ImportEmployees\Elements.xml" />
-    <Content Include="Admin\CSV\ImportEmployees\ImportEmployeesUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="Common\ManageUser\Elements.xml" />
     <Content Include="Common\ManageUser\ManageUserUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -961,10 +933,6 @@
     <Content Include="Admin\TimeSheet\ApproveTimesheet\Elements.xml" />
     <Content Include="Admin\TimeSheet\TimesheetSummary\Elements.xml" />
     <Content Include="Admin\TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\User\UserList\Elements.xml" />
-    <Content Include="Admin\User\UserList\UserListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Vacancy\AddVacancy\AddVacancyUserControl.ascx">

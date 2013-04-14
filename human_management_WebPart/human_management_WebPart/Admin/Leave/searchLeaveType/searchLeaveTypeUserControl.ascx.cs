@@ -158,7 +158,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 if (cbSelected.Checked == true)
                 {
                     strCondition = "TaskId = " + row.Cells[4].Text;
-                    _com.deleteIntoTable(strTableName, strCondition);
+                    _com.deleteFromTable(strTableName, strCondition);
                 }
             }
             binDataLeaveTypeToGrd();
