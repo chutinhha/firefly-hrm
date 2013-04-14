@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
-  <Module Name="listLeaveType" List="113" Url="_catalogs/wp">
-    <File Path="listLeaveType\listLeaveType.webpart" Url="listLeaveType.webpart" Type="GhostableInLibrary" >
-      <Property Name="Group" Value="HR" />
-    </File>
-  </Module>
-</Elements>
