@@ -121,5 +121,7 @@
     <ElementFile Location="MyTimesheet\MyTimesheet.webpart" />
     <ElementManifest Location="AssignEmployee\Elements.xml" />
     <ElementFile Location="AssignEmployee\AssignEmployee.webpart" />
+    <ElementManifest Location="MyTask\Elements.xml" />
+    <ElementFile Location="MyTask\MyTask.webpart" />
   </ElementManifests>
 </Feature>

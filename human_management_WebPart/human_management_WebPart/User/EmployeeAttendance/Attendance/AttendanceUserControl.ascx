@@ -24,7 +24,6 @@
         });
     });
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>

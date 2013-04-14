@@ -24,7 +24,6 @@
         });
     });
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnView" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>

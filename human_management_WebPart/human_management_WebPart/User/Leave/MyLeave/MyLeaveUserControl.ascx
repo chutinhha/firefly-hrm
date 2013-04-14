@@ -41,13 +41,14 @@
                 <input id="txtDateFrom" name="txtDateFrom" style="width: 200px;" type="text" value="<%=this.startDate %>" />
             </asp:Panel>
             <span style="padding-left: 50px;"></span>
-            
             <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
                 <input id="txtDateTo" name="txtDateTo" style="width: 200px;" type="text" value="<%=this.endDate %>" />
             </asp:Panel>
             <br />
-            <span style="padding-left: 160px;"></span><asp:Label ID="lblFrom" runat="server" Text="From" Width="100px"></asp:Label>
-            <span style="padding-left: 165px;"></span><asp:Label ID="lblTo" runat="server" Text="To" Width="100px"></asp:Label>
+            <span style="padding-left: 160px;"></span>
+            <asp:Label ID="lblFrom" runat="server" Text="From" Width="100px"></asp:Label>
+            <span style="padding-left: 165px;"></span>
+            <asp:Label ID="lblTo" runat="server" Text="To" Width="100px"></asp:Label>
             <br />
             <br />
             <span style="padding-left: 5px"></span>
@@ -78,9 +79,8 @@
                     OnClick="btnReset_Click" />
             </div>
             <asp:Panel ID="pnlData" runat="server" Visible="False">
-                <asp:GridView ID="grdData" runat="server" EnableModelValidation="True"
-                    OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
-                    BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
+                <asp:GridView ID="grdData" runat="server" EnableModelValidation="True" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
+                    Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 </asp:GridView>
                 <table>
                     <tr>

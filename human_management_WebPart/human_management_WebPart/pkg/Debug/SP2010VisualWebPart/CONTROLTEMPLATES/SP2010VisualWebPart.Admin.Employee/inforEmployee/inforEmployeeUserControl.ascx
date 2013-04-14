@@ -30,9 +30,9 @@
                     </td>
                     <td class="fieldTitleTd" align="right">
                         <asp:Button ID="bntEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
-                            Width="230px" onclick="bntEmpListPage_Click" style="background:#2CA6CD;box-shadow: none;text-decoration: underline;border:none;" />
+                            Width="230px" OnClick="bntEmpListPage_Click" Style="background: #2CA6CD; box-shadow: none;
+                            text-decoration: underline; border: none;" />
                     </td>
-                    
                 </tr>
             </table>
             <table width="100%">
@@ -56,10 +56,13 @@
                         <br />
                         <asp:Label ID="lblPhotoDetail" runat="server" ForeColor="#663300"></asp:Label>
                         <br />
-                        <span style="padding-left: 10px;"></span><asp:FileUpload ID="fudEmployeePhoto" runat="server" Visible="false" />
-                        <br /><br />
-                        <span style="padding-left: 10px;"></span><asp:Button ID="btnUpdateImage" CssClass="addButton" runat="server" Text="Change Image"
-                             OnClick="btnUpdateImage_Click" Width="150" />
+                        <span style="padding-left: 10px;"></span>
+                        <asp:FileUpload ID="fudEmployeePhoto" runat="server" Visible="false" />
+                        <br />
+                        <br />
+                        <span style="padding-left: 10px;"></span>
+                        <asp:Button ID="btnUpdateImage" CssClass="addButton" runat="server" Text="Change Image"
+                            OnClick="btnUpdateImage_Click" Width="150" />
                     </td>
                     <td>
                         <br />
@@ -168,13 +171,13 @@
             </div>
             <br />
             <br />
-                <span style="padding-left: 5px;"></span>
+            <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblDepartment" runat="server" Text="Department" Width="150"></asp:Label>
-                <asp:TextBox ID="txtDepartment" runat="server" Width="200" Enabled="False"></asp:TextBox>
-                <span style="padding-left: 5px;"></span>
-                <asp:LinkButton ID="lbtnDepartment" runat="server" 
-                onclick="lbtnDepartment_Click">Edit Department</asp:LinkButton>
-                <br /><br />
+            <asp:TextBox ID="txtDepartment" runat="server" Width="200" Enabled="False"></asp:TextBox>
+            <span style="padding-left: 5px;"></span>
+            <asp:LinkButton ID="lbtnDepartment" runat="server" OnClick="lbtnDepartment_Click">Edit Department</asp:LinkButton>
+            <br />
+            <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnEditEmpState" CssClass="addButton" runat="server" Text="Edit"

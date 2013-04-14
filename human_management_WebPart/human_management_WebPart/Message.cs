@@ -158,6 +158,8 @@
     internal const string MyTimesheetPage = "MyTimesheet.aspx";
     internal const string EditMyTimesheetPage = "LogTimesheet.aspx";
     internal const string EditEmployeeDepartmentPage = "EditDepartment.aspx";
+    internal const string MyDepartmentPage = "MyDepartment.aspx";
+    internal const string MyTaskPage = "MyTask.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";

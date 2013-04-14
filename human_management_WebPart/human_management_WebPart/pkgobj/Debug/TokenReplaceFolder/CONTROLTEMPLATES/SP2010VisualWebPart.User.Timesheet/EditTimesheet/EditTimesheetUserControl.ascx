@@ -42,8 +42,8 @@
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblProject" runat="server" Text="Project" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-                <asp:DropDownList runat="server" ID="ddlProject" 
-                    OnSelectedIndexChanged="ddlProject_SelectedIndexChanged" AutoPostBack="True">
+                <asp:DropDownList runat="server" ID="ddlProject" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"
+                    AutoPostBack="True">
                 </asp:DropDownList>
             </div>
             <br />
