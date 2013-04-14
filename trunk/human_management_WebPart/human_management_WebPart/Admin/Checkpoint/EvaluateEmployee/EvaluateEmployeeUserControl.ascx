@@ -10,12 +10,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EvaluateEmployeeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee.EvaluateEmployeeUserControl" %>
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;
@@ -23,7 +17,6 @@
             return false;
     }
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -38,8 +31,7 @@
             <asp:Panel ID="pnlSearch" runat="server">
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" 
-                    Width="150px"></asp:Label>
+                <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" Width="150px"></asp:Label>
                 <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px"></asp:TextBox><br />
                 <br />
                 <div class="borderTop">
@@ -90,5 +82,5 @@
     </tr>
 </table>
 <br />
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />

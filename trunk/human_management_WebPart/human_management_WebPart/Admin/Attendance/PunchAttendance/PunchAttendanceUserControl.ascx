@@ -14,12 +14,6 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;

@@ -21,17 +21,10 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     try
                     {
                         if (!IsPostBack) {
-                            _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, "", false, "");
-                            if (Session["ProjectID"] != null) {
-                                DataTable projectName = _com.getData(Message.TableProject, Message.ProjectNameColumn, " where "
-                                + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
-                                ddlProjectName.SelectedValue = projectName.Rows[0][0].ToString();
-                            }
-                            DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
-                                + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
-                            _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
-                                + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
-                                + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);
+                            _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, "", true, "Upcoming deadline");
+                            _com.bindData(Message.TaskIdColumn+","+Message.TaskNameColumn + "," + Message.NoteColumn + "," + Message.StartDateColumn
+                                + "," + Message.EndDateColumn, " where " + Message.EndDateColumn + ">='" + DateTime.Today + "' and " + Message.EndDateColumn
+                                + "<='" + DateTime.Today.AddDays(7) + "'", Message.TableTask, grdData);
                             _com.setGridViewStyle(grdData);
                             ddlProjectName.AutoPostBack = true;
                             Session.Remove("ProjectID");
@@ -56,11 +49,19 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
             try{
-                DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
-                                + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
-                _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
-                    + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
-                    + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);
+                if (ddlProjectName.SelectedValue == "Upcoming deadline") {
+                    _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn + "," + Message.StartDateColumn
+                                + "," + Message.EndDateColumn, " where " + Message.EndDateColumn + ">='" + DateTime.Today + "' and " + Message.EndDateColumn
+                                + "<='" + DateTime.Today.AddDays(7) + "'", Message.TableTask, grdData);
+                }
+                else
+                {
+                    DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
+                                    + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
+                    _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
+                        + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
+                        + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);
+                }
                 grdData.HeaderRow.Cells[2].Text = "Task Name";
                 grdData.HeaderRow.Cells[4].Text = "Start Date";
                 grdData.HeaderRow.Cells[5].Text = "End Date";

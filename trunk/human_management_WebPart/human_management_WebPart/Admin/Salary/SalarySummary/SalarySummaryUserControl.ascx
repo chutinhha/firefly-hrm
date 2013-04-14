@@ -10,12 +10,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalarySummaryUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Salary.SalarySummary.SalarySummaryUserControl" %>
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;

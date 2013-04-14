@@ -10,12 +10,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AddNewQuestionUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion.AddNewQuestionUserControl" %>
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;
@@ -23,7 +17,6 @@
             return false;
     }
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -82,8 +75,8 @@
                 <br />
             </asp:Panel>
             &nbsp;<span style="color: Red;">(*) is required</span>
-                <br />
-                <br />
+            <br />
+            <br />
             <div class="borderTop">
                 <span style="padding-left: 150px;"></span>
                 <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="addButton" Width="80px"
@@ -95,5 +88,5 @@
     </tr>
 </table>
 <br />
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />

@@ -14,7 +14,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
         protected void Page_Load(object sender, EventArgs e)
         {
             this.confirmDelete = Message.ConfirmDelete;
-            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null) {
                 Response.Redirect(Message.AccessDeniedPage);
             }
@@ -73,7 +72,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
         //For text in input textbox
         protected string startDate { get; set; }
         protected string endDate { get; set; }
-        protected string confirmSave { get; set; }
         protected string confirmDelete { get; set; }
         protected void btnDateFrom_Click(object sender, EventArgs e)
         {

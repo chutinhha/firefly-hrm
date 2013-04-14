@@ -16,14 +16,7 @@
         else
             return false;
     }
-    function ConfirmOnSave() {
-        if (confirm("<%=this.confirmSave %>") == true)
-            return true;
-        else
-            return false;
-    }
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -92,5 +85,5 @@
     </tr>
 </table>
 <br />
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />

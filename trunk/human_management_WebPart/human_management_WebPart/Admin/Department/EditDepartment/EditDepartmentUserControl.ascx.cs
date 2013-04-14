@@ -11,9 +11,6 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["EmployeeName"] = "Do Anh Tung";
-            Session["BusinessID"] = "107";
-            this.confirmDelete = Message.ConfirmDelete;
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
@@ -23,6 +20,16 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    lblTitle.Text = "Edit Employee Department";
+                    string BusinessID = Request.QueryString["BusinessID"];
+                    string EmployeeName = Request.QueryString["EmployeeName"];
+                    if (BusinessID == null) { }
+                    else
+                    {
+                        Session["BusinessID"] = BusinessID;
+                        Session["EmployeeName"] = EmployeeName;
+                        Response.Redirect(Message.EditEmployeeDepartmentPage);
+                    }
                     if (Session["EmployeeName"] == null) {
                         Response.Redirect(Message.EmployeeListPage);
                     }
@@ -32,6 +39,8 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                         {
                             if (!IsPostBack)
                             {
+                                pnlPage.Enabled = true;
+                                btnSave.Visible = true;
                                 txtEmployeeName.Text = Session["EmployeeName"].ToString();
                                 lblError.Text = "";
                                 lblSuccess.Text = "";
@@ -61,7 +70,43 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                 }
                 else
                 {
-                    Response.Redirect(Message.UserHomePage);
+                    lblTitle.Text = "Employee Department";
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            Session["BusinessID"] = Session["AccountID"];
+                            DataTable getEmployeeName = _com.getData(Message.TablePerson, Message.NameColumn, " where "
+                                + Message.BusinessEntityIDColumn + "='" + Session["AccountID"] + "'");
+                            Session["EmployeeName"] = getEmployeeName.Rows[0][0].ToString();
+                            pnlPage.Enabled = false;
+                            btnSave.Visible = false;
+                            txtEmployeeName.Text = Session["EmployeeName"].ToString();
+                            lblError.Text = "";
+                            lblSuccess.Text = "";
+                            _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", false, "");
+                            DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
+                                + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, " dep."
+                                + Message.NameColumn + ",edh." + Message.StartDateColumn, " where edh." + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                                + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')");
+                            if (dt.Rows.Count > 0)
+                            {
+                                ddlDepartment.SelectedValue = dt.Rows[0][0].ToString();
+                                Session["DepartmentName"] = ddlDepartment.SelectedValue;
+                                this.startDate = dt.Rows[0][1].ToString();
+                            }
+                            _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn + " as 'Start Date'"
+                                + ",edh." + Message.EndDateColumn + " as 'End Date'", " where " + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                                + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment + " dep on dep." + Message.DepartmentIDColumn
+                                + "=edh." + Message.DepartmentIDColumn, grdData);
+                            _com.setGridViewStyle(grdData);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
+                    }
                 }
             }
         }
@@ -92,7 +137,6 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
             }
         }
         protected string confirmSave { get; set; }
-        protected string confirmDelete { get; set; }
         protected string startDate { get; set; }
         protected void btnSave_Click(object sender, EventArgs e)
         {

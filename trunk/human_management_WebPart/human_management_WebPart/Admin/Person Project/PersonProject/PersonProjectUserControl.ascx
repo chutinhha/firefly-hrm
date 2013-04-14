@@ -9,7 +9,6 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PersonProjectUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Person_Project.PersonProject.PersonProjectUserControl" %>
-
 <table class="fieldTitleDiv">
     <tr>
         <td>
@@ -28,8 +27,7 @@
                 </asp:DropDownList>
             </div>
             <span style="padding-left: 100px"></span>
-            <asp:Label ID="lblTask" runat="server"
-                Text="Task" Width="100px"></asp:Label>
+            <asp:Label ID="lblTask" runat="server" Text="Task" Width="100px"></asp:Label>
             <div class="styled-selectLong">
                 <asp:DropDownList runat="server" ID="ddlTask" OnSelectedIndexChanged="ddlTask_SelectedIndexChanged">
                 </asp:DropDownList>
@@ -37,7 +35,8 @@
             <br />
             <br />
             <div class="borderTop">
-                <span style="padding-left: 105px"></span><asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" class="addButton"
+                <span style="padding-left: 105px"></span>
+                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" class="addButton"
                     OnClick="btnAdd_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" class="deleteButton"
                     OnClick="btnDelete_Click" />
@@ -49,7 +48,8 @@
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />
                         <HeaderTemplate>
-                            &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" OnCheckedChanged="CheckUncheckAll" AutoPostBack="true" />
+                            &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" OnCheckedChanged="CheckUncheckAll"
+                                AutoPostBack="true" />
                         </HeaderTemplate>
                         <ItemTemplate>
                             &nbsp;<asp:CheckBox ID="myCheckBox" runat="server" />
