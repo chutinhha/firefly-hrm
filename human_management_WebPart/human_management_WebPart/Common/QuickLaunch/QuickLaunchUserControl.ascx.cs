@@ -133,7 +133,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 {
                                     DateTime time = DateTime.Parse(pendingLeave.Rows[i][1].ToString());
                                     pnlLeave.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
-                                    pnlLeave.Controls.Add(new LiteralControl("<a href=\"\">"));
+                                    pnlLeave.Controls.Add(new LiteralControl("<a href='"+Message.AssignDayOffPage+"'>"));
                                     pnlLeave.Controls.Add(new LiteralControl(i + 1 + ". " + pendingLeave.Rows[i][0].ToString() + " " + time.Day + "/" + time.Month + "/" + time.Year));
                                     pnlLeave.Controls.Add(new LiteralControl("</a></td></tr>"));
                                 }
@@ -200,7 +200,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 pnlTime.Controls.Add(new LiteralControl("</td></tr></tbody></table></div></div>"));
                             }
                             //Interview Schedule
-                            DataTable interviewSchedule = _com.getData(Message.TableJobCandidate, Message.FullNameColumn + "," + Message.InterviewDateColumn
+                            DataTable interviewSchedule = _com.getData(Message.TableJobCandidate, Message.FullNameColumn + "," + Message.InterviewDateColumn + ","+Message.EmailColumn
                                 , " where " + Message.StatusColumn + "='Interview Schedule'");
                             if (interviewSchedule.Rows.Count > 0)
                             {
@@ -211,7 +211,8 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 {
                                     DateTime time = DateTime.Parse(interviewSchedule.Rows[i][1].ToString());
                                     pnlInterview.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
-                                    pnlInterview.Controls.Add(new LiteralControl("<a href=\"\">"));
+                                    pnlInterview.Controls.Add(new LiteralControl("<a href='"+Message.EditCandidatePage
+                                        + "/?Name=" + interviewSchedule.Rows[i][0].ToString() + "&Email=" + interviewSchedule.Rows[i][2].ToString() + "'>"));
                                     pnlInterview.Controls.Add(new LiteralControl(i + 1 + ". " + interviewSchedule.Rows[i][0].ToString() + " " + +time.Day + "/" + time.Month + "/" + time.Year + " " + time.TimeOfDay));
                                     pnlInterview.Controls.Add(new LiteralControl("</a></td></tr>"));
                                 }
@@ -250,7 +251,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 for (int i = 0; i < upcomingTask.Rows.Count; i++)
                                 {
                                     pnlUpcoming.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
-                                    pnlUpcoming.Controls.Add(new LiteralControl("<a href=\"\">"));
+                                    pnlUpcoming.Controls.Add(new LiteralControl("<a href='"+Message.TaskListPage+"'>"));
                                     pnlUpcoming.Controls.Add(new LiteralControl(i + 1 + ". " + upcomingTask.Rows[i][0].ToString() + " " + upcomingTask.Rows[i][1].ToString()));
                                     pnlUpcoming.Controls.Add(new LiteralControl("</a></td></tr>"));
                                 }
@@ -310,7 +311,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 for (int i = 0; i < upcomingTask.Rows.Count; i++)
                                 {
                                     pnlUpcoming.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
-                                    pnlUpcoming.Controls.Add(new LiteralControl("<a href=\"\">"));
+                                    pnlUpcoming.Controls.Add(new LiteralControl("<a href='"+Message.MyTaskPage+"'>"));
                                     pnlUpcoming.Controls.Add(new LiteralControl(i + 1 + ". " + upcomingTask.Rows[i][0].ToString() + " " + upcomingTask.Rows[i][1].ToString()));
                                     pnlUpcoming.Controls.Add(new LiteralControl("</a></td></tr>"));
                                 }
