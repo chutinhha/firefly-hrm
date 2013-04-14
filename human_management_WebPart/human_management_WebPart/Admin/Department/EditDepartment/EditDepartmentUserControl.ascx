@@ -13,12 +13,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;
@@ -32,6 +26,7 @@
         });
     });
 </script>
+<asp:Panel ID="pnlPage" runat="server">
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -86,3 +81,4 @@
 <span style="padding-left: 5px;"></span>
 <asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label>
+</asp:Panel>

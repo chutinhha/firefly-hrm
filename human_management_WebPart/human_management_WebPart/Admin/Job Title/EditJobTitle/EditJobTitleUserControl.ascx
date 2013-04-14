@@ -17,7 +17,6 @@
             return false;
     }
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -65,14 +64,13 @@
                 </p>
                 <p>
                     &nbsp;</p>
-                    &nbsp;<span style="color: Red;">(*) is required</span>
+                &nbsp;<span style="color: Red;">(*) is required</span>
                 <br />
                 <br />
                 <div class="borderTop">
                     <span style="padding-left: 155px;"></span>
                     <asp:Button ID="btnSave" runat="server" CssClass="addButton" OnClick="btnSave_Click"
-                        OnClientClick="return ConfirmOnSave();" Text="Save"
-                        Width="80px" />
+                        OnClientClick="return ConfirmOnSave();" Text="Save" Width="80px" />
                     <asp:Button ID="btnCancel" runat="server" CssClass="resetButton" OnClick="btnCancel_Click"
                         Text="Cancel" Width="80px" />
                 </div>
@@ -81,5 +79,5 @@
     </table>
 </asp:Panel>
 <br />
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />

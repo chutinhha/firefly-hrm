@@ -16,12 +16,6 @@
         else
             return false;
     }
-    function ConfirmOnSave() {
-        if (confirm("<%=this.confirmSave %>") == true)
-            return true;
-        else
-            return false;
-    }
 </script>
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">

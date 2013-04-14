@@ -13,6 +13,15 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment {
     public partial class EditDepartmentUserControl {
         
         /// <summary>
+        /// pnlPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPage;
+        
+        /// <summary>
         /// lblTitle control.
         /// </summary>
         /// <remarks>

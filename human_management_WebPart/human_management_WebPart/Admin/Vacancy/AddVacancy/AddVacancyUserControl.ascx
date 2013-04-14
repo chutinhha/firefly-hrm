@@ -10,12 +10,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AddVacancyUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.AddVacancy.AddVacancyUserControl" %>
 <script type="text/javascript">
-    function ConfirmOnDelete() {
-        if (confirm("<%=this.confirmDelete %>") == true)
-            return true;
-        else
-            return false;
-    }
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
             return true;
@@ -23,7 +17,6 @@
             return false;
     }
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
