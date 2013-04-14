@@ -135,7 +135,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                     if (cb.Checked)
                     {
                         isCheck = true;
-                        _com.deleteIntoTable(Message.TableTimesheet, " where TimesheetId = " + gr.Cells[1].Text.ToString());
+                        _com.deleteFromTable(Message.TableTimesheet, " where TimesheetId = " + gr.Cells[1].Text.ToString());
                     }
                 }
                 if (isCheck == true)
