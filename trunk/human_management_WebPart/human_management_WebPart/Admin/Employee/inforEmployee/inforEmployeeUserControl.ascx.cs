@@ -593,11 +593,10 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
         protected void lbtnDepartment_Click(object sender, EventArgs e)
         {
-            Session["BusinessID"] = strBusinessEntityId;
             DataTable dt = _com.getData(Message.TablePerson, Message.NameColumn, " where "
                 + Message.BusinessEntityIDColumn + "='"+strBusinessEntityId+"'");
-            Session["EmployeeName"] = dt.Rows[0][0].ToString();
-            Response.Redirect(Message.EditEmployeeDepartmentPage);
+            Response.Redirect(Message.EditEmployeeDepartmentPage + "/?BusinessID=" + strBusinessEntityId
+                + "&EmployeeName=" + dt.Rows[0][0].ToString());
         }
     }
 }

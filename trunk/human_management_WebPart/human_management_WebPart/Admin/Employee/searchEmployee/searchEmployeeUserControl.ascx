@@ -9,7 +9,6 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="searchEmployeeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Employee.searchEmployee.searchEmployeeUserControl" %>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -52,17 +51,20 @@
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblJobTitle" runat="server" Text="JobTitle" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-            <asp:DropDownList ID="ddlJobTitle" runat="server">
-            </asp:DropDownList>
+                <asp:DropDownList ID="ddlJobTitle" runat="server">
+                </asp:DropDownList>
             </div>
             <span style="padding-left: 100px;"></span>
             <asp:Label ID="lblDepartment" runat="server" Text="Department" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-            <asp:DropDownList ID="ddlDepartment" runat="server">
-            </asp:DropDownList>
-            </div><br /><br />
+                <asp:DropDownList ID="ddlDepartment" runat="server">
+                </asp:DropDownList>
+            </div>
+            <br />
+            <br />
             <div class="borderTop">
-                <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" OnClick="btnSearch_Click"
+                <span style="padding-left: 155px;"></span>
+                <asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" OnClick="btnSearch_Click"
                     Width="80px" />
                 <asp:Button ID="btnReset" CssClass="resetButton" runat="server" Text="Reset" OnClick="btnReset_Click"
                     Width="80px" />
@@ -74,7 +76,6 @@
 <table class="fieldTitleDiv">
     <tr>
         <td>
-            
             <asp:GridView ID="grdEmployee" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
             </asp:GridView>
             <table>
