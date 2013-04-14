@@ -43,23 +43,6 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
                 }
             }
         }
-        protected void CheckUncheckAll(object sender, EventArgs e)
-        {
-            //Check or uncheck all checkbox
-            CheckBox cbSelectedHeader = (CheckBox)grdData.HeaderRow.FindControl("CheckBox2");
-            foreach (GridViewRow row in grdData.Rows)
-            {
-                CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
-                if (cbSelectedHeader.Checked == true)
-                {
-                    cbSelected.Checked = true;
-                }
-                else
-                {
-                    cbSelected.Checked = false;
-                }
-            }
-        }
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -52,7 +52,7 @@
                 <span style="padding-left: 5px;"></span>
                 <asp:Label runat="server" Text="Job Title" ID="lblJobTitle" Width="150px"></asp:Label>
                 <div class="styled-selectLong">
-                    <asp:DropDownList runat="server" ID="ddlJobTitle" OnSelectedIndexChanged="ddlJobTitle_SelectedIndexChanged">
+                    <asp:DropDownList runat="server" ID="ddlJobTitle">
                     </asp:DropDownList>
                 </div>
                 <span style="padding-left: 70px;"></span>
@@ -121,7 +121,7 @@
             </div>
             <br />
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
-                OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
+                Width="100%" BorderStyle="None"
                 BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>

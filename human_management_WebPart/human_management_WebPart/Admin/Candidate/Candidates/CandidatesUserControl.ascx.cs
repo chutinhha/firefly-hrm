@@ -12,7 +12,6 @@ namespace SP2010VisualWebPart.Candidates
         protected void Page_Load(object sender, EventArgs e)
         {
             this.confirmDelete = Message.ConfirmDelete;
-            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -104,25 +103,8 @@ namespace SP2010VisualWebPart.Candidates
             this.toDate = Request.Form["txtDateTo"].ToString().Trim();
         }
 
-        protected void ddlJobTitle_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Button1_Click1(object sender, EventArgs e)
-        {
-        }
-
-        protected void cldData_SelectionChanged1(object sender, EventArgs e)
-        {
-        }
-
-        protected void btnDateTo_Click(object sender, EventArgs e)
-        {
-        }
         protected string fromDate { get; set; }
         protected string toDate { get; set; }
-        protected string confirmSave { get; set; }
         protected string confirmDelete { get; set; }
         protected void btnReset_Click(object sender, EventArgs e)
         {
@@ -155,24 +137,6 @@ namespace SP2010VisualWebPart.Candidates
                 lblError.Text = ex.Message;
 				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
-        }
-
-        protected void btnDateFrom_Click(object sender, EventArgs e)
-        {
-        }
-
-        protected void txtDateFrom_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void cldData1_SelectionChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void txtHiringManager_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -246,10 +210,6 @@ namespace SP2010VisualWebPart.Candidates
                 lblError.Text = ex.Message;
 				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
-        }
-
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)

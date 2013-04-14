@@ -42,9 +42,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                 }
             }
         }
-
+        protected string startDate { get; set; }
+        protected string endDate { get; set; }
         protected void btnView_Click(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             string condition = "";
             try
             {
@@ -188,6 +191,8 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+            this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             if (ddlProjectName.SelectedValue == "All")
             {
                 ddlTaskName.Items.Clear();

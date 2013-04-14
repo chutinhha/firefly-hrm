@@ -9,7 +9,6 @@ namespace SP2010VisualWebPart.AddVacancy
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.confirmDelete = Message.ConfirmDelete;
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
@@ -39,7 +38,6 @@ namespace SP2010VisualWebPart.AddVacancy
             }
         }
         protected string confirmSave { get; set; }
-        protected string confirmDelete { get; set; }
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (txtVacancy.Text.Trim() == "")
