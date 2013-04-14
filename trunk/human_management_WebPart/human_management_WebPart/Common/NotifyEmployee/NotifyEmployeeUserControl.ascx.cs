@@ -25,11 +25,18 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     + Session["AccountID"].ToString() + "' and ((edh."+Message.StartDateColumn+"<='"+end+"' and (edh."
                     +Message.EndDateColumn+" is NULL or edh."+Message.EndDateColumn+"='')) or (edh."+Message.ModifiedDateColumn
                     +"<='"+end+"') and (edh."+Message.EndDateColumn+" is NULL or edh."+Message.EndDateColumn+"=''))");
+                DataTable dt = _com.getData(Message.TablePerson, Message.NameColumn, " where "
+                + Message.BusinessEntityIDColumn + "='" + Session["AccountID"] + "'");
+                string link = Message.EditEmployeeDepartmentPage + "/?BusinessID=" + Session["AccountID"]
+                    + "&EmployeeName=" + dt.Rows[0][0].ToString();
+                if (Session["Account"].ToString() == "User") {
+                    link = Message.MyDepartmentPage;
+                }
                 if (department.Rows.Count > 0) {
                     count = count + department.Rows.Count;
                     for (int i = 0; i < department.Rows.Count; i++) {
-                        this.inputValue = this.inputValue + "Move to Department: "+department.Rows[i][3].ToString()
-                            + "<br />From " + department.Rows[i][0].ToString()+";";
+                        this.inputValue = this.inputValue + "<a href='"+link+"'>Move to Department: "+department.Rows[i][3].ToString()
+                            + "<br />From " + department.Rows[i][0].ToString()+"</a>;";
                     }
                 }
                 //Check evaluate point
@@ -66,13 +73,13 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     {
                         if (assignProject.Rows[i][4].ToString() == "1")
                         {
-                            this.inputValue = this.inputValue + "Assign to Project: " + assignProject.Rows[i][0].ToString()
-                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + ";";
+                            this.inputValue = this.inputValue + "<a href='"+Message.MyTaskPage+"'>Assign to Project: " + assignProject.Rows[i][0].ToString()
+                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
                         }
                         else
                         {
-                            this.inputValue = this.inputValue + "Apply to Project: " + assignProject.Rows[i][0].ToString()
-                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + ";";
+                            this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "'>Apply to Project: " + assignProject.Rows[i][0].ToString()
+                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
                         }
                     }
                 }
