@@ -57,16 +57,16 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Account"] == null)
-            //{
-            //    Response.Redirect(Message.AccessDeniedPage);
-            //}
-            //else
-            //{
-            //    if (Session["Account"].ToString() == "Admin")
-            //    {
-            //        try
-            //        {
+            if (Session["Account"] == null)
+            {
+                Response.Redirect(Message.AccessDeniedPage);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    try
+                    {
                         if (!IsPostBack)
                         {
                             //set data do dropdownlist
@@ -74,14 +74,14 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                             _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", true, "All");
                             binDatatoGridView();
                         }
-            //        }
-            //        catch (Exception ex) { }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(Message.UserHomePage);
-            //    }
-            //}
+                    }
+                    catch (Exception ex) { }
+                }
+                else
+                {
+                    Response.Redirect(Message.UserHomePage);
+                }
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
