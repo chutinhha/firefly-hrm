@@ -17,6 +17,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         protected string strBirtDateID { get; set; }
         bool isAdmin = true;
         bool isUpdatePersonDetails = true;
+        bool isUpdatePersonContact = true;
 
         // Person Details
         private void loadPersonDetailsData()
@@ -116,6 +117,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 isUpdatePersonDetails = false;
                 return;
             }
+            lblPersonDetailGuideLine.Visible = false;
             // Update data to Employees Table
             string strTableName = Message.TableEmployee;
             string strCondition = "";
@@ -136,7 +138,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             //ModifiedDate
             string strModifiedDate = System.DateTime.Now.ToShortDateString() + " " + System.DateTime.Now.ToShortTimeString();
             strModifiedDate = "'" + strModifiedDate + "'";
-            strCondition = strCondition + " , ModifiedDate = " + strModifiedDate;            
+            strCondition = strCondition + " , ModifiedDate = " + strModifiedDate;
 
             strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
             _com.updateTable(strTableName, strCondition);
@@ -236,6 +238,24 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
         private void updatePersonContact()
         {
+            //Validate email data
+            if (txtEmail.Text != "")
+                if (txtEmail.Text.IndexOf("@") < 1)
+                {
+                    lblPersonContactGuide.Visible = true;
+                    isUpdatePersonContact = false;
+                    return;
+                }
+                else
+                {                    
+                    if ((txtEmail.Text.IndexOf(".") < 1) || (txtEmail.Text.IndexOf(".") == txtEmail.Text.IndexOf("@") + 1) || (txtEmail.Text.IndexOf(".") == txtEmail.Text.Length - 1))
+                    {
+                        lblPersonContactGuide.Visible = true;
+                        isUpdatePersonContact = false;
+                        return;
+                    }
+                }
+            lblPersonContactGuide.Visible = false;
             // Update data to Peson Table                        
             string strTableName = Message.TablePerson;
             string strCondition = "";
@@ -264,6 +284,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
             strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
             _com.updateTable(strTableName, strCondition);
+            isUpdatePersonContact = true;
         }
 
         protected void loadEmpState()
@@ -291,7 +312,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 string strCurrentFlag = dtCurrentFlag.Rows[0][0].ToString();
                 if (strCurrentFlag == "0") ddlCurrentFlag.SelectedValue = "Inactive";
                 else
-                    if (strCurrentFlag == "1") ddlCurrentFlag.SelectedValue = "Active";                    
+                    if (strCurrentFlag == "1") ddlCurrentFlag.SelectedValue = "Active";
             }
             //Get current department
             DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
@@ -300,7 +321,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                                     + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')");
             if (dt.Rows.Count > 0)
             {
-                txtDepartment.Text=dt.Rows[0][0].ToString();
+                txtDepartment.Text = dt.Rows[0][0].ToString();
             }
             //Set data to Department History gridview
             /*string strTableName = "(HumanResources.Department d INNER JOIN HumanResources.EmployeeDepartmentHistory edh ON D.DepartmentID = edh.DepartmentID)";
@@ -342,7 +363,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
+            Session["Account"] = "Admin";
             if (Session["Account"] == null)
             {
                 Response.Redirect(Message.AccessDeniedPage);
@@ -404,7 +426,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             else
                 if (btnEditPersonDetails.Text == "Save")
                 {
-                    //Update data to table
+                    //Update data to table                    
                     updateEmployeDetails();
                     if (isUpdatePersonDetails)
                     {
@@ -443,10 +465,13 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 {
                     //Update data to table
                     updatePersonContact();
-                    //Reload State of controls
-                    btnEditContactDetails.Text = "Edit";
-                    btnCancelEditContactDetails.Visible = false;
-                    loadControlStateOfPersonContactData(true);
+                    if (isUpdatePersonContact == true)
+                    {
+                        //Reload State of controls
+                        btnEditContactDetails.Text = "Edit";
+                        btnCancelEditContactDetails.Visible = false;
+                        loadControlStateOfPersonContactData(true);
+                    }
                 }
         }
 
@@ -567,7 +592,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
         private void updateDateToEmpState()
         {
-            string strTableName = Message.TableEmployee;            
+            string strTableName = Message.TableEmployee;
             string strCondition = "";
             //Job Title
             string strJobID = ddlJobTitle.SelectedItem.Value;
@@ -581,8 +606,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
 
             strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
 
-             //Update
-            _com.updateTable(strTableName, strCondition);                         
+            //Update
+            _com.updateTable(strTableName, strCondition);
         }
 
         protected void bntEmpListPage_Click(object sender, EventArgs e)
@@ -594,9 +619,16 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         protected void lbtnDepartment_Click(object sender, EventArgs e)
         {
             DataTable dt = _com.getData(Message.TablePerson, Message.NameColumn, " where "
-                + Message.BusinessEntityIDColumn + "='"+strBusinessEntityId+"'");
+                + Message.BusinessEntityIDColumn + "='" + strBusinessEntityId + "'");
             Response.Redirect(Message.EditEmployeeDepartmentPage + "/?BusinessID=" + strBusinessEntityId
                 + "&EmployeeName=" + dt.Rows[0][0].ToString());
+        }
+
+        protected void btnCancelEditEmpState_Click(object sender, EventArgs e)
+        {
+            btnEditEmpState.Text = "Edit";
+            loadControlStateOfEmpStateData(true);
+            btnCancelEditEmpState.Visible = false;
         }
     }
 }
