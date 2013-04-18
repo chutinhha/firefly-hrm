@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -17,8 +17,6 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         protected string strBirtDateID { get; set; }
         bool isAdmin = true;
         bool isUpdatePersonDetails = true;
-        bool isUpdatePersonContact = true;
-
         // Person Details
         private void loadPersonDetailsData()
         {
@@ -363,16 +361,16 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
-            Session["Account"] = "Admin";
+        {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    lbtnDepartment.Text = "Edit Department";
                     isAdmin = true;
                     bntEmpListPage.Visible = true;
                     try
@@ -400,11 +398,13 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 }
                 else
                 {
+                    lbtnDepartment.Text = "Department History";
                     bntEmpListPage.Visible = false;
                     isAdmin = false;
                     strBusinessEntityId = Session["AccountID"].ToString();
                     loadControlStateOfPersonDetailsData(true);
                     loadControlStateOfPersonContactData(true);
+                    loadControlStateOfEmpStateData(true);
                     loadEmployeeImage();
                 }
             }
@@ -426,7 +426,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             else
                 if (btnEditPersonDetails.Text == "Save")
                 {
-                    //Update data to table                    
+                    //Update data to table
                     updateEmployeDetails();
                     if (isUpdatePersonDetails)
                     {
@@ -620,8 +620,14 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             DataTable dt = _com.getData(Message.TablePerson, Message.NameColumn, " where "
                 + Message.BusinessEntityIDColumn + "='" + strBusinessEntityId + "'");
-            Response.Redirect(Message.EditEmployeeDepartmentPage + "/?BusinessID=" + strBusinessEntityId
-                + "&EmployeeName=" + dt.Rows[0][0].ToString());
+            if (Session["Account"].ToString() == "Admin")
+            {
+                Response.Redirect(Message.EditEmployeeDepartmentPage + "/?BusinessID=" + strBusinessEntityId
+                    + "&EmployeeName=" + dt.Rows[0][0].ToString());
+            }
+            else {
+                Response.Redirect(Message.MyDepartmentPage);
+            }
         }
 
         protected void btnCancelEditEmpState_Click(object sender, EventArgs e)
