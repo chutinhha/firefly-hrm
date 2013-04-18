@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.EditAttendance
 {
@@ -12,7 +12,7 @@ namespace SP2010VisualWebPart.EditAttendance
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -111,12 +111,12 @@ namespace SP2010VisualWebPart.EditAttendance
                         catch (Exception ex)
                         {
                             lblError.Text = ex.Message;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                         }
                     }
                     else
                     {
-                        Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                     }
                 }
                 else
@@ -143,7 +143,7 @@ namespace SP2010VisualWebPart.EditAttendance
                 || ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue == "")
             {
                 lblError.Text = Message.PunchAttendanceError;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 try
@@ -153,7 +153,7 @@ namespace SP2010VisualWebPart.EditAttendance
                     if (DateTime.Compare(punchIn, punchOut) >= 0)
                     {
                         lblError.Text = Message.PunchOutAfterPunchIn;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     else {
                         //Case 1: Punch In Time is between an other Punch In and Punch Out Time
@@ -194,7 +194,7 @@ namespace SP2010VisualWebPart.EditAttendance
                                 + Message.PunchOut + dt.Rows[0][3].ToString()
                                 + Message.PunchInError + txtPunchInDate.Text.Trim() + " " 
                                 + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                         else {
                             //Case 2
@@ -204,7 +204,7 @@ namespace SP2010VisualWebPart.EditAttendance
                                 + Message.PunchOut + dt1.Rows[0][3].ToString()
                                 + Message.PunchOutError + txtPunchInDate.Text.Trim() + " "
                                 + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue;
-								ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+								//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
                             else {
                                 //Case 3
@@ -215,7 +215,7 @@ namespace SP2010VisualWebPart.EditAttendance
                                         + Message.PunchInError + txtPunchInDate.Text.Trim() + " "
                                         + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue + Message.PunchOutError + txtPunchInDate.Text.Trim() + " "
                                         + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue;
-									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+									//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                 }
                                 else {
                                     try
@@ -243,7 +243,7 @@ namespace SP2010VisualWebPart.EditAttendance
                                     }
                                     catch (Exception ex) {
                                         lblError.Text = ex.Message;
-										ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+										//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                                     }
                                 }
                             }
@@ -252,7 +252,7 @@ namespace SP2010VisualWebPart.EditAttendance
                 }
                 catch (FormatException) {
                     lblError.Text = Message.PunchDateError;
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
             }
         }

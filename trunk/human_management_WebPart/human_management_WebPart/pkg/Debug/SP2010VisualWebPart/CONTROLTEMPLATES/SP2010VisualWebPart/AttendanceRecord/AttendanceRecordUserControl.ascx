@@ -61,10 +61,10 @@
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value="<%=this.startDate %>" /></asp:Panel>
+                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width:200px;" value="<%=this.startDate %>" /></asp:Panel>
                 <span style="padding-left: 5px;"></span>
                 <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" size="30" /></asp:Panel>
+                    <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" style="width:200px;" /></asp:Panel>
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDateDescription" runat="server" Text="(mm-dd-yyyy)" Width="155px"

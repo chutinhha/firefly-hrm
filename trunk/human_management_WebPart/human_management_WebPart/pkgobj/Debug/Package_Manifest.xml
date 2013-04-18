@@ -18,7 +18,6 @@
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Checkpoint.QuestionList" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.DepartmentList" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Department.EditDepartment" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.addEmployees" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.inforEmployee" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Employee.searchEmployee" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.JobCategories" TypeName="*" />
@@ -38,10 +37,6 @@
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Salary.SalarySummary" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.EmployeeReport" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ProjectReport" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ViewEmployeeReport" TypeName="*" />
-        <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Admin.Timesheet_Summary.ViewProjectReport" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.AddVacancy" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.EditVacancy" TypeName="*" />
         <SafeControl Assembly="SP2010VisualWebPart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9e50fa317a931bf3" Namespace="SP2010VisualWebPart.Vacancies" TypeName="*" />
@@ -81,7 +76,6 @@
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Checkpoint\QuestionList\QuestionListUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\DepartmentList\DepartmentListUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Department\EditDepartment\EditDepartmentUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\addEmployees\addEmployeesUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\inforEmployee\inforEmployeeUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Employee\searchEmployee\searchEmployeeUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\JobCategories\JobCategoriesUserControl.ascx" />
@@ -101,10 +95,6 @@
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Salary\SalarySummary\SalarySummaryUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.TimeSheet\ApproveTimesheet\ApproveTimesheetUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.TimeSheet\TimesheetSummary\TimesheetSummaryUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\EmployeeReport\EmployeeReportUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ProjectReport\ProjectReportUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ViewEmployeeReport\ViewEmployeeReportUserControl.ascx" />
-    <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart.Admin.Timesheet_Summary\ViewProjectReport\ViewProjectReportUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\AddVacancy\AddVacancyUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\EditVacancy\EditVacancyUserControl.ascx" />
     <TemplateFile Location="CONTROLTEMPLATES\SP2010VisualWebPart\Vacancies\VacanciesUserControl.ascx" />

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.Admin.Project.TaskList
@@ -12,7 +12,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -36,7 +36,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     }
                     catch (Exception ex) {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -69,16 +69,21 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
-                                + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
-            Session["ProjectID"]=dt.Rows[0][0].ToString();
-            Response.Redirect(Message.AddTaskPage, true);
+            if (ddlProjectName.SelectedValue == "Upcoming deadline") {
+                lblError.Text = Message.UpcomingDeadline;
+            }
+            else{
+                DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
+                                    + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
+                Session["ProjectID"]=dt.Rows[0][0].ToString();
+                Response.Redirect(Message.AddTaskPage, true);
+            }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -97,7 +102,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                 }
             }
             lblError.Text = Message.NotChooseItemEdit;
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {

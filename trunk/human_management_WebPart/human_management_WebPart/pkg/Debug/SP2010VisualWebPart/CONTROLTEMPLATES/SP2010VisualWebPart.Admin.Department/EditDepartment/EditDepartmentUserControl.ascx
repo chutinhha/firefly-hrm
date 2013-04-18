@@ -53,7 +53,7 @@
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span><asp:Label ID="lblStartDate" runat="server" Text="Start Date" Width="150"></asp:Label>
-            <input type="text" id="txtStartDate" name="txtStartDate" size="30" value="<%=this.startDate %>" />
+            <input type="text" <%=this.readOnly %> id="<%=this.startDateID %>" name="txtStartDate" style="width:200px;" value="<%=this.startDate %>" />
             <p>
                 &nbsp;</p>
             <div class="borderTop">

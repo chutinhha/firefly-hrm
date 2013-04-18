@@ -13,6 +13,12 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -24,7 +30,7 @@
         });
     });
 </script>
-<br />
+
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnView" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -32,7 +38,7 @@
                 <table class="fieldTitleTable">
                     <tr>
                         <td class="fieldTitleTd">
-                            <span style="color:white;">View Attendance Records</span>
+                            <span style="color: white;">View Attendance Records</span>
                         </td>
                     </tr>
                 </table>
@@ -55,10 +61,10 @@
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateFrom" name="txtDateFrom" size="30" value="<%=this.startDate %>" /></asp:Panel>
+                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width:200px;" value="<%=this.startDate %>" /></asp:Panel>
                 <span style="padding-left: 5px;"></span>
                 <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" size="30" /></asp:Panel>
+                    <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" style="width:200px;" /></asp:Panel>
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDateDescription" runat="server" Text="(mm-dd-yyyy)" Width="155px"
@@ -68,7 +74,7 @@
                 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
                 <br />
                 <br />
-                &nbsp;<span color="Red">(*) is required</span>
+                &nbsp;<span style="color: Red;">(*) is required</span>
                 <br />
                 <br />
                 <div class="borderTop">
@@ -91,10 +97,10 @@
                     <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" Width="80px"
                         OnClick="btnEdit_Click" />
                     <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" OnClick="btnDelete_Click"
-                        Text="Delete" Width="80px" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                        Text="Delete" Width="80px" OnClientClick="return ConfirmOnDelete();" />
                 </div>
                 <br />
-                <asp:GridView ID="grdData" runat="server" Width="100%">
+                <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <HeaderStyle Width="25" />
@@ -117,6 +123,7 @@
         </tr>
     </table>
     <br />
-    <br />
+    
 </asp:Panel>
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+<br />

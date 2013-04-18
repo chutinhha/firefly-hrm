@@ -9,7 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="VacanciesUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Vacancies.VacanciesUserControl" %>
-<br />
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -46,7 +53,7 @@
                 <br />
                 <br />
                 <div class="borderTop">
-                    <asp:Button ID="btnSearch" CssClass="addButton" runat="server" OnClick="btnSearch_Click"
+                    <span style="padding-left: 125px;"></span><asp:Button ID="btnSearch" CssClass="addButton" runat="server" OnClick="btnSearch_Click"
                         Text="Search" Width="80px" />
                     <asp:Button ID="btnReset" CssClass="resetButton" runat="server" Text="Reset" Width="80px"
                         OnClick="btnReset_Click" />
@@ -65,10 +72,10 @@
                 <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" Width="80px"
                     OnClick="btnEdit_Click" />
                 <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" Width="80px"
-                    OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                    OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <br />
-            <asp:GridView ID="grdData" runat="server" Width="100%">
+            <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />
@@ -91,7 +98,6 @@
         </td>
     </tr>
 </table>
-<br />
 <br />
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />

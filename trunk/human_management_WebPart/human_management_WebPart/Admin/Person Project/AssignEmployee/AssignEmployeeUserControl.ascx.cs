@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -11,9 +11,10 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmAssign = Message.ConfirmAssign;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -21,7 +22,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
                 {
                     if (Session["ProjectName"] == null || Session["TaskName"] == null)
                     {
-                        Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -51,6 +52,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            e.Row.Cells[1].Visible = false;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 //string Location = "EditCandidate.aspx/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
@@ -102,27 +104,29 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
                 lblError.Text = ex.Message;
             }
         }
-
+        protected string confirmAssign { get; set; }
         protected void btnAssign_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
             bool checkRedirect = false;
             try
             {
+                bool isCheck = false;
                 DataTable myData = _com.getData(Message.TableProject, Message.TaskIdColumn, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName like '%" + txtProject.Text.ToString() + "%' and TaskName like '%" + txtTask.Text.ToString() + "%'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
+                        isCheck = true;
                         DataTable myDatatmp = _com.getData(Message.TablePersonProject, Message.CurrentFlagColumn, " where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
                         if (myDatatmp.Rows.Count > 0)
                         {
-                            if (myDatatmp.Rows[0][0].ToString() == "True")
+                            if (myDatatmp.Rows[0][0].ToString() == "1")
                             {
-                                lblError.Text = "This employee has been assigned in this project !";
+                                lblError.Text = lblError.Text+gr.Cells[2].Text+" has been assigned in this project !<br><span style=\"padding-left:5px;\"></span>";
                             }
-                            else if (myDatatmp.Rows[0][0].ToString() == "False")
+                            else if (myDatatmp.Rows[0][0].ToString() == "0")
                             {
                                 _com.updateTable(Message.TablePersonProject, " CurrentFlag = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
                                 checkRedirect = true;
@@ -130,14 +134,20 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
                         }
                         else
                         {
-                            _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1,CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) ", false);
+                            _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1,CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME),NULL,NULL ", false);
                             checkRedirect = true;
                         }
                     }
                 }
-                if (checkRedirect == true)
+                if (isCheck == true)
                 {
-                    Response.Redirect(Message.PersonProjectPage);
+                    if (checkRedirect == true)
+                    {
+                        Response.Redirect(Message.PersonProjectPage);
+                    }
+                }
+                else {
+                    lblError.Text = Message.NotChooseItemDelete;
                 }
             }
             catch (Exception ex)

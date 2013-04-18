@@ -9,6 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="addLeaveTypeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Leave.addLeaveType.addLeaveTypeUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -52,7 +60,7 @@
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" OnClick="btnSave_Click"
-                    Width="80px" />
+                    Width="80px" OnClientClick="return ConfirmOnSave();" />
                 <asp:Button ID="btnCancel" runat="server" CssClass="resetButton" Text="Cancel" OnClick="btnCancel_Click"
                     Width="80px" />
             </div>

@@ -61,7 +61,7 @@
             <span style="color: Red;">&nbsp;(*): Required field</span><br />
             <br />
             <div class="borderTop">
-                <asp:Button ID="btnView" CssClass="addButton" runat="server" Text="View" Width="80px"
+                <span style="padding-left: 155px;"></span><asp:Button ID="btnView" CssClass="addButton" runat="server" Text="View" Width="80px"
                     OnClick="btnView_Click" /></div>
         </td>
     </tr>

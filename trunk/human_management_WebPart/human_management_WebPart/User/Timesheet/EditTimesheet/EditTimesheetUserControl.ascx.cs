@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -13,9 +13,10 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -74,7 +75,7 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                 }
             }
         }
@@ -88,7 +89,7 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
             _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask
                 , " where ProjectId = " + myData.Rows[0][0].ToString(), false, "");
         }
-
+        protected string confirmSave { get; set; }
         protected void ddlTask_SelectedIndexChanged(object sender, EventArgs e)
         {
 

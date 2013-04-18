@@ -31,8 +31,6 @@
     <ElementFile Location="DepartmentList\DepartmentList.webpart" />
     <ElementManifest Location="EditDepartment\Elements.xml" />
     <ElementFile Location="EditDepartment\EditDepartment.webpart" />
-    <ElementManifest Location="addEmployees\Elements.xml" />
-    <ElementFile Location="addEmployees\addEmployees.webpart" />
     <ElementManifest Location="inforEmployee\Elements.xml" />
     <ElementFile Location="inforEmployee\inforEmployee.webpart" />
     <ElementManifest Location="searchEmployee\Elements.xml" />
@@ -71,14 +69,6 @@
     <ElementFile Location="ApproveTimesheet\ApproveTimesheet.webpart" />
     <ElementManifest Location="TimesheetSummary\Elements.xml" />
     <ElementFile Location="TimesheetSummary\TimesheetSummary.webpart" />
-    <ElementManifest Location="EmployeeReport\Elements.xml" />
-    <ElementFile Location="EmployeeReport\EmployeeReport.webpart" />
-    <ElementManifest Location="ProjectReport\Elements.xml" />
-    <ElementFile Location="ProjectReport\ProjectReport.webpart" />
-    <ElementManifest Location="ViewEmployeeReport\Elements.xml" />
-    <ElementFile Location="ViewEmployeeReport\ViewEmployeeReport.webpart" />
-    <ElementManifest Location="ViewProjectReport\Elements.xml" />
-    <ElementFile Location="ViewProjectReport\ViewProjectReport.webpart" />
     <ElementManifest Location="AddVacancy\Elements.xml" />
     <ElementFile Location="AddVacancy\AddVacancy.webpart" />
     <ElementManifest Location="EditVacancy\Elements.xml" />

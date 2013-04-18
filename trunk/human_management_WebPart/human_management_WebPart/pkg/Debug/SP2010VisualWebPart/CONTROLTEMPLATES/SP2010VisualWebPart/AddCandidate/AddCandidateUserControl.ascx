@@ -54,7 +54,7 @@
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblCountry" runat="server" Text="Country" Width="120px"></asp:Label>
                 <div class="styled-selectLong">
-                    <asp:DropDownList ID="ddlCountry" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlCountry" runat="server">
                     </asp:DropDownList>
                 </div>
                 <span style="padding-left: 100px;"></span>

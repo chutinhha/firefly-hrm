@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
 {
@@ -13,7 +14,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -39,7 +40,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                         DataTable dt = _com.getData(Message.TableEmployee + " e join "
                             + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
                             + Message.BusinessEntityIDColumn + " order by "+sort);
-                        _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn
+                        _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn+" as 'Email'"
                             , " on e." + Message.BusinessEntityIDColumn + "=p." 
                             + Message.BusinessEntityIDColumn + " order by "+sort, Message.TableEmployee + " e join "
                             + Message.TablePerson + " p", grdData, 1, ColumnTitle);
@@ -60,10 +61,11 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                             grdData.Rows[i].Cells[3].Controls.Add(txtSalary);
                         }
                         DataTable dtCloned = dt.Clone();
-                        dtCloned.Columns[0].DataType = typeof(double);
+                        dtCloned.Columns[0].DataType = typeof(string);
+                        dtCloned.Columns[1].DataType = typeof(string);
                         DataRow newRow = dtCloned.NewRow();
-                        newRow[0] = totalCostPerMonth;
-                        newRow[1] = totalCostPerMonth*12;
+                        newRow[0] = totalCostPerMonth.ToString("N");
+                        newRow[1] = (totalCostPerMonth * 12).ToString("N");
                         dtCloned.Rows.Add(newRow);
                         grdTotal.DataSource = dtCloned;
                         grdTotal.DataBind();
@@ -78,7 +80,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -114,11 +116,16 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                     if (i != 1)
                     {
                         e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
-                    }else{
+                    }
+                    else
+                    {
                         e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;padding-left:5px;");
                     }
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+            }
+            else {
+                e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
             }
         }
 
@@ -168,7 +175,8 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             }
             string[] ColumnTitle = new string[1];
             ColumnTitle[0] = "Salary";
-            _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn, " on e." + Message.BusinessEntityIDColumn + "=p."
+            _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn+" as 'Email'"
+                , " on e." + Message.BusinessEntityIDColumn + "=p."
                 + Message.BusinessEntityIDColumn + " order by " + sort, Message.TableEmployee + " e join "
                 + Message.TablePerson + " p", grdData,1, ColumnTitle);
             DataTable dt = _com.getData(Message.TableEmployee + " e join "
@@ -247,7 +255,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
     }

@@ -147,14 +147,6 @@
     <Compile Include="Admin\Department\EditDepartment\EditDepartmentUserControl.ascx.designer.cs">
       <DependentUpon>EditDepartmentUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Employee\addEmployees\addEmployees.cs" />
-    <Compile Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx.cs">
-      <DependentUpon>addEmployeesUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx.designer.cs">
-      <DependentUpon>addEmployeesUserControl.ascx.cs</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Employee\inforEmployee\inforEmployee.cs" />
     <Compile Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx.cs">
       <DependentUpon>inforEmployeeUserControl.ascx</DependentUpon>
@@ -258,38 +250,6 @@
     </Compile>
     <Compile Include="Admin\Project\TaskList\TaskListUserControl.ascx.designer.cs">
       <DependentUpon>TaskListUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\EmployeeReport\EmployeeReport.cs" />
-    <Compile Include="Admin\Timesheet Summary\EmployeeReport\EmployeeReportUserControl.ascx.cs">
-      <DependentUpon>EmployeeReportUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\EmployeeReport\EmployeeReportUserControl.ascx.designer.cs">
-      <DependentUpon>EmployeeReportUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\ProjectReport\ProjectReport.cs" />
-    <Compile Include="Admin\Timesheet Summary\ProjectReport\ProjectReportUserControl.ascx.cs">
-      <DependentUpon>ProjectReportUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\ProjectReport\ProjectReportUserControl.ascx.designer.cs">
-      <DependentUpon>ProjectReportUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\ViewEmployeeReport\ViewEmployeeReport.cs" />
-    <Compile Include="Admin\Timesheet Summary\ViewEmployeeReport\ViewEmployeeReportUserControl.ascx.cs">
-      <DependentUpon>ViewEmployeeReportUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\ViewEmployeeReport\ViewEmployeeReportUserControl.ascx.designer.cs">
-      <DependentUpon>ViewEmployeeReportUserControl.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\ViewProjectReport\ViewProjectReport.cs" />
-    <Compile Include="Admin\Timesheet Summary\ViewProjectReport\ViewProjectReportUserControl.ascx.cs">
-      <DependentUpon>ViewProjectReportUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Timesheet Summary\ViewProjectReport\ViewProjectReportUserControl.ascx.designer.cs">
-      <DependentUpon>ViewProjectReportUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\AccessDenied\AccessDenied.cs" />
     <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.cs">
@@ -584,10 +544,6 @@
     <None Include="Admin\Department\EditDepartment\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e9ee606c-803c-4c5d-b26f-77dc3e9f59c0}</SharePointProjectItemId>
     </None>
-    <None Include="Admin\Employee\addEmployees\addEmployees.webpart" />
-    <None Include="Admin\Employee\addEmployees\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{12381228-a41a-433d-9a5d-ebcf23d6d233}</SharePointProjectItemId>
-    </None>
     <None Include="Admin\Employee\inforEmployee\inforEmployee.webpart" />
     <None Include="Admin\Employee\inforEmployee\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{67f1ab9c-6540-47e2-a230-531866e994a5}</SharePointProjectItemId>
@@ -640,22 +596,6 @@
       <SharePointProjectItemId>{5dd6fb14-b14b-4d09-a405-6d3c0e560eec}</SharePointProjectItemId>
     </None>
     <None Include="Admin\Project\TaskList\TaskList.webpart" />
-    <None Include="Admin\Timesheet Summary\EmployeeReport\EmployeeReport.webpart" />
-    <None Include="Admin\Timesheet Summary\EmployeeReport\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{4e250509-8aa3-4f24-a5df-300cceb51569}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\Timesheet Summary\ProjectReport\ProjectReport.webpart" />
-    <None Include="Admin\Timesheet Summary\ProjectReport\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3d812965-33fb-4a9e-a899-c20df3062d97}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\Timesheet Summary\ViewEmployeeReport\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a225510d-6d3c-4dd3-a084-fcacbc3b3a09}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\Timesheet Summary\ViewEmployeeReport\ViewEmployeeReport.webpart" />
-    <None Include="Admin\Timesheet Summary\ViewProjectReport\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b8a65981-22ac-4d4c-af4e-6ddc0feb482a}</SharePointProjectItemId>
-    </None>
-    <None Include="Admin\Timesheet Summary\ViewProjectReport\ViewProjectReport.webpart" />
     <None Include="Common\AccessDenied\AccessDenied.webpart" />
     <None Include="Common\AccessDenied\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
@@ -795,17 +735,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx" />
     <Content Include="Admin\AssignDayOff\AssignLeave\Elements.xml" />
     <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\AssignDayOff\DayOff\Elements.xml" />
-    <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx" />
     <Content Include="Admin\Attendance\AttendanceSummary\Elements.xml" />
     <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -835,10 +771,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Department\EditDepartment\Elements.xml" />
-    <Content Include="Admin\Employee\addEmployees\addEmployeesUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\Employee\addEmployees\Elements.xml" />
     <Content Include="Admin\Employee\inforEmployee\Elements.xml" />
     <Content Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -891,18 +823,6 @@
     <Content Include="Admin\Project\TaskList\TaskListUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Timesheet Summary\EmployeeReport\Elements.xml" />
-    <Content Include="Admin\Timesheet Summary\EmployeeReport\EmployeeReportUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\Timesheet Summary\ProjectReport\Elements.xml" />
-    <Content Include="Admin\Timesheet Summary\ProjectReport\ProjectReportUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Admin\Timesheet Summary\ViewEmployeeReport\Elements.xml" />
-    <Content Include="Admin\Timesheet Summary\ViewEmployeeReport\ViewEmployeeReportUserControl.ascx" />
-    <Content Include="Admin\Timesheet Summary\ViewProjectReport\Elements.xml" />
-    <Content Include="Admin\Timesheet Summary\ViewProjectReport\ViewProjectReportUserControl.ascx" />
     <Content Include="Common\AccessDenied\AccessDeniedUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -915,9 +835,7 @@
     <Content Include="Common\QuickLaunch\QuickLaunchUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx" />
     <Content Include="Admin\Job Title\AddJobtitle\Elements.xml" />
     <Content Include="Common\NotifyEmployee\Elements.xml" />
     <Content Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
@@ -939,9 +857,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Vacancy\AddVacancy\Elements.xml" />
-    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx" />
     <Content Include="Admin\Attendance\AttendanceRecord\Elements.xml" />
     <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

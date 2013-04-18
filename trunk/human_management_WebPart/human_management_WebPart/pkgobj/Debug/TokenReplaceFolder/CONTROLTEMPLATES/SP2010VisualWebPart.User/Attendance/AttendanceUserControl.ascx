@@ -13,6 +13,12 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -45,7 +51,7 @@
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
                 <asp:Button CssClass="addButton" ID="btnInOut" runat="server" Text="In" Width="80px"
-                    OnClick="btnInOut_Click" /></div>
+                    OnClick="btnInOut_Click" OnClientClick="return ConfirmOnSave();" /></div>
         </td>
     </tr>
 </table>

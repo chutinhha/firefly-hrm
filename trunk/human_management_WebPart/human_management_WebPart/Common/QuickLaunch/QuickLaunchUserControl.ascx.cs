@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Web;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
 {
@@ -13,7 +13,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
             dailyAttendance = Message.DailyAttendancePage;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -352,5 +352,48 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
         protected int quickLaunchWidth { get; set; }
         protected string displayValue { get; set; }
         protected string dailyAttendance { get; set; }
+        protected void btnInOut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable attendance = _com.getData(Message.TableAttendance, "*", " where " + Message.PunchInColumn
+                    + "=" + Message.PunchOutColumn + " and DAY(" + Message.PunchOutColumn + ")=" + DateTime.Now.Day
+                    + " and MONTH(" + Message.PunchOutColumn + ")=" + DateTime.Now.Month + " and YEAR(" + Message.PunchOutColumn + ")="
+                    + DateTime.Now.Year);
+                bool state = true;
+                if (attendance.Rows.Count > 0)
+                {
+                    state = true;
+                }
+                else {
+                    state = false;
+                }
+                if (state==false)
+                {
+                    _com.insertIntoTable(Message.TableAttendance, "", "'" + Session["AccountID"] + "','"
+                        + DateTime.Now + "',NULL,'" + DateTime.Now + "',NULL,'"
+                        + DateTime.Now + "'", false);
+                    Session["Attendance"] = "In";
+                }
+                else
+                {
+                    _com.updateTable(Message.TableAttendance, " " + Message.PunchOutColumn + "='" + DateTime.Now + "',"
+                        + Message.PunchOutNoteColumn + "=NULL," + Message.ModifiedDateColumn
+                        + "='" + DateTime.Now + "' where " + Message.BusinessEntityIDColumn + "='" + Session["AccountID"].ToString()
+                        + "' and " + Message.PunchInColumn + "=" + Message.PunchOutColumn);
+                    Session.Remove("Attendance");
+                }
+                if (HttpContext.Current.Request.Url.AbsoluteUri.Contains(Message.AdminHomePage)) {
+                    Response.Redirect(Message.AdminHomePage, true);
+                }
+                else
+                {
+                    Response.Redirect(Message.UserHomePage, true);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }

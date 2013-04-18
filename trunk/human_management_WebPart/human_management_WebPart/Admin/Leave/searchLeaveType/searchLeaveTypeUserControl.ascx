@@ -9,6 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="searchLeaveTypeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Leave.searchLeaveType.searchLeaveTypeUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -23,7 +31,7 @@
                 <asp:Button ID="btnAdd" CssClass="addButton" runat="server" Text="Add" OnClick="btnAdd_Click"
                     Width="80px" />
                 <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" OnClick="btnDelete_Click"
-                    Width="80px" />
+                    Width="80px" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <br />
             <asp:GridView ID="grdLeaveType" align="right" runat="server" EnableModelValidation="True"

@@ -14,6 +14,12 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDate").datepicker({
             changeMonth: true,
@@ -21,7 +27,7 @@
         });
     });
 </script>
-<br />
+
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnInOut" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -70,16 +76,16 @@
                     <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="410px"></asp:TextBox>
                 </p>
                 <br />
-                &nbsp;<span color="Red">(*) is required</span><br />
+                &nbsp;<span style="color:Red;">(*) is required</span><br />
                 <br />
                 <div class="borderTop">
                     <span style="padding-left: 160px;"></span>
                     <asp:Button ID="btnInOut" runat="server" CssClass="addButton" OnClick="btnInOut_Click"
-                        Text="In" Width="80px" />
+                        Text="In" Width="80px" OnClientClick="return ConfirmOnSave();" />
                 </div>
             </td>
         </tr>
     </table>
 </asp:Panel>
 <br />
-&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label><br />

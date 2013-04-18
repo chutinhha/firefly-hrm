@@ -4,5 +4,6 @@
   <File Path="MasterPage\212ob.master" Url="212ob.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE"/>
 <File Path="MasterPage\Admin.master" Url="Admin.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE"/>
 <File Path="MasterPage\Member.master" Url="Member.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE"/>
+<File Path="MasterPage\Elearning.master" Url="MasterPage/Elearning.master" />
 </Module>
 </Elements>

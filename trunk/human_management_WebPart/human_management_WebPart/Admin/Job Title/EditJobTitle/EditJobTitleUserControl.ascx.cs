@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.EditJobTitle
 {
@@ -12,7 +12,7 @@ namespace SP2010VisualWebPart.EditJobTitle
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -27,7 +27,7 @@ namespace SP2010VisualWebPart.EditJobTitle
                     }
                     if (Session["Name"] == null)
                     {
-                        Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -49,7 +49,7 @@ namespace SP2010VisualWebPart.EditJobTitle
                         catch (Exception ex)
                         {
                             lblError.Text = ex.Message;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                         }
                     }
                 }
@@ -73,7 +73,7 @@ namespace SP2010VisualWebPart.EditJobTitle
             if (txtJobTitle.Text.Trim() == "")
             {
                 lblError.Text = Message.JobTitleError;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 try
@@ -111,7 +111,7 @@ namespace SP2010VisualWebPart.EditJobTitle
                 catch (Exception ex)
                 {
                     lblError.Text = ex.Message;
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
         }

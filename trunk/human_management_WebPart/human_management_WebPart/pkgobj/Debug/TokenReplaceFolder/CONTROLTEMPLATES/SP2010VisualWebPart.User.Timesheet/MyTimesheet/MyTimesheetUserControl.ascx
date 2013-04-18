@@ -13,6 +13,12 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -67,7 +73,7 @@
                 <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80px" CssClass="addButton"
                     OnClick="btnEdit_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" CssClass="deleteButton"
-                    OnClick="btnDelete_Click" />
+                    OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound"
                 OnSelectedIndexChanged="grdData_SelectedIndexChanged">

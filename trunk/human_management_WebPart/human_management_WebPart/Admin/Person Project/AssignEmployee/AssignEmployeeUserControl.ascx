@@ -9,6 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AssignEmployeeUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.Person_Project.AssignEmployee.AssignEmployeeUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnAssign() {
+        if (confirm("<%=this.confirmAssign %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -49,7 +57,7 @@
             <div class="borderTop">
                 <span style="padding-left: 105px"></span>
                 <asp:Button class="addButton" ID="btnAssign" runat="server" Text="Assign" Width="70px"
-                    OnClick="btnAssign_Click" />
+                    OnClick="btnAssign_Click" OnClientClick="return ConfirmOnAssign();" />
             </div>
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
                 OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"

@@ -9,6 +9,3 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Login.LoginUserControl" %>
-<p>
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
-</p>
