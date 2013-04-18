@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.Admin.Common.AccessDenied
 {
@@ -7,14 +7,12 @@ namespace SP2010VisualWebPart.Admin.Common.AccessDenied
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.UrlReferrer != null)
-            {
-                hlkBack.Visible = true;
-                hlkBack.NavigateUrl = Request.UrlReferrer.ToString();
-            }
-            else {
-                hlkBack.Visible = false;
-            }
+            lblLink.Text = "<br>Access to <a href='" + Session["CurrentPage"] + "'>" 
+                + Session["CurrentPage"] + "</a> has been denied.<br><br>You are seeing this page "
+                    +"because of the page you are trying to access containt information that you do"
+                    +" not have permission or may be you have missed some action that must be done "
+                    +"to access this page.<br><br>If you want to go to homepage, click <a href='"
+                    +Message.HomePage+"'>here</a>";
         }
     }
 }

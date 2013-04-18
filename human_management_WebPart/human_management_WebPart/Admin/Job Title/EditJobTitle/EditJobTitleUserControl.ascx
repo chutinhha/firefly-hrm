@@ -31,7 +31,7 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblJobTitle" runat="server" Text="Job Title(*)" Width="150px"></asp:Label>
-                <asp:TextBox ID="txtJobTitle" runat="server" Width="400px"></asp:TextBox>
+                <asp:TextBox ID="txtJobTitle" runat="server" Width="200px"></asp:TextBox>
                 <p>
                     &nbsp;</p>
                 <span style="padding-left: 5px;"></span>

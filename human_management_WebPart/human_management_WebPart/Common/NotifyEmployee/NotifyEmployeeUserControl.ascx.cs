@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.Admin.NotifyEmployee
 {
@@ -17,8 +17,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                 DateTime end = now.AddDays(7);
                 DateTime start = now.AddDays(-7);
                 //Check department change
-                DataTable department = _com.getData(Message.TableHistoryDepartment+" edh join "+Message.TableShift+" s"
-                    + " on s."+Message.ShiftIDColumn+" = edh."+Message.ShiftIDColumn+" join "+Message.TableDepartment
+                DataTable department = _com.getData(Message.TableHistoryDepartment+" edh join "+Message.TableDepartment
                     +" d on d."+Message.DepartmentIDColumn+" = edh."+Message.DepartmentIDColumn
                     , "edh."+Message.StartDateColumn+",edh."+Message.EndDateColumn+",edh."+Message.ModifiedDateColumn
                     +",d."+Message.NameColumn, " where edh."+Message.BusinessEntityIDColumn+"='"
@@ -65,7 +64,7 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                     + end.Month.ToString() + "-" + end.Day.ToString() + "') or (t." + Message.PersonProjectEndDateColumn + ">='"
                     + start.Year.ToString() + "-" + start.Month.ToString() + "-" + start.Day.ToString() + "'"
                     + " and t." + Message.PersonProjectEndDateColumn + "<='" + end.Year.ToString() + "-" + end.Month.ToString()
-                    + "-" + end.Day.ToString() + "')) and pp." + Message.CurrentFlagColumn + "<>'2'");
+                    + "-" + end.Day.ToString() + "'))");
                 if (assignProject.Rows.Count > 0)
                 {
                     count = count + assignProject.Rows.Count;
@@ -76,10 +75,14 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                             this.inputValue = this.inputValue + "<a href='"+Message.MyTaskPage+"'>Assign to Project: " + assignProject.Rows[i][0].ToString()
                                 + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
                         }
-                        else
+                        else if (assignProject.Rows[i][4].ToString() == "0")
                         {
                             this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "'>Apply to Project: " + assignProject.Rows[i][0].ToString()
-                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
+                                + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                        }
+                        else {
+                            this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "'>Remove from Project: " + assignProject.Rows[i][0].ToString()
+                                + "<br />Task: " + assignProject.Rows[i][1].ToString()+";";
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.ChangePassword
 {
@@ -11,7 +11,7 @@ namespace SP2010VisualWebPart.ChangePassword
         {
             this.confirmChangePassword = Message.ConfirmChangePassword;
             if (Session["Account"] == null) {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -44,7 +44,7 @@ namespace SP2010VisualWebPart.ChangePassword
             {
                 lblSuccess.Text = "";
                 lblError.Text = Message.OldPassword;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 try
@@ -53,7 +53,7 @@ namespace SP2010VisualWebPart.ChangePassword
                     {
                         lblSuccess.Text = "";
                         lblError.Text = Message.ConfirmPassword;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         txtNewPassword.Text = "";
                         txtConfirmPassword.Text = "";
                     }
@@ -63,14 +63,14 @@ namespace SP2010VisualWebPart.ChangePassword
                         {
                             lblSuccess.Text = Message.UpdateSuccess;
                         }else{
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
 						}
                     }
                 }
                 catch (Exception ex) {
                     lblSuccess.Text = "";
                     lblError.Text = ex.Message;
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
         }

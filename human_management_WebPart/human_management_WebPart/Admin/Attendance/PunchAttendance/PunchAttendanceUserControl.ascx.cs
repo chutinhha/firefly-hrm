@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.PunchAttendance
 {
@@ -12,7 +12,7 @@ namespace SP2010VisualWebPart.PunchAttendance
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -82,13 +82,13 @@ namespace SP2010VisualWebPart.PunchAttendance
             if (Request.Form["txtDate"].ToString().Trim() == "")
             {
                 lblError.Text = Message.NotChooseDate;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else {
                 if (ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue == "")
                 {
                     lblError.Text = Message.NotChooseTime;
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else {
                     try
@@ -111,7 +111,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 {
                                     lblError.Text = Message.LastPunchOut + data.Rows[0][3].ToString()
                                         + Message.PunchOutError;
-									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+									//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                 }
                                 else
                                 {
@@ -126,7 +126,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     this.inputValue = Request.Form["txtDate"].ToString().Trim();
                                     this.inputID = "txtDateDisable";
                                     lblError.Text = Message.LastPunchIn + Session["In"].ToString();
-									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+									//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                 }
                             }
                             else {
@@ -135,7 +135,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 if (dt1.CompareTo(dt)>=0) {
                                     lblError.Text = Message.LastPunchIn + Session["In"].ToString() 
                                         + Message.PunchInAfterTime;
-									ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+									//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                     this.inputValue = Request.Form["txtDate"].ToString().Trim();
                                     this.readOnly = "readonly";
                                     this.inputID = "txtDateDisable";
@@ -161,12 +161,12 @@ namespace SP2010VisualWebPart.PunchAttendance
                         }
                         catch (FormatException) {
                             lblError.Text = Message.InvalidDateTime;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                     }
                     catch (Exception ex) {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
             }

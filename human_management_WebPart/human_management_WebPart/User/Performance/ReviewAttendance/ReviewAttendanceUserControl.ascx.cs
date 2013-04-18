@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
@@ -12,7 +12,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -36,7 +36,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -107,7 +107,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                     if (Request.Form["txtDateFrom"].ToString().Trim() == "")
                     {
                         lblError.Text = Message.NotChooseDate;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     else
                     {
@@ -128,7 +128,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                         catch (FormatException)
                         {
                             lblError.Text = Message.InvalidDate;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                     }
                 }
@@ -138,7 +138,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                     if (Request.Form["txtDateFrom"].ToString().Trim() == "" || Request.Form["txtDateTo"].ToString().Trim() == "")
                     {
                         lblError.Text = Message.NotChooseFromToDate;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     else
                     {
@@ -165,7 +165,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                         catch (FormatException)
                         {
                             lblError.Text = Message.InvalidDate;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                     }
                 }
@@ -173,7 +173,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
             //Show Data if Gridview have data and bindDataAttendance method success
             if (grdData.Rows.Count > 0 && check == true)

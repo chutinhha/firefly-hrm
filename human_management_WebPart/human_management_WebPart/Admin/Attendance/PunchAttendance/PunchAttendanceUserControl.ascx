@@ -81,7 +81,7 @@
                 <div class="borderTop">
                     <span style="padding-left: 160px;"></span>
                     <asp:Button ID="btnInOut" runat="server" CssClass="addButton" OnClick="btnInOut_Click"
-                        Text="In" Width="80px" />
+                        Text="In" Width="80px" OnClientClick="return ConfirmOnSave();" />
                 </div>
             </td>
         </tr>

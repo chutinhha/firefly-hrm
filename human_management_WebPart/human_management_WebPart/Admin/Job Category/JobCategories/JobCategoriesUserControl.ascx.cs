@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.JobCategories
@@ -15,12 +15,19 @@ namespace SP2010VisualWebPart.JobCategories
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string CategoryName = Request.QueryString["CategoryName"];
+                    if (CategoryName == null) { }
+                    else
+                    {
+                        Session["CategoryName"] = CategoryName;
+                        Response.Redirect(Message.JobCategoriesPage);
+                    }
                     try
                     {
                         if (!IsPostBack)
@@ -30,11 +37,21 @@ namespace SP2010VisualWebPart.JobCategories
                             lblError.Text = "";
                             _com.setGridViewStyle(grdData);
                         }
+                        else {
+                            if (Session["CategoryName"] != null) {
+                                Session["Name"] = Session["CategoryName"];
+                                Session["type"] = "Edit";
+                                Panel1.Visible = true;
+                                lblTitle.Text = "Edit Job Category";
+                                txtName.Text = Session["Name"].ToString();
+                                Session.Remove("CategoryName");
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -55,9 +72,8 @@ namespace SP2010VisualWebPart.JobCategories
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //string Location = "JobCategories.aspx/?Type=Edit&" + Server.HtmlDecode(e.Row.Cells[2].Text)
-                //+ "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
-                //e.Row.Style["cursor"] = "pointer";
+                string Location = "JobCategories.aspx/?CategoryName=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
                 if (e.Row.RowIndex % 2 != 0)
                 {
@@ -72,7 +88,7 @@ namespace SP2010VisualWebPart.JobCategories
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
                     e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
-                    //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
         }
@@ -86,7 +102,7 @@ namespace SP2010VisualWebPart.JobCategories
         {
             if (txtName.Text.Trim() == "") {
                 lblError.Text = Message.CategoryNameError;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
             }
             else
             {
@@ -103,7 +119,7 @@ namespace SP2010VisualWebPart.JobCategories
                         }
                         else {
                             lblError.Text = Message.AlreadyExistCategory;
-                            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                         }
                     }
                     else {
@@ -136,7 +152,7 @@ namespace SP2010VisualWebPart.JobCategories
                     {
                         lblError.Text = ex.Message;
                     }
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
         }
@@ -161,7 +177,7 @@ namespace SP2010VisualWebPart.JobCategories
             if (isCheck == false)
             {
                 lblError.Text = Message.NotChooseItemEdit;
-                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
             }
         }
 
@@ -194,13 +210,13 @@ namespace SP2010VisualWebPart.JobCategories
                 }
                 else {
                     lblError.Text = Message.NotChooseItemDelete;
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)

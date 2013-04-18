@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.JobTitles
@@ -14,7 +14,7 @@ namespace SP2010VisualWebPart.JobTitles
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -35,7 +35,7 @@ namespace SP2010VisualWebPart.JobTitles
                             else
                             {
                                 lblError.Text = Message.NotExistData;
-								ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+								//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
                             lblError.Text = "";
                             Session.Remove("Name");
@@ -45,7 +45,7 @@ namespace SP2010VisualWebPart.JobTitles
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -141,18 +141,18 @@ namespace SP2010VisualWebPart.JobTitles
                     else
                     {
                         lblError.Text = Message.NotExistData;
-                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                        //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                     }
                 }
                 else {
                     lblError.Text = Message.NotChooseItemDelete;
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 
@@ -175,7 +175,7 @@ namespace SP2010VisualWebPart.JobTitles
                 }
             }
             lblError.Text = Message.NotChooseItemEdit;
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
         }
     }
 }

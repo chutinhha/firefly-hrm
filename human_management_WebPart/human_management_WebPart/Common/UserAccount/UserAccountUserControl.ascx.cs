@@ -24,7 +24,13 @@ namespace SP2010VisualWebPart.UserAccount
 
         protected void lbtnUserName_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Message.PIMPage,true);
+            if (Session["Account"].ToString() == "User")
+            {
+                Response.Redirect(Message.MyInfoPage, true);
+            }
+            else {
+                Response.Redirect(Message.EditEmployeePage + "/?BusinessEntityId="+Session["AccountID"].ToString(), true);
+            }
         }
 
         protected void lbtnChangePassword_Click(object sender, EventArgs e)

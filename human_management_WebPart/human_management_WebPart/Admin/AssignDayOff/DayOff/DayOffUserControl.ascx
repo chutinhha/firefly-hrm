@@ -9,6 +9,14 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DayOffUserControl.ascx.cs"
     Inherits="SP2010VisualWebPart.Admin.AssignDayOff.DayOff.DayOffUserControl" %>
+<script type="text/javascript">
+    function ConfirmOnSave() {
+        if (confirm("<%=this.confirmSave %>") == true)
+            return true;
+        else
+            return false;
+    }
+</script>
 <table class="fieldTitleDiv">
     <tr>
         <td>
@@ -43,7 +51,7 @@
                 <asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
                 <asp:Button ID="btnAssign" class="addButton" runat="server" Text="Assign" Width="80px"
-                    OnClick="btnAssign_Click" Visible="false" />
+                    OnClick="btnAssign_Click" Visible="False" />
             </div>
             <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
             </asp:GridView>
@@ -51,7 +59,7 @@
             <div class="borderTop">
                 <span style="padding-left: 155px"></span>
                 <asp:Button ID="btnSave" runat="server" CssClass="addButton" Text="Save" Width="80px"
-                    OnClick="btnSave_Click" />
+                    OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
             </div>
         </td>
     </tr>

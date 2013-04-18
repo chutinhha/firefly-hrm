@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
@@ -14,9 +15,11 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmAssign = Message.ConfirmAssign;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -24,7 +27,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                 {
                     if (Session["TaskName"] == null)
                     {
-                        Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -50,7 +53,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                 }
             }
         }
-
+        protected string confirmAssign { get; set; }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             lblError.Text = "";

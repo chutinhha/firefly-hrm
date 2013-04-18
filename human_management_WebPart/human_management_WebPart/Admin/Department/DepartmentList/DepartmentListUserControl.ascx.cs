@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.Admin.Department.DepartmentList
@@ -15,7 +15,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -34,7 +34,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
+                        //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
                     }
                 }
                 else
@@ -87,7 +87,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
             if (txtName.Text.Trim() == "")
             {
                 lblError.Text = Message.DepartmentNameError;
-                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
             }
             else
             {
@@ -106,7 +106,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                         else
                         {
                             lblError.Text = Message.AlreadyExistDepartment;
-                            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                         }
                     }
                     else
@@ -129,7 +129,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                     {
                         lblError.Text = ex.Message;
                     }
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
+                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
             if (isCheck == false)
             {
                 lblError.Text = Message.NotChooseItemEdit;
-                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
             }
         }
 
@@ -185,13 +185,13 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                 else
                 {
                     lblError.Text = Message.NotChooseItemDelete;
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
+                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
                 }
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
-                ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
+                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)

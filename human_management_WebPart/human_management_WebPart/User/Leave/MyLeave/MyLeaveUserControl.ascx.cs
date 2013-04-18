@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -15,7 +15,7 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                 }
             }
         }

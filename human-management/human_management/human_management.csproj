@@ -69,6 +69,9 @@
       <SharePointProjectItemId>{7d93d4c0-792b-445c-a3c8-fcedcafaf80d}</SharePointProjectItemId>
     </None>
     <None Include="MasterPage\Admin.master" />
+    <None Include="MasterPage\Elearning.master">
+      <SubType>ASPXCodeBehind</SubType>
+    </None>
     <None Include="MasterPage\Member.master" />
     <None Include="MasterPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54ad75c4-c932-42ff-bfac-1e5f812256ea}</SharePointProjectItemId>
@@ -108,6 +111,7 @@
     <Content Include="Images\21_2_ob\15409_TYHPthumb.jpg" />
     <Content Include="Images\21_2_ob\15457_Gondar_Pt1_Vid_HP.jpg" />
     <Content Include="Images\21_2_ob\4Star_Charity_Navigator.jpg" />
+    <Content Include="Images\21_2_ob\Access-Denied-LeftRight.jpg" />
     <Content Include="Images\21_2_ob\Access-Denied.jpg" />
     <Content Include="Images\21_2_ob\ApplyLeave.png" />
     <Content Include="Images\21_2_ob\bg-left-notches.gif" />
@@ -138,7 +142,6 @@
     <Content Include="Images\21_2_ob\nav-bg2.jpg" />
     <Content Include="Images\21_2_ob\nav_dropdown_bottom.png" />
     <Content Include="Images\21_2_ob\nav_dropdown_grad.png" />
-    <Content Include="Images\21_2_ob\nav_dropdown_hover.bmp" />
     <Content Include="Images\21_2_ob\nav_dropdown_hover.gif" />
     <Content Include="Images\21_2_ob\nav_dropdown_hover_small.gif" />
     <Content Include="Images\21_2_ob\nav_dropdown_li.png" />

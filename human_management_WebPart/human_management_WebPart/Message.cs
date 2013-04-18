@@ -24,7 +24,6 @@
     internal const string TableTimesheet = "HumanResources.Timesheet";
     internal const string TableDepartment = "HumanResources.Department";
     internal const string TableHistoryDepartment = "HumanResources.EmployeeDepartmentHistory";
-    internal const string TableShift = "HumanResources.Shift";
 
     //database column
     internal const string PunchInColumn = "PunchIn";
@@ -107,7 +106,6 @@
     internal const string TimesheetIDColumn = "TimesheetId";
     internal const string WorkDateColumn = "WorkDate";
     internal const string PersonProjectIdColumn = "PersonProjectId";
-    internal const string ShiftIDColumn = "ShiftID";
     internal const string DepartmentIDColumn = "DepartmentID";
 
     //Page
@@ -133,7 +131,7 @@
     internal const string ChangePasswordPage = "ChangePassword";
     internal const string AccessDeniedPage = "AccessDenied.aspx";
     internal const string SearchEmployeePage = "AssignEmployee.aspx";
-    internal const string PersonProjectPage = "PersonProject.aspx";
+    internal const string PersonProjectPage = "ChooseTask.aspx";
     internal const string AssignLeavePage = "AssignLeave.aspx";
     internal const string AssignDayOffPage = "DayOff.aspx";
     internal const string UserHomePage = "User.aspx";
@@ -160,6 +158,8 @@
     internal const string EditEmployeeDepartmentPage = "EditDepartment.aspx";
     internal const string MyDepartmentPage = "MyDepartment.aspx";
     internal const string MyTaskPage = "MyTask.aspx";
+    internal const string JobCategoriesPage = "JobCategories.aspx";
+    internal const string MyInfoPage = "MyInfo.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -224,6 +224,7 @@
     internal const string ConfirmProject = "If you want to create a project without start date and end date. Please let these both field blank. If you don't, please choose a date for both field";
     internal const string ConfirmSave = "Are you sure that you want to save?";
     internal const string ConfirmDelete = "Are you sure that  you want to delete?";
+    internal const string ConfirmAssign = "Are you sure that you want to assign this task for these employee?";
     internal const string ConfirmChangePassword = "Are you sure that you want to change password?";
     internal const string NotChooseItemEdit = "You must choose an item";
     internal const string NotChooseItemDelete = "You must choose one or more items";
@@ -234,4 +235,6 @@
     internal const string NotEnterTime = "You must enter time";
     internal const string NotEnterWorkDate = "You must choose a work date";
     internal const string InvalidTime = "Time must be a number that smaller than 24 and larger than 0";
+    internal const string UpcomingDeadline = "Upcoming deadline is a group of project, so you can not add task for it. Please choose a project first";
+    internal const string ProjectNotHaveTask = "This project doesn't have any task. Please add task for it first.";
 }

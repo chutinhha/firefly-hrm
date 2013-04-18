@@ -13,6 +13,12 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script type="text/javascript">
+    function ConfirmOnDelete() {
+        if (confirm("<%=this.confirmDelete %>") == true)
+            return true;
+        else
+            return false;
+    }
     $(function () {
         $("#txtDateFrom").datepicker({
             changeMonth: true,
@@ -24,7 +30,6 @@
         });
     });
 </script>
-<br />
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSearch" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -40,7 +45,7 @@
                 <span style="padding-left: 5px;"></span>
                 <asp:Label runat="server" Text="Job Title" ID="lblJobTitle" Width="150px"></asp:Label>
                 <div class="styled-selectLong">
-                    <asp:DropDownList runat="server" ID="ddlJobTitle" OnSelectedIndexChanged="ddlJobTitle_SelectedIndexChanged">
+                    <asp:DropDownList runat="server" ID="ddlJobTitle">
                     </asp:DropDownList>
                 </div>
                 <span style="padding-left: 70px;"></span>
@@ -85,7 +90,7 @@
                 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
                 <br />
                 <div class="borderTop">
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
+                    <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
                         CssClass="addButton" />
                     <asp:Button ID="btnReset" CssClass="resetButton" runat="server" OnClick="btnReset_Click"
                         Text="Reset" Width="70px" />
@@ -105,12 +110,11 @@
                 <asp:Button ID="btnEdit" CssClass="addButton" runat="server" Text="Edit" Width="70px"
                     OnClick="btnEdit_Click" />
                 <asp:Button ID="btnDelete" CssClass="deleteButton" runat="server" Text="Delete" Width="70px"
-                    OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure you want to delete ?')" />
+                    OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <br />
             <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
-                OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
-                BorderWidth="0px">
+                Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />
@@ -134,5 +138,5 @@
     </tr>
 </table>
 <br />
-<br />
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+<br />

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 
 namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
 {
@@ -11,7 +11,7 @@ namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -37,13 +37,13 @@ namespace SP2010VisualWebPart.User.Performance.SupervisorJudgment
                         else {
                             pnlGenerate.Visible = false;
                             lblError.Text = Message.NotHaveCheckPointYet;
-							ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         }
                     }
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message+"<br /><br />";
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                 }
                 else

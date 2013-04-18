@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -13,7 +13,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
         private void binDataLeaveTypeToGrd()
         {
             // ProjectId
-            DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 ProjectId", " where ProjectName like 'Leave%'");
+            DataTable dtProjectId = _com.getData(Message.TableProject, "ProjectId", " where ProjectName='Leave'");
             string strProjectID = dtProjectId.Rows[0][0].ToString();
 
             string strColumn = "TaskName, Note,LimitDate,TaskId";
@@ -37,10 +37,10 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 }
             }
         }
-
+        protected string confirmDelete { get; set; }
         protected void chkAll_CheckedChanged(object sender, EventArgs e)
         {
             bool isCheckState = false;

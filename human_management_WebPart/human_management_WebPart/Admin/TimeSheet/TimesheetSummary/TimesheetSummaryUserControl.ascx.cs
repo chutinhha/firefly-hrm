@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
@@ -12,7 +12,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -54,7 +54,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                 if (txtEmployeeName.Text.Trim() == "")
                 {
                     lblError.Text = Message.EmployeeNameError;
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else {
                     if (txtEmployeeName.Text.Trim() == "All") { }
@@ -115,7 +115,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                     catch (FormatException)
                     {
                         lblError.Text = Message.InvalidDate;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     if (chkApprove.Checked == false) { }
                     else {
@@ -151,14 +151,14 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                     else
                     {
                         lblError.Text = Message.NotExistData;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         pnlData.Visible = false;
                     }
                 }
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
 

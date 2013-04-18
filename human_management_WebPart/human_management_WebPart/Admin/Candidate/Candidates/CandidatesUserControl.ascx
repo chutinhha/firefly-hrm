@@ -90,7 +90,7 @@
                 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
                 <br />
                 <div class="borderTop">
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
+                    <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
                         CssClass="addButton" />
                     <asp:Button ID="btnReset" CssClass="resetButton" runat="server" OnClick="btnReset_Click"
                         Text="Reset" Width="70px" />

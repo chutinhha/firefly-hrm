@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -14,12 +14,14 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    this.readOnly = "";
+                    this.startDateID = "txtStartDate";
                     lblTitle.Text = "Edit Employee Department";
                     string BusinessID = Request.QueryString["BusinessID"];
                     string EmployeeName = Request.QueryString["EmployeeName"];
@@ -64,12 +66,14 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                         catch (Exception ex)
                         {
                             lblError.Text = ex.Message;
-                            ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
+                            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
                         }
                     }
                 }
                 else
                 {
+                    this.startDateID = "txtStartDateReadOnly";
+                    this.readOnly = "readonly";
                     lblTitle.Text = "Employee Department";
                     try
                     {
@@ -105,7 +109,7 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
+                        //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\'") + "');", true);
                     }
                 }
             }
@@ -138,6 +142,8 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
         }
         protected string confirmSave { get; set; }
         protected string startDate { get; set; }
+        protected string readOnly { get; set; }
+        protected string startDateID { get; set; }
         protected void btnSave_Click(object sender, EventArgs e)
         {
             this.startDate = Request.Form["txtStartDate"].ToString().Trim();

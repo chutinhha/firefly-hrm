@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
@@ -93,7 +93,7 @@ namespace SP2010VisualWebPart.Common.ManageUser
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
     }

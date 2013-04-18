@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
@@ -10,9 +10,10 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -26,7 +27,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                 }
                 else
                 {
-                    Response.Redirect(Message.AccessDeniedPage);
+                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
                 }
             }
         }
@@ -104,7 +105,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
             _com.closeConnection();
             Response.Redirect(Message.EditMyTimesheetPage);
         }
-
+        protected string confirmDelete { get; set; }
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow gr in grdData.Rows)

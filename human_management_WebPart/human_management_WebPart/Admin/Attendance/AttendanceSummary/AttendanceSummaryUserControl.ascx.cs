@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.UI;
+using System.Web.UI;using System.Web;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
@@ -11,7 +11,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
         {
             if (Session["Account"] == null)
             {
-                Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -32,7 +32,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                     }
                 }
                 else
@@ -77,7 +77,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                 if (txtEmployeeName.Text.Trim() == "")
                 {
                     lblError.Text = Message.EmployeeNameError;
-					ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                 }
                 else {
                     string condition = "";
@@ -135,7 +135,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     catch (FormatException)
                     {
                         lblError.Text = Message.InvalidDate;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
                     condition = condition + " order by p." + Message.NameColumn;
                     _com.bindDataAttendanceSummary("p." + Message.NameColumn + ",a." + Message.PunchInColumn
@@ -159,14 +159,14 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     else
                     {
                         lblError.Text = Message.NotExistData;
-						ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                         pnlData.Visible = false;
                     }
                 }
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
-				ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
+				//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
             }
         }
     }
