@@ -80,7 +80,7 @@
                         <br />
                         <br />
                         <asp:Label ID="lblBirthDate" runat="server" Text="Birth Date" Width="150px"></asp:Label>
-                        <input type="text" size="30" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
+                        <input type="text" style="width:200px;" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
                             value="<%= this.strBirthDateValue %>" <%= this.strBirtDateEditable %> />
                         <br />
                         <br />
