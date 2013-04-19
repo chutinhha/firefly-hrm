@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Web.UI;using System.Web;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -53,7 +54,9 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                             binDataLeaveTypeToGrd();
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
@@ -150,20 +153,25 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            string strTableName = Message.TableTask;
-            string strCondition = "";
-            foreach (GridViewRow row in grdLeaveType.Rows)
+            try
             {
-                CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
-                if (cbSelected.Checked == true)
+                string strTableName = Message.TableTask;
+                string strCondition = "";
+                foreach (GridViewRow row in grdLeaveType.Rows)
                 {
-                    strCondition = "TaskId = " + row.Cells[4].Text;
-                    _com.deleteFromTable(strTableName, strCondition);
+                    CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
+                    if (cbSelected.Checked == true)
+                    {
+                        strCondition = "TaskId = " + row.Cells[4].Text;
+                        _com.deleteFromTable(strTableName, strCondition);
+                    }
                 }
+                binDataLeaveTypeToGrd();
+                btnDelete.Visible = false;
             }
-            binDataLeaveTypeToGrd();
-            btnDelete.Visible = false;
+            catch (Exception ex) {
+                lblError.Text = ex.Message;
+            }
         }
-
     }
 }

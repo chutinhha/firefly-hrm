@@ -25,6 +25,11 @@
             changeYear: true
         });
     });
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
 </script>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -63,8 +68,8 @@
             <br />
             <br />
             <span style="padding-left: 5px"></span>
-            <asp:Label ID="lblTime" runat="server" Text="Time" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtTime" runat="server" Width="200px" OnTextChanged="txtTime_TextChanged"></asp:TextBox>
+            <asp:Label ID="lblTime" runat="server" Text="Time(Hours)" Width="150px"></asp:Label>
+            <asp:TextBox ID="txtTime" onkeyup="ValidateText(this);" runat="server" Width="200px" OnTextChanged="txtTime_TextChanged"></asp:TextBox>
             <br />
             <br />
             <div class="borderBottom">

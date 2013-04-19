@@ -49,8 +49,8 @@
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label>
             <p>
-                <span style="padding-left: 160px;">
-                    <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="800px"></asp:TextBox>
+                <span style="padding-left: 160px;"></span>
+                <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="800px"></asp:TextBox>
             </p>
             <p>
                 &nbsp;</p>

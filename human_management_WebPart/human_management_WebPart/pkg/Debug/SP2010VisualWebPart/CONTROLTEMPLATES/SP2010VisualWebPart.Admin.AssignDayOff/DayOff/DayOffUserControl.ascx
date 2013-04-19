@@ -23,7 +23,7 @@
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <font color="white">Days Off</font>
+                        <span style="color: white;">Days Off</span>
                     </td>
                 </tr>
             </table>
@@ -48,9 +48,9 @@
             <br />
             <div class="borderTop">
                 <span style="padding-left: 155px"></span>
-                <asp:Button ID="btnSearch" class="addButton" runat="server" Text="Search" Width="80px"
+                <asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
-                <asp:Button ID="btnAssign" class="addButton" runat="server" Text="Assign" Width="80px"
+                <asp:Button ID="btnAssign" CssClass="addButton" runat="server" Text="Assign" Width="80px"
                     OnClick="btnAssign_Click" Visible="False" />
             </div>
             <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">

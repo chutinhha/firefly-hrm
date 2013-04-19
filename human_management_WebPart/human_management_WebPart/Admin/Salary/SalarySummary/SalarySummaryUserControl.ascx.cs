@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
-using System.Web.UI;using System.Web;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
 
@@ -58,6 +59,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                             txtSalary.ID = "txtSalary" + i;
                             txtSalary.Text = dt.Rows[i][1].ToString();
                             txtSalary.Width = 200;
+                            txtSalary.Attributes.Add("onkeyup", "ValidateText(this);");
                             grdData.Rows[i].Cells[3].Controls.Add(txtSalary);
                         }
                         DataTable dtCloned = dt.Clone();
@@ -189,6 +191,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 txtSalary.ID = "txtSalary" + i;
                 txtSalary.Text = dt.Rows[i][1].ToString();
                 txtSalary.Width = 200;
+                txtSalary.Attributes.Add("onkeyup", "ValidateText(this);");
                 grdData.Rows[i].Cells[3].Controls.Add(txtSalary);
             }
             float totalCostPerMonth = 0;

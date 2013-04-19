@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
 <script type="text/javascript">
     function ConfirmOnSave() {
         if (confirm("<%=this.confirmSave %>") == true)
@@ -27,7 +26,6 @@
         });
     });
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnInOut" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -76,7 +74,7 @@
                     <asp:TextBox ID="txtNote" runat="server" Height="100px" TextMode="MultiLine" Width="410px"></asp:TextBox>
                 </p>
                 <br />
-                &nbsp;<span style="color:Red;">(*) is required</span><br />
+                &nbsp;<span style="color: Red;">(*) is required</span><br />
                 <br />
                 <div class="borderTop">
                     <span style="padding-left: 160px;"></span>

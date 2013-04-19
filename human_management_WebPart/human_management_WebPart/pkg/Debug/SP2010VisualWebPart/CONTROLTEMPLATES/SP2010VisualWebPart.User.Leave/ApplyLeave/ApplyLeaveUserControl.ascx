@@ -87,7 +87,8 @@
                 <br />
                 <br />
                 <div class="borderTop">
-                    <span style="padding-left: 155px;"></span><asp:Button ID="btnApply" runat="server" CssClass="addButton" Text="Apply" Width="80px"
+                    <span style="padding-left: 155px;"></span>
+                    <asp:Button ID="btnApply" runat="server" CssClass="addButton" Text="Apply" Width="80px"
                         OnClick="btnApply_Click" OnClientClick="return ConfirmOnSave();" />
                 </div>
             </td>

@@ -25,7 +25,7 @@
             <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px"></asp:TextBox>
             <span style="padding-left: 100px;"></span>
             <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>            
+            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
@@ -87,3 +87,6 @@
         </td>
     </tr>
 </table>
+<br />
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

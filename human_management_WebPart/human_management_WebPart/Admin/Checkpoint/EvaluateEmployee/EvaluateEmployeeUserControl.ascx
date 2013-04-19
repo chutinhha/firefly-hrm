@@ -72,7 +72,7 @@
                 <br />
                 <asp:Panel ID="pnlGenerate" runat="server" Visible="False">
                 </asp:Panel>
-                <div class="borderTop" align="center">
+                <div class="borderTop" style="text-align:center;">
                     <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px"
                         OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
                     <asp:Button ID="btnCancel1" CssClass="resetButton" runat="server" Text="Cancel" Width="80px"

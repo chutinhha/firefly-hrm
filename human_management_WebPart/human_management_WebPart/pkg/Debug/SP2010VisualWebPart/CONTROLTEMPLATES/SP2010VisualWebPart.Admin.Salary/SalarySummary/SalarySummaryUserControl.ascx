@@ -16,8 +16,12 @@
         else
             return false;
     }
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>

@@ -17,7 +17,6 @@
             return false;
     }
 </script>
-
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
         <td>
@@ -76,8 +75,8 @@
                 <br />
             </asp:Panel>
             &nbsp;<span style="color: Red;">(*) is required</span>
-                <br />
-                <br />
+            <br />
+            <br />
             <div class="borderTop">
                 <span style="padding-left: 150px;"></span>
                 <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" OnClick="btnSave_Click"
@@ -88,6 +87,5 @@
         </td>
     </tr>
 </table>
-<br />
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
-<br />
+<br /><br />
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>

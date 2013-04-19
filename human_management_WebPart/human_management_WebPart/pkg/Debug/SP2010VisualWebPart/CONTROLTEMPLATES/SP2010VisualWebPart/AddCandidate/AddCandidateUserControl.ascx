@@ -29,8 +29,12 @@
             changeYear: true
         });
     });
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -65,17 +69,17 @@
                 <p>
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblHomePhone" runat="server" Text="Home Phone" Width="120px"></asp:Label>
-                    <asp:TextBox ID="txtHomePhone" runat="server" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="txtHomePhone" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
                     <span style="padding-left: 100px;"></span>
                     <asp:Label ID="lblMobile" runat="server" Text="Mobile" Width="120px"></asp:Label>
-                    <asp:TextBox ID="txtMobile" runat="server" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="txtMobile" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
                 </p>
                 <p>
                     &nbsp;</p>
                 <p>
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblWorkPhone" runat="server" Text="Work Phone" Width="120px"></asp:Label>
-                    <asp:TextBox ID="txtWorkPhone" runat="server" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="txtWorkPhone" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
                     <span style="padding-left: 100px;"></span>
                     <asp:Label ID="lblEmail" runat="server" Text="Email(*)" Width="120px"></asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" Width="200px"></asp:TextBox>
@@ -153,15 +157,15 @@
                 <div class="borderTop">
                     <span style="padding-left: 130px;"></span>
                     <asp:Button ID="btnSave" runat="server" CssClass="addButton" OnClick="btnSave_Click"
-                        OnClientClick="return ConfirmOnSave();" Text="Save"
-                        Width="80px" />
+                        OnClientClick="return ConfirmOnSave();" Text="Save" Width="80px" />
                     <asp:Button ID="btnCancel" runat="server" CssClass="resetButton" OnClick="btnCancel_Click"
                         Text="Cancel" Width="80px" />
                 </div>
             </td>
         </tr>
     </table>
-</asp:Panel><br />
+</asp:Panel>
 <br />
-    &nbsp;<asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Style="color: red;"></asp:Label>
 <br />

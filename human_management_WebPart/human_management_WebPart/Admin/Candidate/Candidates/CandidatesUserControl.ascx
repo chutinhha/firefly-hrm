@@ -59,7 +59,7 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label runat="server" Text="Candidate Name" ID="lblCandidateName" Width="150px"></asp:Label>
-                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px" class="tb"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCandidateName" Width="200px" CssClass="tb"></asp:TextBox>
                 <span style="padding-left: 70px;"></span>
                 <asp:Label runat="server" Text="Status" ID="lblStatus" Width="150px">
                 </asp:Label>
@@ -90,7 +90,8 @@
                 <asp:Label ID="lblDateTo" runat="server" Text="To"></asp:Label>
                 <br />
                 <div class="borderTop">
-                    <span style="padding-left: 155px;"></span><asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
+                    <span style="padding-left: 155px;"></span>
+                    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="70px" OnClick="btnSearch_Click"
                         CssClass="addButton" />
                     <asp:Button ID="btnReset" CssClass="resetButton" runat="server" OnClick="btnReset_Click"
                         Text="Reset" Width="70px" />
@@ -113,7 +114,7 @@
                     OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <br />
-            <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
+            <asp:GridView ID="grdData" runat="server" EnableModelValidation="True"
                 Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>

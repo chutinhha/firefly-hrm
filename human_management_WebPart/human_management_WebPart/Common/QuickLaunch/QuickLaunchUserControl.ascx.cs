@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Web;
-using System.Web.UI;using System.Web;
+using System.Web.UI;
 
 namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
 {
@@ -339,7 +339,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             }
                         }
                 }
-                catch (Exception ex) {
+                catch (Exception) {
                 }
             }
         }

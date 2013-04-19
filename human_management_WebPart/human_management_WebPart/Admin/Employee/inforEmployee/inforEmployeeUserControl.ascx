@@ -6,11 +6,10 @@
         }
     }
 </script>
-
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript">
     $(function () {
         $("#txtBirthDate").datepicker({
             changeMonth: true,
@@ -80,7 +79,7 @@
                         <br />
                         <br />
                         <asp:Label ID="lblBirthDate" runat="server" Text="Birth Date" Width="150px"></asp:Label>
-                        <input type="text" style="width:200px;" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
+                        <input type="text" style="width: 200px;" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
                             value="<%= this.strBirthDateValue %>" <%= this.strBirtDateEditable %> />
                         <br />
                         <br />
@@ -151,7 +150,8 @@
             <asp:Label ID="lblAddressStreet" runat="server" Text="Address Street" Width="150px"></asp:Label>
             <asp:TextBox ID="txtAddressStreet" runat="server" Width="200px"></asp:TextBox>
             <br />
-            <asp:Label ID="lblPersonContactGuide" runat="server" Text="Please check format of email" Visible="false" ForeColor="Red"></asp:Label>
+            <asp:Label ID="lblPersonContactGuide" runat="server" Text="Please check format of email"
+                Visible="false" ForeColor="Red"></asp:Label>
             <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
@@ -193,8 +193,11 @@
                 <asp:Button ID="btnEditEmpState" CssClass="addButton" runat="server" Text="Edit"
                     Width="80px" OnClick="btnEditEmpState_Click" />
                 <asp:Button ID="btnCancelEditEmpState" runat="server" CssClass="resetButton" Text="Cancel"
-                    Visible="False" Width="80px" onclick="btnCancelEditEmpState_Click" />
+                    Visible="False" Width="80px" OnClick="btnCancelEditEmpState_Click" />
             </div>
         </td>
     </tr>
 </table>
+<br />
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
