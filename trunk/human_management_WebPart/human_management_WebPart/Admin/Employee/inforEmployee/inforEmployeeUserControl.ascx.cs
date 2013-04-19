@@ -24,9 +24,12 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             try
             {
-                string strColumn = "Name, BirthDate, SSNNumber, Gender, MaritalStatus";
-                string strTable = "HumanResources.Employee, HumanResources.Person";
-                string strCondition = " where (HumanResources.Employee.BusinessEntityId = HumanResources.Person.BusinessEntityId) AND (HumanResources.Employee.BusinessEntityId = " + strBusinessEntityId + ")";
+                string strColumn = "per."+Message.NameColumn+", emp."+Message.BirthDateColumn+", per."
+                    +Message.SSNNumberColumn+", emp."+Message.GenderColumn+", emp."+Message.MaritalStatusColumn;
+                string strTable = Message.TableEmployee+" emp join "+Message.TablePerson+" per on emp."
+                    +Message.BusinessEntityIDColumn+"=per."+Message.BusinessEntityIDColumn;
+                string strCondition = " where AND emp."+Message.BusinessEntityIDColumn+" = '" 
+                    + strBusinessEntityId + "'";
                 DataTable dt = _com.getData(strTable, strColumn, strCondition);
                 if (dt.Rows.Count > 0)
                 {
@@ -103,15 +106,15 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             try
             {
-                string strColumn = "Name, Image";
-                string strTable = "HumanResources.Employee, HumanResources.Person";
-                string strCondition = " where (HumanResources.Employee.BusinessEntityId = HumanResources.Person.BusinessEntityId) AND (HumanResources.Employee.BusinessEntityId = " + strBusinessEntityId + ")";
+                string strColumn = "per."+Message.NameColumn+", emp."+Message.ImageColumn;
+                string strTable = Message.TableEmployee+" emp, "+Message.TablePerson+" per";
+                string strCondition = " where emp."+Message.BusinessEntityIDColumn+" = '" 
+                    + strBusinessEntityId + "'";
                 DataTable dt = _com.getData(strTable, strColumn, strCondition);
                 if (dt.Rows.Count > 0)
                 {
                     lblEmployeeImageTitle.Text = dt.Rows[0][0].ToString();
                     imgEmployeeImage.ImageUrl = "/_layouts/Images/21_2_ob/" + dt.Rows[0][1].ToString();
-                    //imgEmployeeImage.ImageUrl = "https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/601264_3903279919727_1220919926_n.jpg";
                 }
             }
             catch (Exception ex) {
@@ -137,32 +140,34 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 //BirthDate
                 string strBirtDate = Request.Form["txtBirthDate"].ToString().Trim();
                 strBirtDate = "'" + strBirtDate + "'";
-                strCondition = strCondition + "BirthDate = " + strBirtDate;
+                strCondition = strCondition + Message.BirthDateColumn+" = " + strBirtDate;
                 //MaritalStatus
                 string strMaritalStatus = "";
                 if (rdbMaritalSingle.Checked == true) strMaritalStatus = "'S'";
                 else strMaritalStatus = "'M'";
-                strCondition = strCondition + " , MaritalStatus = " + strMaritalStatus;
+                strCondition = strCondition + " , "+Message.MaritalStatusColumn+" = " + strMaritalStatus;
                 //Gender
                 string strGender = "";
                 if (rdbGenderMale.Checked == true) strGender = "'M'";
                 else strGender = "'F'";
-                strCondition = strCondition + " , Gender = " + strGender;
+                strCondition = strCondition + " , "+Message.GenderColumn+" = " + strGender;
                 //ModifiedDate
                 string strModifiedDate = System.DateTime.Now.ToShortDateString() + " " + System.DateTime.Now.ToShortTimeString();
                 strModifiedDate = "'" + strModifiedDate + "'";
-                strCondition = strCondition + " , ModifiedDate = " + strModifiedDate;
+                strCondition = strCondition + " , "+Message.ModifiedDateColumn+" = " + strModifiedDate;
 
-                strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
+                strCondition = strCondition + " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId;
                 _com.updateTable(strTableName, strCondition);
 
                 // Check Table Person Exist
                 strTableName = Message.TablePerson;
-                DataTable dt = _com.getData(strTableName, "*", " where BusinessEntityId = " + strBusinessEntityId);
+                DataTable dt = _com.getData(strTableName, "*", " where "+Message.BusinessEntityIDColumn
+                    +" = " + strBusinessEntityId);
                 // IF not Exist -> create new rows.
                 if (dt.Rows.Count == 0)
                 {
-                    string strColumn = "(BusinessEntityId,ModifiedDate,Name,Rank)";
+                    string strColumn = "("+Message.BusinessEntityIDColumn+","+Message.ModifiedDateColumn
+                        +","+Message.NameColumn+","+Message.RankColumn+")";
                     strCondition = strBusinessEntityId + " , " + strModifiedDate;
                     //Name
                     string strName = "'" + txtFullName.Text + "'";
@@ -179,14 +184,14 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 strCondition = "";
                 //Name
                 string strFullName = "'" + txtFullName.Text + "'";
-                strCondition = strCondition + " Name = " + strFullName;
+                strCondition = strCondition + " "+Message.NameColumn+" = " + strFullName;
                 //Rank
-                if (ddlRank.SelectedIndex == 0) strCondition = strCondition + " , Rank = 'User'";
-                else strCondition = strCondition + " , Rank = 'Admin'";
+                if (ddlRank.SelectedIndex == 0) strCondition = strCondition + " , "+Message.RankColumn+" = 'User'";
+                else strCondition = strCondition + " , "+Message.RankColumn+" = 'Admin'";
                 //SSNNumber
                 string strSSNNumber = "'" + txtSSNNumber.Text + "'";
-                strCondition = strCondition + " , SSNNumber = " + strSSNNumber;
-                strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
+                strCondition = strCondition + " , "+Message.SSNNumberColumn+" = " + strSSNNumber;
+                strCondition = strCondition + " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId;
                 _com.updateTable(strTableName, strCondition);
                 isUpdatePersonDetails = true;
             }
@@ -201,9 +206,10 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             try
             {
                 string strCountry = "";
-                string strColumn = "EmailAddress, HomePhone, Mobile, City, Country, AddressStreet";
-                string strTable = "HumanResources.Person";
-                string strCondition = " where (HumanResources.Person.BusinessEntityId = " + strBusinessEntityId + ")";
+                string strColumn = Message.EmailAddressColumn+", "+Message.HomePhoneColumn+", "+Message.MobileColumn
+                    +", "+Message.CityColumn+", "+Message.CountryColumn+", "+Message.AddressColumn;
+                string strTable = Message.TablePerson;
+                string strCondition = " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId + ")";
                 DataTable dt = _com.getData(strTable, strColumn, strCondition);
                 if (dt.Rows.Count > 0)
                 {
@@ -273,7 +279,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                     }
                     else
                     {
-                        if ((txtEmail.Text.IndexOf(".") < 1) || (txtEmail.Text.IndexOf(".") == txtEmail.Text.IndexOf("@") + 1) || (txtEmail.Text.IndexOf(".") == txtEmail.Text.Length - 1))
+                        if ((txtEmail.Text.IndexOf(".") < 1) || (txtEmail.Text.IndexOf(".") == txtEmail.Text.IndexOf("@") + 1) 
+                            || (txtEmail.Text.IndexOf(".") == txtEmail.Text.Length - 1))
                         {
                             lblPersonContactGuide.Visible = true;
                             isUpdatePersonContact = false;
@@ -286,28 +293,28 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 string strCondition = "";
                 //EmailAddress
                 string strEmailAddress = "'" + txtEmail.Text + "'";
-                strCondition = strCondition + "EmailAddress = " + strEmailAddress;
+                strCondition = strCondition + Message.EmailAddressColumn+" = " + strEmailAddress;
                 //HomePhone
                 string strHomePhone = "'" + txtHomePhone.Text + "'";
-                strCondition = strCondition + " , HomePhone = " + strHomePhone;
+                strCondition = strCondition + " , "+Message.HomePhoneColumn+" = " + strHomePhone;
                 //Mobile
                 string strMobile = "'" + txtMobile.Text + "'";
-                strCondition = strCondition + " , Mobile = " + strMobile;
+                strCondition = strCondition + " , "+Message.MobileColumn+" = " + strMobile;
                 //City
                 string strCity = "'" + txtCity.Text + "'";
-                strCondition = strCondition + " , City = " + strCity;
+                strCondition = strCondition + " , "+Message.CityColumn+" = " + strCity;
                 //Country
                 string strCountry = "'" + ddlCountry.SelectedValue + "'";
-                strCondition = strCondition + " , Country = " + strCountry;
+                strCondition = strCondition + " , "+Message.CountryColumn+" = " + strCountry;
                 //AddressStreet
                 string strAddressStreet = "'" + txtAddressStreet.Text + "'";
-                strCondition = strCondition + " , AddressStreet = " + strAddressStreet;
+                strCondition = strCondition + " , "+Message.AddressColumn+" = " + strAddressStreet;
                 //ModifiedDate
                 string strModifiedDate = System.DateTime.Now.ToShortDateString() + " " + System.DateTime.Now.ToShortTimeString();
                 strModifiedDate = "'" + strModifiedDate + "'";
-                strCondition = strCondition + " , ModifiedDate = " + strModifiedDate;
+                strCondition = strCondition + " , "+Message.ModifiedDateColumn+" = " + strModifiedDate;
 
-                strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
+                strCondition = strCondition + " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId;
                 _com.updateTable(strTableName, strCondition);
                 isUpdatePersonContact = true;
             }
@@ -322,9 +329,10 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             try
             {
                 //Set data to Job Title dropdownlist
-                string strColumn = "j.JobTitle";
-                string strTable = " ( HumanResources.Employee e LEFT JOIN HumanResources.JobTitle j ON e.JobId = j.JobId) ";
-                string strCondition = " Where (e.BusinessEntityId = " + strBusinessEntityId + ")";
+                string strColumn = "j."+Message.TableJobTitle;
+                string strTable = " ( "+Message.TableEmployee+" e LEFT JOIN "+Message.TableJobTitle
+                    +" j ON e."+Message.JobIDColumn+" = j."+Message.JobIDColumn+") ";
+                string strCondition = " Where (e."+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId + ")";
                 DataTable dtJobTitle = _com.getData(strTable, strColumn, strCondition);
                 if (dtJobTitle.Rows.Count > 0)
                 {
@@ -335,9 +343,9 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 }
 
                 //Set data to Current Flag
-                strColumn = "CAST(CurrentFlag AS VARCHAR(1))";
-                strTable = " HumanResources.Employee ";
-                strCondition = " Where (BusinessEntityId = " + strBusinessEntityId + ")";
+                strColumn = "CAST("+Message.CurrentFlagColumn+" AS VARCHAR(1))";
+                strTable = " "+Message.TableEmployee+" ";
+                strCondition = " Where ("+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId + ")";
                 DataTable dtCurrentFlag = _com.getData(strTable, strColumn, strCondition);
                 if (dtCurrentFlag.Rows.Count > 0)
                 {
@@ -348,9 +356,10 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 }
                 //Get current department
                 DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
-                                        + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, " dep."
-                                        + Message.NameColumn + ",edh." + Message.StartDateColumn, " where edh." + Message.BusinessEntityIDColumn + "='" + strBusinessEntityId
-                                        + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')");
+                    + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, " dep."
+                    + Message.NameColumn + ",edh." + Message.StartDateColumn, " where edh." 
+                    + Message.BusinessEntityIDColumn + "='" + strBusinessEntityId
+                    + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')");
                 if (dt.Rows.Count > 0)
                 {
                     txtDepartment.Text = dt.Rows[0][0].ToString();
@@ -403,7 +412,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -538,7 +548,9 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 {
                     try
                     {
-                        if ((fudEmployeePhoto.PostedFile.ContentType == "image/jpeg") || (fudEmployeePhoto.PostedFile.ContentType == "image/jpg") || (fudEmployeePhoto.PostedFile.ContentType == "image/pjpeg"))
+                        if ((fudEmployeePhoto.PostedFile.ContentType == "image/jpeg") 
+                            || (fudEmployeePhoto.PostedFile.ContentType == "image/jpg") 
+                            || (fudEmployeePhoto.PostedFile.ContentType == "image/pjpeg"))
                         {
                             if (fudEmployeePhoto.PostedFile.ContentLength < 102400000)
                             {
@@ -550,7 +562,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                                 fudEmployeePhoto.SaveAs(strURL);
                                 lblPhotoDetail.Text = "";
                                 string strTableName = Message.TableEmployee;
-                                string strCondition = " Image = '" + strImageURL + "' where BusinessEntityId = " + strBusinessEntityId;
+                                string strCondition = " "+Message.ImageColumn+" = '" + strImageURL + "' where "
+                                    +Message.BusinessEntityIDColumn+" = " + strBusinessEntityId;
                                 _com.updateTable(strTableName, strCondition);
                                 loadEmployeeImage();
                             }
@@ -561,13 +574,13 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                         }
                         else
                         {
-                            lblPhotoDetail.Text = "Upload status: Only JPEG files are accepted!";
+                            lblPhotoDetail.Text = Message.NotJpeg;
                             return;
                         }
                     }
                     catch (Exception)
                     {
-                        lblPhotoDetail.Text = "Upload status: The file could not be uploaded";
+                        lblPhotoDetail.Text = Message.CanNotUpload;
                         return;
                     }
                 }
@@ -639,15 +652,15 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 string strCondition = "";
                 //Job Title
                 string strJobID = ddlJobTitle.SelectedItem.Value;
-                if (strJobID != "") strCondition = strCondition + " JobID = " + strJobID;
-                else strCondition = strCondition + " JobID = null";
+                if (strJobID != "") strCondition = strCondition + " "+Message.JobIDColumn+" = " + strJobID;
+                else strCondition = strCondition + " "+Message.JobIDColumn+" = null";
                 //Current Flag
                 string strCurrentFlag = "";
                 if (ddlCurrentFlag.SelectedValue == "Active") strCurrentFlag = "1";
                 else strCurrentFlag = "0";
-                strCondition = strCondition + " , CurrentFlag = " + strCurrentFlag;
+                strCondition = strCondition + " , "+Message.CurrentFlagColumn+" = " + strCurrentFlag;
 
-                strCondition = strCondition + " where BusinessEntityId = " + strBusinessEntityId;
+                strCondition = strCondition + " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId;
 
                 //Update
                 _com.updateTable(strTableName, strCondition);

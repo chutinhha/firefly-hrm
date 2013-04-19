@@ -17,7 +17,8 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -27,16 +28,20 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     {
                         if (!IsPostBack)
                         {
-                            DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE ProjectName = 'Leave'");
-                            _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff, " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), true, "All");
+                            DataTable myData = _com.getData(Message.TableProject, " * " , " WHERE "
+                                +Message.ProjectNameColumn+" = 'Leave'");
+                            _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlDayOff
+                                , " WHERE " + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString()
+                                , true, "All");
                             lblError.Text = "";
                             ddlShow.SelectedValue = "All";
                         }
                         string[] col = new string[1];
                         col[0] = "Status";
                         DataTable dt = new DataTable();
-                        string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn + ",tas." + Message.TaskNameColumn
-                            + ",pp." + Message.StartDateColumn + ",pp." + Message.EndDateColumn + ",pp." + Message.NoteColumn;
+                        string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn 
+                            + ",tas." + Message.TaskNameColumn+ ",pp." + Message.StartDateColumn + ",pp." 
+                            + Message.EndDateColumn + ",pp." + Message.NoteColumn;
                         string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
                         string table = Message.TableEmployee + " emp join " + Message.TablePerson
                             + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
@@ -94,7 +99,11 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                         }
                         else
                         {
-                            DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                            DataTable myDatatmp = _com.getData(Message.TableTask+" tas", " * ", " INNER JOIN "
+                                +Message.TableProject+" pro ON tas."+Message.ProjectIDColumn+" = "
+                                +"pro."+Message.ProjectIDColumn+" WHERE tas."+Message.TaskNameColumn+" = '" 
+                                + ddlDayOff.SelectedValue.ToString() + "' and pro."
+                                +Message.ProjectNameColumn+" = 'Leave'");
                             if (ddlShow.SelectedValue == "All")
                             {
                                 condition = condition + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
@@ -185,7 +194,8 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
         protected string confirmSave { get; set; }
         protected void ddlDayOff_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable myData = _com.getData(Message.TableTask, "LimitDate", " where TaskName = '" + ddlDayOff.SelectedValue.ToString() + "'");
+            DataTable myData = _com.getData(Message.TableTask, Message.LimitDateColumn, " where "
+                +Message.TaskNameColumn+" = '" + ddlDayOff.SelectedValue.ToString() + "'");
             if (myData.Rows[0][0].ToString() != "")
             {
                 btnAssign.Visible = true;
@@ -236,11 +246,6 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             }
         }
 
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -248,8 +253,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 string[] col = new string[1];
                 col[0] = "Status";
                 DataTable dt = new DataTable();
-                string column = " pp."+Message.PersonProjectIdColumn+",per."+Message.NameColumn+",tas."+Message.TaskNameColumn
-                    +",pp."+Message.StartDateColumn+",pp."+Message.EndDateColumn+",pp."+Message.NoteColumn;
+                string column = " pp."+Message.PersonProjectIdColumn+",per."+Message.NameColumn+",tas."
+                    +Message.TaskNameColumn+",pp."+Message.StartDateColumn+",pp."+Message.EndDateColumn
+                    +",pp."+Message.NoteColumn;
                 string condition = " where emp."+Message.CurrentFlagColumn+"='1'";
                 string table = Message.TableEmployee+" emp join "+Message.TablePerson
                     +" per on emp."+Message.BusinessEntityIDColumn+"=per."+Message.BusinessEntityIDColumn
@@ -307,7 +313,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 }
                 else
                 {
-                    DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                    DataTable myDatatmp = _com.getData(Message.TableTask+" tas", " * ", " INNER JOIN "
+                        +Message.TableProject+" pro ON tas."+Message.ProjectIDColumn+" = pro."
+                        +Message.ProjectIDColumn+" WHERE tas."+Message.TaskNameColumn+" = '" 
+                        + ddlDayOff.SelectedValue.ToString() + "' and pro."+Message.ProjectNameColumn+" = 'Leave'");
                     if (ddlShow.SelectedValue == "All")
                     {
                         condition = condition + " and pp."+Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString();
@@ -388,11 +397,6 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             }
         }
 
-        protected void ddlShow_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             lblSuccess.Text = "";
@@ -408,37 +412,54 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             ," emp."+Message.BusinessEntityIDColumn+",emp."+Message.VacationHoursColumn+","
                             +"emp."+Message.SickLeaveHoursColumn," where pp."+Message.PersonProjectIdColumn
                             +" = " + row.Cells[0].Text.ToString());
-                        if (row.Cells[2].Text == "Vacation")
+                        bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee, 
+	                            Message.CurrentFlagColumn, " where "+ Message.BusinessEntityIDColumn
+                                + "='" + myData.Rows[0][0].ToString() + "'").Rows[0][0].ToString());
+                        if (employeeStatus == true)
                         {
-                            TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
-                            int tmp = Convert.ToInt16(myData.Rows[0][1].ToString()) - time.Days;
-                            _com.updateTable(Message.TableEmployee, " " + "HumanResources.Employee.VacationDate = " + tmp + " where " + Message.BusinessEntityIDColumn + " = " + myData.Rows[0][0].ToString());
+                            if (row.Cells[2].Text == "Vacation")
+                            {
+                                TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
+                                int tmp = Convert.ToInt16(myData.Rows[0][1].ToString()) - time.Days;
+                                _com.updateTable(Message.TableEmployee, " " + Message.VacationHoursColumn
+                                    +" = '" + tmp + "' where " + Message.BusinessEntityIDColumn + " = '" 
+                                    + myData.Rows[0][0].ToString()+"'");
+                            }
+                            if (row.Cells[2].Text == "Sick")
+                            {
+                                TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
+                                int tmp = Convert.ToInt16(myData.Rows[0][2].ToString()) - time.Days;
+                                _com.updateTable(Message.TableEmployee, " " + Message.SickLeaveHoursColumn
+                                    +" = '" + tmp + "' where " + Message.BusinessEntityIDColumn + " = '" 
+                                    + myData.Rows[0][0].ToString()+"'");
+                            }
+                            _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn 
+                                + " = '1', ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") 
+                                + "' AS DATETIME) " + "where " + Message.PersonProjectIdColumn + "='" 
+                                + row.Cells[0].Text + "'");
                         }
-                        if (row.Cells[2].Text == "Sick")
-                        {
-                            TimeSpan time = Convert.ToDateTime(row.Cells[4].Text.ToString()) - Convert.ToDateTime(row.Cells[3].Text.ToString());
-                            int tmp = Convert.ToInt16(myData.Rows[0][2].ToString()) - time.Days;
-                            _com.updateTable(Message.TableEmployee, " " + "HumanResources.Employee.SickLeaveDate = " + tmp + " where " + Message.BusinessEntityIDColumn + " = " + myData.Rows[0][0].ToString());
-                        }
-                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
-                            + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
                     }
                     else if (ddlApprove.SelectedValue == "Not Approve")
                     {
-                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 0, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
-                            + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
+                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn 
+                            + " = '0', ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") 
+                            + "' AS DATETIME) "+ "where " + Message.PersonProjectIdColumn + "='" 
+                            + row.Cells[0].Text + "'");
                     }
                     else
                     {
-                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn + " = 2, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) "
-                            + "where " + Message.PersonProjectIdColumn + "='" + row.Cells[0].Text + "'");
+                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn 
+                            + " = '2', ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") 
+                            + "' AS DATETIME) "+ "where " + Message.PersonProjectIdColumn + "='" 
+                            + row.Cells[0].Text + "'");
                     }
                 }
                 string[] col = new string[1];
                 col[0] = "Status";
                 DataTable dt = new DataTable();
-                string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn + ",tas." + Message.TaskNameColumn
-                    + ",pp." + Message.StartDateColumn + ",pp." + Message.EndDateColumn + ",pp." + Message.NoteColumn;
+                string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn 
+                    + ",tas." + Message.TaskNameColumn+ ",pp." + Message.StartDateColumn + ",pp." 
+                    + Message.EndDateColumn + ",pp." + Message.NoteColumn;
                 string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
                 string table = Message.TableEmployee + " emp join " + Message.TablePerson
                     + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
@@ -496,7 +517,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 }
                 else
                 {
-                    DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName = '" + ddlDayOff.SelectedValue.ToString() + "' and ProjectName = 'Leave'");
+                    DataTable myDatatmp = _com.getData(Message.TableTask+" tas", " * ", " INNER JOIN "
+                        +Message.TableProject+" pro ON tas."+Message.ProjectIDColumn+" = pro."
+                        +Message.ProjectIDColumn+" WHERE tas."+Message.TaskNameColumn+" = '" 
+                        + ddlDayOff.SelectedValue.ToString() + "' and pro."+Message.ProjectNameColumn+" = 'Leave'");
                     if (ddlShow.SelectedValue == "All")
                     {
                         condition = condition + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();

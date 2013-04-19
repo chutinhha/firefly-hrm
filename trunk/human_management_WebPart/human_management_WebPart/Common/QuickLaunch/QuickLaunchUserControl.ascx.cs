@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
             dailyAttendance = Message.DailyAttendancePage;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {

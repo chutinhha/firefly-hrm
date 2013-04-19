@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -73,7 +74,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.AddNewQuestion
                 }
                 else
                 {
-                    DataTable dt = _com.getData(Message.TableCheckpointQuestion, "*", " order by " + Message.QuestionIDColumn + " desc");
+                    DataTable dt = _com.getData(Message.TableCheckpointQuestion, "*", " order by " 
+                        + Message.QuestionIDColumn + " desc");
                     int QuestionID=0;
                     if (dt.Rows.Count > 0)
                     {

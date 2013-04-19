@@ -17,7 +17,8 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -36,12 +37,14 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                     TextArea1.Text = "";
                     lblError.Text = "";
                     lblSuccess.Text = "";
-                    DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where ProjectName = 'Leave' ");
-                    _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where ProjectId = " + myData.Rows[0][0].ToString(), false, "");
+                    DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn, 
+                        " where "+Message.ProjectNameColumn+" = 'Leave' ");
+                    _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where "
+                        +Message.ProjectIDColumn+" = " + myData.Rows[0][0].ToString(), false, "");
                 }
                 else
                 {
-                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }
@@ -51,10 +54,14 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
             lblError.Text = "";
             try
             {
-                DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId ", Message.TaskNameColumn + ",HumanResources.Task.StartDate,HumanResources.Task.EndDate,HumanResouces.Task.LimiDate", " where ProjectName = 'Leave' ");
+                DataTable myData = _com.getData(Message.TableProject + " pro INNER JOIN " + Message.TableTask 
+                    + " tas ON tas."+Message.ProjectIDColumn+" = pro."+Message.ProjectIDColumn+" ", 
+                    Message.TaskNameColumn + ",tas."+Message.StartDateColumn+",tas."+Message.EndDateColumn
+                    +",tas."+Message.LimitDateColumn, " where pro."+Message.ProjectNameColumn+" = 'Leave' ");
                 if (ddlLeave.SelectedValue.ToString() == "Vacation")
                 {
-                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " HumanResouces.Employee.VacationDate ", " where BusinessEntityId =" + Session["AccountID"].ToString());
+                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " "+Message.VacationHoursColumn
+                        +" ", " where "+Message.BusinessEntityIDColumn+" =" + Session["AccountID"].ToString());
                     lblLimitDate.Text = myDatatmp.Rows[0][0].ToString();
                     pnlLimit.Visible = true;
                     pnlLimit.Visible = true;
@@ -65,7 +72,8 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                 }
                 else if (ddlLeave.SelectedValue.ToString() == "Sick")
                 {
-                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " HumanResouces.Employee.SickLeaveDate ", " where BusinessEntityId =" + Session["AccountID"].ToString());
+                    DataTable myDatatmp = _com.getData(Message.TableEmployee, " "+Message.SickLeaveHoursColumn
+                        +" ", " where "+Message.BusinessEntityIDColumn+" =" + Session["AccountID"].ToString());
                     lblLimitDate.Text = myDatatmp.Rows[0][0].ToString();
                     pnlLimit.Visible = true;
                     pnlLimit.Visible = true;
@@ -118,7 +126,10 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
             lblSuccess.Text = "";
             try
             {
-                DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId ", Message.TaskIdColumn, " where ProjectName = 'Leave' and TaskName = '" + ddlLeave.SelectedValue.ToString()+"'");
+                DataTable myData = _com.getData(Message.TableProject + " pro INNER JOIN " + Message.TableTask 
+                    + " tas ON tas."+Message.ProjectIDColumn+" = pro."+Message.ProjectIDColumn+" ", 
+                    Message.TaskIdColumn, " where pro."+Message.ProjectNameColumn+" = 'Leave' and tas."
+                    +Message.TaskNameColumn+" = '" + ddlLeave.SelectedValue.ToString()+"'");
                 string table = Message.TablePersonProject;
                 string condition = Session["AccountID"].ToString() + "," + myData.Rows[0][0].ToString();
                 if (TextArea1.Text.ToString() != "")

@@ -11,7 +11,8 @@ namespace SP2010VisualWebPart.ChangePassword
         {
             this.confirmChangePassword = Message.ConfirmChangePassword;
             if (Session["Account"] == null) {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {

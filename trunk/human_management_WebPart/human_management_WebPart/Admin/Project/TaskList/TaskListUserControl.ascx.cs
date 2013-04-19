@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -22,9 +23,11 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     try
                     {
                         if (!IsPostBack) {
-                            _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, "", true, "Upcoming deadline");
-                            _com.bindData(Message.TaskIdColumn+","+Message.TaskNameColumn + "," + Message.NoteColumn + "," + Message.StartDateColumn
-                                + "," + Message.EndDateColumn, " where " + Message.EndDateColumn + ">='" + DateTime.Today + "' and " + Message.EndDateColumn
+                            _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, 
+                                " where "+Message.ProjectNameColumn+"<>'Leave'", true, "Upcoming deadline");
+                            _com.bindData(Message.TaskIdColumn+","+Message.TaskNameColumn + "," + Message.NoteColumn 
+                                + "," + Message.StartDateColumn+ "," + Message.EndDateColumn, " where " 
+                                + Message.EndDateColumn + ">='" + DateTime.Today + "' and " + Message.EndDateColumn
                                 + "<='" + DateTime.Today.AddDays(7) + "'", Message.TableTask, grdData);
                             _com.setGridViewStyle(grdData);
                             ddlProjectName.AutoPostBack = true;
@@ -51,14 +54,15 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
         {
             try{
                 if (ddlProjectName.SelectedValue == "Upcoming deadline") {
-                    _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn + "," + Message.StartDateColumn
-                                + "," + Message.EndDateColumn, " where " + Message.EndDateColumn + ">='" + DateTime.Today + "' and " + Message.EndDateColumn
-                                + "<='" + DateTime.Today.AddDays(7) + "'", Message.TableTask, grdData);
+                    _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn 
+                        + "," + Message.StartDateColumn+ "," + Message.EndDateColumn, " where " + Message.EndDateColumn 
+                        + ">='" + DateTime.Today + "' and " + Message.EndDateColumn+ "<='" + DateTime.Today.AddDays(7) 
+                        + "'", Message.TableTask, grdData);
                 }
                 else
                 {
                     DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
-                                    + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
+                        + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
                     _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
                         + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
                         + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);

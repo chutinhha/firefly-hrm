@@ -16,7 +16,8 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -34,7 +35,7 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
                 }
                 else
                 {
-                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }
@@ -42,11 +43,6 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
         protected void btnReset_Click(object sender, EventArgs e)
         {
             pnlData.Visible = false;
-        }
-
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         protected string startDate { get; set; }
         protected string endDate { get; set; }
@@ -145,10 +141,6 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
-        }
-        protected void ddlDayOff_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

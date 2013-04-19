@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.PunchAttendance
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -70,14 +71,6 @@ namespace SP2010VisualWebPart.PunchAttendance
         protected string readOnly { get; set; }
         protected string inputValue { get; set; }
         protected string inputID { get; set; }
-        protected void btnDate_Click(object sender, EventArgs e)
-        {
-        }
-
-        protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
-        {
-        }
-
         protected void btnInOut_Click(object sender, EventArgs e)
         {
             if (Request.Form["txtDate"].ToString().Trim() == "")
@@ -96,18 +89,28 @@ namespace SP2010VisualWebPart.PunchAttendance
                     {
                         try
                         {
-                            DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue);
+                            DateTime dt = DateTime.Parse(Request.Form["txtDate"].ToString().Trim() + " " 
+                                + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue);
                             if (Session["In"] == null)
                             {
                                 //Only accept Punch In after last Punch Out in the same day
-                                DataTable data = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
-                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                                    + Session["Name"].ToString() + "' and "+Message.EmailAddressColumn+"='"+Session["Email"].ToString()
-                                    +"' and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'"
-                                    + "+CAST(MONTH("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
-                                    +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "' and "+Message.PunchOutColumn
-                                    + " >'" + Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "' order by " + Message.PunchOutColumn + " desc");
+                                DataTable data = _com.getData(Message.TableAttendance + " a join " 
+                                    + Message.TablePerson + " p on a."+ Message.BusinessEntityIDColumn
+                                    + "=p." + Message.BusinessEntityIDColumn + " join " + Message.TableEmployee 
+                                    + " emp on emp."+ Message.BusinessEntityIDColumn + "=p." 
+                                    + Message.BusinessEntityIDColumn, "p." + Message.NameColumn 
+                                    + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
+                                    + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn 
+                                    + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn 
+                                    + "=N'"+ Session["Name"].ToString() + "' and "+Message.EmailAddressColumn
+                                    +"='"+Session["Email"].ToString()+"' and CAST(DAY("+Message.PunchInColumn
+                                    +") as varchar(50))+'-'"+ "+CAST(MONTH("+Message.PunchInColumn
+                                    +") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
+                                    +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year 
+                                    + "' and "+Message.PunchOutColumn+ " >'" + Request.Form["txtDate"].ToString().Trim() 
+                                    + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue 
+                                    + "'"+" and emp."+Message.CurrentFlagColumn+"='True'"
+                                    +" order by " + Message.PunchOutColumn + " desc");
                                 if (data.Rows.Count > 0)
                                 {
                                     lblError.Text = Message.LastPunchOut + data.Rows[0][3].ToString()
@@ -116,7 +119,8 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 }
                                 else
                                 {
-                                    Session["In"] = Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue;
+                                    Session["In"] = Request.Form["txtDate"].ToString().Trim() + " " 
+                                        + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue;
                                     Session["NoteIn"] = txtNote.Text.Trim();
                                     Label1.Text = "Punch Out";
                                     btnInOut.Text = "Out";
@@ -142,14 +146,17 @@ namespace SP2010VisualWebPart.PunchAttendance
                                     this.inputID = "txtDateDisable";
                                 }
                                 else {
-                                    DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
-                                            + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "' and p."+Message.EmailAddressColumn
-                                            +"='"+Session["Email"].ToString()+"'");
+                                    DataTable getID = _com.getData(Message.TablePerson + " p join " 
+                                        + Message.TableEmployee + " e on p."+ Message.BusinessEntityIDColumn 
+                                        + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
+                                        , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() 
+                                        + "' and p."+Message.EmailAddressColumn+"='"+Session["Email"].ToString()+"'"
+                                        + " and e." + Message.CurrentFlagColumn + "='True'");
                                     _com.insertIntoTable(Message.TableAttendance,"", "N'" + getID.Rows[0][0].ToString()
-                                            + "','" + Session["In"].ToString() + "',N'" + Session["NoteIn"].ToString()
-                                            + "','" + Request.Form["txtDate"].ToString().Trim() + " " + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "'"
-                                            + ",N'" + txtNote.Text.Trim() + "','"+DateTime.Now+"'",false);
+                                        + "','" + Session["In"].ToString() + "',N'" + Session["NoteIn"].ToString()
+                                        + "','" + Request.Form["txtDate"].ToString().Trim() + " " 
+                                        + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue + "'"
+                                        + ",N'" + txtNote.Text.Trim() + "','"+DateTime.Now+"'",false);
                                     _com.closeConnection();
                                     Session.Remove("In");
                                     Session.Remove("NoteIn");

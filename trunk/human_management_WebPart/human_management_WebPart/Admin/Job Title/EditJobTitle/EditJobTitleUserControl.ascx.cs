@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.EditJobTitle
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -28,7 +29,8 @@ namespace SP2010VisualWebPart.EditJobTitle
                     }
                     if (Session["Name"] == null)
                     {
-                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -37,7 +39,8 @@ namespace SP2010VisualWebPart.EditJobTitle
                             if (!IsPostBack)
                             {
                                 _com.SetItemList(Message.NameColumn, Message.TableJobCategory, ddlJobCategory, "", false, "");
-                                DataTable dt = _com.getData(Message.TableJobTitle, "*", " where " + Message.JobTitleColumn + "=N'" + Session["Name"] + "'");
+                                DataTable dt = _com.getData(Message.TableJobTitle, "*", " where " + Message.JobTitleColumn 
+                                    + "=N'" + Session["Name"] + "'");
                                 if (dt.Rows.Count > 0)
                                 {
                                     txtJobTitle.Text = dt.Rows[0][1].ToString().Trim();
@@ -83,7 +86,8 @@ namespace SP2010VisualWebPart.EditJobTitle
                         , " where " + Message.JobTitleColumn + "=N'" + Session["Name"].ToString() + "';");
                     DataTable jobVacancy = _com.getData(Message.TableVacancy, Message.VacancyNameColumn
                         , " where " + Message.JobTitleColumn + "=N'" + Session["Name"].ToString() + "';");
-                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn+"='" + Session["Name"].ToString() + "'");
+                    _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where "
+                        +Message.JobTitleColumn+"='" + Session["Name"].ToString() + "'");
                     _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn
                         +"='" + Session["Name"].ToString() + "'");
                     _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn+"=N'" + txtJobTitle.Text + "',"

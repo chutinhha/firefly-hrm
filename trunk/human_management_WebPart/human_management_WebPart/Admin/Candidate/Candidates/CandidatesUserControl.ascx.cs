@@ -14,7 +14,8 @@ namespace SP2010VisualWebPart.Candidates
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -225,15 +226,17 @@ namespace SP2010VisualWebPart.Candidates
                     {
                         isCheck = true;
                         string sql = @"delete from "+Message.TableJobCandidate+" where "+Message.FullNameColumn+"=N'"
-                            + Server.HtmlDecode(gr.Cells[2].Text) + "' and " + Message.EmailColumn + "=N'" + Server.HtmlDecode(gr.Cells[3].Text) + "';";
+                            + Server.HtmlDecode(gr.Cells[2].Text) + "' and " + Message.EmailColumn + "=N'" 
+                            + Server.HtmlDecode(gr.Cells[3].Text) + "';";
                         SqlCommand command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                     }
                 }
                 if (isCheck == true)
                 {
-                    _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," + Message.EmailColumn
-                        + "," + Message.ApplyDateColumn + "," + Message.StatusColumn + "", "", Message.TableJobCandidate, grdData);
+                    _com.bindData(Message.JobVacancyColumn + "," + Message.FullNameColumn + "," 
+                        + Message.EmailColumn+ "," + Message.ApplyDateColumn + "," + Message.StatusColumn 
+                        + "", "", Message.TableJobCandidate, grdData);
                     if (grdData.Rows.Count > 0)
                     {
                         grdData.HeaderRow.Cells[1].Text = "Job Vacancy";

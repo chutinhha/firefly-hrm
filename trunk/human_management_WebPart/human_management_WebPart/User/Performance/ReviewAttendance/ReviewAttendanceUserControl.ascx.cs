@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -46,19 +47,6 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                 }
             }
         }
-
-        protected void btnDateFrom_Click(object sender, EventArgs e)
-        {
-        }
-
-        protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void btnDateTo_Click(object sender, EventArgs e)
-        {
-        }
-
         protected void rdoViewDate_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoViewDate.Checked == true)
@@ -121,9 +109,9 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                             + ") as varchar(50)) = '" + dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                             lblError.Text = "";
                             _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
-                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.BusinessEntityIDColumn + "='" + Session["AccountID"]
-                                + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.BusinessEntityIDColumn 
+                                + "='" + Session["AccountID"]+ "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson 
+                                + " p on a."+ Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                             check = true;
                         }
                         catch (FormatException)
@@ -157,9 +145,10 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                                     + dt1.Day + "-" + dt1.Year + "'";
                                 lblError.Text = "";
                                 _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
-                                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.BusinessEntityIDColumn + "='"
-                                    + Session["AccountID"] + "'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." 
+                                    + Message.BusinessEntityIDColumn + "='"+ Session["AccountID"] + "'" + _condition, 
+                                    Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                 check = true;
                             }
                         }
@@ -229,10 +218,6 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                 lblDate.Visible = false;
                 lblDateDescription.Visible = false;
             }
-        }
-
-        protected void txtEmployeeName_TextChanged(object sender, EventArgs e)
-        {
         }
     }
 }

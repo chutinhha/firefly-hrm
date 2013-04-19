@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -32,8 +33,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EditQuestion
                         {
                             if (!IsPostBack)
                             {
-                                DataTable dt = _com.getData(Message.TableCheckpointQuestion,"*", " where " + Message.QuestionIDColumn
-                                    + "='" + Session["QuestionID"].ToString().Trim() + "'");
+                                DataTable dt = _com.getData(Message.TableCheckpointQuestion,"*", " where " 
+                                    + Message.QuestionIDColumn+ "='" + Session["QuestionID"].ToString().Trim() + "'");
                                 if (dt.Rows.Count > 0)
                                 {
                                     txtQuestion.Text = dt.Rows[0][1].ToString().Trim();

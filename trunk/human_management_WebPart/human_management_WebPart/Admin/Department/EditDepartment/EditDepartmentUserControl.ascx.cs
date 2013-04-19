@@ -15,7 +15,8 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -49,17 +50,21 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                                 lblSuccess.Text = "";
                                 _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", false, "");
                                 DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
-                                    + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, " dep."
-                                    + Message.NameColumn+",edh."+Message.StartDateColumn, " where edh."+Message.BusinessEntityIDColumn+"='"+Session["BusinessID"]
-                                    +"' and (edh."+Message.EndDateColumn+" is NULL or edh."+Message.EndDateColumn+"='')");
+                                    + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, 
+                                    " dep."+ Message.NameColumn+",edh."+Message.StartDateColumn, " where edh."
+                                    +Message.BusinessEntityIDColumn+"='"+Session["BusinessID"]+"' and (edh."
+                                    +Message.EndDateColumn+" is NULL or edh."+Message.EndDateColumn+"='')");
                                 if (dt.Rows.Count > 0) { 
                                     ddlDepartment.SelectedValue=dt.Rows[0][0].ToString();
                                     Session["DepartmentName"] = ddlDepartment.SelectedValue;
                                     this.startDate=dt.Rows[0][1].ToString();
                                 }
-                                _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn + " as 'Start Date'"
-                                    + ",edh." + Message.EndDateColumn + " as 'End Date'", " where " + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
-                                    + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment + " dep on dep." + Message.DepartmentIDColumn
+                                _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." 
+                                    + Message.StartDateColumn + " as 'Start Date'"+ ",edh." 
+                                    + Message.EndDateColumn + " as 'End Date'", " where " 
+                                    + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                                    + "'", Message.TableHistoryDepartment + " edh join " 
+                                    + Message.TableDepartment + " dep on dep." + Message.DepartmentIDColumn
                                     + "=edh." + Message.DepartmentIDColumn, grdData);
                                 _com.setGridViewStyle(grdData);
                             }
@@ -92,7 +97,8 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                             _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", false, "");
                             DataTable dt = _com.getData(Message.TableDepartment + " dep join " + Message.TableHistoryDepartment
                                 + " edh on dep." + Message.DepartmentIDColumn + "=edh." + Message.DepartmentIDColumn, " dep."
-                                + Message.NameColumn + ",edh." + Message.StartDateColumn, " where edh." + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                                + Message.NameColumn + ",edh." + Message.StartDateColumn, " where edh." 
+                                + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
                                 + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')");
                             if (dt.Rows.Count > 0)
                             {
@@ -100,9 +106,11 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                                 Session["DepartmentName"] = ddlDepartment.SelectedValue;
                                 this.startDate = dt.Rows[0][1].ToString();
                             }
-                            _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn + " as 'Start Date'"
-                                + ",edh." + Message.EndDateColumn + " as 'End Date'", " where " + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
-                                + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment + " dep on dep." + Message.DepartmentIDColumn
+                            _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn 
+                                + " as 'Start Date'"+ ",edh." + Message.EndDateColumn + " as 'End Date'", " where " 
+                                + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                                + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment 
+                                + " dep on dep." + Message.DepartmentIDColumn
                                 + "=edh." + Message.DepartmentIDColumn, grdData);
                             _com.setGridViewStyle(grdData);
                         }
@@ -156,8 +164,8 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                 {
                     lblSuccess.Text = "";
                     lblError.Text = "";
-                    DataTable departmentID = _com.getData(Message.TableDepartment, Message.DepartmentIDColumn, " where " + Message.NameColumn
-                        + "='" + ddlDepartment.SelectedValue + "'");
+                    DataTable departmentID = _com.getData(Message.TableDepartment, Message.DepartmentIDColumn, 
+                        " where " + Message.NameColumn+ "='" + ddlDepartment.SelectedValue + "'");
                     if (Session["DepartmentName"].ToString() == ddlDepartment.SelectedValue)
                     {
                         try
@@ -167,10 +175,12 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                                 + Request.Form["txtStartDate"].ToString().Trim() + "' where " + Message.BusinessEntityIDColumn
                                 + "='" + Session["BusinessID"] + "' and (" + Message.EndDateColumn + " is NULL or "
                                 + Message.EndDateColumn + "='')");
-                            _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn + " as 'Start Date'"
-                                        + ",edh." + Message.EndDateColumn + " as 'End Date'", " where " + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
-                                        + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment + " dep on dep." + Message.DepartmentIDColumn
-                                        + "=edh." + Message.DepartmentIDColumn, grdData);
+                            _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn 
+                                + " as 'Start Date'"+ ",edh." + Message.EndDateColumn + " as 'End Date'", " where " 
+                                + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                                + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment 
+                                + " dep on dep." + Message.DepartmentIDColumn
+                                + "=edh." + Message.DepartmentIDColumn, grdData);
                             lblError.Text = "";
                             lblSuccess.Text = Message.UpdateSuccess;
                         }
@@ -188,12 +198,14 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                             + Request.Form["txtStartDate"].ToString().Trim() + "' where " + Message.BusinessEntityIDColumn
                             + "='" + Session["BusinessID"] + "' and (" + Message.EndDateColumn + " is NULL or "
                             + Message.EndDateColumn + "='')");
-                        _com.insertIntoTable(Message.TableHistoryDepartment, "", "'"+dt.Rows[0][0].ToString()+"','"+departmentID.Rows[0][0].ToString()
-                            + "','" + dt.Rows[0][2].ToString() + "','" + Request.Form["txtStartDate"].ToString().Trim() + "',NULL,'" + DateTime.Now + "'", false); 
-                        _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn + " as 'Start Date'"
-                                    + ",edh." + Message.EndDateColumn + " as 'End Date'", " where " + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
-                                    + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment + " dep on dep." + Message.DepartmentIDColumn
-                                    + "=edh." + Message.DepartmentIDColumn, grdData);
+                        _com.insertIntoTable(Message.TableHistoryDepartment, "", "'"+dt.Rows[0][0].ToString()+"','"
+                            +departmentID.Rows[0][0].ToString()+ "','" + dt.Rows[0][2].ToString() + "','" 
+                            + Request.Form["txtStartDate"].ToString().Trim() + "',NULL,'" + DateTime.Now + "'", false); 
+                        _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn 
+                            + " as 'Start Date'"+ ",edh." + Message.EndDateColumn + " as 'End Date'", 
+                            " where " + Message.BusinessEntityIDColumn + "='" + Session["BusinessID"]
+                            + "'", Message.TableHistoryDepartment + " edh join " + Message.TableDepartment 
+                            + " dep on dep." + Message.DepartmentIDColumn+ "=edh." + Message.DepartmentIDColumn, grdData);
                         lblError.Text = "";
                         lblSuccess.Text = Message.UpdateSuccess;
                     }

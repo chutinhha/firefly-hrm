@@ -12,7 +12,8 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -140,7 +141,9 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                     }
                     condition = condition + " order by p." + Message.NameColumn;
                     _com.bindDataAttendanceSummary("p." + Message.NameColumn + ",a." + Message.PunchInColumn
-                        + ",a." + Message.PunchOutColumn+",p."+Message.BusinessEntityIDColumn+",p."+Message.EmailAddressColumn, condition, Message.TableAttendance + " a join "
+                        + ",a." + Message.PunchOutColumn+",p."+Message.BusinessEntityIDColumn+",p."
+                        + Message.EmailAddressColumn, condition + " and e." + Message.CurrentFlagColumn + "='True'"
+                        , Message.TableAttendance + " a join "
                         + Message.TablePerson + " p on a." + Message.BusinessEntityIDColumn + " = p."
                         + Message.BusinessEntityIDColumn + " join " + Message.TableEmployee + " e on a."
                         + Message.BusinessEntityIDColumn + " = e." + Message.BusinessEntityIDColumn + " join "

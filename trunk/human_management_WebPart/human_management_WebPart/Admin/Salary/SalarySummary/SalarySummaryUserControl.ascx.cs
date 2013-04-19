@@ -15,7 +15,8 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -40,11 +41,11 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                         ColumnTitle[0] = "Salary";
                         DataTable dt = _com.getData(Message.TableEmployee + " e join "
                             + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
-                            + Message.BusinessEntityIDColumn + " order by "+sort);
+                            + Message.BusinessEntityIDColumn + " where e."+Message.CurrentFlagColumn+"='True' order by "+sort);
                         _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn+" as 'Email'"
-                            , " on e." + Message.BusinessEntityIDColumn + "=p." 
-                            + Message.BusinessEntityIDColumn + " order by "+sort, Message.TableEmployee + " e join "
-                            + Message.TablePerson + " p", grdData, 1, ColumnTitle);
+                            , " on e." + Message.BusinessEntityIDColumn + "=p."
+                            + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " 
+                            + sort, Message.TableEmployee + " e join "+ Message.TablePerson + " p", grdData, 1, ColumnTitle);
                         float totalCostPerMonth = 0;
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -177,13 +178,13 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             }
             string[] ColumnTitle = new string[1];
             ColumnTitle[0] = "Salary";
-            _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn+" as 'Email'"
-                , " on e." + Message.BusinessEntityIDColumn + "=p."
-                + Message.BusinessEntityIDColumn + " order by " + sort, Message.TableEmployee + " e join "
-                + Message.TablePerson + " p", grdData,1, ColumnTitle);
+            _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn
+                +" as 'Email'", " on e." + Message.BusinessEntityIDColumn + "=p."
+                + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " 
+                + sort, Message.TableEmployee + " e join "+ Message.TablePerson + " p", grdData,1, ColumnTitle);
             DataTable dt = _com.getData(Message.TableEmployee + " e join "
                 + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
-                + Message.BusinessEntityIDColumn + " order by "+sort);
+                + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " + sort);
             //grdData.HeaderRow.Cells[1].Text = "Edit Salary";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -237,8 +238,8 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                     sort = "Salary asc";
                 }
                 DataTable dt = _com.getData(Message.TableEmployee + " e join "
-                    + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
-                    + Message.BusinessEntityIDColumn + " order by " + sort);
+                    + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn
+                    + "=p." + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " + sort);
                 float totalCostPerMonth = 0;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {

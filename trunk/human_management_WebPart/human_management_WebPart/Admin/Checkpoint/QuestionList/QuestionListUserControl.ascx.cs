@@ -14,7 +14,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -25,8 +26,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.QuestionList
                         if (!IsPostBack)
                         {
                             ddlAnswerType.SelectedIndex = 0;
-                            _com.bindData(Message.QuestionIDColumn+","+Message.QuestionTitleColumn+","+Message.AnserTypeColumn
-                                +"","",Message.TableCheckpointQuestion,grdData);
+                            _com.bindData(Message.QuestionIDColumn+","+Message.QuestionTitleColumn+","
+                                +Message.AnserTypeColumn+"","",Message.TableCheckpointQuestion,grdData);
                             _com.setGridViewStyle(grdData);
                             if (grdData.Rows.Count > 0)
                             {

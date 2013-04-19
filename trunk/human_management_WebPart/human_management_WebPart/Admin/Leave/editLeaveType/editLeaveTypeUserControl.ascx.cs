@@ -15,8 +15,8 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
         protected void loadData()
         {
             string strTableName = Message.TableTask;
-            string strColum = " TaskName,Note, LimitDate ";
-            string strCondition = " WHERE TaskId = " + strTaskID;
+            string strColum = " "+Message.TaskNameColumn+","+Message.NoteColumn+", "+Message.LimitDateColumn+" ";
+            string strCondition = " WHERE "+Message.TaskIdColumn+" = " + strTaskID;
             DataTable dt = _com.getData(strTableName, strColum, strCondition);
             txtLeaveName.Text = dt.Rows[0][0].ToString();
             txtNote.Text = dt.Rows[0][1].ToString();
@@ -40,7 +40,8 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -80,7 +81,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             {
                 if (txtLeaveName.Text == "")
                 {
-                    lblUserGuide.Text = "* Require Failed";
+                    lblUserGuide.Text = Message.MissRequired;
                     return;
                 }
                 lblUserGuide.Text = "";
@@ -88,7 +89,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 {
                     if (txtLimitDay.Text == "")
                     {
-                        lblUserGuide.Text = "* Require Failed";
+                        lblUserGuide.Text = Message.MissRequired;
                         return;
                     }
                 }
@@ -97,23 +98,25 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 string strTableName = Message.TableTask;
 
                 //Leave Name;
-                string strLeaveName = "TaskName = N'" + txtLeaveName.Text + "'";
+                string strLeaveName = Message.TaskNameColumn+" = N'" + txtLeaveName.Text + "'";
                 //Leave Note
-                string strNote = "Note = N'" + txtNote.Text + "'";
+                string strNote = Message.NoteColumn+" = N'" + txtNote.Text + "'";
                 //LimitedDate            
                 string strLimitedDate = "";
-                if (txtLimitDay.Text != "") strLimitedDate = "LimitDate = " + txtLimitDay.Text;
-                else strLimitedDate = "LimitDate = 0";
+                if (txtLimitDay.Text != "") strLimitedDate = Message.LimitDateColumn+" = " 
+                    + txtLimitDay.Text;
+                else strLimitedDate = Message.LimitDateColumn+" = 0";
 
                 //Condition
                 strTaskID = Session["TaskID"].ToString();
-                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate + " where TaskId = " + strTaskID;
+                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate 
+                    + " where "+Message.TaskIdColumn+" = " + strTaskID;
                 _com.updateTable(strTableName, strCondition);
 
 
 
                 _com.closeConnection();
-                Response.Redirect("LeaveTypeList.aspx", true);
+                Response.Redirect(Message.LeaveTypeList, true);
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
@@ -123,7 +126,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             _com.closeConnection();
-            Response.Redirect("LeaveTypeList.aspx", true);
+            Response.Redirect(Message.LeaveTypeList, true);
         }
 
         protected void rdbLimitedYes_CheckedChanged(object sender, EventArgs e)

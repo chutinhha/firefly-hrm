@@ -17,7 +17,8 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -30,15 +31,29 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                             if (!IsPostBack)
                             {
                                 lblError.Text = "";
-                                _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, " where " + Message.ProjectNameColumn + " != 'Leave'", false, "");
-                                DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], false, "");
-                                DataTable myData1 = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                                _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, 
+                                    " where " + Message.ProjectNameColumn + " != 'Leave'", false, "");
+                                DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE "
+                                    +Message.ProjectNameColumn+" ='" + ddlProject.SelectedValue.ToString() + "'");
+                                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, 
+                                    " WHERE "+Message.ProjectIDColumn+" = " + (int)myData.Rows[0][0], false, "");
+                                DataTable myData1 = _com.getData(Message.TableTask+" tas", " * ", " INNER JOIN "
+                                    +Message.TableProject+" pro ON tas."+Message.ProjectIDColumn+" = "
+                                    +"pro."+Message.ProjectIDColumn+" WHERE tas."+Message.TaskNameColumn
+                                    +" = '" + ddlTask.SelectedValue.ToString() + "' and pro."+Message.ProjectNameColumn
+                                    +" = '" + ddlProject.SelectedValue.ToString() + "'");
                                 if (myData1.Rows.Count > 0)
                                 {
                                     grdData.Visible = true;
-                                    string column = "HumanResources.PersonProject.PersonProjectId,HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                                    string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData1.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
+                                    string column = "pp."+Message.PersonProjectIdColumn+",emp."+Message.BusinessEntityIDColumn
+                                        +", " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
+                                    string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job."+Message.JobIDColumn
+                                        +" = emp."+Message.JobIDColumn+") INNER JOIN "+Message.TablePerson
+                                        +" per ON per."+Message.BusinessEntityIDColumn+" = emp."
+                                        +Message.BusinessEntityIDColumn+") INNER JOIN "+Message.TablePersonProject
+                                        +" pp ON pp."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
+                                        +") WHERE pp."+Message.TaskIdColumn+" = " + myData1.Rows[0][0].ToString() 
+                                        + " and pp."+Message.CurrentFlagColumn+" = 1 and emp."+Message.CurrentFlagColumn+" = 1";
                                     string table = "(((" + Message.TableJobTitle;
                                     _com.bindData(column, condition, table, grdData);
                                     if (grdData.Rows.Count == 0)
@@ -69,16 +84,31 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                     else if (Session["ProjectName"] != null && Session["TaskName"] != null)
                     {
                         lblError.Text = "";
-                        _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, " where " + Message.ProjectNameColumn + " != 'Leave'", false, "");
+                        _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, 
+                            " where " + Message.ProjectNameColumn + " != 'Leave'", false, "");
                         ddlProject.SelectedValue = Session["ProjectName"].ToString();
-                        DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                        _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], false, "");
+                        DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE "
+                            +Message.ProjectNameColumn+" = '" + ddlProject.SelectedValue.ToString() + "'");
+                        _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE "
+                            +Message.ProjectIDColumn+" = " + (int)myData.Rows[0][0], false, "");
                         ddlTask.SelectedValue = Session["TaskName"].ToString();
                         try
                         {
-                            DataTable myDatatmp = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                            string column = "HumanResources.PersonProject.PersonProjectId, HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                            string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myDatatmp.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
+                            DataTable myDatatmp = _com.getData(Message.TableTask+" tas", " * ", " INNER JOIN "
+                                +Message.TableProject+" pro ON tas."+Message.ProjectIDColumn+" = "
+                                +"pro."+Message.ProjectIDColumn+" WHERE tas."+Message.TaskNameColumn
+                                +" = '" + ddlTask.SelectedValue.ToString() + "' and pro."+Message.ProjectNameColumn
+                                +" = '" + ddlProject.SelectedValue.ToString() + "'");
+                            string column = "pp."+Message.PersonProjectIdColumn+", emp."+Message.BusinessEntityIDColumn
+                                +", per." + Message.PersonNameColumn + ",per." + Message.EmailAddressColumn 
+                                + ",job." + Message.JobTitleColumn;
+                            string condition = " INNER JOIN " + Message.TableEmployee + " emp ON "
+                                +"job."+Message.JobIDColumn+" = emp."+Message.JobIDColumn+") INNER JOIN "
+                                +Message.TablePerson+" per ON per."+Message.BusinessEntityIDColumn+" = "
+                                +"emp."+Message.BusinessEntityIDColumn+") INNER JOIN "+Message.TablePersonProject
+                                +" pp ON pp."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
+                                +") WHERE pp."+Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString() 
+                                + " and pp."+Message.CurrentFlagColumn+" = 1 and emp."+Message.CurrentFlagColumn+" = 1";
                             string table = "(((" + Message.TableJobTitle;
                             _com.bindData(column, condition, table, grdData);
                             _com.setGridViewStyle(grdData);
@@ -136,20 +166,35 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
             lblError.Text = "";
             try
             {
-                DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask, " WHERE ProjectId = " + (int)myData.Rows[0][0], false, "");
-                DataTable myData1 = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
+                DataTable myData = _com.getData(Message.TableProject, " * ", " WHERE "
+                    + Message.ProjectNameColumn + " ='" + ddlProject.SelectedValue.ToString() + "'");
+                _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask,
+                    " WHERE " + Message.ProjectIDColumn + " = " + (int)myData.Rows[0][0], false, "");
+                DataTable myData1 = _com.getData(Message.TableTask + " tas", " * ", " INNER JOIN "
+                    + Message.TableProject + " pro ON tas." + Message.ProjectIDColumn + " = "
+                    + "pro." + Message.ProjectIDColumn + " WHERE tas." + Message.TaskNameColumn
+                    + " = '" + ddlTask.SelectedValue.ToString() + "' and pro." + Message.ProjectNameColumn
+                    + " = '" + ddlProject.SelectedValue.ToString() + "'");
                 if (myData1.Rows.Count > 0)
                 {
                     grdData.Visible = true;
-                    string column = "HumanResources.PersonProject.PersonProjectId,HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                    string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData1.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
+                    string column = "pp." + Message.PersonProjectIdColumn + ",emp." + Message.BusinessEntityIDColumn
+                        + ", " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
+                    string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job." + Message.JobIDColumn
+                        + " = emp." + Message.JobIDColumn + ") INNER JOIN " + Message.TablePerson
+                        + " per ON per." + Message.BusinessEntityIDColumn + " = emp."
+                        + Message.BusinessEntityIDColumn + ") INNER JOIN " + Message.TablePersonProject
+                        + " pp ON pp." + Message.BusinessEntityIDColumn + " = emp." + Message.BusinessEntityIDColumn
+                        + ") WHERE pp." + Message.TaskIdColumn + " = " + myData1.Rows[0][0].ToString()
+                        + " and pp." + Message.CurrentFlagColumn + " = 1 and emp." + Message.CurrentFlagColumn + " = 1";
                     string table = "(((" + Message.TableJobTitle;
                     _com.bindData(column, condition, table, grdData);
                     if (grdData.Rows.Count == 0)
                     {
                         lblError.Text = Message.NotExistData;
-                    }else{
+                    }
+                    else
+                    {
                         _com.setGridViewStyle(grdData);
                         grdData.HeaderRow.Cells[2].Text = "BusinessEntityId";
                         grdData.HeaderRow.Cells[3].Text = "Employee Name";
@@ -174,9 +219,21 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
             try
             {
                 grdData.Visible = true;
-                DataTable myData = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                string column = "HumanResources.PersonProject.PersonProjectId,HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
+                DataTable myData = _com.getData(Message.TableTask + " tas", " * ", " INNER JOIN "
+                    + Message.TableProject + " pro ON tas." + Message.ProjectIDColumn + " = "
+                    + "pro." + Message.ProjectIDColumn + " WHERE tas." + Message.TaskNameColumn
+                    + " = '" + ddlTask.SelectedValue.ToString() + "' and pro." + Message.ProjectNameColumn
+                    + " = '" + ddlProject.SelectedValue.ToString() + "'");
+                string column = "pp."+Message.PersonProjectIdColumn+",emp."+Message.BusinessEntityIDColumn
+                    +", " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," 
+                    + Message.JobTitleColumn;
+                string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job."+Message.JobIDColumn
+                    +" = emp."+Message.JobIDColumn+") INNER JOIN "+Message.TablePerson+" per ON "
+                    +"per."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
+                    +") INNER JOIN "+Message.TablePersonProject+" pp ON pp."+Message.BusinessEntityIDColumn
+                    +" = emp."+Message.BusinessEntityIDColumn+") WHERE pp."+Message.TaskIdColumn+" = " 
+                    + myData.Rows[0][0].ToString() + " and pp."+Message.CurrentFlagColumn+" = 1 and "
+                    +"emp."+Message.CurrentFlagColumn+" = 1";
                 string table = "(((" + Message.TableJobTitle;
                 _com.bindData(column, condition, table, grdData);
                 if (grdData.Rows.Count == 0)
@@ -233,9 +290,21 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                 if (isCheck == true)
                 {
                     grdData.Visible = true;
-                    DataTable myData = _com.getData(Message.TableTask, " * ", " INNER JOIN HumanResources.Project ON HumanResources.Task.ProjectId = HumanResources.Project.ProjectId WHERE TaskName like '%" + ddlTask.SelectedValue.ToString() + "%' and ProjectName like '%" + ddlProject.SelectedValue.ToString() + "%'");
-                    string column = "HumanResources.PersonProject.PersonProjectId,HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                    string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId) INNER JOIN HumanResources.PersonProject ON HumanResources.PersonProject.BusinessEntityId = HumanResources.Employee.BusinessEntityId) WHERE HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString() + " and HumanResources.PersonProject.CurrentFlag = 1 and HumanResources.Employee.CurrentFlag = 1";
+                    DataTable myData = _com.getData(Message.TableTask + " tas", " * ", " INNER JOIN "
+                    + Message.TableProject + " pro ON tas." + Message.ProjectIDColumn + " = "
+                    + "pro." + Message.ProjectIDColumn + " WHERE tas." + Message.TaskNameColumn
+                    + " = '" + ddlTask.SelectedValue.ToString() + "' and pro." + Message.ProjectNameColumn
+                    + " = '" + ddlProject.SelectedValue.ToString() + "'");
+                    string column = "pp." + Message.PersonProjectIdColumn + ",emp." + Message.BusinessEntityIDColumn
+                        + ", " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + ","
+                        + Message.JobTitleColumn;
+                    string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job." + Message.JobIDColumn
+                        + " = emp." + Message.JobIDColumn + ") INNER JOIN " + Message.TablePerson + " per ON "
+                        + "per." + Message.BusinessEntityIDColumn + " = emp." + Message.BusinessEntityIDColumn
+                        + ") INNER JOIN " + Message.TablePersonProject + " pp ON pp." + Message.BusinessEntityIDColumn
+                        + " = emp." + Message.BusinessEntityIDColumn + ") WHERE pp." + Message.TaskIdColumn + " = "
+                        + myData.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 1 and "
+                        + "emp." + Message.CurrentFlagColumn + " = 1";
                     string table = "(((" + Message.TableJobTitle;
                     _com.bindData(column, condition, table, grdData);
                     if (grdData.Rows.Count == 0)
@@ -280,11 +349,6 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                     cbSelected.Checked = false;
                 }
             }
-        }
-
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

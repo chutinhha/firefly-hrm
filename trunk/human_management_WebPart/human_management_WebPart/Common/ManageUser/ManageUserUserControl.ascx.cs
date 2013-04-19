@@ -15,6 +15,11 @@ namespace SP2010VisualWebPart.Common.ManageUser
             try
             {
                 SPWeb web = SPControl.GetContextWeb(this.Context);
+                string[] allAccount = new string[100];
+                int accountCount = 0;
+                DataTable user = _com.getData(Message.TableEmployee + " e join " + Message.TablePerson + " p on e."
+                            + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, "e." + Message.LoginIDColumn
+                            + ",p." + Message.RankColumn + ",e." + Message.BusinessEntityIDColumn, "");
                 foreach (SPRoleAssignment roleAssignment in web.RoleAssignments)
                 {
                     string[] account = new string[100];
@@ -22,73 +27,107 @@ namespace SP2010VisualWebPart.Common.ManageUser
                     string[] rank = new string[100];
                     int count = 0;
                     SPPrincipal member = roleAssignment.Member;
-                    string[] userAccount = member.LoginName.Split('\\');
-                    if (userAccount.Length > 1)
+                    if (!member.ToString().Contains("system") && !member.ToString().Contains("administrator")
+                            && !member.ToString().Contains("Administrator"))
                     {
-                        account[count] = userAccount[1];
-                        count++;
-                    }
-                    else
-                    {
-                        account[count] = member.LoginName;
-                        count++;
-                    }
-                    count = 0;
-                    string[] userName = member.Name.Split('\\');
-                    if (userName.Length > 1)
-                    {
-                        name[count] = userName[1];
-                        count++;
-                    }
-                    else
-                    {
-                        name[count] = member.Name;
-                        count++;
-                    }
-                    count = 0;
-                    foreach (SPRoleDefinition role in roleAssignment.RoleDefinitionBindings)
-                    {
-                        if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
+                        string[] userAccount = member.LoginName.Split('\\');
+                        if (userAccount.Length > 1)
                         {
-                            rank[count] = "Admin";
+                            account[count] = userAccount[1];
+                            count++;
                         }
                         else
                         {
-                            rank[count] = "User";
+                            account[count] = member.LoginName;
+                            count++;
                         }
-                        count++;
-                        break;
-                    }
-                    DataTable user = _com.getData(Message.TableEmployee + " e join " + Message.TablePerson + " p on e."
-                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, "e." + Message.LoginIDColumn
-                        + ",p." + Message.RankColumn + ",e." + Message.BusinessEntityIDColumn, "");
-                    for (int i = 0; i < count; i++)
-                    {
-                        bool isAccountExist = false;
-                        for (int j = 0; j < user.Rows.Count; j++)
+                        allAccount[accountCount] = account[count - 1];
+                        accountCount++;
+                        count = 0;
+                        string[] userName = member.Name.Split('\\');
+                        if (userName.Length > 1)
                         {
-                            if (account[i] == user.Rows[j][0].ToString())
+                            name[count] = userName[1];
+                            count++;
+                        }
+                        else
+                        {
+                            name[count] = member.Name;
+                            count++;
+                        }
+                        count = 0;
+                        foreach (SPRoleDefinition role in roleAssignment.RoleDefinitionBindings)
+                        {
+                            if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
                             {
-                                isAccountExist = true;
-                                if (rank[i] != user.Rows[j][1].ToString())
+                                rank[count] = "Admin";
+                            }
+                            else
+                            {
+                                rank[count] = "User";
+                            }
+                            count++;
+                            break;
+                        }
+                        for (int i = 0; i < count; i++)
+                        {
+                            bool isAccountExist = false;
+                            for (int j = 0; j < user.Rows.Count; j++)
+                            {
+                                if (account[i] == user.Rows[j][0].ToString())
                                 {
+                                    isAccountExist = true;
                                     _com.updateTable(Message.TablePerson, " " + Message.RankColumn + "='" + rank[i] + "'"
                                         + "," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where " + Message.BusinessEntityIDColumn
                                         + "='" + user.Rows[j][2].ToString() + "'");
+                                    _com.updateTable(Message.TableEmployee, " " + Message.CurrentFlagColumn + "='True' where "
+                                        + Message.BusinessEntityIDColumn + "='" + user.Rows[j][2].ToString() + "'");
+                                    DataTable image = _com.getData(Message.TableEmployee, Message.ImageColumn, " where "
+                                        + Message.BusinessEntityIDColumn + "='" + user.Rows[j][2].ToString() + "'");
+                                    if (image.Rows.Count > 0 && image.Rows[0][0].ToString() != "") { }
+                                    else {
+                                        _com.updateTable(Message.TableEmployee, " " + Message.ImageColumn + "='add_user.png'"
+                                            + " where " + Message.BusinessEntityIDColumn + "='" + user.Rows[j][2].ToString() + "'");
+                                    }
                                     break;
                                 }
                             }
+                            if (isAccountExist == false && account[i] != "system" && !account[i].Contains("administrator")
+                                && !account[i].Contains("Administrator"))
+                            {
+                                _com.insertIntoTable(Message.TableEmployee + " (" + Message.LoginIDColumn + "," + Message.CurrentFlagColumn + ","
+                                    + Message.ModifiedDateColumn + ","+Message.ImageColumn+") ", "", "'" + account[i] + "','True','"
+                                    + DateTime.Now + "','add_user.png'", false);
+                                DataTable employeeTopID = _com.getTopID(Message.TableEmployee);
+                                _com.insertIntoTable(Message.TablePerson + " (" + Message.BusinessEntityIDColumn + "," + Message.RankColumn
+                                    + "," + Message.NameColumn + "," + Message.ModifiedDateColumn + ") ", "", "'" + employeeTopID.Rows[0][0].ToString()
+                                    + "','" + rank[i] + "','" + name[i] + "','" + DateTime.Now + "'", false);
+                            }
                         }
-                        if (isAccountExist == false && account[i] != "system" && !account[i].Contains("administrator")
-                            &&!account[i].Contains("Administrator"))
+                    }
+                }
+                DataTable userOnly = _com.getData(Message.TableEmployee, Message.LoginIDColumn, "");
+                for (int j = 0; j < userOnly.Rows.Count; j++)
+                {
+                    bool isAccountDelete = false;
+                    for (int i = 0; i < accountCount; i++)
+                    {
+                        if (allAccount[i] == userOnly.Rows[j][0].ToString())
                         {
-                            _com.insertIntoTable(Message.TableEmployee + " (" + Message.LoginIDColumn + "," + Message.CurrentFlagColumn + ","
-                                + Message.ModifiedDateColumn + ") ", "", "'" + account[i] + "','True','" + DateTime.Now + "'", false);
-                            DataTable employeeTopID = _com.getTopID(Message.TableEmployee);
-                            _com.insertIntoTable(Message.TablePerson + " (" + Message.BusinessEntityIDColumn + "," + Message.RankColumn
-                                + "," + Message.NameColumn + "," + Message.ModifiedDateColumn + ") ", "", "'" + employeeTopID.Rows[0][0].ToString()
-                                + "','" + rank[i] + "','" + name[i] + "','" + DateTime.Now + "'", false);
+                            break;
                         }
+                        else
+                        {
+                            if (i == accountCount - 1)
+                            {
+                                isAccountDelete = true;
+                            }
+                        }
+                    }
+                    if (isAccountDelete == true)
+                    {
+                        _com.updateTable(Message.TableEmployee, " " + Message.CurrentFlagColumn + "='False' where "
+                            + Message.LoginIDColumn + "='" + userOnly.Rows[j][0].ToString() + "'");
                     }
                 }
             }

@@ -19,7 +19,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
             if (Session["Account"] == null)
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -27,7 +27,8 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                 {
                     if (Session["TaskName"] == null)
                     {
-                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -59,15 +60,23 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
             lblError.Text = "";
             try
             {
-                string column = "HumanResources.Employee.BusinessEntityId, " + Message.PersonNameColumn + "," + Message.EmailAddressColumn + "," + Message.JobTitleColumn;
-                string condition = " INNER JOIN " + Message.TableEmployee + " ON HumanResources.JobTitle.JobId = HumanResources.Employee.JobId) INNER JOIN HumanResources.Person ON HumanResources.Person.BusinessEntityId = HumanResources.Employee.BusinessEntityId WHERE HumanResources.Employee.CurrentFlag = 1";
-                string table = "(" + Message.TableJobTitle;
+                string column = "emp."+Message.BusinessEntityIDColumn+", per." + Message.PersonNameColumn 
+                    + ",per." + Message.EmailAddressColumn + ",job." + Message.JobTitleColumn;
+                string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job."+Message.JobIDColumn+" = "
+                    +"emp."+Message.JobIDColumn+") INNER JOIN "+Message.TablePerson+" per ON per."
+                    +Message.BusinessEntityIDColumn +" = emp."+Message.BusinessEntityIDColumn+" WHERE "
+                    +"emp."+Message.CurrentFlagColumn+" = 'True'";
+                string table = "(" + Message.TableJobTitle+" job";
                 if (txtEmployee.Text != "")
                 {
-                    condition = condition + " and " + Message.PersonNameColumn + " LIKE  '%" + txtEmployee.Text.ToString().Trim() + "%'";
+                    condition = condition + " and per." + Message.PersonNameColumn + " LIKE  '%" 
+                        + txtEmployee.Text.ToString().Trim() + "%'";
                 }
                 _com.bindData(column, condition, table, grdData);
-                if (grdData.Rows.Count == 0) lblError.Text = "There is no consistent data!";
+                if (grdData.Rows.Count == 0)
+                {
+                    lblError.Text = Message.NotExistData;
+                }
                 else
                 {
                     _com.setGridViewStyle(grdData);
@@ -89,29 +98,55 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
             bool checkRedirect = false;
             try
             {
-                DataTable myData = _com.getData(Message.TableProject, Message.TaskIdColumn, " INNER JOIN HumanResources.Task ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId WHERE ProjectName = 'Leave' and TaskName = '" + txtDayOff.Text.ToString() + "'");
+                DataTable myData = _com.getData(Message.TableProject +" pro", Message.TaskIdColumn, " INNER JOIN"
+                    +Message.TableTask+" tas ON pro."+Message.ProjectIDColumn+" = tas."+Message.ProjectIDColumn
+                    +" WHERE pro."+Message.ProjectNameColumn+" = 'Leave' and tas."+Message.TaskNameColumn
+                    +" = '" + txtDayOff.Text.ToString() + "'");
                 foreach (GridViewRow gr in grdData.Rows)
                 {
                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                     if (cb.Checked)
                     {
-                        DataTable myDatatmp = _com.getData(Message.TablePersonProject, Message.CurrentFlagColumn, " where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
+                        DataTable myDatatmp = _com.getData(Message.TablePersonProject+" pp join "
+                            +Message.TableEmployee+" emp on pp."+Message.BusinessEntityIDColumn+"=emp."
+                            +Message.BusinessEntityIDColumn, "pp."+Message.CurrentFlagColumn
+                            , " where pp."+Message.BusinessEntityIDColumn+" = '" + gr.Cells[1].Text 
+                            + "' and pp."+Message.TaskIdColumn+" = '" + myData.Rows[0][0].ToString()+"'"
+                            +" and emp."+Message.CurrentFlagColumn+"='True'");
                         if (myDatatmp.Rows.Count > 0)
                         {
                             if (myDatatmp.Rows[0][0].ToString() == "1")
                             {
-                                lblError.Text = "This employee has been assigned in this leave !";
+                                lblError.Text = Message.AlreadyAssign;
                             }
                             else if (myDatatmp.Rows[0][0].ToString() != "1")
                             {
-                                _com.updateTable(Message.TablePersonProject, " CurrentFlag = 1, ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where HumanResources.PersonProject.BusinessEntityId = " + gr.Cells[1].Text + " and HumanResources.PersonProject.TaskId = " + myData.Rows[0][0].ToString());
-                                checkRedirect = true;
+                                bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee, 
+                                    Message.CurrentFlagColumn, " where "+ Message.BusinessEntityIDColumn 
+                                    + "='" + gr.Cells[1].Text + "'").Rows[0][0].ToString());
+                                if (employeeStatus == true)
+                                {
+                                    _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn
+                                        + " = '1', " + Message.ModifiedDateColumn + " = CAST( '"
+                                        + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where "
+                                        + Message.BusinessEntityIDColumn + " = '" + gr.Cells[1].Text + "' and "
+                                        + Message.TaskIdColumn + " = '" + myData.Rows[0][0].ToString() + "'");
+                                    checkRedirect = true;
+                                }
                             }
                         }
                         else
                         {
-                            _com.insertIntoTable(Message.TablePersonProject, "", gr.Cells[1].Text + "," + myData.Rows[0][0].ToString() + ",NULL,1,CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME),NULL,NULL ", false);
-                            checkRedirect = true;
+                            bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee, 
+	                            Message.CurrentFlagColumn, " where "+ Message.BusinessEntityIDColumn 
+	                            + "='" + gr.Cells[1].Text + "'").Rows[0][0].ToString());
+                            if (employeeStatus == true)
+                            {
+                                _com.insertIntoTable(Message.TablePersonProject, "", "'" + gr.Cells[1].Text + "','"
+                                    + myData.Rows[0][0].ToString() + "',NULL,1,CAST( '"
+                                    + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME),NULL,NULL", false);
+                                checkRedirect = true;
+                            }
                         }
                     }
                 }
@@ -142,11 +177,6 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                     cbSelected.Checked = false;
                 }
             }
-        }
-
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
