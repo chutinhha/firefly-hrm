@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Web.UI;using System.Web;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -62,7 +63,9 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                             loadData();
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {
@@ -73,42 +76,48 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
         protected string confirmSave { get; set; }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtLeaveName.Text == "")
+            try
             {
-                lblUserGuide.Text = "* Require Failed";
-                return;
-            }
-            lblUserGuide.Text = "";
-            if (rdbLimitedYes.Checked == true)
-            {
-                if (txtLimitDay.Text == "")
+                if (txtLeaveName.Text == "")
                 {
                     lblUserGuide.Text = "* Require Failed";
                     return;
                 }
+                lblUserGuide.Text = "";
+                if (rdbLimitedYes.Checked == true)
+                {
+                    if (txtLimitDay.Text == "")
+                    {
+                        lblUserGuide.Text = "* Require Failed";
+                        return;
+                    }
+                }
+
+                //Insert Database to Project Table
+                string strTableName = Message.TableTask;
+
+                //Leave Name;
+                string strLeaveName = "TaskName = N'" + txtLeaveName.Text + "'";
+                //Leave Note
+                string strNote = "Note = N'" + txtNote.Text + "'";
+                //LimitedDate            
+                string strLimitedDate = "";
+                if (txtLimitDay.Text != "") strLimitedDate = "LimitDate = " + txtLimitDay.Text;
+                else strLimitedDate = "LimitDate = 0";
+
+                //Condition
+                strTaskID = Session["TaskID"].ToString();
+                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate + " where TaskId = " + strTaskID;
+                _com.updateTable(strTableName, strCondition);
+
+
+
+                _com.closeConnection();
+                Response.Redirect("LeaveTypeList.aspx", true);
             }
-
-            //Insert Database to Project Table
-            string strTableName = Message.TableTask;
-
-            //Leave Name;
-            string strLeaveName = "TaskName = N'" + txtLeaveName.Text + "'";
-            //Leave Note
-            string strNote = "Note = N'" + txtNote.Text + "'";
-            //LimitedDate            
-            string strLimitedDate = "";
-            if (txtLimitDay.Text != "") strLimitedDate = "LimitDate = " + txtLimitDay.Text;
-            else strLimitedDate = "LimitDate = 0";            
-
-            //Condition
-            strTaskID = Session["TaskID"].ToString();
-            string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate + " where TaskId = " + strTaskID;
-            _com.updateTable(strTableName, strCondition);           
-
-            
-
-            _com.closeConnection();
-            Response.Redirect("LeaveTypeList.aspx", true);
+            catch (Exception ex) {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

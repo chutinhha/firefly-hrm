@@ -735,13 +735,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx" />
+    <Content Include="Admin\AssignDayOff\AssignLeave\AssignLeaveUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\AssignDayOff\AssignLeave\Elements.xml" />
     <Content Include="Admin\AssignDayOff\DayOff\DayOffUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\AssignDayOff\DayOff\Elements.xml" />
-    <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx" />
+    <Content Include="Admin\Attendance\AttendanceSummary\AttendanceSummaryUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Attendance\AttendanceSummary\Elements.xml" />
     <Content Include="Admin\Candidate\AddCandidate\AddCandidateUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -835,7 +839,9 @@
     <Content Include="Common\QuickLaunch\QuickLaunchUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx" />
+    <Content Include="Admin\Job Title\AddJobtitle\AddJobtitleUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Job Title\AddJobtitle\Elements.xml" />
     <Content Include="Common\NotifyEmployee\Elements.xml" />
     <Content Include="Common\NotifyEmployee\NotifyEmployeeUserControl.ascx">
@@ -857,7 +863,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Admin\Vacancy\AddVacancy\Elements.xml" />
-    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx" />
+    <Content Include="Admin\Attendance\AttendanceRecord\AttendanceRecordUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Attendance\AttendanceRecord\Elements.xml" />
     <Content Include="Admin\Candidate\Candidates\CandidatesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

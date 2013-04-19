@@ -27,58 +27,60 @@
     });
 </script>
 <asp:Panel ID="pnlPage" runat="server">
-<table class="fieldTitleDiv" cellpadding="0">
-    <tr>
-        <td>
-            <table class="fieldTitleTable">
-                <tr>
-                    <td class="fieldTitleTd">
-                        <span style="color: white;">
-                            <asp:Label ID="lblTitle" runat="server" Text="Edit Employee Department"></asp:Label></span>
-                    </td>
-                </tr>
-            </table>
-            <br />
-            <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" Enabled="False"></asp:TextBox>
-            <p>
-                &nbsp;</p>
-            <span style="padding-left: 5px;"></span>
-            <asp:Label ID="txtDepartment" runat="server" Text="Department" Width="150px"></asp:Label>
-            <div class="styled-selectLong">
-                <asp:DropDownList ID="ddlDepartment" runat="server">
-                </asp:DropDownList>
-            </div>
-            <p>
-                &nbsp;</p>
-            <span style="padding-left: 5px;"></span><asp:Label ID="lblStartDate" runat="server" Text="Start Date" Width="150"></asp:Label>
-            <input type="text" <%=this.readOnly %> id="<%=this.startDateID %>" name="txtStartDate" style="width:200px;" value="<%=this.startDate %>" />
-            <p>
-                &nbsp;</p>
-            <div class="borderTop">
-                <span style="padding-left: 155px;"></span>
-                <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px" 
-                    onclick="btnSave_Click" /></div>
-<p>
-                &nbsp;</p>
-            &nbsp;<asp:Label ID="lblDepartmentHistory" runat="server" Text="Department History"></asp:Label>
-            <p>
-                &nbsp;</p>
-            <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
-            </asp:GridView>
-            <table>
-                <tr>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
-<p>
-    &nbsp;</p>
-<span style="padding-left: 5px;"></span>
-<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
-<asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label>
+    <table class="fieldTitleDiv" cellpadding="0">
+        <tr>
+            <td>
+                <table class="fieldTitleTable">
+                    <tr>
+                        <td class="fieldTitleTd">
+                            <span style="color: white;">
+                                <asp:Label ID="lblTitle" runat="server" Text="Edit Employee Department"></asp:Label></span>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <span style="padding-left: 5px;"></span>
+                <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
+                <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" Enabled="False"></asp:TextBox>
+                <p>
+                    &nbsp;</p>
+                <span style="padding-left: 5px;"></span>
+                <asp:Label ID="txtDepartment" runat="server" Text="Department" Width="150px"></asp:Label>
+                <div class="styled-selectLong">
+                    <asp:DropDownList ID="ddlDepartment" runat="server">
+                    </asp:DropDownList>
+                </div>
+                <p>
+                    &nbsp;</p>
+                <span style="padding-left: 5px;"></span>
+                <asp:Label ID="lblStartDate" runat="server" Text="Start Date" Width="150"></asp:Label>
+                <input type="text" <%=this.readOnly %> id="<%=this.startDateID %>" name="txtStartDate"
+                    style="width: 200px;" value="<%=this.startDate %>" />
+                <p>
+                    &nbsp;</p>
+                <div class="borderTop">
+                    <span style="padding-left: 155px;"></span>
+                    <asp:Button ID="btnSave" CssClass="addButton" runat="server" Text="Save" Width="80px"
+                        OnClick="btnSave_Click" /></div>
+                <p>
+                    &nbsp;</p>
+                &nbsp;<asp:Label ID="lblDepartmentHistory" runat="server" Text="Department History"></asp:Label>
+                <p>
+                    &nbsp;</p>
+                <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
+                </asp:GridView>
+                <table>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <p>
+        &nbsp;</p>
+    <span style="padding-left: 5px;"></span>
+    <asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
+    <asp:Label ID="lblSuccess" runat="server" Style="color: Green;"></asp:Label>
 </asp:Panel>

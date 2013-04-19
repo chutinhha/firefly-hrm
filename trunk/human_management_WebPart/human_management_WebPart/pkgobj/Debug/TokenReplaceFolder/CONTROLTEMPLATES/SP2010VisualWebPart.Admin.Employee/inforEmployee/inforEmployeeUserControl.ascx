@@ -1,7 +1,15 @@
+<script type="text/javascript" language="javascript">
+
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
+</script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript">
     $(function () {
         $("#txtBirthDate").datepicker({
             changeMonth: true,
@@ -71,12 +79,12 @@
                         <br />
                         <br />
                         <asp:Label ID="lblBirthDate" runat="server" Text="Birth Date" Width="150px"></asp:Label>
-                        <input type="text" style="width:200px;" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
+                        <input type="text" style="width: 200px;" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
                             value="<%= this.strBirthDateValue %>" <%= this.strBirtDateEditable %> />
                         <br />
                         <br />
                         <asp:Label ID="lblSSNNumber" runat="server" Text="SSNNumber" Width="150px"></asp:Label>
-                        <asp:TextBox ID="txtSSNNumber" runat="server" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="txtSSNNumber" runat="server" Width="200px" onkeyup="ValidateText(this);"></asp:TextBox>
                         <br />
                         <br />
                         <asp:Label ID="lblGender" runat="server" Text="Sex" Width="150px"></asp:Label>
@@ -121,12 +129,12 @@
             <asp:TextBox ID="txtEmail" runat="server" Width="200px"></asp:TextBox>
             <span style="padding-left: 50px;"></span>
             <asp:Label ID="lblHomePhone" runat="server" Text="Home Phone" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtHomePhone" runat="server" Width="200px"></asp:TextBox>
+            <asp:TextBox ID="txtHomePhone" runat="server" Width="200px" onkeyup="ValidateText(this);"></asp:TextBox>
             <br />
             <br />
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblMobile" runat="server" Text="Mobile" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtMobile" runat="server" Width="200px"></asp:TextBox>
+            <asp:TextBox ID="txtMobile" runat="server" Width="200px" onkeyup="ValidateText(this);"></asp:TextBox>
             <span style="padding-left: 50px;"></span>
             <asp:Label ID="lblCountry" runat="server" Text="Country" Width="150px"></asp:Label>
             <div class="styled-selectLong">
@@ -142,6 +150,8 @@
             <asp:Label ID="lblAddressStreet" runat="server" Text="Address Street" Width="150px"></asp:Label>
             <asp:TextBox ID="txtAddressStreet" runat="server" Width="200px"></asp:TextBox>
             <br />
+            <asp:Label ID="lblPersonContactGuide" runat="server" Text="Please check format of email"
+                Visible="false" ForeColor="Red"></asp:Label>
             <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
@@ -183,8 +193,11 @@
                 <asp:Button ID="btnEditEmpState" CssClass="addButton" runat="server" Text="Edit"
                     Width="80px" OnClick="btnEditEmpState_Click" />
                 <asp:Button ID="btnCancelEditEmpState" runat="server" CssClass="resetButton" Text="Cancel"
-                    Visible="False" Width="80px" />
+                    Visible="False" Width="80px" OnClick="btnCancelEditEmpState_Click" />
             </div>
         </td>
     </tr>
 </table>
+<br />
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

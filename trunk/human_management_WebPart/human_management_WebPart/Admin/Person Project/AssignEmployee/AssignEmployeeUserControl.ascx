@@ -23,7 +23,7 @@
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <font color="white">Search Employee</font>
+                        <span style="color: white;">Search Employee</span>
                     </td>
                 </tr>
             </table>
@@ -35,7 +35,7 @@
             <br />
             <div class="borderTop">
                 <span style="padding-left: 105px"></span>
-                <asp:Button ID="btnSearch" runat="server" class="addButton" Text="Search" Width="70px"
+                <asp:Button ID="btnSearch" runat="server" CssClass="addButton" Text="Search" Width="70px"
                     OnClick="btnSearch_Click" />
             </div>
         </td>
@@ -49,17 +49,17 @@
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblProject" runat="server" Text="Project" Width="100px"></asp:Label>
             <asp:TextBox ID="txtProject" runat="server" Width="200px" ReadOnly="True"></asp:TextBox>
-            <span style="padding-left: 100px"></span></span><asp:Label ID="lblTask" runat="server"
+            <span style="padding-left: 100px"></span><asp:Label ID="lblTask" runat="server"
                 Text="Task" Width="100px"></asp:Label>
             <asp:TextBox ID="txtTask" runat="server" Width="200px" ReadOnly="True"></asp:TextBox>
             <br />
             <br />
             <div class="borderTop">
                 <span style="padding-left: 105px"></span>
-                <asp:Button class="addButton" ID="btnAssign" runat="server" Text="Assign" Width="70px"
+                <asp:Button CssClass="addButton" ID="btnAssign" runat="server" Text="Assign" Width="70px"
                     OnClick="btnAssign_Click" OnClientClick="return ConfirmOnAssign();" />
             </div>
-            <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
+            <asp:GridView ID="grdData" runat="server" EnableModelValidation="True"
                 OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
                 BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>

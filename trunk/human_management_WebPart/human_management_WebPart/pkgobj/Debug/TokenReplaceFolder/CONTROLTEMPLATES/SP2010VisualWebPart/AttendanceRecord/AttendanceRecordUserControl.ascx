@@ -30,7 +30,6 @@
         });
     });
 </script>
-
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnView" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
         <tr>
@@ -61,10 +60,10 @@
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDate" runat="server" Text="Date" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width:200px;" value="<%=this.startDate %>" /></asp:Panel>
+                    <input type="text" id="txtDateFrom" name="txtDateFrom" style="width: 200px;" value="<%=this.startDate %>" /></asp:Panel>
                 <span style="padding-left: 5px;"></span>
                 <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
-                    <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" style="width:200px;" /></asp:Panel>
+                    <input type="text" id="txtDateTo" name="txtDateTo" value="<%=this.endDate %>" style="width: 200px;" /></asp:Panel>
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDateDescription" runat="server" Text="(mm-dd-yyyy)" Width="155px"
@@ -123,7 +122,6 @@
         </tr>
     </table>
     <br />
-    
 </asp:Panel>
 &nbsp;<asp:Label ID="lblError" runat="server" Style="color: Red;"></asp:Label>
 <br />

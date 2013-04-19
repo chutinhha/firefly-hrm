@@ -34,7 +34,7 @@
                     Width="80px" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <br />
-            <asp:GridView ID="grdLeaveType" align="right" runat="server" EnableModelValidation="True"
+            <asp:GridView ID="grdLeaveType" runat="server" EnableModelValidation="True"
                 Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
@@ -58,3 +58,6 @@
         </td>
     </tr>
 </table>
+<br />
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

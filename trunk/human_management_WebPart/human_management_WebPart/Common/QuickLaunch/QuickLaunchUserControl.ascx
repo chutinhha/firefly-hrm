@@ -80,9 +80,10 @@
                             <asp:Panel ID="pnlAttendance" runat="server">
                                 <td>
                                     <div class="quickLaunge">
-                                            <asp:ImageButton ID="btnInOut" style="height:50px;width:50px;" runat="server" ImageUrl="/_layouts/Images/21_2_ob/HourGlass.png" OnClick="btnInOut_Click"/>
-                                            <span class="quickLinkText">
-                                                <asp:Label ID="lblAttendance" runat="server" Text="Attendance"></asp:Label></span>
+                                        <asp:ImageButton ID="btnInOut" Style="height: 50px; width: 50px;" runat="server"
+                                            ImageUrl="/_layouts/Images/21_2_ob/HourGlass.png" OnClick="btnInOut_Click" />
+                                        <span class="quickLinkText">
+                                            <asp:Label ID="lblAttendance" runat="server" Text="Attendance"></asp:Label></span>
                                     </div>
                                 </td>
                             </asp:Panel>

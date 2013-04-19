@@ -16,6 +16,11 @@
         else
             return false;
     }
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
 </script>
 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSave" Width="100%">
     <table class="fieldTitleDiv" cellpadding="0">
@@ -44,7 +49,7 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblNoOfPosition" runat="server" Text="Number of Positions" Width="150px"></asp:Label>
-                <asp:TextBox ID="txtNoOfPosition" runat="server" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="txtNoOfPosition" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>

@@ -29,6 +29,11 @@
             changeYear: true
         });
     });
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
 </script>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -66,7 +71,7 @@
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblLimitDate" runat="server" Text="Limit Date" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtLimitDate" runat="server" Width="200px"></asp:TextBox>
+            <asp:TextBox ID="txtLimitDate" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
             <p>
                 &nbsp;</p>
             &nbsp;<span style="color: Red;">(*) is required</span>

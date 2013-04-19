@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Web.UI;using System.Web;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary

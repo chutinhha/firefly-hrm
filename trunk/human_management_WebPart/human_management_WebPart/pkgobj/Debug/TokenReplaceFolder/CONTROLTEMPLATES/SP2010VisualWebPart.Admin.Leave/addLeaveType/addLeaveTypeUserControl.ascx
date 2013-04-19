@@ -16,6 +16,11 @@
         else
             return false;
     }
+    function ValidateText(i) {
+        if (i.value.length > 0) {
+            i.value = i.value.replace(/[^\d]+/g, '');
+        }
+    }
 </script>
 <table class="fieldTitleDiv" cellpadding="0">
     <tr>
@@ -44,7 +49,7 @@
             <asp:Panel ID="pnlLimitedYes" runat="server" Visible="false">
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblLimitDay" runat="server" Text="Limit Date(*)" Width="150px"></asp:Label>
-                <asp:TextBox ID="txtLimitDay" runat="server" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="txtLimitDay" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
                 <br />
                 <br />
             </asp:Panel>
@@ -67,3 +72,6 @@
         </td>
     </tr>
 </table>
+<br />
+<br />
+&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Web.UI;using System.Web;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -12,47 +13,54 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
         private CommonFunction _com = new CommonFunction();
 
         protected void binDatatoGridView()
-        {           
-            string strColumn = "p.Name, CAST(CurrentFlag AS VARCHAR(1)), Rank, LoginID, JobTitle, CAST(e.BusinessEntityId AS VARCHAR(10)), d.Name";
-            string strTable = "((((HumanResources.Employee e LEFT JOIN HumanResources.Person p ON e.BusinessEntityId = p.BusinessEntityId) LEFT JOIN HumanResources.JobTitle j ON  e.JobId = j.JobId) LEFT JOIN HumanResources.EmployeeDepartmentHistory edh ON (e.BusinessEntityId = edh.BusinessEntityId AND ((edh.StartDate <= GETDATE() AND GETDATE() <= edh.EndDate) OR (edh.StartDate <= GETDATE() AND edh.EndDate = null)))) LEFT JOIN HumanResources.Department d ON edh.DepartmentID = D.DepartmentID)";
-            string strCondition = " where (E.LoginID != '')";            
-            // Check input
-            // Check Name
-            if (txtEmployeeName.Text != "") strCondition = strCondition + " AND (p.Name LIKE '%" + txtEmployeeName.Text + "%')";
-            // Check Employee Status
-            if (ddlCurrentFlag.SelectedIndex != 0)
-                if (ddlCurrentFlag.SelectedIndex == 1) strCondition = strCondition + " AND (CurrentFlag = 1)";
-                else if (ddlCurrentFlag.SelectedIndex == 2) strCondition = strCondition + " AND (CurrentFlag = 0)";
-            // Check Rank
-            if (ddlRank.SelectedIndex != 0)
-                if (ddlRank.SelectedIndex == 1) strCondition = strCondition + " AND (Rank = 'Admin')";
-                else if (ddlRank.SelectedIndex == 2) strCondition = strCondition + " AND (Rank = 'User')";
-            // Check UserID
-            if (txtLoginID.Text != "") strCondition = strCondition + " AND (LoginID LIKE '%" + txtLoginID.Text + "%')";
-            if (IsPostBack)
-            // Check Job Title
-            if (ddlJobTitle.SelectedIndex != 0) strCondition = strCondition + " AND (JobTitle = '" + ddlJobTitle.SelectedValue + "')";
-            // Check Department
-            if (ddlDepartment.SelectedIndex != 0) strCondition = strCondition + " AND (d.Name = '" + ddlDepartment.SelectedValue + "')";
-
-            _com.bindData(strColumn, strCondition, strTable, grdEmployee);
-            if (grdEmployee.Rows.Count > 0)
+        {
+            try
             {
-                for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                string strColumn = "p.Name, CAST(CurrentFlag AS VARCHAR(1)), Rank, LoginID, JobTitle, CAST(e.BusinessEntityId AS VARCHAR(10)), d.Name";
+                string strTable = "((((HumanResources.Employee e LEFT JOIN HumanResources.Person p ON e.BusinessEntityId = p.BusinessEntityId) LEFT JOIN HumanResources.JobTitle j ON  e.JobId = j.JobId) LEFT JOIN HumanResources.EmployeeDepartmentHistory edh ON (e.BusinessEntityId = edh.BusinessEntityId AND ((edh.StartDate <= GETDATE() AND GETDATE() <= edh.EndDate) OR (edh.StartDate <= GETDATE() AND edh.EndDate = null)))) LEFT JOIN HumanResources.Department d ON edh.DepartmentID = D.DepartmentID)";
+                string strCondition = " where (E.LoginID != '')";
+                // Check input
+                // Check Name
+                if (txtEmployeeName.Text != "") strCondition = strCondition + " AND (p.Name LIKE '%" + txtEmployeeName.Text + "%')";
+                // Check Employee Status
+                if (ddlCurrentFlag.SelectedIndex != 0)
+                    if (ddlCurrentFlag.SelectedIndex == 1) strCondition = strCondition + " AND (CurrentFlag = 1)";
+                    else if (ddlCurrentFlag.SelectedIndex == 2) strCondition = strCondition + " AND (CurrentFlag = 0)";
+                // Check Rank
+                if (ddlRank.SelectedIndex != 0)
+                    if (ddlRank.SelectedIndex == 1) strCondition = strCondition + " AND (Rank = 'Admin')";
+                    else if (ddlRank.SelectedIndex == 2) strCondition = strCondition + " AND (Rank = 'User')";
+                // Check UserID
+                if (txtLoginID.Text != "") strCondition = strCondition + " AND (LoginID LIKE '%" + txtLoginID.Text + "%')";
+                if (IsPostBack)
+                    // Check Job Title
+                    if (ddlJobTitle.SelectedIndex != 0) strCondition = strCondition + " AND (JobTitle = '" + ddlJobTitle.SelectedValue + "')";
+                // Check Department
+                if (ddlDepartment.SelectedIndex != 0) strCondition = strCondition + " AND (d.Name = '" + ddlDepartment.SelectedValue + "')";
+
+                _com.bindData(strColumn, strCondition, strTable, grdEmployee);
+                if (grdEmployee.Rows.Count > 0)
                 {
-                    grdEmployee.Rows[i].Cells[5].Visible = false;
-                    if (grdEmployee.Rows[i].Cells[1].Text.Equals("1")) grdEmployee.Rows[i].Cells[1].Text = "Active";
-                    else grdEmployee.Rows[i].Cells[1].Text = "Inactive";
+                    for (int i = 0; i < grdEmployee.Rows.Count; i++)
+                    {
+                        grdEmployee.Rows[i].Cells[5].Visible = false;
+                        if (grdEmployee.Rows[i].Cells[1].Text.Equals("1")) grdEmployee.Rows[i].Cells[1].Text = "Active";
+                        else grdEmployee.Rows[i].Cells[1].Text = "Inactive";
+                    }
+                    grdEmployee.HeaderRow.Cells[0].Text = "Employee Name";
+                    grdEmployee.HeaderRow.Cells[1].Text = "Employee Status";
+                    grdEmployee.HeaderRow.Cells[2].Text = "Rank";
+                    grdEmployee.HeaderRow.Cells[3].Text = "User Name";
+                    grdEmployee.HeaderRow.Cells[4].Text = "Job Title";
+                    grdEmployee.HeaderRow.Cells[5].Visible = false;
+                    grdEmployee.HeaderRow.Cells[6].Text = "Department";
                 }
-                grdEmployee.HeaderRow.Cells[0].Text = "Employee Name";
-                grdEmployee.HeaderRow.Cells[1].Text = "Employee Status";
-                grdEmployee.HeaderRow.Cells[2].Text = "Rank";
-                grdEmployee.HeaderRow.Cells[3].Text = "User Name";
-                grdEmployee.HeaderRow.Cells[4].Text = "Job Title";
-                grdEmployee.HeaderRow.Cells[5].Visible = false;
-                grdEmployee.HeaderRow.Cells[6].Text = "Department";
+                _com.setGridViewStyle(grdEmployee);
             }
-            _com.setGridViewStyle(grdEmployee);
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -75,7 +83,9 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                             binDatatoGridView();
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) {
+                        lblError.Text = ex.Message;
+                    }
                 }
                 else
                 {

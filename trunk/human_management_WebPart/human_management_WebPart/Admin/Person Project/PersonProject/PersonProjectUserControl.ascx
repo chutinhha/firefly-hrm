@@ -23,7 +23,7 @@
             <table class="fieldTitleTable">
                 <tr>
                     <td class="fieldTitleTd">
-                        <font color="white">Project Personnel</font>
+                        <span style="color: white;">Project Personnel</span>
                     </td>
                 </tr>
             </table>
@@ -44,12 +44,12 @@
             <br />
             <div class="borderTop">
                 <span style="padding-left: 105px"></span>
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" class="addButton"
+                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80px" CssClass="addButton"
                     OnClick="btnAdd_Click" />
-                <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" class="deleteButton"
+                <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80px" CssClass="deleteButton"
                     OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
-            <asp:GridView ID="grdData" align="right" runat="server" EnableModelValidation="True"
+            <asp:GridView ID="grdData" runat="server" EnableModelValidation="True"
                 OnSelectedIndexChanged="grdData_SelectedIndexChanged" Width="100%" BorderStyle="None"
                 BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 <Columns>

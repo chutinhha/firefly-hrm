@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Web.UI;using System.Web;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Data;
@@ -22,12 +23,6 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
-                    try
-                    {
-                        if (!IsPostBack)
-                        { }
-                    }
-                    catch (Exception ex) { }
                 }
                 else
                 {
@@ -40,48 +35,54 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtLeaveName.Text == "")
+            try
             {
-                lblUserGuide.Text = "* Require Failed";
-                return;
-            }
-            lblUserGuide.Text = "";
-            if (rdbLimitedYes.Checked == true)
-            {
-                if (txtLimitDay.Text == "")
+                if (txtLeaveName.Text == "")
                 {
                     lblUserGuide.Text = "* Require Failed";
                     return;
                 }
+                lblUserGuide.Text = "";
+                if (rdbLimitedYes.Checked == true)
+                {
+                    if (txtLimitDay.Text == "")
+                    {
+                        lblUserGuide.Text = "* Require Failed";
+                        return;
+                    }
+                }
+                //Insert Database
+                bool isIDENTITY_INSERT = false;
+
+                //Insert Database to Project Table
+                string strTableName = Message.TableTask;
+                string strColumName = @"(ProjectId,TaskName,Note,LimitDate)";
+
+                // ProjectId
+                DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 ProjectId", " where ProjectName like 'Leave%'");
+                string strProjectID = dtProjectId.Rows[0][0].ToString();
+
+                //Leave Name
+                string strLeaveName = "N'" + txtLeaveName.Text + "'";
+                //Leave Note
+                string strNote = "N'" + txtNote.Text + "'";
+                //LimitedDate            
+                string strLimitedDate = "";
+                if (txtLimitDay.Text != "") strLimitedDate = txtLimitDay.Text;
+                else strLimitedDate = "0";
+
+                //Condition
+                string strCondition = strProjectID + " , " + strLeaveName + " , " + strNote + " , " + strLimitedDate;
+
+                //Insert command
+                _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);
+
+                _com.closeConnection();
+                Response.Redirect("LeaveTypeList.aspx", true);
             }
-            //Insert Database
-            bool isIDENTITY_INSERT = false;
-
-            //Insert Database to Project Table
-            string strTableName = Message.TableTask;
-            string strColumName = @"(ProjectId,TaskName,Note,LimitDate)";
-
-            // ProjectId
-            DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 ProjectId", " where ProjectName like 'Leave%'");
-            string strProjectID = dtProjectId.Rows[0][0].ToString();
-
-            //Leave Name
-            string strLeaveName = "N'" + txtLeaveName.Text + "'";
-            //Leave Note
-            string strNote = "N'" + txtNote.Text + "'";
-            //LimitedDate            
-            string strLimitedDate = "";
-            if (txtLimitDay.Text != "") strLimitedDate = txtLimitDay.Text;
-            else strLimitedDate = "0";
-
-            //Condition
-            string strCondition = strProjectID + " , " + strLeaveName + " , " + strNote + " , " + strLimitedDate;
-
-            //Insert command
-            _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);
-
-            _com.closeConnection();
-            Response.Redirect("LeaveTypeList.aspx", true);
+            catch (Exception ex) {
+                lblError.Text = ex.Message;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

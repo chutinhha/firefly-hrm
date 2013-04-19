@@ -72,7 +72,8 @@
             <br />
             <br />
             <div class="borderTop">
-                <span style="padding-left: 155px;"></span><asp:Button ID="btnView" CssClass="addButton" runat="server" Text="View" Width="80px"
+                <span style="padding-left: 155px;"></span>
+                <asp:Button ID="btnView" CssClass="addButton" runat="server" Text="View" Width="80px"
                     OnClick="btnView_Click" />
                 <asp:Button ID="btnReset" runat="server" Text="Reset" Width="80px" CssClass="resetButton"
                     OnClick="btnReset_Click" />
