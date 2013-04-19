@@ -15,7 +15,8 @@ namespace SP2010VisualWebPart.JobTitles
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -112,8 +113,10 @@ namespace SP2010VisualWebPart.JobTitles
                        , " where " + Message.JobTitleColumn + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
                         DataTable jobVacancy = _com.getData(Message.TableVacancy, Message.VacancyNameColumn
                             , " where " + Message.JobTitleColumn + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
-                        _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Server.HtmlDecode(gr.Cells[1].Text) + "'");
-                        _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where JobTitle='" + Server.HtmlDecode(gr.Cells[1].Text) + "'");
+                        _com.updateTable(Message.TableJobCandidate, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn+"='" 
+                            + Server.HtmlDecode(gr.Cells[1].Text) + "'");
+                        _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn
+                            +"='" + Server.HtmlDecode(gr.Cells[1].Text) + "'");
                         DataTable employee = _com.getData(Message.TableJobTitle, Message.JobIDColumn, " where " + Message.JobTitleColumn
                             + "=N'" + Server.HtmlDecode(gr.Cells[1].Text) + "';");
                         if (employee.Rows.Count > 0) {

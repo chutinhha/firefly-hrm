@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -91,7 +92,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
                             else
                             {
                                 DataTable dt = _com.getData(Message.TableTask, "*", " where " + Message.TaskNameColumn
-                                    + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
+                                    + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='" 
+                                    + Session["ProjectID"].ToString() + "'");
                                 if (dt.Rows.Count > 0)
                                 {
                                     lblError.Text = Message.AlreadyExistTask;
@@ -99,8 +101,9 @@ namespace SP2010VisualWebPart.Admin.Project.AddTask
                                 }
                                 else
                                 {
-                                    _com.insertIntoTable(Message.TableTask, "", "'" + Session["ProjectID"].ToString() + "','" + txtTaskName.Text + "','" + txtNote.Text
-                                        + "','" + Request.Form["txtStartDate"].ToString().Trim() + "','" + Request.Form["txtEndDate"].ToString().Trim()
+                                    _com.insertIntoTable(Message.TableTask, "", "'" + Session["ProjectID"].ToString() + "','" 
+                                        + txtTaskName.Text + "','" + txtNote.Text+ "','" + Request.Form["txtStartDate"].ToString().Trim() 
+                                        + "','" + Request.Form["txtEndDate"].ToString().Trim()
                                         + "','" + txtLimitDate.Text.Trim() + "'", false);
                                     Response.Redirect(Message.TaskListPage, true);
                                 }

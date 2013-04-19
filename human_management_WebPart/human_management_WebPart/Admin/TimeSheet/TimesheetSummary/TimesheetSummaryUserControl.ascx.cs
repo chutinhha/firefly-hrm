@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -128,7 +129,8 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                             condition = " and tim." + Message.CurrentFlagColumn + "='True'";
                         }
                     }
-                    condition = condition + " order by per." + Message.NameColumn+",pro."+Message.ProjectNameColumn
+                    condition = condition + " and emp." + Message.CurrentFlagColumn + "='True'" 
+                        + " order by per." + Message.NameColumn + ",pro." + Message.ProjectNameColumn
                         +",tas."+Message.TaskNameColumn;
                     _com.bindDataTimesheetSummary("per."+Message.NameColumn+" as 'Employee Name',pro."+Message.ProjectNameColumn
                         + " as 'Project Name',tas." + Message.TaskNameColumn + " as 'Task Name',tim." + Message.TimesheetTimeColumn + " as 'Time(Hours)',CONVERT"
@@ -136,7 +138,9 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                         +Message.TableProject+" pro join "+Message.TableTask+" tas on pro."+Message.ProjectIDColumn
                         +"=tas."+Message.ProjectIDColumn+" join "+Message.TableTimesheet+" tim on tim."
                         +Message.TaskIdColumn+" = tas."+Message.TaskIdColumn+" join "+Message.TablePerson
-                        +" per on tim."+Message.BusinessEntityIDColumn+" = per."+Message.BusinessEntityIDColumn,grdData);
+                        +" per on tim."+Message.BusinessEntityIDColumn+" = per."+Message.BusinessEntityIDColumn
+                        + " join " + Message.TableEmployee + " emp on emp."
+                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                     if (grdData.Rows.Count > 0)
                     {
                         lblError.Text = "";

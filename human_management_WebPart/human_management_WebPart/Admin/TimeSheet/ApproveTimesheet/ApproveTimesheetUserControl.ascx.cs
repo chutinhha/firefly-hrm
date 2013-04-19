@@ -14,7 +14,8 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -27,11 +28,14 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                         DataTable dt;
                         if (ddlShow.SelectedValue == "All")
                         {
-                            _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
-                                + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                                + " as 'Task description',t."
-                                + Message.TimesheetTimeColumn + " as 'Time(Hours)'", "", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                                + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData
+                            _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn 
+                                + " as 'Date',p."+ Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
+                                + " as 'Task description',t."+ Message.TimesheetTimeColumn + " as 'Time(Hours)'", 
+                                " where emp." + Message.CurrentFlagColumn + "='True'", " " 
+                                + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                                + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                                + " join " + Message.TableEmployee + " emp on emp."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData
                                 ,1,column);
                             dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, "");
                         }
@@ -39,10 +43,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                         {
                             _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
                                 + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                                + " as 'Task description',t."
-                                + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." + Message.CurrentFlagColumn
-                                + "='True'", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                                + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData, 1, column);
+                                + " as 'Task description',t."+ Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." 
+                                + Message.CurrentFlagColumn+ "='True'" + " and emp." + Message.CurrentFlagColumn + "='True'", " " 
+                                + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                                + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                                + " join " + Message.TableEmployee + " emp on emp."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 1, column);
                             dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, " where " + Message.CurrentFlagColumn
                                 + "='True'");
                         }
@@ -50,10 +56,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                         {
                             _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
                                 + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                                + " as 'Task description',t."
-                                + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." + Message.CurrentFlagColumn
-                                + "='False'", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                                + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData, 1, column);
+                                + " as 'Task description',t."+ Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." 
+                                + Message.CurrentFlagColumn+ "='False'" + " and emp." + Message.CurrentFlagColumn + "='True'", 
+                                " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                                + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                                + " join " + Message.TableEmployee + " emp on emp."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 1, column);
                             dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, " where " + Message.CurrentFlagColumn
                                 + "='False'");
                         }
@@ -132,11 +140,14 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
             DataTable dt;
             if (ddlShow.SelectedValue == "All")
             {
-                _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
-                    + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                    + " as 'Task description',t."
-                    + Message.TimesheetTimeColumn + " as 'Time(Hours)'", "", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData
+                _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn
+                    + " as 'Date',p." + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
+                    + " as 'Task description',t." + Message.TimesheetTimeColumn + " as 'Time(Hours)'",
+                    " where emp." + Message.CurrentFlagColumn + "='True'", " "
+                    + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                    + " join " + Message.TableEmployee + " emp on emp."
+                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData
                     , 1, column);
                 dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, "");
             }
@@ -144,10 +155,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
             {
                 _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
                     + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                    + " as 'Task description',t."
-                    + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." + Message.CurrentFlagColumn
-                    + "='True'", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData, 1, column);
+                    + " as 'Task description',t." + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t."
+                    + Message.CurrentFlagColumn + "='True'" + " and emp." + Message.CurrentFlagColumn + "='True'", " "
+                    + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                    + " join " + Message.TableEmployee + " emp on emp."
+                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 1, column);
                 dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, " where " + Message.CurrentFlagColumn
                     + "='True'");
             }
@@ -155,10 +168,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
             {
                 _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
                     + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                    + " as 'Task description',t."
-                    + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." + Message.CurrentFlagColumn
-                    + "='False'", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData, 1, column);
+                    + " as 'Task description',t." + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t."
+                    + Message.CurrentFlagColumn + "='False'" + " and emp." + Message.CurrentFlagColumn + "='True'",
+                    " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                    + " join " + Message.TableEmployee + " emp on emp."
+                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 1, column);
                 dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, " where " + Message.CurrentFlagColumn
                     + "='False'");
             }
@@ -204,11 +219,14 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                 DataTable dt;
                 if (ddlShow.SelectedValue == "All")
                 {
-                    _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
-                        + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                        + " as 'Task description',t."
-                        + Message.TimesheetTimeColumn + " as 'Time(Hours)'", "", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData
+                    _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn
+                        + " as 'Date',p." + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
+                        + " as 'Task description',t." + Message.TimesheetTimeColumn + " as 'Time(Hours)'",
+                        " where emp." + Message.CurrentFlagColumn + "='True'", " "
+                        + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                        + " join " + Message.TableEmployee + " emp on emp."
+                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData
                         , 1, column);
                     dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, "");
                 }
@@ -216,10 +234,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                 {
                     _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
                         + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                        + " as 'Task description',t."
-                        + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." + Message.CurrentFlagColumn
-                        + "='True'", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData, 1, column);
+                        + " as 'Task description',t." + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t."
+                        + Message.CurrentFlagColumn + "='True'" + " and emp." + Message.CurrentFlagColumn + "='True'", " "
+                        + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                        + " join " + Message.TableEmployee + " emp on emp."
+                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 1, column);
                     dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, " where " + Message.CurrentFlagColumn
                         + "='True'");
                 }
@@ -227,10 +247,12 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.ApproveTimesheet
                 {
                     _com.bindDataBlankColumn(" t." + Message.TimesheetIDColumn + ",t." + Message.TimesheetDateColumn + " as 'Date',p."
                         + Message.NameColumn + " as 'Employee Name',t." + Message.TaskDescriptionColumn
-                        + " as 'Task description',t."
-                        + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t." + Message.CurrentFlagColumn
-                        + "='False'", " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
-                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, grdData, 1, column);
+                        + " as 'Task description',t." + Message.TimesheetTimeColumn + " as 'Time(Hours)'", " where t."
+                        + Message.CurrentFlagColumn + "='False'" + " and emp." + Message.CurrentFlagColumn + "='True'",
+                        " " + Message.TableTimesheet + " t join " + Message.TablePerson + " p on t."
+                        + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
+                        + " join " + Message.TableEmployee + " emp on emp."
+                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData, 1, column);
                     dt = _com.getData(Message.TableTimesheet, Message.CurrentFlagColumn, " where " + Message.CurrentFlagColumn
                         + "='False'");
                 }

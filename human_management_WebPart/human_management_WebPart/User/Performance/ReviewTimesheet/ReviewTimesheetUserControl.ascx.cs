@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -28,7 +29,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                             _com.SetItemList(" pro."+Message.ProjectNameColumn, Message.TableProject+" pro"
                                 +" join "+Message.TableTask+" tas on pro."+Message.ProjectIDColumn+" = tas."
                                 + Message.ProjectIDColumn+" join "+Message.TablePersonProject+" pp on pp."
-                                +Message.TaskIdColumn+"=tas."+Message.TaskIdColumn, ddlProjectName, "", true, "All");
+                                +Message.TaskIdColumn+"=tas."+Message.TaskIdColumn, ddlProjectName, " where pro."
+                                +Message.ProjectNameColumn+"<>'Leave'", true, "All");
                             ddlTaskName.Items.Clear();
                             ddlTaskName.Items.Add("All");
                         }

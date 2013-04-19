@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.EditAttendance
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -39,12 +40,17 @@ namespace SP2010VisualWebPart.EditAttendance
                             if (!IsPostBack)
                             {
                                 txtEmployeeName.Text = Session["Name"].ToString();
-                                DataTable dt = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
-                                    + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn
-                                    + "=N'" + Session["Name"] + "' and p."+Message.EmailAddressColumn+"=N'"+Session["Email"].ToString()
-                                    +"' and " + Message.PunchInColumn + "='"
-                                    + Session["In"] + "'");
+                                DataTable dt = _com.getData(Message.TableAttendance + " a join " 
+                                    + Message.TablePerson + " p on a."+ Message.BusinessEntityIDColumn
+                                    + "=p." + Message.BusinessEntityIDColumn + " join " + Message.TableEmployee 
+                                    + " emp on emp."+ Message.BusinessEntityIDColumn + "=p." 
+                                    + Message.BusinessEntityIDColumn, "p." + Message.NameColumn 
+                                    + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
+                                    + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn 
+                                    + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn
+                                    + "=N'" + Session["Name"] + "' and p."+Message.EmailAddressColumn+"=N'"
+                                    +Session["Email"].ToString()+"' and " + Message.PunchInColumn + "='"
+                                    + Session["In"] + "'" + " and emp." + Message.CurrentFlagColumn + "='True'");
                                 for (int i = 0; i < 25; i++)
                                 {
                                     if (i < 10)
@@ -149,8 +155,10 @@ namespace SP2010VisualWebPart.EditAttendance
             else {
                 try
                 {
-                    DateTime punchIn = DateTime.Parse(txtPunchInDate.Text.Trim() + " " + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue);
-                    DateTime punchOut = DateTime.Parse(txtPunchInDate.Text.Trim() + " " + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue);
+                    DateTime punchIn = DateTime.Parse(txtPunchInDate.Text.Trim() + " " 
+                        + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue);
+                    DateTime punchOut = DateTime.Parse(txtPunchInDate.Text.Trim() + " " 
+                        + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue);
                     if (DateTime.Compare(punchIn, punchOut) >= 0)
                     {
                         lblError.Text = Message.PunchOutAfterPunchIn;
@@ -158,36 +166,53 @@ namespace SP2010VisualWebPart.EditAttendance
                     }
                     else {
                         //Case 1: Punch In Time is between an other Punch In and Punch Out Time
-                        DataTable dt = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
-                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                            +Session["Name"].ToString()+"' and p."+Message.EmailAddressColumn+"=N'"+Session["Email"].ToString()
-                            +"' and "+Message.PunchInColumn+" <='"
-                            +txtPunchInDate.Text.Trim() + " " + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue+"' and "+Message.PunchOutColumn
-                            +" >='"+txtPunchInDate.Text.Trim() + " " + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue+"' and "+Message.PunchInColumn
+                        DataTable dt = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson 
+                            + " p on a."+ Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TableEmployee + " emp on emp."
+                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, 
+                            "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
+                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." 
+                            + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
+                            +Session["Name"].ToString()+"' and p."+Message.EmailAddressColumn+"=N'"
+                            +Session["Email"].ToString()+"' and "+Message.PunchInColumn+" <='"
+                            +txtPunchInDate.Text.Trim() + " " + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue
+                            +"' and "+Message.PunchOutColumn+" >='"+txtPunchInDate.Text.Trim() + " " 
+                            + ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue+"' and "+Message.PunchInColumn
                             +" <> '"+Session["In"].ToString() + "' and "+Message.PunchOutColumn+" <> '"
-                            +Session["Out"].ToString()+"'");
+                            + Session["Out"].ToString() + "'" + " and emp." + Message.CurrentFlagColumn + "='True'");
                         //Case 1: Punch Out Time is between an other Punch In and Punch Out Time
-                        DataTable dt1 = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
-                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                            + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn + "=N'" + Session["Email"].ToString()
-                            + "' and " + Message.PunchInColumn + " <='" 
-                            + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue + "' and "+Message.PunchOutColumn
-                            +" >='" + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue 
-                            + "' and "+Message.PunchInColumn+" <> '" + Session["In"].ToString()
-                            + "' and "+Message.PunchOutColumn+" <> '" + Session["Out"].ToString() + "'");
+                        DataTable dt1 = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson 
+                            + " p on a."+ Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TableEmployee + " emp on emp."
+                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, 
+                            "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
+                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." 
+                            + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
+                            + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn + "=N'" 
+                            + Session["Email"].ToString()+ "' and " + Message.PunchInColumn + " <='" 
+                            + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"
+                            +ddlMinutesOut.SelectedValue + "' and "+Message.PunchOutColumn
+                            +" >='" + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"
+                            +ddlMinutesOut.SelectedValue + "' and "+Message.PunchInColumn+" <> '" 
+                            + Session["In"].ToString()+ "' and "+Message.PunchOutColumn+" <> '"
+                            + Session["Out"].ToString() + "'" + " and emp." + Message.CurrentFlagColumn + "='True'");
                         /*Case 1: Punch In Time is earlier than an other Punch In Time but Punch Out Time
                          is later than that other Punch Out Time*/
-                        DataTable dt2 = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
-                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
-                            + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn + "=N'" + Session["Email"].ToString()
-                            + "' and " + Message.PunchInColumn + " >='" 
-                            + txtPunchInDate.Text.Trim() + " "+ ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue + "' and "
-                            +Message.PunchOutColumn+" <='" + txtPunchInDate.Text.Trim() + " "
-                            + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue + "' and "+Message.PunchInColumn+" <> '" + Session["In"].ToString()
-                            + "' and "+Message.PunchOutColumn+" <> '" + Session["Out"].ToString() + "'");
+                        DataTable dt2 = _com.getData(Message.TableAttendance + " a join " + Message.TablePerson 
+                            + " p on a."+ Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                            + " join " + Message.TableEmployee + " emp on emp."
+                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, 
+                            "p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." + Message.PunchInNoteColumn
+                            + ",a." + Message.PunchOutColumn + ",a." + Message.PunchOutNoteColumn + ",a." 
+                            + Message.LastModifiedColumn, " where p." + Message.NameColumn + "=N'"
+                            + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn + "=N'" 
+                            + Session["Email"].ToString()+ "' and " + Message.PunchInColumn + " >='" 
+                            + txtPunchInDate.Text.Trim() + " "+ ddlHourIn.SelectedValue+":"
+                            +ddlMinutesIn.SelectedValue + "' and "+Message.PunchOutColumn+" <='" 
+                            + txtPunchInDate.Text.Trim() + " "+ ddlHourOut.SelectedValue+":"
+                            +ddlMinutesOut.SelectedValue + "' and "+Message.PunchInColumn+" <> '" 
+                            + Session["In"].ToString()+ "' and "+Message.PunchOutColumn+" <> '"
+                            + Session["Out"].ToString() + "'" + " and emp." + Message.CurrentFlagColumn + "='True'");
                         //Case 1
                         if (dt.Rows.Count != 0)
                         {
@@ -221,19 +246,23 @@ namespace SP2010VisualWebPart.EditAttendance
                                 else {
                                     try
                                     {
-                                        DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
-                                            + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() + "' and p." + Message.EmailAddressColumn 
-                                            + "=N'" + Session["Email"].ToString()+ "'");
+                                        DataTable getID = _com.getData(Message.TablePerson + " p join " 
+                                            + Message.TableEmployee + " e on p."+ Message.BusinessEntityIDColumn 
+                                            + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
+                                            , " where p." + Message.NameColumn + "='" + Session["Name"].ToString() 
+                                            + "' and p." + Message.EmailAddressColumn + "=N'" + Session["Email"].ToString()+ "'"
+                                            + " and e." + Message.CurrentFlagColumn + "='True'");
                                         _com.updateTable(Message.TableAttendance, " "+Message.PunchInColumn+"='" 
-                                            + txtPunchInDate.Text.Trim() + " "+ ddlHourIn.SelectedValue+":"+ddlMinutesIn.SelectedValue + "',"
-                                            +Message.PunchInNoteColumn+"=N'" + txtPunchInNote.Text.Trim() + "',"
-                                            + Message.PunchOutColumn+"='" + txtPunchInDate.Text.Trim() + " " 
-                                            + ddlHourOut.SelectedValue+":"+ddlMinutesOut.SelectedValue + "',"
-                                            + Message.PunchOutNoteColumn+"=N'" + txtPunchOutNote.Text.Trim()
-                                            + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.BusinessEntityIDColumn + "=N'" + getID.Rows[0][0].ToString()
-                                            +"' and "+Message.PunchInColumn+"='"+Session["In"].ToString()
-                                            +"' and "+Message.PunchOutColumn+"='"+Session["Out"]+"'");
+                                            + txtPunchInDate.Text.Trim() + " "+ ddlHourIn.SelectedValue+":"
+                                            +ddlMinutesIn.SelectedValue + "',"+Message.PunchInNoteColumn+"=N'" 
+                                            + txtPunchInNote.Text.Trim() + "',"+ Message.PunchOutColumn+"='" 
+                                            + txtPunchInDate.Text.Trim() + " " + ddlHourOut.SelectedValue+":"
+                                            +ddlMinutesOut.SelectedValue + "',"+ Message.PunchOutNoteColumn
+                                            +"=N'" + txtPunchOutNote.Text.Trim()+ "',"+Message.ModifiedDateColumn
+                                            +"='" + DateTime.Now + "' where " + Message.BusinessEntityIDColumn 
+                                            + "=N'" + getID.Rows[0][0].ToString()+"' and "+Message.PunchInColumn+"='"
+                                            +Session["In"].ToString()+"' and "+Message.PunchOutColumn+"='"
+                                            +Session["Out"]+"'");
                                         _com.closeConnection();
                                         Session[Message.EmployeeName] = Session["Name"];
                                         Session.Remove("Name");

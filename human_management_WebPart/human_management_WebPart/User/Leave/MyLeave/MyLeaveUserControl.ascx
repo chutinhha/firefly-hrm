@@ -54,7 +54,7 @@
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblDayOff" runat="server" Text="Type of Days Off" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-                <asp:DropDownList runat="server" ID="ddlDayOff" OnSelectedIndexChanged="ddlDayOff_SelectedIndexChanged">
+                <asp:DropDownList runat="server" ID="ddlDayOff">
                 </asp:DropDownList>
             </div>
             <br />
@@ -79,7 +79,7 @@
                     OnClick="btnReset_Click" />
             </div>
             <asp:Panel ID="pnlData" runat="server" Visible="False">
-                <asp:GridView ID="grdData" runat="server" EnableModelValidation="True" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
+                <asp:GridView ID="grdData" runat="server" EnableModelValidation="True" 
                     Width="100%" BorderStyle="None" BorderWidth="0px" OnRowDataBound="grdData_RowDataBound">
                 </asp:GridView>
                 <table>

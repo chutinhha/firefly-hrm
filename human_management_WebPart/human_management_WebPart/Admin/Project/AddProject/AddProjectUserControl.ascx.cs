@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -98,9 +99,9 @@ namespace SP2010VisualWebPart.Admin.Project.AddProject
                         }
                         else
                         {
-                            _com.insertIntoTable(Message.TableProject, "", "'" + txtProjectName.Text + "','" + txtNote.Text
-                                + "','" + Request.Form["txtStartDate"].ToString().Trim() + "','" + Request.Form["txtEndDate"].ToString().Trim()
-                                + "'", false);
+                            _com.insertIntoTable(Message.TableProject, "", "'" + txtProjectName.Text + "','" 
+                                + txtNote.Text+ "','" + Request.Form["txtStartDate"].ToString().Trim() + "','" 
+                                + Request.Form["txtEndDate"].ToString().Trim()+ "'", false);
                             Response.Redirect(Message.ProjectListPage, true);
                         }
                     }

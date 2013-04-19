@@ -16,7 +16,8 @@ namespace SP2010VisualWebPart.AttendanceRecord
         {
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null) {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -44,9 +45,12 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             rdoViewAll.Checked = true;
                             lblError.Text = "";
                             _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + "=N'" + txtEmployeeName.Text
-                                + "'" + _condition, Message.TableAttendance+" a join "+Message.TablePerson+" p on a."
-                                + Message.BusinessEntityIDColumn+"=p."+Message.BusinessEntityIDColumn, grdData);
+                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." 
+                                + Message.NameColumn + "=N'" + txtEmployeeName.Text + "'" + _condition
+                                +" and emp."+Message.CurrentFlagColumn+"='True'", Message.TableAttendance
+                                +" a join "+Message.TablePerson+" p on a."+ Message.BusinessEntityIDColumn
+                                +"=p."+Message.BusinessEntityIDColumn+" join "+Message.TableEmployee+" emp on emp."
+                                +Message.BusinessEntityIDColumn+"=p."+Message.BusinessEntityIDColumn, grdData);
                             if (grdData.Rows.Count > 0)
                             {
                                 grdData.HeaderRow.Cells[1].Text = "Employee Name";
@@ -74,9 +78,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
         protected string startDate { get; set; }
         protected string endDate { get; set; }
         protected string confirmDelete { get; set; }
-        protected void btnDateFrom_Click(object sender, EventArgs e)
-        {
-        }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -103,14 +104,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
             }
         }
-        protected void cldChooseDate_SelectionChanged(object sender, EventArgs e)
-        {
-        }
-
-        protected void btnDateTo_Click(object sender, EventArgs e)
-        {
-        }
-
         protected void rdoViewDate_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoViewDate.Checked == true)
@@ -172,8 +165,11 @@ namespace SP2010VisualWebPart.AttendanceRecord
                         _com.bindDataAttendance("p."+Message.NameColumn+",a."+Message.PunchInColumn+",a."
                             +Message.PunchOutColumn+",p."+Message.EmailAddressColumn
                             , " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
-                            + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                            + "%'" + _condition+" and emp."+Message.CurrentFlagColumn+"='True'", 
+                            Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn 
+                            + " join " + Message.TableEmployee + " emp on emp."
+                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                         check = true;
                     }
                     else if (rdoViewDate.Checked == true)
@@ -194,10 +190,14 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                 + Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
                                 +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                                 lblError.Text = "";
-                                _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                    + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
-                                    + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn 
+                                    + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, 
+                                    " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                    + "%'" + _condition+" and emp."+Message.CurrentFlagColumn+"='True'", 
+                                    Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                    + " join " + Message.TableEmployee + " emp on emp."
+                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                 check = true;
                             }
                             catch (FormatException)
@@ -228,10 +228,14 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         + dt.Year + "'" + " and "+Message.PunchInColumn+" < '" + dt1.Month + "-" 
                                         + dt1.Day + "-" + dt1.Year + "'";
                                     lblError.Text = "";
-                                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a." 
-                                        + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%"
-                                        + txtEmployeeName.Text + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn 
+                                        + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, 
+                                        " where p." + Message.NameColumn + " like N'%"+ txtEmployeeName.Text
+                                        + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
+                                        , Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                        + " join " + Message.TableEmployee + " emp on emp."
+                                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                     check = true;
                                 }
                             }
@@ -299,10 +303,13 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     if (cb.Checked)
                     {
                         isCheck = true;
-                        DataTable getID = _com.getData(Message.TablePerson + " p join " + Message.TableEmployee + " e on p."
-                            + Message.BusinessEntityIDColumn + "=e." + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
-                            , " where p." + Message.NameColumn + "='" + Server.HtmlDecode(gr.Cells[1].Text).Trim() + "'"
-                            + " and (p." + Message.EmailAddressColumn + "=N'" + Server.HtmlDecode(gr.Cells[4].Text).Trim() + "' or p."+Message.EmailAddressColumn+" is NULL)");
+                        DataTable getID = _com.getData(Message.TablePerson + " p join " 
+                            + Message.TableEmployee + " e on p." + Message.BusinessEntityIDColumn + "=e." 
+                            + Message.BusinessEntityIDColumn, "p." + Message.BusinessEntityIDColumn
+                            , " where e."+Message.CurrentFlagColumn+"='True' and p." + Message.NameColumn 
+                            + "='" + Server.HtmlDecode(gr.Cells[1].Text).Trim() + "'"+ " and (p." 
+                            + Message.EmailAddressColumn + "=N'" + Server.HtmlDecode(gr.Cells[4].Text).Trim() 
+                            + "' or p."+Message.EmailAddressColumn+" is NULL)");
                         string sql = @"delete from "+Message.TableAttendance+" where "+Message.BusinessEntityIDColumn+"=N'" 
                             + getID.Rows[0][0].ToString() + "' and "+Message.PunchInColumn+"='"+gr.Cells[2].Text
                             +"' and "+Message.PunchOutColumn+"='"+gr.Cells[3].Text+"';";
@@ -312,10 +319,14 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 }
                 if (isCheck == true)
                 {
-                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
-                        + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
-                        + "%'" + _condition, Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn 
+                        + ",a."+ Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, " where p." 
+                        + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                        + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'", 
+                        Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                        + " join " + Message.TableEmployee + " emp on emp."
+                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                     if (grdData.Rows.Count > 0)
                     {
                         grdData.HeaderRow.Cells[1].Text = "Employee Name";
@@ -373,10 +384,6 @@ namespace SP2010VisualWebPart.AttendanceRecord
             }
             lblError.Text = Message.NotChooseItemEdit;
             //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript", "alert('" + lblError.Text.Replace("'", "\\'") + "');", true);
-        }
-
-        protected void txtEmployeeName_TextChanged(object sender, EventArgs e)
-        {
         }
     }
 }

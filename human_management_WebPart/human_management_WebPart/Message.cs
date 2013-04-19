@@ -107,6 +107,7 @@
     internal const string WorkDateColumn = "WorkDate";
     internal const string PersonProjectIdColumn = "PersonProjectId";
     internal const string DepartmentIDColumn = "DepartmentID";
+    internal const string LimitDateColumn = "LimitDate";
 
     //Page
     internal const string HomePage = "Home.aspx";
@@ -160,6 +161,7 @@
     internal const string MyTaskPage = "MyTask.aspx";
     internal const string JobCategoriesPage = "JobCategories.aspx";
     internal const string MyInfoPage = "MyInfo.aspx";
+    internal const string LeaveTypeList = "LeaveTypeList.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -237,4 +239,8 @@
     internal const string InvalidTime = "Time must be a number that smaller than 24 and larger than 0";
     internal const string UpcomingDeadline = "Upcoming deadline is a group of project, so you can not add task for it. Please choose a project first";
     internal const string ProjectNotHaveTask = "This project doesn't have any task. Please add task for it first.";
+    internal const string AlreadyAssign = " has been assigned in this project !<br><span style=\"padding-left:5px;\"></span>";
+    internal const string NotJpeg = "Upload status: Only JPEG files are accepted!";
+    internal const string CanNotUpload = "Upload status: The file could not be uploaded";
+    internal const string MissRequired = "* Require Failed";
 }

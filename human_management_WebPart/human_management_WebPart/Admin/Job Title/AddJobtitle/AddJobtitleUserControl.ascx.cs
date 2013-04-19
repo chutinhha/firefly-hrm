@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.AddJobtitle
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -61,7 +62,8 @@ namespace SP2010VisualWebPart.AddJobtitle
                     _com.insertIntoTable(Message.TableJobTitle," ("+Message.JobIDColumn+","+Message.JobTitleColumn
                         +","+Message.JobDescriptionColumn+","+Message.NoteColumn+","+Message.JobCategoryColumn
                         + "," + Message.LastModifiedColumn + ")", JobID + ",N'" + txtJobTitle.Text.Trim()
-                        +"',N'"+txtJobDescription.Text.Trim()+"',N'"+txtNote.Text+"',N'"+ddlJobCategory.SelectedValue+"','"+DateTime.Now+"'",true);
+                        +"',N'"+txtJobDescription.Text.Trim()+"',N'"+txtNote.Text+"',N'"+ddlJobCategory.SelectedValue
+                        +"','"+DateTime.Now+"'",true);
                     lblError.Text = "";
                     _com.closeConnection();
                     Response.Redirect(Message.JobTitlePage,true);

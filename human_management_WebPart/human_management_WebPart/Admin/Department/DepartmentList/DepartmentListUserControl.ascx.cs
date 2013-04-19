@@ -16,7 +16,8 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -96,12 +97,13 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                 {
                     if (Session["type"].ToString() == "Add")
                     {
-                        DataTable existDepartment = _com.getData(Message.TableDepartment, "*", " where " + Message.NameColumn
-                            + "='" + txtName.Text.Trim() + "'");
+                        DataTable existDepartment = _com.getData(Message.TableDepartment, "*", " where " 
+                            + Message.NameColumn+ "='" + txtName.Text.Trim() + "'");
                         if (existDepartment.Rows.Count == 0)
                         {
-                            _com.insertIntoTable(Message.TableDepartment, "("+Message.NameColumn+","+Message.ModifiedDateColumn
-                                +")", "N'" + txtName.Text.Trim() + "','" + DateTime.Now + "'", false);
+                            _com.insertIntoTable(Message.TableDepartment, "("+Message.NameColumn+","
+                                +Message.ModifiedDateColumn+")", "N'" + txtName.Text.Trim() + "','" 
+                                + DateTime.Now + "'", false);
                             Panel1.Visible = false;
                         }
                         else
@@ -113,7 +115,8 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                     else
                     {
                         _com.updateTable(Message.TableDepartment, Message.NameColumn + "=N'" + txtName.Text.Trim()
-                            + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where " + Message.NameColumn + "=N'" + Session["Name"] + "'");
+                            + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where " 
+                            + Message.NameColumn + "=N'" + Session["Name"] + "'");
                         Panel1.Visible = false;
                     }
                     _com.bindData(Message.NameColumn, "", Message.TableDepartment, grdData);
@@ -172,8 +175,8 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                         isCheck = true;
                         string sql;
                         SqlCommand command;
-                        sql = @"delete from " + Message.TableDepartment + " where " + Message.NameColumn + "=N'"
-                            + Server.HtmlDecode(gr.Cells[1].Text) + "';";
+                        sql = @"delete from " + Message.TableDepartment + " where " + Message.NameColumn 
+                            + "=N'"+ Server.HtmlDecode(gr.Cells[1].Text) + "';";
                         command = new SqlCommand(sql, _com.cnn);
                         command.ExecuteNonQuery();
                         lblError.Text = "";

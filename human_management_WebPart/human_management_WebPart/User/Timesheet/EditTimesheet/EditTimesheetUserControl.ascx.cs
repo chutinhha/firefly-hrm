@@ -17,7 +17,8 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -38,9 +39,9 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
                         {
                             _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProject, "", false, "");
                             DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn
-                                , " where ProjectName = '" + ddlProject.SelectedValue.ToString()+"'");
+                                , " where "+Message.ProjectNameColumn+" = '" + ddlProject.SelectedValue.ToString()+"'");
                             _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask
-                                , " where ProjectId = " + myData.Rows[0][0].ToString(), false, "");
+                                , " where "+Message.ProjectIDColumn+" = " + myData.Rows[0][0].ToString(), false, "");
                             if (Session["TimesheetId"] == null)
                             {
                                 lblTitle.Text = "New Timesheet";
@@ -48,19 +49,18 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
                             else
                             {
                                 lblTitle.Text = "Edit Timesheet";
-                                myData = _com.getData(" ( " + Message.TableTimesheet + " INNER JOIN "
-                                    +"HumanResources.Task ON HumanResources.Timesheet.TaskId = "
-                                    +"HumanResources.Task.TaskId ) INNER JOIN HumanResources.Project ON "
-                                    +"HumanResources.Project.ProjectId = HumanResources.Task.ProjectId"
+                                myData = _com.getData(" ( " + Message.TableTimesheet + " tim INNER JOIN "
+                                    +Message.TableTask+" tas ON tim."+Message.TaskIdColumn+" = "
+                                    +"tas."+Message.TaskIdColumn+" ) INNER JOIN "+Message.TableProject+" pro ON "
+                                    +"pro."+Message.ProjectIDColumn+" = tas."+Message.ProjectIDColumn
                                     , Message.ProjectNameColumn + "," + Message.TaskNameColumn 
-                                    + ",HumanResources.Timesheet.WorkDate,HumanResources.Timesheet.Time,"
-                                    + "HumanResources.Project."+Message.ProjectIDColumn
-                                    , " where HumanResources.Timesheet.TimesheetId = " 
+                                    + ",tim."+Message.WorkDateColumn+",tim."+Message.TimesheetTimeColumn+","
+                                    + "pro."+Message.ProjectIDColumn, " where tim."+Message.TimesheetIDColumn+" = " 
                                     + Session["TimesheetId"].ToString());
                                 txtTime.Text = myData.Rows[0][3].ToString();
                                 ddlProject.SelectedValue = myData.Rows[0][0].ToString();
                                 _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask
-                                , " where ProjectId = " + myData.Rows[0][4].ToString(), false, "");
+                                , " where "+Message.ProjectIDColumn+" = " + myData.Rows[0][4].ToString(), false, "");
                                 ddlTask.SelectedValue = myData.Rows[0][1].ToString();
                                 this.startDate = myData.Rows[0][2].ToString();
                             }
@@ -76,7 +76,7 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
                 }
                 else
                 {
-                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }
@@ -86,26 +86,20 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
         {
             this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
             DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn
-                                , " where ProjectName = '" + ddlProject.SelectedValue.ToString() + "'");
+                , " where "+Message.ProjectNameColumn+" = '" + ddlProject.SelectedValue.ToString() + "'");
             _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlTask
-                , " where ProjectId = " + myData.Rows[0][0].ToString(), false, "");
+                , " where "+Message.ProjectIDColumn+" = " + myData.Rows[0][0].ToString(), false, "");
         }
         protected string confirmSave { get; set; }
-        protected void ddlTask_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txtTime_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
             lblError.Text = "";
-            DataTable myData = _com.getData(Message.TableProject + " INNER JOIN " + Message.TableTask + " ON HumanResources.Project.ProjectId = HumanResources.Task.ProjectId ", " HumanResources.Project.ProjectId,HumanResources.Task.TaskId ", " where HumanResources.Project.ProjectName = '" + ddlProject.SelectedValue.ToString() + "' and HumanResources.Task.TaskName = '" + ddlTask.SelectedValue.ToString()+"'");
+            DataTable myData = _com.getData(Message.TableProject + " pro INNER JOIN " + Message.TableTask 
+                + " tas ON pro."+Message.ProjectIDColumn+" = tas."+Message.ProjectIDColumn+" ", 
+                " pro."+Message.ProjectIDColumn+",tas."+Message.TaskIdColumn+" ", " where "
+                +"pro."+Message.ProjectNameColumn+" = '" + ddlProject.SelectedValue.ToString() 
+                + "' and tas."+Message.TaskNameColumn+" = '" + ddlTask.SelectedValue.ToString()+"'");
             try
             {
                 if (txtTime.Text.Trim() == "") {
@@ -133,11 +127,21 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
                                     DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
                                     if (Session["TimesheetId"] != null)
                                     {
-                                        _com.updateTable(Message.TableTimesheet, " TaskId = '" + myData.Rows[0][1].ToString() + "', WorkDate = CAST('" + Request.Form["txtDateFrom"].ToString().Trim() + "' AS DATE), Time = '" + txtTime.Text.ToString().Trim() + "',ModifiedDate = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATE) " + " where HumanResources.Timesheet.TimesheetId = '" + Session["TimesheetId"].ToString() + "'");
+                                        _com.updateTable(Message.TableTimesheet, " "+Message.TaskIdColumn+" = '" 
+                                            + myData.Rows[0][1].ToString() + "', "+Message.WorkDateColumn
+                                            +" = CAST('" + Request.Form["txtDateFrom"].ToString().Trim() 
+                                            + "' AS DATE), "+Message.TimesheetTimeColumn+" = '" + txtTime.Text.ToString().Trim() 
+                                            + "',"+Message.ModifiedDateColumn+" = CAST( '" + DateTime.Now.ToString("yyyy-MM-dd") 
+                                            + "' AS DATE) " + " where "+Message.TimesheetIDColumn+" = '" 
+                                            + Session["TimesheetId"].ToString() + "'");
                                     }
                                     else
                                     {
-                                        _com.insertIntoTable(Message.TableTimesheet, "", "'" + txtTime.Text.ToString().Trim() + "','" + Session["AccountID"] + "','" + myData.Rows[0][1].ToString() + "'," + "CAST('" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATE)" + ",null,'0',CAST('" + Request.Form["txtDateFrom"].ToString().Trim() + "' AS DATE),null", false);
+                                        _com.insertIntoTable(Message.TableTimesheet, "", "'" + txtTime.Text.ToString().Trim() 
+                                            + "','" + Session["AccountID"] + "','" + myData.Rows[0][1].ToString() + "'," 
+                                            + "CAST('" + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATE)" 
+                                            + ",null,'0',CAST('" + Request.Form["txtDateFrom"].ToString().Trim() 
+                                            + "' AS DATE),null", false);
                                     }
                                     Response.Redirect(Message.MyTimesheetPage);
                                 }

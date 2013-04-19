@@ -12,7 +12,8 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
         {
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -51,22 +52,23 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
             {
                 if (ddlType.SelectedValue == "All")
                 {
-                    _com.bindData("*", "", Message.TableProject, grdData);
+                    _com.bindData("*", " where "+Message.ProjectNameColumn+"<>'Leave'", Message.TableProject, grdData);
                 }
                 else if (ddlType.SelectedValue == "Current Project")
                 {
                     _com.bindData("*", " where '" + DateTime.Today + "'>=" + Message.StartDateColumn
-                        + " and '" + DateTime.Today + "'<=" + Message.EndDateColumn, Message.TableProject, grdData);
+                        + " and '" + DateTime.Today + "'<=" + Message.EndDateColumn + " and " + Message.ProjectNameColumn 
+                        + "<>'Leave'", Message.TableProject, grdData);
                 }
                 else if (ddlType.SelectedValue == "Finished Project")
                 {
                     _com.bindData("*", " where '" + DateTime.Today + "'>" + Message.EndDateColumn
-                        , Message.TableProject, grdData);
+                        + " and " + Message.ProjectNameColumn + "<>'Leave'", Message.TableProject, grdData);
                 }
                 else
                 {
                     _com.bindData("*", " where '" + DateTime.Today + "'<" + Message.StartDateColumn
-                        , Message.TableProject, grdData);
+                        + " and " + Message.ProjectNameColumn + "<>'Leave'", Message.TableProject, grdData);
                 }
                 grdData.HeaderRow.Cells[2].Text = "Project Name";
                 grdData.HeaderRow.Cells[4].Text = "Start Date";

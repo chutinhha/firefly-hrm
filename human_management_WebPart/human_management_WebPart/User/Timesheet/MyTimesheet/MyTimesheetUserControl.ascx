@@ -76,7 +76,7 @@
                     OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
             </div>
             <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound"
-                OnSelectedIndexChanged="grdData_SelectedIndexChanged">
+                >
                 <Columns>
                     <asp:TemplateField>
                         <HeaderStyle Width="25" />

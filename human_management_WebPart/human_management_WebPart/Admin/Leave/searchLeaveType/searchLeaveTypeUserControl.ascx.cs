@@ -14,12 +14,14 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
         private void binDataLeaveTypeToGrd()
         {
             // ProjectId
-            DataTable dtProjectId = _com.getData(Message.TableProject, "ProjectId", " where ProjectName='Leave'");
+            DataTable dtProjectId = _com.getData(Message.TableProject, Message.ProjectIDColumn, 
+                " where "+Message.ProjectNameColumn+"='Leave'");
             string strProjectID = dtProjectId.Rows[0][0].ToString();
 
-            string strColumn = "TaskName, Note,LimitDate,TaskId";
-            string strTable = "HumanResources.Task";
-            string strCondition = " where ProjectId = " + strProjectID;
+            string strColumn = Message.TaskNameColumn+", "+Message.NoteColumn+","+Message.LimitDateColumn
+                +","+Message.TaskIdColumn;
+            string strTable = Message.TableTask;
+            string strCondition = " where "+Message.ProjectIDColumn+" = " + strProjectID;
             _com.bindData(strColumn, strCondition, strTable, grdLeaveType);
             if (grdLeaveType.Rows.Count > 0)
             {
@@ -41,7 +43,8 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -162,7 +165,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                     CheckBox cbSelected = (CheckBox)row.FindControl("chkItem");
                     if (cbSelected.Checked == true)
                     {
-                        strCondition = "TaskId = " + row.Cells[4].Text;
+                        strCondition = Message.TaskIdColumn+" = " + row.Cells[4].Text;
                         _com.deleteFromTable(strTableName, strCondition);
                     }
                 }

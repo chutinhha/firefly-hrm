@@ -795,9 +795,7 @@
     <Content Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx" />
     <Content Include="Admin\Person Project\AssignEmployee\Elements.xml" />
     <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
     <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx">

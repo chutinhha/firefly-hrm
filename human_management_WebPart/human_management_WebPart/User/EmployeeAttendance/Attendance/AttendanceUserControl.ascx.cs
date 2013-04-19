@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.User.Attendance
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -32,8 +33,8 @@ namespace SP2010VisualWebPart.User.Attendance
                             {
                                 DataTable attendance = _com.getData(Message.TableAttendance, "*", " where " + Message.PunchInColumn
                                     + "=" + Message.PunchOutColumn + " and DAY(" + Message.PunchOutColumn + ")=" + DateTime.Now.Day
-                                    + " and MONTH(" + Message.PunchOutColumn + ")=" + DateTime.Now.Month + " and YEAR(" + Message.PunchOutColumn + ")="
-                                    + DateTime.Now.Year);
+                                    + " and MONTH(" + Message.PunchOutColumn + ")=" + DateTime.Now.Month + " and YEAR(" 
+                                    + Message.PunchOutColumn + ")="+ DateTime.Now.Year);
                                 if (attendance.Rows.Count > 0)
                                 {
                                     txtNote.Text = "";

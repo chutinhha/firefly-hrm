@@ -14,7 +14,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -54,8 +55,9 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                                 {
                                     quarter = 4;
                                 }
-                                DataTable haveCheckPoint = _com.getData(Message.TableEvaluatePoint, "*", " where " + Message.QuarterColumn
-                                    + "='" + quarter + "' and " + Message.BusinessEntityIDColumn + "='" + gr.Cells[1].Text.Trim() + "'");
+                                DataTable haveCheckPoint = _com.getData(Message.TableEvaluatePoint, "*", " where " 
+                                    + Message.QuarterColumn+ "='" + quarter + "' and " + Message.BusinessEntityIDColumn 
+                                    + "='" + gr.Cells[1].Text.Trim() + "'");
                                 if (haveCheckPoint.Rows.Count > 0)
                                 {
                                     Session["isEdit"] = "true";
@@ -107,8 +109,12 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
             else {
                 try
                 {
-                    _com.bindData(Message.BusinessEntityIDColumn+","+Message.NameColumn+","+Message.EmailAddressColumn, " where "+Message.NameColumn+" like N'%"
-                        + txtEmployeeName.Text.Trim() + "%'", Message.TablePerson, grdData);
+                    _com.bindData("p."+Message.BusinessEntityIDColumn+",p."+Message.NameColumn+",p."
+                        +Message.EmailAddressColumn, " where p."+Message.NameColumn+" like N'%"
+                        + txtEmployeeName.Text.Trim() + "%'" + " and emp." + Message.CurrentFlagColumn 
+                        + "='True'", Message.TablePerson + " p"+ " join " + Message.TableEmployee 
+                        + " emp on emp."+ Message.BusinessEntityIDColumn + "=p." 
+                        + Message.BusinessEntityIDColumn, grdData);
                     if (grdData.Rows.Count > 0)
                     {
                         pnlData.Visible = true;
@@ -265,7 +271,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             try
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','10','','','','" + DateTime.Now + "'", false);
+                                + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                + "','10','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
                                 _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='10' where "
@@ -287,7 +294,8 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             try
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','0','','','','" + DateTime.Now + "'", false);
+                                + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                + "','0','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
                                 _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='0' where "
@@ -321,21 +329,25 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
                                     + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','"
-                                    + int.Parse(ddlNotePoint.SelectedValue) + "','" + txtNote.Text.Trim() + "','','','" + DateTime.Now + "'", false);
+                                    + int.Parse(ddlNotePoint.SelectedValue) + "','" + txtNote.Text.Trim() 
+                                    + "','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
-                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='" + int.Parse(ddlNotePoint.SelectedValue)
-                                + "'," + Message.NoteColumn + "='" + txtNote.Text.Trim() + "' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
-                                + question.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                    + "='" + int.Parse(ddlNotePoint.SelectedValue)+ "'," + Message.NoteColumn 
+                                    + "='" + txtNote.Text.Trim() + "' where " + Message.BusinessEntityIDColumn 
+                                    + "='"+ Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                    + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                                    + question.Rows[i][0].ToString() + "'");
                             }
                         }
                         else
                         {
-                            _com.updateTable(Message.TableEvaluatePoint, " "+Message.PointColumn+"='" + int.Parse(ddlNotePoint.SelectedValue) 
-                                + "',"+Message.NoteColumn+"='"+txtNote.Text.Trim()+"' where "+Message.BusinessEntityIDColumn+"='"
-                                + Session["BusinessID"].ToString() + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
-                                + question.Rows[i][0].ToString() + "'");
+                            _com.updateTable(Message.TableEvaluatePoint, " "+Message.PointColumn+"='" 
+                                + int.Parse(ddlNotePoint.SelectedValue) + "',"+Message.NoteColumn+"='"
+                                +txtNote.Text.Trim()+"' where "+Message.BusinessEntityIDColumn+"='"
+                                + Session["BusinessID"].ToString() + "' and "+Message.QuarterColumn+"='" 
+                                + quarter + "' and "+Message.QuestionIDColumn+"='" + question.Rows[i][0].ToString() + "'");
                         }
                     }
                     countTxtNote++;
@@ -357,18 +369,23 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             try
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','10','','','','" + DateTime.Now + "'", false);
+                                + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                + "','10','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
-                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='10' where " + Message.BusinessEntityIDColumn + "='"
-                               + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                    + "='10' where " + Message.BusinessEntityIDColumn + "='"
+                               + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                               + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                + question.Rows[i][0].ToString() + "'");
                             }
                         }
                         else
                         {
-                            _com.updateTable(Message.TableEvaluatePoint, " "+Message.PointColumn+"='10' where "+Message.BusinessEntityIDColumn+"='"
-                                + Session["BusinessID"].ToString() + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
+                            _com.updateTable(Message.TableEvaluatePoint, " "+Message.PointColumn
+                                +"='10' where "+Message.BusinessEntityIDColumn+"='"
+                                + Session["BusinessID"].ToString() + "' and "+Message.QuarterColumn+"='" 
+                                + quarter + "' and "+Message.QuestionIDColumn+"='"
                                 + question.Rows[i][0].ToString() + "'");
                         }
                     }
@@ -379,18 +396,23 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             try
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','8','','','','" + DateTime.Now + "'", false);
+                                + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                + "','8','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
-                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='8' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                    + "='8' where " + Message.BusinessEntityIDColumn + "='"
+                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                 + question.Rows[i][0].ToString() + "'");
                             }
                         }
                         else
                         {
-                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='8' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                + "='8' where " + Message.BusinessEntityIDColumn + "='"
+                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                 + question.Rows[i][0].ToString() + "'");
                         }
                     }
@@ -400,19 +422,25 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                         if(Session["isEdit"].ToString()=="false"){
                             try
                             {
-                                _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','6','','','','" + DateTime.Now + "'", false);
+                                _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" 
+                                    + Session["BusinessID"].ToString()
+                                    + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                    + "','6','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
-                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='6' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
-                                + question.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                    + "='6' where " + Message.BusinessEntityIDColumn + "='"
+                                    + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                    + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                                    + question.Rows[i][0].ToString() + "'");
                             }
                         }
                         else
                         {
-                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='6' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                + "='6' where " + Message.BusinessEntityIDColumn + "='"
+                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                 + question.Rows[i][0].ToString() + "'");
                         }
                     }
@@ -423,18 +451,23 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             try
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','4','','','','" + DateTime.Now + "'", false);
+                                + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                + "','4','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
-                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='4' where " + Message.BusinessEntityIDColumn + "='"
-                                    + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                    + "='4' where " + Message.BusinessEntityIDColumn + "='"
+                                    + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                    + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                     + question.Rows[i][0].ToString() + "'");
                             }
                         }
                         else
                         {
-                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='4' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                + "='4' where " + Message.BusinessEntityIDColumn + "='"
+                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                 + question.Rows[i][0].ToString() + "'");
                         }
                     }
@@ -446,18 +479,23 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                             try
                             {
                                 _com.insertIntoTable(Message.TableEvaluatePoint, "", "'" + Session["BusinessID"].ToString()
-                                + "','" + quarter + "','" + question.Rows[i][0].ToString() + "','2','','','','" + DateTime.Now + "'", false);
+                                    + "','" + quarter + "','" + question.Rows[i][0].ToString() 
+                                    + "','2','','','','" + DateTime.Now + "'", false);
                             }
                             catch (Exception) {
-                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='2' where " + Message.BusinessEntityIDColumn + "='"
-                               + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
-                               + question.Rows[i][0].ToString() + "'");
+                                _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                    + "='2' where " + Message.BusinessEntityIDColumn + "='"
+                                   + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                   + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                                   + question.Rows[i][0].ToString() + "'");
                             }
                         }
                         else
                         {
-                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn + "='2' where " + Message.BusinessEntityIDColumn + "='"
-                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                            _com.updateTable(Message.TableEvaluatePoint, " " + Message.PointColumn 
+                                + "='2' where " + Message.BusinessEntityIDColumn + "='"
+                                + Session["BusinessID"].ToString() + "' and " + Message.QuarterColumn 
+                                + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                                 + question.Rows[i][0].ToString() + "'");
                         }
                     }
@@ -472,8 +510,10 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
             if (checkAnswerAll == true)
             {
                 averagePoint = float.Parse(point.ToString()) / float.Parse(question.Rows.Count.ToString());
-                _com.updateTable(Message.TableEvaluatePoint, Message.AveragePointColumn+"='" + averagePoint + "',"+Message.TotalPointColumn+"='" + point
-                    + "' where "+Message.BusinessEntityIDColumn+"='" + Session["BusinessID"].ToString() + "' and "+Message.QuarterColumn+"='" + quarter + "'");
+                _com.updateTable(Message.TableEvaluatePoint, Message.AveragePointColumn+"='" 
+                    + averagePoint + "',"+Message.TotalPointColumn+"='" + point
+                    + "' where "+Message.BusinessEntityIDColumn+"='" + Session["BusinessID"].ToString() 
+                    + "' and "+Message.QuarterColumn+"='" + quarter + "'");
                 Session.Remove("BusinessID");
                 Response.Redirect(Message.EvaluateEmployeePage, true);
             }

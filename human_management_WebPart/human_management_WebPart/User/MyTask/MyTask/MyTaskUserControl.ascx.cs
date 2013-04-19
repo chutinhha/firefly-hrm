@@ -17,8 +17,8 @@ namespace SP2010VisualWebPart.User.MyTask.MyTask
                 {
                     _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
                         + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                            + Session["AccountID"] + "'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
-                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                        + Session["AccountID"] + "'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
                 }
                 catch (Exception ex)
                 {
@@ -34,34 +34,33 @@ namespace SP2010VisualWebPart.User.MyTask.MyTask
                 if (ddlShow.SelectedValue == "All") {
                     _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
                         + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                            + Session["AccountID"] + "'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
-                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                        + Session["AccountID"] + "'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
                 }
                 else if (ddlShow.SelectedValue == "Current Task")
                 {
                     _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
                         + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                            + Session["AccountID"] + "' and tas."+Message.StartDateColumn+"<='"+DateTime.Today
-                            +"' and tas."+Message.EndDateColumn+">='"+DateTime.Today+"'", Message.TableTask 
-                            + " tas join " + Message.TablePersonProject + " pp"
-                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                        + Session["AccountID"] + "' and tas."+Message.StartDateColumn+"<='"+DateTime.Today
+                        +"' and tas."+Message.EndDateColumn+">='"+DateTime.Today+"'", Message.TableTask 
+                        + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
                 }
                 else if (ddlShow.SelectedValue == "Finished Task")
                 {
                     _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
                         + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                            + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today 
-                            + "'", Message.TableTask+ " tas join " + Message.TablePersonProject + " pp"
-                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today 
+                        + "'", Message.TableTask+ " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
                 }
                 else if (ddlShow.SelectedValue == "Future Task")
                 {
                     _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
                         + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
-                            + "'", Message.TableTask
-                            + " tas join " + Message.TablePersonProject + " pp"
-                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                        + "'", Message.TableTask+ " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
                 }
             }
             catch (Exception ex) {

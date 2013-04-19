@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.EditVacancy
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -28,7 +29,8 @@ namespace SP2010VisualWebPart.EditVacancy
                     }
                     if (Session["Name"] == null)
                     {
-                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
                     {
@@ -105,7 +107,8 @@ namespace SP2010VisualWebPart.EditVacancy
                                     + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
+                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                             }
                             else
                             {
@@ -113,7 +116,8 @@ namespace SP2010VisualWebPart.EditVacancy
                                     + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
+                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                             }
                             if (jobCandidate.Rows.Count > 0) {
                                 for (int i = 0; i < jobCandidate.Rows.Count; i++) {
@@ -153,14 +157,16 @@ namespace SP2010VisualWebPart.EditVacancy
                                     + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
+                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                             }
                             else {
                                 _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
                                     + Message.NumberOfPositionColumn
                                     + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
                                     + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
+                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                             }
                             if (jobCandidate.Rows.Count > 0)
                             {

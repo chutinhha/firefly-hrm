@@ -17,7 +17,8 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -39,7 +40,7 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
             {
                 if (txtLeaveName.Text == "")
                 {
-                    lblUserGuide.Text = "* Require Failed";
+                    lblUserGuide.Text = Message.MissRequired;
                     return;
                 }
                 lblUserGuide.Text = "";
@@ -47,7 +48,7 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
                 {
                     if (txtLimitDay.Text == "")
                     {
-                        lblUserGuide.Text = "* Require Failed";
+                        lblUserGuide.Text = Message.MissRequired;
                         return;
                     }
                 }
@@ -56,10 +57,12 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
 
                 //Insert Database to Project Table
                 string strTableName = Message.TableTask;
-                string strColumName = @"(ProjectId,TaskName,Note,LimitDate)";
+                string strColumName = @"("+Message.ProjectIDColumn+","+Message.TaskNameColumn
+                    +","+Message.NoteColumn+","+Message.LimitDateColumn+")";
 
                 // ProjectId
-                DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 ProjectId", " where ProjectName like 'Leave%'");
+                DataTable dtProjectId = _com.getData(Message.TableProject, "top 1 "+Message.ProjectIDColumn,
+                    " where "+Message.ProjectNameColumn+" ='Leave'");
                 string strProjectID = dtProjectId.Rows[0][0].ToString();
 
                 //Leave Name
@@ -78,7 +81,7 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
                 _com.insertIntoTable(strTableName, strColumName, strCondition, isIDENTITY_INSERT);
 
                 _com.closeConnection();
-                Response.Redirect("LeaveTypeList.aspx", true);
+                Response.Redirect(Message.LeaveTypeList, true);
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;
@@ -88,7 +91,7 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             _com.closeConnection();
-            Response.Redirect("LeaveTypeList.aspx", true);
+            Response.Redirect(Message.LeaveTypeList, true);
         }
 
         protected void rdbLimitedYes_CheckedChanged(object sender, EventArgs e)

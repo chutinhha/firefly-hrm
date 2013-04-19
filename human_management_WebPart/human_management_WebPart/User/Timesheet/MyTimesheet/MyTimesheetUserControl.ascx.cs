@@ -14,7 +14,8 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
             this.confirmDelete = Message.ConfirmDelete;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -28,7 +29,7 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                 }
                 else
                 {
-                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                    Response.Redirect(Message.AdminHomePage);
                 }
             }
         }
@@ -137,7 +138,8 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                     if (cb.Checked)
                     {
                         isCheck = true;
-                        _com.deleteFromTable(Message.TableTimesheet, " where TimesheetId = " + gr.Cells[1].Text.ToString());
+                        _com.deleteFromTable(Message.TableTimesheet, " where "+Message.TimesheetIDColumn
+                            +" = " + gr.Cells[1].Text.ToString());
                     }
                 }
                 if (isCheck == true)
@@ -183,12 +185,6 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                 lblError.Text = ex.Message;
             }
         }
-
-        protected void grdData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
             //Check or uncheck all checkbox

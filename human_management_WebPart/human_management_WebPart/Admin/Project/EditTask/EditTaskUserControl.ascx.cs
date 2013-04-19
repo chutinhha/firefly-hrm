@@ -13,7 +13,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -31,7 +32,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                     }
                     if (Session["TaskID"] == null)
                     {
-                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect(Message.AccessDeniedPage);
                     }
                     else {
                         if (!IsPostBack) {
@@ -117,7 +119,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                             {
                                 DataTable dt = _com.getData(Message.TableTask, "*", " where " + Message.TaskNameColumn
                                     + "='" + txtTaskName.Text.Trim() + "' and " + Message.ProjectIDColumn + "='"
-                                    + Session["ProjectID"].ToString() + "' and " + Message.TaskIdColumn + "<>'" + Session["TaskID"].ToString() + "'");
+                                    + Session["ProjectID"].ToString() + "' and " + Message.TaskIdColumn 
+                                    + "<>'" + Session["TaskID"].ToString() + "'");
                                 if (dt.Rows.Count > 0)
                                 {
                                     lblError.Text = Message.AlreadyExistTask;

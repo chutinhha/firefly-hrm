@@ -12,7 +12,8 @@ namespace SP2010VisualWebPart.AddCandidate
             this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
             else
             {
@@ -131,9 +132,11 @@ namespace SP2010VisualWebPart.AddCandidate
                                             + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
                                             + "'" + ddlVacancy.SelectedValue + "',"
-                                            + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() + "','" + ddlJobTitle.SelectedValue + "',"
-                                            + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "','"
-                                            + Request.Form["txtInterviewDate"].ToString().Trim() + " " +ddlHour.SelectedValue+":"+ddlMinutes.SelectedValue+ "'", false);
+                                            + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() 
+                                            + "','" + ddlJobTitle.SelectedValue + "'," + "'" + ddlStatus.SelectedValue 
+                                            + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "','"
+                                            + Request.Form["txtInterviewDate"].ToString().Trim() + " " +ddlHour.SelectedValue
+                                            +":"+ddlMinutes.SelectedValue+ "'", false);
                                     }
                                     else if (Request.Form["txtApplyDate"].ToString().Trim() == "" && Request.Form["txtInterviewDate"].ToString().Trim() != "")
                                     {
@@ -144,7 +147,8 @@ namespace SP2010VisualWebPart.AddCandidate
                                             + "'" + ddlVacancy.SelectedValue + "',"
                                             + "N'" + txtComment.Text + "',NULL,'" + ddlJobTitle.SelectedValue + "',"
                                             + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "','"
-                                            + Request.Form["txtInterviewDate"].ToString().Trim() + " " + ddlHour.SelectedValue + ":" + ddlMinutes.SelectedValue + "'", false);
+                                            + Request.Form["txtInterviewDate"].ToString().Trim() + " " + ddlHour.SelectedValue 
+                                            + ":" + ddlMinutes.SelectedValue + "'", false);
                                     }
                                     else if (Request.Form["txtApplyDate"].ToString().Trim() != "" && Request.Form["txtInterviewDate"].ToString().Trim() == "")
                                     {
@@ -153,8 +157,9 @@ namespace SP2010VisualWebPart.AddCandidate
                                             + "'" + ddlCountry.SelectedValue + "','" + txtHomePhone.Text
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
                                             + "'" + ddlVacancy.SelectedValue + "',"
-                                            + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() + "','" + ddlJobTitle.SelectedValue + "',"
-                                            + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "',NULL", false);
+                                            + "N'" + txtComment.Text + "','" + Request.Form["txtApplyDate"].ToString().Trim() 
+                                            + "','" + ddlJobTitle.SelectedValue + "',"+ "'" + ddlStatus.SelectedValue 
+                                            + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "',NULL", false);
                                     }
                                     else {
                                         _com.insertIntoTable(Message.TableJobCandidate, "", "N'" + txtFullName.Text + "',"
@@ -163,7 +168,8 @@ namespace SP2010VisualWebPart.AddCandidate
                                             + "','" + txtMobile.Text + "','" + txtWorkPhone.Text + "','" + txtEmail.Text + "',"
                                             + "'" + ddlVacancy.SelectedValue + "',"
                                             + "N'" + txtComment.Text + "',NULL,'" + ddlJobTitle.SelectedValue + "',"
-                                            + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" + DateTime.Now + "',NULL", false);
+                                            + "'" + ddlStatus.SelectedValue + "','" + ddlApplyMethod.SelectedValue + "','" 
+                                            + DateTime.Now + "',NULL", false);
                                     }
                                     _com.closeConnection();
                                     Response.Redirect(Message.CandidatePage, true);

@@ -15,7 +15,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditProject
             {
                 if (Session["Account"] == null)
                 {
-                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                    Response.Redirect(Message.AccessDeniedPage);
                 }
                 else
                 {
@@ -30,7 +31,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditProject
                         }
                         if (Session["ProjectID"] == null)
                         {
-                            Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;Response.Redirect(Message.AccessDeniedPage);
+                            Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                            Response.Redirect(Message.AccessDeniedPage);
                         }
                         else {
                             if (!IsPostBack)
@@ -92,7 +94,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditProject
                         {
                             _com.updateTable(Message.TableProject, " " + Message.ProjectNameColumn + "=N'"
                                 + txtProjectName.Text + "'," + Message.NoteColumn + "=N'" + txtNote.Text + "',"
-                                + Message.StartDateColumn + "=NULL," + Message.EndDateColumn + "=NULL where " + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
+                                + Message.StartDateColumn + "=NULL," + Message.EndDateColumn + "=NULL where " 
+                                + Message.ProjectIDColumn + "='" + Session["ProjectID"].ToString() + "'");
                             Session.Remove("ProjectID");
                             Response.Redirect(Message.ProjectListPage, true);
                         }

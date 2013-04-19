@@ -42,7 +42,8 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                 //Check evaluate point
                 DataTable evaluatePoint = _com.getData(Message.TableEvaluatePoint, "distinct " + Message.TotalPointColumn
                     + "," + Message.AveragePointColumn + "," + Message.QuarterColumn, " where " + Message.BusinessEntityIDColumn + "='"
-                    + Session["AccountID"] + "' and " + Message.ModifiedDateColumn + " <='" + end.Year.ToString() + "-" + end.Month.ToString() + "-" + end.Day.ToString() + "'");
+                    + Session["AccountID"] + "' and " + Message.ModifiedDateColumn + " <='" + end.Year.ToString() + "-" 
+                    + end.Month.ToString() + "-" + end.Day.ToString() + "'");
                 if (evaluatePoint.Rows.Count > 0)
                 {
                     count = count + evaluatePoint.Rows.Count;

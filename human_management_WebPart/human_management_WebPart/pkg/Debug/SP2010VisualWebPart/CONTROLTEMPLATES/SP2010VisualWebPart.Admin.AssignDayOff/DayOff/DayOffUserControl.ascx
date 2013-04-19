@@ -37,7 +37,7 @@
             <span style="padding-left: 100px"></span>
             <asp:Label ID="lblStatus" runat="server" Text="Leave Status" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-                <asp:DropDownList ID="ddlShow" runat="server" OnSelectedIndexChanged="ddlShow_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlShow" runat="server">
                     <asp:ListItem>All</asp:ListItem>
                     <asp:ListItem Selected="True">Approve</asp:ListItem>
                     <asp:ListItem>Not Approved</asp:ListItem>
