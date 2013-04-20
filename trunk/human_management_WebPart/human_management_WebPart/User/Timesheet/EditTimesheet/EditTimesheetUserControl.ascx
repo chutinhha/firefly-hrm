@@ -62,14 +62,14 @@
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblTask" runat="server" Text="Task" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-                <asp:DropDownList runat="server" ID="ddlTask" OnSelectedIndexChanged="ddlTask_SelectedIndexChanged">
+                <asp:DropDownList runat="server" ID="ddlTask">
                 </asp:DropDownList>
             </div>
             <br />
             <br />
             <span style="padding-left: 5px"></span>
             <asp:Label ID="lblTime" runat="server" Text="Time(Hours)" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtTime" onkeyup="ValidateText(this);" runat="server" Width="200px" OnTextChanged="txtTime_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="txtTime" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
             <br />
             <br />
             <div class="borderBottom">

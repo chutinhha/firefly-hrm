@@ -54,7 +54,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                                         +" pp ON pp."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
                                         +") WHERE pp."+Message.TaskIdColumn+" = " + myData1.Rows[0][0].ToString() 
                                         + " and pp."+Message.CurrentFlagColumn+" = 1 and emp."+Message.CurrentFlagColumn+" = 1";
-                                    string table = "(((" + Message.TableJobTitle;
+                                    string table = "(((" + Message.TableJobTitle+" job";
                                     _com.bindData(column, condition, table, grdData);
                                     if (grdData.Rows.Count == 0)
                                     {
@@ -109,7 +109,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                                 +" pp ON pp."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
                                 +") WHERE pp."+Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString() 
                                 + " and pp."+Message.CurrentFlagColumn+" = 1 and emp."+Message.CurrentFlagColumn+" = 1";
-                            string table = "(((" + Message.TableJobTitle;
+                            string table = "(((" + Message.TableJobTitle+" job";
                             _com.bindData(column, condition, table, grdData);
                             _com.setGridViewStyle(grdData);
                             grdData.HeaderRow.Cells[2].Text = "BusinessEntityId";
@@ -187,7 +187,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                         + " pp ON pp." + Message.BusinessEntityIDColumn + " = emp." + Message.BusinessEntityIDColumn
                         + ") WHERE pp." + Message.TaskIdColumn + " = " + myData1.Rows[0][0].ToString()
                         + " and pp." + Message.CurrentFlagColumn + " = 1 and emp." + Message.CurrentFlagColumn + " = 1";
-                    string table = "(((" + Message.TableJobTitle;
+                    string table = "(((" + Message.TableJobTitle+" job";
                     _com.bindData(column, condition, table, grdData);
                     if (grdData.Rows.Count == 0)
                     {
@@ -234,7 +234,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                     +" = emp."+Message.BusinessEntityIDColumn+") WHERE pp."+Message.TaskIdColumn+" = " 
                     + myData.Rows[0][0].ToString() + " and pp."+Message.CurrentFlagColumn+" = 1 and "
                     +"emp."+Message.CurrentFlagColumn+" = 1";
-                string table = "(((" + Message.TableJobTitle;
+                string table = "(((" + Message.TableJobTitle+" job";
                 _com.bindData(column, condition, table, grdData);
                 if (grdData.Rows.Count == 0)
                 {
@@ -305,7 +305,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                         + " = emp." + Message.BusinessEntityIDColumn + ") WHERE pp." + Message.TaskIdColumn + " = "
                         + myData.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 1 and "
                         + "emp." + Message.CurrentFlagColumn + " = 1";
-                    string table = "(((" + Message.TableJobTitle;
+                    string table = "(((" + Message.TableJobTitle+" job";
                     _com.bindData(column, condition, table, grdData);
                     if (grdData.Rows.Count == 0)
                     {
