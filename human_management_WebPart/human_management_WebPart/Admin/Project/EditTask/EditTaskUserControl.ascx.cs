@@ -131,7 +131,8 @@ namespace SP2010VisualWebPart.Admin.Project.EditTask
                                     _com.updateTable(Message.TableTask, " " + Message.TaskNameColumn + "=N'" + txtTaskName.Text
                                         + "'," + Message.NoteColumn + "=N'" + txtNote.Text + "'," + Message.StartDateColumn + "='"
                                         + Request.Form["txtStartDate"].ToString().Trim() + "'," + Message.EndDateColumn + "='"
-                                        + Request.Form["txtEndDate"].ToString().Trim() + "' where " + Message.TaskIdColumn
+                                        + Request.Form["txtEndDate"].ToString().Trim() + "',"+Message.LimitDateColumn+"='"
+                                        +txtLimitDate.Text.Trim()+"' where " + Message.TaskIdColumn
                                         + "='" + Session["TaskID"].ToString() + "'");
                                     Session.Remove("TaskID");
                                     Response.Redirect(Message.TaskListPage, true);

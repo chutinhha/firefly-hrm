@@ -85,13 +85,31 @@ namespace SP2010VisualWebPart.EditVacancy {
         protected global::System.Web.UI.WebControls.Label lblDescription;
         
         /// <summary>
-        /// txtDescription control.
+        /// imgDocument control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.Image imgDocument;
+        
+        /// <summary>
+        /// fulJobDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fulJobDescription;
+        
+        /// <summary>
+        /// btnChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChange;
         
         /// <summary>
         /// lblActive control.

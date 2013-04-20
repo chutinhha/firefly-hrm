@@ -96,6 +96,7 @@
     <TemplateFile Location="Images\21_2_ob\patient-profile-divider.gif" />
     <TemplateFile Location="Images\21_2_ob\slide-shadow.jpg" />
     <TemplateFile Location="Images\21_2_ob\spacer.gif" />
+    <TemplateFile Location="Images\21_2_ob\word-icon.jpg" />
     <TemplateFile Location="Layouts\human_management\addthis_widget.js" />
     <TemplateFile Location="Layouts\human_management\cswap.js" />
     <TemplateFile Location="Layouts\human_management\dropdown.js" />

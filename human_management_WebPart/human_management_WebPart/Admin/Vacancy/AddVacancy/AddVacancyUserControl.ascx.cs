@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI;
-
+using System.IO;
 
 namespace SP2010VisualWebPart.AddVacancy
 {
@@ -64,9 +64,18 @@ namespace SP2010VisualWebPart.AddVacancy
                             {
                                 active = "Closed";
                             }
+                            string strDocURL = fulVacancy.FileName;
+                            if (strDocURL.Trim() != "")
+                            {
+                                string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                                if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                                    Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                                if (File.Exists(strURL)) File.Delete(strURL);
+                                fulVacancy.SaveAs(strURL);
+                            }
                             _com.insertIntoTable(Message.TableVacancy,"", "N'" + ddlJobTitle.SelectedValue + "',N'"
-                                + txtVacancy.Text.Trim() + "',N'" + txtNoOfPosition.Text 
-                                + "',N'" + txtDescription.Text + "',"
+                                + txtVacancy.Text.Trim() + "',N'" + txtNoOfPosition.Text
+                                + "',N'" + strDocURL + "',"
                                 + "N'" + active + "','"+DateTime.Now+"'",false);
                             _com.closeConnection();
                             Response.Redirect(Message.VacancyPage, true);
@@ -88,9 +97,18 @@ namespace SP2010VisualWebPart.AddVacancy
                             {
                                 active = "Closed";
                             }
+                            string strDocURL = fulVacancy.FileName;
+                            if (strDocURL.Trim() != "")
+                            {
+                                string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                                if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                                    Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                                if (File.Exists(strURL)) File.Delete(strURL);
+                                fulVacancy.SaveAs(strURL);
+                            }
                             _com.insertIntoTable(Message.TableVacancy, "", "N'" + ddlJobTitle.SelectedValue + "',N'"
                                 + txtVacancy.Text.Trim() + "',N'" + txtNoOfPosition.Text
-                                + "',N'" + txtDescription.Text + "',"
+                                + "',N'" + strDocURL + "',"
                                 + "N'" + active + "','" + DateTime.Now + "'", false);
                             _com.closeConnection();
                             Response.Redirect(Message.VacancyPage, true);

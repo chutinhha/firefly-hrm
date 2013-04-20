@@ -67,13 +67,31 @@ namespace SP2010VisualWebPart.EditJobTitle {
         protected global::System.Web.UI.WebControls.Label lblJobDescription;
         
         /// <summary>
-        /// txtJobDescription control.
+        /// imgDocument control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtJobDescription;
+        protected global::System.Web.UI.WebControls.Image imgDocument;
+        
+        /// <summary>
+        /// fulJobDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fulJobDescription;
+        
+        /// <summary>
+        /// btnChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChange;
         
         /// <summary>
         /// lblNote control.

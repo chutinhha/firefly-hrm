@@ -2,6 +2,7 @@
 using System.Data;
 using System.Web;
 using System.Web.UI;
+using System.IO;
 
 namespace SP2010VisualWebPart.AddJobtitle
 {
@@ -57,12 +58,21 @@ namespace SP2010VisualWebPart.AddJobtitle
             else {
                 try
                 {
+                    string strDocURL = fulJobDescription.FileName;
+                    if (strDocURL.Trim() != "")
+                    {
+                        string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                        if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                            Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                        if (File.Exists(strURL)) File.Delete(strURL);
+                        fulJobDescription.SaveAs(strURL);
+                    }
                     DataTable dt = _com.getTopID(Message.TableJobTitle);
                     int JobID = int.Parse(dt.Rows[0][0].ToString()) + 1;
                     _com.insertIntoTable(Message.TableJobTitle," ("+Message.JobIDColumn+","+Message.JobTitleColumn
                         +","+Message.JobDescriptionColumn+","+Message.NoteColumn+","+Message.JobCategoryColumn
                         + "," + Message.LastModifiedColumn + ")", JobID + ",N'" + txtJobTitle.Text.Trim()
-                        +"',N'"+txtJobDescription.Text.Trim()+"',N'"+txtNote.Text+"',N'"+ddlJobCategory.SelectedValue
+                        + "',N'" + strDocURL + "',N'" + txtNote.Text + "',N'" + ddlJobCategory.SelectedValue
                         +"','"+DateTime.Now+"'",true);
                     lblError.Text = "";
                     _com.closeConnection();

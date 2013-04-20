@@ -140,17 +140,17 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                         +Message.TaskIdColumn+" = tas."+Message.TaskIdColumn+" join "+Message.TablePerson
                         +" per on tim."+Message.BusinessEntityIDColumn+" = per."+Message.BusinessEntityIDColumn
                         + " join " + Message.TableEmployee + " emp on emp."
-                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                        + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn, grdData);
                     if (grdData.Rows.Count > 0)
                     {
                         lblError.Text = "";
                         pnlData.Visible = true;
                         lblDetail.Text = "&nbsp;Search Employee: " + txtEmployeeName.Text.Trim();
                         if (Request.Form["txtDateFrom"].ToString().Trim() != "") {
-                            lblDetail.Text = lblDetail.Text + "<br /> From " + Request.Form["txtDateFrom"].ToString().Trim();
+                            lblDetail.Text = lblDetail.Text + "<br />&nbsp;From " + Request.Form["txtDateFrom"].ToString().Trim();
                         }
                         if (Request.Form["txtDateTo"].ToString().Trim() != "") {
-                            lblDetail.Text = lblDetail.Text + "<br /> To " + Request.Form["txtDateTo"].ToString().Trim();
+                            lblDetail.Text = lblDetail.Text + "<br />&nbsp;To " + Request.Form["txtDateTo"].ToString().Trim();
                         }
                     }
                     else

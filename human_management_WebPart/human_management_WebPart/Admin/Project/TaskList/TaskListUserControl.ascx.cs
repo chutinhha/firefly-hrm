@@ -25,17 +25,35 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                         if (!IsPostBack) {
                             _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, 
                                 " where "+Message.ProjectNameColumn+"<>'Leave'", true, "Upcoming deadline");
-                            _com.bindData(Message.TaskIdColumn+","+Message.TaskNameColumn + "," + Message.NoteColumn 
-                                + "," + Message.StartDateColumn+ "," + Message.EndDateColumn, " where " 
-                                + Message.EndDateColumn + ">='" + DateTime.Today + "' and " + Message.EndDateColumn
-                                + "<='" + DateTime.Today.AddDays(7) + "'", Message.TableTask, grdData);
+                            if (Session["ProjectName"] != null) {
+                                ddlProjectName.SelectedValue = Session["ProjectName"].ToString();
+                                Session.Remove("ProjectName");
+                            }
+                            if (ddlProjectName.SelectedValue == "Upcoming deadline")
+                            {
+                                _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
+                                    + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.EndDateColumn
+                                    + ">='" + DateTime.Today + "' and " + Message.EndDateColumn + "<='" + DateTime.Today.AddDays(7)
+                                    + "'", Message.TableTask, grdData);
+                            }
+                            else
+                            {
+                                DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
+                                    + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
+                                _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
+                                    + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
+                                    + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);
+                            }
                             _com.setGridViewStyle(grdData);
                             ddlProjectName.AutoPostBack = true;
                             Session.Remove("ProjectID");
                             Session.Remove("TaskID");
-                            grdData.HeaderRow.Cells[2].Text = "Task Name";
-                            grdData.HeaderRow.Cells[4].Text = "Start Date";
-                            grdData.HeaderRow.Cells[5].Text = "End Date";
+                            if (grdData.Rows.Count > 0)
+                            {
+                                grdData.HeaderRow.Cells[2].Text = "Task Name";
+                                grdData.HeaderRow.Cells[4].Text = "Start Date";
+                                grdData.HeaderRow.Cells[5].Text = "End Date";
+                            }
                         }
                     }
                     catch (Exception ex) {
@@ -52,6 +70,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblError.Text = "";
             try{
                 if (ddlProjectName.SelectedValue == "Upcoming deadline") {
                     _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn 
@@ -67,9 +86,12 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                         + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
                         + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);
                 }
-                grdData.HeaderRow.Cells[2].Text = "Task Name";
-                grdData.HeaderRow.Cells[4].Text = "Start Date";
-                grdData.HeaderRow.Cells[5].Text = "End Date";
+                if (grdData.Rows.Count > 0)
+                {
+                    grdData.HeaderRow.Cells[2].Text = "Task Name";
+                    grdData.HeaderRow.Cells[4].Text = "Start Date";
+                    grdData.HeaderRow.Cells[5].Text = "End Date";
+                }
             }
             catch (Exception ex)
             {
@@ -87,6 +109,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                 DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
                                     + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
                 Session["ProjectID"]=dt.Rows[0][0].ToString();
+                Session["ProjectName"] = ddlProjectName.SelectedValue;
                 Response.Redirect(Message.AddTaskPage, true);
             }
         }
@@ -102,6 +125,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                     DataTable dt = _com.getData(Message.TableProject, Message.ProjectIDColumn, " where "
                                 + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
                     Session["ProjectID"] = dt.Rows[0][0].ToString();
+                    Session["ProjectName"] = ddlProjectName.SelectedValue;
                     _com.closeConnection();
                     Response.Redirect(Message.EditTaskPage, true);
                 }

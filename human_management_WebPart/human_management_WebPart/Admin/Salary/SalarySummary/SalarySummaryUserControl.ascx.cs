@@ -198,13 +198,17 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             float totalCostPerMonth = 0;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
+                if (dt.Rows[i][1].ToString() != "")
+                {
+                    totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
+                }
             }
             DataTable dtCloned = dt.Clone();
-            dtCloned.Columns[0].DataType = typeof(double);
+            dtCloned.Columns[0].DataType = typeof(string);
+            dtCloned.Columns[1].DataType = typeof(string);
             DataRow newRow = dtCloned.NewRow();
-            newRow[0] = totalCostPerMonth;
-            newRow[1] = totalCostPerMonth * 12;
+            newRow[0] = totalCostPerMonth.ToString("N");
+            newRow[1] = (totalCostPerMonth * 12).ToString("N");
             dtCloned.Rows.Add(newRow);
             grdTotal.DataSource = dtCloned;
             grdTotal.DataBind();
@@ -243,13 +247,17 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 float totalCostPerMonth = 0;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
+                    if (dt.Rows[i][1].ToString() != "")
+                    {
+                        totalCostPerMonth = totalCostPerMonth + float.Parse(dt.Rows[i][1].ToString());
+                    }
                 }
                 DataTable dtCloned = dt.Clone();
-                dtCloned.Columns[0].DataType = typeof(double);
+                dtCloned.Columns[0].DataType = typeof(string);
+                dtCloned.Columns[1].DataType = typeof(string);
                 DataRow newRow = dtCloned.NewRow();
-                newRow[0] = totalCostPerMonth;
-                newRow[1] = totalCostPerMonth * 12;
+                newRow[0] = totalCostPerMonth.ToString("N");
+                newRow[1] = (totalCostPerMonth * 12).ToString("N");
                 dtCloned.Rows.Add(newRow);
                 grdTotal.DataSource = dtCloned;
                 grdTotal.DataBind();

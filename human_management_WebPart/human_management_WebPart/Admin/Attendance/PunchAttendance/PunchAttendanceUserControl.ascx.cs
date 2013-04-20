@@ -31,6 +31,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                             pnlDate.Enabled = true;
                             Label1.Text = "Punch In";
                             btnInOut.Text = "In";
+                            Session.Remove("In");
                             for (int i = 0; i < 25; i++)
                             {
                                 if (i < 10)
@@ -93,6 +94,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 + ddlHourIn.SelectedValue + ":" + ddlMinutesIn.SelectedValue);
                             if (Session["In"] == null)
                             {
+                                this.inputValue = Request.Form["txtDate"].ToString().Trim();
                                 //Only accept Punch In after last Punch Out in the same day
                                 DataTable data = _com.getData(Message.TableAttendance + " a join " 
                                     + Message.TablePerson + " p on a."+ Message.BusinessEntityIDColumn
@@ -114,7 +116,7 @@ namespace SP2010VisualWebPart.PunchAttendance
                                 if (data.Rows.Count > 0)
                                 {
                                     lblError.Text = Message.LastPunchOut + data.Rows[0][3].ToString()
-                                        + Message.PunchOutError;
+                                        + Message.PunchInAfterThisTime;
 									//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                                 }
                                 else

@@ -54,9 +54,13 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblDescription" runat="server" Text="Description" Width="150px"></asp:Label>
-                <br />
-                <span style="padding-left: 160px;"></span>
-                <asp:TextBox ID="txtDescription" runat="server" Height="100px" Width="800px" TextMode="MultiLine"></asp:TextBox>
+                <a href="<%=this.document %>">
+                <asp:Image ID="imgDocument" runat="server" 
+                    ImageUrl="/_layouts/Images/21_2_ob/word-icon.jpg" Width="50px" />
+                </a>
+                <asp:FileUpload ID="fulJobDescription" runat="server" Visible="False" />
+                <asp:Button ID="btnChange" runat="server" CssClass="addButton" 
+                    onclick="btnChange_Click" Text="Change" Width="80px" />
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>

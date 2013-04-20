@@ -23,6 +23,13 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
             {
                 if (Session["Account"].ToString() == "Admin")
                 {
+                    string DepartmentName = Request.QueryString["DepartmentName"];
+                    if (DepartmentName == null) { }
+                    else
+                    {
+                        Session["DepartmentName"] = DepartmentName;
+                        Response.Redirect(Message.DepartmentListPage);
+                    }
                     try
                     {
                         if (!IsPostBack)
@@ -31,6 +38,15 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                             Panel1.Visible = false;
                             lblError.Text = "";
                             _com.setGridViewStyle(grdData);
+                            if (Session["DepartmentName"] != null)
+                            {
+                                Session["Name"] = Session["DepartmentName"];
+                                Session["type"] = "Edit";
+                                Panel1.Visible = true;
+                                lblTitle.Text = "Edit Department";
+                                txtName.Text = Session["Name"].ToString();
+                                Session.Remove("DepartmentName");
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -57,9 +73,8 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //string Location = "JobCategories.aspx/?Type=Edit&" + Server.HtmlDecode(e.Row.Cells[2].Text)
-                //+ "&Email=" + Server.HtmlDecode(e.Row.Cells[3].Text);
-                //e.Row.Style["cursor"] = "pointer";
+                string Location = Message.DepartmentListPage + "/?DepartmentName=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
                 if (e.Row.RowIndex % 2 != 0)
                 {
@@ -74,7 +89,7 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
                     e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
-                    //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
         }
@@ -105,6 +120,9 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                                 +Message.ModifiedDateColumn+")", "N'" + txtName.Text.Trim() + "','" 
                                 + DateTime.Now + "'", false);
                             Panel1.Visible = false;
+                            _com.bindData(Message.NameColumn, "", Message.TableDepartment, grdData);
+                            lblError.Text = "";
+                            txtName.Text = "";
                         }
                         else
                         {
@@ -118,10 +136,10 @@ namespace SP2010VisualWebPart.Admin.Department.DepartmentList
                             + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where " 
                             + Message.NameColumn + "=N'" + Session["Name"] + "'");
                         Panel1.Visible = false;
+                        _com.bindData(Message.NameColumn, "", Message.TableDepartment, grdData);
+                        lblError.Text = "";
+                        txtName.Text = "";
                     }
-                    _com.bindData(Message.NameColumn, "", Message.TableDepartment, grdData);
-                    lblError.Text = "";
-                    txtName.Text = "";
                 }
                 catch (Exception ex)
                 {

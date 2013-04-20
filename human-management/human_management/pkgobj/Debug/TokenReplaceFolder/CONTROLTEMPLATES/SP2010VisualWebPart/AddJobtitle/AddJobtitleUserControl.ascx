@@ -46,15 +46,11 @@
                     <br />
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblJobDescription" runat="server" Text="Job Description" Width="150px"></asp:Label>
-                </p>
-                <p>
-                    <span style="padding-left: 160px;"></span>
-                    <asp:TextBox ID="txtJobDescription" runat="server" Height="100px" TextMode="MultiLine"
-                        Width="800px"></asp:TextBox>
+                    <asp:FileUpload ID="fulJobDescription" runat="server" />
                 </p>
                 <p>
                     &nbsp;</p>
-                <p>
+                <p><br>
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label>
                 </p>

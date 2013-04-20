@@ -40,24 +40,6 @@ namespace SP2010VisualWebPart.Vacancies {
         protected global::System.Web.UI.WebControls.DropDownList ddlJobTitle;
         
         /// <summary>
-        /// lblVacancy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVacancy;
-        
-        /// <summary>
-        /// ddlVacancy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVacancy;
-        
-        /// <summary>
         /// lblStatus control.
         /// </summary>
         /// <remarks>

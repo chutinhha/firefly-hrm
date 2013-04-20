@@ -27,7 +27,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                     {
                         if (!IsPostBack)
                         {
-                            txtEmployeeName.Text = "";
+                            txtEmployeeName.Text = "All";
                             pnlDateTo.Visible = false;
                             lblDateTo.Visible = false;
                             lblDateFrom.Visible = false;
@@ -36,6 +36,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             rdoViewAll.AutoPostBack = true;
                             lblError.Text = "";
                             _com.setGridViewStyle(grdData);
+                            Session.Remove("In");
                             
                         }
                         if (Session[Message.EmployeeName] != null)
@@ -159,90 +160,185 @@ namespace SP2010VisualWebPart.AttendanceRecord
             else{
                 try
                 {
-                    if(rdoViewAll.Checked==true){
-                        //Case 1: View All Attendance of a Employee
-                        lblError.Text = "";
-                        _com.bindDataAttendance("p."+Message.NameColumn+",a."+Message.PunchInColumn+",a."
-                            +Message.PunchOutColumn+",p."+Message.EmailAddressColumn
-                            , " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
-                            + "%'" + _condition+" and emp."+Message.CurrentFlagColumn+"='True'", 
-                            Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn 
-                            + " join " + Message.TableEmployee + " emp on emp."
-                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
-                        check = true;
-                    }
-                    else if (rdoViewDate.Checked == true)
+                    if (txtEmployeeName.Text != "All")
                     {
-                        //Case 2: View Attendance of a date of a employee
-                        if (Request.Form["txtDateFrom"].ToString().Trim() == "")
+                        if (rdoViewAll.Checked == true)
                         {
-                            lblError.Text = Message.NotChooseDate;
-							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                            //Case 1: View All Attendance of a Employee
+                            lblError.Text = "";
+                            _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
+                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn
+                                , " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
+                                Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                + " join " + Message.TableEmployee + " emp on emp."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                            check = true;
                         }
-                        else
+                        else if (rdoViewDate.Checked == true)
                         {
-                            try
+                            //Case 2: View Attendance of a date of a employee
+                            if (Request.Form["txtDateFrom"].ToString().Trim() == "")
                             {
-                                this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
-                                DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
-                                _condition = " and CAST(DAY("+Message.PunchInColumn+") as varchar(50))+'-'+CAST(MONTH("
-                                + Message.PunchInColumn+") as varchar(50))+'-'+CAST(YEAR("+Message.PunchInColumn
-                                +") as varchar(50)) = '"+ dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
-                                lblError.Text = "";
-                                _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn 
-                                    + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, 
-                                    " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
-                                    + "%'" + _condition+" and emp."+Message.CurrentFlagColumn+"='True'", 
-                                    Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
-                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
-                                    + " join " + Message.TableEmployee + " emp on emp."
-                                    + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
-                                check = true;
+                                lblError.Text = Message.NotChooseDate;
+                                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                             }
-                            catch (FormatException)
+                            else
                             {
-                                lblError.Text = Message.InvalidDate;
-								//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
-                            }
-                        }
-                    }
-                    else {
-                        //Case 3: View Attendance in a range of date of a employee
-                        if (Request.Form["txtDateFrom"].ToString().Trim() == "" || Request.Form["txtDateTo"].ToString().Trim() == "")
-                        {
-                            lblError.Text = Message.NotChooseFromToDate;
-							//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
-                        }
-                        else
-                        {
-                            try
-                            {
-                                this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
-                                this.endDate = Request.Form["txtDateTo"].ToString().Trim();
-                                DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
-                                DateTime dt1 = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
-                                dt1 = dt1.AddDays(1.0);
-                                if(dt.CompareTo(dt1)<0){
-                                    _condition = " and "+Message.PunchInColumn+" > '" + dt.Month + "-" + dt.Day + "-" 
-                                        + dt.Year + "'" + " and "+Message.PunchInColumn+" < '" + dt1.Month + "-" 
-                                        + dt1.Day + "-" + dt1.Year + "'";
+                                try
+                                {
+                                    this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+                                    DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                    _condition = " and CAST(DAY(" + Message.PunchInColumn + ") as varchar(50))+'-'+CAST(MONTH("
+                                    + Message.PunchInColumn + ") as varchar(50))+'-'+CAST(YEAR(" + Message.PunchInColumn
+                                    + ") as varchar(50)) = '" + dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
                                     lblError.Text = "";
-                                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn 
-                                        + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn, 
-                                        " where p." + Message.NameColumn + " like N'%"+ txtEmployeeName.Text
-                                        + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
-                                        , Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
+                                        + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
+                                        " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                        + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
+                                        Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                         + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
                                         + " join " + Message.TableEmployee + " emp on emp."
                                         + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
                                     check = true;
                                 }
+                                catch (FormatException)
+                                {
+                                    lblError.Text = Message.InvalidDate;
+                                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                                }
                             }
-                            catch (FormatException)
+                        }
+                        else
+                        {
+                            //Case 3: View Attendance in a range of date of a employee
+                            if (Request.Form["txtDateFrom"].ToString().Trim() == "" || Request.Form["txtDateTo"].ToString().Trim() == "")
                             {
-                                lblError.Text = Message.InvalidDate;
-								//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                                lblError.Text = Message.NotChooseFromToDate;
+                                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+                                    this.endDate = Request.Form["txtDateTo"].ToString().Trim();
+                                    DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                    DateTime dt1 = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
+                                    dt1 = dt1.AddDays(1.0);
+                                    if (dt.CompareTo(dt1) < 0)
+                                    {
+                                        _condition = " and " + Message.PunchInColumn + " > '" + dt.Month + "-" + dt.Day + "-"
+                                            + dt.Year + "'" + " and " + Message.PunchInColumn + " < '" + dt1.Month + "-"
+                                            + dt1.Day + "-" + dt1.Year + "'";
+                                        lblError.Text = "";
+                                        _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
+                                            + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
+                                            " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                            + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
+                                            , Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                            + " join " + Message.TableEmployee + " emp on emp."
+                                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                        check = true;
+                                    }
+                                }
+                                catch (FormatException)
+                                {
+                                    lblError.Text = Message.InvalidDate;
+                                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        if (rdoViewAll.Checked == true)
+                        {
+                            //Case 1: View All Attendance of a Employee
+                            lblError.Text = "";
+                            _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
+                                + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn
+                                , " where "+ _condition + " emp." + Message.CurrentFlagColumn + "='True'",
+                                Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                + " join " + Message.TableEmployee + " emp on emp."
+                                + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                            check = true;
+                        }
+                        else if (rdoViewDate.Checked == true)
+                        {
+                            //Case 2: View Attendance of a date of a employee
+                            if (Request.Form["txtDateFrom"].ToString().Trim() == "")
+                            {
+                                lblError.Text = Message.NotChooseDate;
+                                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+                                    DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                    _condition = " CAST(DAY(" + Message.PunchInColumn + ") as varchar(50))+'-'+CAST(MONTH("
+                                    + Message.PunchInColumn + ") as varchar(50))+'-'+CAST(YEAR(" + Message.PunchInColumn
+                                    + ") as varchar(50)) = '" + dt.Day + "-" + dt.Month + "-" + dt.Year + "'";
+                                    lblError.Text = "";
+                                    _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
+                                        + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
+                                        " where " + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
+                                        Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                        + " join " + Message.TableEmployee + " emp on emp."
+                                        + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                    check = true;
+                                }
+                                catch (FormatException)
+                                {
+                                    lblError.Text = Message.InvalidDate;
+                                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Case 3: View Attendance in a range of date of a employee
+                            if (Request.Form["txtDateFrom"].ToString().Trim() == "" || Request.Form["txtDateTo"].ToString().Trim() == "")
+                            {
+                                lblError.Text = Message.NotChooseFromToDate;
+                                //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
+                                    this.endDate = Request.Form["txtDateTo"].ToString().Trim();
+                                    DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                    DateTime dt1 = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
+                                    dt1 = dt1.AddDays(1.0);
+                                    if (dt.CompareTo(dt1) < 0)
+                                    {
+                                        _condition = Message.PunchInColumn + " > '" + dt.Month + "-" + dt.Day + "-"
+                                            + dt.Year + "'" + " and " + Message.PunchInColumn + " < '" + dt1.Month + "-"
+                                            + dt1.Day + "-" + dt1.Year + "'";
+                                        lblError.Text = "";
+                                        _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
+                                            + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
+                                            " where " + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
+                                            , Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
+                                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
+                                            + " join " + Message.TableEmployee + " emp on emp."
+                                            + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn, grdData);
+                                        check = true;
+                                    }
+                                }
+                                catch (FormatException)
+                                {
+                                    lblError.Text = Message.InvalidDate;
+                                    //ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
+                                }
                             }
                         }
                     }
@@ -270,8 +366,15 @@ namespace SP2010VisualWebPart.AttendanceRecord
                 pnlData.Visible = false;
             }
             if (check == true) {
-                DataTable employee = _com.getData(Message.TablePerson, Message.NameColumn, " where "
-                    + Message.NameColumn + "=N'" + txtEmployeeName.Text + "'");
+                DataTable employee;
+                if (txtEmployeeName.Text != "All")
+                {
+                    employee = _com.getData(Message.TablePerson, Message.NameColumn, " where "
+                        + Message.NameColumn + "=N'" + txtEmployeeName.Text + "'");
+                }
+                else {
+                    employee = _com.getData(Message.TablePerson, Message.NameColumn, "");
+                }
                 if (employee.Rows.Count > 0)
                 {
                     pnlData.Visible = true;

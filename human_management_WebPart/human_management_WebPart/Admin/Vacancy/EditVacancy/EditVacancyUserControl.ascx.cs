@@ -2,6 +2,7 @@
 using System.Data;
 using System.Web;
 using System.Web.UI;
+using System.IO;
 
 namespace SP2010VisualWebPart.EditVacancy
 {
@@ -46,7 +47,13 @@ namespace SP2010VisualWebPart.EditVacancy
                                     ddlJobTitle.SelectedValue = dt.Rows[0][0].ToString().Trim();
                                     txtVacancy.Text = dt.Rows[0][1].ToString().Trim();
                                     txtNoOfPosition.Text = dt.Rows[0][2].ToString().Trim();
-                                    txtDescription.Text = dt.Rows[0][3].ToString().Trim();
+                                    this.document = "/_layouts/Documents/21_2_ob/" + dt.Rows[0][3].ToString().Trim();
+                                    if (dt.Rows[0][3] == null || dt.Rows[0][3].ToString().Trim() == "")
+                                    {
+                                        imgDocument.Visible = false;
+                                        fulJobDescription.Visible = true;
+                                        btnChange.Visible = false;
+                                    }
                                     if (dt.Rows[0][4].ToString().Trim() == "Active")
                                     {
                                         chkActive.Checked = true;
@@ -73,6 +80,7 @@ namespace SP2010VisualWebPart.EditVacancy
             }
         }
         protected string confirmSave { get; set; }
+        protected string document { get; set; }
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (txtVacancy.Text.Trim() == "")
@@ -103,21 +111,39 @@ namespace SP2010VisualWebPart.EditVacancy
                                 + "=N'" + Session["Name"] + "';");
                             if (ddlJobTitle.SelectedValue != "NULL")
                             {
-                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.NumberOfPositionColumn
-                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
-                                    + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
-                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                string strDocURL = fulJobDescription.FileName;
+                                if (strDocURL.Trim() != "")
+                                {
+                                    string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                                    if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                                        Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                                    if (File.Exists(strURL)) File.Delete(strURL);
+                                    fulJobDescription.SaveAs(strURL);
+                                    _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                        + Message.NumberOfPositionColumn
+                                        + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
+                                        + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
+                                        + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
+                                        + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                }
                             }
                             else
                             {
-                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.NumberOfPositionColumn
-                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
-                                    + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
-                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                string strDocURL = fulJobDescription.FileName;
+                                if (strDocURL.Trim() != "")
+                                {
+                                    string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                                    if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                                        Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                                    if (File.Exists(strURL)) File.Delete(strURL);
+                                    fulJobDescription.SaveAs(strURL);
+                                    _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                        + Message.NumberOfPositionColumn
+                                        + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
+                                        + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
+                                        + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
+                                        + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                }
                             }
                             if (jobCandidate.Rows.Count > 0) {
                                 for (int i = 0; i < jobCandidate.Rows.Count; i++) {
@@ -153,20 +179,38 @@ namespace SP2010VisualWebPart.EditVacancy
                                 + "=N'" + Session["Name"] + "';");
                             if (ddlJobTitle.SelectedValue != "NULL")
                             {
-                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.NumberOfPositionColumn
-                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
-                                    + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
-                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                string strDocURL = fulJobDescription.FileName;
+                                if (strDocURL.Trim() != "")
+                                {
+                                    string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                                    if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                                        Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                                    if (File.Exists(strURL)) File.Delete(strURL);
+                                    fulJobDescription.SaveAs(strURL);
+                                    _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                        + Message.NumberOfPositionColumn
+                                        + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
+                                        + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
+                                        + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
+                                        + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                }
                             }
                             else {
-                                _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
-                                    + Message.NumberOfPositionColumn
-                                    + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + txtDescription.Text
-                                    + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
-                                    + "='" + active + "',"+Message.ModifiedDateColumn+"='" + DateTime.Now + "' where " 
-                                    + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                string strDocURL = fulJobDescription.FileName;
+                                if (strDocURL.Trim() != "")
+                                {
+                                    string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                                    if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                                        Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                                    if (File.Exists(strURL)) File.Delete(strURL);
+                                    fulJobDescription.SaveAs(strURL);
+                                    _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                        + Message.NumberOfPositionColumn
+                                        + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
+                                        + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
+                                        + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
+                                        + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                }
                             }
                             if (jobCandidate.Rows.Count > 0)
                             {
@@ -201,6 +245,13 @@ namespace SP2010VisualWebPart.EditVacancy
             _com.closeConnection();
             Session.Remove("Name");
             Response.Redirect(Message.VacancyPage,true);
+        }
+
+        protected void btnChange_Click(object sender, EventArgs e)
+        {
+            imgDocument.Visible = false;
+            fulJobDescription.Visible = true;
+            btnChange.Visible = false;
         }
     }
 }
