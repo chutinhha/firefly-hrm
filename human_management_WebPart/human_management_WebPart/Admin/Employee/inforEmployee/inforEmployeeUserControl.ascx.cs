@@ -28,7 +28,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                     +Message.SSNNumberColumn+", emp."+Message.GenderColumn+", emp."+Message.MaritalStatusColumn;
                 string strTable = Message.TableEmployee+" emp join "+Message.TablePerson+" per on emp."
                     +Message.BusinessEntityIDColumn+"=per."+Message.BusinessEntityIDColumn;
-                string strCondition = " where AND emp."+Message.BusinessEntityIDColumn+" = '" 
+                string strCondition = " where emp."+Message.BusinessEntityIDColumn+" = '" 
                     + strBusinessEntityId + "'";
                 DataTable dt = _com.getData(strTable, strColumn, strCondition);
                 if (dt.Rows.Count > 0)
@@ -209,7 +209,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 string strColumn = Message.EmailAddressColumn+", "+Message.HomePhoneColumn+", "+Message.MobileColumn
                     +", "+Message.CityColumn+", "+Message.CountryColumn+", "+Message.AddressColumn;
                 string strTable = Message.TablePerson;
-                string strCondition = " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId + ")";
+                string strCondition = " where "+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId;
                 DataTable dt = _com.getData(strTable, strColumn, strCondition);
                 if (dt.Rows.Count > 0)
                 {
@@ -329,7 +329,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             try
             {
                 //Set data to Job Title dropdownlist
-                string strColumn = "j."+Message.TableJobTitle;
+                string strColumn = "j."+Message.JobTitleColumn;
                 string strTable = " ( "+Message.TableEmployee+" e LEFT JOIN "+Message.TableJobTitle
                     +" j ON e."+Message.JobIDColumn+" = j."+Message.JobIDColumn+") ";
                 string strCondition = " Where (e."+Message.BusinessEntityIDColumn+" = " + strBusinessEntityId + ")";
