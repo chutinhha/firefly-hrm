@@ -31,19 +31,13 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="120px"></asp:Label>
-                <div class="styled-selectMedium">
+                <div class="styled-selectLong">
                     <asp:DropDownList ID="ddlJobTitle" runat="server">
                     </asp:DropDownList>
                 </div>
-                <span style="padding-left: 30px;"></span>
-                <asp:Label ID="lblVacancy" runat="server" Text="Vacancy" Width="120px"></asp:Label>
-                <div class="styled-selectMedium">
-                    <asp:DropDownList ID="ddlVacancy" runat="server">
-                    </asp:DropDownList>
-                </div>
-                <span style="padding-left: 30px;"></span><span style="padding-left: 30px;"></span>
+                <span style="padding-left: 100px;"></span>
                 <asp:Label ID="lblStatus" runat="server" Text="Status" Width="120px"></asp:Label>
-                <div class="styled-selectMedium">
+                <div class="styled-selectLong">
                     <asp:DropDownList ID="ddlStatus" runat="server">
                         <asp:ListItem Selected="True">All</asp:ListItem>
                         <asp:ListItem>Active</asp:ListItem>

@@ -143,8 +143,8 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                         + " order by p." + Message.NameColumn;
                     _com.bindDataAttendanceSummary("p." + Message.NameColumn + ",a." + Message.PunchInColumn
                         + ",a." + Message.PunchOutColumn+",p."+Message.BusinessEntityIDColumn+",p."
-                        + Message.EmailAddressColumn, condition, Message.TableAttendance + " a join "
-                        + Message.TablePerson + " p on a." + Message.BusinessEntityIDColumn + " = p."
+                        + Message.EmailAddressColumn+",j."+Message.JobTitleColumn, condition, Message.TableAttendance 
+                        + " a join "+ Message.TablePerson + " p on a." + Message.BusinessEntityIDColumn + " = p."
                         + Message.BusinessEntityIDColumn + " join " + Message.TableEmployee + " e on a."
                         + Message.BusinessEntityIDColumn + " = e." + Message.BusinessEntityIDColumn + " join "
                         + Message.TableJobTitle + " j on j." + Message.JobIDColumn + "=e." + Message.JobIDColumn, grdData);

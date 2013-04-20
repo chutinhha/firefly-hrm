@@ -67,13 +67,13 @@ namespace SP2010VisualWebPart.AddJobtitle {
         protected global::System.Web.UI.WebControls.Label lblJobDescription;
         
         /// <summary>
-        /// txtJobDescription control.
+        /// fulJobDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtJobDescription;
+        protected global::System.Web.UI.WebControls.FileUpload fulJobDescription;
         
         /// <summary>
         /// lblNote control.

@@ -38,9 +38,8 @@ namespace SP2010VisualWebPart.JobCategories
                             Panel1.Visible = false;
                             lblError.Text = "";
                             _com.setGridViewStyle(grdData);
-                        }
-                        else {
-                            if (Session["CategoryName"] != null) {
+                            if (Session["CategoryName"] != null)
+                            {
                                 Session["Name"] = Session["CategoryName"];
                                 Session["type"] = "Edit";
                                 Panel1.Visible = true;
@@ -74,7 +73,7 @@ namespace SP2010VisualWebPart.JobCategories
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string Location = "JobCategories.aspx/?CategoryName=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                string Location = Message.JobCategoriesPage+"/?CategoryName=" + Server.HtmlDecode(e.Row.Cells[1].Text);
                 e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
                 if (e.Row.RowIndex % 2 != 0)
@@ -97,6 +96,7 @@ namespace SP2010VisualWebPart.JobCategories
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             txtName.Text = "";
+            lblError.Text = "";
             Panel1.Visible = false;
         }
 
@@ -118,6 +118,9 @@ namespace SP2010VisualWebPart.JobCategories
                         {
                             _com.insertIntoTable(Message.TableJobCategory, "", "N'" + txtName.Text.Trim() + "','" + DateTime.Now + "'", false);
                             Panel1.Visible = false;
+                            _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
+                            lblError.Text = "";
+                            txtName.Text = "";
                         }
                         else {
                             lblError.Text = Message.AlreadyExistCategory;
@@ -131,18 +134,18 @@ namespace SP2010VisualWebPart.JobCategories
                             + "='" + Session["Name"].ToString() + "';");
                         _com.updateTable(Message.TableJobCategory,Message.NameColumn+"=N'"+txtName.Text.Trim()
                             +"',"+Message.ModifiedDateColumn+"='"+DateTime.Now+"' where "+Message.NameColumn+"=N'"+Session["Name"]+"'");
+                        _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
+                        lblError.Text = "";
+                        txtName.Text = "";
+                        Panel1.Visible = false;
                         if (JobTitles.Rows.Count > 0) {
                             for (int i = 0; i < JobTitles.Rows.Count; i++)
                             {
                                 _com.updateTable(Message.TableJobTitle, " " + Message.JobCategoryColumn + "=N'" + txtName.Text.Trim() + "' where "
                                     + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString() + "';");
-                                Panel1.Visible = false;
                             }
                         }
                     }
-                    _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
-                    lblError.Text = "";
-                    txtName.Text = "";
                 }
                 catch (Exception ex)
                 {

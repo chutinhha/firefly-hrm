@@ -154,6 +154,7 @@
     <Content Include="Images\21_2_ob\patient-profile-divider.gif" />
     <Content Include="Images\21_2_ob\slide-shadow.jpg" />
     <Content Include="Images\21_2_ob\spacer.gif" />
+    <Content Include="Images\21_2_ob\word-icon.jpg" />
     <Content Include="Layouts\human_management\addthis_widget.js" />
     <Content Include="Layouts\human_management\cswap.js" />
     <Content Include="Layouts\human_management\dropdown.js" />

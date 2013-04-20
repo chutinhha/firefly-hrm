@@ -81,7 +81,7 @@ namespace SP2010VisualWebPart.EditCandidate
                                     ddlVacancy.SelectedValue = dt.Rows[0][8].ToString().Trim();
                                     ddlJobTitle.SelectedValue = dt.Rows[0][11].ToString().Trim();
                                     ddlStatus.SelectedValue = dt.Rows[0][12].ToString().Trim();
-                                    ddlApplyMethod.SelectedValue = dt.Rows[0][14].ToString().Trim();
+                                    ddlApplyMethod.SelectedValue = dt.Rows[0][13].ToString().Trim();
                                     this.inputValue = dt.Rows[0][10].ToString().Trim();
                                     txtComment.Text = dt.Rows[0][9].ToString().Trim();
                                     if (dt.Rows[0][15].ToString().Trim() != "")

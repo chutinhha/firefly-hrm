@@ -2,6 +2,8 @@
 using System.Data;
 using System.Web;
 using System.Web.UI;
+using System.Net;
+using System.IO;
 
 namespace SP2010VisualWebPart.EditJobTitle
 {
@@ -44,7 +46,12 @@ namespace SP2010VisualWebPart.EditJobTitle
                                 if (dt.Rows.Count > 0)
                                 {
                                     txtJobTitle.Text = dt.Rows[0][1].ToString().Trim();
-                                    txtJobDescription.Text = dt.Rows[0][2].ToString().Trim();
+                                    this.document = "/_layouts/Documents/21_2_ob/" + dt.Rows[0][2].ToString().Trim();
+                                    if (dt.Rows[0][2] == null || dt.Rows[0][2].ToString().Trim() == "") {
+                                        imgDocument.Visible = false;
+                                        fulJobDescription.Visible = true;
+                                        btnChange.Visible = false;
+                                    }
                                     txtNote.Text = dt.Rows[0][4].ToString().Trim();
                                     ddlJobCategory.SelectedValue = dt.Rows[0][3].ToString().Trim();
                                 }
@@ -65,6 +72,7 @@ namespace SP2010VisualWebPart.EditJobTitle
             }
         }
         protected string confirmSave { get; set; }
+        protected string document { get; set; }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             _com.closeConnection();
@@ -90,10 +98,25 @@ namespace SP2010VisualWebPart.EditJobTitle
                         +Message.JobTitleColumn+"='" + Session["Name"].ToString() + "'");
                     _com.updateTable(Message.TableVacancy, " " + Message.JobTitleColumn + "=NULL where "+Message.JobTitleColumn
                         +"='" + Session["Name"].ToString() + "'");
-                    _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn+"=N'" + txtJobTitle.Text + "',"
-                        + Message.JobDescriptionColumn+"=N'" + txtJobDescription.Text + "',"+Message.NoteColumn+"=N'" 
-                        + txtNote.Text + "',"+ Message.JobCategoryColumn+"=N'" + ddlJobCategory.SelectedValue 
-                        + "',"+Message.ModifiedDateColumn+"='"+DateTime.Now+"' where "+Message.JobTitleColumn+"=N'"+Session["Name"]+"'");
+                    string strDocURL = fulJobDescription.FileName;
+                    if (strDocURL.Trim() != "")
+                    {
+                        string strURL = Server.MapPath("/_layouts/Documents/21_2_ob/") + strDocURL;
+                        if (Directory.Exists(Server.MapPath("/_layouts/Documents/21_2_ob/")) == false)
+                            Directory.CreateDirectory(Server.MapPath("/_layouts/Documents/21_2_ob/"));
+                        if (File.Exists(strURL)) File.Delete(strURL);
+                        fulJobDescription.SaveAs(strURL);
+                        _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn + "=N'" + txtJobTitle.Text + "',"
+                        + Message.JobDescriptionColumn + "=N'" + strDocURL + "'," + Message.NoteColumn + "=N'"
+                        + txtNote.Text + "'," + Message.JobCategoryColumn + "=N'" + ddlJobCategory.SelectedValue
+                        + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where " + Message.JobTitleColumn + "=N'" + Session["Name"] + "'");
+                    }
+                    else {
+                        _com.updateTable(Message.TableJobTitle, Message.JobTitleColumn + "=N'" + txtJobTitle.Text + "',"
+                        + Message.JobDescriptionColumn + "=NULL," + Message.NoteColumn + "=N'"
+                        + txtNote.Text + "'," + Message.JobCategoryColumn + "=N'" + ddlJobCategory.SelectedValue
+                        + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where " + Message.JobTitleColumn + "=N'" + Session["Name"] + "'");
+                    }
                     if (jobCandidate.Rows.Count > 0) {
                         for (int i = 0; i < jobCandidate.Rows.Count; i++)
                         {
@@ -119,6 +142,13 @@ namespace SP2010VisualWebPart.EditJobTitle
 					//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\'")+"');", true);
                 }
             }
+        }
+
+        protected void btnChange_Click(object sender, EventArgs e)
+        {
+            imgDocument.Visible = false;
+            fulJobDescription.Visible = true;
+            btnChange.Visible = false;
         }
     }
 }

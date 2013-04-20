@@ -164,7 +164,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             //Pending Timesheet
                             DataTable pendingTime = _com.getData(Message.TableTimesheet + " t join " + Message.TablePerson + " per"
                                 + " on t." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn, " distinct per."
-                                + Message.NameColumn + ",t." + Message.ModifiedDateColumn, " where t." + Message.CurrentFlagColumn + "='False'");
+                                + Message.NameColumn + ",t." + Message.WorkDateColumn, " where t." + Message.CurrentFlagColumn + "='False'");
                             if (pendingTime.Rows.Count > 0)
                             {
                                 pnlTime.Controls.Add(new LiteralControl("<div style=\"height:223px; \" id=\"task-list-group-panel-container\">"));

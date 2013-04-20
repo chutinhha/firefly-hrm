@@ -126,10 +126,12 @@ public class CommonFunction
             DataColumn dcTotalDay = new DataColumn("Total Day Present", typeof(string));
             DataColumn dcTotalHour = new DataColumn("Total Time Present(Hours)", typeof(double));
             DataColumn dcEmail = new DataColumn("Email", typeof(string));
+            DataColumn dcJobTitle = new DataColumn("Job Title", typeof(string));
             dt1.Columns.Add(dcName);
             dt1.Columns.Add(dcTotalHour);
             dt1.Columns.Add(dcTotalDay);
             dt1.Columns.Add(dcEmail);
+            dt1.Columns.Add(dcJobTitle);
             TimeSpan totalTime = TimeSpan.Zero;
             int totalDay = 1;
             string Day = DateTime.Parse(dt.Rows[0][1].ToString()).Day + "-" + DateTime.Parse(dt.Rows[0][1].ToString()).Month
@@ -137,6 +139,7 @@ public class CommonFunction
             string name = dt.Rows[0][0].ToString();
             string businessID = dt.Rows[0][3].ToString();
             string email = dt.Rows[0][4].ToString();
+            string jobTitle = dt.Rows[0][5].ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (businessID == dt.Rows[i][3].ToString())
@@ -157,6 +160,7 @@ public class CommonFunction
                         dr[1] = totalTime.TotalHours;
                         dr[2] = totalDay;
                         dr[3] = email;
+                        dr[4] = jobTitle;
                         dt1.Rows.Add(dr);
                     }
                 }
@@ -167,9 +171,11 @@ public class CommonFunction
                     dr[3] = email;
                     dr[1] = totalTime.TotalHours;
                     dr[2] = totalDay;
+                    dr[4] = jobTitle;
                     dt1.Rows.Add(dr);
                     name = dt.Rows[i][0].ToString();
                     email = dt.Rows[i][4].ToString();
+                    jobTitle = dt.Rows[i][5].ToString();
                     businessID = dt.Rows[i][3].ToString();
                     totalDay = 1;
                     DateTime punchIn = DateTime.Parse(dt.Rows[i][1].ToString());
@@ -183,11 +189,13 @@ public class CommonFunction
                         dr1[1] = totalTime.TotalHours;
                         dr1[2] = totalDay;
                         dr1[3] = email;
+                        dr[4] = jobTitle;
                         dt1.Rows.Add(dr1);
                     }
                 }
             }
             dt1.Columns[3].SetOrdinal(1);
+            dt1.Columns[4].SetOrdinal(2);
         }
         GridView1.DataSource = dt1;
         GridView1.DataBind();
@@ -510,12 +518,16 @@ public class CommonFunction
                         DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
                             + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='" 
                             + question.Rows[i][0].ToString()+"'");
-                        if (evaluatePoint.Rows[0][3].ToString() == "10")
+                        if (evaluatePoint.Rows.Count > 0)
                         {
-                            rdoYes.Checked = true;
-                        }
-                        else {
-                            rdoNo.Checked = true;
+                            if (evaluatePoint.Rows[0][3].ToString() == "10")
+                            {
+                                rdoYes.Checked = true;
+                            }
+                            else
+                            {
+                                rdoNo.Checked = true;
+                            }
                         }
                     }
                     pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
@@ -549,8 +561,11 @@ public class CommonFunction
                             + question.Rows[i][0].ToString() + "'");
                     if (isEdit == "true")
                     {
-                        txtNote.Text = evaluatePoint.Rows[0][4].ToString();
-                        ddlNotePoint.SelectedValue = evaluatePoint.Rows[0][3].ToString();
+                        if (evaluatePoint.Rows.Count > 0)
+                        {
+                            txtNote.Text = evaluatePoint.Rows[0][4].ToString();
+                            ddlNotePoint.SelectedValue = evaluatePoint.Rows[0][3].ToString();
+                        }
                     }
 
                     pnlGenerate.Controls.Add(new LiteralControl("<span style=\"padding-left:5px;\"></span>"));
@@ -597,24 +612,28 @@ public class CommonFunction
                         DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
                             + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
                             + question.Rows[i][0].ToString() + "'");
-                        if (evaluatePoint.Rows[0][3].ToString() == "10") {
-                            rdoPerfect.Checked = true;
-                        }
-                        else if (evaluatePoint.Rows[0][3].ToString() == "8")
+                        if (evaluatePoint.Rows.Count > 0)
                         {
-                            rdoGreat.Checked = true;
-                        }
-                        else if (evaluatePoint.Rows[0][3].ToString() == "6")
-                        {
-                            rdoNormal.Checked = true;
-                        }
-                        else if (evaluatePoint.Rows[0][3].ToString() == "4")
-                        {
-                            rdoBad.Checked = true;
-                        }
-                        else if (evaluatePoint.Rows[0][3].ToString() == "2")
-                        {
-                            rdoVeryBad.Checked = true;
+                            if (evaluatePoint.Rows[0][3].ToString() == "10")
+                            {
+                                rdoPerfect.Checked = true;
+                            }
+                            else if (evaluatePoint.Rows[0][3].ToString() == "8")
+                            {
+                                rdoGreat.Checked = true;
+                            }
+                            else if (evaluatePoint.Rows[0][3].ToString() == "6")
+                            {
+                                rdoNormal.Checked = true;
+                            }
+                            else if (evaluatePoint.Rows[0][3].ToString() == "4")
+                            {
+                                rdoBad.Checked = true;
+                            }
+                            else if (evaluatePoint.Rows[0][3].ToString() == "2")
+                            {
+                                rdoVeryBad.Checked = true;
+                            }
                         }
                     }
 

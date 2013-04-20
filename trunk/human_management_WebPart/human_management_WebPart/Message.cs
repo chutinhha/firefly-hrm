@@ -162,6 +162,7 @@
     internal const string JobCategoriesPage = "JobCategories.aspx";
     internal const string MyInfoPage = "MyInfo.aspx";
     internal const string LeaveTypeList = "LeaveTypeList.aspx";
+    internal const string DepartmentListPage = "DepartmentList.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";
@@ -179,6 +180,7 @@
     internal const string PunchOutAfterPunchIn = "Punch Out time must be later than Punch In time";
     internal const string PunchIn = "You have Punch In in ";
     internal const string PunchOut = " and Punch Out in ";
+    internal const string PunchInAfterThisTime = ",you can not Punch In earlier than this time.";
     internal const string PunchInError = ",you can not Punch In in ";
     internal const string PunchOutError = ",you can not Punch Out in ";
     internal const string PunchDateError = "Invalid Punch In or Punch Out date";

@@ -43,7 +43,8 @@
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblProjectName" runat="server" Text="Project Name" Width="150px"></asp:Label>
             <div class="styled-selectLong">
-                <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlProjectName" runat="server" 
+                    OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
             <p>
@@ -80,7 +81,7 @@
             </div>
             <asp:Panel ID="pnlData" runat="server" Visible="False">
                 <br />
-                <asp:Label ID="lblDetail" runat="server" Text=""></asp:Label><br />
+                <asp:Label ID="lblDetail" runat="server" Text="" style="color:Green;"></asp:Label><br />
                 <br />
                 <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                 </asp:GridView>

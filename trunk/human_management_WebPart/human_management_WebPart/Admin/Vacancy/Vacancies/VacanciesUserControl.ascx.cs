@@ -26,7 +26,6 @@ namespace SP2010VisualWebPart.Vacancies
                         if (!IsPostBack)
                         {
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
-                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", true, "All");
                             ddlStatus.SelectedIndex = 0;
                             Session.Remove("Name");
                             _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
@@ -62,16 +61,12 @@ namespace SP2010VisualWebPart.Vacancies
         {
             try
             {
+                lblError.Text = "";
                 string condition = " where ";
                 if (ddlJobTitle.SelectedValue == "All") { }
                 else
                 {
                     condition = condition + Message.JobTitleColumn+"='" + ddlJobTitle.SelectedItem.Text + "' and ";
-                }
-                if (ddlVacancy.SelectedItem.Text == "All") { }
-                else
-                {
-                    condition = condition + Message.VacancyNameColumn+"='" + ddlVacancy.SelectedItem.Text + "' and ";
                 }
                 if (ddlStatus.SelectedItem.Text == "All") { }
                 else
@@ -135,7 +130,6 @@ namespace SP2010VisualWebPart.Vacancies
             try
             {
                 ddlJobTitle.SelectedIndex = 0;
-                ddlVacancy.SelectedIndex = 0;
                 ddlStatus.SelectedIndex = 0;
                 _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
                     + "", "", Message.TableVacancy, grdData);
