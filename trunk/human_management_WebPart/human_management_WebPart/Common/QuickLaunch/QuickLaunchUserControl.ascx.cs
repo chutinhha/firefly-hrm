@@ -241,9 +241,10 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             }
 
                             //Upcoming Task
-                            DataTable upcomingTask = _com.getData(Message.TableTask, Message.TaskNameColumn + "," + Message.PersonProjectEndDateColumn
+                            DataTable upcomingTask = _com.getData(Message.TableTask +" as tas join "+Message.TableProject+" pro on "
+                                +" tas."+Message.ProjectIDColumn+"=pro."+Message.ProjectIDColumn, Message.TaskNameColumn + "," + Message.PersonProjectEndDateColumn
                                 , " where " + Message.PersonProjectEndDateColumn + ">='" + DateTime.Today + "' and " + Message.PersonProjectEndDateColumn
-                                + "<='" + DateTime.Today.AddDays(7) + "'");
+                                + "<='" + DateTime.Today.AddDays(7) + "' and pro."+Message.ProjectNameColumn+"<>'Leave'");
                             if (upcomingTask.Rows.Count > 0)
                             {
                                 pnlUpcoming.Controls.Add(new LiteralControl("<div style=\"height:300px; \" id=\"task-list-group-panel-container\">"));
@@ -300,10 +301,12 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             this.quickLaunchWidth = 410;
                             //Upcoming Task
                             DataTable upcomingTask = _com.getData(Message.TableTask+" tas join "+Message.TablePersonProject+" pp on tas."
-                                +Message.TaskIdColumn+"=pp."+Message.TaskIdColumn
+                                +Message.TaskIdColumn+"=pp."+Message.TaskIdColumn+" join "+Message.TableProject+" pro on"
+                                +" tas."+Message.ProjectIDColumn+"=pro."+Message.ProjectIDColumn
                                 , "tas."+Message.TaskNameColumn + "," + "tas."+Message.PersonProjectEndDateColumn
                                 , " where tas." + Message.PersonProjectEndDateColumn + ">='" + DateTime.Today + "' and tas." + Message.PersonProjectEndDateColumn
-                                + "<='" + DateTime.Today.AddDays(7) + "' and pp."+Message.BusinessEntityIDColumn+"='"+Session["AccountID"].ToString()+"'");
+                                + "<='" + DateTime.Today.AddDays(7) + "' and pp."+Message.BusinessEntityIDColumn+"='"+Session["AccountID"].ToString()+"'"
+                                +" and pro."+Message.ProjectNameColumn+"<>'Leave'");
                             if (upcomingTask.Rows.Count > 0)
                             {
                                 pnlUpcoming.Controls.Add(new LiteralControl("<div style=\"height:300px; \" id=\"task-list-group-panel-container\">"));
@@ -312,7 +315,7 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                                 for (int i = 0; i < upcomingTask.Rows.Count; i++)
                                 {
                                     pnlUpcoming.Controls.Add(new LiteralControl("<tr class=\"odd\"><td>"));
-                                    pnlUpcoming.Controls.Add(new LiteralControl("<a href='"+Message.MyTaskPage+"'>"));
+                                    pnlUpcoming.Controls.Add(new LiteralControl("<a href='"+Message.MyTaskPage+"/?Type=Current'>"));
                                     pnlUpcoming.Controls.Add(new LiteralControl(i + 1 + ". " + upcomingTask.Rows[i][0].ToString() + " " + upcomingTask.Rows[i][1].ToString()));
                                     pnlUpcoming.Controls.Add(new LiteralControl("</a></td></tr>"));
                                 }
