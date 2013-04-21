@@ -168,7 +168,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             lblError.Text = "";
                             _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
                                 + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn
-                                , " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                , " where p."+Message.RankColumn+"='User' and p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
                                 + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
                                 Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
@@ -196,7 +196,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                     lblError.Text = "";
                                     _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
                                         + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
-                                        " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                        " where p." + Message.RankColumn + "='User' and p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
                                         + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
                                         Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                         + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
@@ -236,7 +236,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         lblError.Text = "";
                                         _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
                                             + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
-                                            " where p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
+                                            " where p." + Message.RankColumn + "='User' and p." + Message.NameColumn + " like N'%" + txtEmployeeName.Text
                                             + "%'" + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
                                             , Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                             + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
@@ -260,7 +260,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                             lblError.Text = "";
                             _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn + ",a."
                                 + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn
-                                , " where "+ _condition + " emp." + Message.CurrentFlagColumn + "='True'",
+                                , " where p." + Message.RankColumn + "='User' and " + _condition + " emp." + Message.CurrentFlagColumn + "='True'",
                                 Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                 + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TableEmployee + " emp on emp."
@@ -287,7 +287,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                     lblError.Text = "";
                                     _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
                                         + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
-                                        " where " + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
+                                        " where p." + Message.RankColumn + "='User' and " + _condition + " and emp." + Message.CurrentFlagColumn + "='True'",
                                         Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                         + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
                                         + " join " + Message.TableEmployee + " emp on emp."
@@ -326,7 +326,7 @@ namespace SP2010VisualWebPart.AttendanceRecord
                                         lblError.Text = "";
                                         _com.bindDataAttendance("p." + Message.NameColumn + ",a." + Message.PunchInColumn
                                             + ",a." + Message.PunchOutColumn + ",p." + Message.EmailAddressColumn,
-                                            " where " + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
+                                            " where p." + Message.RankColumn + "='User' and " + _condition + " and emp." + Message.CurrentFlagColumn + "='True'"
                                             , Message.TableAttendance + " a join " + Message.TablePerson + " p on a."
                                             + Message.BusinessEntityIDColumn + "=p." + Message.BusinessEntityIDColumn
                                             + " join " + Message.TableEmployee + " emp on emp."

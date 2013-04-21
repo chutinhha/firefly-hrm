@@ -29,6 +29,15 @@
                     <asp:ListItem>Finished Task</asp:ListItem>
                     <asp:ListItem>Future Task</asp:ListItem>
                 </asp:DropDownList>
+            </div><span style="padding-left: 100px;"></span>
+            <asp:Label ID="lblStatus" runat="server" Text="Status" Width="150px"></asp:Label>
+            <div class="styled-selectLong">
+                <asp:DropDownList ID="ddlStatus" runat="server" AutoPostBack="True" 
+                    onselectedindexchanged="ddlStatus_SelectedIndexChanged">
+                    <asp:ListItem Selected="True">All</asp:ListItem>
+                    <asp:ListItem>Assigned</asp:ListItem>
+                    <asp:ListItem>Removed</asp:ListItem>
+                </asp:DropDownList>
             </div>
             <p>
                 &nbsp;</p>

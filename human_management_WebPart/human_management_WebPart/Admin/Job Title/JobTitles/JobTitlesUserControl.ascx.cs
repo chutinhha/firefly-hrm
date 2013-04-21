@@ -96,6 +96,11 @@ namespace SP2010VisualWebPart.JobTitles
                     e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+                if (e.Row.Cells[2].Text.Contains("a href") || e.Row.Cells[2].Text == ""||e.Row.Cells[2].Text=="&nbsp;") { }
+                else
+                {
+                    e.Row.Cells[2].Text = "<a href='/hr/_layouts/Documents/21_2_ob/" + e.Row.Cells[2].Text + "'>Download</a>";
+                }
             }
         }
         protected void btnDelete_Click(object sender, EventArgs e)

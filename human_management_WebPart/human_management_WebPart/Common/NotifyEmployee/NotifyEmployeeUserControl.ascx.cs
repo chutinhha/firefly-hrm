@@ -25,8 +25,10 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                         , "edh." + Message.StartDateColumn + ",edh." + Message.EndDateColumn + ",edh." + Message.ModifiedDateColumn
                         + ",d." + Message.NameColumn, " where edh." + Message.BusinessEntityIDColumn + "='"
                         + Session["AccountID"].ToString() + "' and ((edh." + Message.StartDateColumn + "<='" + end + "' and (edh."
-                        + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='')) or (edh." + Message.ModifiedDateColumn
-                        + "<='" + end + "') and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "=''))");
+                        + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='') and edh."+Message.StartDateColumn+">='"
+                        +DateTime.Today+"') or (edh." + Message.ModifiedDateColumn
+                        + "<='" + end + "' and (edh." + Message.EndDateColumn + " is NULL or edh." + Message.EndDateColumn + "='') and edh." 
+                        + Message.ModifiedDateColumn + ">='"+ DateTime.Today + "'))");
                     DataTable dt = _com.getData(Message.TablePerson, Message.NameColumn, " where "
                     + Message.BusinessEntityIDColumn + "='" + Session["AccountID"] + "'");
                     string link = Message.EditEmployeeDepartmentPage + "/?BusinessID=" + Session["AccountID"]
@@ -79,18 +81,43 @@ namespace SP2010VisualWebPart.Admin.NotifyEmployee
                         {
                             if (assignProject.Rows[i][4].ToString() == "1")
                             {
-                                this.inputValue = this.inputValue + "<a href='" + Message.MyTaskPage + "'>Assign to Project: " + assignProject.Rows[i][0].ToString()
-                                    + "<br />Task: " + assignProject.Rows[i][1].ToString() + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
+                                if (assignProject.Rows[i][0].ToString() == "Leave")
+                                {
+                                    this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage+"/?Prove=Approved"
+                                        + "'>Assign leave: " + assignProject.Rows[i][0].ToString()
+                                        + "<br />Task: " + assignProject.Rows[i][1].ToString()
+                                        + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
+                                }
+                                else {
+                                    this.inputValue = this.inputValue + "<a href='" + Message.MyTaskPage + "/?Status=Assigned"
+                                        + "'>Assign to project: " + assignProject.Rows[i][0].ToString()
+                                        + "<br />Task: " + assignProject.Rows[i][1].ToString()
+                                        + "<br />Deadline: " + assignProject.Rows[i][3].ToString() + "</a>;";
+                                }
                             }
                             else if (assignProject.Rows[i][4].ToString() == "0")
                             {
-                                this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "'>Apply to Project: " + assignProject.Rows[i][0].ToString()
-                                    + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                                if (assignProject.Rows[i][0].ToString() == "Leave")
+                                {
+                                    this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "/?Prove=Not Approve" + "'>Apply leave: " + assignProject.Rows[i][0].ToString()
+                                        + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                                }
+                                else {
+                                    this.inputValue = this.inputValue + "<a href='" + Message.MyTaskPage + "/?Status=Applied" + "'>Apply to project: " + assignProject.Rows[i][0].ToString()
+                                        + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                                }
                             }
                             else
                             {
-                                this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "'>Remove from Project: " + assignProject.Rows[i][0].ToString()
-                                    + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                                if (assignProject.Rows[i][0].ToString() == "Leave")
+                                {
+                                    this.inputValue = this.inputValue + "<a href='" + Message.MyLeavePage + "/?Prove=Rejected" + "'>Remove leave: " + assignProject.Rows[i][0].ToString()
+                                        + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                                }
+                                else {
+                                    this.inputValue = this.inputValue + "<a href='" + Message.MyTaskPage + "/?Status=Removed" + "'>Remove from project: " + assignProject.Rows[i][0].ToString()
+                                        + "<br />Task: " + assignProject.Rows[i][1].ToString() + ";";
+                                }
                             }
                         }
                     }

@@ -26,10 +26,7 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                         {
                             lblError.Text = "";
                             _com.setGridViewStyle(grdData);
-                            _com.SetItemList(" pro."+Message.ProjectNameColumn, Message.TableProject+" pro"
-                                +" join "+Message.TableTask+" tas on pro."+Message.ProjectIDColumn+" = tas."
-                                + Message.ProjectIDColumn+" join "+Message.TablePersonProject+" pp on pp."
-                                +Message.TaskIdColumn+"=tas."+Message.TaskIdColumn, ddlProjectName, " where pro."
+                            _com.SetItemList(Message.ProjectNameColumn, Message.TableProject, ddlProjectName, " where "
                                 +Message.ProjectNameColumn+"<>'Leave'", true, "All");
                             ddlTaskName.Items.Clear();
                             ddlTaskName.Items.Add("All");
@@ -54,7 +51,8 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
             this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
             this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             lblDetail.Text = "";
-            string condition = " where per." + Message.NameColumn + "=N'" + Session["PersonName"].ToString()+"'";
+            string condition = " where per." + Message.NameColumn + "=N'" + Session["PersonName"].ToString()+"' and pro."
+                +Message.ProjectNameColumn+"<>'Leave'";
             try
             {
                 if (ddlProjectName.SelectedValue == "All")
@@ -168,7 +166,13 @@ namespace SP2010VisualWebPart.User.Performance.ReviewTimesheet
                 }
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
-                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    if (i != 1)
+                    {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    }
+                    else {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;padding-left:5px;line-height: 20px;");
+                    }
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }

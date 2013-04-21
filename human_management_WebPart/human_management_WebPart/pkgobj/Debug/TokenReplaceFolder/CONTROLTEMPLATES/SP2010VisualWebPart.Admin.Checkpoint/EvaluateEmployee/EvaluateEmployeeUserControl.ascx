@@ -32,7 +32,7 @@
                 <br />
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name(*)" Width="150px"></asp:Label>
-                <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px"></asp:TextBox><br />
+                <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px">All</asp:TextBox><br />
                 <br />
                 <div class="borderTop">
                     <span style="padding-left: 155px;"></span>

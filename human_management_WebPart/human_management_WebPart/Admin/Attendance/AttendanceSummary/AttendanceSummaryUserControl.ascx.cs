@@ -139,7 +139,7 @@ namespace SP2010VisualWebPart.Admin.Attendance.AttendanceSummary
                         lblError.Text = Message.InvalidDate;
 						//ScriptManager.RegisterStartupScript(Page, this.GetType(), "myScript","alert('"+lblError.Text.Replace("'","\\'")+"');", true);
                     }
-                    condition = condition + " and e." + Message.CurrentFlagColumn + "='True'" 
+                    condition = condition + " and e." + Message.CurrentFlagColumn + "='True' and p." + Message.RankColumn + "='User'" 
                         + " order by p." + Message.NameColumn;
                     _com.bindDataAttendanceSummary("p." + Message.NameColumn + ",a." + Message.PunchInColumn
                         + ",a." + Message.PunchOutColumn+",p."+Message.BusinessEntityIDColumn+",p."

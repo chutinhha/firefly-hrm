@@ -23,6 +23,13 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
             {
                 if (Session["Account"].ToString() == "User")
                 {
+                    string Prove = Request.QueryString["Prove"];
+                    if (Prove == null) { }
+                    else
+                    {
+                        Session["Prove"] = Prove;
+                        Response.Redirect(Message.MyLeavePage);
+                    }
                     pnlData.Visible = false;
                     if (!IsPostBack) {
                         this.startDate = "";
@@ -31,6 +38,60 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
                         _com.SetItemList("tas." + Message.TaskNameColumn, Message.TableProject + " pro join "
                             + Message.TableTask + " tas on pro." + Message.ProjectIDColumn + " = tas." + Message.ProjectIDColumn
                             , ddlDayOff, " where pro." + Message.ProjectNameColumn + "='Leave'", true, "All");
+                        if (Session["Prove"] != null) {
+                            ddlStatus.SelectedValue = Session["Prove"].ToString();
+                            Session.Remove("Prove");
+                        }
+                        string column = " tas." + Message.TaskNameColumn + " as 'Leave Type',pp." + Message.StartDateColumn
+                            + " as 'Start Date',pp." + Message.EndDateColumn + " as 'End Date',CAST(pp." + Message.CurrentFlagColumn + " AS nvarchar(15)) AS"
+                            + " 'Status',pp." + Message.NoteColumn;
+                        string condition = " where pp." + Message.BusinessEntityIDColumn + "='" + Session["AccountID"]
+                            + "' and pro." + Message.ProjectNameColumn + "='Leave'";
+                        string table = Message.TablePersonProject + " pp join " + Message.TableTask + " tas on pp." + Message.TaskIdColumn
+                            + "=tas." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on pro." + Message.ProjectIDColumn
+                            + "=tas." + Message.ProjectIDColumn;
+                        if (ddlStatus.SelectedValue == "Approved")
+                        {
+                            condition = condition + " and pp." + Message.CurrentFlagColumn + " = '1'";
+                        }
+                        if (ddlStatus.SelectedValue == "Not Approve")
+                        {
+                            condition = condition + " and pp." + Message.CurrentFlagColumn + " = '0'";
+                        }
+                        if (ddlStatus.SelectedValue == "Rejected")
+                        {
+                            condition = condition + " and pp." + Message.CurrentFlagColumn + " = '2'";
+                        }
+                        if (ddlDayOff.SelectedValue != "All")
+                        {
+                            condition = condition + " and tas." + Message.TaskNameColumn + "='" + ddlDayOff.SelectedValue + "'";
+                        }
+                        _com.bindData(column, condition, table, grdData);
+                        if (grdData.Rows.Count > 0)
+                        {
+                            foreach (GridViewRow myRow in grdData.Rows)
+                            {
+                                if (myRow.Cells[3].Text.ToString() == "0")
+                                {
+                                    myRow.Cells[3].Text = "Not Approve";
+                                }
+                                else if (myRow.Cells[3].Text.ToString() == "1")
+                                {
+                                    myRow.Cells[3].Text = "Approved";
+                                }
+                                else
+                                {
+                                    myRow.Cells[3].Text = "Rejected";
+                                }
+                            }
+                            lblError.Text = "";
+                            pnlData.Visible = true;
+                        }
+                        else
+                        {
+                            lblError.Text = Message.NotExistData;
+                            pnlData.Visible = false;
+                        }
                     }
                 }
                 else
@@ -72,11 +133,11 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
             {
                 condition = condition + " and pp."+Message.CurrentFlagColumn+" = '1'";
             }
-            if (ddlStatus.SelectedValue == "Not Approved")
+            if (ddlStatus.SelectedValue == "Not Approve")
             {
                 condition = condition + " and pp."+Message.CurrentFlagColumn+" = '0'";
             }
-            if (ddlStatus.SelectedValue == "Reject")
+            if (ddlStatus.SelectedValue == "Rejected")
             {
                 condition = condition + " and pp."+Message.CurrentFlagColumn+" = '2'";
             }
@@ -90,7 +151,7 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
                 {
                     if (myRow.Cells[3].Text.ToString() == "0")
                     {
-                        myRow.Cells[3].Text = "Not Approved";
+                        myRow.Cells[3].Text = "Not Approve";
                     }
                     else if (myRow.Cells[3].Text.ToString() == "1")
                     {
@@ -98,7 +159,7 @@ namespace SP2010VisualWebPart.User.Leave.MyLeave
                     }
                     else
                     {
-                        myRow.Cells[3].Text = "Reject";
+                        myRow.Cells[3].Text = "Rejected";
                     }
                 }
                 lblError.Text = "";

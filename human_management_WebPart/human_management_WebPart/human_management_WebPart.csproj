@@ -795,7 +795,9 @@
     <Content Include="Admin\Leave\searchLeaveType\searchLeaveTypeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx" />
+    <Content Include="Admin\Person Project\AssignEmployee\AssignEmployeeUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Admin\Person Project\AssignEmployee\Elements.xml" />
     <Content Include="Admin\Person Project\PersonProject\Elements.xml" />
     <Content Include="Admin\Person Project\PersonProject\PersonProjectUserControl.ascx">
@@ -937,9 +939,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="User\Performance\ReviewTimesheet\Elements.xml" />
-    <Content Include="User\Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="User\Performance\ReviewTimesheet\ReviewTimesheetUserControl.ascx" />
     <Content Include="User\Performance\SupervisorJudgment\Elements.xml" />
     <Content Include="User\Performance\SupervisorJudgment\SupervisorJudgmentUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

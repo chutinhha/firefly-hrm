@@ -66,7 +66,7 @@
                     </asp:DropDownList>
                 </div>
                 <div class="styled-selectShort" style="width: 50px;">
-                    <asp:DropDownList ID="ddlMinutesOut" runat="server" AutoPostBack="True">
+                    <asp:DropDownList ID="ddlMinutesOut" runat="server">
                     </asp:DropDownList>
                 </div>
                 <br />
