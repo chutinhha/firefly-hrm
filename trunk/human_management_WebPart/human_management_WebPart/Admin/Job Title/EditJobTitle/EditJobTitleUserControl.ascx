@@ -47,7 +47,7 @@
                     <asp:Label ID="lblJobDescription" runat="server" Text="Job Description" Width="150px"></asp:Label>
                     <a href="<%=this.document %>">
                     <asp:Image ID="imgDocument" runat="server" 
-                        ImageUrl="/_layouts/Images/21_2_ob/word-icon.jpg" Width="50px" />
+                        ImageUrl="/_layouts/Images/21_2_ob/word-icon.jpg" Width="50px" style="vertical-align: middle;"/>
                         </a>
                     <asp:FileUpload ID="fulJobDescription" runat="server" Visible="False" />
                     <asp:Button ID="btnChange" CssClass="addButton" runat="server" Text="Change" 

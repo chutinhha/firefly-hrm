@@ -60,8 +60,8 @@
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
-            <asp:CheckBox ID="chkApprove" runat="server" Text="Only include approved timesheet"
-                AutoPostBack="True" />
+            <asp:CheckBox ID="chkApprove" runat="server" 
+                Text="Only include approved timesheet" />
             <p>
                 &nbsp;</p>
             <div class="borderTop">
@@ -74,11 +74,12 @@
             <asp:Panel ID="pnlData" runat="server" Visible="False">
                 <asp:Panel ID="pnlDetail" runat="server" Visible="False">
                     <br />
-                    &nbsp;<asp:Label ID="lblDetail" runat="server" Text=""></asp:Label><br />
+                    <asp:Label ID="lblDetail" runat="server" Text="" style="color:Green;"></asp:Label><br />
                     <br />
                 </asp:Panel>
                 <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
                 </asp:GridView>
+                <table><tr><td></td></tr></table>
             </asp:Panel>
         </td>
     </tr>

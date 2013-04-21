@@ -11,56 +11,345 @@ namespace SP2010VisualWebPart.User.MyTask.MyTask
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["Account"] == null)
             {
-                try
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
+            }
+            else
+            {
+                if (Session["Account"].ToString() == "User")
                 {
-                    _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
-                        + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                        + Session["AccountID"] + "'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
-                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                    string Status = Request.QueryString["Status"];
+                    if (Status == null) { }
+                    else
+                    {
+                        Session["Status"] = Status;
+                        Response.Redirect(Message.MyTaskPage);
+                    }
+                    if (!IsPostBack)
+                    {
+                        try
+                        {
+                            if (Session["Status"] != null) {
+                                ddlStatus.SelectedValue = Session["Status"].ToString();
+                                Session.Remove("Status");
+                            }
+                            if (ddlShow.SelectedValue == "All")
+                            {
+                                if (ddlStatus.SelectedValue == "All")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and pro."+Message.ProjectNameColumn+"<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else if (ddlStatus.SelectedValue == "Assigned")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and pp." + Message.CurrentFlagColumn + "='1' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                                        , Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and pp." + Message.CurrentFlagColumn + "='2' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                                        , Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                            }
+                            else if (ddlShow.SelectedValue == "Current Task")
+                            {
+                                if (ddlStatus.SelectedValue == "All")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                                        + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                                        , Message.TableTask
+                                        + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else if (ddlStatus.SelectedValue == "Assigned")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                                        + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                                        + " and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask
+                                        + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                                        + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                                        + " and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask
+                                        + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                            }
+                            else if (ddlShow.SelectedValue == "Finished Task")
+                            {
+                                if (ddlStatus.SelectedValue == "All")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else if (ddlStatus.SelectedValue == "Assigned")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                            }
+                            else if (ddlShow.SelectedValue == "Future Task")
+                            {
+                                if (ddlStatus.SelectedValue == "All")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else if (ddlStatus.SelectedValue == "Assigned")
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                                else
+                                {
+                                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            lblError.Text = ex.Message;
+                        }
+                        _com.setGridViewStyle(grdData);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    lblError.Text = ex.Message;
+                    Response.Redirect(Message.AdminHomePage);
                 }
-                _com.setGridViewStyle(grdData);
             }
         }
 
         protected void ddlShow_SelectedIndexChanged(object sender, EventArgs e)
         {
             try {
-                if (ddlShow.SelectedValue == "All") {
-                    _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
-                        + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                        + Session["AccountID"] + "'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
-                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                if (ddlShow.SelectedValue == "All")
+                {
+                    if (ddlStatus.SelectedValue == "All")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else if (ddlStatus.SelectedValue == "Assigned")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and pp." + Message.CurrentFlagColumn + "='1' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                            , Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and pp." + Message.CurrentFlagColumn + "='2' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                            , Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
                 }
                 else if (ddlShow.SelectedValue == "Current Task")
                 {
-                    _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
-                        + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                        + Session["AccountID"] + "' and tas."+Message.StartDateColumn+"<='"+DateTime.Today
-                        +"' and tas."+Message.EndDateColumn+">='"+DateTime.Today+"'", Message.TableTask 
-                        + " tas join " + Message.TablePersonProject + " pp"
-                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                    if (ddlStatus.SelectedValue == "All")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                            + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                            , Message.TableTask
+                            + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else if (ddlStatus.SelectedValue == "Assigned")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                            + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                            + " and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask
+                            + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                            + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                            + " and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask
+                            + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
                 }
                 else if (ddlShow.SelectedValue == "Finished Task")
                 {
-                    _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
-                        + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today 
-                        + "'", Message.TableTask+ " tas join " + Message.TablePersonProject + " pp"
-                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                    if (ddlStatus.SelectedValue == "All")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                            + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else if (ddlStatus.SelectedValue == "Assigned")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                            + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                            + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
                 }
                 else if (ddlShow.SelectedValue == "Future Task")
                 {
-                    _com.bindData("tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
-                        + ",tas." + Message.EndDateColumn, " where pp." + Message.BusinessEntityIDColumn + "='"
-                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
-                        + "'", Message.TableTask+ " tas join " + Message.TablePersonProject + " pp"
-                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, grdData);
+                    if (ddlStatus.SelectedValue == "All")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                            + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else if (ddlStatus.SelectedValue == "Assigned")
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                            + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
+                    else
+                    {
+                        _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                            + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                            + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                            + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                            + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                            + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                            + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                    }
                 }
             }
             catch (Exception ex) {
@@ -97,9 +386,172 @@ namespace SP2010VisualWebPart.User.MyTask.MyTask
                     }
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+                if (e.Row.Cells[5].Text == "0") {
+                    e.Row.Cells[5].Text = "Applied";
+                }
+                else if (e.Row.Cells[5].Text == "1")
+                {
+                    e.Row.Cells[5].Text = "Assigned";
+                }
+                else {
+                    e.Row.Cells[5].Text = "Removed";
+                }
             }
             else {
                 e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
+            }
+        }
+
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlShow.SelectedValue == "All")
+            {
+                if (ddlStatus.SelectedValue == "All")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else if (ddlStatus.SelectedValue == "Assigned")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and pp." + Message.CurrentFlagColumn + "='1' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                        , Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and pp." + Message.CurrentFlagColumn + "='2' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                        , Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+            }
+            else if (ddlShow.SelectedValue == "Current Task")
+            {
+                if (ddlStatus.SelectedValue == "All")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                        + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                        , Message.TableTask
+                        + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else if (ddlStatus.SelectedValue == "Assigned")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                        + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                        + " and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask
+                        + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + "<='" + DateTime.Today
+                        + "' and tas." + Message.EndDateColumn + ">='" + DateTime.Today + "' and pro." + Message.ProjectNameColumn + "<>'Leave'"
+                        + " and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask
+                        + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+            }
+            else if (ddlShow.SelectedValue == "Finished Task")
+            {
+                if (ddlStatus.SelectedValue == "All")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else if (ddlStatus.SelectedValue == "Assigned")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.EndDateColumn + "<'" + DateTime.Today
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+            }
+            else if (ddlShow.SelectedValue == "Future Task")
+            {
+                if (ddlStatus.SelectedValue == "All")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else if (ddlStatus.SelectedValue == "Assigned")
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='1'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
+                else
+                {
+                    _com.bindData("tas." + Message.TaskNameColumn + " as 'Task Name',pro." + Message.ProjectNameColumn
+                        + " as 'Project Name',tas." + Message.NoteColumn + ",tas." + Message.StartDateColumn
+                        + " as 'Start Date',tas." + Message.EndDateColumn + " as 'End Date', CAST(pp."
+                        + Message.CurrentFlagColumn + " as varchar(10)) as 'Status'", " where pp." + Message.BusinessEntityIDColumn + "='"
+                        + Session["AccountID"] + "' and tas." + Message.StartDateColumn + ">'" + DateTime.Today
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave' and pp." + Message.CurrentFlagColumn + "='2'", Message.TableTask + " tas join " + Message.TablePersonProject + " pp"
+                        + " on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn, grdData);
+                }
             }
         }
     }

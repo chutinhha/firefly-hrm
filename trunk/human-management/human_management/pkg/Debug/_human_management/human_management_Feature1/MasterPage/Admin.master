@@ -417,7 +417,7 @@
 	</li>
 	<li>
 		<a href="">TIME</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li style="background:none"><a href="ApproveTimesheet.aspx">Timesheets</a></li>
 					<li style="padding-left:40px;background:none;"><a class="small" href="ApproveTimesheet.aspx">Approve Timesheets</a></li>
@@ -435,7 +435,7 @@
 	</li>
 	<li>
 		<a href="Candidates.aspx">RECRUITMENT</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="Candidates.aspx">Candidates</a></li>
 				<li style="background:none;"><a href="Vacancies.aspx">Vacancies</a></li>
@@ -445,7 +445,7 @@
 	</li>
 	<li style="background:none;">
 		<a href="EvaluateEmployee.aspx">CHECKPOINT</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="EvaluateEmployee.aspx">Evaluate Employees</a></li>
 				<li style="background:none;"><a href="QuestionList.aspx">Checkpoint Question List</a></li>

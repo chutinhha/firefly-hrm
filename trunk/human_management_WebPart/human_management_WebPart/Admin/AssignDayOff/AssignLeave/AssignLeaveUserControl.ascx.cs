@@ -65,7 +65,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                 string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job."+Message.JobIDColumn+" = "
                     +"emp."+Message.JobIDColumn+") INNER JOIN "+Message.TablePerson+" per ON per."
                     +Message.BusinessEntityIDColumn +" = emp."+Message.BusinessEntityIDColumn+" WHERE "
-                    +"emp."+Message.CurrentFlagColumn+" = 'True'";
+                    +"emp."+Message.CurrentFlagColumn+" = 'True' and per."+Message.RankColumn+"='User'";
                 string table = "(" + Message.TableJobTitle+" job";
                 if (txtEmployee.Text != "")
                 {

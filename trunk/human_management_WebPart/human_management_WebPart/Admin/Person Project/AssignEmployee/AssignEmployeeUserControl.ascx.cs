@@ -89,7 +89,7 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
                 string condition = " INNER JOIN " + Message.TableEmployee + " emp ON job."
                     +Message.JobIDColumn+" = emp."+Message.JobIDColumn+") INNER JOIN "+Message.TablePerson
                     +" per ON per."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
-                    +" WHERE emp."+Message.CurrentFlagColumn+" = 1";
+                    + " WHERE per." + Message.RankColumn + "='User' and  emp." + Message.CurrentFlagColumn + " = 1";
                 string table = "(" + Message.TableJobTitle+" job";
                 if (txtEmployee.Text != "")
                 {

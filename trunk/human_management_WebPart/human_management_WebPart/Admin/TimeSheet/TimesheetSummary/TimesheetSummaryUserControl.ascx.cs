@@ -129,7 +129,7 @@ namespace SP2010VisualWebPart.Admin.TimeSheet.TimesheetSummary
                             condition = " and tim." + Message.CurrentFlagColumn + "='True'";
                         }
                     }
-                    condition = condition + " and emp." + Message.CurrentFlagColumn + "='True'" 
+                    condition = condition + " and emp." + Message.CurrentFlagColumn + "='True' and per." + Message.RankColumn + "='User'" 
                         + " order by per." + Message.NameColumn + ",pro." + Message.ProjectNameColumn
                         +",tas."+Message.TaskNameColumn;
                     _com.bindDataTimesheetSummary("per."+Message.NameColumn+" as 'Employee Name',pro."+Message.ProjectNameColumn

@@ -28,14 +28,15 @@ namespace SP2010VisualWebPart.Vacancies
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
                             ddlStatus.SelectedIndex = 0;
                             Session.Remove("Name");
-                            _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                            _com.bindData(Message.VacancyNameColumn + ","+Message.DescriptionColumn+"," 
+                                + Message.JobTitleColumn + "," + Message.StatusColumn 
                                 + "", "", Message.TableVacancy, grdData);
                             _com.setGridViewStyle(grdData);
                             if (grdData.Rows.Count > 0)
                             {
                                 grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                                grdData.HeaderRow.Cells[2].Text = "Job Title";
-                                grdData.HeaderRow.Cells[3].Text = "Status";
+                                grdData.HeaderRow.Cells[3].Text = "Job Title";
+                                grdData.HeaderRow.Cells[4].Text = "Status";
                             }
                             else
                             {
@@ -81,13 +82,14 @@ namespace SP2010VisualWebPart.Vacancies
                 {
                     condition = condition.Substring(0, condition.Length - 4);
                 }
-                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                _com.bindData(Message.VacancyNameColumn + ","+Message.DescriptionColumn+"," 
+                    + Message.JobTitleColumn + "," + Message.StatusColumn 
                     + "",condition, Message.TableVacancy, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                    grdData.HeaderRow.Cells[2].Text = "Job Title";
-                    grdData.HeaderRow.Cells[3].Text = "Status";
+                    grdData.HeaderRow.Cells[3].Text = "Job Title";
+                    grdData.HeaderRow.Cells[4].Text = "Status";
                 }
                 else
                 {
@@ -123,6 +125,11 @@ namespace SP2010VisualWebPart.Vacancies
                     e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+                if (e.Row.Cells[2].Text.Contains("a href") || e.Row.Cells[2].Text == "" || e.Row.Cells[2].Text == "&nbsp;") { }
+                else
+                {
+                    e.Row.Cells[2].Text = "<a href='/hr/_layouts/Documents/21_2_ob/" + e.Row.Cells[2].Text + "'>Download</a>";
+                }
             }
         }
         protected void btnReset_Click(object sender, EventArgs e)
@@ -131,13 +138,14 @@ namespace SP2010VisualWebPart.Vacancies
             {
                 ddlJobTitle.SelectedIndex = 0;
                 ddlStatus.SelectedIndex = 0;
-                _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn 
+                _com.bindData(Message.VacancyNameColumn + "," + Message.DescriptionColumn + "," 
+                    + Message.JobTitleColumn + "," + Message.StatusColumn 
                     + "", "", Message.TableVacancy, grdData);
                 if (grdData.Rows.Count > 0)
                 {
                     grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                    grdData.HeaderRow.Cells[2].Text = "Job Title";
-                    grdData.HeaderRow.Cells[3].Text = "Status";
+                    grdData.HeaderRow.Cells[3].Text = "Job Title";
+                    grdData.HeaderRow.Cells[4].Text = "Status";
                 }
                 else
                 {
@@ -213,13 +221,14 @@ namespace SP2010VisualWebPart.Vacancies
                 }
                 if (isCheck == true)
                 {
-                    _com.bindData(Message.VacancyNameColumn + "," + Message.JobTitleColumn + "," + Message.StatusColumn
+                    _com.bindData(Message.VacancyNameColumn + "," + Message.DescriptionColumn + "," 
+                        + Message.JobTitleColumn + "," + Message.StatusColumn
                         + "", "", Message.TableVacancy, grdData);
                     if (grdData.Rows.Count > 0)
                     {
                         grdData.HeaderRow.Cells[1].Text = "Vacancy Name";
-                        grdData.HeaderRow.Cells[2].Text = "Job Title";
-                        grdData.HeaderRow.Cells[3].Text = "Status";
+                        grdData.HeaderRow.Cells[3].Text = "Job Title";
+                        grdData.HeaderRow.Cells[4].Text = "Status";
                     }
                     else
                     {

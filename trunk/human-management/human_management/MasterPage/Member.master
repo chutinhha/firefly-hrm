@@ -415,7 +415,7 @@
 	</li>
 	<li>
 		<a href="MyTimesheet.aspx">PERSONAL CALENDAR</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li style="background:none"><a href="MyTimesheet.aspx">Timesheets</a></li>					
 				<li style="background:none;"><a href="DailyAttendance.aspx">Daily Attendance</a></li>
@@ -426,7 +426,7 @@
 	</li>
 <li style="background:none">
 		<a href="">PERFORMANCE</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li style="background:none"><a href="SupervisorJudgment.aspx">Reviews</a></li>					
 					<li style="padding-left:40px;background:none;"><a class="small" href="ReviewTimesheet.aspx">Timesheets Summary</a></li>

@@ -45,12 +45,17 @@
                 <p>
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblJobDescription" runat="server" Text="Job Description" Width="150px"></asp:Label>
-                    <asp:Image ID="Image1" runat="server" 
-                        ImageUrl="/_layouts/Images/21_2_ob/word-icon.jpg" Width="50px" />
+                    <a href="<%=this.document %>">
+                    <asp:Image ID="imgDocument" runat="server" 
+                        ImageUrl="/_layouts/Images/21_2_ob/word-icon.jpg" Width="50px" style="vertical-align: middle;"/>
+                        </a>
+                    <asp:FileUpload ID="fulJobDescription" runat="server" Visible="False" />
+                    <asp:Button ID="btnChange" CssClass="addButton" runat="server" Text="Change" 
+                        Width="80px" onclick="btnChange_Click" />
                 </p>
                 <p>
                     &nbsp;</p>
-                <p><br>
+                <p><br />
                     <span style="padding-left: 5px;"></span>
                     <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label>
                 </p>

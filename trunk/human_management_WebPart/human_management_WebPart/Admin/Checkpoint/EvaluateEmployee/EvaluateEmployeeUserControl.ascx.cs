@@ -25,7 +25,7 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
                     {
                         if (!IsPostBack)
                         {
-                            txtEmployeeName.Text = "";
+                            txtEmployeeName.Text = "All";
                             lblError.Text = "";
                             lblTitle.Text = "Search Employee";
                             Session.Remove("BusinessID");
@@ -109,12 +109,23 @@ namespace SP2010VisualWebPart.Admin.Checkpoint.EvaluateEmployee
             else {
                 try
                 {
-                    _com.bindData("p."+Message.BusinessEntityIDColumn+",p."+Message.NameColumn+",p."
-                        +Message.EmailAddressColumn+" as 'Email'", " where p."+Message.NameColumn+" like N'%"
-                        + txtEmployeeName.Text.Trim() + "%'" + " and emp." + Message.CurrentFlagColumn 
-                        + "='True'", Message.TablePerson + " p"+ " join " + Message.TableEmployee 
-                        + " emp on emp."+ Message.BusinessEntityIDColumn + "=p." 
-                        + Message.BusinessEntityIDColumn, grdData);
+                    if (txtEmployeeName.Text != "All")
+                    {
+                        _com.bindData("p." + Message.BusinessEntityIDColumn + ",p." + Message.NameColumn + ",p."
+                            + Message.EmailAddressColumn + " as 'Email'", " where p." + Message.RankColumn + "='User' and p." + Message.NameColumn + " like N'%"
+                            + txtEmployeeName.Text.Trim() + "%'" + " and emp." + Message.CurrentFlagColumn
+                            + "='True'", Message.TablePerson + " p" + " join " + Message.TableEmployee
+                            + " emp on emp." + Message.BusinessEntityIDColumn + "=p."
+                            + Message.BusinessEntityIDColumn, grdData);
+                    }
+                    else {
+                        _com.bindData("p." + Message.BusinessEntityIDColumn + ",p." + Message.NameColumn + ",p."
+                            + Message.EmailAddressColumn + " as 'Email'", " where p." + Message.RankColumn + "='User' and emp." 
+                            + Message.CurrentFlagColumn
+                            + "='True'", Message.TablePerson + " p" + " join " + Message.TableEmployee
+                            + " emp on emp." + Message.BusinessEntityIDColumn + "=p."
+                            + Message.BusinessEntityIDColumn, grdData);
+                    }
                     if (grdData.Rows.Count > 0)
                     {
                         pnlData.Visible = true;

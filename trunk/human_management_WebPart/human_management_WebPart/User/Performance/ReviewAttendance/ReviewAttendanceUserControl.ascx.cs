@@ -202,7 +202,13 @@ namespace SP2010VisualWebPart.User.Performance.ReviewAttendance
                 }
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
-                    e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    if (i != 1)
+                    {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;line-height: 20px;");
+                    }
+                    else {
+                        e.Row.Cells[i].Attributes.Add("style", "padding-top:7px;padding-bottom:7px;padding-left:5px;line-height: 20px;");
+                    }
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
