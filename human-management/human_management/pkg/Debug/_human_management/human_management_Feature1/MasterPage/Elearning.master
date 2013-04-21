@@ -5,7 +5,8 @@
 <%@ Register TagPrefix="wssuc" TagName="Welcome" src="~/_controltemplates/Welcome.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="MUISelector" src="~/_controltemplates/MUISelector.ascx" %>
 <%@ Register TagPrefix="wssuc" TagName="DesignModeConsole" src="~/_controltemplates/DesignModeConsole.ascx" %>
-<SharePoint:CssRegistration ID="CssRegistration" name="/_layouts/STYLES/human_management/menuStyles.css" After="corev4.css" runat="server"/>
+<SharePoint:CssRegistration ID="CssRegistration" name="/_layouts/STYLES/human_management/menuStyles.css" After="corev4.css" runat="server" __designer:Preview="&lt;link id=&quot;CssRegistration&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
+" __designer:Values="&lt;P N='ID' T='CssRegistration' /&gt;&lt;P N='Name' T='/_layouts/STYLES/human_management/menuStyles.css' /&gt;&lt;P N='After' T='corev4.css' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="<%$Resources:wss,language_value%>" dir="<%$Resources:wss,multipages_direction_dir_value%>" runat="server" xmlns:o="urn:schemas-microsoft-com:office:office" __expr-val-dir="ltr">
@@ -15,26 +16,35 @@
 	<meta name="progid" content="SharePoint.WebPartPage.Document"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="Expires" content="0"/>
-	<SharePoint:RobotsMetaTag runat="server"/>
-    <SharePoint:CssRegistration ID="CssRegistration0" name="/_layouts/STYLES/human_management/menuStyles.css" After="corev4.css" runat="server"/>
+	<SharePoint:RobotsMetaTag runat="server" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl00' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:CssRegistration ID="CssRegistration0" name="/_layouts/STYLES/human_management/menuStyles.css" After="corev4.css" runat="server" __designer:Preview="&lt;link id=&quot;CssRegistration0&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
+" __designer:Values="&lt;P N='ID' T='CssRegistration0' /&gt;&lt;P N='Name' T='/_layouts/STYLES/human_management/menuStyles.css' /&gt;&lt;P N='After' T='corev4.css' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+
 	<title id="onetidTitle"><asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"/></title>
-	<SharePoint:CssLink runat="server" Version="4"/>
-	<SharePoint:Theme runat="server"/>
-	<SharePoint:ULSClientConfig runat="server"/>
+	<SharePoint:CssLink runat="server" Version="4" __designer:Preview="&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/1033/styles/Themable/corev4.css&quot;/&gt;
+&lt;link id=&quot;CssRegistration&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/_layouts/STYLES/human_management/menuStyles.css&quot;/&gt;
+" __designer:Values="&lt;P N='UIVersion' T='4' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl01' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:Theme runat="server" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl02' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:ULSClientConfig runat="server" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl03' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 	<script type="text/javascript">
 	var _fV4UI = true;
 	</script>
-	<SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server"/>
-	<SharePoint:CustomJSUrl runat="server"/>
-	<SharePoint:SoapDiscoveryLink runat="server"/>
+	<SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" __designer:Preview="&lt;script type=&quot;text/javascript&quot;&gt;
+// &lt;![CDATA[
+document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;/_layouts/1033/init.js?rev=BJDmyeIV5jS04CPkRq4Ldg%3D%3D&quot;&gt;&lt;/' + 'script&gt;');
+// ]]&gt;
+&lt;/script&gt;
+" __designer:Values="&lt;P N='Language' T='javascript' /&gt;&lt;P N='Name' T='core.js' /&gt;&lt;P N='OnDemand' T='True' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl04' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:CustomJSUrl runat="server" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl05' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:SoapDiscoveryLink runat="server" __designer:Preview="&lt;link type=&quot;text/xml&quot; rel=&quot;alternate&quot; href=&quot;/hr/LearningCenter/_vti_bin/spsdisco.aspx&quot; /&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl06' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 	<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server"/>
-	<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true"/>
-	<SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/images/favicon.ico"/>
+	<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" __designer:Preview="[ MyLinksRibbon &quot;ctl00_ctl08&quot; ][ InsertMediaRibbonButton &quot;ctl00_ctl09&quot; ][ SpellCheckV4Action &quot;ctl00_ctl10&quot; ]" __designer:Values="&lt;P N='ControlId' T='AdditionalPageHead' /&gt;&lt;P N='AllowMultipleControls' T='True' /&gt;&lt;P N='ID' T='ctl07' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/images/favicon.ico" __designer:Preview="&lt;link rel=&quot;shortcut icon&quot; href=&quot;/_layouts/images/favicon.ico&quot; type=&quot;image/vnd.microsoft.icon&quot; /&gt;" __designer:Values="&lt;P N='IconUrl' T='/_layouts/images/favicon.ico' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl11' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 	<asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server"/>
 	<asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" runat="server"/>
-	<SharePoint:SPPageManager runat="server"/>
-	<SharePoint:SPHelpPageComponent Visible="false" runat="server"/>
-    <link href="/_layouts/STYLES/human_management/222ob.css" rel="stylesheet" type="text/css" />
+	<SharePoint:SPPageManager runat="server" __designer:Preview="[ SPPageManager &quot;Unnamed10&quot; ]" __designer:Values="&lt;P N='ID' T='ctl12' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:SPHelpPageComponent Visible="false" runat="server" __designer:Preview="&lt;span&gt;&lt;/span&gt;" __designer:Values="&lt;P N='Visible' T='False' /&gt;&lt;P N='ID' T='ctl13' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<link href="/_layouts/STYLES/human_management/222ob.css" rel="stylesheet" type="text/css" />
     <link href="/_layouts/STYLES/human_management/QM_styles.css" rel="stylesheet" type="text/css" />
     <link href="/_layouts/STYLES/human_management/mainMenu.css" rel="stylesheet" type="text/css" />
     <link href="/_layouts/STYLES/human_management/reset.css" rel="stylesheet" type="text/css" />
@@ -42,36 +52,292 @@
     <script type="text/javascript" language="javascript" src="/_layouts/Layouts/human_management/QM_script.js"></script>	
 </head>
 <body scroll="no" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();" class="v4master">
-
-
   <form runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
   <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
 	<WebPartPages:SPWebPartManager id="m" runat="Server"/>
-<SharePoint:SPNoScript runat="server"/>
+<SharePoint:SPNoScript runat="server" __designer:Preview="&lt;noscript&gt;&lt;div class='noindex'&gt;You may be trying to access this site from a secured browser on the server. Please enable scripts and reload this page.&lt;/div&gt;&lt;/noscript&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl14' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 <div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
 	<a id="linkTurnOnAcc" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
-	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_turnonaccessibility%>" EncodeMethod="HtmlEncode"/></a>
+	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_turnonaccessibility%>" EncodeMethod="HtmlEncode" __designer:Preview="Turn on more accessible mode" __designer:Values="&lt;P N='Text' Bound='True' T='Resources:wss,master_turnonaccessibility' /&gt;&lt;P N='ID' T='ctl15' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/></a>
 </div>
 <div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex">
 	<a id="linkTurnOffAcc" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
-	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_turnoffaccessibility%>" EncodeMethod="HtmlEncode"/></a>
+	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_turnoffaccessibility%>" EncodeMethod="HtmlEncode" __designer:Preview="Turn off more accessible mode" __designer:Values="&lt;P N='Text' Bound='True' T='Resources:wss,master_turnoffaccessibility' /&gt;&lt;P N='ID' T='ctl16' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/></a>
 </div>
 <div class="s4-notdlg s4-skipribbonshortcut noindex">
 	<a href="javascript:;" onclick="javascript:this.href='#startNavigation';" class="ms-SkiptoNavigation" accesskey="<%$Resources:wss,skipribbon_accesskey%>" runat="server">
-	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,skipRibbonCommandsLink%>" EncodeMethod="HtmlEncode"/></a>
+	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,skipRibbonCommandsLink%>" EncodeMethod="HtmlEncode" __designer:Preview="Skip Ribbon Commands" __designer:Values="&lt;P N='Text' Bound='True' T='Resources:wss,skipRibbonCommandsLink' /&gt;&lt;P N='ID' T='ctl17' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/></a>
 </div>
 <div class="s4-notdlg noindex">
 	<a href="javascript:;" onclick="javascript:this.href='#mainContent';" class="ms-SkiptoMainContent" accesskey="<%$Resources:wss,maincontent_accesskey%>" runat="server">
-	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,mainContentLink%>" EncodeMethod="HtmlEncode"/></a>
+	<SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,mainContentLink%>" EncodeMethod="HtmlEncode" __designer:Preview="Skip to main content" __designer:Values="&lt;P N='Text' Bound='True' T='Resources:wss,mainContentLink' /&gt;&lt;P N='ID' T='ctl18' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/></a>
 </div>
 <a id="HiddenAnchor" href="javascript:;" style="display:none;"></a>
-<SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation"/>
+<SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation" __designer:Preview="&lt;span style=&quot;display:none&quot;&gt;&lt;/span&gt;" __designer:Values="&lt;P N='ControlId' T='GlobalNavigation' /&gt;&lt;P N='ID' T='ctl19' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 <div id="s4-ribbonrow" class="s4-pr s4-ribbonrowhidetitle">
 	<div id="s4-ribboncont">
 		<SharePoint:SPRibbon
 			runat="server"
 			PlaceholderElementId="RibbonContainer"
-			CssFile="">
+			CssFile="" __designer:Preview="&lt;input id=&quot;RibbonContainer_activeTabId&quot; name=&quot;ctl00$ctl20&quot; type=&quot;hidden&quot; value=&quot;&quot;&gt;&lt;/input&gt;&lt;div id='RibbonContainer'&gt;&lt;div class=&quot;ms-cui-ribbon&quot; id=&quot;Ribbon&quot; unselectable=&quot;on&quot; aria-describedby=&quot;ribboninstructions&quot; oncontextmenu=&quot;return false&quot; role=&quot;toolbar&quot;&gt;&lt;span class=&quot;ms-cui-hidden&quot; id=&quot;ribboninstructions&quot; unselectable=&quot;on&quot;&gt;To navigate through the Ribbon, use standard browser navigation keys. To skip between groups, use Ctrl+LEFT or Ctrl+RIGHT. To jump to the first Ribbon tab use Ctrl+[. To jump to the last selected command use Ctrl+]. To activate a command, use Enter.&lt;/span&gt;&lt;div class=&quot;ms-cui-ribbonTopBars&quot; unselectable=&quot;on&quot;&gt;&lt;div class=&quot;ms-cui-topBar1&quot; unselectable=&quot;on&quot; style=&quot;display:none&quot;&gt;&lt;div class=&quot;ms-cui-qat-container&quot; unselectable=&quot;on&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;ms-cui-topBar2&quot; unselectable=&quot;on&quot;&gt;&lt;div class=&quot;ms-cui-jewel-container&quot; id=&quot;jewelcontainer&quot; unselectable=&quot;on&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ms-cui-TabRowLeft ms-siteactionscontainer s4-notdlg&quot; id=&quot;RibbonContainer-TabRowLeft&quot; unselectable=&quot;on&quot;&gt;
+					   &lt;span class=&quot;ms-siteactionsmenu&quot; id=&quot;siteactiontd&quot;&gt;
+					   
+						
+						&lt;span style=&quot;display:none&quot;&gt;&lt;menu type='ServerMenu' id=&quot;zz1_SiteActionsMenuMain&quot; largeiconmode=&quot;true&quot;&gt;&lt;ie:menuitem id=&quot;ctl00_SiteActionsMenuMain_ctl00_MenuItem_TakeOffline&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/connecttospworkspace32.png&quot; onMenuClick=&quot;javaScript:CoreInvoke('TakeOfflineToClientReal',1, 1, 'http:\u002f\u002ftungda:9999\u002fhr\u002fLearningCenter', -1, -1, '', '')&quot; hidden=&quot;TakeOfflineDisabled(1, 1, -1, -1)&quot; menuGroupId=&quot;100&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz2_MenuItem_CreateDocLib&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/NewDocLibHH.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('DocLib')) { GoToPage('\u002fhr\u002fLearningCenter\u002f_layouts/new.aspx?FeatureId={00bfea71-e717-4e80-aa17-d0c71b360101}&amp;amp;ListTemplate=101') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz3_MenuItem_CreateSite&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/newweb32.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('Site')) { STSNavigate('\u002fhr\u002fLearningCenter\u002f_layouts/newsbweb.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz4_MenuItem_Create&quot; type=&quot;option&quot; onMenuClick=&quot;if (LaunchCreateHandler('All')) { STSNavigate('\u002fhr\u002fLearningCenter\u002f_layouts/create.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz5_MenuItem_ViewAllSiteContents&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/allcontent32.png&quot; onMenuClick=&quot;STSNavigate2(event,'/hr/LearningCenter/_layouts/viewlsts.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz6_MenuItem_EditSite&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/SharePointDesigner32.png&quot; onMenuClick=&quot;EditInSPD('\u002fhr\u002fLearningCenter\u002f',true);&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz7_MenuItem_SitePermissions&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/Permissions32.png&quot; onMenuClick=&quot;STSNavigate2(event,'/hr/LearningCenter/_layouts/user.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz8_MenuItem_Settings&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/settingsIcon.png&quot; onMenuClick=&quot;STSNavigate2(event,'/hr/LearningCenter/_layouts/settings.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz9_MenuItem_CommitNewUI&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/visualupgradehh.png&quot; onMenuClick=&quot;GoToPage('\u002fhr\u002fLearningCenter\u002f_layouts/prjsetng.aspx')&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;/menu&gt;&lt;/span&gt;&lt;span  id=&quot;zz10_SiteActionsMenu_t&quot; class=&quot;ms-siteactionsmenuinner&quot; title=&quot;Open Menu&quot; onmouseover=&quot;MMU_PopMenuIfShowing(this);MMU_EcbTableMouseOverOut(this, true)&quot; hoveractive=&quot;ms-siteactionsmenuhover&quot; hoverinactive=&quot;ms-siteactionsmenuinner&quot; onclick=&quot; CoreInvoke('MMU_Open',byid(''), MMU_GetMenuFromClientId('zz10_SiteActionsMenu'),event,false, null, 0); return false;&quot; foa=&quot;MMU_GetMenuFromClientId('zz10_SiteActionsMenu')&quot; oncontextmenu=&quot;ClkElmt(this); return false;&quot; style=&quot;white-space:nowrap&quot;&gt;&lt;a class=&quot;ms-menu-a&quot; id=&quot;zz10_SiteActionsMenu&quot; href=&quot;javascript:;&quot; style=&quot;cursor:pointer;white-space:nowrap;&quot; onfocus=&quot;MMU_EcbLinkOnFocusBlur(byid(''), this, true);&quot; onkeydown=&quot;MMU_EcbLinkOnKeyDown(byid(''), MMU_GetMenuFromClientId('zz10_SiteActionsMenu'), event);&quot; onclick=&quot; CoreInvoke('MMU_Open',byid(''), MMU_GetMenuFromClientId('zz10_SiteActionsMenu'),event,false, null, 0); return false;&quot; oncontextmenu=&quot;ClkElmt(this); return false;&quot; menutokenvalues=&quot;MENUCLIENTID=zz10_SiteActionsMenu,TEMPLATECLIENTID=zz1_SiteActionsMenuMain&quot; serverclientid=&quot;zz10_SiteActionsMenu&quot;&gt;&lt;span&gt;Site Actions&lt;/span&gt;&lt;img src=&quot;/_layouts/images/blank.gif&quot; style='border:0px' alt=&quot;Use SHIFT+ENTER to open the menu (new window).&quot;/&gt;&lt;/a&gt;&lt;span style=&quot;height:3px;width:5px;position:relative;display:inline-block;overflow:hidden;&quot; class=&quot;s4-clust ms-viewselector-arrow&quot;&gt;&lt;img src=&quot;/_layouts/images/fgimg.png&quot; alt=&quot;Open Menu&quot; style=&quot;border-width:0px;position:absolute;left:-0px !important;top:-491px !important;&quot; /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+				
+						&lt;span class=&quot;s4-breadcrumb-anchor&quot;&gt;&lt;span style=&quot;height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;&quot; class=&quot;s4-clust&quot;&gt;&lt;a id=&quot;GlobalBreadCrumbNavPopout-anchor&quot; onclick=&quot;CoreInvoke('callOpenBreadcrumbMenu', event, 'GlobalBreadCrumbNavPopout-anchor', 'GlobalBreadCrumbNavPopout-menu', 'GlobalBreadCrumbNavPopout-img', 's4-breadcrumb-anchor-open', 'ltr', '', false); return false;&quot; onmouseover=&quot;&quot; onmouseout=&quot;&quot; title=&quot;&quot; href=&quot;javascript:;&quot; style=&quot;display:inline-block;height:16px;width:16px;&quot;&gt;&lt;img src=&quot;/_layouts/images/fgimg.png&quot; style=&quot;border:0;position:absolute;left:-0px !important;top:-112px !important;&quot; /&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;ms-popoutMenu s4-breadcrumb-menu&quot; id=&quot;GlobalBreadCrumbNavPopout-menu&quot; style=&quot;display:none;&quot;&gt;
+							&lt;div class=&quot;s4-breadcrumb-top&quot;&gt;
+								&lt;span class=&quot;s4-breadcrumb-header&quot;&gt;&lt;/span&gt;
+							&lt;/div&gt;
+							
+								&lt;ul class=&quot;s4-breadcrumb&quot;&gt;
+
+&lt;/ul&gt;
+								
+						&lt;/div&gt;
+						&lt;div class=&quot;s4-die&quot;&gt;
+							
+						&lt;/div&gt;
+				
+				
+			&lt;/div&gt;&lt;ul class=&quot;ms-cui-tts&quot; unselectable=&quot;on&quot; role=&quot;tablist&quot;&gt;&lt;li class=&quot;ms-cui-tt ms-browseTab ms-cui-tt-s&quot; id=&quot;Ribbon.Read-title&quot; unselectable=&quot;on&quot; role=&quot;tab&quot;&gt;&lt;a class=&quot;ms-cui-tt-a&quot; unselectable=&quot;on&quot; href=&quot;javascript:;&quot; onclick=&quot;_ribbonStartInit('Ribbon.Read',false, event);&quot; unselectable=&quot;on&quot; title=&quot;Browse&quot; onkeypress=&quot;if(event != null &amp;&amp; event.keyCode == 13){ if(typeof(_ribbon) != 'undefined') _ribbon.launchedByKeyboard = true; _ribbonStartInit('Ribbon.Read',false, event);  }&quot;&gt;&lt;span class=&quot;ms-cui-tt-span&quot; unselectable=&quot;on&quot;&gt;Browse&lt;/span&gt;&lt;span class=&quot;ms-cui-hidden&quot; unselectable=&quot;on&quot;&gt;Tab 1 of 1.&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class=&quot;ms-cui-TabRowRight s4-trc-container s4-notdlg&quot; id=&quot;RibbonContainer-TabRowRight&quot; unselectable=&quot;on&quot;&gt;
+	
+
+	 &lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; style=&quot;display:none&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; style=&quot;display:none&quot;&gt;&lt;/a&gt;
+	 &lt;div class=&quot;s4-trc-container-menu&quot;&gt;
+		 &lt;div&gt;
+			
+			
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;span&gt;
+		&lt;span class=&quot;s4-devdashboard&quot;&gt;
+			&lt;span style=&quot;height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;&quot; class=&quot;s4-clust&quot;&gt;&lt;a id=&quot;ctl00_DeveloperDashboardLauncher&quot; Href=&quot;javascript:ToggleDeveloperDashboard()&quot; style=&quot;display:inline-block;height:16px;width:16px;&quot;&gt;&lt;img src=&quot;/_layouts/images/fgimg.png&quot; style=&quot;border:0;position:absolute;left:-0px !important;top:-222px !important;&quot; /&gt;&lt;/a&gt;&lt;/span&gt;
+		&lt;/span&gt;
+	&lt;/span&gt;
+			&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+//&lt;![CDATA[
+    
+    var _ribbon = new Object();
+    _ribbon.initialTabId = 'Ribbon.Read';
+    _ribbon.buildMinimized = true;
+    _ribbon.initStarted = false;
+    _ribbon.initialTabSelectedByUser = false;
+    _ribbon.launchedByKeyboard = false;
+
+    function _ribbonInitFunc1()
+    {
+        try
+        {
+            var temp = new CUI.RibbonBuildOptions();
+        }
+        catch(e)
+        {
+            return;
+        }
+
+        var options = new CUI.RibbonBuildOptions();
+        options.lazyTabInit = true;
+        options.shallowTabs = true;
+        options.lazyMenuInit = true;
+        options.attachToDOM = false;
+        options.initialScalingIndex = 0;
+        options.validateServerRendering = false;
+        options.showQATId = '';
+        options.showJewelId = '';
+        options.minimized = _ribbon.buildMinimized;
+        options.shownTabs = {'Ribbon.Read':true};;
+        options.shownContextualGroups = null;
+        options.initiallyVisibleContextualGroups = null;
+        options.normalizedContextualGroups = null;
+        options.trimmedIds = null;
+        options.enabledVisibilityContexts = null;
+        options.fixedPositioningEnabled = false;
+        options.clientID = 'RibbonContainer';
+        options.trimEmptyGroups = true;
+        options.dataExtensions = null;
+        options.scalingHint = '736872025';
+        options.initialTabSelectedByUser = _ribbon.initialTabSelectedByUser;
+        options.launchedByKeyboard = _ribbon.launchedByKeyboard;
+
+        try
+        {
+            var temp = SP.Ribbon.PageManager.get_instance();
+        }
+        catch(e)
+        {
+            return;
+        }
+
+        g_builder = new CUI.RibbonBuilder(options, document.getElementById('RibbonContainer'), SP.Ribbon.PageManager.get_instance());
+        var dataSource = new CUI.DataSource('\u002fhr\u002fLearningCenter\u002f_layouts\u002fcommandui.ashx', '1403044824', '1033');
+        g_builder.set_dataSource(dataSource);
+
+        g_builder.buildRibbonAndInitialTab(_ribbon.initialTabId);
+    }
+
+    function _ribbonStartInit(initialTabId, buildMinimized, e)
+    {
+        if (true &amp;&amp; typeof(_ribbonReadyForInit) == 'function' &amp;&amp; !_ribbonReadyForInit())
+            return;
+
+        if (e)
+        {
+            _ribbon.initialTabSelectedByUser = true;
+        }
+
+        var firstTabId = null;
+        var evt = e || window.event;
+        if (evt)
+        {
+            if (!evt.preventDefault)
+                evt.returnValue = false;
+            else
+                evt.preventDefault();
+        }
+
+        if (_ribbon.initStarted)
+            return;
+        _ribbon.initStarted = true;
+        if(typeof(CUI) != 'undefined' &amp;&amp; typeof(CUI.PMetrics) != 'undefined')
+            CUI.PMetrics.perfMark(CUI.PMarker.perfCUIRibbonInitStart);
+        if (initialTabId)
+        {
+            firstTabId = _ribbon.initialTabId;
+            _ribbon.initialTabId = initialTabId;
+        }
+        if (typeof(buildMinimized) != 'undefined')
+            _ribbon.buildMinimized = buildMinimized;
+
+        if(initialTabId &amp;&amp; initialTabId != &quot;undefined&quot; &amp;&amp; _ribbonOnStartInit)
+        {
+            _ribbonOnStartInit(_ribbon);
+            
+            var oldTab = document.getElementById(firstTabId + &quot;-title&quot;);
+            if (oldTab)
+                oldTab.className = &quot;ms-cui-tt&quot;;
+
+            var newTab = document.getElementById(initialTabId + &quot;-title&quot;);
+            if (newTab)
+                newTab.className = &quot;ms-cui-tt ms-cui-tt-s&quot;;
+        }
+        
+
+        var _spRibbonInstantiateByRibbonControl = true;
+
+        function _registerCommonComponents()
+        {  
+            SP.Ribbon.HelpPageComponent.registerWithPageManager();
+            SP.Ribbon.UserInterfacePageComponent.registerWithPageManager();
+        }
+        ExecuteOrDelayUntilScriptLoaded(_registerCommonComponents, &quot;sp.ribbon.js&quot;);
+
+        
+        function _registerCUIEComponent()
+        {  
+            var instance = SP.Ribbon.CommandUIExtensionPageComponent.get_instance();
+            instance.set_dataUrl('\u002fhr\u002fLearningCenter\u002f_layouts\u002fcommandui.ashx');
+            instance.set_dataLCID('1033');
+            instance.set_dataVersion('1403044824');
+            SP.Ribbon.CommandUIExtensionPageComponent.registerWithPageManager();
+        }
+        ExecuteOrDelayUntilScriptLoaded(_registerCUIEComponent, &quot;sp.ribbon.js&quot;);
+
+        var defd;
+        try
+        {
+            defd = typeof(SP.Ribbon.PageManager);
+        }
+        catch (e)
+        {
+            defd = &quot;undefined&quot;;
+        }
+        EnsureScript(&quot;ribbon&quot;, defd, _ribbonInitFunc1);
+
+
+    }
+
+    function _ribbonKeyboardTitleShortcut(e)
+    {
+        var evt = e || window.event;
+        if (evt)
+        {
+            var key = (evt.ctrlKey) ? 't' : 'f';
+            key += (evt.altKey) ? 't' : 'f';
+            key += (evt.shiftKey) ? 't' : 'f';
+            try
+            {
+                key += String.fromCharCode(_processKeyCodes(evt.keyCode));
+            }
+            catch (error)
+            {
+                return;
+            }
+
+            if(key == 'tff[')
+            {
+                if(document.selection &amp;&amp; document.selection.type == 'Control')
+                {
+                    var r = document.selection.createRange();
+                    var len = r.length;
+                    for (; len &gt; 0; len--)
+                    {
+                        r.remove(len - 1);
+                    }
+                    r.select();
+                }
+
+                var tabHead = document.getElementById('Ribbon.Read-title');
+                if(tabHead)
+                {
+                    tabHead = tabHead.firstChild.focus();
+                }
+            }
+        }
+    }
+
+    if (false)
+        _spBodyOnLoadFunctionNames.push(&quot;_ribbonStartInit&quot;);
+
+
+    function _ribbonOnWindowResizeForHeaderScaling(evt)
+    {
+        if (_ribbon.initStarted)
+            return;
+        _ribbonScaleHeader(document.getElementById('RibbonContainer').firstChild.childNodes[1], false);
+    }
+    if (typeof(_ribbonScaleHeader) == 'function' &amp;&amp; true)
+    {        
+        _ribbonScaleHeader(document.getElementById('RibbonContainer').firstChild.childNodes[1], false);
+        if (window.addEventListener)
+            window.addEventListener('resize', _ribbonOnWindowResizeForHeaderScaling, false);
+        else if(window.attachEvent)
+            window.attachEvent('onresize', _ribbonOnWindowResizeForHeaderScaling);            
+    }
+    
+
+    if(document.addEventListener)
+        document.addEventListener('keydown', _ribbonKeyboardTitleShortcut, false);
+    else
+        document.attachEvent('onkeydown', _ribbonKeyboardTitleShortcut);
+//]]&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+//&lt;![CDATA[
+var g_commandUIHandlers = {&quot;name&quot;:&quot;CommandHandlers&quot;,&quot;attrs&quot;:{},&quot;children&quot;:[]};
+//]]&gt;
+&lt;/script&gt;" __designer:Values="&lt;P N='CommandUIVisible' T='True' /&gt;&lt;P N='CssFile' R='-1' /&gt;&lt;P N='PermissionsString' T='EmptyMask' /&gt;&lt;P N='InitialTabId' T='Ribbon.Read' /&gt;&lt;P N='HasAvailableTabs' T='True' /&gt;&lt;P N='ID' T='ctl20' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
 			<SharePoint:SPRibbonPeripheralContent
 				runat="server"
 				Location="TabRowLeft"
@@ -281,7 +547,11 @@
 	<div id="notificationArea" class="s4-noti">
 	</div>
 	<asp:ContentPlaceHolder ID="SPNavigation" runat="server">
-			<SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate">
+			<SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate" __designer:Preview="
+&lt;span id=&quot;ctl00_publishingRibbon&quot;&gt;&lt;/span&gt;
+
+
+" __designer:Values="&lt;P N='ControlId' T='PublishingConsole' /&gt;&lt;P N='ID' T='PublishingConsoleDelegate' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
 		   </SharePoint:DelegateControl>
 	</asp:ContentPlaceHolder>
 	<div id="WebPartAdderUpdatePanelContainer">
@@ -291,7 +561,7 @@
 			ChildrenAsTriggers="false"
 			runat="server">
 			<ContentTemplate>
-				<WebPartPages:WebPartAdder ID="WebPartAdder" runat="server"/>
+				<WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" __designer:Preview="&lt;span id=&quot;ctl00_WebPartAdder&quot;&gt;&lt;/span&gt;" __designer:Values="&lt;P N='ID' T='WebPartAdder' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 			</ContentTemplate>
 			<Triggers>
 				<asp:PostBackTrigger ControlID="WebPartAdder" />
@@ -302,101 +572,33 @@
 <div id="s4-workspace">
 		<div id="s4-bodyContainer">
 			<div id="s4-titlerow" class="s4-pr s4-notdlg s4-titlerowhidetitle">
-				
-                
-                
-               
-               <!--
-                <div class="s4-title s4-lp">
+				<div class="s4-title s4-lp" style="padding:0px;">
 					<div class="s4-title-inner">
 						<table class="s4-titletable" cellspacing="0">
-							
-                            <tbody>
+							<tbody>
 								<tr>
-									<td class="s4-titlelogo">
-										<SharePoint:SPLinkButton runat="server" NavigateUrl="~site/" id="onetidProjectPropertyTitleGraphic">
-											<SharePoint:SiteLogoImage name="onetidHeadbnnr0" id="onetidHeadbnnr2" LogoImageUrl="/_layouts/images/siteIcon.png" runat="server"/>
-										</SharePoint:SPLinkButton>
+									<td style="width:100%">
+										<div  class="div-top-ban">
+                                		</div>
+									</td>									
+									<td class="s4-titletext" style="display:none">
+										<asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" runat="server" />
+										<asp:ContentPlaceHolder id="PlaceHolderPageDescription" runat="server"/>
 									</td>
-									<td class="s4-titletext">
-										<h1 name="onetidProjectPropertyTitle">
-											<asp:ContentPlaceHolder id="PlaceHolderSiteName" runat="server">
-												<SharePoint:SPLinkButton runat="server" NavigateUrl="~site/" id="onetidProjectPropertyTitle"><SharePoint:ProjectProperty Property="Title" runat="server" /></SharePoint:SPLinkButton>
-											</asp:ContentPlaceHolder>
-										</h1>
-										<span id="onetidPageTitleSeparator" class="s4-nothome s4-bcsep s4-titlesep">
-										<SharePoint:ClusteredDirectionalSeparatorArrow runat="server"/> </span>
-										<h2>
-											<asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" runat="server" />
-										</h2>
-										<div class="s4-pagedescription" tabindex="0" >
-											<asp:ContentPlaceHolder id="PlaceHolderPageDescription" runat="server"/>
-										</div>
-									</td>
-									<td class="s4-socialdata-notif">
-										<SharePoint:DelegateControl ControlId="GlobalSiteLink3" Scope="Farm" runat="server"/>
-									</td>
-								</tr>
+																	</tr>
 							</tbody>
-                           </table>
-                        
+						</table>
 					</div>
 				</div>
-                 -->
-                
-               
-                               
-                    
-                    <!--
-                    <td background="/_layouts/Images/human_management/bg-top-left.gif" height="203px"><img src="/_layouts/Images/human_management/spacer.gif" width="1" height="203px" alt=""></td>
-                    -->
-                    <!--Insert banner-->
-                    <table class="s4-titletable">
-                        <tr>
-                            <td>
-                                 <div  class="div-top-ban">
-                                </div>
-                             </td>
-                        </tr>
-
-                    </table>
-                    <!--End Insert banner-->
-				    
-                    
-                    		
-                
-                
-                <td height="32" valign="top">
-				</td>
-
-
-                
-				<div id="s4-topheader2" class="s4-pr s4-notdlg">
-				
-                    <a name="startNavigation"></a>
-			    
-                    
-
-                     
-                    
-                    <div id="s4-searcharea" class="s4-search s4-rp">
-						<asp:ContentPlaceHolder id="PlaceHolderSearchArea" runat="server">
-							<SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox" Version="4"/>
-						</asp:ContentPlaceHolder>
-						<span class="s4-help">
-								<span style="height:17px;width:17px;position:relative;display:inline-block;overflow:hidden;" class="s4-clust"><a href="#" style="height:17px;width:17px;display:inline-block;" onclick="TopHelpButtonClick('HelpHome');return false" accesskey="<%$Resources:wss,multipages_helplink_accesskey%>" id="TopHelpLink" title="<%$Resources:wss,multipages_helplinkalt_text%>" runat="server"><img src="/_layouts/images/fgimg.png" alt="<%$Resources:wss,multipages_helplinkalt_text%>" style="left:-0px !important;top:-309px !important;position:absolute;" align="absmiddle" border="0" runat="server" /></a></span>
-						</span>
-					</div>
-					
-                    
-                    <div class="s4-rp s4-app">
-					</div>
-					<div class="s4-lp s4-toplinks">
-						<asp:ContentPlaceHolder id="PlaceHolderTopNavBar" runat="server">
-								<asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" runat="server">
-                            
-							<!-- menu -->
-							<table style="background-color:#E2E2E2;"><tbody><tr><td>
+			</div>
+			<div id="s4-statusbarcontainer">
+				<div id="pageStatusBar" class="s4-status-s1">
+				</div>
+			</div>
+				<SharePoint:VisualUpgradePreviewStatus runat="server" __designer:Preview="[ VisualUpgradePreviewStatus &quot;Unnamed19&quot; ]" __designer:Values="&lt;P N='ID' T='ctl25' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+			<div id="s4-mainarea" class="s4-pr s4-widecontentarea">
+				<div style="width:100%;background-color:white;border-bottom: 1px solid #B8BABD;border-top: 1px solid #B8BABD;">
+				<table style="background-color:#E2E2E2;"><tbody><tr><td>
 			<ul id="nav">
 	<li>
 		<a href="http://orbis.org/blindness.aspx?lang=1">HOME</a>	
@@ -417,308 +619,15 @@
 	
 	
 </ul>                            
-	</td></tr></table>			
-							
-							
-							
-							
-							<!-- Create Menu Settings: (Menu ID, Is Vertical, Show Timer, Hide Timer, On Click (options: 'all' * 'all-always-open' * 'main' * 'lev2'), Right to Left, Horizontal Subs, Flush Left, Flush Top) -->
-							<script type="text/javascript">qm_create(0,false,0,500,false,false,false,false,false);</script>
-											  
-							
-                            		
-								
-							
-						
-
-    
-    <!-- menu cua share point               
-	<SharePoint:AspMenu
-	  ID="TopNavigationMenuV4"
-	  Runat="server"
-	  EnableViewState="false"
-	  DataSourceID="topSiteMap"
-	  AccessKey="<%$Resources:wss,navigation_accesskey%>"
-	  UseSimpleRendering="true"
-	  UseSeparateCss="false"
-	  Orientation="Horizontal"
-	  StaticDisplayLevels="2"
-	  MaximumDynamicDisplayLevels="1"
-	  SkipLinkText=""
-	  CssClass="s4-tn"/>
-      -->
-
-      
-
-
-    
-	<SharePoint:DelegateControl runat="server" ControlId="TopNavigationDataSource" Id="topNavigationDelegate">
-		<Template_Controls>
-			<asp:SiteMapDataSource
-			  ShowStartingNode="False"
-			  SiteMapProvider="SPNavigationProvider"
-			  id="topSiteMap"
-			  runat="server"
-			  StartingNodeUrl="sid:1002"/>
-		</Template_Controls>
-	
-    
-    </SharePoint:DelegateControl>
-								</asp:ContentPlaceHolder>
-						</asp:ContentPlaceHolder>
-					</div>
-				</div>
-			</div>
-			<div id="s4-statusbarcontainer">
-				<div id="pageStatusBar" class="s4-status-s1">
-
-				</div>
-			</div>
-				<SharePoint:VisualUpgradePreviewStatus runat="server"/>
-		
-            <div id="s4-mainarea" class="s4-pr s4-widecontentarea">
+	</td></tr></table>	</div>
 				<div id="s4-leftpanel" class="s4-notdlg">
 					<div id="s4-leftpanel-content">
-						<asp:ContentPlaceHolder id="PlaceHolderLeftNavBarDataSource" runat="server" />
 						<asp:ContentPlaceHolder id="PlaceHolderCalendarNavigator" runat="server" />
 						<asp:ContentPlaceHolder id="PlaceHolderLeftActions" runat="server"></asp:ContentPlaceHolder>
-							<asp:ContentPlaceHolder id="PlaceHolderLeftNavBarTop" runat="server"/>
-						<asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" runat="server">
-				<div class="ms-quicklaunchouter">
-				<div class="ms-quickLaunch">
-				<asp:ContentPlaceHolder id="PlaceHolderQuickLaunchTop" runat="server">
-				<SharePoint:UIVersionedContent UIVersion="3" runat="server">
-					<ContentTemplate>
-						<h3 class="ms-standardheader"><label class="ms-hidden"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,quiklnch_pagetitle%>" EncodeMethod="HtmlEncode"/></label>
-						<Sharepoint:SPSecurityTrimmedControl runat="server" PermissionsString="ViewFormPages">
-							<div class="ms-quicklaunchheader"><SharePoint:SPLinkButton id="idNavLinkViewAll" runat="server" NavigateUrl="~site/_layouts/viewlsts.aspx" Text="<%$Resources:wss,quiklnch_allcontent%>" accesskey="<%$Resources:wss,quiklnch_allcontent_AK%>"/></div>
-						</SharePoint:SPSecurityTrimmedControl>
-						</h3>
-					</ContentTemplate>
-				</SharePoint:UIVersionedContent>
-				</asp:ContentPlaceHolder>
-				<Sharepoint:SPNavigationManager
-				id="QuickLaunchNavigationManager"
-				runat="server"
-				QuickLaunchControlId="QuickLaunchMenu"
-				ContainedControl="QuickLaunch"
-				EnableViewState="false"
-				CssClass="ms-quicklaunch-navmgr">
-				<div>
-					<SharePoint:DelegateControl runat="server"
-						ControlId="QuickLaunchDataSource">
-					 <Template_Controls>
-						<asp:SiteMapDataSource
-						SiteMapProvider="SPNavigationProvider"
-						ShowStartingNode="False"
-						id="QuickLaunchSiteMap"
-						StartingNodeUrl="sid:1025"
-						runat="server"
-						/>
-					 </Template_Controls>
-					</SharePoint:DelegateControl>
-			<SharePoint:UIVersionedContent UIVersion="3" runat="server">
-				<ContentTemplate>
-					<SharePoint:AspMenu
-						id="QuickLaunchMenu"
-						runat="server"
-						DataSourceId="QuickLaunchSiteMap"
-						Orientation="Vertical"
-						StaticDisplayLevels="2"
-						ItemWrap="true"
-						MaximumDynamicDisplayLevels="0"
-						StaticSubMenuIndent="0"
-						SkipLinkText=""
-						CssClass="s4-die"
-						>
-						<LevelMenuItemStyles>
-							<asp:MenuItemStyle CssClass="ms-navheader"/>
-							<asp:MenuItemStyle CssClass="ms-navitem"/>
-						</LevelMenuItemStyles>
-						<LevelSubMenuStyles>
-							<asp:SubMenuStyle CssClass="ms-navSubMenu1"/>
-							<asp:SubMenuStyle CssClass="ms-navSubMenu2"/>
-						</LevelSubMenuStyles>
-						<LevelSelectedStyles>
-							<asp:MenuItemStyle CssClass="ms-selectednavheader"/>
-							<asp:MenuItemStyle CssClass="ms-selectednav"/>
-						</LevelSelectedStyles>
-					</SharePoint:AspMenu>
-				</ContentTemplate>
-			</SharePoint:UIVersionedContent>
-			<SharePoint:UIVersionedContent UIVersion="4" runat="server">
-				<ContentTemplate>
-					<SharePoint:AspMenu
-					  id="V4QuickLaunchMenu"
-					  runat="server"
-					  EnableViewState="false"
-					  DataSourceId="QuickLaunchSiteMap"
-					  UseSimpleRendering="true"
-					  UseSeparateCss="false"
-					  Orientation="Vertical"
-					  StaticDisplayLevels="2"
-					  MaximumDynamicDisplayLevels="0"
-					  SkipLinkText=""
-					  CssClass="s4-ql" />
-				</ContentTemplate>
-			</SharePoint:UIVersionedContent>
-				</div>
-				</Sharepoint:SPNavigationManager>
-			<Sharepoint:UIVersionedContent runat="server" UIVersion="3">
-				<ContentTemplate>
-					<Sharepoint:SPNavigationManager
-					id="TreeViewNavigationManager"
-					runat="server"
-					ContainedControl="TreeView"
-					>
-					  <table class="ms-navSubMenu1" cellpadding="0" cellspacing="0" border="0">
-						<tr>
-						  <td>
-							<table class="ms-navheader" width="100%" cellpadding="0" cellspacing="0" border="0">
-							  <tr>
-								<td nowrap="nowrap" id="idSiteHierarchy">
-								  <SharePoint:SPLinkButton runat="server" NavigateUrl="~site/_layouts/viewlsts.aspx" id="idNavLinkSiteHierarchy" Text="<%$Resources:wss,treeview_header%>" accesskey="<%$Resources:wss,quiklnch_allcontent_AK%>"/>
-								</td>
-							  </tr>
-							</table>
-						  </td>
-						</tr>
-					  </table>
-					  <div class="ms-treeviewouter">
-						<SharePoint:DelegateControl runat="server" ControlId="TreeViewAndDataSource">
-						  <Template_Controls>
-							<SharePoint:SPHierarchyDataSourceControl
-							 runat="server"
-							 id="TreeViewDataSource"
-							 RootContextObject="Web"
-							 IncludeDiscussionFolders="true"
-							/>
-							<SharePoint:SPRememberScroll runat="server" id="TreeViewRememberScroll" onscroll="javascript:_spRecordScrollPositions(this);" style="overflow: auto;height: 400px;width: 150px; ">
-							  <Sharepoint:SPTreeView
-								id="WebTreeView"
-								runat="server"
-								ShowLines="false"
-								DataSourceId="TreeViewDataSource"
-								ExpandDepth="0"
-								SelectedNodeStyle-CssClass="ms-tvselected"
-								NodeStyle-CssClass="ms-navitem"
-								NodeStyle-HorizontalPadding="2"
-								SkipLinkText=""
-								NodeIndent="12"
-								ExpandImageUrl="/_layouts/images/tvplus.gif"
-								CollapseImageUrl="/_layouts/images/tvminus.gif"
-								NoExpandImageUrl="/_layouts/images/tvblank.gif"
-							  >
-							  </Sharepoint:SPTreeView>
-							</Sharepoint:SPRememberScroll>
-						  </Template_Controls>
-						</SharePoint:DelegateControl>
-					  </div>
-					</Sharepoint:SPNavigationManager>
-				</ContentTemplate>
-			</SharePoint:UIVersionedContent>
-			<Sharepoint:UIVersionedContent runat="server" UIVersion="4">
-				<ContentTemplate>
-					<Sharepoint:SPNavigationManager
-					id="TreeViewNavigationManagerV4"
-					runat="server"
-					ContainedControl="TreeView"
-					CssClass="s4-treeView"
-					>
-					  <SharePoint:SPLinkButton runat="server" NavigateUrl="~site/_layouts/viewlsts.aspx" id="idNavLinkSiteHierarchyV4" Text="<%$Resources:wss,treeview_header%>" accesskey="<%$Resources:wss,quiklnch_allcontent_AK%>" CssClass="s4-qlheader" />
-						  <div class="ms-treeviewouter">
-							<SharePoint:DelegateControl runat="server" ControlId="TreeViewAndDataSource">
-							  <Template_Controls>
-								<SharePoint:SPHierarchyDataSourceControl
-								 runat="server"
-								 id="TreeViewDataSourceV4"
-								 RootContextObject="Web"
-								 IncludeDiscussionFolders="true"
-								/>
-								<SharePoint:SPRememberScroll runat="server" id="TreeViewRememberScrollV4" onscroll="javascript:_spRecordScrollPositions(this);" style="overflow: auto;height: 400px;width: 155px; ">
-								  <Sharepoint:SPTreeView
-									id="WebTreeViewV4"
-									runat="server"
-									ShowLines="false"
-									DataSourceId="TreeViewDataSourceV4"
-									ExpandDepth="0"
-									SelectedNodeStyle-CssClass="ms-tvselected"
-									NodeStyle-CssClass="ms-navitem"
-									SkipLinkText=""
-									NodeIndent="12"
-									ExpandImageUrl="/_layouts/images/tvclosed.png"
-									ExpandImageUrlRtl="/_layouts/images/tvclosedrtl.png"
-									CollapseImageUrl="/_layouts/images/tvopen.png"
-									CollapseImageUrlRtl="/_layouts/images/tvopenrtl.png"
-									NoExpandImageUrl="/_layouts/images/tvblank.gif"
-								  >
-								  </Sharepoint:SPTreeView>
-								</Sharepoint:SPRememberScroll>
-							  </Template_Controls>
-							</SharePoint:DelegateControl>
-						  </div>
-					</Sharepoint:SPNavigationManager>
-				</ContentTemplate>
-			</SharePoint:UIVersionedContent>
-				<asp:ContentPlaceHolder id="PlaceHolderQuickLaunchBottom" runat="server">
-				<SharePoint:UIVersionedContent UIVersion="3" runat="server" id="PlaceHolderQuickLaunchBottomV3">
-					<ContentTemplate>
-						<table width="100%" cellpadding="0" cellspacing="0" border="0" class="s4-die">
-						<tbody>
-						<tr><td>
-						<table class="ms-recyclebin" width="100%" cellpadding="0" cellspacing="0" border="0">
-						<tbody>
-						<tr><td nowrap="nowrap">
-						<SharePoint:SPLinkButton runat="server" NavigateUrl="~site/_layouts/recyclebin.aspx" id="v3idNavLinkRecycleBin" ImageUrl="/_layouts/images/recycbin.gif" Text="<%$Resources:wss,StsDefault_RecycleBin%>" PermissionsString="DeleteListItems" />
-						</td></tr>
-						</table>
-						</td></tr>
-						</table>
-					</ContentTemplate>
-				</SharePoint:UIVersionedContent>
-				<SharePoint:UIVersionedContent UIVersion="4" runat="server" id="PlaceHolderQuickLaunchBottomV4">
-					<ContentTemplate>
-						<ul class="s4-specialNavLinkList">
-							<li>
-								<SharePoint:ClusteredSPLinkButton
-									runat="server"
-									NavigateUrl="~site/_layouts/recyclebin.aspx"
-									ImageClass="s4-specialNavIcon"
-									ImageUrl="/_layouts/images/fgimg.png"
-									ImageWidth=16
-									ImageHeight=16
-									OffsetX=0
-									OffsetY=428
-									id="idNavLinkRecycleBin"
-									Text="<%$Resources:wss,StsDefault_RecycleBin%>"
-									CssClass="s4-rcycl"
-									PermissionsString="DeleteListItems" />
-							</li>
-							<li>
-								<SharePoint:ClusteredSPLinkButton
-									id="idNavLinkViewAllV4"
-									runat="server"
-									PermissionsString="ViewFormPages"
-									NavigateUrl="~site/_layouts/viewlsts.aspx"
-									ImageClass="s4-specialNavIcon"
-									ImageUrl="/_layouts/images/fgimg.png"
-									ImageWidth=16
-									ImageHeight=16
-									OffsetX=0
-									OffsetY=0
-									Text="<%$Resources:wss,quiklnch_allcontent_short%>"
-									accesskey="<%$Resources:wss,quiklnch_allcontent_AK%>"/>
-							</li>
-						</ul>
-					</ContentTemplate>
-				</SharePoint:UIVersionedContent>
-				</asp:ContentPlaceHolder>
-				</div>
-				</div>
-						</asp:ContentPlaceHolder>
 					</div>
 				</div>
 				<div class="s4-ca s4-ca-dlgNoRibbon" id="MSO_ContentTable">
+				
 					<div class="s4-die">
 						<asp:ContentPlaceHolder id="PlaceHolderPageImage" runat="server" Visible="false"/>
 						<asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" runat="server" Visible="false">
@@ -734,7 +643,7 @@
 						<asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" runat="server" Visible="false">
 						</asp:ContentPlaceHolder>
 					</div>
-					<SharePoint:VersionedPlaceHolder UIVersion="3" ID="DesignModeConsoleV3" runat="server">
+					<SharePoint:VersionedPlaceHolder UIVersion="3" ID="DesignModeConsoleV3" runat="server" __designer:Preview="" __designer:Values="&lt;P N='ID' T='DesignModeConsoleV3' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;">
 						<asp:ContentPlaceHolder id="WSSDesignConsole" runat="server">
 							<wssuc:DesignModeConsole id="IdDesignModeConsole" runat="server" />
 						</asp:ContentPlaceHolder>
@@ -752,19 +661,16 @@
 					</div>
 				</div>
 			</div>
-			<SharePoint:DeveloperDashboard runat="server"/>
+			<SharePoint:DeveloperDashboard runat="server" __designer:Preview="[ DeveloperDashboard &quot;Unnamed20&quot; ]" __designer:Values="&lt;P N='ID' T='ctl26' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 		</div>
 </div>
-
-  
-
   <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">
-		<SharePoint:FormDigest runat="server"/>
+		<SharePoint:FormDigest runat="server" __designer:Preview="&lt;input type=&quot;hidden&quot; name=&quot;__REQUESTDIGEST&quot; value=&quot;0xFAB8EFC1E001F81FE4ACC8AABCFB6AB5AC72AB5D0C93A0E1353508E3A26B6562720520CB51B60D32EE25D8F882A07B6E175D1A74BD870B6A717ED811397F102D,21 Apr 2013 09:13:10 -0000&quot; /&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl27' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
   </asp:ContentPlaceHolder>
    <input type="text" name="__spText1" title="text" style="display:none;" />
    <input type="text" name="__spText2" title="text" style="display:none;" />
   </form>
   <asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server"/>
-	<SharePoint:WarnOnUnsupportedBrowsers runat="server"/>
+	<SharePoint:WarnOnUnsupportedBrowsers runat="server" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl28' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 </body>
 </html>

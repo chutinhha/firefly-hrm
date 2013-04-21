@@ -419,7 +419,7 @@
 	</li>
 	<li>
 		<a href="http://www.orbis.org/Default.aspx?cid=4825-4860">WHAT WE DO</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4860&lang=1">Where We Work</a></li>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4855&lang=1">Flying Eye Hospital</a></li>
@@ -435,7 +435,7 @@
 	</li>
 	<li>
 		<a href="http://www.orbis.org/Default.aspx?cid=4825-4855">FLYING EYE HOSPITAL</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4825-4855">Flying Eye Hospital</a></li>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=9656&lang=1">MD-10: The New Plane</a></li>
@@ -448,7 +448,7 @@
 	</li>
 	<li>
 		<a href="http://www.orbis.org/Default.aspx?cid=4839&lang=1">GET INVOLVED</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4839&lang=1">In Your Community: Advocates for Sight</a></li>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4837&lang=1">Medical Volunteers</a></li>
@@ -460,7 +460,7 @@
 	</li>
 	<li>
 		<a href="https://www.orbis.org/Default.aspx?cid=5856">DONATE NOW</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="https://www.orbis.org/Default.aspx?cid=5856">Make a Donation</a></li>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=7974&lang=1">Donate Frequent Flyer Miles</a></li>
@@ -471,7 +471,7 @@
 	</li>
 	<li style="background:none;">
 		<a href="http://www.orbis.org/Default.aspx?cid=4827-4869">NEWSROOM</a>
-		<div class="dropdown">
+		<div class="dropdown" style="left:0px;">
 			<ul>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4869&lang=1">Media contacts</a></li>
 				<li><a href="http://www.orbis.org/Default.aspx?cid=4870&lang=1">Fact Sheet</a></li>
