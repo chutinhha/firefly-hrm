@@ -27,6 +27,13 @@ namespace SP2010VisualWebPart.User.MyTask.MyTask
                         Session["Status"] = Status;
                         Response.Redirect(Message.MyTaskPage);
                     }
+                    string Type = Request.QueryString["Type"];
+                    if (Type == null) { }
+                    else
+                    {
+                        Session["Type"] = Type;
+                        Response.Redirect(Message.MyTaskPage);
+                    }
                     if (!IsPostBack)
                     {
                         try
@@ -34,6 +41,11 @@ namespace SP2010VisualWebPart.User.MyTask.MyTask
                             if (Session["Status"] != null) {
                                 ddlStatus.SelectedValue = Session["Status"].ToString();
                                 Session.Remove("Status");
+                            }
+                            if (Session["Type"] != null)
+                            {
+                                ddlShow.SelectedValue = "Current Task";
+                                Session.Remove("Type");
                             }
                             if (ddlShow.SelectedValue == "All")
                             {
