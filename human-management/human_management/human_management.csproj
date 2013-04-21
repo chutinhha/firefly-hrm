@@ -82,7 +82,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MasterPage\212ob.master" />
+    <None Include="MasterPage\212ob.master">
+      <SubType>ASPXCodeBehind</SubType>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{958e8086-3a42-41c4-b1ed-0854da2b8ba1}</PackageId>
     </None>

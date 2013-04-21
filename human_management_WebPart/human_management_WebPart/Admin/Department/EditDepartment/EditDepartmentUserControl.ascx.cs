@@ -191,6 +191,7 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                     }
                     else
                     {
+                        Session["DepartmentName"] = ddlDepartment.SelectedValue;
                         DateTime start = DateTime.Parse(Request.Form["txtStartDate"].ToString().Trim());
                         DataTable dt = _com.getData(Message.TableHistoryDepartment,"*"," where "+Message.BusinessEntityIDColumn
                             +"='"+Session["BusinessID"]+"' and ("+Message.EndDateColumn+" is NULL or "+Message.EndDateColumn+"='')");
@@ -199,7 +200,7 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment
                             + "='" + Session["BusinessID"] + "' and (" + Message.EndDateColumn + " is NULL or "
                             + Message.EndDateColumn + "='')");
                         _com.insertIntoTable(Message.TableHistoryDepartment, "", "'"+dt.Rows[0][0].ToString()+"','"
-                            +departmentID.Rows[0][0].ToString()+ "','" + dt.Rows[0][2].ToString() + "','" 
+                            +departmentID.Rows[0][0].ToString()+ "','" 
                             + Request.Form["txtStartDate"].ToString().Trim() + "',NULL,'" + DateTime.Now + "'", false); 
                         _com.bindData(" dep." + Message.NameColumn + " as 'Department',edh." + Message.StartDateColumn 
                             + " as 'Start Date'"+ ",edh." + Message.EndDateColumn + " as 'End Date'", 

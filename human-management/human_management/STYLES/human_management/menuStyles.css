@@ -93,6 +93,7 @@ input[type="password"]
     white-space: inherit;
     z-index: 10;
     width:175px;
+    top:0px;
 }
 .s4-noti-noti
 {
