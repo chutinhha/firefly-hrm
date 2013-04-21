@@ -278,7 +278,7 @@
 			</SharePoint:SPRibbonPeripheralContent>
 		</SharePoint:SPRibbon>
 	</div>
-	<div id="notificationArea" class="s4-noti">
+	<div id="notificationArea" class="s4-noti" style="top:0px;">
 	</div>
 	<asp:ContentPlaceHolder ID="SPNavigation" runat="server">
 			<SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate">
