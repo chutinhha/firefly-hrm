@@ -400,7 +400,7 @@
 														<table style="background-color:#E2E2E2;"><tbody><tr><td>
 			<ul id="nav">
 	<li>
-		<a href="">PIM</a>
+		<a href="User.aspx">PIM</a>
 		<div class="dropdown">
 			<ul>
 				<li style="background:none"><a href="MyInfo.aspx">Personal Information</a></li>
