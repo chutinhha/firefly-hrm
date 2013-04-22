@@ -164,7 +164,8 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
                             //Pending Timesheet
                             DataTable pendingTime = _com.getData(Message.TableTimesheet + " t join " + Message.TablePerson + " per"
                                 + " on t." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn, " distinct per."
-                                + Message.NameColumn + ",t." + Message.WorkDateColumn, " where t." + Message.CurrentFlagColumn + "='False'");
+                                + Message.NameColumn + ",t." + Message.WorkDateColumn, " where t." + Message.CurrentFlagColumn + "='False'"
+                                +" and per."+Message.RankColumn+"='User'");
                             if (pendingTime.Rows.Count > 0)
                             {
                                 pnlTime.Controls.Add(new LiteralControl("<div style=\"height:223px; \" id=\"task-list-group-panel-container\">"));
@@ -242,8 +243,8 @@ namespace SP2010VisualWebPart.Admin.DashBoard.QuickLaunch
 
                             //Upcoming Task
                             DataTable upcomingTask = _com.getData(Message.TableTask +" as tas join "+Message.TableProject+" pro on "
-                                +" tas."+Message.ProjectIDColumn+"=pro."+Message.ProjectIDColumn, Message.TaskNameColumn + "," + Message.PersonProjectEndDateColumn
-                                , " where " + Message.PersonProjectEndDateColumn + ">='" + DateTime.Today + "' and " + Message.PersonProjectEndDateColumn
+                                +" tas."+Message.ProjectIDColumn+"=pro."+Message.ProjectIDColumn, Message.TaskNameColumn + ",tas." + Message.PersonProjectEndDateColumn
+                                , " where tas." + Message.PersonProjectEndDateColumn + ">='" + DateTime.Today + "' and tas." + Message.PersonProjectEndDateColumn
                                 + "<='" + DateTime.Today.AddDays(7) + "' and pro."+Message.ProjectNameColumn+"<>'Leave'");
                             if (upcomingTask.Rows.Count > 0)
                             {
