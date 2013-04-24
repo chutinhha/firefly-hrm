@@ -75,6 +75,8 @@
             <div class="borderBottom">
                 <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" CssClass="addButton"
                     OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" CssClass="addButton"
+                    OnClick="btnCancel_Click"/>
             </div>
         </td>
     </tr>

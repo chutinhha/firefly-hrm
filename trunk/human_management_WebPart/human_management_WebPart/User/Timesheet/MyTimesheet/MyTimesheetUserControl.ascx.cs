@@ -40,41 +40,76 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
             this.startDate = Request.Form["txtDateFrom"].ToString().Trim();
             this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             lblError.Text = "";
-            try
-            {
-                string column = " tim."+Message.TimesheetIDColumn+",tim."+Message.WorkDateColumn+",pro."
-                    +Message.ProjectNameColumn +",tas."+Message.TaskNameColumn+",tim."+Message.TimesheetTimeColumn;
-                string table = Message.TableTimesheet+" tim join "+Message.TableTask+" tas on tim."
-                    +Message.TaskIdColumn+"=tas."+Message.TaskIdColumn+" join "+Message.TableProject
-                    +" pro on pro."+Message.ProjectIDColumn+"=tas."+Message.ProjectIDColumn;
-                string condition = " where tim."+Message.BusinessEntityIDColumn+"='"+Session["AccountID"]+"'";
-                if (Request.Form["txtDateFrom"].ToString().Trim() != "") {
-                    try
+                try
+                {
+                    string column = " tim." + Message.TimesheetIDColumn + ",tim." + Message.WorkDateColumn + ",pro."
+                        + Message.ProjectNameColumn + ",tas." + Message.TaskNameColumn + ",tim." + Message.TimesheetTimeColumn;
+                    string table = Message.TableTimesheet + " tim join " + Message.TableTask + " tas on tim."
+                        + Message.TaskIdColumn + "=tas." + Message.TaskIdColumn + " join " + Message.TableProject
+                        + " pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn;
+                    string condition = " where tim." + Message.BusinessEntityIDColumn + "='" + Session["AccountID"] + "'";
+                    if (Request.Form["txtDateFrom"].ToString().Trim() != "" && Request.Form["txtDateTo"].ToString().Trim() != "")
                     {
-                        DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
-                        condition = condition + " and tim." + Message.WorkDateColumn + ">=CAST('" + dt.Date + "' AS DATE)";
-                        if (Request.Form["txtDateTo"].ToString().Trim() != "")
+                        if (DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim()) > DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim()))
+                            lblError.Text = Message.ToDateAfterFrom;
+                        else
                         {
-                            dt = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
-                            condition = condition + " and tim." + Message.WorkDateColumn + "<=CAST('" + dt.Date + "' AS DATE)";
+                            try
+                            {
+                                DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                condition = condition + " and tim." + Message.WorkDateColumn + ">=CAST('" + dt.Date + "' AS DATE)";
+                                if (Request.Form["txtDateTo"].ToString().Trim() != "")
+                                {
+                                    dt = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
+                                    condition = condition + " and tim." + Message.WorkDateColumn + "<=CAST('" + dt.Date + "' AS DATE)";
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                lblError.Text = Message.InvalidDate;
+                            }
                         }
                     }
-                    catch (FormatException) {
-                        lblError.Text = Message.InvalidDate;
+                    if (Request.Form["txtDateFrom"].ToString().Trim() != "" && Request.Form["txtDateFrom"].ToString().Trim() == "")
+                    {
+                            try
+                            {
+                                DateTime dt = DateTime.Parse(Request.Form["txtDateFrom"].ToString().Trim());
+                                condition = condition + " and tim." + Message.WorkDateColumn + ">=CAST('" + dt.Date + "' AS DATE)";
+                            }
+                            catch (FormatException)
+                            {
+                                lblError.Text = Message.InvalidDate;
+                            }
+                    }
+                    if (Request.Form["txtDateFrom"].ToString().Trim() == "" && Request.Form["txtDateTo"].ToString().Trim() != "")
+                    {
+                        try
+                        {
+                            DateTime dt = DateTime.Parse(Request.Form["txtDateTo"].ToString().Trim());
+                            condition = condition + " and tim." + Message.WorkDateColumn + "<=CAST('" + dt.Date + "' AS DATE)";
+                        }
+                        catch (FormatException)
+                        {
+                            lblError.Text = Message.InvalidDate;
+                        }
+                    }
+                    _com.bindData(column, condition, table, grdData);
+                    if (grdData.Rows.Count > 0)
+                    {
+                        _com.setGridViewStyle(grdData);
+                        grdData.HeaderRow.Cells[1].Text = "TimesheetId";
+                        grdData.HeaderRow.Cells[2].Text = "Work Date";
+                        grdData.HeaderRow.Cells[3].Text = "Project Name";
+                        grdData.HeaderRow.Cells[4].Text = "Task Name";
+                        grdData.HeaderRow.Cells[5].Text = "Time";
                     }
                 }
-                _com.bindData(column, condition, table, grdData);
-                _com.setGridViewStyle(grdData);
-                grdData.HeaderRow.Cells[1].Text = "TimesheetId";
-                grdData.HeaderRow.Cells[2].Text = "Work Date";
-                grdData.HeaderRow.Cells[3].Text = "Project Name";
-                grdData.HeaderRow.Cells[4].Text = "Task Name";
-                grdData.HeaderRow.Cells[5].Text = "Time";
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message;
-            }
+                catch (Exception ex)
+                {
+                    lblError.Text = ex.Message;
+                }
+            
         }
         protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
         {
