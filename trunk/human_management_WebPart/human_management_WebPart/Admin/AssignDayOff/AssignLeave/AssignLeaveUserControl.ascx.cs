@@ -15,7 +15,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.confirmAssign = Message.ConfirmAssign;
+            /*this.confirmAssign = Message.ConfirmAssign;
             if (Session["Account"] == null)
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -31,7 +31,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                         Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
-                    {
+                    {*/
                         try
                         {
                             if (!IsPostBack)
@@ -45,14 +45,14 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                         {
                             lblError.Text = ex.Message;
                         }
-                    }
+                    /*}
                 }
                 else
                 {
                     Session.Remove("TaskName");
                     Response.Redirect(Message.UserHomePage);
                 }
-            }
+            }*/
         }
         protected string confirmAssign { get; set; }
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -96,69 +96,79 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
         {
             lblError.Text = "";
             bool checkRedirect = false;
-            try
+            bool checkCB = false;
+            foreach (GridViewRow gr in grdData.Rows)
             {
-                DataTable myData = _com.getData(Message.TableProject +" pro", Message.TaskIdColumn, " INNER JOIN"
-                    +Message.TableTask+" tas ON pro."+Message.ProjectIDColumn+" = tas."+Message.ProjectIDColumn
-                    +" WHERE pro."+Message.ProjectNameColumn+" = 'Leave' and tas."+Message.TaskNameColumn
-                    +" = '" + txtDayOff.Text.ToString() + "'");
-                foreach (GridViewRow gr in grdData.Rows)
+                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                if (cb.Checked) checkCB = true;
+            }
+            if (checkCB == true)
+            {
+                try
                 {
-                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                    if (cb.Checked)
+                    DataTable myData = _com.getData(Message.TableProject + " pro", Message.TaskIdColumn, " INNER JOIN"
+                        + Message.TableTask + " tas ON pro." + Message.ProjectIDColumn + " = tas." + Message.ProjectIDColumn
+                        + " WHERE pro." + Message.ProjectNameColumn + " = 'Leave' and tas." + Message.TaskNameColumn
+                        + " = '" + txtDayOff.Text.ToString() + "'");
+                    foreach (GridViewRow gr in grdData.Rows)
                     {
-                        DataTable myDatatmp = _com.getData(Message.TablePersonProject+" pp join "
-                            +Message.TableEmployee+" emp on pp."+Message.BusinessEntityIDColumn+"=emp."
-                            +Message.BusinessEntityIDColumn, "pp."+Message.CurrentFlagColumn
-                            , " where pp."+Message.BusinessEntityIDColumn+" = '" + gr.Cells[1].Text 
-                            + "' and pp."+Message.TaskIdColumn+" = '" + myData.Rows[0][0].ToString()+"'"
-                            +" and emp."+Message.CurrentFlagColumn+"='True'");
-                        if (myDatatmp.Rows.Count > 0)
+                        CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                        if (cb.Checked)
                         {
-                            if (myDatatmp.Rows[0][0].ToString() == "1")
+                            DataTable myDatatmp = _com.getData(Message.TablePersonProject + " pp join "
+                                + Message.TableEmployee + " emp on pp." + Message.BusinessEntityIDColumn + "=emp."
+                                + Message.BusinessEntityIDColumn, "pp." + Message.CurrentFlagColumn
+                                , " where pp." + Message.BusinessEntityIDColumn + " = '" + gr.Cells[1].Text
+                                + "' and pp." + Message.TaskIdColumn + " = '" + myData.Rows[0][0].ToString() + "'"
+                                + " and emp." + Message.CurrentFlagColumn + "='True'");
+                            if (myDatatmp.Rows.Count > 0)
                             {
-                                lblError.Text = Message.AlreadyAssign;
+                                if (myDatatmp.Rows[0][0].ToString() == "1")
+                                {
+                                    lblError.Text = Message.AlreadyAssign;
+                                }
+                                else if (myDatatmp.Rows[0][0].ToString() != "1")
+                                {
+                                    bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee,
+                                        Message.CurrentFlagColumn, " where " + Message.BusinessEntityIDColumn
+                                        + "='" + gr.Cells[1].Text + "'").Rows[0][0].ToString());
+                                    if (employeeStatus == true)
+                                    {
+                                        _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn
+                                            + " = '1', " + Message.ModifiedDateColumn + " = CAST( '"
+                                            + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where "
+                                            + Message.BusinessEntityIDColumn + " = '" + gr.Cells[1].Text + "' and "
+                                            + Message.TaskIdColumn + " = '" + myData.Rows[0][0].ToString() + "'");
+                                        checkRedirect = true;
+                                    }
+                                }
                             }
-                            else if (myDatatmp.Rows[0][0].ToString() != "1")
+                            else
                             {
-                                bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee, 
-                                    Message.CurrentFlagColumn, " where "+ Message.BusinessEntityIDColumn 
+                                bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee,
+                                    Message.CurrentFlagColumn, " where " + Message.BusinessEntityIDColumn
                                     + "='" + gr.Cells[1].Text + "'").Rows[0][0].ToString());
                                 if (employeeStatus == true)
                                 {
-                                    _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn
-                                        + " = '1', " + Message.ModifiedDateColumn + " = CAST( '"
-                                        + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where "
-                                        + Message.BusinessEntityIDColumn + " = '" + gr.Cells[1].Text + "' and "
-                                        + Message.TaskIdColumn + " = '" + myData.Rows[0][0].ToString() + "'");
+                                    _com.insertIntoTable(Message.TablePersonProject, "", "'" + gr.Cells[1].Text + "','"
+                                        + myData.Rows[0][0].ToString() + "',NULL,1,CAST( '"
+                                        + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME),NULL,NULL", false);
                                     checkRedirect = true;
                                 }
                             }
                         }
-                        else
-                        {
-                            bool employeeStatus = bool.Parse(_com.getData(Message.TableEmployee, 
-	                            Message.CurrentFlagColumn, " where "+ Message.BusinessEntityIDColumn 
-	                            + "='" + gr.Cells[1].Text + "'").Rows[0][0].ToString());
-                            if (employeeStatus == true)
-                            {
-                                _com.insertIntoTable(Message.TablePersonProject, "", "'" + gr.Cells[1].Text + "','"
-                                    + myData.Rows[0][0].ToString() + "',NULL,1,CAST( '"
-                                    + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME),NULL,NULL", false);
-                                checkRedirect = true;
-                            }
-                        }
+                    }
+                    if (checkRedirect == true)
+                    {
+                        Response.Redirect(Message.AssignDayOffPage);
                     }
                 }
-                if (checkRedirect == true)
+                catch (Exception ex)
                 {
-                    Response.Redirect(Message.AssignDayOffPage);
+                    lblError.Text = ex.Message;
                 }
             }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message;
-            }
+            else lblError.Text = "You must select employee first!";
         }
 
         protected void CheckUncheckAll(object sender, EventArgs e)

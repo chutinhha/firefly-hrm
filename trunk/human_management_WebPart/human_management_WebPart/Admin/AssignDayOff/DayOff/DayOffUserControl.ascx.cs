@@ -14,7 +14,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.confirmSave = Message.ConfirmSave;
+            /*this.confirmSave = Message.ConfirmSave;
             if (Session["Account"] == null)
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -23,7 +23,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             else
             {
                 if (Session["Account"].ToString() == "Admin")
-                {
+                {*/
                     try
                     {
                         if (!IsPostBack)
@@ -35,6 +35,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 , true, "All");
                             lblError.Text = "";
                             ddlShow.SelectedValue = "All";
+                            lblSuccess.Text = "";
                         }
                         string[] col = new string[1];
                         col[0] = "Status";
@@ -72,7 +73,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                     + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
                                     + Message.CurrentFlagColumn + " = 1");
                             }
-                            else if (ddlShow.SelectedValue == "Not Approved")
+                            else if (ddlShow.SelectedValue == "Not Approve")
                             {
                                 condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0";
                                 _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -84,7 +85,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                     + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
                                     + Message.CurrentFlagColumn + " = 1");
                             }
-                            else if (ddlShow.SelectedValue == "Reject")
+                            else if (ddlShow.SelectedValue == "Rejected")
                             {
                                 condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2";
                                 _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -128,7 +129,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                     + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
                                     + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 1");
                             }
-                            else if (ddlShow.SelectedValue == "Not Approved")
+                            else if (ddlShow.SelectedValue == "Not Approve")
                             {
                                 condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                                 _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -140,7 +141,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                     + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
                                     + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 0");
                             }
-                            else if (ddlShow.SelectedValue == "Reject")
+                            else if (ddlShow.SelectedValue == "Rejected")
                             {
                                 condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                                 _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -157,12 +158,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                         {
                             DropDownList ddlApprove = new DropDownList();
                             ddlApprove.ID = "ddlApprove" + i;
-                            ddlApprove.Items.Add("Approve");
+                            ddlApprove.Items.Add("Approved");
                             ddlApprove.Items.Add("Not Approve");
-                            ddlApprove.Items.Add("Reject");
+                            ddlApprove.Items.Add("Rejected");
                             if (dt.Rows[i][0].ToString() == "1")
                             {
-                                ddlApprove.SelectedValue = "Approve";
+                                ddlApprove.SelectedValue = "Approved";
                             }
                             else if (dt.Rows[i][0].ToString() == "0")
                             {
@@ -170,38 +171,53 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             }
                             else if (dt.Rows[i][0].ToString() == "2")
                             {
-                                ddlApprove.SelectedValue = "Reject";
+                                ddlApprove.SelectedValue = "Rejected";
                             }
                             grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                             grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
                             grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
                         }
                         _com.setGridViewStyle(grdData);
+                        grdData.HeaderRow.Cells[2].Text = "Task Name";
+                        grdData.HeaderRow.Cells[3].Text = "Start Date";
+                        grdData.HeaderRow.Cells[4].Text = "End Date";
                     }
                     catch (Exception ex)
                     {
                         lblError.Text = ex.Message;
                     }
-                }
+                /*}
                 else
                 {
                     Session.Remove("TaskName");
                     Response.Redirect(Message.UserHomePage);
                 }
-            }
+            }*/
                     ddlDayOff.AutoPostBack = true;
         }
         protected string confirmSave { get; set; }
         protected void ddlDayOff_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblError.Text = "";
+            lblSuccess.Text = "";
+            if (ddlDayOff.SelectedValue == "All")
+            {
+                btnAssign.Enabled = false;
+                btnAssign.Attributes.Add("style", "color: #cccccc;");
+            }
+            else
+            {
             DataTable myData = _com.getData(Message.TableTask, Message.LimitDateColumn, " where "
                 +Message.TaskNameColumn+" = '" + ddlDayOff.SelectedValue.ToString() + "'");
             if (myData.Rows[0][0].ToString() != "")
             {
-                btnAssign.Visible = true;
+                btnAssign.Enabled = false;
+                btnAssign.Attributes.Add("style", "color: #cccccc;");
             }
             else {
-                btnAssign.Visible = false;
+                btnAssign.Enabled = true;
+                btnAssign.Attributes.Remove("style");
+            }
             }
         }
 
@@ -216,6 +232,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
         {
             e.Row.Cells[0].Visible = false;
             e.Row.Cells[1].Attributes.Add("style", "padding-left:5px;");
+            e.Row.Cells[5].Visible = false;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 //string Location = "EditCandidate.aspx/?Name=" + Server.HtmlDecode(e.Row.Cells[2].Text)
@@ -248,6 +265,8 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
+            lblSuccess.Text = "";
             try
             {
                 string[] col = new string[1];
@@ -286,7 +305,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where pp."+Message.CurrentFlagColumn+" = 1 and emp."
                             +Message.CurrentFlagColumn+" = 1");
                     }
-                    else if (ddlShow.SelectedValue == "Not Approved")
+                    else if (ddlShow.SelectedValue == "Not Approve")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -298,7 +317,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
                             + Message.CurrentFlagColumn + " = 1");
                     }
-                    else if (ddlShow.SelectedValue == "Reject")
+                    else if (ddlShow.SelectedValue == "Rejected")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -341,7 +360,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where emp."+Message.CurrentFlagColumn+" = 1 and pp."
                             +Message.TaskIdColumn+" = " + myDatatmp.Rows[0][0].ToString() + " and pp."+Message.CurrentFlagColumn+" = 1");
                     }
-                    else if (ddlShow.SelectedValue == "Not Approved")
+                    else if (ddlShow.SelectedValue == "Not Approve")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -353,7 +372,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
                             + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 0");
                     }
-                    else if (ddlShow.SelectedValue == "Reject")
+                    else if (ddlShow.SelectedValue == "Rejected")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -370,12 +389,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 {
                     DropDownList ddlApprove = new DropDownList();
                     ddlApprove.ID = "ddlApprove" + i;
-                    ddlApprove.Items.Add("Approve");
+                    ddlApprove.Items.Add("Approved");
                     ddlApprove.Items.Add("Not Approve");
-                    ddlApprove.Items.Add("Reject");
+                    ddlApprove.Items.Add("Rejected");
                     if (dt.Rows[i][0].ToString() == "1")
                     {
-                        ddlApprove.SelectedValue = "Approve";
+                        ddlApprove.SelectedValue = "Approved";
                     }
                     else if (dt.Rows[i][0].ToString() == "0")
                     {
@@ -383,7 +402,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     }
                     else if (dt.Rows[i][0].ToString() == "2")
                     {
-                        ddlApprove.SelectedValue = "Reject";
+                        ddlApprove.SelectedValue = "Rejected";
                     }
                     grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                     grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
@@ -395,17 +414,21 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             {
                 lblError.Text = ex.Message;
             }
+            grdData.HeaderRow.Cells[2].Text = "Task Name";
+            grdData.HeaderRow.Cells[3].Text = "Start Date";
+            grdData.HeaderRow.Cells[4].Text = "End Date";
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             lblSuccess.Text = "";
+            lblError.Text = "";
             try
             {
                 foreach (GridViewRow row in grdData.Rows)
                 {
                     DropDownList ddlApprove = (DropDownList)row.FindControl("ddlApprove" + row.RowIndex);
-                    if (ddlApprove.SelectedValue == "Approve")
+                    if (ddlApprove.SelectedValue == "Approved")
                     {
                         DataTable myData = _com.getData(Message.TablePersonProject+" pp INNER JOIN "+Message.TableEmployee+" emp "
                             +"ON pp."+Message.BusinessEntityIDColumn+" = emp."+Message.BusinessEntityIDColumn
@@ -490,7 +513,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
                             + Message.CurrentFlagColumn + " = 1");
                     }
-                    else if (ddlShow.SelectedValue == "Not Approved")
+                    else if (ddlShow.SelectedValue == "Not Approve")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -502,7 +525,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
                             + Message.CurrentFlagColumn + " = 1");
                     }
-                    else if (ddlShow.SelectedValue == "Reject")
+                    else if (ddlShow.SelectedValue == "Rejected")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2";
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -545,7 +568,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
                             + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 1");
                     }
-                    else if (ddlShow.SelectedValue == "Not Approved")
+                    else if (ddlShow.SelectedValue == "Not Approve")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 0" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -557,7 +580,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pp."
                             + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString() + " and pp." + Message.CurrentFlagColumn + " = 0");
                     }
-                    else if (ddlShow.SelectedValue == "Reject")
+                    else if (ddlShow.SelectedValue == "Rejected")
                     {
                         condition = condition + " and pp." + Message.CurrentFlagColumn + " = 2" + " and pp." + Message.TaskIdColumn + " = " + myDatatmp.Rows[0][0].ToString();
                         _com.bindDataBlankColumn(column, condition, table, grdData, 1, col);
@@ -574,12 +597,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 {
                     DropDownList ddlApprove = new DropDownList();
                     ddlApprove.ID = "ddlApprove" + i;
-                    ddlApprove.Items.Add("Approve");
+                    ddlApprove.Items.Add("Approved");
                     ddlApprove.Items.Add("Not Approve");
-                    ddlApprove.Items.Add("Reject");
+                    ddlApprove.Items.Add("Rejected");
                     if (dt.Rows[i][0].ToString() == "1")
                     {
-                        ddlApprove.SelectedValue = "Approve";
+                        ddlApprove.SelectedValue = "Approved";
                     }
                     else if (dt.Rows[i][0].ToString() == "0")
                     {
@@ -587,7 +610,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     }
                     else if (dt.Rows[i][0].ToString() == "2")
                     {
-                        ddlApprove.SelectedValue = "Reject";
+                        ddlApprove.SelectedValue = "Rejected";
                     }
                     grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("<div class=\"styled-selectLong\">"));
                     grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
@@ -599,6 +622,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             {
                 lblError.Text = ex.Message;
             }
+            grdData.HeaderRow.Cells[2].Text = "Task Name";
+            grdData.HeaderRow.Cells[3].Text = "Start Date";
+            grdData.HeaderRow.Cells[4].Text = "End Date";
         }
     }
 }
