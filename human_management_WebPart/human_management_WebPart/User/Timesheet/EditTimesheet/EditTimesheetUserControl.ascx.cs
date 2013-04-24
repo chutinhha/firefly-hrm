@@ -163,5 +163,10 @@ namespace SP2010VisualWebPart.User.Timesheet.EditTimesheet
                 lblError.Text = ex.Message;
             }
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Message.MyTimesheetPage);
+        }
     }
 }
