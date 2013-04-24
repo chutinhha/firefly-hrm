@@ -15,7 +15,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
         private CommonFunction _com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*this.confirmAssign = Message.ConfirmAssign;
+            this.confirmAssign = Message.ConfirmAssign;
             if (Session["Account"] == null)
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -31,7 +31,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                         Response.Redirect(Message.AccessDeniedPage);
                     }
                     else
-                    {*/
+                    {
                         try
                         {
                             if (!IsPostBack)
@@ -45,14 +45,14 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                         {
                             lblError.Text = ex.Message;
                         }
-                    /*}
+                    }
                 }
                 else
                 {
                     Session.Remove("TaskName");
                     Response.Redirect(Message.UserHomePage);
                 }
-            }*/
+            }
         }
         protected string confirmAssign { get; set; }
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
             {
                 try
                 {
-                    DataTable myData = _com.getData(Message.TableProject + " pro", Message.TaskIdColumn, " INNER JOIN"
+                    DataTable myData = _com.getData(Message.TableProject + " pro", Message.TaskIdColumn, " INNER JOIN "
                         + Message.TableTask + " tas ON pro." + Message.ProjectIDColumn + " = tas." + Message.ProjectIDColumn
                         + " WHERE pro." + Message.ProjectNameColumn + " = 'Leave' and tas." + Message.TaskNameColumn
                         + " = '" + txtDayOff.Text.ToString() + "'");
@@ -213,6 +213,11 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                     //e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Message.AssignDayOffPage);
         }
     }
 }
