@@ -194,5 +194,10 @@ namespace SP2010VisualWebPart.Admin.Person_Project.AssignEmployee
                 }
             }
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Message.PersonProjectPage);
+        }
     }
 }
