@@ -13,13 +13,13 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee {
     public partial class inforEmployeeUserControl {
         
         /// <summary>
-        /// bntEmpListPage control.
+        /// btnEmpListPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bntEmpListPage;
+        protected global::System.Web.UI.WebControls.Button btnEmpListPage;
         
         /// <summary>
         /// lblEmployeeImageTitle control.
