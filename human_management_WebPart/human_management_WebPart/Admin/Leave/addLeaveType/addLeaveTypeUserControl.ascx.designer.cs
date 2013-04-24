@@ -85,6 +85,33 @@ namespace SP2010VisualWebPart.Admin.Leave.addLeaveType {
         protected global::System.Web.UI.WebControls.TextBox txtLimitDay;
         
         /// <summary>
+        /// pnlStartEndDateGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlStartEndDateGroup;
+        
+        /// <summary>
+        /// lblStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStartDate;
+        
+        /// <summary>
+        /// lblEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEndDate;
+        
+        /// <summary>
         /// lblNote control.
         /// </summary>
         /// <remarks>

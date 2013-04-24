@@ -11,12 +11,16 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
     {
         private string strTaskID = "";
         private CommonFunction _com = new CommonFunction();
-        
+        protected string strStartDateValue { get; set; }
+        protected string strEndDateValue { get; set; }
+
         protected void loadData()
         {
+            strEndDateValue = "";
+            strStartDateValue = "";
             string strTableName = Message.TableTask;
-            string strColum = " "+Message.TaskNameColumn+","+Message.NoteColumn+", "+Message.LimitDateColumn+" ";
-            string strCondition = " WHERE "+Message.TaskIdColumn+" = " + strTaskID;
+            string strColum = " " + Message.TaskNameColumn + "," + Message.NoteColumn + ", " + Message.LimitDateColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + " ";
+            string strCondition = " WHERE " + Message.TaskIdColumn + " = " + strTaskID;
             DataTable dt = _com.getData(strTableName, strColum, strCondition);
             txtLeaveName.Text = dt.Rows[0][0].ToString();
             txtNote.Text = dt.Rows[0][1].ToString();
@@ -25,6 +29,11 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 rdbLimitedNo.Checked = true;
                 txtLimitDay.Text = "";
                 pnlLimitedYes.Visible = false;
+                pnlStartEndDateGroup.Visible = true;
+                DateTime dtmStartDate = DateTime.Parse(dt.Rows[0][3].ToString().Trim());
+                strStartDateValue = dtmStartDate.Month + "/" + dtmStartDate.Day + "/" + dtmStartDate.Year;
+                DateTime dtmEndDate = DateTime.Parse(dt.Rows[0][4].ToString().Trim());
+                strEndDateValue = dtmEndDate.Month + "/" + dtmEndDate.Day + "/" + dtmEndDate.Year;
             }
             else
             {
@@ -32,6 +41,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 rdbLimitedNo.Checked = false;
                 txtLimitDay.Text = dt.Rows[0][2].ToString();
                 pnlLimitedYes.Visible = true;
+                pnlStartEndDateGroup.Visible = false;
             }
         }
 
@@ -64,7 +74,8 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                             loadData();
                         }
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         lblError.Text = ex.Message;
                     }
                 }
@@ -98,19 +109,19 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 string strTableName = Message.TableTask;
 
                 //Leave Name;
-                string strLeaveName = Message.TaskNameColumn+" = N'" + txtLeaveName.Text + "'";
+                string strLeaveName = Message.TaskNameColumn + " = N'" + txtLeaveName.Text + "'";
                 //Leave Note
-                string strNote = Message.NoteColumn+" = N'" + txtNote.Text + "'";
+                string strNote = Message.NoteColumn + " = N'" + txtNote.Text + "'";
                 //LimitedDate            
                 string strLimitedDate = "";
-                if (txtLimitDay.Text != "") strLimitedDate = Message.LimitDateColumn+" = " 
+                if (txtLimitDay.Text != "") strLimitedDate = Message.LimitDateColumn + " = "
                     + txtLimitDay.Text;
-                else strLimitedDate = Message.LimitDateColumn+" = 0";
+                else strLimitedDate = Message.LimitDateColumn + " = 0";
 
                 //Condition
                 strTaskID = Session["TaskID"].ToString();
-                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate 
-                    + " where "+Message.TaskIdColumn+" = " + strTaskID;
+                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate
+                    + " where " + Message.TaskIdColumn + " = " + strTaskID;
                 _com.updateTable(strTableName, strCondition);
 
 
@@ -118,7 +129,8 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 _com.closeConnection();
                 Response.Redirect(Message.LeaveTypeList, true);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 lblError.Text = ex.Message;
             }
         }
