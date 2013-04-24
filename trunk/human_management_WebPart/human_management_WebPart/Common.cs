@@ -8,7 +8,8 @@ using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web.UI;using System.Web;
+using System.Web.UI;
+using System.Web;
 using System.Web.UI.WebControls;
 using Microsoft.SharePoint;
 using Microsoft.Office.Server.UserProfiles;
@@ -27,7 +28,8 @@ public class CommonFunction
     }
 
     //Close db connection
-    internal void closeConnection() {
+    internal void closeConnection()
+    {
         cnn.Close();
     }
 
@@ -55,19 +57,22 @@ public class CommonFunction
     internal void deleteFromTable(string table, string condition)
     {
         string sql;
-        sql = @"DELETE  " + table + " WHERE " + condition + " ;";        
+        sql = @"DELETE  " + table + " WHERE " + condition + " ;";
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
     }
 
     //Insert new row to table
-    internal void insertIntoTable(string table,string column, string condition, bool IDENTITY_INSERT)
+    internal void insertIntoTable(string table, string column, string condition, bool IDENTITY_INSERT)
     {
         string sql;
-        if (IDENTITY_INSERT == true) {
-            sql = @"SET IDENTITY_INSERT "+table+" ON insert into " + table +column+ " values(" + condition + ");";
-        }else{
-            sql = @"insert into " + table + " " + column +" values(" + condition + ");";
+        if (IDENTITY_INSERT == true)
+        {
+            sql = @"SET IDENTITY_INSERT " + table + " ON insert into " + table + column + " values(" + condition + ");";
+        }
+        else
+        {
+            sql = @"insert into " + table + " " + column + " values(" + condition + ");";
         }
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
@@ -92,8 +97,41 @@ public class CommonFunction
             {
                 ddl.Items.Add(dt.Rows[i][0].ToString());
             }
-        }else{
-            if (addItem == false) {
+        }
+        else
+        {
+            if (addItem == false)
+            {
+                ddl.Items.Add("NULL");
+            }
+        }
+    }
+
+    //Set a DropDownList Item List With Index
+    internal void SetItemListWithID(string ID, string value, string table, DropDownList ddl, string condition, Boolean addItem, string Item)
+    {
+        ddl.Items.Clear();
+        string sql = @"SELECT distinct " + ID + " , " + value + " FROM " + table + condition;
+        SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
+        DataSet ds = new DataSet();
+        da.Fill(ds, "items");
+        DataTable dt = ds.Tables["items"];
+        if (addItem == true)
+        {
+            ddl.Items.Add(Item);
+        }
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                ListItem l = new ListItem(dt.Rows[i][1].ToString(),dt.Rows[i][0].ToString());
+                ddl.Items.Add(l);
+            }
+        }
+        else
+        {
+            if (addItem == false)
+            {
                 ddl.Items.Add("NULL");
             }
         }
@@ -218,11 +256,12 @@ public class CommonFunction
             dt.Columns[5].SetOrdinal(7);
             int totalTimeTask = 0;
             int totalTimeProject = 0;
-            string employeeName= dt.Rows[0][0].ToString();
+            string employeeName = dt.Rows[0][0].ToString();
             string businessID = dt.Rows[0][7].ToString();
             string projectName = dt.Rows[0][1].ToString();
             string taskName = dt.Rows[0][2].ToString();
-            for (int i = 0; i < dt.Rows.Count; i++) {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
                 if (employeeName == dt.Rows[i][0].ToString() && businessID == dt.Rows[i][7].ToString())
                 {
                     if (projectName == dt.Rows[i][1].ToString())
@@ -234,7 +273,7 @@ public class CommonFunction
                         }
                         else
                         {
-                            dt.Rows[i - 1][5] = totalTimeTask+" (Hours)";
+                            dt.Rows[i - 1][5] = totalTimeTask + " (Hours)";
                             totalTimeTask = int.Parse(dt.Rows[i][3].ToString());
                             taskName = dt.Rows[i][2].ToString();
                         }
@@ -249,17 +288,19 @@ public class CommonFunction
                         projectName = dt.Rows[i][1].ToString();
                     }
                 }
-                else {
+                else
+                {
                     dt.Rows[i - 1][5] = totalTimeTask + " (Hours)";
                     dt.Rows[i - 1][6] = totalTimeProject + " (Hours)";
                     totalTimeTask = int.Parse(dt.Rows[i][3].ToString());
                     totalTimeProject = totalTimeTask;
                     taskName = dt.Rows[i][2].ToString();
                     projectName = dt.Rows[i][1].ToString();
-                    employeeName=dt.Rows[i][0].ToString();
+                    employeeName = dt.Rows[i][0].ToString();
                     businessID = dt.Rows[i][7].ToString();
                 }
-                if (i == dt.Rows.Count - 1) {
+                if (i == dt.Rows.Count - 1)
+                {
                     dt.Rows[i][5] = totalTimeTask + " (Hours)";
                     dt.Rows[i][6] = totalTimeProject + " (Hours)";
                 }
@@ -299,7 +340,7 @@ public class CommonFunction
         dt.Columns.Add("Duration(Hours)");
         dt.Columns.Add("Total");
         int rowTotal = 0;
-        for (int i = 0; i < dt.Rows.Count;i++ )
+        for (int i = 0; i < dt.Rows.Count; i++)
         {
             TimeSpan total;
             DateTime punchIn = DateTime.Parse(dt.Rows[i][2].ToString());
@@ -307,12 +348,14 @@ public class CommonFunction
             TimeSpan diff = punchIn.Subtract(punchOut);
             total = diff;
             dt.Rows[i][4] = diff.ToString();
-            if (rowTotal <= i) {
+            if (rowTotal <= i)
+            {
                 rowTotal = i;
             }
             for (int j = 0; j < dt.Rows.Count; j++)
             {
-                if (dt.Rows[i][0].ToString().Equals(dt.Rows[j][0])&&i!=j) {
+                if (dt.Rows[i][0].ToString().Equals(dt.Rows[j][0]) && i != j)
+                {
                     DateTime punchIn1 = DateTime.Parse(dt.Rows[j][2].ToString());
                     DateTime punchOut1 = DateTime.Parse(dt.Rows[j][1].ToString());
                     if (punchIn.Day == punchIn1.Day && punchIn.Month == punchIn1.Month && punchIn.Year == punchIn1.Year)
@@ -337,9 +380,9 @@ public class CommonFunction
     }
 
     //Get data to a DataTable
-    internal DataTable getData(string table,string column, string condition)
+    internal DataTable getData(string table, string column, string condition)
     {
-        string sql = @"SELECT "+column+" from "+table + condition+";";
+        string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
         da.Fill(ds, "data");
@@ -348,25 +391,27 @@ public class CommonFunction
     }
 
     //get largest ID of a identity column in a table
-    internal DataTable getTopID(string table) {
-        string sql = @"select IDENT_CURRENT('"+table+"')";
+    internal DataTable getTopID(string table)
+    {
+        string sql = @"select IDENT_CURRENT('" + table + "')";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
         da.Fill(ds, "data");
         DataTable dt = ds.Tables["data"];
         return dt;
     }
-    
+
     //Update a table
     internal void updateTable(string table, string condition)
     {
-        string sql = @"update "+table+" set "+condition+";";
+        string sql = @"update " + table + " set " + condition + ";";
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
     }
 
     //Set gridview style
-    internal void setGridViewStyle(GridView grdData) {
+    internal void setGridViewStyle(GridView grdData)
+    {
         grdData.GridLines = GridLines.None;
         grdData.HeaderStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#2CA6CD");
         grdData.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
@@ -439,7 +484,8 @@ public class CommonFunction
     }*/
 
     //Get current quarter of the year
-    internal int getQuarter() {
+    internal int getQuarter()
+    {
         DateTime dt = DateTime.Now;
         int quarter;
         if (dt.Month <= 3)
@@ -462,7 +508,8 @@ public class CommonFunction
     }
 
     //Get current user rank
-    internal string getRank(SPWeb context ) {
+    internal string getRank(SPWeb context)
+    {
         SPWeb web = context;
         SPRoleAssignment assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser);
         StringBuilder sb = new StringBuilder("");
@@ -484,8 +531,9 @@ public class CommonFunction
     }
 
     //Generate control for evaluate employee checkpoint webpart
-    internal void generateControl(Panel pnlGenerate, string isEdit, string BusinessID, int quarter) {
-        DataTable question = this.getData(Message.TableCheckpointQuestion,"*", "");
+    internal void generateControl(Panel pnlGenerate, string isEdit, string BusinessID, int quarter)
+    {
+        DataTable question = this.getData(Message.TableCheckpointQuestion, "*", "");
         if (question.Rows.Count > 0)
         {
             int countRdoYesNo = 1;
@@ -516,8 +564,8 @@ public class CommonFunction
                     if (isEdit == "true")
                     {
                         DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
-                            + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='" 
-                            + question.Rows[i][0].ToString()+"'");
+                            + BusinessID + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
+                            + question.Rows[i][0].ToString() + "'");
                         if (evaluatePoint.Rows.Count > 0)
                         {
                             if (evaluatePoint.Rows[0][3].ToString() == "10")
@@ -557,7 +605,7 @@ public class CommonFunction
                     lblNotePoint.Text = "Points for this question";
                     lblNotePoint.Width = 200;
                     DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
-                            + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
+                            + BusinessID + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                             + question.Rows[i][0].ToString() + "'");
                     if (isEdit == "true")
                     {
@@ -610,7 +658,7 @@ public class CommonFunction
                     if (isEdit == "true")
                     {
                         DataTable evaluatePoint = this.getData(Message.TableEvaluatePoint, "*", " where " + Message.BusinessEntityIDColumn + "='"
-                            + BusinessID + "' and "+Message.QuarterColumn+"='" + quarter + "' and "+Message.QuestionIDColumn+"='"
+                            + BusinessID + "' and " + Message.QuarterColumn + "='" + quarter + "' and " + Message.QuestionIDColumn + "='"
                             + question.Rows[i][0].ToString() + "'");
                         if (evaluatePoint.Rows.Count > 0)
                         {
