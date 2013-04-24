@@ -45,6 +45,11 @@
                     <td class="fieldTitleTd">
                         <span style="color: white;">Edit Leave Type</span>
                     </td>
+                    <td class="fieldTitleTd" align="right">
+                        <asp:Button ID="btnLeaveTypeList" CssClass="addButton" runat="server" Text="Back To Leave Type List Page"
+                            Width="230px" Style="background: #2CA6CD; box-shadow: none; text-decoration: underline;
+                            border: none;" OnClick="btnLeaveTypeList_Click" />
+                    </td>
                 </tr>
             </table>
             <br />
@@ -68,15 +73,15 @@
                 <br />
                 <br />
             </asp:Panel>
-            <asp:Panel ID="pnlStartEndDateGroup" runat="server" Visible="true">                
+            <asp:Panel ID="pnlStartEndDateGroup" runat="server" Visible="true">
                 <span style="padding-left: 5px;"></span>
                 <asp:Label ID="lblStartDate" runat="server" Text="Start date" Width="150px"></asp:Label>
-                <input type="text" style="width: 200px;" id="txtStartDate" name="txtStartDate" value="<%=this.strStartDateValue %>"/>
+                <input type="text" style="width: 200px;" id="txtStartDate" name="txtStartDate" value="<%=this.strStartDateValue %>" />
                 <span style="padding-left: 150px;"></span>
                 <asp:Label ID="lblEndDate" runat="server" Text="End date" Width="150px"></asp:Label>
-                <input type="text" style="width: 200px;" id="txtEndDate" name="txtEndDate" value="<%=this.strEndDateValue %>"/>     
+                <input type="text" style="width: 200px;" id="txtEndDate" name="txtEndDate" value="<%=this.strEndDateValue %>" />
                 <br />
-                <br />           
+                <br />
             </asp:Panel>
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br />
@@ -85,8 +90,7 @@
             <br />
             <br />
             &nbsp<span style="color: Red;">(*): Required field</span><br />
-            &nbsp<asp:Label ID="lblUserGuide" runat="server" 
-                ForeColor="red"></asp:Label>
+            &nbsp<asp:Label ID="lblUserGuide" runat="server" ForeColor="red"></asp:Label>
             <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>

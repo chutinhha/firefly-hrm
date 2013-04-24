@@ -19,7 +19,7 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
             string strProjectID = dtProjectId.Rows[0][0].ToString();
 
             string strColumn = Message.TaskNameColumn+", "+Message.NoteColumn+","+Message.LimitDateColumn
-                +","+Message.TaskIdColumn;
+                + "," + Message.TaskIdColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn;
             string strTable = Message.TableTask;
             string strCondition = " where "+Message.ProjectIDColumn+" = " + strProjectID;
             _com.bindData(strColumn, strCondition, strTable, grdLeaveType);
@@ -28,7 +28,13 @@ namespace SP2010VisualWebPart.Admin.Leave.searchLeaveType
                 for (int i = 0; i < grdLeaveType.Rows.Count; i++)
                 {
                     grdLeaveType.Rows[i].Cells[4].Visible = false;
-                    if (grdLeaveType.Rows[i].Cells[3].Text == "0") grdLeaveType.Rows[i].Cells[3].Text = "Unlimited";
+                    if (grdLeaveType.Rows[i].Cells[3].Text == "0") grdLeaveType.Rows[i].Cells[3].Text = "---";
+                    if (grdLeaveType.Rows[i].Cells[5].Text == "&nbsp;") grdLeaveType.Rows[i].Cells[5].Text = "---";
+                    else
+                        grdLeaveType.Rows[i].Cells[5].Text = grdLeaveType.Rows[i].Cells[5].Text.Substring(0, grdLeaveType.Rows[i].Cells[5].Text.IndexOf(" "));
+                    if (grdLeaveType.Rows[i].Cells[6].Text == "&nbsp;") grdLeaveType.Rows[i].Cells[6].Text = "---";
+                    else
+                        grdLeaveType.Rows[i].Cells[6].Text = grdLeaveType.Rows[i].Cells[6].Text.Substring(0, grdLeaveType.Rows[i].Cells[6].Text.IndexOf(" "));
                 }
                 grdLeaveType.HeaderRow.Cells[1].Text = "Project Type";
                 grdLeaveType.HeaderRow.Cells[2].Text = "Note";
