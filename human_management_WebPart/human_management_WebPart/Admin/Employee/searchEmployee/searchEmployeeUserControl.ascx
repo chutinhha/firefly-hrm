@@ -41,10 +41,12 @@
             <br />
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" onfocus="Focus(this.id,'All')" onblur="Blur(this.id,'All')">All</asp:TextBox>
+            <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" onfocus="Focus(this.id,'All')"
+                onblur="Blur(this.id,'All')">All</asp:TextBox>
             <span style="padding-left: 100px;"></span>
             <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtLoginID" runat="server" Width="200px" onfocus="Focus(this.id,'All')" onblur="Blur(this.id,'All')">All</asp:TextBox>
+            <asp:TextBox ID="txtLoginID" runat="server" Width="200px" onfocus="Focus(this.id,'All')"
+                onblur="Blur(this.id,'All')">All</asp:TextBox>
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
@@ -95,7 +97,20 @@
 <table class="fieldTitleDiv">
     <tr>
         <td>
-            <asp:GridView ID="grdEmployee" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
+            <asp:GridView ID="grdEmployee" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound"
+                EnableModelValidation="True" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:ImageField DataImageUrlField="Image" HeaderText="Avatar" DataImageUrlFormatString="/_layouts/Images/21_2_ob/{0}"
+                        ControlStyle-Width="50" ControlStyle-Height="50">
+                    </asp:ImageField>
+                    <asp:BoundField DataField="Name" HeaderText="Employee Name" SortExpression="Name" />
+                    <asp:BoundField DataField="EmpStatus" HeaderText="Employee Status" SortExpression="EmpStatus" />
+                    <asp:BoundField DataField="Rank" HeaderText="Rank" SortExpression="Rank" />
+                    <asp:BoundField DataField="LoginID" HeaderText="User Name" SortExpression="LoginID" />
+                    <asp:BoundField DataField="JobTitle" HeaderText="Job Title" SortExpression="JobTitle" />
+                    <asp:BoundField DataField="DepName" HeaderText="Department" SortExpression="DepName" />
+                    <asp:BoundField DataField="EmpID" HeaderText="EmployeeID" SortExpression="EmpID" />
+                </Columns>
             </asp:GridView>
             <table>
                 <tr>
@@ -105,7 +120,11 @@
             </table>
         </td>
     </tr>
+    <tr>
+        <td>
+        &nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
+        </td>
+    </tr>
 </table>
 <br />
 <br />
-&nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
