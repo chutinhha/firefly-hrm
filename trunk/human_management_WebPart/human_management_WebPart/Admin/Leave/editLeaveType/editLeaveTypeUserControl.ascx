@@ -1,4 +1,19 @@
-﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
+﻿<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#txtStartDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        $("#txtEndDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -52,6 +67,16 @@
                 <asp:TextBox ID="txtLimitDay" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
                 <br />
                 <br />
+            </asp:Panel>
+            <asp:Panel ID="pnlStartEndDateGroup" runat="server" Visible="true">                
+                <span style="padding-left: 5px;"></span>
+                <asp:Label ID="lblStartDate" runat="server" Text="Start date" Width="150px"></asp:Label>
+                <input type="text" style="width: 200px;" id="txtStartDate" name="txtStartDate" value="<%=this.strStartDateValue %>"/>
+                <span style="padding-left: 150px;"></span>
+                <asp:Label ID="lblEndDate" runat="server" Text="End date" Width="150px"></asp:Label>
+                <input type="text" style="width: 200px;" id="txtEndDate" name="txtEndDate" value="<%=this.strEndDateValue %>"/>     
+                <br />
+                <br />           
             </asp:Panel>
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblNote" runat="server" Text="Note" Width="150px"></asp:Label><br />
