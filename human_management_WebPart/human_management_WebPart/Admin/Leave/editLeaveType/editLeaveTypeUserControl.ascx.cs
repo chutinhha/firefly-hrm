@@ -19,7 +19,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             strEndDateValue = "";
             strStartDateValue = "";
             string strTableName = Message.TableTask;
-            string strColum = " " + Message.TaskNameColumn + "," + Message.NoteColumn + ", " + Message.LimitDateColumn + "," + Message.StartDateColumn + "," + Message.EndDateColumn + " ";
+            string strColum = " " + Message.TaskNameColumn + "," + Message.NoteColumn + ", " + Message.LimitDateColumn + " ";
             string strCondition = " WHERE " + Message.TaskIdColumn + " = " + strTaskID;
             DataTable dt = _com.getData(strTableName, strColum, strCondition);
             txtLeaveName.Text = dt.Rows[0][0].ToString();
@@ -27,13 +27,11 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             if (dt.Rows[0][2].ToString() == "0")
             {
                 rdbLimitedNo.Checked = true;
+                rdbLimitedYes.Checked = false;
                 txtLimitDay.Text = "";
                 pnlLimitedYes.Visible = false;
                 pnlStartEndDateGroup.Visible = true;
-                DateTime dtmStartDate = DateTime.Parse(dt.Rows[0][3].ToString().Trim());
-                strStartDateValue = dtmStartDate.Month + "/" + dtmStartDate.Day + "/" + dtmStartDate.Year;
-                DateTime dtmEndDate = DateTime.Parse(dt.Rows[0][4].ToString().Trim());
-                strEndDateValue = dtmEndDate.Month + "/" + dtmEndDate.Day + "/" + dtmEndDate.Year;
+                setDataDateTime();
             }
             else
             {
@@ -42,6 +40,29 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 txtLimitDay.Text = dt.Rows[0][2].ToString();
                 pnlLimitedYes.Visible = true;
                 pnlStartEndDateGroup.Visible = false;
+            }
+        }
+
+        private void setDataDateTime()
+        {
+            string strTableName = Message.TableTask;
+            string strColum = " " + Message.StartDateColumn + "," + Message.EndDateColumn + " ";
+            string strCondition = " WHERE " + Message.TaskIdColumn + " = " + strTaskID;
+            DataTable dt = _com.getData(strTableName, strColum, strCondition);
+            if (dt.Rows.Count > 0)
+            {
+                if ((dt.Rows[0][0].ToString().Trim() != "") && ((dt.Rows[0][1].ToString().Trim() != "")))
+                {
+                    DateTime dtmStartDate = DateTime.Parse(dt.Rows[0][0].ToString().Trim());
+                    strStartDateValue = dtmStartDate.Month + "/" + dtmStartDate.Day + "/" + dtmStartDate.Year;
+                    DateTime dtmEndDate = DateTime.Parse(dt.Rows[0][1].ToString().Trim());
+                    strEndDateValue = dtmEndDate.Month + "/" + dtmEndDate.Day + "/" + dtmEndDate.Year;
+                }
+                else
+                {
+                    strEndDateValue = "";
+                    strStartDateValue = "";
+                }
             }
         }
 
@@ -73,6 +94,7 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                             strTaskID = Session["TaskID"].ToString();
                             loadData();
                         }
+                        strTaskID = Session["TaskID"].ToString();
                     }
                     catch (Exception ex)
                     {
@@ -95,7 +117,6 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                     lblUserGuide.Text = Message.MissRequired;
                     return;
                 }
-                lblUserGuide.Text = "";
                 if (rdbLimitedYes.Checked == true)
                 {
                     if (txtLimitDay.Text == "")
@@ -104,10 +125,39 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                         return;
                     }
                 }
-
+                //Check StartDate end Enddate
+                string strStartDate = "null";
+                string strEndDate = "null";
+                if (rdbLimitedNo.Checked == true)
+                {
+                    strStartDate = Request.Form["txtStartDate"].ToString().Trim();
+                    strEndDate = Request.Form["txtEndDate"].ToString().Trim();
+                    if ((strEndDate == "") || (strStartDate == ""))
+                    {
+                        lblUserGuide.Text = "Please check input of start date and end date.";
+                        return;
+                    }
+                    DateTime dtStartDate;
+                    DateTime dtEndDate;
+                    try
+                    {
+                        dtStartDate = DateTime.Parse(strStartDate);
+                        dtEndDate = DateTime.Parse(strEndDate);
+                        if (dtEndDate < dtStartDate)
+                        {
+                            lblUserGuide.Text = "Start date must less than end date";
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        lblUserGuide.Text = "Please check format of start date and end date.";
+                        return;
+                    }
+                }
+                lblUserGuide.Text = "";
                 //Insert Database to Project Table
                 string strTableName = Message.TableTask;
-
                 //Leave Name;
                 string strLeaveName = Message.TaskNameColumn + " = N'" + txtLeaveName.Text + "'";
                 //Leave Note
@@ -117,10 +167,16 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
                 if (txtLimitDay.Text != "") strLimitedDate = Message.LimitDateColumn + " = "
                     + txtLimitDay.Text;
                 else strLimitedDate = Message.LimitDateColumn + " = 0";
-
+                //Start Date and End Date               
+                if (strStartDate != "null") strStartDate = Message.StartDateColumn + " = '" + strStartDate + "'";
+                else
+                    strStartDate = Message.StartDateColumn + " = null";
+                if (strEndDate != "null") strEndDate = Message.EndDateColumn + " = '" + strEndDate + "'";
+                else
+                    strEndDate = Message.EndDateColumn + " = null";
                 //Condition
                 strTaskID = Session["TaskID"].ToString();
-                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate
+                string strCondition = strLeaveName + " , " + strNote + " , " + strLimitedDate + " , " + strStartDate + " , " + strEndDate
                     + " where " + Message.TaskIdColumn + " = " + strTaskID;
                 _com.updateTable(strTableName, strCondition);
 
@@ -144,9 +200,12 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
         protected void rdbLimitedYes_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbLimitedYes.Checked == true)
+            {
                 pnlLimitedYes.Visible = true;
-            else
-                pnlLimitedYes.Visible = false;
+                pnlStartEndDateGroup.Visible = false;
+                strStartDateValue = "null";
+                strEndDateValue = "null";
+            }
         }
 
         protected void rdbLimitedNo_CheckedChanged(object sender, EventArgs e)
@@ -155,9 +214,15 @@ namespace SP2010VisualWebPart.Admin.Leave.editLeaveType
             {
                 pnlLimitedYes.Visible = false;
                 txtLimitDay.Text = "";
+                pnlStartEndDateGroup.Visible = true;
+                setDataDateTime();
             }
-            else
-                pnlLimitedYes.Visible = true;
+        }
+
+        protected void btnLeaveTypeList_Click(object sender, EventArgs e)
+        {
+            _com.closeConnection();
+            Response.Redirect(Message.LeaveTypeList, true);
         }
     }
 }
