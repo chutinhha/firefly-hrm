@@ -106,7 +106,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
             {
                 try
                 {
-                    DataTable myData = _com.getData(Message.TableProject + " pro", Message.TaskIdColumn, " INNER JOIN "
+                    DataTable myData = _com.getData(Message.TableProject + " pro", Message.TaskIdColumn + ",tas." + Message.StartDateColumn + ",tas." + Message.EndDateColumn, " INNER JOIN "
                         + Message.TableTask + " tas ON pro." + Message.ProjectIDColumn + " = tas." + Message.ProjectIDColumn
                         + " WHERE pro." + Message.ProjectNameColumn + " = 'Leave' and tas." + Message.TaskNameColumn
                         + " = '" + txtDayOff.Text.ToString() + "'");
@@ -136,7 +136,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                                     {
                                         _com.updateTable(Message.TablePersonProject, " " + Message.CurrentFlagColumn
                                             + " = '1', " + Message.ModifiedDateColumn + " = CAST( '"
-                                            + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) where "
+                                            + DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME), " + Message.StartDateColumn + " = CONVERT(datetime,'" + myData.Rows[0][1].ToString() + "',111), " + Message.EndDateColumn + " = CONVERT(datetime,'" + myData.Rows[0][2].ToString() + "',111) " + " where "
                                             + Message.BusinessEntityIDColumn + " = '" + gr.Cells[1].Text + "' and "
                                             + Message.TaskIdColumn + " = '" + myData.Rows[0][0].ToString() + "'");
                                         checkRedirect = true;
@@ -168,7 +168,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.AssignLeave
                     lblError.Text = ex.Message;
                 }
             }
-            else lblError.Text = "You must select employee first!";
+            else lblError.Text = Message.NotChooseItemDelete;
         }
 
         protected void CheckUncheckAll(object sender, EventArgs e)
