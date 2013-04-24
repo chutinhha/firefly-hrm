@@ -60,7 +60,8 @@
             <br />
             <br />
             &nbsp<span style="color: Red;">(*): Required field</span><br />
-            <asp:Label ID="lblUserGuide" runat="server" Text=""></asp:Label>
+            &nbsp<asp:Label ID="lblUserGuide" runat="server" 
+                ForeColor="red"></asp:Label>
             <br />
             <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
