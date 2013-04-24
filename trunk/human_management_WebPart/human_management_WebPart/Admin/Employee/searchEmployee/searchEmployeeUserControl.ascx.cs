@@ -16,9 +16,8 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
         {
             try
             {
-                string strColumn = "p." + Message.NameColumn + ", CAST(" + Message.CurrentFlagColumn
-                    + " AS VARCHAR(1)), " + Message.RankColumn + ", " + Message.LoginIDColumn + ", " + Message.JobTitleColumn
-                    + ", CAST(e." + Message.BusinessEntityIDColumn + " AS VARCHAR(10)), d." + Message.NameColumn;
+                string strColumn = " e." + Message.ImageColumn + " , p." + Message.NameColumn + ", (case when e.CurrentFlag = 1 then 'Active' else 'Inactive' end) AS EmpStatus , " + Message.RankColumn + ", " + Message.LoginIDColumn + ", " + Message.JobTitleColumn
+                    + ", CAST(e." + Message.BusinessEntityIDColumn + " AS VARCHAR(10)) AS EmpID, d." + Message.NameColumn + " AS DepName ";
                 string strTable = "((((" + Message.TableEmployee + " e LEFT JOIN " + Message.TablePerson
                     + " p ON e." + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn
                     + ") LEFT JOIN " + Message.TableJobTitle + " j ON  e." + Message.JobIDColumn + " = j."
@@ -26,7 +25,7 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                     + Message.BusinessEntityIDColumn + " = edh." + Message.BusinessEntityIDColumn
                     + " AND ((edh." + Message.StartDateColumn + " <= GETDATE() AND GETDATE() <= edh." + Message.EndDateColumn
                     + ") OR (edh." + Message.StartDateColumn + " <= GETDATE() AND edh." + Message.EndDateColumn
-                    + " = null)))) LEFT JOIN " + Message.TableDepartment + " d ON edh." + Message.DepartmentIDColumn
+                    + " is null)))) LEFT JOIN " + Message.TableDepartment + " d ON edh." + Message.DepartmentIDColumn
                     + " = D." + Message.DepartmentIDColumn + ")";
                 string strCondition = " where (E." + Message.LoginIDColumn + " != '')";
                 // Check input
@@ -55,27 +54,19 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                 // Check Department
                 if (ddlDepartment.SelectedIndex != 0) strCondition = strCondition + " AND (d." + Message.NameColumn
                     + " = '" + ddlDepartment.SelectedValue + "')";
-
-                _com.bindData(strColumn, strCondition, strTable, grdEmployee);
-                if (grdEmployee.Rows.Count > 0)
+                DataTable dt = _com.getData(strTable, strColumn, strCondition);
+                grdEmployee.DataSource = dt;
+                grdEmployee.DataBind();
+                if (dt.Rows.Count <= 0) lblError.Text = "No results";
+                else
                 {
                     lblError.Text = "";
                     for (int i = 0; i < grdEmployee.Rows.Count; i++)
                     {
-                        grdEmployee.Rows[i].Cells[5].Visible = false;
-                        if (grdEmployee.Rows[i].Cells[1].Text.Equals("1")) grdEmployee.Rows[i].Cells[1].Text = "Active";
-                        else grdEmployee.Rows[i].Cells[1].Text = "Inactive";
+                        grdEmployee.Rows[i].Cells[7].Visible = false;                        
                     }
-                    grdEmployee.HeaderRow.Cells[0].Text = "Employee Name";
-                    grdEmployee.HeaderRow.Cells[1].Text = "Employee Status";
-                    grdEmployee.HeaderRow.Cells[2].Text = "Rank";
-                    grdEmployee.HeaderRow.Cells[3].Text = "User Name";
-                    grdEmployee.HeaderRow.Cells[4].Text = "Job Title";
-                    grdEmployee.HeaderRow.Cells[5].Visible = false;
-                    grdEmployee.HeaderRow.Cells[6].Text = "Department";
+                    grdEmployee.HeaderRow.Cells[7].Visible = false;
                 }
-                else
-                    lblError.Text = "No results";
                 _com.setGridViewStyle(grdEmployee);
             }
             catch (Exception ex)
@@ -86,36 +77,37 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Account"] == null)
-            //{
-            //    Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-            //    Response.Redirect(Message.AccessDeniedPage);
-            //}
-            //else
-            //{
-            //    if (Session["Account"].ToString() == "Admin")
-            //    {
-            //        try
-            //        {
-            if (!IsPostBack)
+            if (Session["Account"] == null)
             {
-                //set data do dropdownlist
-                //JobTitle
-                _com.SetItemListWithID(Message.JobIDColumn, Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
-                //Department
-                _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", true, "All");
-                binDatatoGridView();
+                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Response.Redirect(Message.AccessDeniedPage);
             }
-            //        }
-            //        catch (Exception ex) {
-            //            lblError.Text = ex.Message;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect(Message.UserHomePage);
-            //    }
-            //}
+            else
+            {
+                if (Session["Account"].ToString() == "Admin")
+                {
+                    try
+                    {
+                        if (!IsPostBack)
+                        {
+                            //set data do dropdownlist
+                            //JobTitle
+                            _com.SetItemListWithID(Message.JobIDColumn, Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", true, "All");
+                            //Department
+                            _com.SetItemList(Message.NameColumn, Message.TableDepartment, ddlDepartment, "", true, "All");
+                            binDatatoGridView();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblError.Text = ex.Message;
+                    }
+                }
+                else
+                {
+                    Response.Redirect(Message.UserHomePage);
+                }
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -127,7 +119,7 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
             //e.Row.Cells[0].Attributes.Add("style", "padding-left:5px;");
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string Location = Message.EditEmployeePage + "/?BusinessEntityId=" + Server.HtmlDecode(e.Row.Cells[5].Text);
+                string Location = Message.EditEmployeePage + "/?BusinessEntityId=" + Server.HtmlDecode(e.Row.Cells[7].Text);
                 e.Row.Style["cursor"] = "pointer";
                 e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
                 if (e.Row.RowIndex % 2 != 0)
@@ -168,24 +160,5 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
             ddlDepartment.ClearSelection();
             binDatatoGridView();
         }
-
-
-        //protected void btnDelete_Click(object sender, EventArgs e)
-        //{            
-        //    string strContition = "BusinessEntityId = ";
-        //    foreach (GridViewRow gr in grdEmployee.Rows)
-        //    {                
-        //        CheckBox cb = (CheckBox)gr.Cells[0].FindControl("chkItem");
-        //        if (cb.Checked)
-        //        {
-        //            string strBusinessEntityID = gr.Cells[7].Text;
-        //            strContition = strContition + strBusinessEntityID;
-        //            _com.deleteIntoTable(Message.TableEmployee, strContition);
-        //            _com.deleteIntoTable(Message.TablePerson, strContition);
-        //        }
-        //        binDatatoGridView();
-
-        //    }
-        //}
     }
 }
