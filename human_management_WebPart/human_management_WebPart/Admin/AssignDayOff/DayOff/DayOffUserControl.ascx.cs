@@ -333,8 +333,8 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     btnAssign.Attributes.Remove("style");
                 }
             }
-            DataTable myData = _com.getData(Message.TablePersonProject, " * ", "");
-            if (myData.Rows.Count > 0)
+            DataTable myDatax = _com.getData(Message.TablePersonProject, " * ", "");
+            if (myDatax.Rows.Count > 0)
             {
                 try
                 {
