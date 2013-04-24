@@ -1,4 +1,23 @@
-﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
+﻿<script language="javascript" type="text/javascript">
+    function Focus(objname, waterMarkText) {
+        obj = document.getElementById(objname);
+        if (obj.value == waterMarkText) {
+            obj.value = "";
+            obj.className = "NormalTextBox";
+        }
+    }
+    function Blur(objname, waterMarkText) {
+        obj = document.getElementById(objname);
+        if (obj.value == "") {
+            obj.value = waterMarkText;
+            obj.className = "WaterMarkedTextBox";
+        }
+        else {
+            obj.className = "NormalTextBox";
+        }
+    }
+</script>
+<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -22,10 +41,10 @@
             <br />
             <span style="padding-left: 5px;"></span>
             <asp:Label ID="lblEmployeeName" runat="server" Text="Employee Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px"></asp:TextBox>
+            <asp:TextBox ID="txtEmployeeName" runat="server" Width="200px" onfocus="Focus(this.id,'All')" onblur="Blur(this.id,'All')">All</asp:TextBox>
             <span style="padding-left: 100px;"></span>
             <asp:Label ID="lblLoginID" runat="server" Text="User Name" Width="150px"></asp:Label>
-            <asp:TextBox ID="txtLoginID" runat="server" Width="200px"></asp:TextBox>
+            <asp:TextBox ID="txtLoginID" runat="server" Width="200px" onfocus="Focus(this.id,'All')" onblur="Blur(this.id,'All')">All</asp:TextBox>
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
@@ -49,7 +68,7 @@
             <p>
                 &nbsp;</p>
             <span style="padding-left: 5px;"></span>
-            <asp:Label ID="lblJobTitle" runat="server" Text="JobTitle" Width="150px"></asp:Label>
+            <asp:Label ID="lblJobTitle" runat="server" Text="Job Title" Width="150px"></asp:Label>
             <div class="styled-selectLong">
                 <asp:DropDownList ID="ddlJobTitle" runat="server">
                 </asp:DropDownList>
