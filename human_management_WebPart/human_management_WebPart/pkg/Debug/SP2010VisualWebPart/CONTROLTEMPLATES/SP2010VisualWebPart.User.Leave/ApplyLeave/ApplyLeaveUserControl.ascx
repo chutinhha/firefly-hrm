@@ -58,7 +58,7 @@
                     <br />
                 </asp:Panel>
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblFrom" runat="server" Text="From(*)" Width="150px"></asp:Label>
+                <asp:Label ID="lblFrom" runat="server" Text="From" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateFrom" runat="server" Style="display: inline;">
                     <input id="txtDateFrom" name="txtDateFrom" style="width: 200px;" type="text" value="<%=this.startDate %>" />
                 </asp:Panel>
@@ -68,7 +68,7 @@
                 <br />
                 <br />
                 <span style="padding-left: 5px;"></span>
-                <asp:Label ID="lblTo" runat="server" Text="To(*)" Width="150px"></asp:Label>
+                <asp:Label ID="lblTo" runat="server" Text="To" Width="150px"></asp:Label>
                 <asp:Panel ID="pnlDateTo" runat="server" Style="display: inline;">
                     <input id="txtDateTo" name="txtDateTo" style="width: 200px;" type="text" value="<%=this.endDate %>" />
                 </asp:Panel>

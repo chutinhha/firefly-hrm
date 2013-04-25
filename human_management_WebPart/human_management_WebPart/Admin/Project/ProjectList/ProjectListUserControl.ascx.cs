@@ -28,9 +28,12 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
                             _com.setGridViewStyle(grdData);
                             ddlType.AutoPostBack = true;
                             Session.Remove("ProjectID");
-                            grdData.HeaderRow.Cells[2].Text = "Project Name";
-                            grdData.HeaderRow.Cells[4].Text = "Start Date";
-                            grdData.HeaderRow.Cells[5].Text = "End Date";
+                            if (grdData.Rows.Count > 0)
+                            {
+                                grdData.HeaderRow.Cells[2].Text = "Project Name";
+                                grdData.HeaderRow.Cells[4].Text = "Start Date";
+                                grdData.HeaderRow.Cells[5].Text = "End Date";
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -70,9 +73,12 @@ namespace SP2010VisualWebPart.Admin.Project.ProjectList
                     _com.bindData("*", " where '" + DateTime.Today + "'<" + Message.StartDateColumn
                         + " and " + Message.ProjectNameColumn + "<>'Leave'", Message.TableProject, grdData);
                 }
-                grdData.HeaderRow.Cells[2].Text = "Project Name";
-                grdData.HeaderRow.Cells[4].Text = "Start Date";
-                grdData.HeaderRow.Cells[5].Text = "End Date";
+                if (grdData.Rows.Count > 0)
+                {
+                    grdData.HeaderRow.Cells[2].Text = "Project Name";
+                    grdData.HeaderRow.Cells[4].Text = "Start Date";
+                    grdData.HeaderRow.Cells[5].Text = "End Date";
+                }
             }
             catch (Exception ex) {
                 lblError.Text = ex.Message;

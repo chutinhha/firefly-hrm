@@ -511,7 +511,16 @@ public class CommonFunction
     internal string getRank(SPWeb context)
     {
         SPWeb web = context;
-        SPRoleAssignment assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser);
+        SPRoleAssignment assignment;
+        SPGroupCollection userGroups = web.CurrentUser.Groups;
+        if (userGroups.Count > 0)
+        {
+            assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser.Groups[0]);
+        }
+        else
+        {
+            assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser);
+        }
         StringBuilder sb = new StringBuilder("");
         foreach (SPRoleDefinition role in assignment.RoleDefinitionBindings)
         {
@@ -744,6 +753,71 @@ public class CommonFunction
         catch (Exception ex)
         {
             return ex.Message;
+        }
+    }
+
+    internal readonly string[] VietnameseSigns = new string[]
+    {
+        "aAeEoOuUiIdDyY",
+        "áàạảãâấầậẩẫăắằặẳẵ",
+        "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+        "éèẹẻẽêếềệểễ",
+        "ÉÈẸẺẼÊẾỀỆỂỄ",
+        "óòọỏõôốồộổỗơớờợởỡ",
+        "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+        "úùụủũưứừựửữ",
+        "ÚÙỤỦŨƯỨỪỰỬỮ",
+        "íìịỉĩ",
+        "ÍÌỊỈĨ",
+        "đ",
+        "Đ",
+        "ýỳỵỷỹ",
+        "ÝỲỴỶỸ"
+    };
+
+    internal string removeAccent(string str)
+    {
+        for (int i = 1; i < VietnameseSigns.Length; i++)
+        {
+            for (int j = 0; j < VietnameseSigns[i].Length; j++)
+
+                str = str.Replace(VietnameseSigns[i][j], VietnameseSigns[0][i - 1]);
+        }
+        return str;
+    }
+    internal string genAccountFromName(string fullName,string email) {
+        DataTable isOldEmployee = this.getData(Message.TableEmployee +" emp join "+Message.TablePerson+" per on emp."
+            +Message.BusinessEntityIDColumn+"=per."+Message.BusinessEntityIDColumn, Message.LoginIDColumn
+            , " where "+ Message.EmailAddressColumn + "='" + email + "' and "+Message.NameColumn+"=N'"+fullName+"'");
+        if (isOldEmployee.Rows.Count > 0) {
+            return "";
+        }
+        else
+        {
+            string[] name = fullName.Split(' ');
+            string accountName = this.removeAccent(name[name.Length - 1]);
+            for (int i = 0; i < name.Length - 1; i++)
+            {
+                accountName = accountName + this.removeAccent(name[i][0].ToString());
+            }
+            DataTable isAccountExist = this.getData(Message.TableEmployee, Message.LoginIDColumn, " where "
+                + Message.LoginIDColumn + "='" + accountName + "'");
+            if (isAccountExist.Rows.Count > 0)
+            {
+                int i = 0;
+                while (true)
+                {
+                    DataTable isAccountExist1 = this.getData(Message.TableEmployee, Message.LoginIDColumn, " where "
+                        + Message.LoginIDColumn + "='" + accountName + i + "'");
+                    if (isAccountExist1.Rows.Count > 0) { }
+                    else
+                    {
+                        accountName = accountName + i;
+                        break;
+                    }
+                }
+            }
+            return accountName;
         }
     }
 }

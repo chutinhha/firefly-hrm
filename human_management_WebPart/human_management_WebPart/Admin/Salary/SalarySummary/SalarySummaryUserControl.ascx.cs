@@ -41,10 +41,10 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                         ColumnTitle[0] = "Salary";
                         DataTable dt = _com.getData(Message.TableEmployee + " e join "
                             + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
-                            + Message.BusinessEntityIDColumn + " where e."+Message.CurrentFlagColumn+"='True' order by "+sort);
+                            + Message.BusinessEntityIDColumn + " where e."+Message.CurrentFlagColumn+"='True' and p.Rank='User' order by "+sort);
                         _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn+" as 'Email'"
                             , " on e." + Message.BusinessEntityIDColumn + "=p."
-                            + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " 
+                            + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' and p.Rank='User' order by " 
                             + sort, Message.TableEmployee + " e join "+ Message.TablePerson + " p", grdData, 1, ColumnTitle);
                         float totalCostPerMonth = 0;
                         for (int i = 0; i < dt.Rows.Count; i++)
@@ -180,11 +180,11 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
             ColumnTitle[0] = "Salary";
             _com.bindDataBlankColumn("p." + Message.BusinessEntityIDColumn + ",p.Name,p."+Message.EmailAddressColumn
                 +" as 'Email'", " on e." + Message.BusinessEntityIDColumn + "=p."
-                + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " 
+                + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' and p.Rank='User' order by " 
                 + sort, Message.TableEmployee + " e join "+ Message.TablePerson + " p", grdData,1, ColumnTitle);
             DataTable dt = _com.getData(Message.TableEmployee + " e join "
                 + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn + "=p."
-                + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " + sort);
+                + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' and p.Rank='User' order by " + sort);
             //grdData.HeaderRow.Cells[1].Text = "Edit Salary";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -243,7 +243,7 @@ namespace SP2010VisualWebPart.Admin.Salary.SalarySummary
                 }
                 DataTable dt = _com.getData(Message.TableEmployee + " e join "
                     + Message.TablePerson + " p", "p.Name,e.Salary", " on e." + Message.BusinessEntityIDColumn
-                    + "=p." + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' order by " + sort);
+                    + "=p." + Message.BusinessEntityIDColumn + " where e." + Message.CurrentFlagColumn + "='True' and p.Rank='User' order by " + sort);
                 float totalCostPerMonth = 0;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {

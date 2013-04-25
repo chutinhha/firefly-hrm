@@ -36,7 +36,7 @@ document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;/_layouts/
 &lt;/script&gt;
 " __designer:Values="&lt;P N='Language' T='javascript' /&gt;&lt;P N='Name' T='core.js' /&gt;&lt;P N='OnDemand' T='True' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl04' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 	<SharePoint:CustomJSUrl runat="server" __designer:Preview="" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl05' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
-	<SharePoint:SoapDiscoveryLink runat="server" __designer:Preview="&lt;link type=&quot;text/xml&quot; rel=&quot;alternate&quot; href=&quot;/hr/LearningCenter/_vti_bin/spsdisco.aspx&quot; /&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl06' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+	<SharePoint:SoapDiscoveryLink runat="server" __designer:Preview="&lt;link type=&quot;text/xml&quot; rel=&quot;alternate&quot; href=&quot;/_vti_bin/spsdisco.aspx&quot; /&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl06' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 	<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server"/>
 	<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" __designer:Preview="[ MyLinksRibbon &quot;ctl00_ctl08&quot; ][ InsertMediaRibbonButton &quot;ctl00_ctl09&quot; ][ SpellCheckV4Action &quot;ctl00_ctl10&quot; ]" __designer:Values="&lt;P N='ControlId' T='AdditionalPageHead' /&gt;&lt;P N='AllowMultipleControls' T='True' /&gt;&lt;P N='ID' T='ctl07' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
 	<SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/images/favicon.ico" __designer:Preview="&lt;link rel=&quot;shortcut icon&quot; href=&quot;/_layouts/images/favicon.ico&quot; type=&quot;image/vnd.microsoft.icon&quot; /&gt;" __designer:Values="&lt;P N='IconUrl' T='/_layouts/images/favicon.ico' /&gt;&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl11' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
@@ -83,16 +83,17 @@ document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;/_layouts/
 					   &lt;span class=&quot;ms-siteactionsmenu&quot; id=&quot;siteactiontd&quot;&gt;
 					   
 						
-						&lt;span style=&quot;display:none&quot;&gt;&lt;menu type='ServerMenu' id=&quot;zz1_SiteActionsMenuMain&quot; largeiconmode=&quot;true&quot;&gt;&lt;ie:menuitem id=&quot;ctl00_SiteActionsMenuMain_ctl00_MenuItem_TakeOffline&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/connecttospworkspace32.png&quot; onMenuClick=&quot;javaScript:CoreInvoke('TakeOfflineToClientReal',1, 1, 'http:\u002f\u002ftungda:9999\u002fhr\u002fLearningCenter', -1, -1, '', '')&quot; hidden=&quot;TakeOfflineDisabled(1, 1, -1, -1)&quot; menuGroupId=&quot;100&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz2_MenuItem_CreateDocLib&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/NewDocLibHH.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('DocLib')) { GoToPage('\u002fhr\u002fLearningCenter\u002f_layouts/new.aspx?FeatureId={00bfea71-e717-4e80-aa17-d0c71b360101}&amp;amp;ListTemplate=101') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz3_MenuItem_CreateSite&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/newweb32.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('Site')) { STSNavigate('\u002fhr\u002fLearningCenter\u002f_layouts/newsbweb.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz4_MenuItem_Create&quot; type=&quot;option&quot; onMenuClick=&quot;if (LaunchCreateHandler('All')) { STSNavigate('\u002fhr\u002fLearningCenter\u002f_layouts/create.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz5_MenuItem_ViewAllSiteContents&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/allcontent32.png&quot; onMenuClick=&quot;STSNavigate2(event,'/hr/LearningCenter/_layouts/viewlsts.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz6_MenuItem_EditSite&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/SharePointDesigner32.png&quot; onMenuClick=&quot;EditInSPD('\u002fhr\u002fLearningCenter\u002f',true);&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz7_MenuItem_SitePermissions&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/Permissions32.png&quot; onMenuClick=&quot;STSNavigate2(event,'/hr/LearningCenter/_layouts/user.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz8_MenuItem_Settings&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/settingsIcon.png&quot; onMenuClick=&quot;STSNavigate2(event,'/hr/LearningCenter/_layouts/settings.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;ie:menuitem id=&quot;zz9_MenuItem_CommitNewUI&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/visualupgradehh.png&quot; onMenuClick=&quot;GoToPage('\u002fhr\u002fLearningCenter\u002f_layouts/prjsetng.aspx')&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
-&lt;/menu&gt;&lt;/span&gt;&lt;span  id=&quot;zz10_SiteActionsMenu_t&quot; class=&quot;ms-siteactionsmenuinner&quot; title=&quot;Open Menu&quot; onmouseover=&quot;MMU_PopMenuIfShowing(this);MMU_EcbTableMouseOverOut(this, true)&quot; hoveractive=&quot;ms-siteactionsmenuhover&quot; hoverinactive=&quot;ms-siteactionsmenuinner&quot; onclick=&quot; CoreInvoke('MMU_Open',byid(''), MMU_GetMenuFromClientId('zz10_SiteActionsMenu'),event,false, null, 0); return false;&quot; foa=&quot;MMU_GetMenuFromClientId('zz10_SiteActionsMenu')&quot; oncontextmenu=&quot;ClkElmt(this); return false;&quot; style=&quot;white-space:nowrap&quot;&gt;&lt;a class=&quot;ms-menu-a&quot; id=&quot;zz10_SiteActionsMenu&quot; href=&quot;javascript:;&quot; style=&quot;cursor:pointer;white-space:nowrap;&quot; onfocus=&quot;MMU_EcbLinkOnFocusBlur(byid(''), this, true);&quot; onkeydown=&quot;MMU_EcbLinkOnKeyDown(byid(''), MMU_GetMenuFromClientId('zz10_SiteActionsMenu'), event);&quot; onclick=&quot; CoreInvoke('MMU_Open',byid(''), MMU_GetMenuFromClientId('zz10_SiteActionsMenu'),event,false, null, 0); return false;&quot; oncontextmenu=&quot;ClkElmt(this); return false;&quot; menutokenvalues=&quot;MENUCLIENTID=zz10_SiteActionsMenu,TEMPLATECLIENTID=zz1_SiteActionsMenuMain&quot; serverclientid=&quot;zz10_SiteActionsMenu&quot;&gt;&lt;span&gt;Site Actions&lt;/span&gt;&lt;img src=&quot;/_layouts/images/blank.gif&quot; style='border:0px' alt=&quot;Use SHIFT+ENTER to open the menu (new window).&quot;/&gt;&lt;/a&gt;&lt;span style=&quot;height:3px;width:5px;position:relative;display:inline-block;overflow:hidden;&quot; class=&quot;s4-clust ms-viewselector-arrow&quot;&gt;&lt;img src=&quot;/_layouts/images/fgimg.png&quot; alt=&quot;Open Menu&quot; style=&quot;border-width:0px;position:absolute;left:-0px !important;top:-491px !important;&quot; /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+						&lt;span style=&quot;display:none&quot;&gt;&lt;menu type='ServerMenu' id=&quot;zz1_SiteActionsMenuMain&quot; largeiconmode=&quot;true&quot;&gt;&lt;ie:menuitem id=&quot;ctl00_SiteActionsMenuMain_ctl00_MenuItem_TakeOffline&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/connecttospworkspace32.png&quot; onMenuClick=&quot;javaScript:CoreInvoke('TakeOfflineToClientReal',1, 1, 'http:\u002f\u002ftungda', -1, -1, '', '')&quot; hidden=&quot;TakeOfflineDisabled(1, 1, -1, -1)&quot; menuGroupId=&quot;100&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz2_MenuItem_CreatePage&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/NewContentPageHH.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('Page')) { OpenCreateWebPageDialog('\u002f_layouts/createwebpage.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz3_MenuItem_CreateDocLib&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/NewDocLibHH.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('DocLib')) { GoToPage('\u002f_layouts/new.aspx?FeatureId={00bfea71-e717-4e80-aa17-d0c71b360101}&amp;amp;ListTemplate=101') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz4_MenuItem_CreateSite&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/newweb32.png&quot; onMenuClick=&quot;if (LaunchCreateHandler('Site')) { STSNavigate('\u002f_layouts/newsbweb.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz5_MenuItem_Create&quot; type=&quot;option&quot; onMenuClick=&quot;if (LaunchCreateHandler('All')) { STSNavigate('\u002f_layouts/create.aspx') }&quot; menuGroupId=&quot;200&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz6_MenuItem_ViewAllSiteContents&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/allcontent32.png&quot; onMenuClick=&quot;STSNavigate2(event,'/_layouts/viewlsts.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz7_MenuItem_EditSite&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/SharePointDesigner32.png&quot; onMenuClick=&quot;EditInSPD('\u002f',true);&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz8_MenuItem_SitePermissions&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/Permissions32.png&quot; onMenuClick=&quot;STSNavigate2(event,'/_layouts/user.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz9_MenuItem_Settings&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/settingsIcon.png&quot; onMenuClick=&quot;STSNavigate2(event,'/_layouts/settings.aspx');&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;ie:menuitem id=&quot;zz10_MenuItem_CommitNewUI&quot; type=&quot;option&quot; iconSrc=&quot;/_layouts/images/visualupgradehh.png&quot; onMenuClick=&quot;GoToPage('\u002f_layouts/prjsetng.aspx')&quot; menuGroupId=&quot;300&quot;&gt;&lt;/ie:menuitem&gt;
+&lt;/menu&gt;&lt;/span&gt;&lt;span  id=&quot;zz11_SiteActionsMenu_t&quot; class=&quot;ms-siteactionsmenuinner&quot; title=&quot;Open Menu&quot; onmouseover=&quot;MMU_PopMenuIfShowing(this);MMU_EcbTableMouseOverOut(this, true)&quot; hoveractive=&quot;ms-siteactionsmenuhover&quot; hoverinactive=&quot;ms-siteactionsmenuinner&quot; onclick=&quot; CoreInvoke('MMU_Open',byid(''), MMU_GetMenuFromClientId('zz11_SiteActionsMenu'),event,false, null, 0); return false;&quot; foa=&quot;MMU_GetMenuFromClientId('zz11_SiteActionsMenu')&quot; oncontextmenu=&quot;ClkElmt(this); return false;&quot; style=&quot;white-space:nowrap&quot;&gt;&lt;a class=&quot;ms-menu-a&quot; id=&quot;zz11_SiteActionsMenu&quot; href=&quot;javascript:;&quot; style=&quot;cursor:pointer;white-space:nowrap;&quot; onfocus=&quot;MMU_EcbLinkOnFocusBlur(byid(''), this, true);&quot; onkeydown=&quot;MMU_EcbLinkOnKeyDown(byid(''), MMU_GetMenuFromClientId('zz11_SiteActionsMenu'), event);&quot; onclick=&quot; CoreInvoke('MMU_Open',byid(''), MMU_GetMenuFromClientId('zz11_SiteActionsMenu'),event,false, null, 0); return false;&quot; oncontextmenu=&quot;ClkElmt(this); return false;&quot; menutokenvalues=&quot;MENUCLIENTID=zz11_SiteActionsMenu,TEMPLATECLIENTID=zz1_SiteActionsMenuMain&quot; serverclientid=&quot;zz11_SiteActionsMenu&quot;&gt;&lt;span&gt;Site Actions&lt;/span&gt;&lt;img src=&quot;/_layouts/images/blank.gif&quot; style='border:0px' alt=&quot;Use SHIFT+ENTER to open the menu (new window).&quot;/&gt;&lt;/a&gt;&lt;span style=&quot;height:3px;width:5px;position:relative;display:inline-block;overflow:hidden;&quot; class=&quot;s4-clust ms-viewselector-arrow&quot;&gt;&lt;img src=&quot;/_layouts/images/fgimg.png&quot; alt=&quot;Open Menu&quot; style=&quot;border-width:0px;position:absolute;left:-0px !important;top:-491px !important;&quot; /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
 				
 						&lt;span class=&quot;s4-breadcrumb-anchor&quot;&gt;&lt;span style=&quot;height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;&quot; class=&quot;s4-clust&quot;&gt;&lt;a id=&quot;GlobalBreadCrumbNavPopout-anchor&quot; onclick=&quot;CoreInvoke('callOpenBreadcrumbMenu', event, 'GlobalBreadCrumbNavPopout-anchor', 'GlobalBreadCrumbNavPopout-menu', 'GlobalBreadCrumbNavPopout-img', 's4-breadcrumb-anchor-open', 'ltr', '', false); return false;&quot; onmouseover=&quot;&quot; onmouseout=&quot;&quot; title=&quot;&quot; href=&quot;javascript:;&quot; style=&quot;display:inline-block;height:16px;width:16px;&quot;&gt;&lt;img src=&quot;/_layouts/images/fgimg.png&quot; style=&quot;border:0;position:absolute;left:-0px !important;top:-112px !important;&quot; /&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;ms-popoutMenu s4-breadcrumb-menu&quot; id=&quot;GlobalBreadCrumbNavPopout-menu&quot; style=&quot;display:none;&quot;&gt;
 							&lt;div class=&quot;s4-breadcrumb-top&quot;&gt;
@@ -167,7 +168,7 @@ document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;/_layouts/
         options.clientID = 'RibbonContainer';
         options.trimEmptyGroups = true;
         options.dataExtensions = null;
-        options.scalingHint = '736872025';
+        options.scalingHint = '-263406831';
         options.initialTabSelectedByUser = _ribbon.initialTabSelectedByUser;
         options.launchedByKeyboard = _ribbon.launchedByKeyboard;
 
@@ -181,7 +182,7 @@ document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;/_layouts/
         }
 
         g_builder = new CUI.RibbonBuilder(options, document.getElementById('RibbonContainer'), SP.Ribbon.PageManager.get_instance());
-        var dataSource = new CUI.DataSource('\u002fhr\u002fLearningCenter\u002f_layouts\u002fcommandui.ashx', '1403044824', '1033');
+        var dataSource = new CUI.DataSource('\u002f_layouts\u002fcommandui.ashx', '-1415518850', '1033');
         g_builder.set_dataSource(dataSource);
 
         g_builder.buildRibbonAndInitialTab(_ribbon.initialTabId);
@@ -247,9 +248,9 @@ document.write('&lt;script type=&quot;text/javascript&quot; src=&quot;/_layouts/
         function _registerCUIEComponent()
         {  
             var instance = SP.Ribbon.CommandUIExtensionPageComponent.get_instance();
-            instance.set_dataUrl('\u002fhr\u002fLearningCenter\u002f_layouts\u002fcommandui.ashx');
+            instance.set_dataUrl('\u002f_layouts\u002fcommandui.ashx');
             instance.set_dataLCID('1033');
-            instance.set_dataVersion('1403044824');
+            instance.set_dataVersion('-1415518850');
             SP.Ribbon.CommandUIExtensionPageComponent.registerWithPageManager();
         }
         ExecuteOrDelayUntilScriptLoaded(_registerCUIEComponent, &quot;sp.ribbon.js&quot;);
@@ -601,19 +602,19 @@ var g_commandUIHandlers = {&quot;name&quot;:&quot;CommandHandlers&quot;,&quot;at
 				<table style="background-color:#E2E2E2;"><tbody><tr><td>
 			<ul id="nav">
 	<li>
-		<a href="http://orbis.org/blindness.aspx?lang=1">HOME</a>	
+		<a href="../../../../../../">HOME</a>	
 	</li>
 	<li>
-		<a href="../../../../../hr/LearningCenter/default.aspx">CALENDAR</a>
+		<a href="../Class.aspx">Class</a>
 	</li>
     <li>
-		<a href="../../../../../hr/LearningCenter/Lists/Class Discussions/AllItems.aspx">DISCUSSTION</a>
+		<a href="../Discussion.aspx">DISCUSSION</a>
 	</li>
     <li>
-		<a href="../../../../../hr/LearningCenter/Class Documents/Forms/AllItems.aspx">DOCUMENTS</a>
+		<a href="../Documents.aspx">DOCUMENTS</a>
 	</li>
 	<li style="background:none;">
-		<a href="../../../../../hr/LearningCenter/Lists/Class Links/AllItems.aspx">LINKS</a>
+		<a href="../Links.aspx">LINKS</a>
 	</li>
 	
 	
@@ -665,7 +666,7 @@ var g_commandUIHandlers = {&quot;name&quot;:&quot;CommandHandlers&quot;,&quot;at
 		</div>
 </div>
   <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">
-		<SharePoint:FormDigest runat="server" __designer:Preview="&lt;input type=&quot;hidden&quot; name=&quot;__REQUESTDIGEST&quot; value=&quot;0xFAB8EFC1E001F81FE4ACC8AABCFB6AB5AC72AB5D0C93A0E1353508E3A26B6562720520CB51B60D32EE25D8F882A07B6E175D1A74BD870B6A717ED811397F102D,21 Apr 2013 09:13:10 -0000&quot; /&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl27' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
+		<SharePoint:FormDigest runat="server" __designer:Preview="&lt;input type=&quot;hidden&quot; name=&quot;__REQUESTDIGEST&quot; value=&quot;0xA925D62FBC40966E904B8192906BBC75884295D173445309B60DA4D0F53163F16B1677AA29322763D7BFA323C82067A6E591364DECBD7F9DD7694528A95362D2,24 Apr 2013 10:24:26 -0000&quot; /&gt;" __designer:Values="&lt;P N='InDesign' T='False' /&gt;&lt;P N='ID' T='ctl27' /&gt;&lt;P N='Page' ID='1' /&gt;&lt;P N='TemplateControl' ID='2' /&gt;&lt;P N='AppRelativeTemplateSourceDirectory' R='-1' /&gt;"/>
   </asp:ContentPlaceHolder>
    <input type="text" name="__spText1" title="text" style="display:none;" />
    <input type="text" name="__spText2" title="text" style="display:none;" />

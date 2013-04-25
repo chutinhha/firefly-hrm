@@ -24,16 +24,20 @@ namespace SP2010VisualWebPart.Login
                 Session["Account"] = _com.getRank(SPControl.GetContextWeb(this.Context));
                 Session["PersonName"] = dt.Rows[0][1].ToString().Trim();
                 Session["AccountName"] = user;
-                if (Session["Account"]!=null)
+                if (Session["Account"] != null)
                 {
                     if (HttpContext.Current.Request.Url.AbsoluteUri.Contains("Home.aspx"))
                     {
                         Response.Redirect(Session["Account"].ToString() + ".aspx");
                     }
                 }
-                else {
-                    Response.Redirect(Message.HomePage);
+                else
+                {
+                    Response.Redirect(Message.PublicPage);
                 }
+            }
+            else {
+                Response.Redirect(Message.PublicPage);
             }
         }
     }

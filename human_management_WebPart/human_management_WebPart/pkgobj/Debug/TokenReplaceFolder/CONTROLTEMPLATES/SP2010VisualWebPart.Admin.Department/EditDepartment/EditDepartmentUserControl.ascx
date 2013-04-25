@@ -32,9 +32,14 @@
             <td>
                 <table class="fieldTitleTable">
                     <tr>
-                        <td class="fieldTitleTd">
+                        <td class="fieldTitleTd" align="left">
                             <span style="color: white;">
                                 <asp:Label ID="lblTitle" runat="server" Text="Edit Employee Department"></asp:Label></span>
+                        </td>
+                        <td class="fieldTitleTd" align="right">
+                            <asp:Button ID="btnEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
+                            Width="230px" OnClick="btnEmpListPage_Click" Style="background: #2CA6CD; box-shadow: none;
+                            text-decoration: underline; border: none;" />
                         </td>
                     </tr>
                 </table>

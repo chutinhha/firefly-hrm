@@ -20,4 +20,3 @@ F:\firefly-hrm\human_management_WebPart\human_management_WebPart\bin\Debug\SP201
 F:\firefly-hrm\human_management_WebPart\human_management_WebPart\bin\Debug\obout_Calendar2_Net.dll
 F:\firefly-hrm\human_management_WebPart\human_management_WebPart\obj\Debug\SP2010VisualWebPart.dll
 F:\firefly-hrm\human_management_WebPart\human_management_WebPart\obj\Debug\SP2010VisualWebPart.pdb
-F:\firefly-hrm\human_management_WebPart\human_management_WebPart\obj\Debug\ResolveAssemblyReference.cache

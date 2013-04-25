@@ -101,7 +101,7 @@
                         <br />
                         <asp:Label ID="lblRank" runat="server" Text="Rank" Width="150px"></asp:Label>
                         <div class="styled-selectLong">
-                            <asp:DropDownList ID="ddlRank" runat="server">
+                            <asp:DropDownList ID="ddlRank" runat="server" Enabled="False" disabled="disabled">
                                 <asp:ListItem Selected="True">User</asp:ListItem>
                                 <asp:ListItem>Admin</asp:ListItem>
                             </asp:DropDownList>

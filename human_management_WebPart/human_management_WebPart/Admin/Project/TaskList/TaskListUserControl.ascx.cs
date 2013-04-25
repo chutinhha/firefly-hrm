@@ -31,10 +31,11 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                             }
                             if (ddlProjectName.SelectedValue == "Upcoming deadline")
                             {
-                                _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
-                                    + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.EndDateColumn
-                                    + ">='" + DateTime.Today + "' and " + Message.EndDateColumn + "<='" + DateTime.Today.AddDays(7)
-                                    + "'", Message.TableTask, grdData);
+                                _com.bindData(Message.TaskIdColumn + ",tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn
+                                    + ",tas." + Message.StartDateColumn + ",tas." + Message.EndDateColumn, " where tas." + Message.EndDateColumn
+                                    + ">='" + DateTime.Today + "' and tas." + Message.EndDateColumn + "<='" + DateTime.Today.AddDays(7)
+                                    + "' and pro."+Message.ProjectNameColumn+"<>'Leave'", Message.TableTask+" tas join "+Message.TableProject+" pro on tas."+Message.ProjectIDColumn
+                                    +"=pro."+Message.ProjectIDColumn, grdData);
                             }
                             else
                             {
@@ -72,11 +73,13 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
         {
             lblError.Text = "";
             try{
-                if (ddlProjectName.SelectedValue == "Upcoming deadline") {
-                    _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn 
-                        + "," + Message.StartDateColumn+ "," + Message.EndDateColumn, " where " + Message.EndDateColumn 
-                        + ">='" + DateTime.Today + "' and " + Message.EndDateColumn+ "<='" + DateTime.Today.AddDays(7) 
-                        + "'", Message.TableTask, grdData);
+                if (ddlProjectName.SelectedValue == "Upcoming deadline")
+                {
+                    _com.bindData(Message.TaskIdColumn + ",tas." + Message.TaskNameColumn + ",tas." + Message.NoteColumn
+                        + ",tas." + Message.StartDateColumn + ",tas." + Message.EndDateColumn, " where tas." + Message.EndDateColumn
+                        + ">='" + DateTime.Today + "' and tas." + Message.EndDateColumn + "<='" + DateTime.Today.AddDays(7)
+                        + "' and pro." + Message.ProjectNameColumn + "<>'Leave'", Message.TableTask + " tas join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn
+                        + "=pro." + Message.ProjectIDColumn, grdData);
                 }
                 else
                 {
@@ -84,7 +87,7 @@ namespace SP2010VisualWebPart.Admin.Project.TaskList
                         + Message.ProjectNameColumn + "='" + ddlProjectName.SelectedValue + "'");
                     _com.bindData(Message.TaskIdColumn + "," + Message.TaskNameColumn + "," + Message.NoteColumn
                         + "," + Message.StartDateColumn + "," + Message.EndDateColumn, " where " + Message.ProjectIDColumn
-                        + "='" + dt.Rows[0][0].ToString() + "'", Message.TableTask, grdData);
+                        + "='" + dt.Rows[0][0].ToString() + "'",Message.TableTask, grdData);
                 }
                 if (grdData.Rows.Count > 0)
                 {

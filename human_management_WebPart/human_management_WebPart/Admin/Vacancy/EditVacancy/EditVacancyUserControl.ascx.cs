@@ -126,6 +126,14 @@ namespace SP2010VisualWebPart.EditVacancy
                                         + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
                                         + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                                 }
+                                else {
+                                    _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                        + Message.NumberOfPositionColumn
+                                        + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
+                                        + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
+                                        + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
+                                        + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                }
                             }
                             else
                             {
@@ -140,7 +148,16 @@ namespace SP2010VisualWebPart.EditVacancy
                                     _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
                                         + Message.NumberOfPositionColumn
                                         + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
-                                        + "'," + Message.JobTitleColumn + "=" + ddlJobTitle.SelectedValue + "," + Message.StatusColumn
+                                        + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
+                                        + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
+                                        + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
+                                }
+                                else
+                                {
+                                    _com.updateTable(Message.TableVacancy, Message.VacancyNameColumn + "=N'" + txtVacancy.Text + "',"
+                                        + Message.NumberOfPositionColumn
+                                        + "='" + txtNoOfPosition.Text + "'," + Message.DescriptionColumn + "=N'" + strDocURL
+                                        + "'," + Message.JobTitleColumn + "=N'" + ddlJobTitle.SelectedValue + "'," + Message.StatusColumn
                                         + "='" + active + "'," + Message.ModifiedDateColumn + "='" + DateTime.Now + "' where "
                                         + Message.VacancyNameColumn + "=N'" + Session["Name"] + "'");
                                 }

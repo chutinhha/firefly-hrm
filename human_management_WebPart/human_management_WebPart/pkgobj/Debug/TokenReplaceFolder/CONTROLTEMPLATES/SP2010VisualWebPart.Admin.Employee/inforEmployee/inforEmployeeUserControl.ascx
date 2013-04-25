@@ -37,8 +37,8 @@
                         <span style="color: white;">Employee Information</span>
                     </td>
                     <td class="fieldTitleTd" align="right">
-                        <asp:Button ID="bntEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
-                            Width="230px" OnClick="bntEmpListPage_Click" Style="background: #2CA6CD; box-shadow: none;
+                        <asp:Button ID="btnEmpListPage" CssClass="addButton" runat="server" Text="Back To Employees List Page"
+                            Width="230px" OnClick="btnEmpListPage_Click" Style="background: #2CA6CD; box-shadow: none;
                             text-decoration: underline; border: none;" />
                     </td>
                 </tr>
@@ -78,7 +78,7 @@
                         <asp:TextBox ID="txtFullName" runat="server" Width="200px"></asp:TextBox>
                         <br />
                         <br />
-                        <asp:Label ID="lblBirthDate" runat="server" Text="Birth Date" Width="150px"></asp:Label>
+                        <asp:Label ID="lblBirthDate" runat="server" Text="Birthday" Width="150px"></asp:Label>
                         <input type="text" style="width: 200px;" id="<%= this.strBirtDateID %>" name="<%= this.strBirtDateID %>"
                             value="<%= this.strBirthDateValue %>" <%= this.strBirtDateEditable %> />
                         <br />
@@ -101,15 +101,15 @@
                         <br />
                         <asp:Label ID="lblRank" runat="server" Text="Rank" Width="150px"></asp:Label>
                         <div class="styled-selectLong">
-                            <asp:DropDownList ID="ddlRank" runat="server">
+                            <asp:DropDownList ID="ddlRank" runat="server" Enabled="False" disabled="disabled">
                                 <asp:ListItem Selected="True">User</asp:ListItem>
                                 <asp:ListItem>Admin</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <br />
                         <br />
-                        <asp:Label ID="lblPersonDetailGuideLine" runat="server" Text="* Required Failed"
-                            Width="350px" Visible="False" ForeColor="#663300"></asp:Label>
+                        <asp:Label ID="lblPersonDetailGuideLine" runat="server" Text="" Width="350px" ForeColor="#663300"></asp:Label>
+                        <br />
                         <div class="borderTop" style="padding-left: 0px;">
                             <asp:Button ID="btnEditPersonDetails" CssClass="addButton" runat="server" Text="Edit"
                                 OnClick="btnEditPersonDetails_Click" Width="80px" />
@@ -150,7 +150,8 @@
             <asp:Label ID="lblAddressStreet" runat="server" Text="Address Street" Width="150px"></asp:Label>
             <asp:TextBox ID="txtAddressStreet" runat="server" Width="200px"></asp:TextBox>
             <br />
-            <asp:Label ID="lblPersonContactGuide" runat="server" Text="Please check format of email"
+            <br />
+            &nbsp;<asp:Label ID="lblPersonContactGuide" runat="server" Text="Please check format of email"
                 Visible="false" ForeColor="Red"></asp:Label>
             <br />
             <div class="borderTop">
