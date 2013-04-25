@@ -10,6 +10,25 @@ namespace SP2010VisualWebPart.Common.ManageUser
     public partial class ManageUserUserControl : UserControl
     {
         private CommonFunction _com = new CommonFunction();
+        public static bool IsUserMemberOfGroup(SPUser user, string groupName)
+        {
+            bool result = false;
+
+            if (!String.IsNullOrEmpty(groupName) && user != null)
+            {
+                foreach (SPGroup group in user.Groups)
+                {
+                    if (group.Name == groupName)
+                    {
+                        // found it
+                        result = true;
+                        break;
+                    }
+                }
+            }
+
+            return result;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -18,8 +37,8 @@ namespace SP2010VisualWebPart.Common.ManageUser
                 string[] allAccount = new string[100];
                 int accountCount = 0;
                 DataTable user = _com.getData(Message.TableEmployee + " e join " + Message.TablePerson + " p on e."
-                            + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, "e." + Message.LoginIDColumn
-                            + ",p." + Message.RankColumn + ",e." + Message.BusinessEntityIDColumn, "");
+                    + Message.BusinessEntityIDColumn + " = p." + Message.BusinessEntityIDColumn, "e." + Message.LoginIDColumn
+                    + ",p." + Message.RankColumn + ",e." + Message.BusinessEntityIDColumn, "");
                 foreach (SPRoleAssignment roleAssignment in web.RoleAssignments)
                 {
                     string[] account = new string[100];
@@ -27,8 +46,24 @@ namespace SP2010VisualWebPart.Common.ManageUser
                     string[] rank = new string[100];
                     int count = 0;
                     SPPrincipal member = roleAssignment.Member;
+                    SPGroupCollection userGroups = web.Groups;
+                    SPGroup group=null;
+                    for(int i=0;i<userGroups.Count;i++){
+                        SPGroup oGroup = userGroups[i];
+                        foreach (SPUser oUser in oGroup.Users)
+                        {
+                            if (oUser.LoginName == member.LoginName) {
+                                group = oGroup;
+                                break;
+                            }
+                        }
+                    }
                     if (!member.ToString().Contains("system") && !member.ToString().Contains("administrator")
-                            && !member.ToString().Contains("Administrator"))
+                            && !member.ToString().Contains("Administrator") && !member.ToString().Contains("Viewers")
+                        && !member.ToString().Contains("Owners") && !member.ToString().Contains("Visitors")
+                        && !member.ToString().Contains("Members") && !member.ToString().Contains("Style Resource Readers")
+                        && !member.ToString().Contains("Designers") && !member.ToString().Contains("Hierarchy Managers")
+                        && !member.ToString().Contains("Approvers") && !member.ToString().Contains("Restricted Readers"))
                     {
                         string[] userAccount = member.LoginName.Split('\\');
                         if (userAccount.Length > 1)
@@ -56,18 +91,37 @@ namespace SP2010VisualWebPart.Common.ManageUser
                             count++;
                         }
                         count = 0;
-                        foreach (SPRoleDefinition role in roleAssignment.RoleDefinitionBindings)
+                            
+                        if (group != null)
                         {
-                            if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
-                            {
-                                rank[count] = "Admin";
+                            for (int i = 0; i < group.Roles.Count;i++ ){
+                                SPRole role = group.Roles[i];
+                                if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
+                                {
+                                    rank[count] = "Admin";
+                                }
+                                else
+                                {
+                                    rank[count] = "User";
+                                }
+                                count++;
+                                break;
                             }
-                            else
-                            {
-                                rank[count] = "User";
-                            }
-                            count++;
-                            break;
+                        }
+                        else {
+                            foreach (SPRoleDefinition role in roleAssignment.RoleDefinitionBindings)
+                                {
+                                    if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
+                                    {
+                                        rank[count] = "Admin";
+                                    }
+                                    else
+                                    {
+                                        rank[count] = "User";
+                                    }
+                                    count++;
+                                    break;
+                                }
                         }
                         for (int i = 0; i < count; i++)
                         {
@@ -85,7 +139,8 @@ namespace SP2010VisualWebPart.Common.ManageUser
                                     DataTable image = _com.getData(Message.TableEmployee, Message.ImageColumn, " where "
                                         + Message.BusinessEntityIDColumn + "='" + user.Rows[j][2].ToString() + "'");
                                     if (image.Rows.Count > 0 && image.Rows[0][0].ToString() != "") { }
-                                    else {
+                                    else
+                                    {
                                         _com.updateTable(Message.TableEmployee, " " + Message.ImageColumn + "='add_user.png'"
                                             + " where " + Message.BusinessEntityIDColumn + "='" + user.Rows[j][2].ToString() + "'");
                                     }
@@ -96,12 +151,12 @@ namespace SP2010VisualWebPart.Common.ManageUser
                                 && !account[i].Contains("Administrator"))
                             {
                                 _com.insertIntoTable(Message.TableEmployee + " (" + Message.LoginIDColumn + "," + Message.CurrentFlagColumn + ","
-                                    + Message.ModifiedDateColumn + ","+Message.ImageColumn+") ", "", "'" + account[i] + "','True','"
+                                    + Message.ModifiedDateColumn + "," + Message.ImageColumn + ") ", "", "'" + account[i] + "','True','"
                                     + DateTime.Now + "','add_user.png'", false);
                                 DataTable employeeTopID = _com.getTopID(Message.TableEmployee);
                                 _com.insertIntoTable(Message.TablePerson + " (" + Message.BusinessEntityIDColumn + "," + Message.RankColumn
                                     + "," + Message.NameColumn + "," + Message.ModifiedDateColumn + ") ", "", "'" + employeeTopID.Rows[0][0].ToString()
-                                    + "','" + rank[i] + "','" + name[i] + "','" + DateTime.Now + "'", false);
+                                    + "','" + rank[i] + "',N'" + name[i] + "','" + DateTime.Now + "'", false);
                             }
                         }
                     }

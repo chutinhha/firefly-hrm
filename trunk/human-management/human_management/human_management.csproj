@@ -73,10 +73,12 @@
       <SubType>ASPXCodeBehind</SubType>
     </None>
     <None Include="MasterPage\Member.master" />
+    <None Include="MasterPage\PublicPage.master" />
     <None Include="MasterPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54ad75c4-c932-42ff-bfac-1e5f812256ea}</SharePointProjectItemId>
     </None>
     <None Include="MasterPage\Elements.xml" />
+    <None Include="MasterPage\spPublicPage.master" />
     <None Include="STYLES\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2009c557-9f8e-4a2d-ba87-626134c96e92}</SharePointProjectItemId>
     </None>
@@ -126,6 +128,11 @@
     <Content Include="Images\21_2_ob\brickhead-icon.gif" />
     <Content Include="Images\21_2_ob\btn-go1.gif" />
     <Content Include="Images\21_2_ob\chart_bg.jpg" />
+    <Content Include="Images\21_2_ob\contact\address.png" />
+    <Content Include="Images\21_2_ob\contact\fax.png" />
+    <Content Include="Images\21_2_ob\contact\mail.png" />
+    <Content Include="Images\21_2_ob\contact\person.png" />
+    <Content Include="Images\21_2_ob\contact\phone.png" />
     <Content Include="Images\21_2_ob\corppartners4.jpg" />
     <Content Include="Images\21_2_ob\dmb_i.gif" />
     <Content Include="Images\21_2_ob\dmb_m.gif" />
@@ -153,6 +160,18 @@
     <Content Include="Images\21_2_ob\nav_shadow.png" />
     <Content Include="Images\21_2_ob\newbbb.jpg" />
     <Content Include="Images\21_2_ob\news-icon.gif" />
+    <Content Include="Images\21_2_ob\orbis image\child.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\child1.JPG" />
+    <Content Include="Images\21_2_ob\orbis image\child2.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\child3.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\child4.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\child5.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\child6.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\health.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\old.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\old1.jpg" />
+    <Content Include="Images\21_2_ob\orbis image\plan.jpg" />
+    <Content Include="Images\21_2_ob\ORBIS_logo.png" />
     <Content Include="Images\21_2_ob\patient-profile-divider.gif" />
     <Content Include="Images\21_2_ob\slide-shadow.jpg" />
     <Content Include="Images\21_2_ob\spacer.gif" />
@@ -171,6 +190,13 @@
     <Content Include="Layouts\human_management\jquery.customselect.js" />
     <Content Include="Layouts\human_management\QM_script.js" />
     <Content Include="STYLES\human_management\222ob.css" />
+    <Content Include="STYLES\human_management\Gradually.js" />
+    <Content Include="STYLES\human_management\gradually.slideshow.css" />
+    <Content Include="STYLES\human_management\Gradually.Slideshow.js" />
+    <Content Include="STYLES\human_management\home.js" />
+    <Content Include="STYLES\human_management\ImageDrawer.Expand.js" />
+    <Content Include="STYLES\human_management\ImageDrawer.Grid.js" />
+    <Content Include="STYLES\human_management\ImageDrawer.js" />
     <Content Include="STYLES\human_management\jd.gallery.css" />
     <Content Include="STYLES\human_management\jqplot.donutRenderer.min.js" />
     <Content Include="STYLES\human_management\jqplot.pieRenderer.min.js" />
@@ -183,11 +209,20 @@
     <Content Include="STYLES\human_management\main.css" />
     <Content Include="STYLES\human_management\mainMenu.css" />
     <Content Include="STYLES\human_management\menuStyles.css" />
+    <Content Include="STYLES\human_management\mootools-core-1.3.js" />
+    <Content Include="STYLES\human_management\mootools-more.js" />
     <Content Include="STYLES\human_management\QM_styles.css" />
     <Content Include="STYLES\human_management\reset.css" />
     <Content Include="STYLES\human_management\SearchStyleSheet.css" />
+    <Content Include="STYLES\human_management\shBrushCss.js" />
+    <Content Include="STYLES\human_management\shBrushJScript.js" />
+    <Content Include="STYLES\human_management\shBrushXml.js" />
+    <Content Include="STYLES\human_management\shCore.css" />
+    <Content Include="STYLES\human_management\shCore.js" />
+    <Content Include="STYLES\human_management\shThemeEclipse.css" />
     <Content Include="STYLES\human_management\style-large.css" />
     <Content Include="STYLES\human_management\style-medium.css" />
+    <Content Include="STYLES\human_management\style.css" />
     <Content Include="STYLES\human_management\widget107.css" />
     <Content Include="STYLES\human_management\Selectbox.css" />
     <Content Include="STYLES\human_management\Site.css" />

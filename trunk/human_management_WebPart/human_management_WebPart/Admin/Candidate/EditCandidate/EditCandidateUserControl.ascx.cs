@@ -41,7 +41,8 @@ namespace SP2010VisualWebPart.EditCandidate
                             {
                                 ddlCountry.DataSource = _com.getCountryList();
                                 ddlCountry.DataBind();
-                                _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
+                                _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, " where "
+                                + Message.StatusColumn + "='Active'", false, "");
                                 _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
                                 _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
                                 DataTable dt = _com.getData(Message.TableJobCandidate, "*", " where " + Message.FullNameColumn
@@ -268,26 +269,28 @@ namespace SP2010VisualWebPart.EditCandidate
                                     if (ddlStatus.SelectedValue != "Hired")
                                     {  
                                     }
-                                    else { 
-                                        /*
-                                        DataTable employeeTopID = _com.getTopID(Message.TableEmployee);
-                                        DataTable jobID = _com.getData(Message.TableJobCandidate+" jca join "
-                                            +Message.TableJobTitle+" jti on jca."+Message.JobTitleColumn+" = jti."
-                                            +Message.JobTitleColumn," distinct "+Message.JobIDColumn," where jti."
-                                            +Message.JobTitleColumn+"='"+ddlJobTitle.SelectedValue+"'");
-                                        _com.insertIntoTable(Message.TableEmployee, " ("+Message.BusinessEntityIDColumn + ","
-                                            + Message.LoginIDColumn + "," + Message.JobIDColumn + "," + Message.BirthDateColumn
-                                            + "," + Message.MaritalStatusColumn + "," + Message.GenderColumn + "," + Message.HireDateColumn
-                                            + "," + Message.SalariedFlagColumn + "," + Message.VacationHoursColumn + ","
-                                            + Message.SickLeaveHoursColumn + "," + Message.CurrentFlagColumn + "," + Message.ModifiedDateColumn
-                                            + "," + Message.ImageColumn+")", "'" + (int.Parse(employeeTopID.Rows[0][0].ToString())+1) + "',NULL,"
-                                            + jobID.Rows[0][0].ToString() + ",NULL,NULL,NULL,'" + DateTime.Today + "',NULL,NULL,NULL,'True','"
-                                            + DateTime.Now + "',NULL", true);
-                                        _com.insertIntoTable(Message.TablePerson,""
-                                            , "'" + (int.Parse(employeeTopID.Rows[0][0].ToString()) + 1) + "','User','" + txtFullName.Text.Trim()
-                                            + "','" + txtEmail.Text.Trim() + "','" + txtHomePhone.Text.Trim() + "','" + txtMobile.Text.Trim()
-                                            + "',NULL,'" + txtCity.Text.Trim() + "','" + ddlCountry.SelectedValue + "','" + txtAddress.Text.Trim()
-                                            + "','" + DateTime.Now + "'", false);*/
+                                    else {
+                                        if (_com.genAccountFromName(txtFullName.Text, txtEmail.Text) != "")
+                                        {
+                                            DataTable employeeTopID = _com.getTopID(Message.TableEmployee);
+                                            DataTable jobID = _com.getData(Message.TableJobCandidate + " jca join "
+                                                + Message.TableJobTitle + " jti on jca." + Message.JobTitleColumn + " = jti."
+                                                + Message.JobTitleColumn, " distinct " + Message.JobIDColumn, " where jti."
+                                                + Message.JobTitleColumn + "='" + ddlJobTitle.SelectedValue + "'");
+                                            _com.insertIntoTable(Message.TableEmployee, " (" + Message.BusinessEntityIDColumn + ","
+                                                + Message.LoginIDColumn + "," + Message.JobIDColumn + "," + Message.BirthDateColumn
+                                                + "," + Message.MaritalStatusColumn + "," + Message.GenderColumn + "," + Message.HireDateColumn
+                                                + "," + Message.SalariedFlagColumn + "," + Message.VacationHoursColumn + ","
+                                                + Message.SickLeaveHoursColumn + "," + Message.CurrentFlagColumn + "," + Message.ModifiedDateColumn
+                                                + "," + Message.ImageColumn + ")", "'" + (int.Parse(employeeTopID.Rows[0][0].ToString()) + 1) + "','"
+                                                + _com.genAccountFromName(txtFullName.Text,txtEmail.Text) + "'," + jobID.Rows[0][0].ToString() + ",NULL,NULL,NULL,'"
+                                                + DateTime.Today + "',NULL,NULL,NULL,'True','" + DateTime.Now + "','add_user.png'", true);
+                                            _com.insertIntoTable(Message.TablePerson, ""
+                                                , "'" + (int.Parse(employeeTopID.Rows[0][0].ToString()) + 1) + "','User',N'" + txtFullName.Text.Trim()
+                                                + "','" + txtEmail.Text.Trim() + "','" + txtHomePhone.Text.Trim() + "','" + txtMobile.Text.Trim()
+                                                + "',NULL,N'" + txtCity.Text.Trim() + "','" + ddlCountry.SelectedValue + "',N'" + txtAddress.Text.Trim()
+                                                + "','" + DateTime.Now + "'", false);
+                                        }
                                     }
                                     Session.Remove("Name");
                                     Session.Remove("Email");

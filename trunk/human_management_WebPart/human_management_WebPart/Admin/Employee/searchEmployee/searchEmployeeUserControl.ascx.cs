@@ -23,8 +23,7 @@ namespace SP2010VisualWebPart.Admin.Employee.searchEmployee
                     + ") LEFT JOIN " + Message.TableJobTitle + " j ON  e." + Message.JobIDColumn + " = j."
                     + Message.JobIDColumn + ") LEFT JOIN " + Message.TableHistoryDepartment + " edh ON (e."
                     + Message.BusinessEntityIDColumn + " = edh." + Message.BusinessEntityIDColumn
-                    + " AND ((edh." + Message.StartDateColumn + " <= GETDATE() AND GETDATE() <= edh." + Message.EndDateColumn
-                    + ") OR (edh." + Message.StartDateColumn + " <= GETDATE() AND edh." + Message.EndDateColumn
+                    + " AND ((edh." + Message.EndDateColumn
                     + " is null)))) LEFT JOIN " + Message.TableDepartment + " d ON edh." + Message.DepartmentIDColumn
                     + " = D." + Message.DepartmentIDColumn + ")";
                 string strCondition = " where (E." + Message.LoginIDColumn + " != '')";

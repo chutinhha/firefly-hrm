@@ -58,6 +58,8 @@
                 <span style="padding-left: 105px"></span>
                 <asp:Button CssClass="addButton" ID="btnAssign" runat="server" Text="Assign" Width="70px"
                     OnClick="btnAssign_Click" OnClientClick="return ConfirmOnAssign();" />
+                <asp:Button CssClass="addButton" ID="btnCancel" runat="server" Text="Cancel" Width="70px"
+                    OnClick="btnCancel_Click"/>
             </div>
             <asp:GridView ID="grdData" runat="server" EnableModelValidation="True"
                  Width="100%" BorderStyle="None"

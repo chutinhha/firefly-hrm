@@ -112,10 +112,13 @@ namespace SP2010VisualWebPart.Admin.Person_Project.PersonProject
                             string table = "(((" + Message.TableJobTitle+" job";
                             _com.bindData(column, condition, table, grdData);
                             _com.setGridViewStyle(grdData);
-                            grdData.HeaderRow.Cells[2].Text = "BusinessEntityId";
-                            grdData.HeaderRow.Cells[3].Text = "Employee Name";
-                            grdData.HeaderRow.Cells[4].Text = "Email";
-                            grdData.HeaderRow.Cells[5].Text = "Job Title";
+                            if (grdData.Rows.Count > 0)
+                            {
+                                grdData.HeaderRow.Cells[2].Text = "BusinessEntityId";
+                                grdData.HeaderRow.Cells[3].Text = "Employee Name";
+                                grdData.HeaderRow.Cells[4].Text = "Email";
+                                grdData.HeaderRow.Cells[5].Text = "Job Title";
+                            }
                             Session.Remove("ProjectName");
                             Session.Remove("TaskName");
                         }

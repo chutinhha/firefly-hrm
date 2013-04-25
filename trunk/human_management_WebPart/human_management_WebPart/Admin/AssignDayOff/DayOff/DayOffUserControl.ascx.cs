@@ -203,9 +203,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                         grdData.Rows[i].Cells[6].Controls.Add(new LiteralControl("</div>"));
                     }
                     _com.setGridViewStyle(grdData);
-                    grdData.HeaderRow.Cells[2].Text = "Task Name";
-                    grdData.HeaderRow.Cells[3].Text = "Start Date";
-                    grdData.HeaderRow.Cells[4].Text = "End Date";
+                    if (grdData.Rows.Count > 0)
+                    {
+                        grdData.HeaderRow.Cells[2].Text = "Task Name";
+                        grdData.HeaderRow.Cells[3].Text = "Start Date";
+                        grdData.HeaderRow.Cells[4].Text = "End Date";
+                    }
                     if (ddlDayOff.SelectedValue == "All")
                     {
                         btnAssign.Enabled = false;
@@ -483,9 +486,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 {
                     lblError.Text = ex.Message;
                 }
-                grdData.HeaderRow.Cells[2].Text = "Task Name";
-                grdData.HeaderRow.Cells[3].Text = "Start Date";
-                grdData.HeaderRow.Cells[4].Text = "End Date";
+                if (grdData.Rows.Count > 0)
+                {
+                    grdData.HeaderRow.Cells[2].Text = "Task Name";
+                    grdData.HeaderRow.Cells[3].Text = "Start Date";
+                    grdData.HeaderRow.Cells[4].Text = "End Date";
+                }
             }
         }
 
@@ -692,9 +698,12 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             {
                 lblError.Text = ex.Message;
             }
-            grdData.HeaderRow.Cells[2].Text = "Task Name";
-            grdData.HeaderRow.Cells[3].Text = "Start Date";
-            grdData.HeaderRow.Cells[4].Text = "End Date";
+            if (grdData.Rows.Count > 0)
+            {
+                grdData.HeaderRow.Cells[2].Text = "Task Name";
+                grdData.HeaderRow.Cells[3].Text = "Start Date";
+                grdData.HeaderRow.Cells[4].Text = "End Date";
+            }
         }
     }
 }

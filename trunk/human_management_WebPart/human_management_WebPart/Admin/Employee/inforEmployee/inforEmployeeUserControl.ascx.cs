@@ -25,7 +25,8 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
             try
             {
                 string strColumn = "per." + Message.NameColumn + ", emp." + Message.BirthDateColumn + ", per."
-                    + Message.SSNNumberColumn + ", emp." + Message.GenderColumn + ", emp." + Message.MaritalStatusColumn;
+                    + Message.SSNNumberColumn + ", emp." + Message.GenderColumn + ", emp." + Message.MaritalStatusColumn
+                    +",per."+Message.RankColumn;
                 string strTable = Message.TableEmployee + " emp join " + Message.TablePerson + " per on emp."
                     + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn;
                 string strCondition = " where emp." + Message.BusinessEntityIDColumn + " = '"
@@ -40,6 +41,7 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                         strBirthDateValue = dtmBirtDate.Month + "/" + dtmBirtDate.Day + "/" + dtmBirtDate.Year;
                     }
                     txtSSNNumber.Text = dt.Rows[0][2].ToString().Trim();
+                    ddlRank.SelectedValue = dt.Rows[0][5].ToString();
                     if (dt.Rows[0][3].ToString().Trim().Equals("M"))
                         rdbGenderMale.Checked = true;
                     else
@@ -181,9 +183,6 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                     //Name
                     string strName = "'" + txtFullName.Text + "'";
                     strCondition = strCondition + " , " + strName;
-                    //Rank
-                    if (ddlRank.SelectedIndex == 0) strCondition = strCondition + " , " + "'User'";
-                    else strCondition = strCondition + " , " + "'Admin'";
                     // Insert into Table
                     _com.insertIntoTable(strTableName, strColumn, strCondition, false);
                 }
@@ -507,6 +506,18 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                     // Disable edit of employe state
                     btnEditEmpState.Visible = false;
                     btnCancelEditEmpState.Visible = false;
+                }
+                string strColumn = "per." + Message.NameColumn + ", emp." + Message.BirthDateColumn + ", per."
+                    + Message.SSNNumberColumn + ", emp." + Message.GenderColumn + ", emp." + Message.MaritalStatusColumn
+                    +",per."+Message.RankColumn;
+                string strTable = Message.TableEmployee + " emp join " + Message.TablePerson + " per on emp."
+                    + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn;
+                string strCondition = " where emp." + Message.BusinessEntityIDColumn + " = '"
+                    + strBusinessEntityId + "'";
+                DataTable dt = _com.getData(strTable, strColumn, strCondition);
+                if (dt.Rows.Count > 0)
+                {
+                    ddlRank.SelectedValue = dt.Rows[0][5].ToString();
                 }
             }
         }

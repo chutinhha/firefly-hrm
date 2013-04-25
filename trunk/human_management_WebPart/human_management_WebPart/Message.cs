@@ -163,6 +163,7 @@
     internal const string MyInfoPage = "MyInfo.aspx";
     internal const string LeaveTypeList = "LeaveTypeList.aspx";
     internal const string DepartmentListPage = "DepartmentList.aspx";
+    internal const string PublicPage = "Default.aspx";
 
     //success sentences
     internal const string AffectedRow = "Success! Number of row affected is ";

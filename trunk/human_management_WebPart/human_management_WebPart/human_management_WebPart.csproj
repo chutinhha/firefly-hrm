@@ -259,6 +259,14 @@
     <Compile Include="Common\AccessDenied\AccessDeniedUserControl.ascx.designer.cs">
       <DependentUpon>AccessDeniedUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Contact\Contact.cs" />
+    <Compile Include="Common\Contact\ContactUserControl.ascx.cs">
+      <DependentUpon>ContactUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Contact\ContactUserControl.ascx.designer.cs">
+      <DependentUpon>ContactUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\ManageUser\ManageUser.cs" />
     <Compile Include="Common\ManageUser\ManageUserUserControl.ascx.cs">
       <DependentUpon>ManageUserUserControl.ascx</DependentUpon>
@@ -395,6 +403,14 @@
     </Compile>
     <Compile Include="Admin\Job Title\JobTitles\JobTitlesUserControl.ascx.designer.cs">
       <DependentUpon>JobTitlesUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Slideshow\Slideshow.cs" />
+    <Compile Include="Common\Slideshow\SlideshowUserControl.ascx.cs">
+      <DependentUpon>SlideshowUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Slideshow\SlideshowUserControl.ascx.designer.cs">
+      <DependentUpon>SlideshowUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -600,6 +616,10 @@
     <None Include="Common\AccessDenied\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abbb1de0-7b98-4b01-91b9-68426791a6a9}</SharePointProjectItemId>
     </None>
+    <None Include="Common\Contact\Contact.webpart" />
+    <None Include="Common\Contact\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c98c1a01-eb08-46cb-8972-5344b9071d02}</SharePointProjectItemId>
+    </None>
     <None Include="Common\ManageUser\ManageUser.webpart" />
     <None Include="Common\ManageUser\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3b0cb28f-ff0e-4621-953b-7220605fbcd2}</SharePointProjectItemId>
@@ -669,6 +689,10 @@
       <SharePointProjectItemId>{f6a98034-ff31-4015-b9e1-9db49f438a68}</SharePointProjectItemId>
     </None>
     <None Include="app.config" />
+    <None Include="Common\Slideshow\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b5dcf0d5-4df7-4276-8e3a-c61c3310a923}</SharePointProjectItemId>
+    </None>
+    <None Include="Common\Slideshow\Slideshow.webpart" />
     <None Include="Features\Feature1\Feature1.feature">
       <FeatureId>{153c9f09-017a-44ea-8b68-ce5236f9d608}</FeatureId>
     </None>
@@ -831,6 +855,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\AccessDenied\Elements.xml" />
+    <Content Include="Common\Contact\ContactUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Common\Contact\Elements.xml" />
     <Content Include="Common\ManageUser\Elements.xml" />
     <Content Include="Common\ManageUser\ManageUserUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -905,6 +933,10 @@
     </Content>
     <Content Include="Admin\Attendance\PunchAttendance\Elements.xml" />
     <Content Include="Admin\Attendance\PunchAttendance\PunchAttendanceUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Common\Slideshow\Elements.xml" />
+    <Content Include="Common\Slideshow\SlideshowUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\UserAccount\Elements.xml" />

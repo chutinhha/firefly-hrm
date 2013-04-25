@@ -31,6 +31,15 @@ namespace SP2010VisualWebPart.Admin.Department.EditDepartment {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
+        /// btnEmpListPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEmpListPage;
+        
+        /// <summary>
         /// lblEmployeeName control.
         /// </summary>
         /// <remarks>

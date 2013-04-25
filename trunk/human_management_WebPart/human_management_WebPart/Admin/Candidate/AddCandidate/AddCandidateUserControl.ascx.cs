@@ -29,7 +29,8 @@ namespace SP2010VisualWebPart.AddCandidate
                             ddlCountry.DataBind();
                             ddlCountry.SelectedValue = "Vietnam";
                             _com.SetItemList(Message.JobTitleColumn, Message.TableJobTitle, ddlJobTitle, "", false, "");
-                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, "", false, "");
+                            _com.SetItemList(Message.VacancyNameColumn, Message.TableVacancy, ddlVacancy, " where "
+                                + Message.StatusColumn + "='Active'", false, "");
                             _com.SetItemList(Message.StatusColumn, Message.TableCandidateStatus, ddlStatus, "", false, "");
                             lblError.Text = "";
                             for (int i = 0; i < 25; i++) {

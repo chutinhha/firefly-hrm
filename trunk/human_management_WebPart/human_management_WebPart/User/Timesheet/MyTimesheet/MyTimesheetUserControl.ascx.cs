@@ -205,11 +205,14 @@ namespace SP2010VisualWebPart.User.Timesheet.MyTimesheet
                     }
                     _com.bindData(column, condition, table, grdData);
                     _com.setGridViewStyle(grdData);
-                    grdData.HeaderRow.Cells[1].Text = "TimesheetId";
-                    grdData.HeaderRow.Cells[2].Text = "Work Date";
-                    grdData.HeaderRow.Cells[3].Text = "Project Name";
-                    grdData.HeaderRow.Cells[4].Text = "Task Name";
-                    grdData.HeaderRow.Cells[5].Text = "Time";
+                    if (grdData.Rows.Count > 0)
+                    {
+                        grdData.HeaderRow.Cells[1].Text = "TimesheetId";
+                        grdData.HeaderRow.Cells[2].Text = "Work Date";
+                        grdData.HeaderRow.Cells[3].Text = "Project Name";
+                        grdData.HeaderRow.Cells[4].Text = "Task Name";
+                        grdData.HeaderRow.Cells[5].Text = "Time";
+                    }
                 }
                 else {
                     lblError.Text = Message.NotChooseItemDelete;

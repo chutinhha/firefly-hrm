@@ -109,5 +109,9 @@
     <ElementFile Location="AssignEmployee\AssignEmployee.webpart" />
     <ElementManifest Location="MyTask\Elements.xml" />
     <ElementFile Location="MyTask\MyTask.webpart" />
+    <ElementManifest Location="Contact\Elements.xml" />
+    <ElementFile Location="Contact\Contact.webpart" />
+    <ElementManifest Location="Slideshow\Elements.xml" />
+    <ElementFile Location="Slideshow\Slideshow.webpart" />
   </ElementManifests>
 </Feature>

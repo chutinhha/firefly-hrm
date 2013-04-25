@@ -39,9 +39,9 @@
             <div class="styled-selectLong">
                 <asp:DropDownList ID="ddlShow" runat="server">
                     <asp:ListItem>All</asp:ListItem>
-                    <asp:ListItem Selected="True">Approve</asp:ListItem>
-                    <asp:ListItem>Not Approved</asp:ListItem>
-                    <asp:ListItem>Reject</asp:ListItem>
+                    <asp:ListItem Selected="True">Approved</asp:ListItem>
+                    <asp:ListItem>Not Approve</asp:ListItem>
+                    <asp:ListItem>Rejected</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <br />
@@ -51,7 +51,7 @@
                 <asp:Button ID="btnSearch" CssClass="addButton" runat="server" Text="Search" Width="80px"
                     OnClick="btnSearch_Click" />
                 <asp:Button ID="btnAssign" CssClass="addButton" runat="server" Text="Assign" Width="80px"
-                    OnClick="btnAssign_Click" Visible="False" />
+                    OnClick="btnAssign_Click" style = "color: #cccccc;" Enabled = "false"  />
             </div>
             <asp:GridView ID="grdData" runat="server" Width="100%" OnRowDataBound="grdData_RowDataBound">
             </asp:GridView>

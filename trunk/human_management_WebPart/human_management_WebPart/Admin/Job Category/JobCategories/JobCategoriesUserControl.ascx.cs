@@ -135,8 +135,6 @@ namespace SP2010VisualWebPart.JobCategories
                         _com.updateTable(Message.TableJobCategory,Message.NameColumn+"=N'"+txtName.Text.Trim()
                             +"',"+Message.ModifiedDateColumn+"='"+DateTime.Now+"' where "+Message.NameColumn+"=N'"+Session["Name"]+"'");
                         _com.bindData(Message.NameColumn, "", Message.TableJobCategory, grdData);
-                        lblError.Text = "";
-                        txtName.Text = "";
                         Panel1.Visible = false;
                         if (JobTitles.Rows.Count > 0) {
                             for (int i = 0; i < JobTitles.Rows.Count; i++)
@@ -145,6 +143,8 @@ namespace SP2010VisualWebPart.JobCategories
                                     + Message.JobIDColumn + "='" + JobTitles.Rows[i][1].ToString() + "';");
                             }
                         }
+                        lblError.Text = "";
+                        txtName.Text = "";
                     }
                 }
                 catch (Exception ex)
