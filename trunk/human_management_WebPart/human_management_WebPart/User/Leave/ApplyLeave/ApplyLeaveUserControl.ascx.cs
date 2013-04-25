@@ -28,25 +28,26 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                     {
                         this.startDate = "";
                         this.endDate = "";
+                        pnlFrom.Visible = false;
+                        pnlLimit.Visible = false;
+                        pnlTo.Visible = false;
+                        pnlDateFrom.Visible = true;
+                        pnlDateTo.Visible = true;
+                        TextArea1.Text = "";
+                        lblError.Text = "";
+                        lblSuccess.Text = "";
+                        DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn,
+                            " where " + Message.ProjectNameColumn + " = 'Leave' ");
+                        _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where "
+                            + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), false, "");
                     }
-                    pnlFrom.Visible = false;
-                    pnlLimit.Visible = false;
-                    pnlTo.Visible = false;
-                    pnlDateFrom.Visible = true;
-                    pnlDateTo.Visible = true;
-                    TextArea1.Text = "";
-                    lblError.Text = "";
-                    lblSuccess.Text = "";
-                    DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn, 
-                        " where "+Message.ProjectNameColumn+" = 'Leave' ");
-                    _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where "
-                        +Message.ProjectIDColumn+" = " + myData.Rows[0][0].ToString(), false, "");
                 }
                 else
                 {
                     Response.Redirect(Message.AdminHomePage);
                 }
             }
+            ddlLeave.AutoPostBack = true;
         }
         protected string confirmSave { get; set; }
         protected void ddlLeave_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +97,7 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                                 pnlDateTo.Visible = false;
                                 pnlFrom.Visible = true;
                                 pnlTo.Visible = true;
+                                pnlLimit.Visible = false;
                             }
                             else if (myRow[3].ToString() != "")
                             {
@@ -124,6 +126,7 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
             this.endDate = Request.Form["txtDateTo"].ToString().Trim();
             lblError.Text = "";
             lblSuccess.Text = "";
+            bool check = true;
             try
             {
                 DataTable myData = _com.getData(Message.TableProject + " pro INNER JOIN " + Message.TableTask 
@@ -155,8 +158,38 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                     }
                     else condition = condition + ",''";
                 }
-                _com.insertIntoTable(table, "", condition, false);
-                lblSuccess.Text = Message.UpdateSuccess;
+                int timespan = 0;
+                if (pnlLimit.Visible == true)
+                {
+                    TimeSpan time = Convert.ToDateTime(Request.Form["txtDateTo"].ToString().Trim()) - Convert.ToDateTime(Request.Form["txtDateFrom"].ToString().Trim());
+                    timespan = time.Days;
+                }
+                if (pnlLimit.Visible == true)
+                {
+                    try
+                    {
+                        if (Request.Form["txtDateTo"].ToString().Trim() == "" || Request.Form["txtDateFrom"].ToString().Trim() == "")
+                        {
+                            lblError.Text = "Please insert Dateto and Datefrom";
+                            check = false;
+                        }
+                    }
+                    catch (FormatException ex)
+                    {
+                        lblError.Text = ex.Message;
+                        check = false;
+                    }
+                }
+                if (pnlLimit.Visible == true && timespan > Convert.ToInt16(lblLimitDate.Text.ToString().Trim()))
+                {
+                    lblError.Text = "Your leave date is over the limit!";
+                    check = false;
+                }
+                if (check == true)
+                {
+                    _com.insertIntoTable(table, "", condition, false);
+                    lblSuccess.Text = Message.UpdateSuccess;
+                }
             }
             catch (Exception ex)
             {
