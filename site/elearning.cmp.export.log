@@ -1,0 +1,375 @@
+[4/26/2013 3:30:02 AM] Start Time: 4/26/2013 3:30:01 AM.
+[4/26/2013 3:30:02 AM] Progress: Initializing Export.
+[4/26/2013 3:30:02 AM] Progress: Starting Export.
+[4/26/2013 3:30:02 AM] Progress: Calculating Objects to Export.
+[4/26/2013 3:30:04 AM] Progress: Serializing Objects to Disk.
+[4/26/2013 3:30:04 AM] Progress: Starting to process objects of type Site.
+[4/26/2013 3:30:04 AM] Progress: Finished processing objects of type Site.
+[4/26/2013 3:30:04 AM] Progress: Starting to process objects of type Web.
+[4/26/2013 3:30:04 AM] Progress: Exporting Web http://tungda/learningcenter.
+[4/26/2013 3:30:04 AM] Progress: Finished processing objects of type Web.
+[4/26/2013 3:30:04 AM] Progress: Starting to process objects of type Folder.
+[4/26/2013 3:30:04 AM] [Folder] [learningcenter] Progress: Exporting /learningcenter
+[4/26/2013 3:30:04 AM] [Folder] [_catalogs] Progress: Exporting /learningcenter/_catalogs
+[4/26/2013 3:30:04 AM] [Folder] [fpdatasources] Progress: Exporting /learningcenter/_catalogs/fpdatasources
+[4/26/2013 3:30:04 AM] [Folder] [Forms] Progress: Exporting /learningcenter/_catalogs/fpdatasources/Forms
+[4/26/2013 3:30:04 AM] [Folder] [masterpage] Progress: Exporting /learningcenter/_catalogs/masterpage
+[4/26/2013 3:30:04 AM] [Folder] [Forms] Progress: Exporting /learningcenter/_catalogs/masterpage/Forms
+[4/26/2013 3:30:04 AM] [Folder] [MasterPage] Progress: Exporting /learningcenter/_catalogs/masterpage/Forms/MasterPage
+[4/26/2013 3:30:04 AM] [Folder] [_private] Progress: Exporting /learningcenter/_private
+[4/26/2013 3:30:04 AM] [Folder] [Class Documents] Progress: Exporting /learningcenter/Class Documents
+[4/26/2013 3:30:04 AM] [Folder] [Forms] Progress: Exporting /learningcenter/Class Documents/Forms
+[4/26/2013 3:30:04 AM] [Folder] [Document] Progress: Exporting /learningcenter/Class Documents/Forms/Document
+[4/26/2013 3:30:04 AM] [Folder] [images] Progress: Exporting /learningcenter/images
+[4/26/2013 3:30:04 AM] [Folder] [Lists] Progress: Exporting /learningcenter/Lists
+[4/26/2013 3:30:04 AM] [Folder] [Class Announcements] Progress: Exporting /learningcenter/Lists/Class Announcements
+[4/26/2013 3:30:04 AM] [Folder] [Announcement] Progress: Exporting /learningcenter/Lists/Class Announcements/Announcement
+[4/26/2013 3:30:04 AM] [Folder] [Attachments] Progress: Exporting /learningcenter/Lists/Class Announcements/Attachments
+[4/26/2013 3:30:04 AM] [Folder] [Class Discussions] Progress: Exporting /learningcenter/Lists/Class Discussions
+[4/26/2013 3:30:04 AM] [Folder] [Attachments] Progress: Exporting /learningcenter/Lists/Class Discussions/Attachments
+[4/26/2013 3:30:04 AM] [Folder] [Discussion] Progress: Exporting /learningcenter/Lists/Class Discussions/Discussion
+[4/26/2013 3:30:04 AM] [Folder] [Message] Progress: Exporting /learningcenter/Lists/Class Discussions/Message
+[4/26/2013 3:30:04 AM] [Folder] [Class Links] Progress: Exporting /learningcenter/Lists/Class Links
+[4/26/2013 3:30:04 AM] [Folder] [Link] Progress: Exporting /learningcenter/Lists/Class Links/Link
+[4/26/2013 3:30:04 AM] [Folder] [Classes] Progress: Exporting /learningcenter/Lists/Classes
+[4/26/2013 3:30:04 AM] [Folder] [Attachments] Progress: Exporting /learningcenter/Lists/Classes/Attachments
+[4/26/2013 3:30:04 AM] [Folder] [Event] Progress: Exporting /learningcenter/Lists/Classes/Event
+[4/26/2013 3:30:04 AM] [Folder] [Tasks] Progress: Exporting /learningcenter/Lists/Tasks
+[4/26/2013 3:30:04 AM] [Folder] [Attachments] Progress: Exporting /learningcenter/Lists/Tasks/Attachments
+[4/26/2013 3:30:04 AM] [Folder] [SharePoint Server Workflow Task] Progress: Exporting /learningcenter/Lists/Tasks/SharePoint Server Workflow Task
+[4/26/2013 3:30:04 AM] [Folder] [Task] Progress: Exporting /learningcenter/Lists/Tasks/Task
+[4/26/2013 3:30:04 AM] [Folder] [Workflow Task] Progress: Exporting /learningcenter/Lists/Tasks/Workflow Task
+[4/26/2013 3:30:04 AM] [Folder] [Workflow History] Progress: Exporting /learningcenter/Lists/Workflow History
+[4/26/2013 3:30:04 AM] [Folder] [WorkflowHistory] Progress: Exporting /learningcenter/Lists/Workflow History/WorkflowHistory
+[4/26/2013 3:30:04 AM] [Folder] [m] Progress: Exporting /learningcenter/m
+[4/26/2013 3:30:04 AM] [Folder] [SitePages] Progress: Exporting /learningcenter/SitePages
+[4/26/2013 3:30:04 AM] [Folder] [Forms] Progress: Exporting /learningcenter/SitePages/Forms
+[4/26/2013 3:30:04 AM] [Folder] [Workflows] Progress: Exporting /learningcenter/Workflows
+[4/26/2013 3:30:04 AM] [Folder] [Forms] Progress: Exporting /learningcenter/Workflows/Forms
+[4/26/2013 3:30:05 AM] Progress: Finished processing objects of type Folder.
+[4/26/2013 3:30:05 AM] Progress: Starting to process objects of type File.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/_catalogs/masterpage/Forms/AllItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All Master Pages
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   ExtendedVerbose: Web Part type information: Microsoft.SharePoint.dll v2.0.50727
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/_catalogs/masterpage/Forms/DispForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   ExtendedVerbose: Web Part type information: Microsoft.SharePoint.dll v2.0.50727
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/_catalogs/masterpage/Forms/EditForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [Upload.aspx] Progress: Exporting File /learningcenter/_catalogs/masterpage/Forms/Upload.aspx.
+[4/26/2013 3:30:05 AM] [File] [Upload.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/AllItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All Documents
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   ExtendedVerbose: Web Part type information: Microsoft.SharePoint.dll v2.0.50727
+[4/26/2013 3:30:05 AM] [File] [Combine.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/Combine.aspx.
+[4/26/2013 3:30:05 AM] [File] [Combine.aspx]   Verbose: Exporting Web Part Merge Documents
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/DispForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/EditForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [repair.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/repair.aspx.
+[4/26/2013 3:30:05 AM] [File] [repair.aspx]   Verbose: Exporting Web Part Relink Documents
+[4/26/2013 3:30:05 AM] [File] [template.dotx] Progress: Exporting File /learningcenter/Class Documents/Forms/template.dotx.
+[4/26/2013 3:30:05 AM] [File] [Thumbnails.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/Thumbnails.aspx.
+[4/26/2013 3:30:05 AM] [File] [Thumbnails.aspx]   Verbose: Exporting Web Part assetLibTemp
+[4/26/2013 3:30:05 AM] [File] [Upload.aspx] Progress: Exporting File /learningcenter/Class Documents/Forms/Upload.aspx.
+[4/26/2013 3:30:05 AM] [File] [Upload.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [default.aspx] Progress: Exporting File /learningcenter/default.aspx.
+[4/26/2013 3:30:05 AM] [File] [default.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [default.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Lists/Class Announcements/AllItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All items
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Announcements/DispForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Announcements/EditForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Announcements/NewForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Lists/Class Discussions/AllItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part Subject
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Discussions/DispForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Discussions/EditForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [Flat.aspx] Progress: Exporting File /learningcenter/Lists/Class Discussions/Flat.aspx.
+[4/26/2013 3:30:05 AM] [File] [Flat.aspx]   Verbose: Exporting Web Part Flat
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Discussions/NewForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [Threaded.aspx] Progress: Exporting File /learningcenter/Lists/Class Discussions/Threaded.aspx.
+[4/26/2013 3:30:05 AM] [File] [Threaded.aspx]   Verbose: Exporting Web Part Threaded
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Lists/Class Links/AllItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All Links
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Links/DispForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Links/EditForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx] Progress: Exporting File /learningcenter/Lists/Class Links/NewForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Lists/Classes/AllItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All Events
+[4/26/2013 3:30:05 AM] [File] [calendar.aspx] Progress: Exporting File /learningcenter/Lists/Classes/calendar.aspx.
+[4/26/2013 3:30:05 AM] [File] [calendar.aspx]   Verbose: Exporting Web Part Calendar
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Lists/Classes/DispForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Lists/Classes/EditForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [MyItems.aspx] Progress: Exporting File /learningcenter/Lists/Classes/MyItems.aspx.
+[4/26/2013 3:30:05 AM] [File] [MyItems.aspx]   Verbose: Exporting Web Part Current Events
+[4/26/2013 3:30:05 AM] [File] [New Classes.aspx] Progress: Exporting File /learningcenter/Lists/Classes/New Classes.aspx.
+[4/26/2013 3:30:05 AM] [File] [New Classes.aspx]   Verbose: Exporting Web Part New Classes
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx] Progress: Exporting File /learningcenter/Lists/Classes/NewForm.aspx.
+[4/26/2013 3:30:05 AM] [File] [NewForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:05 AM] [File] [active.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/active.aspx.
+[4/26/2013 3:30:05 AM] [File] [active.aspx]   Verbose: Exporting Web Part Active Tasks
+[4/26/2013 3:30:06 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/AllItems.aspx.
+[4/26/2013 3:30:06 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All Tasks
+[4/26/2013 3:30:06 AM] [File] [byowner.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/byowner.aspx.
+[4/26/2013 3:30:06 AM] [File] [byowner.aspx]   Verbose: Exporting Web Part By Assigned To
+[4/26/2013 3:30:06 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/DispForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [duetoday.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/duetoday.aspx.
+[4/26/2013 3:30:06 AM] [File] [duetoday.aspx]   Verbose: Exporting Web Part Due Today
+[4/26/2013 3:30:06 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/EditForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [MyGrTsks.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/MyGrTsks.aspx.
+[4/26/2013 3:30:06 AM] [File] [MyGrTsks.aspx]   Verbose: Exporting Web Part By My Groups
+[4/26/2013 3:30:06 AM] [File] [MyItems.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/MyItems.aspx.
+[4/26/2013 3:30:06 AM] [File] [MyItems.aspx]   Verbose: Exporting Web Part My Tasks
+[4/26/2013 3:30:06 AM] [File] [NewForm.aspx] Progress: Exporting File /learningcenter/Lists/Tasks/NewForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [NewForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [AllItems.aspx] Progress: Exporting File /learningcenter/Lists/Workflow History/AllItems.aspx.
+[4/26/2013 3:30:06 AM] [File] [AllItems.aspx]   Verbose: Exporting Web Part All History
+[4/26/2013 3:30:06 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/Lists/Workflow History/DispForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/Lists/Workflow History/EditForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [NewForm.aspx] Progress: Exporting File /learningcenter/Lists/Workflow History/NewForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [NewForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [default.aspx] Progress: Exporting File /learningcenter/m/default.aspx.
+[4/26/2013 3:30:06 AM] [File] [AllPages.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/AllPages.aspx.
+[4/26/2013 3:30:06 AM] [File] [AllPages.aspx]   Verbose: Exporting Web Part All Pages
+[4/26/2013 3:30:06 AM] [File] [ByAuthor.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/ByAuthor.aspx.
+[4/26/2013 3:30:06 AM] [File] [ByAuthor.aspx]   Verbose: Exporting Web Part By Author
+[4/26/2013 3:30:06 AM] [File] [ByEditor.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/ByEditor.aspx.
+[4/26/2013 3:30:06 AM] [File] [ByEditor.aspx]   Verbose: Exporting Web Part By Editor
+[4/26/2013 3:30:06 AM] [File] [CreatedByMe.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/CreatedByMe.aspx.
+[4/26/2013 3:30:06 AM] [File] [CreatedByMe.aspx]   Verbose: Exporting Web Part Created By Me
+[4/26/2013 3:30:06 AM] [File] [DispForm.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/DispForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [DispForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [EditForm.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/EditForm.aspx.
+[4/26/2013 3:30:06 AM] [File] [EditForm.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] [File] [RecentChanges.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/RecentChanges.aspx.
+[4/26/2013 3:30:06 AM] [File] [RecentChanges.aspx]   Verbose: Exporting Web Part Recent Changes
+[4/26/2013 3:30:06 AM] [File] [Upload.aspx] Progress: Exporting File /learningcenter/SitePages/Forms/Upload.aspx.
+[4/26/2013 3:30:06 AM] [File] [Upload.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:06 AM] Progress: Finished processing objects of type File.
+[4/26/2013 3:30:06 AM] Progress: Starting to process objects of type List.
+[4/26/2013 3:30:06 AM] [List] [fpdatasources] Progress: Exporting List fpdatasources.
+[4/26/2013 3:30:06 AM] [List] [masterpage] Progress: Exporting List Master Page Gallery.
+[4/26/2013 3:30:06 AM] [List] [Class Documents] Progress: Exporting List Class Documents.
+[4/26/2013 3:30:06 AM] [List] [Class Announcements] Progress: Exporting List Class Announcements.
+[4/26/2013 3:30:06 AM] [List] [Class Discussions] Progress: Exporting List Class Discussions.
+[4/26/2013 3:30:06 AM] [List] [Class Links] Progress: Exporting List Class Links.
+[4/26/2013 3:30:06 AM] [List] [Classes] Progress: Exporting List Classes.
+[4/26/2013 3:30:06 AM] [List] [Tasks] Progress: Exporting List Tasks.
+[4/26/2013 3:30:06 AM] [List] [Workflow History] Progress: Exporting List Workflow History.
+[4/26/2013 3:30:06 AM] [List] [SitePages] Progress: Exporting List Site Pages.
+[4/26/2013 3:30:06 AM] [List] [Workflows] Progress: Exporting List Workflows.
+[4/26/2013 3:30:06 AM] Progress: Finished processing objects of type List.
+[4/26/2013 3:30:06 AM] Progress: Starting to process objects of type DocLibFolder.
+[4/26/2013 3:30:06 AM] [Folder] [4_.000] Progress: Exporting /learningcenter/Lists/Class Discussions/4_.000
+[4/26/2013 3:30:06 AM] [Folder] [Doctor] Progress: Exporting /learningcenter/Lists/Class Discussions/Doctor
+[4/26/2013 3:30:06 AM] [Folder] [Training Volunteer] Progress: Exporting /learningcenter/Lists/Class Discussions/Training Volunteer
+[4/26/2013 3:30:06 AM] [Folder] [Copy URL to URLAsText] Progress: Exporting /learningcenter/Workflows/Copy URL to URLAsText
+[4/26/2013 3:30:06 AM] [Folder] [Create New Class Announcement] Progress: Exporting /learningcenter/Workflows/Create New Class Announcement
+[4/26/2013 3:30:06 AM] [Folder] [Create New Class Initialization] Progress: Exporting /learningcenter/Workflows/Create New Class Initialization
+[4/26/2013 3:30:06 AM] Progress: Finished processing objects of type DocLibFolder.
+[4/26/2013 3:30:06 AM] Progress: Starting to process objects of type DocLibFile.
+[4/26/2013 3:30:06 AM] [File] [default.master] Progress: Exporting File /learningcenter/_catalogs/masterpage/default.master.
+[4/26/2013 3:30:06 AM] [File] [Elearning.master] Progress: Exporting File /learningcenter/_catalogs/masterpage/Elearning.master.
+[4/26/2013 3:30:06 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] Exporting File Version 4.0
+[4/26/2013 3:30:07 AM] Exporting File Version 5.0
+[4/26/2013 3:30:07 AM] Exporting File Version 6.0
+[4/26/2013 3:30:07 AM] Exporting File Version 7.0
+[4/26/2013 3:30:07 AM] Exporting File Version 8.0
+[4/26/2013 3:30:07 AM] [File] [minimal.master] Progress: Exporting File /learningcenter/_catalogs/masterpage/minimal.master.
+[4/26/2013 3:30:07 AM] [File] [PublicPage.master] Progress: Exporting File /learningcenter/_catalogs/masterpage/PublicPage.master.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] [File] [v4.master] Progress: Exporting File /learningcenter/_catalogs/masterpage/v4.master.
+[4/26/2013 3:30:07 AM] [File] [HRMSORBIS_Slide.pptx] Progress: Exporting File /learningcenter/Class Documents/HRMSORBIS_Slide.pptx.
+[4/26/2013 3:30:07 AM] [File] [human_management.vsd] Progress: Exporting File /learningcenter/Class Documents/human_management.vsd.
+[4/26/2013 3:30:07 AM] [File] [Class.aspx] Progress: Exporting File /learningcenter/SitePages/Class.aspx.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   ExtendedVerbose: Web Part type information: Microsoft.SharePoint.dll v2.0.50727
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 4.0
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 5.0
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Class.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Discussion.aspx] Progress: Exporting File /learningcenter/SitePages/Discussion.aspx.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] [File] [Discussion.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] [File] [Discussion.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] [File] [Discussion.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 4.0
+[4/26/2013 3:30:07 AM] [File] [Discussion.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Documents.aspx] Progress: Exporting File /learningcenter/SitePages/Documents.aspx.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] [File] [Documents.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] [File] [Documents.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] [File] [Documents.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Links.aspx] Progress: Exporting File /learningcenter/SitePages/Links.aspx.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] [File] [Links.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] [File] [Links.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] [File] [Links.aspx]   Verbose: Exporting Web Part 
+[4/26/2013 3:30:07 AM] [File] [Copy URL to URLAsText.xoml] Progress: Exporting File /learningcenter/Workflows/Copy URL to URLAsText/Copy URL to URLAsText.xoml.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] Exporting File Version 4.0
+[4/26/2013 3:30:07 AM] Exporting File Version 5.0
+[4/26/2013 3:30:07 AM] Exporting File Version 6.0
+[4/26/2013 3:30:07 AM] [File] [Copy URL to URLAsText.xoml.wfconfig.xml] Progress: Exporting File /learningcenter/Workflows/Copy URL to URLAsText/Copy URL to URLAsText.xoml.wfconfig.xml.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:07 AM] Exporting File Version 4.0
+[4/26/2013 3:30:07 AM] Exporting File Version 5.0
+[4/26/2013 3:30:07 AM] Exporting File Version 6.0
+[4/26/2013 3:30:07 AM] [File] [Copy URL to URLAsText.xsn] Progress: Exporting File /learningcenter/Workflows/Copy URL to URLAsText/Copy URL to URLAsText.xsn.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] [File] [Create New Class Announcement.xoml] Progress: Exporting File /learningcenter/Workflows/Create New Class Announcement/Create New Class Announcement.xoml.
+[4/26/2013 3:30:07 AM] [File] [Create New Class Announcement.xoml.wfconfig.xml] Progress: Exporting File /learningcenter/Workflows/Create New Class Announcement/Create New Class Announcement.xoml.wfconfig.xml.
+[4/26/2013 3:30:07 AM] [File] [Create New Class Initialization.xoml] Progress: Exporting File /learningcenter/Workflows/Create New Class Initialization/Create New Class Initialization.xoml.
+[4/26/2013 3:30:07 AM] Exporting File Version 1.0
+[4/26/2013 3:30:07 AM] Exporting File Version 2.0
+[4/26/2013 3:30:07 AM] Exporting File Version 3.0
+[4/26/2013 3:30:08 AM] [File] [Create New Class Initialization.xoml.wfconfig.xml] Progress: Exporting File /learningcenter/Workflows/Create New Class Initialization/Create New Class Initialization.xoml.wfconfig.xml.
+[4/26/2013 3:30:08 AM] Exporting File Version 1.0
+[4/26/2013 3:30:08 AM] Exporting File Version 2.0
+[4/26/2013 3:30:08 AM] Exporting File Version 3.0
+[4/26/2013 3:30:10 AM] Progress: Finished processing objects of type DocLibFile.
+[4/26/2013 3:30:10 AM] Progress: Starting to process objects of type ListItem.
+[4/26/2013 3:30:10 AM] [ListItem] [HRMSORBIS_Slide.pptx] Progress: Exporting ListItem learningcenter/Class Documents?id=4.
+[4/26/2013 3:30:10 AM] [ListItem] [human_management.vsd] Progress: Exporting ListItem learningcenter/Class Documents?id=3.
+[4/26/2013 3:30:10 AM] [ListItem] [2_.000] Progress: Exporting ListItem learningcenter/Lists/Class Announcements?id=2.
+[4/26/2013 3:30:10 AM] [ListItem] [3_.000] Progress: Exporting ListItem learningcenter/Lists/Class Announcements?id=3.
+[4/26/2013 3:30:10 AM] [ListItem] [default.master] Progress: Exporting ListItem learningcenter/_catalogs/masterpage?id=1.
+[4/26/2013 3:30:10 AM] [ListItem] [Elearning.master] Progress: Exporting ListItem learningcenter/_catalogs/masterpage?id=4.
+[4/26/2013 3:30:10 AM] [ListItem] [minimal.master] Progress: Exporting ListItem learningcenter/_catalogs/masterpage?id=3.
+[4/26/2013 3:30:10 AM] [ListItem] [PublicPage.master] Progress: Exporting ListItem learningcenter/_catalogs/masterpage?id=5.
+[4/26/2013 3:30:10 AM] [ListItem] [v4.master] Progress: Exporting ListItem learningcenter/_catalogs/masterpage?id=2.
+[4/26/2013 3:30:11 AM] [ListItem] [4_.000] Progress: Exporting ListItem learningcenter/Lists/Class Discussions?id=4.
+[4/26/2013 3:30:11 AM] [ListItem] [Doctor] Progress: Exporting ListItem learningcenter/Lists/Class Discussions?id=3.
+[4/26/2013 3:30:11 AM] [ListItem] [Training Volunteer] Progress: Exporting ListItem learningcenter/Lists/Class Discussions?id=2.
+[4/26/2013 3:30:11 AM] [ListItem] [12_.000] Progress: Exporting ListItem learningcenter/Lists/Class Links?id=12.
+[4/26/2013 3:30:11 AM] [ListItem] [13_.000] Progress: Exporting ListItem learningcenter/Lists/Class Links?id=13.
+[4/26/2013 3:30:11 AM] [ListItem] [Class.aspx] Progress: Exporting ListItem learningcenter/SitePages?id=1.
+[4/26/2013 3:30:11 AM] [ListItem] [Discussion.aspx] Progress: Exporting ListItem learningcenter/SitePages?id=2.
+[4/26/2013 3:30:11 AM] [ListItem] [Documents.aspx] Progress: Exporting ListItem learningcenter/SitePages?id=3.
+[4/26/2013 3:30:11 AM] [ListItem] [Links.aspx] Progress: Exporting ListItem learningcenter/SitePages?id=4.
+[4/26/2013 3:30:11 AM] [ListItem] [Copy URL to URLAsText] Progress: Exporting ListItem learningcenter/Workflows?id=10.
+[4/26/2013 3:30:11 AM] [ListItem] [Copy URL to URLAsText.xoml] Progress: Exporting ListItem learningcenter/Workflows/Copy URL to URLAsText?id=11.
+[4/26/2013 3:30:11 AM] [ListItem] [Copy URL to URLAsText.xoml.wfconfig.xml] Progress: Exporting ListItem learningcenter/Workflows/Copy URL to URLAsText?id=12.
+[4/26/2013 3:30:11 AM] [ListItem] [Copy URL to URLAsText.xsn] Progress: Exporting ListItem learningcenter/Workflows/Copy URL to URLAsText?id=13.
+[4/26/2013 3:30:11 AM] [ListItem] [Create New Class Announcement] Progress: Exporting ListItem learningcenter/Workflows?id=1.
+[4/26/2013 3:30:11 AM] [ListItem] [Create New Class Announcement.xoml] Progress: Exporting ListItem learningcenter/Workflows/Create New Class Announcement?id=2.
+[4/26/2013 3:30:11 AM] [ListItem] [Create New Class Announcement.xoml.wfconfig.xml] Progress: Exporting ListItem learningcenter/Workflows/Create New Class Announcement?id=3.
+[4/26/2013 3:30:11 AM] [ListItem] [Create New Class Initialization] Progress: Exporting ListItem learningcenter/Workflows?id=7.
+[4/26/2013 3:30:11 AM] [ListItem] [Create New Class Initialization.xoml] Progress: Exporting ListItem learningcenter/Workflows/Create New Class Initialization?id=8.
+[4/26/2013 3:30:11 AM] [ListItem] [Create New Class Initialization.xoml.wfconfig.xml] Progress: Exporting ListItem learningcenter/Workflows/Create New Class Initialization?id=9.
+[4/26/2013 3:30:11 AM] [ListItem] [1_.000] Progress: Exporting ListItem learningcenter/Lists/Classes?id=1.
+[4/26/2013 3:30:11 AM] [ListItem] [3_.000] Progress: Exporting ListItem learningcenter/Lists/Classes?id=3.
+[4/26/2013 3:30:11 AM] [ListItem] [4_.000] Progress: Exporting ListItem learningcenter/Lists/Classes?id=4.
+[4/26/2013 3:30:11 AM] Progress: Finished processing objects of type ListItem.
+[4/26/2013 3:30:11 AM] Progress: Starting to process objects of type Roles.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Limited Access.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Read.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Contribute.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Design.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Full Control.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role View Only.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Approve.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Manage Hierarchy.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Restricted Read.
+[4/26/2013 3:30:11 AM] Progress: Finished processing objects of type Roles.
+[4/26/2013 3:30:11 AM] Progress: Starting to process objects of type RoleAssignments.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Assignment for learningcenter/Lists/Class Discussions.
+[4/26/2013 3:30:11 AM] Progress: Exporting Role Assignment for learningcenter.
+[4/26/2013 3:30:11 AM] Progress: Finished processing objects of type RoleAssignments.
+[4/26/2013 3:30:11 AM] Progress: Starting to process objects of type WebStructure.
+[4/26/2013 3:30:11 AM] Progress: Finished processing objects of type WebStructure.
+[4/26/2013 3:30:11 AM] Progress: Starting to process objects of type Feature.
+[4/26/2013 3:30:11 AM] [Feature] [AnnouncementsList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [ContactsList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [CustomList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [DataSourceLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [DiscussionsList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [DocumentLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [EventsList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [ExternalList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [GanttTasksList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [GridList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [IssuesList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [LinksList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [NoCodeWorkflowLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [PictureLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [SurveysList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [TasksList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [WebPageLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [workflowProcessList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [WorkflowHistoryList] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [XmlFormLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [TeamCollab] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [MobilityRedirect] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [ObaSimpleSolution] Progress: Exporting
+[4/26/2013 3:30:11 AM] [Feature] [DataConnectionLibrary] Progress: Exporting
+[4/26/2013 3:30:11 AM] Progress: Finished processing objects of type Feature.
+[4/26/2013 3:30:11 AM] Debug: <?xml version="1.0" encoding="utf-16"?>
+<ExportSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SiteUrl="http://tungda/" FileLocation="F:\" BaseFileName="elearning.cmp" IncludeSecurity="All" IncludeVersions="All" ExportPublicSchema="true" ExportFrontEndFileStreams="true" ExportMethod="ExportAll" ExcludeDependencies="true" xmlns="urn:deployment-exportsettings-schema">
+  <ExportObjects>
+    <DeploymentObject Id="018be6de-7975-47ee-a828-73a228f0f236" Type="Web" ParentId="00000000-0000-0000-0000-000000000000" Url="/learningcenter" ExcludeChildren="false" IncludeDescendants="All" />
+  </ExportObjects>
+</ExportSettings>
+[4/26/2013 3:30:11 AM] Progress: Exporting User SP\administrator.
+[4/26/2013 3:30:11 AM] Progress: Exporting User NT AUTHORITY\authenticated users.
+[4/26/2013 3:30:11 AM] Progress: Exporting User NT AUTHORITY\LOCAL SERVICE.
+[4/26/2013 3:30:11 AM] Progress: Exporting User SP\Tungda01659.
+[4/26/2013 3:30:11 AM] Progress: Exporting User SP\vinhtt4c.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Viewers.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group hr Owners.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group hr Visitors.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group hr Members.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Style Resource Readers.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Designers.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Hierarchy Managers.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Approvers.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Restricted Readers.
+[4/26/2013 3:30:11 AM] Progress: Exporting Group Quick Deploy Users.
+[4/26/2013 3:30:11 AM] Progress: Creating File(s).
+[4/26/2013 3:30:11 AM] Progress: Compressing File(s).
+[4/26/2013 3:30:13 AM] Progress: Export completed.
+[4/26/2013 3:30:13 AM] Finish Time: 4/26/2013 3:30:13 AM.
+[4/26/2013 3:30:13 AM] Duration: 00:00:11
+[4/26/2013 3:30:13 AM] Total Objects: 175
+[4/26/2013 3:30:13 AM] Finished with 0 warnings.
+[4/26/2013 3:30:13 AM] Finished with 0 errors.
