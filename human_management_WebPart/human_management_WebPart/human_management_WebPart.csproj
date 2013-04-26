@@ -938,9 +938,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Common\UserAccount\Elements.xml" />
-    <Content Include="Common\UserAccount\UserAccountUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Common\UserAccount\UserAccountUserControl.ascx" />
     <Content Include="Admin\Vacancy\Vacancies\Elements.xml" />
     <Content Include="Admin\Vacancy\Vacancies\VacanciesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
