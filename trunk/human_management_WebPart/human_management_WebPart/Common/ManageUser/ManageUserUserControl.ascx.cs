@@ -92,7 +92,7 @@ namespace SP2010VisualWebPart.Common.ManageUser
                         }
                         count = 0;
                             
-                        if (group != null)
+                        /*if (group != null)
                         {
                             for (int i = 0; i < group.Roles.Count;i++ ){
                                 SPRole role = group.Roles[i];
@@ -108,7 +108,7 @@ namespace SP2010VisualWebPart.Common.ManageUser
                                 break;
                             }
                         }
-                        else {
+                        else {*/
                             foreach (SPRoleDefinition role in roleAssignment.RoleDefinitionBindings)
                                 {
                                     if (role.Name.Contains("Full Control") || role.Name.Contains("Design"))
@@ -122,13 +122,13 @@ namespace SP2010VisualWebPart.Common.ManageUser
                                     count++;
                                     break;
                                 }
-                        }
+                        //}
                         for (int i = 0; i < count; i++)
                         {
                             bool isAccountExist = false;
                             for (int j = 0; j < user.Rows.Count; j++)
                             {
-                                if (account[i] == user.Rows[j][0].ToString())
+                                if (account[i].ToLower() == user.Rows[j][0].ToString().ToLower())
                                 {
                                     isAccountExist = true;
                                     _com.updateTable(Message.TablePerson, " " + Message.RankColumn + "='" + rank[i] + "'"
@@ -167,7 +167,7 @@ namespace SP2010VisualWebPart.Common.ManageUser
                     bool isAccountDelete = false;
                     for (int i = 0; i < accountCount; i++)
                     {
-                        if (allAccount[i] == userOnly.Rows[j][0].ToString())
+                        if (allAccount[i].ToLower() == userOnly.Rows[j][0].ToString().ToLower())
                         {
                             break;
                         }

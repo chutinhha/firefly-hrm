@@ -800,9 +800,7 @@
     </Content>
     <Content Include="Admin\Department\EditDepartment\Elements.xml" />
     <Content Include="Admin\Employee\inforEmployee\Elements.xml" />
-    <Content Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Admin\Employee\inforEmployee\inforEmployeeUserControl.ascx" />
     <Content Include="Admin\Employee\searchEmployee\Elements.xml" />
     <Content Include="Admin\Employee\searchEmployee\searchEmployeeUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
