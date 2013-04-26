@@ -6,7 +6,6 @@
     <ElementFile Location="MasterPage\Admin.master" />
     <ElementFile Location="MasterPage\Member.master" />
     <ElementFile Location="MasterPage\Elearning.master" />
-    <ElementFile Location="MasterPage\spPublicPage.master" />
     <ElementFile Location="MasterPage\PublicPage.master" />
     <ElementManifest Location="AttendanceRecord\Elements.xml" />
     <ElementFile Location="AttendanceRecord\AttendanceRecord.webpart" />

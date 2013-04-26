@@ -78,7 +78,6 @@
       <SharePointProjectItemId>{54ad75c4-c932-42ff-bfac-1e5f812256ea}</SharePointProjectItemId>
     </None>
     <None Include="MasterPage\Elements.xml" />
-    <None Include="MasterPage\spPublicPage.master" />
     <None Include="STYLES\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2009c557-9f8e-4a2d-ba87-626134c96e92}</SharePointProjectItemId>
     </None>

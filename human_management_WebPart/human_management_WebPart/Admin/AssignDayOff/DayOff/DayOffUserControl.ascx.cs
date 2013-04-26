@@ -45,9 +45,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     }
                     else
                     {
-                        myData = _com.getData(Message.TableTask, Message.LimitDateColumn, " where "
-                            + Message.TaskNameColumn + " = '" + ddlDayOff.SelectedValue.ToString() + "'");
-                        if (myData.Rows[0][0].ToString() != "")
+                        myData = _com.getData(Message.TableTask +" tas join "+Message.TableProject+"  pro on tas."+Message.ProjectIDColumn
+                            +"=pro."+Message.ProjectIDColumn, Message.LimitDateColumn, " where tas."
+                            + Message.TaskNameColumn + " = '" + ddlDayOff.SelectedValue.ToString() + "' and pro."+Message.ProjectNameColumn+"='Leave'");
+                        if (int.Parse(myData.Rows[0][0].ToString()) > 0)
                         {
                             btnAssign.Enabled = false;
                             btnAssign.Attributes.Add("style", "color: #cccccc;");
@@ -59,7 +60,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                         }
                     }
                 }
-                DataTable data = _com.getData(Message.TablePersonProject, " * ", "");
+                DataTable data = _com.getData(Message.TablePersonProject +" pp join "+Message.TableTask+" tas on pp."+Message.TaskIdColumn
+                    +"=pp."+Message.TaskIdColumn+" join "+Message.TableProject+"  pro on pro."+Message.ProjectIDColumn+"=tas."+Message.ProjectIDColumn
+                    , " distinct pp.PersonProjectId,pp.BusinessEntityId,pp.TaskId,pp.Note,pp.CurrentFlag,pp.StartDate,pp.EndDate "
+                    , " where pro." + Message.ProjectNameColumn + "='Leave'");
                 if (data.Rows.Count > 0)
                 {
                     string[] col = new string[1];
@@ -68,12 +72,13 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn
                         + ",tas." + Message.TaskNameColumn + ",pp." + Message.StartDateColumn + ",pp."
                         + Message.EndDateColumn + ",pp." + Message.NoteColumn;
-                    string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
+                    string condition = " where emp." + Message.CurrentFlagColumn + "='1' and pro."+Message.ProjectNameColumn+"='Leave'";
                     string table = Message.TableEmployee + " emp join " + Message.TablePerson
                         + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
                         + " join " + Message.TablePersonProject + " pp on pp." + Message.BusinessEntityIDColumn
                         + "=emp." + Message.BusinessEntityIDColumn + " join " + Message.TableTask + " tas on tas."
-                        + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn;
+                        + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn+" join "+Message.TableProject+" pro"
+                        +" on pro."+Message.ProjectIDColumn+"=tas."+Message.ProjectIDColumn;
                     if (ddlDayOff.SelectedValue == "All")
                     {
                         if (ddlShow.SelectedValue == "All")
@@ -83,8 +88,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
-                                + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1");
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn+" join "+Message.TableProject
+                                +" pro on tas."+Message.ProjectIDColumn+"=pro."+Message.ProjectIDColumn, " pp."
+                                + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pro."+Message.ProjectNameColumn
+                                +"='Leave'");
                         }
                         else if (ddlShow.SelectedValue == "Approved")
                         {
@@ -94,9 +101,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                                 + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
-                                + Message.CurrentFlagColumn + " = 1");
+                                + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                         }
                         else if (ddlShow.SelectedValue == "Not Approve")
                         {
@@ -106,9 +113,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                                 + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
-                                + Message.CurrentFlagColumn + " = 1");
+                                + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                         }
                         else if (ddlShow.SelectedValue == "Rejected")
                         {
@@ -118,15 +125,15 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                                 + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 2 and emp."
-                                + Message.CurrentFlagColumn + " = 1");
+                                + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                         }
                     }
                     else
                     {
                         DataTable myDatatmp = _com.getData(Message.TableTask + " tas", " * ", " INNER JOIN "
-                            + Message.TableProject + " pro ON tas." + Message.ProjectIDColumn + " = "
+                            + Message.TableProject + "  pro ON tas." + Message.ProjectIDColumn + " = "
                             + "pro." + Message.ProjectIDColumn + " WHERE tas." + Message.TaskNameColumn + " = '"
                             + ddlDayOff.SelectedValue.ToString() + "' and pro."
                             + Message.ProjectNameColumn + " = 'Leave'");
@@ -218,7 +225,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     {
                         DataTable myData = _com.getData(Message.TableTask, Message.LimitDateColumn, " where "
                             + Message.TaskNameColumn + " = '" + ddlDayOff.SelectedValue.ToString() + "'");
-                        if (myData.Rows[0][0].ToString() != "")
+                        if (int.Parse(myData.Rows[0][0].ToString()) > 0)
                         {
                             btnAssign.Enabled = false;
                             btnAssign.Attributes.Add("style", "color: #cccccc;");
@@ -258,7 +265,7 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             {
             DataTable myData = _com.getData(Message.TableTask, Message.LimitDateColumn, " where "
                 +Message.TaskNameColumn+" = '" + ddlDayOff.SelectedValue.ToString() + "'");
-            if (myData.Rows[0][0].ToString() != "")
+            if (int.Parse(myData.Rows[0][0].ToString()) > 0)
             {
                 btnAssign.Enabled = false;
                 btnAssign.Attributes.Add("style", "color: #cccccc;");
@@ -323,9 +330,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
             }
             else
             {
-                DataTable myData = _com.getData(Message.TableTask, Message.LimitDateColumn, " where "
-                    + Message.TaskNameColumn + " = '" + ddlDayOff.SelectedValue.ToString() + "'");
-                if (myData.Rows[0][0].ToString() != "")
+                DataTable myData = _com.getData(Message.TableTask + " tas join " + Message.TableProject + "  pro on tas." + Message.ProjectIDColumn
+                    + "=pro." + Message.ProjectIDColumn, Message.LimitDateColumn, " where tas."
+                    + Message.TaskNameColumn + " = '" + ddlDayOff.SelectedValue.ToString() + "' and pro." + Message.ProjectNameColumn + "='Leave'");
+                if (int.Parse(myData.Rows[0][0].ToString()) > 0)
                 {
                     btnAssign.Enabled = false;
                     btnAssign.Attributes.Add("style", "color: #cccccc;");
@@ -336,7 +344,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     btnAssign.Attributes.Remove("style");
                 }
             }
-            DataTable myDatax = _com.getData(Message.TablePersonProject, " * ", "");
+            DataTable myDatax = _com.getData(Message.TablePersonProject + " pp join " + Message.TableTask + " tas on pp." + Message.TaskIdColumn
+                    + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + "  pro on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn
+                    , " distinct pp.PersonProjectId,pp.BusinessEntityId,pp.TaskId,pp.Note,pp.CurrentFlag,pp.StartDate,pp.EndDate "
+                    , " where pro." + Message.ProjectNameColumn + "='Leave'");
             if (myDatax.Rows.Count > 0)
             {
                 try
@@ -347,12 +358,13 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                     string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn + ",tas."
                         + Message.TaskNameColumn + ",pp." + Message.StartDateColumn + ",pp." + Message.EndDateColumn
                         + ",pp." + Message.NoteColumn;
-                    string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
+                    string condition = " where emp." + Message.CurrentFlagColumn + "='1' and pro."+Message.ProjectNameColumn+"='Leave'";
                     string table = Message.TableEmployee + " emp join " + Message.TablePerson
                         + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
                         + " join " + Message.TablePersonProject + " pp on pp." + Message.BusinessEntityIDColumn
                         + "=emp." + Message.BusinessEntityIDColumn + " join " + Message.TableTask + " tas on tas."
-                        + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn;
+                        + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro"
+                        + " on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn;
                     if (ddlDayOff.SelectedValue == "All")
                     {
                         if (ddlShow.SelectedValue == "All")
@@ -362,8 +374,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
-                                + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1");
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                                + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
+                                + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn
+                                + "='Leave'");
                         }
                         else if (ddlShow.SelectedValue == "Approved")
                         {
@@ -373,9 +387,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                                 + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
-                                + Message.CurrentFlagColumn + " = 1");
+                                + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                         }
                         else if (ddlShow.SelectedValue == "Not Approve")
                         {
@@ -385,9 +399,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                                 + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
-                                + Message.CurrentFlagColumn + " = 1");
+                                + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                         }
                         else if (ddlShow.SelectedValue == "Rejected")
                         {
@@ -397,15 +411,15 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                                 + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                                 + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                                 + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                                + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                                 + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 2 and emp."
-                                + Message.CurrentFlagColumn + " = 1");
+                                + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                         }
                     }
                     else
                     {
                         DataTable myDatatmp = _com.getData(Message.TableTask + " tas", " * ", " INNER JOIN "
-                            + Message.TableProject + " pro ON tas." + Message.ProjectIDColumn + " = pro."
+                            + Message.TableProject + "  pro ON tas." + Message.ProjectIDColumn + " = pro."
                             + Message.ProjectIDColumn + " WHERE tas." + Message.TaskNameColumn + " = '"
                             + ddlDayOff.SelectedValue.ToString() + "' and pro." + Message.ProjectNameColumn + " = 'Leave'");
                         if (ddlShow.SelectedValue == "All")
@@ -559,12 +573,13 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                 string column = " pp." + Message.PersonProjectIdColumn + ",per." + Message.NameColumn 
                     + ",tas." + Message.TaskNameColumn+ ",pp." + Message.StartDateColumn + ",pp." 
                     + Message.EndDateColumn + ",pp." + Message.NoteColumn;
-                string condition = " where emp." + Message.CurrentFlagColumn + "='1'";
+                string condition = " where emp." + Message.CurrentFlagColumn + "='1' and pro."+Message.ProjectNameColumn+"='Leave'";
                 string table = Message.TableEmployee + " emp join " + Message.TablePerson
                     + " per on emp." + Message.BusinessEntityIDColumn + "=per." + Message.BusinessEntityIDColumn
                     + " join " + Message.TablePersonProject + " pp on pp." + Message.BusinessEntityIDColumn
                     + "=emp." + Message.BusinessEntityIDColumn + " join " + Message.TableTask + " tas on tas."
-                    + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn;
+                    + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro"
+                        + " on pro." + Message.ProjectIDColumn + "=tas." + Message.ProjectIDColumn;
                 if (ddlDayOff.SelectedValue == "All")
                 {
                     if (ddlShow.SelectedValue == "All")
@@ -574,8 +589,10 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                             + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                             + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
-                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1");
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject
+                            + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
+                            + Message.CurrentFlagColumn, " where emp." + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn
+                            + "='Leave'");
                     }
                     else if (ddlShow.SelectedValue == "Approved")
                     {
@@ -585,9 +602,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                             + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                             + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                             + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 1 and emp."
-                            + Message.CurrentFlagColumn + " = 1");
+                            + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                     }
                     else if (ddlShow.SelectedValue == "Not Approve")
                     {
@@ -597,9 +614,9 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                             + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                             + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                             + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 0 and emp."
-                            + Message.CurrentFlagColumn + " = 1");
+                            + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                     }
                     else if (ddlShow.SelectedValue == "Rejected")
                     {
@@ -609,15 +626,15 @@ namespace SP2010VisualWebPart.Admin.AssignDayOff.DayOff
                             + " emp on pp." + Message.BusinessEntityIDColumn + "=emp." + Message.BusinessEntityIDColumn
                             + " join " + Message.TablePerson + " per on emp." + Message.BusinessEntityIDColumn
                             + "=per." + Message.BusinessEntityIDColumn + " join " + Message.TableTask
-                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn, " pp."
+                            + " tas on tas." + Message.TaskIdColumn + "=pp." + Message.TaskIdColumn + " join " + Message.TableProject + " pro on tas." + Message.ProjectIDColumn + "=pro." + Message.ProjectIDColumn, " pp."
                             + Message.CurrentFlagColumn, " where pp." + Message.CurrentFlagColumn + " = 2 and emp."
-                            + Message.CurrentFlagColumn + " = 1");
+                            + Message.CurrentFlagColumn + " = 1 and pro." + Message.ProjectNameColumn + "='Leave'");
                     }
                 }
                 else
                 {
                     DataTable myDatatmp = _com.getData(Message.TableTask+" tas", " * ", " INNER JOIN "
-                        +Message.TableProject+" pro ON tas."+Message.ProjectIDColumn+" = pro."
+                        +Message.TableProject+"  pro ON tas."+Message.ProjectIDColumn+" = pro."
                         +Message.ProjectIDColumn+" WHERE tas."+Message.TaskNameColumn+" = '" 
                         + ddlDayOff.SelectedValue.ToString() + "' and pro."+Message.ProjectNameColumn+" = 'Leave'");
                     if (ddlShow.SelectedValue == "All")

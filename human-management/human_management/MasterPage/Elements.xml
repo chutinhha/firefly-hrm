@@ -5,7 +5,6 @@
 <File Path="MasterPage\Admin.master" Url="Admin.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE"/>
 <File Path="MasterPage\Member.master" Url="Member.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE"/>
 <File Path="MasterPage\Elearning.master" Url="MasterPage/Elearning.master" />
-<File Path="MasterPage\spPublicPage.master" Url="MasterPage/spPublicPage.master" />
 <File Path="MasterPage\PublicPage.master" Url="MasterPage/PublicPage.master" />
 </Module>
 </Elements>

@@ -513,14 +513,14 @@ public class CommonFunction
         SPWeb web = context;
         SPRoleAssignment assignment;
         SPGroupCollection userGroups = web.CurrentUser.Groups;
-        if (userGroups.Count > 0)
+        /*if (userGroups.Count > 0)
         {
             assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser.Groups[0]);
         }
         else
-        {
+        {*/
             assignment = web.RoleAssignments.GetAssignmentByPrincipal((SPPrincipal)web.CurrentUser);
-        }
+        //}
         StringBuilder sb = new StringBuilder("");
         foreach (SPRoleDefinition role in assignment.RoleDefinitionBindings)
         {

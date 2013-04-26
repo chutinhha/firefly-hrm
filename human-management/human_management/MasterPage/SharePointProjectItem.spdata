@@ -6,7 +6,6 @@
     <ProjectItemFile Source="Admin.master" Target="MasterPage\" Type="ElementFile" />
     <ProjectItemFile Source="Member.master" Target="MasterPage\" Type="ElementFile" />
     <ProjectItemFile Source="Elearning.master" Target="MasterPage\" Type="ElementFile" />
-    <ProjectItemFile Source="spPublicPage.master" Target="MasterPage\" Type="ElementFile" />
     <ProjectItemFile Source="PublicPage.master" Target="MasterPage\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -138,19 +138,37 @@ namespace SP2010VisualWebPart.Admin.Employee.inforEmployee
                 }
                 // Check Birthdate
                 string strBirtDate = Request.Form["txtBirthDate"].ToString().Trim();
-                DateTime dtBirthDate = DateTime.Parse(strBirtDate);
-                if (dtBirthDate >= DateTime.Now)
+                if (strBirtDate != "")
                 {
-                    lblPersonDetailGuideLine.Text = "Birth time is wrong.";
-                    isUpdatePersonDetails = false;
-                    return;
+                    try
+                    {
+                        DateTime dtBirthDate = DateTime.Parse(strBirtDate);
+                        if (dtBirthDate >= DateTime.Now)
+                        {
+                            lblPersonDetailGuideLine.Text = "Birth time is wrong.";
+                            isUpdatePersonDetails = false;
+                            return;
+                        }
+                    }
+                    catch (FormatException) {
+                        lblPersonDetailGuideLine.Text = "Birth time is wrong.";
+                        isUpdatePersonDetails = false;
+                        return;
+                    }
                 }
+                
                 lblPersonDetailGuideLine.Text = "";
                 // Update data to Employees Table
                 string strTableName = Message.TableEmployee;
                 string strCondition = "";
-                //BirthDate                
-                strBirtDate = "'" + strBirtDate + "'";
+                //BirthDate
+                if (strBirtDate != "")
+                {
+                    strBirtDate = "'" + strBirtDate + "'";
+                }
+                else {
+                    strBirtDate = "NULL";
+                }
                 strCondition = strCondition + Message.BirthDateColumn + " = " + strBirtDate;
                 //MaritalStatus
                 string strMaritalStatus = "";
