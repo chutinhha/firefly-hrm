@@ -72,8 +72,8 @@
             <asp:TextBox ID="txtTime" onkeyup="ValidateText(this);" runat="server" Width="200px"></asp:TextBox>
             <br />
             <br />
-            <div class="borderBottom">
-                <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" CssClass="addButton"
+            <div class="borderTop">
+                <span style="padding-left: 155px"></span><asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" CssClass="addButton"
                     OnClick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
                 <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" CssClass="addButton"
                     OnClick="btnCancel_Click"/>

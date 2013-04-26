@@ -47,11 +47,11 @@
                 &nbsp;<span style="color: Red;">(*) is required</span>
                 <br />
                 <br />
+                <div class="borderTop">
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnChangePassword" runat="server" Text="Change Password" CssClass="addButton"
                     Width="150px" OnClick="btnChangePassword_Click" OnClientClick="return ConfirmOnChangePassword();" />
-                <br />
-                <br />
+                    </div>
             </td>
         </tr>
     </table>

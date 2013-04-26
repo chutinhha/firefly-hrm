@@ -39,7 +39,8 @@ namespace SP2010VisualWebPart.User.Leave.ApplyLeave
                         DataTable myData = _com.getData(Message.TableProject, Message.ProjectIDColumn,
                             " where " + Message.ProjectNameColumn + " = 'Leave' ");
                         _com.SetItemList(Message.TaskNameColumn, Message.TableTask, ddlLeave, " where "
-                            + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString(), false, "");
+                            + Message.ProjectIDColumn + " = " + myData.Rows[0][0].ToString()+" and "+Message.LimitDateColumn
+                            +">0", false, "");
                     }
                 }
                 else
