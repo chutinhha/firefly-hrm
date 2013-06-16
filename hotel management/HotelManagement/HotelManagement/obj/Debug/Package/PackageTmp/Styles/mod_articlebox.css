@@ -1,0 +1,58 @@
+.articlebox {
+	
+}
+.articlebox_category {
+	width: 100%;
+	clear: both;
+}
+.articlebox_category_image {
+	display: inline;
+}
+.articlebox_category_image img {
+	border: none;
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+.articlebox_category_title {
+	display: inline;
+}
+.articlebox_category_summary {
+	display: inline;
+}
+
+.articlebox_item {
+	
+}
+.articlebox_item_0 {
+	float: left;
+}
+.articlebox_item_1 {
+	float: left;
+}
+.articlebox_item_2 {
+	float: left;
+}
+.articlebox_item_3 {
+	float: left;
+}
+.articlebox_item_4 {
+	float: left;
+}
+.articlebox_image {
+}
+.articlebox_image img {
+	height: 60px;
+	width: 70px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+.articlebox_title img {
+	display: none;
+}
+.articlebox_introtext img {
+	display: none;
+}
+.articlebox_row {
+
+}
