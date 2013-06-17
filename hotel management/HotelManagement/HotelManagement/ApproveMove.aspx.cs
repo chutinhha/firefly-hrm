@@ -19,13 +19,13 @@ namespace HotelManagement
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                    Response.Redirect("AccessDenied.aspx");
+                    Response.Redirect("Home.aspx");
                 }
             }
             else
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("AccessDenied.aspx");
+                Response.Redirect("Home.aspx");
             }
             lblSuccess.Text = "";
             string[] column = new string[1];
@@ -40,7 +40,7 @@ namespace HotelManagement
                     +Message.BuildingID+" where rom."+Message.RoomID+"=fur."+Message.TargetRoomID
                     +") as 'Target Building',(select rom."+Message.RoomNo+" from "+Message.RoomTable
                     +" rom where rom."+Message.RoomID+"=fur."+Message.TargetRoomID+") as 'Target Room'", 
-                    " where fur." + Message.ApproveMove + " is not NULL",
+                    " where fur." + Message.ApproveMove + "<>'1'",
                     Message.FurnitureTable
                     + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
@@ -52,30 +52,7 @@ namespace HotelManagement
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
                     + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
                     + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, Message.ApproveMove,
-                    " where fur." + Message.ApproveMove + " is not NULL");
-            }
-            else if (ddlShow.SelectedValue == "Approved")
-            {
-                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ",bui."
-                    + Message.Address + " as 'Building',rom." + Message.RoomNo
-                    + " as 'Room',(select bui1." + Message.Address + " from " + Message.RoomTable
-                    + " rom join " + Message.BuildingTable + " bui1 on rom." + Message.BuildingID + "=bui1."
-                    + Message.BuildingID + " where rom." + Message.RoomID + "=fur." + Message.TargetRoomID
-                    + ") as 'Target Building',(select rom." + Message.RoomNo + " from " + Message.RoomTable
-                    + " rom where rom." + Message.RoomID + "=fur." + Message.TargetRoomID + ") as 'Target Room'",
-                    " where fur." + Message.ApproveMove + "=1",
-                    Message.FurnitureTable
-                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom,
-                    grdData, 1, column);
-                dt = com.getData(Message.FurnitureTable
-                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, Message.ApproveMove,
-                    " where fur." + Message.ApproveMove + "=1");
+                    " where fur." + Message.ApproveMove + "<>'1'");
             }
             else if (ddlShow.SelectedValue == "Pending Approve")
             {
@@ -134,10 +111,6 @@ namespace HotelManagement
                 if (dt.Rows[i][0].ToString() == "0")
                 {
                     ddlApprove.SelectedValue = "Pending Approve";
-                }
-                else if (dt.Rows[i][0].ToString() == "1")
-                {
-                    ddlApprove.SelectedValue = "Approve";
                 }
                 else
                 {
@@ -169,7 +142,7 @@ namespace HotelManagement
                     + Message.BuildingID + " where rom." + Message.RoomID + "=fur." + Message.TargetRoomID
                     + ") as 'Target Building',(select rom." + Message.RoomNo + " from " + Message.RoomTable
                     + " rom where rom." + Message.RoomID + "=fur." + Message.TargetRoomID + ") as 'Target Room'",
-                    " where fur." + Message.ApproveMove + " is not NULL",
+                    " where fur." + Message.ApproveMove + "<>'1'",
                     Message.FurnitureTable
                     + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
@@ -181,30 +154,7 @@ namespace HotelManagement
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
                     + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
                     + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, Message.ApproveMove,
-                    " where fur." + Message.ApproveMove + " is not NULL");
-            }
-            else if (ddlShow.SelectedValue == "Approved")
-            {
-                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ",bui."
-                    + Message.Address + " as 'Building',rom." + Message.RoomNo
-                    + " as 'Room',(select bui1." + Message.Address + " from " + Message.RoomTable
-                    + " rom join " + Message.BuildingTable + " bui1 on rom." + Message.BuildingID + "=bui1."
-                    + Message.BuildingID + " where rom." + Message.RoomID + "=fur." + Message.TargetRoomID
-                    + ") as 'Target Building',(select rom." + Message.RoomNo + " from " + Message.RoomTable
-                    + " rom where rom." + Message.RoomID + "=fur." + Message.TargetRoomID + ") as 'Target Room'",
-                    " where fur." + Message.ApproveMove + "=1",
-                    Message.FurnitureTable
-                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom,
-                    grdData, 1, column);
-                dt = com.getData(Message.FurnitureTable
-                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, Message.ApproveMove,
-                    " where fur." + Message.ApproveMove + "=1");
+                    " where fur." + Message.ApproveMove + "<>'1'");
             }
             else if (ddlShow.SelectedValue == "Pending Approve")
             {
@@ -263,10 +213,6 @@ namespace HotelManagement
                 if (dt.Rows[i][0].ToString() == "0")
                 {
                     ddlApprove.SelectedValue = "Pending Approve";
-                }
-                else if (dt.Rows[i][0].ToString() == "1")
-                {
-                    ddlApprove.SelectedValue = "Approve";
                 }
                 else
                 {
@@ -319,7 +265,7 @@ namespace HotelManagement
                     + Message.BuildingID + " where rom." + Message.RoomID + "=fur." + Message.TargetRoomID
                     + ") as 'Target Building',(select rom." + Message.RoomNo + " from " + Message.RoomTable
                     + " rom where rom." + Message.RoomID + "=fur." + Message.TargetRoomID + ") as 'Target Room'",
-                    " where fur." + Message.ApproveMove + " is not NULL",
+                    " where fur." + Message.ApproveMove + "<>1",
                     Message.FurnitureTable
                     + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
@@ -331,30 +277,7 @@ namespace HotelManagement
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
                     + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
                     + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, Message.ApproveMove,
-                    " where fur." + Message.ApproveMove + " is not NULL");
-            }
-            else if (ddlShow.SelectedValue == "Approved")
-            {
-                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ",bui."
-                    + Message.Address + " as 'Building',rom." + Message.RoomNo
-                    + " as 'Room',(select bui1." + Message.Address + " from " + Message.RoomTable
-                    + " rom join " + Message.BuildingTable + " bui1 on rom." + Message.BuildingID + "=bui1."
-                    + Message.BuildingID + " where rom." + Message.RoomID + "=fur." + Message.TargetRoomID
-                    + ") as 'Target Building',(select rom." + Message.RoomNo + " from " + Message.RoomTable
-                    + " rom where rom." + Message.RoomID + "=fur." + Message.TargetRoomID + ") as 'Target Room'",
-                    " where fur." + Message.ApproveMove + "=1",
-                    Message.FurnitureTable
-                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom,
-                    grdData, 1, column);
-                dt = com.getData(Message.FurnitureTable
-                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, Message.ApproveMove,
-                    " where fur." + Message.ApproveMove + "=1");
+                    " where fur." + Message.ApproveMove + "<>1");
             }
             else if (ddlShow.SelectedValue == "Pending Approve")
             {
@@ -415,10 +338,6 @@ namespace HotelManagement
                 {
                     ddlApprove.SelectedValue = "Pending Approve";
                     
-                }
-                else if (dt.Rows[i][0].ToString() == "1")
-                {
-                    ddlApprove.SelectedValue = "Approve";
                 }
                 else
                 {

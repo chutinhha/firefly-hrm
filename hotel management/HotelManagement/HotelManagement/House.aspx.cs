@@ -11,6 +11,8 @@ namespace HotelManagement
     public partial class House : System.Web.UI.Page
     {
         CommonFunction com = new CommonFunction();
+        protected string Lat { get; set; }
+        protected string Long { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Title = "House";
@@ -57,10 +59,21 @@ namespace HotelManagement
                 {
                     pnlContent.Controls.Add(new LiteralControl("<tr><td class=\"firstColumn\">Total Area</td><td>" + currentBuilding.Area + " m2</td></tr>"));
                 }
-                pnlContent.Controls.Add(new LiteralControl("</table></td></tr></table></div>"));
+                string[] coor = currentBuilding.Coordinate.Split(',');
+                if (coor.Length > 1)
+                {
+                    pnlContent.Controls.Add(new LiteralControl("</table></td></tr><tr><td colspan=2><iframe width=\"100%\" height=\"350\" "
+                        + "frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" "
+                        + "src=\"https://maps.google.com/maps?q=" + coor[0] + "," + coor[1] + "&amp;num=1&amp;t=h&amp;ie=UTF8&amp;z=14&amp;ll=" + coor[0] + "," + coor[1] + "&amp;output=embed\">"
+                        + "</iframe><br /><small><a href=\"https://maps.google.com/maps?q=" + coor[0] + "," + coor[1] + "&amp;num=1&amp;t=h&amp;ie=UTF8&amp;z=14&amp;ll=" + coor[0] + "," + coor[1] + "&amp;source=embed\""
+                        + "style=\"color:#0000FF;text-align:left;font-size:10pt;\">See bigger map</a></small></td></tr></table></div>"));
+                }
+                else {
+                    pnlContent.Controls.Add(new LiteralControl("</table></td></tr></table></div>"));
+                }
                 if (currentBuilding.Description != "")
                 {
-                    pnlContent.Controls.Add(new LiteralControl("<div><b>Description</b>:<br><br>" + currentBuilding.Description + "</div>"));
+                    pnlContent.Controls.Add(new LiteralControl("<br><div><b>Description</b>:<br><br>" + currentBuilding.Description + "</div>"));
                 }
                 pnlContent.Controls.Add(new LiteralControl("<br><div><b>Services:</b> Security, Housekeeping, Internet ADSL, Cable TV, Telephone...</div>"));
                 pnlContent.Controls.Add(new LiteralControl("<br><div><b>Furnishing:</b> Fully furnished</div>"));
@@ -205,7 +218,7 @@ namespace HotelManagement
                             {
                                 end = 5 * int.Parse(PageNumber);
                             }
-                            pnlContent.Controls.Add(new LiteralControl("<table class=\"componentheading\">"));
+                            pnlContent.Controls.Add(new LiteralControl("<table>"));
                             for (int i = 5 * (int.Parse(PageNumber) - 1); i < end; i++)
                             {
                                 if (AllHouses.Rows[i][11].ToString() != "")
@@ -397,7 +410,7 @@ namespace HotelManagement
                                 {
                                     end = 5 * int.Parse(PageNumber);
                                 }
-                                pnlContent.Controls.Add(new LiteralControl("<table class=\"componentheading\">"));
+                                pnlContent.Controls.Add(new LiteralControl("<table>"));
                                 for (int i = 5 * (int.Parse(PageNumber) - 1); i < end; i++)
                                 {
                                     if (AllHouses.Rows[i][11].ToString() != "")

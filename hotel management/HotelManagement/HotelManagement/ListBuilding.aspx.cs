@@ -15,20 +15,20 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (Session["UserLevel"] != null)
+            if (Session["UserLevel"] != null)
             {
-                if (Session["UserLevel"].ToString() == "2") { }
+                if (Session["UserLevel"].ToString() == "3") { }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                    Response.Redirect("AccessDenied.aspx");
+                    Response.Redirect("Home.aspx");
                 }
             }
             else
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("AccessDenied.aspx");
-            }*/
+                Response.Redirect("Home.aspx");
+            }
             lblSuccess.Text = "";
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
@@ -120,6 +120,9 @@ namespace HotelManagement
                 newBuilding.RentTime = "0";
                 newBuilding.Status = "0";
                 newBuilding.District = ddlDistrict.SelectedValue;
+                if (txtLat.Text.Trim() != "") {
+                    newBuilding.Coordinate = txtLat.Text;
+                }
                 if (Session["BID"] == null)
                 {
                     newBuilding.AddBuilding();

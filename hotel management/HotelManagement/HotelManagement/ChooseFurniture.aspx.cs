@@ -16,7 +16,7 @@ namespace HotelManagement
             if (Session["BuildingID"] == null)
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("AccessDenied.aspx");
+                Response.Redirect("Home.aspx");
             }
             DataTable dt = com.getData(Message.FurnitureTypeTable, Message.Description+","+Message.FurnitureType, "");
             pnlAll.Controls.Add(new LiteralControl("<div style=\"height:300px;overflow:scroll;\">"));

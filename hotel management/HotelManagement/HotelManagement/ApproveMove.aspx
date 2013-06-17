@@ -11,7 +11,6 @@
         <asp:DropDownList ID="ddlShow" runat="server" AutoPostBack="True" Width="215px" 
             onselectedindexchanged="ddlShow_SelectedIndexChanged">
             <asp:ListItem Selected="True">All</asp:ListItem>
-            <asp:ListItem>Approved</asp:ListItem>
             <asp:ListItem>Pending Approve</asp:ListItem>
             <asp:ListItem>Rejected</asp:ListItem>
         </asp:DropDownList>

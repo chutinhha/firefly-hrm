@@ -20,13 +20,13 @@ namespace HotelManagement
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                    Response.Redirect("AccessDenied.aspx");
+                    Response.Redirect("Home.aspx");
                 }
             }
             else
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("AccessDenied.aspx");
+                Response.Redirect("Home.aspx");
             }
             if (!IsPostBack) {
                 pnlRoom.Visible = false;

@@ -162,6 +162,12 @@
                 <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="500"
                     Height="100"></asp:TextBox>
                 <br />
+                <br />
+                <a style="color:Blue;" href="https://maps.google.com/?q=Ha%20Noi">Google Maps (Use middle mouse please!)</a>
+                <br /><br />
+                <asp:Label ID="lblLat" runat="server" Text="Latitude" Width="150"></asp:Label>
+                <asp:TextBox ID="txtLat" runat="server" Width="200"></asp:TextBox>
+                <br />
                 <span style="color: Red">(*): Required</span>
                 <br />
                 <br />

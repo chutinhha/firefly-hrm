@@ -61,7 +61,7 @@ namespace HotelManagement.Class
                 +","+com.ToValue(Name)+","+com.ToValue(Status)+","+com.ToValue(MadeIn)+","
                 +com.ToValue(StartWarranty)+"," + com.ToValue(EndWarranty) + "," 
                 + com.ToValue(HandoverID) + "," + com.ToValue(CollectionID) + ","
-                + com.ToValue(NumberInCollection) + "," + com.ToValue(Picture) + "," + com.ToValue(CurrentRoom)+",'0',NULL,NULL,NULL", false);
+                + com.ToValue(NumberInCollection) + "," + com.ToValue(Picture) + "," + com.ToValue(CurrentRoom)+",NULL,NULL,NULL,NULL", false);
         }
         public void UpdateFurniture() {
             com.updateTable(Message.FurnitureTable, Message.CurrentRoom + "=" + com.ToValue(CurrentRoom) 
@@ -77,8 +77,15 @@ namespace HotelManagement.Class
                 + Message.FurnitureID + "=" + com.ToValue(FurID));
         }
         public void RemoveFurniture(int status) {
-            com.updateTable(Message.Furniture, Message.Status + "='False'," + Message.ApproveDelete 
-                + "='"+status+"' where " + Message.FurnitureID + "=" + FurID);
+            if (status != 1)
+            {
+                com.updateTable(Message.Furniture, Message.Status + "='False'," + Message.ApproveDelete
+                    + "='" + status + "' where " + Message.FurnitureID + "=" + FurID);
+            }
+            else {
+                com.updateTable(Message.Furniture, Message.Status + "='False'," + Message.ApproveDelete
+                    + "='1' where " + Message.FurnitureID + "=" + FurID);
+            }
         }
         public void MoveFurniture(int TargetRoom, int ApproveMove, string handover,string reason)
         {
@@ -101,7 +108,8 @@ namespace HotelManagement.Class
                     + "=" + TargetRoom);
                 com.updateTable(Message.Furniture, Message.CurrentBuilding + "=" + dt.Rows[0][0].ToString()
                     + "," + Message.CurrentRoom + "=" + TargetRoom + "," 
-                    + Message.ApproveMove + "=" + ApproveMove + " where " + Message.FurnitureID + "=" + FurID);
+                    + Message.ApproveMove + "=NULL,"+Message.TargetRoomID+"=NULL where " 
+                    + Message.FurnitureID + "=" + FurID);
                 if (reason != "")
                 {
                     com.insertIntoTable(Message.FurnitureHistory, "", FurID + "," + CurrentBuilding + "," + CurrentRoom

@@ -20,13 +20,13 @@ namespace HotelManagement
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                    Response.Redirect("AccessDenied.aspx");
+                    Response.Redirect("Home.aspx");
                 }
             }
             else
             {
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("AccessDenied.aspx");
+                Response.Redirect("Home.aspx");
             }
             lblSuccess.Text = "";
             lblError.Text = "";
@@ -49,9 +49,12 @@ namespace HotelManagement
                     for (int i = 0; i < buildingList.Length - 1; i++)
                     {
                         DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                            + Message.BuildingID + "=" + buildingList[i]);
-                        ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                        ddlBuilding.Items.Add(buildingItem);
+                            + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                        if (buildingAddress.Rows.Count > 0)
+                        {
+                            ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                            ddlBuilding.Items.Add(buildingItem);
+                        }
                     }
                     com.SetItemList(Message.Description+","+Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Please select");
                     ddlRoom.Items.Clear();
@@ -69,10 +72,13 @@ namespace HotelManagement
                     for (int i = 0; i < buildingList.Length - 1; i++)
                     {
                         DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                            + Message.BuildingID + "=" + buildingList[i]);
-                        ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                        ddlChooseBuilding.Items.Add(buildingItem);
-                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                            + Message.BuildingID + "=" + buildingList[i]+" and "+Message.Status+"<>3");
+                        if (buildingAddress.Rows.Count > 0)
+                        {
+                            ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                            ddlChooseBuilding.Items.Add(buildingItem);
+                            buildingCondition = buildingCondition + buildingList[i] + ",";
+                        }
                     }
                     buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
                     com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlChooseType, "", true, "All");
@@ -576,9 +582,12 @@ namespace HotelManagement
             for (int i = 0; i < buildingList.Length - 1; i++)
             {
                 DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                    + Message.BuildingID + "=" + buildingList[i]);
-                ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                ddlBuilding.Items.Add(buildingItem);
+                    + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                if (buildingAddress.Rows.Count > 0)
+                {
+                    ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                    ddlBuilding.Items.Add(buildingItem);
+                }
             }
             com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Please select");
             ddlRoom.Items.Clear();
@@ -932,7 +941,7 @@ namespace HotelManagement
                     Class.Building newBuilding = new Class.Building(newFurniture.CurrentBuilding);
                     DataTable dt = com.getData(Message.RoomTable,Message.RoomNo," where "+Message.RoomID
                         +"="+newFurniture.CurrentRoom);
-                    DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, "");
+                    DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where " + Message.Status + "<>3");
                     ddlTargetBuilding.Items.Clear();
                     ddlTargetBuilding.Items.Add("Please select");
                     for (int i = 0; i < buildingAddress.Rows.Count; i++)

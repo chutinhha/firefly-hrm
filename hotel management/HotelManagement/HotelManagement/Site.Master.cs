@@ -149,6 +149,9 @@ namespace HotelManagement
                     + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"ApproveRemove.aspx\"><span>Approve Remove Furniture</span></a></li>"));
                 pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
                     + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                    + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"ListBuilding.aspx\"><span>Building List</span></a></li>"));
+                pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
+                    + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
                     + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"Register.aspx\"><span>Create New Account</span></a></li>"));
                 
             }

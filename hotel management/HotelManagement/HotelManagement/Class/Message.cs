@@ -63,6 +63,7 @@
     internal const string RentTime = "RentTime";
     internal const string District = "District";
     internal const string IsWarehouse = "IsWarehouse";
+    internal const string Coordinates = "Coordinates";
 
     //FurnitureTable column
     internal const string FurnitureID = "FurnitureID";
