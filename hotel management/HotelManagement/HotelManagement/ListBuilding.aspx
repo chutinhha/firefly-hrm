@@ -14,6 +14,12 @@
             else
                 return false;
         }
+        function ConfirmOnDelete() {
+            if (confirm("<%=this.confirmDelete %>") == true)
+                return true;
+            else
+                return false;
+        }
         $(function () {
             $("#txtStart").datepicker({
                 changeMonth: true,
@@ -192,7 +198,7 @@
                 <br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" OnClick="btnAdd_Click" />
                 <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80" OnClick="btnEdit_Click" />
-                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClick="btnDelete_Click" />
+                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();"/>
                 <br />
                 <br />
                 <div style="height: 300px; overflow: scroll;">

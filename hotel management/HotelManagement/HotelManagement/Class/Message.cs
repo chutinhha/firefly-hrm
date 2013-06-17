@@ -3,6 +3,7 @@
     //connection string
     internal const string ConnectionString = @"Data Source=localhost;Initial Catalog=DavidDucHotel;User ID=sa;Password=123456";
     internal const string ConfirmSave = "Are you sure that you want to save?";
+    internal const string ConfirmDelete = "Are you sure that you want to delete?";
     internal const string ourEmail = "tungda01659@gmail.com";
     internal const string ourEmailPass = "buiphuong";
     internal const string targetEmail = "tungda01659@fpt.edu.vn";

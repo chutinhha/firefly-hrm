@@ -68,7 +68,7 @@ namespace HotelManagement.Class
                 +" where " + Message.BuildingID + "=" + com.ToValue(BID));
         }
         public void RemoveBuilding() {
-            com.updateTable(Message.BuildingTable, Message.Status+"='False' where " + Message.BuildingID
+            com.updateTable(Message.BuildingTable, Message.Status+"='3' where " + Message.BuildingID
                 + "=" + BID);
         }
         public string GetBuildingType() { 

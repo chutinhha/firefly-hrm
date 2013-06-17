@@ -32,6 +32,7 @@ namespace HotelManagement
             lblSuccess.Text = "";
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
+            this.confirmDelete = Message.ConfirmDelete;
             if (!IsPostBack) {
                 Session.Remove("Image");
                 Session.Remove("BID");
@@ -42,23 +43,16 @@ namespace HotelManagement
                 {
                     com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
                         ddlChooseType, " where " + Message.Description + "<>'Warehouse'", true, "All");
-                    string condition = "";
+                    string condition = " where bui."+Message.Status+"<>'3' ";
                     if (ddlChooseType.SelectedIndex == 0) { }
                     else
                     {
-                        condition = condition + " where bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
+                        condition = condition + " and bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
                     }
                     if (ddlChooseDistrict.SelectedIndex == 0) { }
                     else
                     {
-                        if (condition.Contains("where"))
-                        {
-                            condition = condition + " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
-                        }
-                        else
-                        {
-                            condition = " where bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
-                        }
+                        condition = " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
                     }
                     com.bindData(" bui."+Message.BuildingID+", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
                         + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
@@ -69,9 +63,8 @@ namespace HotelManagement
 
             }
         }
-        protected string startDate { get; set; }
-        protected string endDate { get; set; }
         protected string confirmSave { get; set; }
+        protected string confirmDelete { get; set; }
         protected void ddlBuildingType_SelectedIndexChanged(object sender, EventArgs e) { }
         protected void btnSave_Click(object sender, EventArgs e) {
             if (ddlBuildingType.SelectedIndex == 0 || txtAddress.Text.Trim() == "" || ddlDistrict.SelectedIndex == 0)
@@ -247,8 +240,6 @@ namespace HotelManagement
                     isCheck = true;
                     pnlList.Visible = false;
                     pnlAdd.Visible = true;
-                    this.startDate = "";
-                    this.endDate = "";
                     com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
                     ddlBuildingType, " where " + Message.Description + "<>'Warehouse'", true, "Please select");
                     Class.Building newBuilding = new Class.Building(gr.Cells[1].Text);
@@ -302,14 +293,35 @@ namespace HotelManagement
                 if (cb.Checked)
                 {
                     isCheck = true;
-                    pnlDelete.Visible = true;
-                    break;
+                    Class.Building newBuilding = new Class.Building(gr.Cells[1].Text);
+                    DataTable dt = com.getData(Message.FurnitureTable, "*", " where " + Message.CurrentBuilding
+                        + "=" + newBuilding.BID + " and (" + Message.ApproveDelete + "<>1 or ApproveDelete is NULL)");
+                    if (dt.Rows.Count > 0) {
+                        lblError.Text = lblError.Text + "Building " + newBuilding.Address + " can not be remove because it contain some furniture. Please remove these furniture first<br>";
+                    }else{
+                        newBuilding.RemoveBuilding();
+                        lblSuccess.Text=lblSuccess.Text+ "Remove building "+newBuilding.Address+" success<br>";
+                    }
                 }
             }
             if (isCheck == false)
             {
                 lblError.Text = "Please select a row!";
             }
+            string condition = " where bui." + Message.Status + "<>'3' ";
+            if (ddlChooseType.SelectedIndex == 0) { }
+            else
+            {
+                condition = condition + " and bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
+            }
+            if (ddlChooseDistrict.SelectedIndex == 0) { }
+            else
+            {
+                condition = " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
+            }
+            com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
+                + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
         }
         protected void btnConfirmDelete_Click(object sender, EventArgs e) {
             
@@ -343,47 +355,36 @@ namespace HotelManagement
 
         protected void ddlChooseType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string condition = "";
+            string condition = " where bui." + Message.Status + "<>'3' ";
             if (ddlChooseType.SelectedIndex == 0) { }
-            else {
-                condition = condition + " where bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
+            else
+            {
+                condition = condition + " and bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
             }
             if (ddlChooseDistrict.SelectedIndex == 0) { }
-            else {
-                if (condition.Contains("where"))
-                {
-                    condition = condition + " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
-                }
-                else {
-                    condition = " where bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'"; 
-                }
+            else
+            {
+                condition = " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
             }
-            com.bindData(" bui."+Message.BuildingID+", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                + ",bui." + Message.Price, condition+" order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+            com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
+                + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                 + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
         }
 
         protected void ddlChooseDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string condition = "";
+            string condition = " where bui." + Message.Status + "<>'3' ";
             if (ddlChooseType.SelectedIndex == 0) { }
             else
             {
-                condition = condition + " where bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
+                condition = condition + " and bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
             }
             if (ddlChooseDistrict.SelectedIndex == 0) { }
             else
             {
-                if (condition.Contains("where"))
-                {
-                    condition = condition + " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
-                }
-                else
-                {
-                    condition = " where bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
-                }
+                condition = " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
             }
-            com.bindData(" bui."+Message.BuildingID+", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
+            com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
                 + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                 + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
         }
