@@ -152,6 +152,10 @@
                 <asp:TextBox ID="txtArea" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
+                <asp:Label ID="lblNumberFloor" runat="server" Text="Number of Floor" Width="150"></asp:Label>
+                <asp:TextBox ID="txtNumberFloor" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <br />
+                <br />
                 <asp:Label ID="lblPicture" runat="server" Text="Picture" Width="150"></asp:Label>
                 <CuteWebUI:Uploader id="fulPicture" runat="server" MultipleFilesUpload="true" OnFileUploaded="Uploader_FileUploaded"/> 
                 <br />
@@ -224,20 +228,6 @@
                     </asp:GridView>
                 </div>
                 <br />
-                <asp:Panel ID="pnlDelete" runat="server" Visible="False">
-                    <asp:Label ID="lblReason" runat="server" Text="Reason for delete" Width="150px"></asp:Label>
-                    <br />
-                    <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtReason" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
-                    <br />
-                    <br />
-                    <span style="padding-left: 155px;"></span>
-                    <asp:Button ID="btnConfirmDelete" runat="server" Text="Send Request Email" Width="150px"
-                        OnClick="btnConfirmDelete_Click" />
-                    <asp:Button ID="btnConfirmCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnConfirmCancel_Click" />
-                    <br />
-                    <br />
-                </asp:Panel>
             </asp:Panel>
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>

@@ -138,6 +138,9 @@ namespace HotelManagement
                     + "font-weight:bold;background:none;\" onmouseout=\"menuitemMouseOut"
                     + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
                     + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"ListFurniture.aspx\"><span>Furniture List</span></a></li>"));
+                pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
+                    + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                    + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"ListRoom.aspx\"><span>Room List</span></a></li>"));
             }
             else if (Session["UserLevel"].ToString() == "3") {
                 pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"

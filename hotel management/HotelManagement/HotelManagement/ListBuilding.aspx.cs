@@ -120,6 +120,7 @@ namespace HotelManagement
                 newBuilding.RentTime = "0";
                 newBuilding.Status = "0";
                 newBuilding.District = ddlDistrict.SelectedValue;
+                newBuilding.NumberFloor = txtNumberFloor.Text;
                 if (txtLat.Text.Trim() != "") {
                     newBuilding.Coordinate = txtLat.Text;
                 }
@@ -163,6 +164,7 @@ namespace HotelManagement
                 ddlDistrict.SelectedIndex = 0;
                 txtAddress.Text = "";
                 txtPrice.Text = "";
+                txtNumberFloor.Text = "";
                 chkGarage.Checked = false;
                 chkGarden.Checked = false;
                 chkPool.Checked = false;
@@ -180,6 +182,7 @@ namespace HotelManagement
                 txtArea.Text = newBuilding.Area;
                 txtDescription.Text = newBuilding.Description;
                 txtPrice.Text = newBuilding.Price;
+                txtNumberFloor.Text = newBuilding.NumberFloor;
                 if (newBuilding.Garage == "True")
                 {
                     chkGarage.Checked = true;
@@ -229,7 +232,6 @@ namespace HotelManagement
         protected void btnAdd_Click(object sender, EventArgs e) {
             pnlList.Visible = false;
             pnlAdd.Visible = true;
-            pnlDelete.Visible = false;
             com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
                     ddlBuildingType, " where " + Message.Description + "<>'Warehouse'", true, "Please select");
         }
@@ -255,6 +257,7 @@ namespace HotelManagement
                     txtArea.Text = newBuilding.Area;
                     txtDescription.Text = newBuilding.Description;
                     txtPrice.Text = newBuilding.Price;
+                    txtNumberFloor.Text = newBuilding.NumberFloor;
                     if (newBuilding.Garage == "True")
                     {
                         chkGarage.Checked = true;
@@ -330,9 +333,7 @@ namespace HotelManagement
             
         }
         protected void btnConfirmCancel_Click(object sender, EventArgs e) {
-            pnlDelete.Visible = false;
             pnlList.Visible = true;
-            txtReason.Text = "";
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {

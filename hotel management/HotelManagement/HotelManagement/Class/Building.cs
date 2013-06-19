@@ -24,6 +24,7 @@ namespace HotelManagement.Class
         internal string RentTime;
         internal string District;
         internal string Coordinate;
+        internal string NumberFloor;
         internal CommonFunction com = new CommonFunction();
         public Building() { }
         public Building(string BuildingID) {
@@ -47,6 +48,7 @@ namespace HotelManagement.Class
                 RentTime = NewBuilding.Rows[0][13].ToString();
                 District = NewBuilding.Rows[0][14].ToString();
                 Coordinate = NewBuilding.Rows[0][15].ToString();
+                NumberFloor = NewBuilding.Rows[0][16].ToString();
             }
         }
         public void AddBuilding() { 
@@ -54,7 +56,8 @@ namespace HotelManagement.Class
                 + "," + com.ToValue(Price) + "," + com.ToValue(Garage) + "," + com.ToValue(Pool) + "," 
                 + com.ToValue(Garden) + "," + com.ToValue(BedRoom) +","+com.ToValue(BathRoom)+","
                 +com.ToValue(Description)+","+com.ToValue(Area)+","+com.ToValue(Picture)+","
-                +com.ToValue(Status) +","+com.ToValue(RentTime)+","+com.ToValue(District)+","+com.ToValue(Coordinate),false);
+                +com.ToValue(Status) +","+com.ToValue(RentTime)+","+com.ToValue(District)+","+com.ToValue(Coordinate)
+                + "," + com.ToValue(NumberFloor), false);
         }
         public void UpdateBuilding() {
             com.updateTable(Message.BuildingTable, 
@@ -68,6 +71,7 @@ namespace HotelManagement.Class
                 + com.ToValue(Picture) + "," + Message.Status+"="+com.ToValue(Status)+","+Message.RentTime
                 +"="+com.ToValue(RentTime)+ ","+Message.District+"="+com.ToValue(District)
                 + "," + Message.Coordinates + "=" + com.ToValue(Coordinate)
+                + "," + Message.NumberFloor + "=" + com.ToValue(NumberFloor)
                 +" where " + Message.BuildingID + "=" + com.ToValue(BID));
         }
         public void RemoveBuilding() {

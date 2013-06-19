@@ -1006,6 +1006,7 @@
     <Content Include="Images\wrapper-bg.png" />
     <Content Include="ListBuilding.aspx" />
     <Content Include="ListFurniture.aspx" />
+    <Content Include="ListRoom.aspx" />
     <Content Include="Moving.aspx" />
     <Content Include="News.aspx" />
     <Content Include="Register.aspx" />
@@ -1160,6 +1161,7 @@
     <Compile Include="Class\Furniture.cs" />
     <Compile Include="Class\News.cs" />
     <Compile Include="Class\Building.cs" />
+    <Compile Include="Class\Room.cs" />
     <Compile Include="Class\Stuff.cs" />
     <Compile Include="Class\User.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -1207,6 +1209,13 @@
     </Compile>
     <Compile Include="ListFurniture.aspx.designer.cs">
       <DependentUpon>ListFurniture.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListRoom.aspx.cs">
+      <DependentUpon>ListRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListRoom.aspx.designer.cs">
+      <DependentUpon>ListRoom.aspx</DependentUpon>
     </Compile>
     <Compile Include="Moving.aspx.cs">
       <DependentUpon>Moving.aspx</DependentUpon>
