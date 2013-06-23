@@ -16,7 +16,7 @@ namespace HotelManagement
             Page.Title = "Create new account";
             if (Session["UserLevel"] != null)
             {
-                if (Session["UserLevel"].ToString() == "3") { }
+                if (int.Parse(Session["UserLevel"].ToString()) >=3) { }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -31,6 +31,7 @@ namespace HotelManagement
             if (!IsPostBack) {
                 pnlRoom.Visible = false;
             }
+            Session["MenuID"] = "5";
             string[] column = new string[1];
             column[0] = "Current Manager";
             DataTable dt;
@@ -54,6 +55,10 @@ namespace HotelManagement
                         }
                     }
                 }
+            }
+            if (IsPostBack)
+            {
+                txtPassword.Attributes["value"] = txtPassword.Text;
             }
         }
         protected void ddlAccountType_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,6 +172,7 @@ namespace HotelManagement
                                 }
                                 newUser.AddUser();
                                 lblSuccess.Text = "Successful";
+                                Response.Redirect("ManageAccount.aspx");
                             }
                         }
                     }

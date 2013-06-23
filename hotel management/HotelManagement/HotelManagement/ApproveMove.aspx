@@ -7,7 +7,7 @@
     <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <asp:Label ID="lblShow" runat="server" Text="Show" Width="150"></asp:Label>
+        <asp:Label ID="lblShow" runat="server" style="font-weight:bold;" Text="Show" Width="150"></asp:Label>
         <asp:DropDownList ID="ddlShow" runat="server" AutoPostBack="True" Width="215px" 
             onselectedindexchanged="ddlShow_SelectedIndexChanged">
             <asp:ListItem Selected="True">All</asp:ListItem>

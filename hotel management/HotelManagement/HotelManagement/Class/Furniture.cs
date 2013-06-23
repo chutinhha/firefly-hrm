@@ -62,6 +62,8 @@ namespace HotelManagement.Class
                 +com.ToValue(StartWarranty)+"," + com.ToValue(EndWarranty) + "," 
                 + com.ToValue(HandoverID) + "," + com.ToValue(CollectionID) + ","
                 + com.ToValue(NumberInCollection) + "," + com.ToValue(Picture) + "," + com.ToValue(CurrentRoom)+",NULL,NULL,NULL,NULL", false);
+            com.updateTable(Message.FurnitureTypeTable, Message.Total + "=" + Message.Total + "+1,"
+                +Message.Available+"="+Message.Available+"+1 where "+Message.FurnitureType+"="+FurType);
         }
         public void UpdateFurniture() {
             com.updateTable(Message.FurnitureTable, Message.CurrentRoom + "=" + com.ToValue(CurrentRoom) 
@@ -85,6 +87,8 @@ namespace HotelManagement.Class
             else {
                 com.updateTable(Message.Furniture, Message.Status + "='False'," + Message.ApproveDelete
                     + "='1' where " + Message.FurnitureID + "=" + FurID);
+                com.updateTable(Message.FurnitureTypeTable, Message.Total + "=" + Message.Total + "+1,"
+                + Message.Available + "=" + Message.Available + "-1 where " + Message.FurnitureType + "=" + FurType);
             }
         }
         public void MoveFurniture(int TargetRoom, int ApproveMove, string handover,string reason)

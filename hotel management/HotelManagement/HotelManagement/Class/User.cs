@@ -59,18 +59,18 @@ namespace HotelManagement.Class
                 + com.ToValue(PhoneNumber) + "," + com.ToValue(Address) + "," + com.ToValue(Email) + "," 
                 + com.ToValue(RoomManage) +","+com.ToValue(Status), false);
         }
-        public void UpdateUser(int UserID) {
+        public void UpdateUser() {
             com.updateTable(Message.UserAccountTable, Message.UserLevel + "=" + com.ToValue(UserLevel) 
                 + "," + Message.UserName + "=" + com.ToValue(UserName) + "," + Message.Password + "=" 
                 + com.ToValue(com.CalculateMD5Hash(Password)) + "," + Message.FullName + "=" + com.ToValue(FullName)
                 + "," + Message.PhoneNumber + "=" + com.ToValue(PhoneNumber) + "," + Message.Address 
                 + "=" + com.ToValue(Address) + "," + Message.Email + "=" + com.ToValue(Email) + "," 
-                + Message.RoomManage + "=" + com.ToValue(RoomManage) + "," + Message.Status + "=" 
-                + com.ToValue(Status) + " where " + Message.UserID + "=" + com.ToValue(UserID));
+                + Message.RoomManage + "=" + com.ToValue(RoomManage) + "," + Message.Status + "="
+                + com.ToValue(Status) + " where " + Message.UserID + "=" + com.ToValue(UID));
         }
-        public void RemoveUser(int UserID) {
-            com.updateTable(Message.UserAccountTable, Message.Status + "='False' where " 
-                + Message.UserID + "=" + UserID);
+        public void RemoveUser() {
+            com.updateTable(Message.UserAccountTable, Message.Status + "='False' where "
+                + Message.UserID + "=" + UID);
         }
     }
 }

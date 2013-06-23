@@ -17,7 +17,7 @@ namespace HotelManagement
         {
             if (Session["UserLevel"] != null)
             {
-                if (Session["UserLevel"].ToString() == "3") { }
+                if (int.Parse(Session["UserLevel"].ToString()) >=3) { }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -29,6 +29,7 @@ namespace HotelManagement
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                 Response.Redirect("Home.aspx");
             }
+            Session["MenuID"] = "4";
             lblSuccess.Text = "";
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
@@ -42,7 +43,7 @@ namespace HotelManagement
                 if (!IsPostBack)
                 {
                     com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
-                        ddlChooseType, " where " + Message.Description + "<>'Warehouse'", true, "All");
+                        ddlChooseType, "", true, "All");
                     string condition = " where bui."+Message.Status+"<>'3' ";
                     if (ddlChooseType.SelectedIndex == 0) { }
                     else
@@ -65,7 +66,15 @@ namespace HotelManagement
         }
         protected string confirmSave { get; set; }
         protected string confirmDelete { get; set; }
-        protected void ddlBuildingType_SelectedIndexChanged(object sender, EventArgs e) { }
+        protected void ddlBuildingType_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ddlBuildingType.SelectedItem.Text == "Warehouse")
+            {
+                Panel1.Visible = false;
+            }
+            else {
+                Panel1.Visible = true;
+            }
+        }
         protected void btnSave_Click(object sender, EventArgs e) {
             if (ddlBuildingType.SelectedIndex == 0 || txtAddress.Text.Trim() == "" || ddlDistrict.SelectedIndex == 0)
             {
@@ -233,7 +242,7 @@ namespace HotelManagement
             pnlList.Visible = false;
             pnlAdd.Visible = true;
             com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
-                    ddlBuildingType, " where " + Message.Description + "<>'Warehouse'", true, "Please select");
+                    ddlBuildingType, "", true, "Please select");
         }
         protected void btnEdit_Click(object sender, EventArgs e) {
             bool isCheck = false;
@@ -246,7 +255,7 @@ namespace HotelManagement
                     pnlList.Visible = false;
                     pnlAdd.Visible = true;
                     com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
-                    ddlBuildingType, " where " + Message.Description + "<>'Warehouse'", true, "Please select");
+                    ddlBuildingType, "", true, "Please select");
                     Class.Building newBuilding = new Class.Building(gr.Cells[1].Text);
                     Session["BID"] = newBuilding.BID;
                     ddlBathRoom.SelectedValue = newBuilding.BathRoom;

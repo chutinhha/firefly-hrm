@@ -13,6 +13,7 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["MenuID"] = "1";
             Page.Header.Title = "Home";
             //Set hot property
             DataTable HotProperty = com.getData(Message.BuildingTable, " top 10 " + Message.BuildingID + ","
@@ -33,7 +34,7 @@ namespace HotelManagement
             HotRoom.Controls.Add(new LiteralControl("</ul></div>"));
 
             //Set News
-            DataTable News = com.getData(Message.NewsTable, " top 3 " + Message.NewsID + "," + Message.Title
+            DataTable News = com.getData(Message.NewsTable, " top 5 " + Message.NewsID + "," + Message.Title
                 + "," + Message.Date, " order by " + Message.Date+" desc");
             if (News.Rows.Count > 0) {
                 pnlNews.Controls.Add(new LiteralControl("<div class=\"articlebox\">"));

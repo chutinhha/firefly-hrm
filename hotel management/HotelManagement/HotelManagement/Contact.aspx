@@ -21,14 +21,14 @@
         </center>
         <br /><br /><br />
     </asp:Panel>
-    &nbsp;Enter your Name: <br/>
+    &nbsp;<span style="font-weight:bold;">Enter your Name: </span><br/>
     <asp:TextBox ID="txtName" runat="server" Width="400px"></asp:TextBox><br/>
-    &nbsp;E-mail address: <br/>
+    &nbsp;<span style="font-weight:bold;">E-mail address: </span><br/>
     <asp:TextBox ID="txtEmail" runat="server" Width="400px"></asp:TextBox><br/>
-    &nbsp;Message Subject:<br/>
+    &nbsp;<span style="font-weight:bold;">Message Subject:</span><br/>
     <asp:TextBox ID="txtSubject" runat="server" Width="400px"></asp:TextBox>
     <br/>
-    &nbsp;Enter your Message:<br/>
+    &nbsp;<span style="font-weight:bold;">Enter your Message:</span><br/>
     <asp:TextBox ID="txtMessage" runat="server" Width="408px" Height="200px" TextMode="MultiLine"></asp:TextBox>    
     <br/>
     &nbsp;<asp:CheckBox ID="chkEmail" runat="server" Text="E-mail a copy of this message to your own address." />

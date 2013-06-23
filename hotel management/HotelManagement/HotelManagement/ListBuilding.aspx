@@ -79,18 +79,18 @@
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br />
-                <asp:Label ID="lblBuildingType" runat="server" Text="Type" Width="150"></asp:Label>
+                <asp:Label ID="lblBuildingType" style="font-weight:bold;" runat="server" Text="Type" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBuildingType" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlBuildingType_SelectedIndexChanged">
                 </asp:DropDownList>
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblAddress" runat="server" Text="Address" Width="150"></asp:Label>
+                <asp:Label ID="lblAddress" style="font-weight:bold;" runat="server" Text="Address" Width="150"></asp:Label>
                 <asp:TextBox ID="txtAddress" runat="server" Width="200"></asp:TextBox>&nbsp;&nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblDistrict" runat="server" Text="District" Width="150"></asp:Label>
+                <asp:Label ID="lblDistrict" style="font-weight:bold;" runat="server" Text="District" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlDistrict" runat="server" Width="215px">
                     <asp:ListItem Selected="True" Value="Please select">Please select</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Dong Da">Dong Da</asp:ListItem>
@@ -104,7 +104,9 @@
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblPrice" runat="server" Text="Price" Width="150"></asp:Label>
+                <asp:Panel ID="Panel1" runat="server">
+                
+                <asp:Label ID="lblPrice" style="font-weight:bold;" runat="server" Text="Price" Width="150"></asp:Label>
                 <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
@@ -116,7 +118,7 @@
                 <asp:CheckBox ID="chkGarden" runat="server" Text="Garden" />
                 <br />
                 <br />
-                <asp:Label ID="lblBedRoom" runat="server" Text="Bed Room" Width="150"></asp:Label>
+                <asp:Label ID="lblBedRoom" style="font-weight:bold;" runat="server" Text="Bed Room" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBedRoom" runat="server" Width="215px">
                     <asp:ListItem Selected="True">Please select</asp:ListItem>
                     <asp:ListItem Selected="False" Value="1">1</asp:ListItem>
@@ -132,7 +134,7 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblBathRoom" runat="server" Text="Bath Room" Width="150"></asp:Label>
+                <asp:Label ID="lblBathRoom" style="font-weight:bold;" runat="server" Text="Bath Room" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBathRoom" runat="server" Width="215px">
                     <asp:ListItem Selected="True">Please select</asp:ListItem>
                     <asp:ListItem Selected="False" Value="1">1</asp:ListItem>
@@ -148,19 +150,19 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblArea" runat="server" Text="Area" Width="150"></asp:Label>
+                <asp:Label ID="lblArea" style="font-weight:bold;" runat="server" Text="Area" Width="150"></asp:Label>
                 <asp:TextBox ID="txtArea" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Label ID="lblNumberFloor" runat="server" Text="Number of Floor" Width="150"></asp:Label>
+                <asp:Label ID="lblNumberFloor" style="font-weight:bold;" runat="server" Text="Number of Floor" Width="150"></asp:Label>
                 <asp:TextBox ID="txtNumberFloor" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Label ID="lblPicture" runat="server" Text="Picture" Width="150"></asp:Label>
-                <CuteWebUI:Uploader id="fulPicture" runat="server" MultipleFilesUpload="true" OnFileUploaded="Uploader_FileUploaded"/> 
+                <asp:Label ID="lblPicture" style="font-weight:bold;" runat="server" Text="Picture" Width="150"></asp:Label>
+                <CuteWebUI:Uploader id="fulPicture" runat="server" MultipleFilesUpload="true" OnFileUploaded="Uploader_FileUploaded" InsertText="Choose pictures" /> 
                 <br />
                 <br />
-                <asp:Label ID="lblDescription" runat="server" Text="Description"></asp:Label>
+                <asp:Label ID="lblDescription" style="font-weight:bold;" runat="server" Text="Description"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
                 <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="500"
@@ -169,8 +171,9 @@
                 <br />
                 <a style="color:Blue;" href="https://maps.google.com/?q=Ha%20Noi">Google Maps (Use middle mouse please!)</a>
                 <br /><br />
-                <asp:Label ID="lblLat" runat="server" Text="Latitude" Width="150"></asp:Label>
+                <asp:Label ID="lblLat" style="font-weight:bold;" runat="server" Text="Latitude" Width="150"></asp:Label>
                 <asp:TextBox ID="txtLat" runat="server" Width="200"></asp:TextBox>
+                </asp:Panel>
                 <br />
                 <span style="color: Red">(*): Required</span>
                 <br />
@@ -185,13 +188,13 @@
             </asp:Panel>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Label ID="lblChooseType" runat="server" Text="Type" Width="150"></asp:Label>
+                <asp:Label ID="lblChooseType" style="font-weight:bold;" runat="server" Text="Type" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseType" runat="server" Width="215" 
                     AutoPostBack="True" onselectedindexchanged="ddlChooseType_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblChooseDistrict" runat="server" Text="District" Width="150"></asp:Label>
+                <asp:Label ID="lblChooseDistrict" style="font-weight:bold;" runat="server" Text="District" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseDistrict" runat="server" Width="215" 
                     AutoPostBack="True" 
                     onselectedindexchanged="ddlChooseDistrict_SelectedIndexChanged">

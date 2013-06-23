@@ -966,6 +966,7 @@
     <Content Include="ckeditor\_source\skins\v2\toolbar.css" />
     <Content Include="ckeditor\_source\themes\default\theme.js" />
     <Content Include="Contact.aspx" />
+    <Content Include="FurnitureCategory.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="House.aspx" />
     <Content Include="Images\Access-Denied-LeftRight.jpg" />
@@ -1006,11 +1007,15 @@
     <Content Include="Images\wrapper-bg.png" />
     <Content Include="ListBuilding.aspx" />
     <Content Include="ListFurniture.aspx" />
+    <Content Include="ListNew.aspx" />
     <Content Include="ListRoom.aspx" />
+    <Content Include="ManageAccount.aspx" />
+    <Content Include="ManageFurnitureCategory.aspx" />
     <Content Include="Moving.aspx" />
     <Content Include="News.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Rental.aspx" />
+    <Content Include="RequestFurniture.aspx" />
     <Content Include="Scripts\caption.js" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\ImageSlider\generic.css" />
@@ -1159,8 +1164,10 @@
     <Compile Include="Class\Customer.cs" />
     <Compile Include="Class\Common.cs" />
     <Compile Include="Class\Furniture.cs" />
+    <Compile Include="Class\MenuBar.cs" />
     <Compile Include="Class\News.cs" />
     <Compile Include="Class\Building.cs" />
+    <Compile Include="Class\RequestFurniture.cs" />
     <Compile Include="Class\Room.cs" />
     <Compile Include="Class\Stuff.cs" />
     <Compile Include="Class\User.cs" />
@@ -1177,6 +1184,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FurnitureCategory.aspx.cs">
+      <DependentUpon>FurnitureCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FurnitureCategory.aspx.designer.cs">
+      <DependentUpon>FurnitureCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1210,12 +1224,33 @@
     <Compile Include="ListFurniture.aspx.designer.cs">
       <DependentUpon>ListFurniture.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListNew.aspx.cs">
+      <DependentUpon>ListNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListNew.aspx.designer.cs">
+      <DependentUpon>ListNew.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListRoom.aspx.cs">
       <DependentUpon>ListRoom.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListRoom.aspx.designer.cs">
       <DependentUpon>ListRoom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAccount.aspx.cs">
+      <DependentUpon>ManageAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAccount.aspx.designer.cs">
+      <DependentUpon>ManageAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageFurnitureCategory.aspx.cs">
+      <DependentUpon>ManageFurnitureCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageFurnitureCategory.aspx.designer.cs">
+      <DependentUpon>ManageFurnitureCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Moving.aspx.cs">
       <DependentUpon>Moving.aspx</DependentUpon>
@@ -1245,6 +1280,13 @@
     </Compile>
     <Compile Include="Rental.aspx.designer.cs">
       <DependentUpon>Rental.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RequestFurniture.aspx.cs">
+      <DependentUpon>RequestFurniture.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestFurniture.aspx.designer.cs">
+      <DependentUpon>RequestFurniture.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

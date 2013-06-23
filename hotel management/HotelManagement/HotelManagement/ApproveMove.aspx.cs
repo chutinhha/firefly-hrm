@@ -15,7 +15,7 @@ namespace HotelManagement
         {
             if (Session["UserLevel"] != null)
             {
-                if (Session["UserLevel"].ToString() == "3") { }
+                if (int.Parse(Session["UserLevel"].ToString()) >=3) { }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -27,6 +27,7 @@ namespace HotelManagement
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                 Response.Redirect("Home.aspx");
             }
+            Session["MenuID"] = "3";
             lblSuccess.Text = "";
             string[] column = new string[1];
             column[0] = "Approve";
@@ -344,6 +345,12 @@ namespace HotelManagement
                     ddlApprove.SelectedValue = "Reject";
                 }
                 grdData.Rows[i].Cells[6].Controls.Add(ddlApprove);
+            }
+            DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                + ">=3");
+            for (int i = 0; i < email.Rows.Count; i++)
+            {
+                com.SendMail(email.Rows[i][0].ToString(), "Confirm move furniture from " + Session["FullName"], content);
             }
             com.SendMail(Message.targetEmail, "Confirm move furniture from " + Session["FullName"], content);
             lblSuccess.Text = "Success! Email were send";

@@ -16,6 +16,7 @@ namespace HotelManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Title = "House";
+            Session["MenuID"] = "3";
             if (Session["UserLevel"] != null)
             {
                 if (Session["UserLevel"].ToString() == "1") { }

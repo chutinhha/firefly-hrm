@@ -18,17 +18,17 @@
         <ContentTemplate>
             <br />
             <br />
-            <asp:Label ID="lblUserName" runat="server" Text="User Name:" Width="150px"></asp:Label>
+            <asp:Label ID="lblUserName" style="font-weight:bold;" runat="server" Text="User Name:" Width="150px"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server" Width="200px"></asp:TextBox>
             &nbsp;<span style="color: Red">(*)</span>
             <br />
             <br />
-            <asp:Label ID="lblPassword" runat="server" Text="Password:" Width="150px"></asp:Label>
+            <asp:Label ID="lblPassword" style="font-weight:bold;" runat="server" Text="Password:" Width="150px"></asp:Label>
             <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="200px"></asp:TextBox>
             &nbsp;<span style="color: Red">(*)</span>
             <br />
             <br />
-            <asp:Label ID="lblAccountType" runat="server" Text="Account Type:" Width="150px"></asp:Label>
+            <asp:Label ID="lblAccountType" style="font-weight:bold;" runat="server" Text="Account Type:" Width="150px"></asp:Label>
             <asp:DropDownList Width="214px" ID="ddlAccountType" runat="server" AutoPostBack="true"
                 OnSelectedIndexChanged="ddlAccountType_SelectedIndexChanged">
                 <asp:ListItem Selected="True">Please select</asp:ListItem>
@@ -42,7 +42,7 @@
                 <br />
                 <br />
                 <span style="color: Red">(*) </span>
-                <asp:Label ID="lblBuilding" runat="server" Text="Please select at least 1 building"></asp:Label>
+                <asp:Label ID="lblBuilding" style="font-weight:bold;" runat="server" Text="Please select at least 1 building"></asp:Label>
                 <br />
                 <br />
                 <asp:GridView ID="grdRoom" runat="server" Width="100%" 
@@ -58,19 +58,19 @@
             </asp:Panel>
             <br />
             <br />
-            <asp:Label ID="lblName" Width="150px" runat="server" Text="Full name:"></asp:Label>
+            <asp:Label ID="lblName" style="font-weight:bold;" Width="150px" runat="server" Text="Full name:"></asp:Label>
             <asp:TextBox ID="txtName" Width="200px" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblPhone" Width="150px" runat="server" Text="Phone:"></asp:Label>
+            <asp:Label ID="lblPhone" style="font-weight:bold;" Width="150px" runat="server" Text="Phone:"></asp:Label>
             <asp:TextBox ID="txtPhone" Width="200px" runat="server" onkeyup="ValidateText(this);"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblAddress" Width="150px" runat="server" Text="Address:"></asp:Label>
+            <asp:Label ID="lblAddress" style="font-weight:bold;" Width="150px" runat="server" Text="Address:"></asp:Label>
             <asp:TextBox ID="txtAddress" Width="200px" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblEmail" Width="150px" runat="server" Text="Email:"></asp:Label>
+            <asp:Label ID="lblEmail" style="font-weight:bold;" Width="150px" runat="server" Text="Email:"></asp:Label>
             <asp:TextBox ID="txtMail" Width="200px" runat="server" TextMode="Email"></asp:TextBox>
             <br />
             <br />

@@ -58,6 +58,24 @@ namespace HotelManagement {
         protected global::System.Web.UI.WebControls.GridView grdData;
         
         /// <summary>
+        /// lblMove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMove;
+        
+        /// <summary>
+        /// ddlMove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMove;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

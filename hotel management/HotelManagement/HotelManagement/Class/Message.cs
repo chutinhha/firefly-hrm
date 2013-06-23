@@ -20,6 +20,10 @@
     internal const string Stuff = "Stuff";
     internal const string BuildingTable = "Building";
     internal const string FurnitureHistory = "FurnitureHistory";
+    internal const string RequestID = "RequestID";
+    internal const string RequestUser = "RequestUser";
+    internal const string RequestFurniture = "RequestFurniture";
+    internal const string Comment = "Comment";
 
     //CustomerTable column
     internal const string CustomerID = "CustomerID";
@@ -98,6 +102,7 @@
     internal const string MenuLevel = "MenuLevel";
     internal const string ParentID = "ParentID";
     internal const string AppearNo = "AppearNo";
+    internal const string MenuID = "MenuID";
 
     //NewsTable column
     internal const string NewsID = "NewsID";
@@ -108,4 +113,5 @@
     //StuffTable column
     internal const string StuffID = "StuffID";
     internal const string StuffContent = "StuffContent";
+    internal const string Available = "Available";
 }

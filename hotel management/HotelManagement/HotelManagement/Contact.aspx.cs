@@ -13,6 +13,7 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["MenuID"] = "6";
             Page.Header.Title = "Contacts";
             if (Session["UserLevel"] != null)
             {
