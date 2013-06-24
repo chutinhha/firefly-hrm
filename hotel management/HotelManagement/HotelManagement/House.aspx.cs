@@ -116,25 +116,6 @@ namespace HotelManagement
                     btnEdit.Visible = false;
                     btnBack.Visible = false;
                     pnlContent.Controls.Add(new LiteralControl("<br><div class=\"componentheading\">Houses"));
-                    Button btnCreate = new Button();
-                    btnCreate.ID = "btnCreate";
-                    btnCreate.Text = "+ New House";
-                    btnCreate.Click += this.btnCreate_Click;
-                    btnCreate.BackColor = System.Drawing.ColorTranslator.FromHtml("#034569");
-                    btnCreate.Attributes.Add("style", "float:right;color:white;border:none;height:25px;");
-                    pnlContent.Controls.Add(btnCreate);
-                    if (Session["UserLevel"] != null)
-                    {
-                        if (Session["UserLevel"].ToString() == "1") { }
-                        else
-                        {
-                            btnCreate.Visible = true;
-                        }
-                    }
-                    else
-                    {
-                        btnCreate.Visible = false;
-                    }
                     pnlContent.Controls.Add(new LiteralControl("</div><hr><br>"));
                     if (PageNumber == null)
                     {
@@ -308,25 +289,6 @@ namespace HotelManagement
                         btnEdit.Visible = false;
                         btnBack.Visible = false;
                         pnlContent.Controls.Add(new LiteralControl("<br><div class=\"componentheading\">Houses"));
-                        Button btnCreate = new Button();
-                        btnCreate.ID = "btnCreate";
-                        btnCreate.Text = "+ New House";
-                        btnCreate.Click += this.btnCreate_Click;
-                        btnCreate.BackColor = System.Drawing.ColorTranslator.FromHtml("#034569");
-                        btnCreate.Attributes.Add("style", "float:right;color:white;border:none;height:25px;");
-                        pnlContent.Controls.Add(btnCreate);
-                        if (Session["UserLevel"] != null)
-                        {
-                            if (Session["UserLevel"].ToString() == "1") { }
-                            else
-                            {
-                                btnCreate.Visible = true;
-                            }
-                        }
-                        else
-                        {
-                            btnCreate.Visible = false;
-                        }
                         pnlContent.Controls.Add(new LiteralControl("</div><hr><br>"));
                         if (PageNumber == null)
                         {

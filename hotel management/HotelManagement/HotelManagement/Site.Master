@@ -68,15 +68,19 @@
                 </div>
                 <div id="topnav" class="header">
                     <div id="jflanguageselection">
-                        <asp:Label ID="lblLogin" runat="server" Text="Login:"></asp:Label>
+                        <asp:Label ID="lblLogin" runat="server" Text="Login:" style="vertical-align:middle;"></asp:Label>
                         <asp:TextBox ID="txtUser" runat="server" Width="100" onfocus="Focus(this.id,'Your user name')" onblur="Blur(this.id,'Your user name')"></asp:TextBox>
                         &nbsp;
                         <asp:TextBox ID="txtPassword" runat="server" Width="100" TextMode="Password" onfocus="Focus(this.id,'123456')" onblur="Blur(this.id,'123456')"></asp:TextBox>
                         &nbsp;<asp:Button ID="btnLogin" 
-                            style="background-color:#034569;float:right;color:white;border:none;height:25px;" 
+                            style="background-color:#034569;float:none;color:white;border:none;height:25px;" 
                             class="readon float-left" runat="server" Text="Login" 
                             onclick="btnLogin_Click"/>
-                            
+                        <asp:Button ID="btnChange" style="background-color:#034569;float:none;color:white;border:none;height:25px;" 
+                            class="readon float-left" runat="server" Text="Change Password" 
+                            Width="120px" onclick="btnChange_Click" Visible="False" />
+                        <asp:LinkButton ID="lbtnForget" runat="server" style="color:Blue;" 
+                            onclick="lbtnForget_Click">Forget password?</asp:LinkButton>
                     </div>
                     
                 </div>
@@ -106,7 +110,7 @@
                     for (i = 0; i < o.childNodes.length; i++) {
                         curmenu = o.childNodes[i];
                         if ((curmenu) && (curmenu.tagName) && (curmenu.tagName.toUpperCase() == 'UL')) {
-                            curmenu.style.display = 'block';
+                            curmenu.style.display = 'table';
                             break;
                         }
                     }
@@ -157,7 +161,7 @@
                     for (i = 0; i < o.childNodes.length; i++) {
                         curmenu = o.childNodes[i];
                         if ((curmenu) && (curmenu.tagName) && (curmenu.tagName.toUpperCase() == 'UL')) {
-                            curmenu.style.display = 'block';
+                            curmenu.style.display = 'table';
                             break;
                         }
                     }
@@ -197,7 +201,7 @@
                                 submenu = sub.childNodes[j];
                                 if ((submenu) && (submenu.tagName) && (submenu.tagName.toUpperCase() == 'UL')) {
                                     if ((showSub) && (sub.className.match(/active/))) {
-                                        submenu.style.display = 'block';
+                                        submenu.style.display = 'table';
                                     } else {
                                         submenu.style.display = 'none';
                                     }

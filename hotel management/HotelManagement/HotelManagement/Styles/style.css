@@ -485,13 +485,13 @@ div.clr {
 #mainnav ul ul{
 	margin:0px;
 	padding:0px;
-	width:150px;
+	width:170px;
 }
 #mainnav ul li {
 	float:left;
 	list-style:none;
 	margin:0px;
-	padding:5px 25px 2px 25px;
+	padding:5px 35px 2px 35px;
 	position:relative;
 	height:31px;
 	*height:34px;
@@ -514,7 +514,7 @@ div.clr {
 	height:18px;
 	clear:both;
 	padding:5px 15px 5px 30px;
-	width:160px;
+	width:170px;
 	border-top:1px solid #fff;
 	text-align:left;
 	z-index:999;

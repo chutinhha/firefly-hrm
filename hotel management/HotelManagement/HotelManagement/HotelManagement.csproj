@@ -67,6 +67,7 @@
     <Content Include="AddNews.aspx" />
     <Content Include="ApproveMove.aspx" />
     <Content Include="ApproveRemove.aspx" />
+    <Content Include="ChangePassword.aspx" />
     <Content Include="ChooseFurniture.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\CHANGES.html" />
@@ -1016,6 +1017,7 @@
     <Content Include="Register.aspx" />
     <Content Include="Rental.aspx" />
     <Content Include="RequestFurniture.aspx" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\caption.js" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\ImageSlider\generic.css" />
@@ -1154,6 +1156,13 @@
     <Compile Include="ApproveRemove.aspx.designer.cs">
       <DependentUpon>ApproveRemove.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChooseFurniture.aspx.cs">
       <DependentUpon>ChooseFurniture.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1287,6 +1296,13 @@
     </Compile>
     <Compile Include="RequestFurniture.aspx.designer.cs">
       <DependentUpon>RequestFurniture.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

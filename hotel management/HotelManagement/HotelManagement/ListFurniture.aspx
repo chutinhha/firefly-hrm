@@ -172,6 +172,8 @@
                 <asp:Button ID="btnRequest" runat="server" Text="Request Furniture" 
                     Width="120px" onclick="btnRequest_Click"/>
                 <br />
+                <asp:Panel ID="Panel1" runat="server">
+                
                 <br />
                 <asp:LinkButton ID="lblCategory" runat="server" style="color:Blue;" 
                     onclick="lblCategory_Click">Hide Category Statistic</asp:LinkButton>
@@ -179,6 +181,8 @@
                 <asp:GridView ID="grdCategory" Width="100%" runat="server" Visible="False">
                 </asp:GridView>
                 
+                
+                </asp:Panel>
                 <br />
                 <div style="height: 300px; overflow: scroll;">
                     <asp:GridView ID="grdFurniture" runat="server" Width="100%" OnRowDataBound="grdFurniture_RowDataBound">

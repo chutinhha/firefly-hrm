@@ -24,7 +24,7 @@
     &nbsp;<span style="font-weight:bold;">Enter your Name: </span><br/>
     <asp:TextBox ID="txtName" runat="server" Width="400px"></asp:TextBox><br/>
     &nbsp;<span style="font-weight:bold;">E-mail address: </span><br/>
-    <asp:TextBox ID="txtEmail" runat="server" Width="400px"></asp:TextBox><br/>
+    <asp:TextBox ID="txtEmail" runat="server" Width="400px" TextMode="Email"></asp:TextBox><br/>
     &nbsp;<span style="font-weight:bold;">Message Subject:</span><br/>
     <asp:TextBox ID="txtSubject" runat="server" Width="400px"></asp:TextBox>
     <br/>
@@ -33,5 +33,9 @@
     <br/>
     &nbsp;<asp:CheckBox ID="chkEmail" runat="server" Text="E-mail a copy of this message to your own address." />
     <br/><br/>
-    <asp:Button ID="btnSend" runat="server" Text="Send" style="background-color:#034569;color:white;border:none;height:25px;"/><br/><br/>
+    <asp:Button ID="btnSend" runat="server" Text="Send" 
+        style="background-color:#034569;color:white;border:none;height:25px;" 
+        onclick="btnSend_Click"/><br/><br/>
+    <asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label><asp:Label ID="lblSuccess"
+        runat="server" Text="" style="color:Green;"></asp:Label>
 </asp:Content>

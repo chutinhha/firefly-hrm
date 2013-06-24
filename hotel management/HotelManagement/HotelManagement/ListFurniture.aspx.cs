@@ -36,12 +36,14 @@ namespace HotelManagement
                     grdCategory.Visible = true;
                     lblCategory.Visible = true;
                 }
+                Panel1.Visible = true;
             }
             else {
                 btnAdd.Visible = true;
                 btnRequest.Visible = false;
                 grdCategory.Visible = false;
                 lblCategory.Visible = false;
+                Panel1.Visible = false;
             }
             Session["MenuID"] = "2";
             lblSuccess.Text = "";
@@ -49,31 +51,34 @@ namespace HotelManagement
             this.confirmSave = Message.ConfirmSave;
             if (!IsPostBack)
             {
-                //Get building list
-                DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
-                string buildingCondition1 = "";
-                for (int i = 0; i < buildingList1.Length - 1; i++)
+                if (Session["UserLevel"].ToString() == "2")
                 {
-                    DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                        + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
-                    if (buildingAddress1.Rows.Count > 0)
+                    //Get building list
+                    DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
+                    string buildingCondition1 = "";
+                    for (int i = 0; i < buildingList1.Length - 1; i++)
                     {
-                        buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
+                        DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                            + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
+                        if (buildingAddress1.Rows.Count > 0)
+                        {
+                            buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
+                        }
                     }
+                    buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
+                    com.bindData("distinct furType." + Message.Description
+                        + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                        + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
+                        + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                        + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
+                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Price'"
+                        , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
+                    lblCategory.Text = "Show Category Statistic";
+                    grdCategory.Visible = false;
                 }
-                buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
-                com.bindData("distinct furType." + Message.Description
-                    + ",(select count(*) from "+Message.FurnitureTable+" where "+Message.FurnitureType+"=fur."+Message.FurnitureType
-                    +" and "+Message.CurrentBuilding+" in ("+buildingCondition1+") and ("+Message.ApproveDelete+"<>1 or "+Message.ApproveDelete
-                    +" is NULL)) as 'Available',(select count(*) from "+Message.FurnitureTable+" where "+Message.FurnitureType+"=fur."+Message.FurnitureType
-                    +" and "+Message.CurrentBuilding+" in ("+buildingCondition1+")) as 'Total',(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and "+Message.CurrentBuilding+" in ("+buildingCondition1+")) as 'Total Price'"
-                    , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                    + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
-                lblCategory.Text = "Show Category Statistic";
-                grdCategory.Visible = false;
             }
             if (!IsPostBack) {
                 if (pnlAdd.Visible == true)

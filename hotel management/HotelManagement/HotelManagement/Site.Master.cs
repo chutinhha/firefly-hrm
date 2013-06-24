@@ -17,12 +17,16 @@ namespace HotelManagement
             {
                 txtPassword.Visible = false;
                 txtUser.Visible = false;
+                lbtnForget.Visible = false;
                 btnLogin.Text = "Logout";
                 lblLogin.Text = "Hello, "+Session["FullName"];
+                btnChange.Visible = true;
             }
             else {
                 txtPassword.Visible = true;
+                btnChange.Visible = false;
                 txtUser.Visible = true;
+                lbtnForget.Visible = true;
                 btnLogin.Text = "Login";
                 lblLogin.Text = "Login:";
                 if (!IsPostBack) {
@@ -73,17 +77,13 @@ namespace HotelManagement
                                     if (count == int.Parse(Session["MenuID"].ToString()))
                                     {
                                         pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                                            + "font-weight:bold;background:none;\" onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\""
+                                            + "font-weight:bold;background:none;\" class=\"item54\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\"><span>"
                                             + Menubar.Rows[i][1].ToString() + "</span></a></li>"));
                                     }
                                     else {
                                         pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                                            + "background:none;\" onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\""
+                                            + "background:none;\" class=\"item54\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\"><span>"
                                             + Menubar.Rows[i][1].ToString() + "</span></a></li>"));
                                     }
@@ -92,16 +92,12 @@ namespace HotelManagement
                                 {
                                     if (count == int.Parse(Session["MenuID"].ToString()))
                                     {
-                                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"item54\" style=\"font-weight:bold;\"><a href=\""
+                                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\" style=\"font-weight:bold;\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\"><span>"
                                             + Menubar.Rows[i][1].ToString() + "</span></a></li>"));
                                     }
                                     else {
-                                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\""
+                                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\"><span>"
                                             + Menubar.Rows[i][1].ToString() + "</span></a></li>"));
                                     }
@@ -114,17 +110,15 @@ namespace HotelManagement
                                     if (count == int.Parse(Session["MenuID"].ToString()))
                                     {
                                         pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                                            + "font-weight:bold;background:none;\" onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"parent item58\"><a href=\""
+                                            + "font-weight:bold;background:none;\" "
+                                            + " class=\"parent item58\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\">" + "<span>" + Menubar.Rows[i][1].ToString()
                                             + "</span></a>" + "<ul style=\"display: none;\">"));
                                     }
                                     else {
                                         pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                                            + "background:none;\" onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"parent item58\"><a href=\""
+                                            + "background:none;\" "
+                                            + " class=\"parent item58\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\">" + "<span>" + Menubar.Rows[i][1].ToString()
                                             + "</span></a>" + "<ul style=\"display: none;\">"));
                                     }
@@ -133,16 +127,12 @@ namespace HotelManagement
                                 {
                                     if (count == int.Parse(Session["MenuID"].ToString()))
                                     {
-                                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"parent item58\" style=\"font-weight:bold;\"><a href=\""
+                                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"parent item58\" style=\"font-weight:bold;\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\">" + "<span>" + Menubar.Rows[i][1].ToString()
                                             + "</span></a>" + "<ul style=\"display: none;\">"));
                                     }
                                     else {
-                                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                                            + "(this,'dvd_mainmenu')\" class=\"parent item58\"><a href=\""
+                                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"parent item58\"><a href=\""
                                             + Menubar.Rows[i][2].ToString() + "\">" + "<span>" + Menubar.Rows[i][1].ToString()
                                             + "</span></a>" + "<ul style=\"display: none;\">"));
                                     }
@@ -151,9 +141,7 @@ namespace HotelManagement
                                 {
                                     if (Menubar.Rows[j][3].ToString() == "2")
                                     {
-                                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
-                                            + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
-                                            + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\""
+                                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"item87\"><a href=\""
                                             + Menubar.Rows[j][2].ToString() + "\">" + "<span>"
                                             + Menubar.Rows[j][1].ToString() + "</span></a></li>"));
                                     }
@@ -171,15 +159,13 @@ namespace HotelManagement
                             count++;
                             if (count == int.Parse(Session["MenuID"].ToString()))
                             {
-                                pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                                    + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                                pnlMenu.Controls.Add(new LiteralControl("<li "
                                     + "(this,'dvd_mainmenu')\" class=\"item54\" style=\"font-weight:bold;\"><a href=\""
                                     + Menubar.Rows[i][2].ToString() + "\"><span>"
                                     + Menubar.Rows[i][1].ToString() + "</span></a></li>"));
                             }
                             else {
-                                pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                                    + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                                pnlMenu.Controls.Add(new LiteralControl("<li "
                                     + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\""
                                     + Menubar.Rows[i][2].ToString() + "\"><span>"
                                     + Menubar.Rows[i][1].ToString() + "</span></a></li>"));
@@ -193,53 +179,39 @@ namespace HotelManagement
                 if (Session["MenuID"].ToString() == "1")
                 {
                     pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                        + "font-weight:bold;background:none;\" onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                        + "font-weight:bold;background:none;\" "
                         + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"Home.aspx\"><span>Home</span></a></li>"));
                 }
                 else {
                     pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                        + "background:none;\" onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                        + "background:none;\" "
                         + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"Home.aspx\"><span>Home</span></a></li>"));
                 }
                 if (Session["MenuID"].ToString() == "2")
                 {
-                    pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                        + "(this,'dvd_mainmenu')\" class=\"item54\" style=\"font-weight:bold;\"><a href=\"ListFurniture.aspx\"><span>Furniture List</span></a></li>"));
+                    pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\" style=\"font-weight:bold;\"><a href=\"ListFurniture.aspx\"><span>Furniture List</span></a></li>"));
                 }
                 else {
-                    pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                        + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"ListFurniture.aspx\"><span>Furniture List</span></a></li>"));
+                    pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\"><a href=\"ListFurniture.aspx\"><span>Furniture List</span></a></li>"));
                 }
                 if (Session["MenuID"].ToString() == "3")
                 {
-                    pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                        + "(this,'dvd_mainmenu')\" class=\"item54\" style=\"font-weight:bold;\"><a href=\"ListRoom.aspx\"><span>Room List</span></a></li>"));
+                    pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\" style=\"font-weight:bold;\"><a href=\"ListRoom.aspx\"><span>Room List</span></a></li>"));
                 }
                 else {
-                    pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                        + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"ListRoom.aspx\"><span>Room List</span></a></li>"));
+                    pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\"><a href=\"ListRoom.aspx\"><span>Room List</span></a></li>"));
                 }
             }
             else if (int.Parse(Session["UserLevel"].ToString()) >= 3) {
                 if (Session["MenuID"].ToString() == "1")
                 {
                     pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                        + "font-weight:bold;background:none;\" onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                        + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"Home.aspx\"><span>Home</span></a></li>"));
+                        + "font-weight:bold;background:none;\" class=\"item54\"><a href=\"Home.aspx\"><span>Home</span></a></li>"));
                 }
                 else
                 {
                     pnlMenu.Controls.Add(new LiteralControl("<li style=\"color:#103459;"
-                        + "background:none;\" onmouseout=\"menuitemMouseOut"
-                        + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
-                        + "(this,'dvd_mainmenu')\" class=\"item54\"><a href=\"Home.aspx\"><span>Home</span></a></li>"));
+                        + "background:none;\" class=\"item54\"><a href=\"Home.aspx\"><span>Home</span></a></li>"));
                 }
                 if (Session["MenuID"].ToString() == "2")
                 {
@@ -351,6 +323,8 @@ namespace HotelManagement
                             txtPassword.Visible = false;
                             txtUser.Visible = false;
                             btnLogin.Text = "Logout";
+                            btnChange.Visible = true;
+                            Response.Redirect("Home.aspx");
                         }
                     }
                 }
@@ -450,6 +424,16 @@ namespace HotelManagement
             }
             Session["ListBuilding"] = BuildingID;
             Response.Redirect("House.aspx");
+        }
+
+        protected void btnChange_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassword.aspx");
+        }
+
+        protected void lbtnForget_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ResetPassword.aspx");
         }
     }
 }

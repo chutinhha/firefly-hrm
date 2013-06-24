@@ -14,6 +14,8 @@ namespace HotelManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["MenuID"] = "6";
+            lblError.Text = "";
+            lblSuccess.Text = "";
             Page.Header.Title = "Contacts";
             if (Session["UserLevel"] != null)
             {
@@ -55,6 +57,34 @@ namespace HotelManagement
             NewsContent.Text = newStuff.StuffContent;
             pnlNew.Visible = true;
             pnlEdit.Visible = false;
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            if (txtEmail.Text.Trim() == "" || txtMessage.Text.Trim() == "" || txtName.Text.Trim() == "" || txtSubject.Text.Trim() == "")
+            {
+                lblError.Text = "Please enter your name, email, subject and content of email!";
+            }
+            else {
+                if (!txtEmail.Text.Contains("@"))
+                {
+                    lblError.Text = "The email you have enter may be not correct, please re-enter!";
+                }
+                else {
+                    DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                   + ">=3");
+                    for (int i = 0; i < email.Rows.Count; i++)
+                    {
+                        com.SendMail(email.Rows[i][0].ToString(), txtSubject.Text+" from "+txtName.Text
+                            +"/"+txtEmail.Text, txtMessage.Text);
+                    }
+                    if (chkEmail.Checked == true) {
+                        com.SendMail(txtEmail.Text, txtSubject.Text + " from " + txtName.Text
+                            + "/" + txtEmail.Text, txtMessage.Text);
+                    }
+                    lblSuccess.Text = "Success";
+                }
+            }
         }
     }
 }
