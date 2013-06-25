@@ -28,6 +28,7 @@ namespace HotelManagement
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                 Response.Redirect("Home.aspx");
             }
+
             if (Session["UserLevel"].ToString() == "2")
             {
                 btnAdd.Visible = false;
@@ -49,133 +50,170 @@ namespace HotelManagement
             lblSuccess.Text = "";
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
-            if (!IsPostBack)
+            string ID = Request.QueryString["ID"];
+            if (ID != null)
             {
-                if (Session["UserLevel"].ToString() == "2")
+                pnlList.Visible = false;
+                pnlEdit.Visible = true;
+                this.startDate = "";
+                this.endDate = "";
+                ddlEditCountry.DataSource = com.getCountryList();
+                ddlEditCountry.DataBind();
+                ListItem item = new ListItem("Please select");
+                ddlEditCountry.Items.Insert(0, item);
+                Class.Furniture newFuniture = new Class.Furniture(ID);
+                txtEditDes.Text = newFuniture.Description;
+                txtEditName.Text = newFuniture.Name;
+                txtEditPrice.Text = newFuniture.Price;
+                if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
                 {
-                    //Get building list
-                    DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                        + Message.UserID + "=" + Session["UserID"]);
-                    string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
-                    string buildingCondition1 = "";
-                    for (int i = 0; i < buildingList1.Length - 1; i++)
-                    {
-                        DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                            + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
-                        if (buildingAddress1.Rows.Count > 0)
-                        {
-                            buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
-                        }
-                    }
-                    buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
-                    com.bindData("distinct furType." + Message.Description
-                        + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
-                        + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
-                        + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
-                        + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
-                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Price'"
-                        , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
-                    lblCategory.Text = "Show Category Statistic";
-                    grdCategory.Visible = false;
+                    ddlStatus.SelectedValue = "Normal";
                 }
+                else
+                {
+                    ddlStatus.SelectedValue = "Broke";
+                }
+                ddlEditCountry.SelectedValue = newFuniture.MadeIn;
+                this.startDate = newFuniture.StartWarranty;
+                this.endDate = newFuniture.EndWarranty;
+                imgPicture.ImageUrl = "Images/" + newFuniture.Picture;
+                Session["FurID"] = newFuniture.FurID;
             }
-            if (!IsPostBack) {
-                if (pnlAdd.Visible == true)
+            else
+            {
+                if (!IsPostBack)
                 {
-                    
-                    this.startDate = "";
-                    this.endDate = "";
-                    ddlCountry.DataSource = com.getCountryList();
-                    ddlCountry.DataBind();
-                    ListItem item = new ListItem("Please select");
-                    ddlCountry.Items.Insert(0, item);
                     if (Session["UserLevel"].ToString() == "2")
                     {
                         //Get building list
-                        DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
                             + Message.UserID + "=" + Session["UserID"]);
-                        string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                        ddlBuilding.Items.Clear();
-                        ddlBuilding.Items.Add("Please select");
-                        for (int i = 0; i < buildingList.Length - 1; i++)
+                        string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
+                        string buildingCondition1 = "";
+                        for (int i = 0; i < buildingList1.Length - 1; i++)
                         {
-                            DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                                + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
-                            if (buildingAddress.Rows.Count > 0)
+                            DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
+                            if (buildingAddress1.Rows.Count > 0)
                             {
-                                ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                                ddlBuilding.Items.Add(buildingItem);
+                                buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
                             }
                         }
+                        buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
+                        com.bindData("distinct furType." + Message.Description
+                            + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                            + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
+                            + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                            + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
+                            + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Price'"
+                            , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                            + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
+                        lblCategory.Text = "Show Category Statistic";
+                        grdCategory.Visible = false;
                     }
-                    else {
-                        com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlBuilding, "", true, "Please select");
-                    }
-                    com.SetItemList(Message.Description+","+Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Please select");
-                    ddlRoom.Items.Clear();
-                    ddlRoom.Items.Add("Please select");
                 }
-                else if (pnlList.Visible == true)
+                if (!IsPostBack)
                 {
-                         
-                    string buildingCondition = "";
-                    if (Session["UserLevel"].ToString() == "2")
+                    if (pnlAdd.Visible == true)
                     {
-                        //Get building list
-                        DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                            + Message.UserID + "=" + Session["UserID"]);
-                        string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                        ddlChooseBuilding.Items.Clear();
-                        ddlChooseBuilding.Items.Add("All");
-                        for (int i = 0; i < buildingList.Length - 1; i++)
+
+                        this.startDate = "";
+                        this.endDate = "";
+                        ddlCountry.DataSource = com.getCountryList();
+                        ddlCountry.DataBind();
+                        ListItem item = new ListItem("Please select");
+                        ddlCountry.Items.Insert(0, item);
+                        if (Session["UserLevel"].ToString() == "2")
                         {
-                            DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                                + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
-                            if (buildingAddress.Rows.Count > 0)
+                            //Get building list
+                            DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                + Message.UserID + "=" + Session["UserID"]);
+                            string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                            ddlBuilding.Items.Clear();
+                            ddlBuilding.Items.Add("Please select");
+                            for (int i = 0; i < buildingList.Length - 1; i++)
                             {
-                                ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                                ddlChooseBuilding.Items.Add(buildingItem);
-                                buildingCondition = buildingCondition + buildingList[i] + ",";
+                                DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                    + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                                if (buildingAddress.Rows.Count > 0)
+                                {
+                                    ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                                    ddlBuilding.Items.Add(buildingItem);
+                                }
                             }
                         }
-                        buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                        else
+                        {
+                            com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlBuilding, "", true, "Please select");
+                        }
+                        com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Please select");
+                        ddlRoom.Items.Clear();
+                        ddlRoom.Items.Add("Please select");
                     }
-                    else {
-                        com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlChooseBuilding, "", true, "All");
-                    }
-                    com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlChooseType, "", true, "All");
-                    ddlChooseRoom.Items.Clear();
-                    ddlChooseRoom.Items.Add("All");
-                    if (Session["UserLevel"].ToString() == "2")
+                    else if (pnlList.Visible == true)
                     {
-                        com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
-                            + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                            + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
-                            " where fur.CurrentBuildingID in (" + buildingCondition + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
-                            + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                            + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                            + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                            + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+
+                        string buildingCondition = "";
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            //Get building list
+                            DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                + Message.UserID + "=" + Session["UserID"]);
+                            string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                            ddlChooseBuilding.Items.Clear();
+                            ddlChooseBuilding.Items.Add("All");
+                            for (int i = 0; i < buildingList.Length - 1; i++)
+                            {
+                                DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                    + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                                if (buildingAddress.Rows.Count > 0)
+                                {
+                                    ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                                    ddlChooseBuilding.Items.Add(buildingItem);
+                                    buildingCondition = buildingCondition + buildingList[i] + ",";
+                                }
+                            }
+                            buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                        }
+                        else
+                        {
+                            com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlChooseBuilding, "", true, "All");
+                        }
+                        com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlChooseType, "", true, "All");
+                        ddlChooseRoom.Items.Clear();
+                        ddlChooseRoom.Items.Add("All");
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
+                                " where fur.CurrentBuildingID in (" + buildingCondition + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
+                                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+                        }
+                        else
+                        {
+                            com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
+                                " where (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
+                                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+                        }
                     }
-                    else {
-                        com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
-                            + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                            + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
-                            " where (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
-                            + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                            + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                            + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                            + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+                    else
+                    {
+                        this.startDate = "";
+                        this.endDate = "";
+                        ddlCountry.DataSource = com.getCountryList();
+                        ddlCountry.DataBind();
+                        ListItem item = new ListItem("Please select");
+                        ddlCountry.Items.Insert(0, item);
                     }
-                }
-                else {
-                    this.startDate = "";
-                    this.endDate = "";
-                    ddlCountry.DataSource = com.getCountryList();
-                    ddlCountry.DataBind();
-                    ListItem item = new ListItem("Please select");
-                    ddlCountry.Items.Insert(0, item);
                 }
             }
         }
@@ -185,6 +223,18 @@ namespace HotelManagement
         protected void grdFurniture_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Cells[7].Text = "<a href=\"Images/"+e.Row.Cells[7].Text+"\"><img width=\"50\" src=\"Images/" + e.Row.Cells[7].Text + "\"></a>";
@@ -194,6 +244,14 @@ namespace HotelManagement
             }
             else {
                 e.Row.Cells[4].Attributes.Add("width","150px");
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = "ListFurniture.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
             }
         }
         protected void ddlBuilding_SelectedIndexChanged(object sender, EventArgs e)
@@ -316,6 +374,7 @@ namespace HotelManagement
                     ddlRoom.SelectedIndex = 0;
                     ddlType.SelectedIndex = 0;
                     txtDes.Text = "";
+                    Response.Redirect("ListFurniture.aspx");
                 }
             }
         }
@@ -746,6 +805,7 @@ namespace HotelManagement
         {
             pnlAdd.Visible = false;
             pnlList.Visible = true;
+            Response.Redirect("ListFurniture.aspx");
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -898,78 +958,7 @@ namespace HotelManagement
                         newFurniture.Status = "False";
                     }
                     newFurniture.UpdateFurniture();
-                    lblSuccess.Text = "Success";
-                    pnlEdit.Visible = false;
-                    pnlList.Visible = true;
-                    string buildingCondition = "";
-                    if (Session["UserLevel"].ToString() == "2")
-                    {
-                        //Get building list
-                        DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                            + Message.UserID + "=" + Session["UserID"]);
-                        string[] buildingList = building.Rows[0][0].ToString().Split('|');
-
-                        for (int i = 0; i < buildingList.Length - 1; i++)
-                        {
-                            buildingCondition = buildingCondition + buildingList[i] + ",";
-                        }
-                        buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-                    }
-                    string condition = "";
-                    if (ddlChooseBuilding.SelectedIndex == 0)
-                    {
-                        if (Session["UserLevel"].ToString() == "2")
-                        {
-                            condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
-                                + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                        }
-                        else
-                        {
-                            condition = " where ("
-                                + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                        }
-                    }
-                    else
-                    {
-                        condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
-                    }
-                    if (ddlChooseRoom.SelectedIndex != 0)
-                    {
-                        condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
-                    }
-                    if (ddlChooseType.SelectedIndex != 0)
-                    {
-                        condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
-                    }
-                    if (ddlInWarraty.SelectedIndex != 0)
-                    {
-                        if (ddlInWarraty.SelectedIndex == 1)
-                        {
-                            condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                        }
-                        else
-                        {
-                            condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                        }
-                    }
-                    if (ddlPosition.SelectedIndex != 0)
-                    {
-                        if (ddlPosition.SelectedIndex != 1)
-                        {
-                            condition = condition + " and " + Message.IsWarehouse + "='True'";
-                        }
-                        else
-                        {
-                            condition = condition + " and " + Message.IsWarehouse + "='False'";
-                        }
-                    }
-                    com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
-                        + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                        + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
-                        + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                        + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                        + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                        + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+                    Response.Redirect("ListFurniture.aspx");
                 }
             }
         }
@@ -979,6 +968,7 @@ namespace HotelManagement
             pnlEdit.Visible = false;
             pnlList.Visible = true;
             Session.Remove("FurID");
+            Response.Redirect("ListFurniture.aspx");
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)

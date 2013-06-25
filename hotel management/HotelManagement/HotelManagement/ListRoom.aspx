@@ -83,7 +83,6 @@
                 <br />
                 <br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80" OnClick="btnEdit_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClientClick="return ConfirmOnDelete();"
                     OnClick="btnDelete_Click" />
                 <br />

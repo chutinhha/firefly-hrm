@@ -34,34 +34,82 @@ namespace HotelManagement
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
             this.confirmDelete = Message.ConfirmDelete;
+            string ID = Request.QueryString["ID"];
             if (!IsPostBack) {
                 Session.Remove("Image");
                 Session.Remove("BID");
-            }
-            if (pnlList.Visible == true)
-            {
-                if (!IsPostBack)
-                {
+                if (ID != null) {
+                    pnlList.Visible = false;
+                    pnlAdd.Visible = true;
                     com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
-                        ddlChooseType, "", true, "All");
-                    string condition = " where bui."+Message.Status+"<>'3' ";
-                    if (ddlChooseType.SelectedIndex == 0) { }
+                    ddlBuildingType, "", true, "Please select");
+                    Class.Building newBuilding = new Class.Building(ID);
+                    Session["BID"] = newBuilding.BID;
+                    ddlBathRoom.SelectedValue = newBuilding.BathRoom;
+                    ddlBedRoom.SelectedValue = newBuilding.BedRoom;
+                    ddlBuildingType.SelectedValue = newBuilding.BuildingTypeID;
+                    ddlDistrict.SelectedValue = newBuilding.District;
+                    txtAddress.Text = newBuilding.Address;
+                    txtArea.Text = newBuilding.Area;
+                    txtDescription.Text = newBuilding.Description;
+                    txtPrice.Text = newBuilding.Price;
+                    txtNumberFloor.Text = newBuilding.NumberFloor;
+                    if (newBuilding.Garage == "True")
+                    {
+                        chkGarage.Checked = true;
+                    }
                     else
                     {
-                        condition = condition + " and bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
+                        chkGarage.Checked = false;
                     }
-                    if (ddlChooseDistrict.SelectedIndex == 0) { }
+                    if (newBuilding.Pool == "True")
+                    {
+                        chkPool.Checked = true;
+                    }
                     else
                     {
-                        condition = " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
+                        chkPool.Checked = false;
                     }
-                    com.bindData(" bui."+Message.BuildingID+", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                        + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
-                        + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
+                    if (newBuilding.Garden == "True")
+                    {
+                        chkGarden.Checked = true;
+                    }
+                    else
+                    {
+                        chkGarden.Checked = false;
+                    }
+                    txtArea.Text = newBuilding.Area;
+                    txtDescription.Text = newBuilding.Description;
                 }
             }
-            else if (pnlAdd.Visible == true) {
+            if (ID == null)
+            {
+                if (pnlList.Visible == true)
+                {
+                    if (!IsPostBack)
+                    {
+                        com.SetItemList(Message.Description + "," + Message.BuildingTypeID, Message.BuildingTypeTable,
+                            ddlChooseType, "", true, "All");
+                        string condition = " where bui." + Message.Status + "<>'3' ";
+                        if (ddlChooseType.SelectedIndex == 0) { }
+                        else
+                        {
+                            condition = condition + " and bui." + Message.BuildingTypeID + "=" + ddlChooseType.SelectedValue;
+                        }
+                        if (ddlChooseDistrict.SelectedIndex == 0) { }
+                        else
+                        {
+                            condition = " and bui." + Message.District + "=N'" + ddlChooseDistrict.SelectedValue + "'";
+                        }
+                        com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
+                            + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                            + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
+                    }
+                }
+                else if (pnlAdd.Visible == true)
+                {
 
+                }
             }
         }
         protected string confirmSave { get; set; }
@@ -160,7 +208,7 @@ namespace HotelManagement
                 {
                     pnlAdd.Visible = false;
                     pnlList.Visible = true;
-                    Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+                    Response.Redirect("ListBuilding.aspx");
                 }
             }
         }
@@ -236,6 +284,7 @@ namespace HotelManagement
             txtDescription.Text = "";
             pnlAdd.Visible = false;
             pnlList.Visible = true;
+            Response.Redirect("ListBuilding.aspx");
             
         }
         protected void btnAdd_Click(object sender, EventArgs e) {
@@ -364,6 +413,26 @@ namespace HotelManagement
         protected void grdBuilding_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = "ListBuilding.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
         }
 
         protected void ddlChooseType_SelectedIndexChanged(object sender, EventArgs e)

@@ -41,6 +41,18 @@ namespace HotelManagement
         protected void grdAccount_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {

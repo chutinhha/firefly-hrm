@@ -58,8 +58,6 @@
                 <br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" 
                     onclick="btnAdd_Click" />
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80" onclick="btnEdit_Click" 
-                     />
                 <br />
                 <br />
                 <div style="height: 300px; overflow: scroll;">

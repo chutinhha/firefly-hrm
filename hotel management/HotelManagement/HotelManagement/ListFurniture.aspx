@@ -166,7 +166,6 @@
                 <br />
                 <br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="80" OnClick="btnEdit_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClick="btnDelete_Click" />
                 <asp:Button ID="btnMove" runat="server" Text="Move" Width="80" OnClick="btnMove_Click" />
                 <asp:Button ID="btnRequest" runat="server" Text="Request Furniture" 
@@ -266,7 +265,6 @@
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSave" />
             <asp:PostBackTrigger ControlID="btnAdd" />
-            <asp:PostBackTrigger ControlID="btnEdit" />
             <asp:PostBackTrigger ControlID="btnEditSave" />
         </Triggers>
     </asp:UpdatePanel>

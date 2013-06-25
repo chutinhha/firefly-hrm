@@ -27,37 +27,75 @@ namespace HotelManagement
                 Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                 Response.Redirect("Home.aspx");
             }
-            Session["MenuID"] = "1";
+            Session["MenuID"] = "7";
+            Page.Title = "Manage News";
             lblSuccess.Text = "";
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
             this.confirmDelete = Message.ConfirmDelete;
-            if (pnlList.Visible == true)
+            string ID = Request.QueryString["ID"];
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
+                if (ID != null) {
+                    pnlList.Visible = false;
+                    pnlAdd.Visible = true;
+                    Class.News News = new Class.News(int.Parse(ID));
+                    txtTitle.Text = News.Title;
+                    CKEditor1.Text = News.NewsContent;
+                    Session["NewsID"] = ID;
+                }
+            }
+            if (ID == null)
+            {
+                if (pnlList.Visible == true)
                 {
-                    string condition = "";
-                    if (rdoAll.Checked == true) {
+                    if (!IsPostBack)
+                    {
+                        string condition = "";
+                        if (rdoAll.Checked == true)
+                        {
+                        }
+                        else if (rdoMonth.Checked == true)
+                        {
+                            condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                        }
+                        else if (rdoYear.Checked == true)
+                        {
+                            condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                        }
+                        condition = condition + " order by " + Message.Date + " desc";
+                        com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
                     }
-                    else if (rdoMonth.Checked == true) {
-                        condition = " where Date>='"+DateTime.Now.Year+"/"+DateTime.Now.Month+"/01'";
-                    }
-                    else if (rdoYear.Checked == true) {
-                        condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-                    }
-                    condition=condition+" order by "+Message.Date+" desc";
-                    com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
                 }
             }
         }
         protected void grdNew_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Cells[3].Text = DateTime.Parse(e.Row.Cells[3].Text).ToShortDateString();
             }
-            
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = "ListNew.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
@@ -145,6 +183,7 @@ namespace HotelManagement
             txtTitle.Text = "";
             pnlAdd.Visible = false;
             pnlList.Visible = true;
+            Response.Redirect("ListNew.aspx");
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -194,6 +233,7 @@ namespace HotelManagement
                 }
                 condition = condition + " order by " + Message.Date + " desc";
                 com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+                Response.Redirect("ListNew.aspx");
             }
         }
 

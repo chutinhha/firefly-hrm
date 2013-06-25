@@ -33,18 +33,51 @@ namespace HotelManagement
             this.confirmSave = Message.ConfirmSave;
             this.confirmDelete = Message.ConfirmDelete;
             Page.Title = "Manage Furniture Category";
+            string ID = Request.QueryString["ID"];
             if (!IsPostBack)
             {
-                com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description 
-                    + ",furType." + Message.Available + ",furType." + Message.Total+",(select SUM("+Message.Price
-                    +") from "+Message.FurnitureTable+" where "+Message.FurnitureType+"=fur."+Message.FurnitureType+") as 'Total Price'"
-                    , "", Message.FurnitureTable+" fur join "+Message.FurnitureTypeTable+" furType"
-                    +" on fur."+Message.FurnitureType+"=furType."+Message.FurnitureType+" order by fur."+Message.FurnitureType, grdCategory);
+                if (ID != null)
+                {
+                    pnlList.Visible = false;
+                    pnlAdd.Visible = true;
+                    DataTable dt = com.getData(Message.FurnitureTypeTable, Message.Description, " where "
+                        + Message.FurnitureType + "=" + ID);
+                    txtName.Text = dt.Rows[0][0].ToString();
+                    Session["CateID"] = ID;
+                }
+                else
+                {
+                    com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
+                        + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
+                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Price'"
+                        , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                }
             }
         }
         protected void grdCategory_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = "ManageFurnitureCategory.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
@@ -104,6 +137,7 @@ namespace HotelManagement
             txtName.Text = "";
             pnlList.Visible = true;
             pnlAdd.Visible = false;
+            Response.Redirect("ManageFurnitureCategory.aspx");
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -129,6 +163,7 @@ namespace HotelManagement
                     + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Price'"
                     , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                     + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                        Response.Redirect("ManageFurnitureCategory.aspx");
                     }
                     else {
                         lblError.Text = "There is another category with the same name exist!";
@@ -148,6 +183,7 @@ namespace HotelManagement
                     + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Price'"
                     , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                     + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                        Response.Redirect("ManageFurnitureCategory.aspx");
                     }
                     else
                     {
