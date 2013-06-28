@@ -217,6 +217,14 @@ namespace HotelManagement
                 else {
                     pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\"><a href=\"ListRoom.aspx\"><span>Room List</span></a></li>"));
                 }
+                if (Session["MenuID"].ToString() == "4")
+                {
+                    pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\" style=\"font-weight:bold;\"><a href=\"RecieveFurniture.aspx\"><span>Confirm receive furniture</span></a></li>"));
+                }
+                else
+                {
+                    pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\"><a href=\"RecieveFurniture.aspx\"><span>Confirm receive furniture</span></a></li>"));
+                }
             }
             else if (int.Parse(Session["UserLevel"].ToString()) >= 3) {
                 if (Session["MenuID"].ToString() == "1")
@@ -243,6 +251,10 @@ namespace HotelManagement
                         + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                         + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ManageFurnitureCategory.aspx\"><span>"
                         + "Manage Furniture Category</span></a></li>"));
+                    pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
+                        + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
+                        + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"RecieveFurniture.aspx\"><span>"
+                        + "Confirm receive furniture</span></a></li>"));
                 }
                 else
                 {
@@ -258,6 +270,10 @@ namespace HotelManagement
                         + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                         + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ManageFurnitureCategory.aspx\"><span>"
                         + "Manage Furniture Category</span></a></li>"));
+                    pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
+                        + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
+                        + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"RecieveFurniture.aspx\"><span>"
+                        + "Confirm receive furniture</span></a></li>"));
                 }
                 pnlMenu.Controls.Add(new LiteralControl("</ul></li>"));
                 if (Session["MenuID"].ToString() == "3")

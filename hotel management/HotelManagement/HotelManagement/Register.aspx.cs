@@ -38,17 +38,28 @@ namespace HotelManagement
             com.bindDataBlankColumn(Message.BuildingID + "," + Message.Address + ",romType."
                 + Message.Description, " where romType." + Message.Description + "<>'Warehouse'", Message.BuildingTable
                 + " rom join " + Message.BuildingTypeTable + " romType on rom." + Message.BuildingTypeID + "=romType."
-                + Message.BuildingTypeID,grdRoom,1,column);
-            dt = com.getData(Message.UserAccountTable, Message.RoomManage+","+Message.FullName, 
+                + Message.BuildingTypeID, grdRoom, 1, column);
+            dt = com.getData(Message.UserAccountTable, Message.RoomManage + "," + Message.FullName,
                 " where " + Message.UserLevel + "=2 and "
                 + Message.RoomManage + " is not NULL");
-            if (dt.Rows.Count > 0) {
-                for (int i = 0; i < dt.Rows.Count; i++) {
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
                     string[] roomMa = dt.Rows[i][0].ToString().Split('|');
-                    for (int j = 0; j < roomMa.Length - 1; j++) {
-                        for (int k = 0; k < grdRoom.Rows.Count; k++) {
-                            if (roomMa[j] == grdRoom.Rows[k].Cells[1].Text) {
-                                grdRoom.Rows[k].Cells[4].Text = grdRoom.Rows[k].Cells[4].Text + dt.Rows[i][1].ToString() + "<br>";
+                    for (int j = 0; j < roomMa.Length - 1; j++)
+                    {
+                        for (int k = 0; k < grdRoom.Rows.Count; k++)
+                        {
+                            if (roomMa[j] == grdRoom.Rows[k].Cells[1].Text)
+                            {
+                                if (grdRoom.Rows[k].Cells[4].Text == "&nbsp;") {
+                                    grdRoom.Rows[k].Cells[4].Text = dt.Rows[i][1].ToString() + "<br>";
+                                }
+                                else
+                                {
+                                    grdRoom.Rows[k].Cells[4].Text = grdRoom.Rows[k].Cells[4].Text + dt.Rows[i][1].ToString() + "<br>";
+                                }
                                 grdRoom.Rows[k].ForeColor = System.Drawing.ColorTranslator.FromHtml("#BB3438");
                                 grdRoom.Rows[k].Attributes.Add("style", "font-weight:bold");
                             }
@@ -56,6 +67,75 @@ namespace HotelManagement
                     }
                 }
             }
+            string ID = Request.QueryString["ID"];
+            if (!IsPostBack)
+            {
+                if (ID != null) {
+                    Class.User newUser = new Class.User(int.Parse(ID));
+                    txtUserName.Text = newUser.UserName;
+                    txtPassword.Text = newUser.Password;
+                    txtPhone.Text = newUser.PhoneNumber;
+                    txtAddress.Text = newUser.Address;
+                    txtMail.Text = newUser.Email;
+                    txtName.Text = newUser.FullName;
+                    ddlAccountType.SelectedIndex = newUser.UserLevel;
+                    if (newUser.UserLevel == 2) {
+                        pnlRoom.Visible = true;
+                        string[] building = newUser.RoomManage.Split('|');
+                        foreach (GridViewRow row in grdRoom.Rows)
+                        {
+                            CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                            for (int i = 0; i < building.Length - 1; i++)
+                            {
+                                if (building[i]==row.Cells[1].Text)
+                                {
+                                    cbSelected.Checked = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cbSelected.Checked = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (ID == null)
+            {
+                txtUserName.Enabled = false;
+                txtPassword.Enabled = false;
+            }
+            else {
+                txtUserName.Enabled = true;
+                txtPassword.Enabled = true;
+                if (ID != null)
+                {
+                    Class.User newUser = new Class.User(int.Parse(ID));
+                    if (newUser.UserLevel == 2)
+                    {
+                        pnlRoom.Visible = true;
+                        string[] building = newUser.RoomManage.Split('|');
+                        foreach (GridViewRow row in grdRoom.Rows)
+                        {
+                            CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                            for (int i = 0; i < building.Length - 1; i++)
+                            {
+                                if (building[i] == row.Cells[1].Text)
+                                {
+                                    cbSelected.Checked = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cbSelected.Checked = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             if (IsPostBack)
             {
                 txtPassword.Attributes["value"] = txtPassword.Text;
@@ -75,11 +155,24 @@ namespace HotelManagement
         {
             e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Attributes.Add("style", "width:350px");
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
         }
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
             lblSuccess.Text = "";
+            string ID = Request.QueryString["ID"];
             if (ddlAccountType.SelectedValue != "Please select")
             {
                 if (ddlAccountType.SelectedValue == "Building Manager") {
@@ -89,9 +182,16 @@ namespace HotelManagement
                     }
                     else
                     {
-                        DataTable dt = com.getData(Message.UserAccountTable, Message.UserName,
-                            " where " + Message.UserName + "='" + txtUserName.Text.Trim() + "'");
-                        if (dt.Rows.Count > 0)
+                        DataTable dt;
+                        if (ID == null)
+                        {
+                            dt = com.getData(Message.UserAccountTable, Message.UserName,
+                                " where " + Message.UserName + "='" + txtUserName.Text.Trim() + "'");
+                        }
+                        else {
+                            dt = null;
+                        }
+                        if (dt!=null && dt.Rows.Count > 0)
                         {
                             lblError.Text = "This user name already exist!";
                         }
@@ -103,30 +203,117 @@ namespace HotelManagement
                             }
                             else
                             {
-                                Class.User newUser = new Class.User();
+                                Class.User newUser;
+                                if (ID == null)
+                                {
+                                    newUser = new Class.User();
+                                }
+                                else
+                                {
+                                    newUser = new Class.User(int.Parse(ID));
+                                }
                                 newUser.Address = txtAddress.Text;
                                 newUser.Email = txtMail.Text;
                                 newUser.FullName = txtName.Text;
-                                newUser.Password = txtPassword.Text;
+                                if (ID == null)
+                                {
+                                    newUser.Password = txtPassword.Text;
+                                }
                                 newUser.PhoneNumber = txtPhone.Text;
                                 newUser.Status = true;
                                 newUser.UserName = txtUserName.Text.Trim();
-                                newUser.UserLevel = 2;
+                                newUser.UserLevel = ddlAccountType.SelectedIndex;
                                 bool isCheck = false;
                                 foreach (GridViewRow gr in grdRoom.Rows)
                                 {
                                     CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
                                     string checkedState = Request.Form[cb.UniqueID];
-                                    if (checkedState!=null)
+                                    if (checkedState != null)
                                     {
                                         isCheck = true;
-                                        newUser.RoomManage = newUser.RoomManage + gr.Cells[1].Text + "|";
+                                        if (newUser.RoomManage.Contains("|" + gr.Cells[1].Text + "|")
+                                            || (newUser.RoomManage.Contains(gr.Cells[1].Text + "|")
+                                            && newUser.RoomManage.IndexOf(gr.Cells[1].Text + "|") == 0)) { }
+                                        else
+                                        {
+                                            newUser.RoomManage = newUser.RoomManage + gr.Cells[1].Text + "|";
+                                        }
+                                    }
+                                    else {
+                                        if (newUser.RoomManage.Contains("|" + gr.Cells[1].Text + "|"))
+                                        {
+                                            newUser.RoomManage = newUser.RoomManage.Replace("|" + gr.Cells[1].Text+"|","|");
+                                        }
+                                        else if(newUser.RoomManage.Contains(gr.Cells[1].Text + "|")
+                                            && newUser.RoomManage.IndexOf(gr.Cells[1].Text + "|") == 0){
+                                                newUser.RoomManage = newUser.RoomManage.Substring(gr.Cells[1].Text.Length+1, newUser.RoomManage.Length - gr.Cells[1].Text.Length-1);
+                                        }
                                     }
                                 }
                                 if (isCheck == true)
                                 {
-                                    newUser.AddUser();
+                                    if (ID == null)
+                                    {
+                                        newUser.AddUser();
+                                    }
+                                    else
+                                    {
+                                        newUser.UpdateUser();
+                                    }
                                     lblSuccess.Text = "Successful";
+                                    string[] column = new string[1];
+                                    column[0] = "Current Manager";
+                                    dt = null;
+                                    com.bindDataBlankColumn(Message.BuildingID + "," + Message.Address + ",romType."
+                                        + Message.Description, " where romType." + Message.Description + "<>'Warehouse'", Message.BuildingTable
+                                        + " rom join " + Message.BuildingTypeTable + " romType on rom." + Message.BuildingTypeID + "=romType."
+                                        + Message.BuildingTypeID, grdRoom, 1, column);
+                                    dt = com.getData(Message.UserAccountTable, Message.RoomManage + "," + Message.FullName,
+                                        " where " + Message.UserLevel + "=2 and "
+                                        + Message.RoomManage + " is not NULL");
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        for (int i = 0; i < dt.Rows.Count; i++)
+                                        {
+                                            string[] roomMa = dt.Rows[i][0].ToString().Split('|');
+                                            for (int j = 0; j < roomMa.Length - 1; j++)
+                                            {
+                                                for (int k = 0; k < grdRoom.Rows.Count; k++)
+                                                {
+                                                    if (roomMa[j] == grdRoom.Rows[k].Cells[1].Text)
+                                                    {
+                                                        if (grdRoom.Rows[k].Cells[4].Text == "&nbsp;")
+                                                        {
+                                                            grdRoom.Rows[k].Cells[4].Text = dt.Rows[i][1].ToString() + "<br>";
+                                                        }
+                                                        else
+                                                        {
+                                                            grdRoom.Rows[k].Cells[4].Text = grdRoom.Rows[k].Cells[4].Text + dt.Rows[i][1].ToString() + "<br>";
+                                                        }
+                                                        grdRoom.Rows[k].ForeColor = System.Drawing.ColorTranslator.FromHtml("#BB3438");
+                                                        grdRoom.Rows[k].Attributes.Add("style", "font-weight:bold");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    string[] building = newUser.RoomManage.Split('|');
+                                    foreach (GridViewRow row in grdRoom.Rows)
+                                    {
+                                        CheckBox cbSelected = (CheckBox)row.FindControl("myCheckBox");
+                                        for (int i = 0; i < building.Length - 1; i++)
+                                        {
+                                            if (building[i] == row.Cells[1].Text)
+                                            {
+                                                cbSelected.Checked = true;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                cbSelected.Checked = false;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -140,9 +327,17 @@ namespace HotelManagement
                     }
                     else
                     {
-                        DataTable dt = com.getData(Message.UserAccountTable, Message.UserName,
-                            " where " + Message.UserName + "='" + txtUserName.Text.Trim() + "'");
-                        if (dt.Rows.Count > 0)
+                        DataTable dt;
+                        if (ID == null)
+                        {
+                            dt = com.getData(Message.UserAccountTable, Message.UserName,
+                                " where " + Message.UserName + "='" + txtUserName.Text.Trim() + "'");
+                        }
+                        else
+                        {
+                            dt = null;
+                        }
+                        if (dt != null && dt.Rows.Count > 0)
                         {
                             lblError.Text = "This user name already exist!";
                         }
@@ -154,11 +349,21 @@ namespace HotelManagement
                             }
                             else
                             {
-                                Class.User newUser = new Class.User();
+                                Class.User newUser;
+                                if (ID == null)
+                                {
+                                    newUser = new Class.User();
+                                }
+                                else {
+                                    newUser = new Class.User(int.Parse(ID));
+                                }
                                 newUser.Address = txtAddress.Text;
                                 newUser.Email = txtMail.Text;
                                 newUser.FullName = txtName.Text;
-                                newUser.Password = txtPassword.Text;
+                                if (ID == null)
+                                {
+                                    newUser.Password = txtPassword.Text;
+                                }
                                 newUser.PhoneNumber = txtPhone.Text;
                                 newUser.Status = true;
                                 newUser.UserName = txtUserName.Text.Trim();
@@ -170,9 +375,50 @@ namespace HotelManagement
                                 {
                                     newUser.UserLevel = 3;
                                 }
-                                newUser.AddUser();
+                                if (ID == null)
+                                {
+                                    newUser.AddUser();
+                                }
+                                else {
+                                    newUser.UpdateUser();
+                                }
                                 lblSuccess.Text = "Successful";
-                                Response.Redirect("ManageAccount.aspx");
+                                string[] column = new string[1];
+                                column[0] = "Current Manager";
+                                dt = null;
+                                com.bindDataBlankColumn(Message.BuildingID + "," + Message.Address + ",romType."
+                                    + Message.Description, " where romType." + Message.Description + "<>'Warehouse'", Message.BuildingTable
+                                    + " rom join " + Message.BuildingTypeTable + " romType on rom." + Message.BuildingTypeID + "=romType."
+                                    + Message.BuildingTypeID, grdRoom, 1, column);
+                                dt = com.getData(Message.UserAccountTable, Message.RoomManage + "," + Message.FullName,
+                                    " where " + Message.UserLevel + "=2 and "
+                                    + Message.RoomManage + " is not NULL");
+                                if (dt.Rows.Count > 0)
+                                {
+                                    for (int i = 0; i < dt.Rows.Count; i++)
+                                    {
+                                        string[] roomMa = dt.Rows[i][0].ToString().Split('|');
+                                        for (int j = 0; j < roomMa.Length - 1; j++)
+                                        {
+                                            for (int k = 0; k < grdRoom.Rows.Count; k++)
+                                            {
+                                                if (roomMa[j] == grdRoom.Rows[k].Cells[1].Text)
+                                                {
+                                                    if (grdRoom.Rows[k].Cells[4].Text == "&nbsp;")
+                                                    {
+                                                        grdRoom.Rows[k].Cells[4].Text = dt.Rows[i][1].ToString() + "<br>";
+                                                    }
+                                                    else
+                                                    {
+                                                        grdRoom.Rows[k].Cells[4].Text = grdRoom.Rows[k].Cells[4].Text + dt.Rows[i][1].ToString() + "<br>";
+                                                    }
+                                                    grdRoom.Rows[k].ForeColor = System.Drawing.ColorTranslator.FromHtml("#BB3438");
+                                                    grdRoom.Rows[k].Attributes.Add("style", "font-weight:bold");
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -186,7 +432,7 @@ namespace HotelManagement
         protected void myCheckBox_OnCheckedChanged(object sender, EventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
-            HiddenField1.Value = cb.Checked.ToString();
+            //HiddenField1.Value = cb.Checked.ToString();
         }
     }
 }

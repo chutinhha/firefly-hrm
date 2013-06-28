@@ -47,6 +47,7 @@ namespace HotelManagement
                 Panel1.Visible = false;
             }
             Session["MenuID"] = "2";
+            Page.Title = "Manage Furniture";
             lblSuccess.Text = "";
             lblError.Text = "";
             this.confirmSave = Message.ConfirmSave;
@@ -223,6 +224,7 @@ namespace HotelManagement
         protected void grdFurniture_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
             if (e.Row.RowIndex % 2 != 0)
@@ -247,6 +249,11 @@ namespace HotelManagement
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Class.Furniture newFurniture = new Class.Furniture(e.Row.Cells[1].Text);
+                if (newFurniture.TargetRoomID != "")
+                {
+                    e.Row.Cells[4].Text = "On moving to " + e.Row.Cells[4].Text;
+                }
                 string Location = "ListFurniture.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
@@ -1210,6 +1217,7 @@ namespace HotelManagement
                     {
                         isCheck = true;
                         Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
+                        newFurniture.CurrentBuilding = ddlTargetBuilding.SelectedValue;
                         if (btnConfirmMove.Text == "Move") {
                             newFurniture.MoveFurniture(int.Parse(ddlTargetRoom.SelectedValue), 1, Session["UserID"].ToString(),txtMoveReason.Text);
                         }
@@ -1225,19 +1233,13 @@ namespace HotelManagement
                 }
                 else
                 {
-                    if (btnConfirmMove.Text != "Move")
+                    DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                        + ">=3");
+                    for (int i = 0; i < email.Rows.Count; i++)
                     {
-                        DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
-                            + ">=3");
-                        for (int i = 0; i < email.Rows.Count; i++)
-                        {
-                            com.SendMail(email.Rows[i][0].ToString(), "Confirm move furniture from " + Session["FullName"], txtMoveReason.Text);
-                        }
-                        lblSuccess.Text = "Send email success!";
+                        com.SendMail(email.Rows[i][0].ToString(), "Confirm move furniture from " + Session["FullName"], txtMoveReason.Text);
                     }
-                    else {
-                        lblSuccess.Text = "Move success!";
-                    }
+                    lblSuccess.Text = "Send email success!";
                     pnlMove.Visible = false;
                     pnlList.Visible = true;
                     string buildingCondition = "";

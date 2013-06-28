@@ -53,6 +53,14 @@ namespace HotelManagement
                 e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
                 e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
             }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Location = "Register.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
+                for (int i = 1; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
+                }
+            }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {

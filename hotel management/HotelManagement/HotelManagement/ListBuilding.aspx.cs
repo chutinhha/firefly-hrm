@@ -360,11 +360,18 @@ namespace HotelManagement
                     Class.Building newBuilding = new Class.Building(gr.Cells[1].Text);
                     DataTable dt = com.getData(Message.FurnitureTable, "*", " where " + Message.CurrentBuilding
                         + "=" + newBuilding.BID + " and (" + Message.ApproveDelete + "<>1 or ApproveDelete is NULL)");
+                    DataTable dt1 = com.getData(Message.RoomTable, "*", " where " + Message.BuildingID + "="
+                        + newBuilding.BID);
                     if (dt.Rows.Count > 0) {
                         lblError.Text = lblError.Text + "Building " + newBuilding.Address + " can not be remove because it contain some furniture. Please remove these furniture first<br>";
-                    }else{
+                    }
+                    else if (dt1.Rows.Count > 0) {
+                        lblError.Text = lblError.Text + "Building " + newBuilding.Address + " can not be remove because it contain some room. Please remove these room first<br>";
+                    }
+                    else
+                    {
                         newBuilding.RemoveBuilding();
-                        lblSuccess.Text=lblSuccess.Text+ "Remove building "+newBuilding.Address+" success<br>";
+                        lblSuccess.Text = lblSuccess.Text + "Remove building " + newBuilding.Address + " success<br>";
                     }
                 }
             }
