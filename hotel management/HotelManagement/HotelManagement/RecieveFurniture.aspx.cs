@@ -99,7 +99,14 @@ namespace HotelManagement
                 {
                     com.updateTable(Message.FurnitureTable, Message.TargetRoomID + "=NULL where "
                         + Message.FurnitureID + "=" + newFurniture.FurID);
+                    content = content + grdData.Rows[i].Cells[1].Text+" has been successfully send to "+grdData.Rows[i].Cells[3].Text+"<br>";
                 }
+            }
+            DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                    + ">=3");
+            for (int i = 0; i < email.Rows.Count; i++)
+            {
+                com.SendMail(email.Rows[i][0].ToString(), "Confirm receive furniture from " + Session["FullName"], content);
             }
             grdData.DataSource = null;
             grdData.DataBind();
