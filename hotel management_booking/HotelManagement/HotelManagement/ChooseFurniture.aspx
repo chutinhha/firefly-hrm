@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ChooseFurniture.aspx.cs" Inherits="HotelManagement.ChooseFurniture" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -11,7 +12,7 @@
         </asp:Panel><br/>
         <asp:Label ID="lblComment" style="color:#1D8A0D;font-size:14pt;" runat="server" Text="Comment"></asp:Label>
         <br /><br />
-        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Width="100%" Height="150"></asp:TextBox>
+        <ckeditor:ckeditorcontrol id="txtComment" basepath="/ckeditor/" runat="server"></ckeditor:ckeditorcontrol>
         <br /><br /><asp:Button ID="btnSend" runat="server" Text="Send Request" 
             onclick="btnSend_Click" /><br /><br />
         <asp:Label ID="lblSuccess" runat="server" Text="" style="color:Green;"></asp:Label>

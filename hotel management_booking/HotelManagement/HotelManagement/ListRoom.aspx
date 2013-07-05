@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="ListRoom.aspx.cs" Inherits="HotelManagement.ListRoom" %>
 <%@ Register TagPrefix="CuteWebUI" Namespace="CuteWebUI" Assembly="CuteWebUI.AjaxUploader" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -137,8 +138,8 @@
                 <br />
                 
                 <span style="padding-left: 155px;"></span>
-                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="500"
-                    Height="100"></asp:TextBox>
+                <ckeditor:ckeditorcontrol id="txtDescription" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                 <br />
                 <br />
                 </asp:Panel>

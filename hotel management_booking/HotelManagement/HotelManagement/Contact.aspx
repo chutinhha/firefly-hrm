@@ -28,8 +28,8 @@
     &nbsp;<span style="font-weight:bold;">Message Subject:</span><br/>
     <asp:TextBox ID="txtSubject" runat="server" Width="400px"></asp:TextBox>
     <br/>
-    &nbsp;<span style="font-weight:bold;">Enter your Message:</span><br/>
-    <asp:TextBox ID="txtMessage" runat="server" Width="408px" Height="200px" TextMode="MultiLine"></asp:TextBox>    
+    &nbsp;<span style="font-weight:bold;">Enter your Message:</span><br/>  
+    <ckeditor:ckeditorcontrol id="txtMessage" basepath="/ckeditor/" runat="server"></ckeditor:ckeditorcontrol>
     <br/>
     &nbsp;<asp:CheckBox ID="chkEmail" runat="server" Text="E-mail a copy of this message to your own address." />
     <br/><br/>

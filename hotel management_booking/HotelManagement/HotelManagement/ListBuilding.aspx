@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="ListBuilding.aspx.cs" Inherits="HotelManagement.ListBuilding" %>
 <%@ Register TagPrefix="CuteWebUI" Namespace="CuteWebUI" Assembly="CuteWebUI.AjaxUploader" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -165,8 +166,8 @@
                 <asp:Label ID="lblDescription" style="font-weight:bold;" runat="server" Text="Description"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="500"
-                    Height="100"></asp:TextBox>
+                <ckeditor:ckeditorcontrol id="txtDescription" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                 <br />
                 <br />
                 <a style="color:Blue;" href="https://maps.google.com/?q=Ha%20Noi">Google Maps (Use middle mouse please!)</a>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="ListFurniture.aspx.cs" Inherits="HotelManagement.ListFurniture" %>
-
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -102,7 +102,8 @@
                 <asp:Label ID="lblDes" Style="font-weight: bold;" runat="server" Text="Description"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:TextBox ID="txtDes" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                <ckeditor:ckeditorcontrol id="txtDes" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                 <br />
                 <span style="color: Red">(*): Required</span>
                 <br />
@@ -218,7 +219,8 @@
                         Width="150px"></asp:Label>
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtMoveReason" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                    <ckeditor:ckeditorcontrol id="txtMoveReason" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                     <br />
                     <br />
                     <span style="padding-left: 155px;"></span>
@@ -234,7 +236,8 @@
                         Width="150px"></asp:Label>
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtReason" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                    <ckeditor:ckeditorcontrol id="txtReason" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                     <br />
                     <br />
                     <span style="padding-left: 155px;"></span>
@@ -249,7 +252,8 @@
                         Width="150px"></asp:Label>
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                    <ckeditor:ckeditorcontrol id="txtComment" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                     <br />
                     <br />
                     <span style="padding-left: 155px;"></span>
@@ -320,7 +324,8 @@
                 <asp:Label ID="lblEditDes" Style="font-weight: bold;" runat="server" Text="Description"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:TextBox ID="txtEditDes" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                <ckeditor:ckeditorcontrol id="txtEditDes" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                 <br />
                 <br />
                 <span style="padding-left: 155px;"></span>
