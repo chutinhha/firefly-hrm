@@ -31,11 +31,39 @@ namespace HotelManagement.Class
         CommonFunction com = new CommonFunction();
         public Customer() {
         }
+        public Customer(string Email)
+        {
+            DataTable NewCustomer = com.getData(Message.CustomerTable, "*", " where "
+                + Message.Email + "=" + com.ToValue(Email));
+            if (NewCustomer.Rows.Count > 0) {
+                CusID = NewCustomer.Rows[0][0].ToString();
+                FirstName = NewCustomer.Rows[0][1].ToString();
+                MiddleName = NewCustomer.Rows[0][2].ToString();
+                LastName = NewCustomer.Rows[0][3].ToString();
+                Gender = NewCustomer.Rows[0][4].ToString();
+                PhoneNumber = NewCustomer.Rows[0][5].ToString();
+                LastCheckIn = NewCustomer.Rows[0][6].ToString();
+                LastCheckOut = NewCustomer.Rows[0][7].ToString();
+                LastStay = NewCustomer.Rows[0][8].ToString();
+                LastRoom = NewCustomer.Rows[0][9].ToString();
+                CheckInDate = NewCustomer.Rows[0][10].ToString();
+                CheckOutDate = NewCustomer.Rows[0][11].ToString();
+                Stay = NewCustomer.Rows[0][12].ToString();
+                Discount = NewCustomer.Rows[0][13].ToString();
+                Prepaid = NewCustomer.Rows[0][14].ToString();
+                Remain = NewCustomer.Rows[0][15].ToString();
+                Total = NewCustomer.Rows[0][16].ToString();
+                Email = NewCustomer.Rows[0][17].ToString();
+                Status = NewCustomer.Rows[0][18].ToString();
+                Password = NewCustomer.Rows[0][19].ToString();
+            }
+        }
         public Customer(int CustomerID)
         {
             DataTable NewCustomer = com.getData(Message.CustomerTable, "*", " where "
                 + Message.CustomerID + "=" + CustomerID);
-            if (NewCustomer.Rows.Count > 0) {
+            if (NewCustomer.Rows.Count > 0)
+            {
                 CusID = NewCustomer.Rows[0][0].ToString();
                 FirstName = NewCustomer.Rows[0][1].ToString();
                 MiddleName = NewCustomer.Rows[0][2].ToString();

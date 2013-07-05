@@ -14,7 +14,7 @@ namespace HotelManagement
         {
             lblError.Text = "";
             lblSuccess.Text = "";
-            if (Session["UserLevel"] != null)
+            if (Session["UserLevel"] != null||Session["Email"]!=null)
             {
             }
             else
@@ -31,20 +31,45 @@ namespace HotelManagement
                 lblError.Text = "Please enter old,new and confirm password!";
             }
             else {
-                Class.User currentUser = new Class.User(int.Parse(Session["UserID"].ToString()));
-                if (com.CalculateMD5Hash(txtOld.Text.Trim()).ToLower() != currentUser.Password.ToLower())
+                if (Session["UserID"] != null)
                 {
-                    lblError.Text = "Your old password is not correct, please try again!";
+                    Class.User currentUser = new Class.User(int.Parse(Session["UserID"].ToString()));
+                    if (com.CalculateMD5Hash(txtOld.Text.Trim()).ToLower() != currentUser.Password.ToLower())
+                    {
+                        lblError.Text = "Your old password is not correct, please try again!";
+                    }
+                    else
+                    {
+                        if (txtNew.Text.Trim() != txtConfirm.Text.Trim())
+                        {
+                            lblError.Text = "Your new password and confirm password are not the same, please try again!";
+                        }
+                        else
+                        {
+                            currentUser.Password = txtNew.Text.Trim();
+                            currentUser.UpdateUser();
+                            lblSuccess.Text = "Success";
+                        }
+                    }
                 }
                 else {
-                    if (txtNew.Text.Trim() != txtConfirm.Text.Trim())
+                    Class.Customer currentUser = new Class.Customer(int.Parse(Session["CustomerID"].ToString()));
+                    if (com.CalculateMD5Hash(txtOld.Text.Trim()).ToLower() != currentUser.Password.ToLower())
                     {
-                        lblError.Text = "Your new password and confirm password are not the same, please try again!";
+                        lblError.Text = "Your old password is not correct, please try again!";
                     }
-                    else {
-                        currentUser.Password = txtNew.Text.Trim();
-                        currentUser.UpdateUser();
-                        lblSuccess.Text = "Success";
+                    else
+                    {
+                        if (txtNew.Text.Trim() != txtConfirm.Text.Trim())
+                        {
+                            lblError.Text = "Your new password and confirm password are not the same, please try again!";
+                        }
+                        else
+                        {
+                            currentUser.Password = txtNew.Text.Trim();
+                            currentUser.UpdateCustomer();
+                            lblSuccess.Text = "Success";
+                        }
                     }
                 }
             }

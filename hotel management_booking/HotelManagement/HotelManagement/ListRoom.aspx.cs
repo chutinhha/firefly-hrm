@@ -67,6 +67,12 @@ namespace HotelManagement
                     {
                         chkWareHouse.Checked = true;
                     }
+                    txtPrice.Text = newRoom.Price;
+                    ddlBathRoom.SelectedValue = newRoom.BathRoom;
+                    ddlBedRoom.SelectedValue = newRoom.BedRoom;
+                    txtArea.Text = newRoom.Area;
+                    txtDescription.Text = newRoom.Description;
+                    Session["Image"] = newRoom.Picture;
                 }
             }
             if (ID == null)
@@ -115,7 +121,7 @@ namespace HotelManagement
                             condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
                         }
                         com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                            + " as 'Room No',CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address,
+                            + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'"+",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address+",rom.Floor",
                             Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
                             + "=bui." + Message.BuildingID, grdRoom);
                     }
@@ -166,7 +172,7 @@ namespace HotelManagement
                 condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
             }
             com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                + " as 'Room No',CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address,
+                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address + ",rom.Floor",
                 Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
                 + "=bui." + Message.BuildingID, grdRoom);
         }
@@ -199,7 +205,7 @@ namespace HotelManagement
                 condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
             }
             com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                + " as 'Room No',CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address,
+                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address + ",rom.Floor",
                 Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
                 + "=bui." + Message.BuildingID, grdRoom);
         }
@@ -223,6 +229,7 @@ namespace HotelManagement
         protected void grdRoom_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Cells[2].Attributes.Add("style","width:30%");
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
             if (e.Row.RowIndex % 2 != 0)
@@ -236,13 +243,27 @@ namespace HotelManagement
                 e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
             }
             if(e.Row.RowType==DataControlRowType.DataRow){
-                if (e.Row.Cells[5].Text == "0")
+                if (e.Row.Cells[7].Text == "0")
                 {
-                    e.Row.Cells[5].Text = "No";
+                    e.Row.Cells[7].Text = "Yes";
+                }
+                else if (e.Row.Cells[7].Text == "1")
+                {
+                    e.Row.Cells[7].Text = "In Order";
                 }
                 else
                 {
-                    e.Row.Cells[5].Text = "Yes";
+                    e.Row.Cells[7].Text = "No";
+                }
+                if (e.Row.Cells[8].Text == "0")
+                {
+                    e.Row.Cells[8].Text = "No";
+                }
+                else
+                {
+                    e.Row.Cells[8].Text = "Yes";
+                    e.Row.ForeColor = System.Drawing.ColorTranslator.FromHtml("#BB3438");
+                    e.Row.Attributes.Add("style", "font-weight:bold");
                 }
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -349,40 +370,90 @@ namespace HotelManagement
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Class.Room newRoom;
-            if (Session["RID"] == null)
+            if (txtRoomNo.Text.Trim() == "") {
+                lblError.Text = "Some required field are missing!";
+            }
+            else
             {
-                newRoom = new Class.Room();
-                newRoom.BuildingID = ddlBuilding.SelectedValue;
+                if (chkWareHouse.Checked == false && txtPrice.Text.Trim() == "") {
+                    lblError.Text = "Some required field are missing!";
+                }
+                else
+                {
+                    Class.Room newRoom;
+                    if (Session["RID"] == null)
+                    {
+                        newRoom = new Class.Room();
+                        newRoom.BuildingID = ddlBuilding.SelectedValue;
+                    }
+                    else
+                    {
+                        newRoom = new Class.Room(Session["RID"].ToString());
+                    }
+
+                    newRoom.Floor = ddlFloor.SelectedValue;
+                    newRoom.RoomNo = txtRoomNo.Text;
+                    if (chkWareHouse.Checked)
+                    {
+                        newRoom.IsWareHouse = "1";
+                    }
+                    else
+                    {
+                        newRoom.IsWareHouse = "0";
+                        newRoom.Price = txtPrice.Text;
+                        newRoom.Area = txtArea.Text;
+                        if (ddlBathRoom.SelectedIndex != 0)
+                        {
+                            newRoom.BathRoom = ddlBathRoom.SelectedValue;
+                        }
+                        if (ddlBedRoom.SelectedIndex != 0)
+                        {
+                            newRoom.BedRoom = ddlBedRoom.SelectedValue;
+                        }
+                        newRoom.Description = txtDescription.Text.Trim();
+                        if (Session["Image"] != null) {
+                            newRoom.Picture = Session["Image"].ToString();
+                        }
+                    }
+                    if (Session["RID"] == null)
+                    {
+                        DataTable dt = com.getData(Message.RoomTable, "*", " where " + Message.BuildingID
+                            + "=" + newRoom.BuildingID + " and " + Message.RoomNo + "=" + newRoom.RoomNo);
+                        if (dt.Rows.Count > 0) {
+                            lblError.Text = "This room no is already exist! Please try again!";
+                        }
+                        else
+                        {
+                            newRoom.AddRoom();
+                            ddlBuilding.SelectedIndex = 0;
+                            ddlFloor.Items.Clear();
+                            ddlFloor.Items.Add("Please select");
+                            txtRoomNo.Text = "";
+                            chkWareHouse.Checked = false;
+                            lblSuccess.Text = "Success";
+                            Session.Remove("RID");
+                            Response.Redirect("ListRoom.aspx");
+                        }
+                    }
+                    else
+                    {
+                        DataTable dt = com.getData(Message.RoomTable, "*", " where " + Message.BuildingID
+                            + "=" + newRoom.BuildingID + " and " + Message.RoomNo + "=" + newRoom.RoomNo
+                            +" and "+Message.RoomID+"<>"+newRoom.RoomID);
+                        if (dt.Rows.Count > 0)
+                        {
+                            lblError.Text = "This room no is already exist! Please try again!";
+                        }
+                        else
+                        {
+                            newRoom.UpdateRoom();
+                            lblSuccess.Text = "Success";
+                            Session.Remove("RID");
+                            Response.Redirect("ListRoom.aspx");
+                        }
+                    }
+                }
             }
-            else {
-                newRoom = new Class.Room(Session["RID"].ToString());
-            }
-            
-            newRoom.Floor = ddlFloor.SelectedValue;
-            newRoom.RoomNo = txtRoomNo.Text;
-            if (chkWareHouse.Checked)
-            {
-                newRoom.IsWareHouse = "1";
-            }
-            else {
-                newRoom.IsWareHouse = "0";
-            }
-            if (Session["RID"] == null)
-            {
-                newRoom.AddRoom();
-                ddlBuilding.SelectedIndex = 0;
-                ddlFloor.Items.Clear();
-                ddlFloor.Items.Add("Please select");
-                txtRoomNo.Text = "";
-                chkWareHouse.Checked = false;
-            }
-            else {
-                newRoom.UpdateRoom();
-            }
-            lblSuccess.Text = "Success";
-            Session.Remove("RID");
-            Response.Redirect("ListRoom.aspx");
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -492,9 +563,20 @@ namespace HotelManagement
                 condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
             }
             com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                + " as 'Room No',CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address,
+                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address + ",rom.Floor",
                 Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
                 + "=bui." + Message.BuildingID, grdRoom);
+        }
+
+        protected void chkWareHouse_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkWareHouse.Checked == true)
+            {
+                Panel1.Visible = false;
+            }
+            else {
+                Panel1.Visible = true;
+            }
         }
     }
 }

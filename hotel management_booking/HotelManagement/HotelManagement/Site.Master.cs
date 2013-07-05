@@ -21,14 +21,32 @@ namespace HotelManagement
                 btnLogin.Text = "Logout";
                 lblLogin.Text = "Hello, "+Session["FullName"];
                 btnChange.Visible = true;
+                Session.Remove("CustomerID");
+                Session.Remove("Email");
+                Session.Remove("LastName");
             }
             else {
-                txtPassword.Visible = true;
-                btnChange.Visible = false;
-                txtUser.Visible = true;
-                lbtnForget.Visible = true;
-                btnLogin.Text = "Login";
-                lblLogin.Text = "Login:";
+                if (Session["CustomerID"] != null) {
+                    txtPassword.Visible = false;
+                    txtUser.Visible = false;
+                    lbtnForget.Visible = false;
+                    btnLogin.Text = "Logout";
+                    lblLogin.Text = "Hello, " + Session["LastName"];
+                    btnChange.Visible = true;
+                    Session.Remove("UserName");
+                    Session.Remove("UserID");
+                    Session.Remove("UserLevel");
+                    Session.Remove("FullName");
+                }
+                else
+                {
+                    txtPassword.Visible = true;
+                    btnChange.Visible = false;
+                    txtUser.Visible = true;
+                    lbtnForget.Visible = true;
+                    btnLogin.Text = "Login";
+                    lblLogin.Text = "Login:";
+                }
                 if (!IsPostBack) {
                     txtUser.Text = "";
                     txtPassword.Text = "";
@@ -361,6 +379,23 @@ namespace HotelManagement
                     Class.User currentUser = new Class.User(txtUser.Text.Trim());
                     if (currentUser.FullName == null)
                     {
+                        Class.Customer currentCustomer = new Class.Customer(txtUser.Text.Trim());
+                        if (currentCustomer.FirstName == null)
+                        { }
+                        else {
+                            if (currentCustomer.Password.ToUpper() == com.CalculateMD5Hash(txtPassword.Text.Trim()).ToUpper())
+                            {
+                                Session["CustomerID"] = currentCustomer.CusID;
+                                Session["Email"] = currentCustomer.Email;
+                                Session["LastName"] = currentCustomer.LastName;
+                                lblLogin.Text = "Hello, " + currentCustomer.LastName;
+                                txtPassword.Visible = false;
+                                txtUser.Visible = false;
+                                btnLogin.Text = "Logout";
+                                btnChange.Visible = true;
+                                Response.Redirect("Home.aspx");
+                            }
+                        }
                     }
                     else
                     {
@@ -385,6 +420,9 @@ namespace HotelManagement
                 Session.Remove("UserName");
                 Session.Remove("UserLevel");
                 Session.Remove("FullName");
+                Session.Remove("CustomerID");
+                Session.Remove("Email");
+                Session.Remove("LastName");
                 lblLogin.Text = "Login:";
                 txtPassword.Visible = true;
                 txtUser.Visible = true;

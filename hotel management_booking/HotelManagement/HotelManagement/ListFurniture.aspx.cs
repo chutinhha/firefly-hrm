@@ -106,7 +106,7 @@ namespace HotelManagement
                             + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
                             + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
                             + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
-                            + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Price'"
+                            + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Value'"
                             , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                             + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
                         lblCategory.Text = "Show Category Statistic";
@@ -1375,7 +1375,7 @@ namespace HotelManagement
                     + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
                     + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
                     + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Price'"
+                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Value'"
                     , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                     + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
                 lblCategory.Text = "Hide Category Statistic";

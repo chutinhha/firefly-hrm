@@ -49,7 +49,7 @@ namespace HotelManagement
                 {
                     com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
                         + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
-                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Price'"
+                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
                         , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                         + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
                 }
@@ -160,7 +160,7 @@ namespace HotelManagement
                         pnlList.Visible = true;
                         com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
                     + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Price'"
+                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
                     , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                     + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
                         Response.Redirect("ManageFurnitureCategory.aspx");
@@ -180,7 +180,7 @@ namespace HotelManagement
                         pnlList.Visible = true;
                         com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
                     + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Price'"
+                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
                     , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                     + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
                         Response.Redirect("ManageFurnitureCategory.aspx");

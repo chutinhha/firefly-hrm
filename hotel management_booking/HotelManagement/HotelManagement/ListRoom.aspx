@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="ListRoom.aspx.cs" Inherits="HotelManagement.ListRoom" %>
-
+<%@ Register TagPrefix="CuteWebUI" Namespace="CuteWebUI" Assembly="CuteWebUI.AjaxUploader" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -26,6 +26,35 @@
             }
         }
     </script>
+    <script runat="server">
+        void Uploader_FileUploaded(object sender, UploaderEventArgs args)
+        {
+            if (!args.FileName.Contains(".jpg") &&
+                !args.FileName.Contains(".jpeg") &&
+                !args.FileName.Contains(".bmp") &&
+                !args.FileName.Contains(".png") &&
+                !args.FileName.Contains(".gif") &&
+                !args.FileName.Contains(".tif") &&
+                !args.FileName.Contains(".dib"))
+            {
+                lblError.Text = "Only accept jpg,jpeg,png,bmp,gif,tif and dib file type!";
+            }
+            else
+            {
+                //Copies the uploaded file to a new location.
+                args.CopyTo(HttpContext.Current.Server.MapPath("~/Images/") + args.FileName);
+                
+                if (Session["Image"] == null)
+                {
+                    Session["Image"] = args.FileName + "|";
+                }
+                else
+                {
+                    Session["Image"] = Session["Image"] + args.FileName + "|";
+                }
+            }
+        }
+   </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -52,9 +81,67 @@
                 <br />
                 <br />
                 <span style="padding-left: 150px;"></span>
-                <asp:CheckBox ID="chkWareHouse" runat="server" Text="Room is warehouse" />
+                <asp:CheckBox ID="chkWareHouse" runat="server" Text="Room is warehouse" 
+                    AutoPostBack="True" oncheckedchanged="chkWareHouse_CheckedChanged" />
                 <br />
                 <br />
+                <asp:Panel ID="Panel1" runat="server">
+                
+                <asp:Label ID="lblPrice" Style="font-weight: bold;" runat="server" Text="Price"
+                    Width="150"></asp:Label>
+                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                &nbsp;<span style="color: Red">(*)</span>
+                <br />
+                <br />
+                <asp:Label ID="lblBedRoom" style="font-weight:bold;" runat="server" Text="Bed Room" Width="150"></asp:Label>
+                <asp:DropDownList ID="ddlBedRoom" runat="server" Width="215px">
+                    <asp:ListItem Selected="True">Please select</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="1">1</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="2">2</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="3">3</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="4">4</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="5">5</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="6">6</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="7">7</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="8">8</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="9">9</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="10">10</asp:ListItem>
+                </asp:DropDownList>
+                <br />
+                <br />
+                <asp:Label ID="lblBathRoom" style="font-weight:bold;" runat="server" Text="Bath Room" Width="150"></asp:Label>
+                <asp:DropDownList ID="ddlBathRoom" runat="server" Width="215px">
+                    <asp:ListItem Selected="True">Please select</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="1">1</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="2">2</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="3">3</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="4">4</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="5">5</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="6">6</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="7">7</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="8">8</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="9">9</asp:ListItem>
+                    <asp:ListItem Selected="False" Value="10">10</asp:ListItem>
+                </asp:DropDownList>
+                <br />
+                <br />
+                <asp:Label ID="lblArea" style="font-weight:bold;" runat="server" Text="Area" Width="150"></asp:Label>
+                <asp:TextBox ID="txtArea" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <br />
+                <br />
+                <asp:Label ID="lblPicture" style="font-weight:bold;" runat="server" Text="Picture" Width="150"></asp:Label>
+                <CuteWebUI:Uploader id="fulPicture" runat="server" MultipleFilesUpload="true" OnFileUploaded="Uploader_FileUploaded" InsertText="Choose pictures" /> 
+                <br />
+                <br />
+                <asp:Label ID="lblDescription" style="font-weight:bold;" runat="server" Text="Description"></asp:Label>
+                <br />
+                
+                <span style="padding-left: 155px;"></span>
+                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="500"
+                    Height="100"></asp:TextBox>
+                <br />
+                <br />
+                </asp:Panel>
                 <span style="padding-left: 155px;"></span>
                 <asp:Button ID="btnSave" runat="server" Text="Save" OnClientClick="return ConfirmOnSave();"
                     Width="80px" OnClick="btnSave_Click" />

@@ -67,6 +67,7 @@
     <Content Include="AddNews.aspx" />
     <Content Include="ApproveMove.aspx" />
     <Content Include="ApproveRemove.aspx" />
+    <Content Include="Booking.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ChooseFurniture.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
@@ -1157,6 +1158,13 @@
     </Compile>
     <Compile Include="ApproveRemove.aspx.designer.cs">
       <DependentUpon>ApproveRemove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Booking.aspx.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Booking.aspx.designer.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
