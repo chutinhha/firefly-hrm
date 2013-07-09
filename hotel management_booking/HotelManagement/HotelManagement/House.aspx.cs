@@ -39,7 +39,14 @@ namespace HotelManagement
                 pnlContent.Controls.Add(new LiteralControl("<table width=\"100%\"><tr><td width=\"65%\" style=\"border:none;\">"));
                 for (int i = 0; i < pictures.Length; i++)
                 {
-                    pnlContent.Controls.Add(new LiteralControl("<img width=\"95%\" src=Images/" + pictures[i] + ">"));
+                    if (pictures[i].Trim() != "")
+                    {
+                        pnlContent.Controls.Add(new LiteralControl("<img width=\"95%\" src=Images/" + pictures[i] + ">"));
+                    }
+                }
+                if (pictures.Length == 1 && pictures[0].Trim() == "")
+                {
+                    pnlContent.Controls.Add(new LiteralControl("<img width=\"300px\" src=\"/Images/noimage.jpg\">"));
                 }
                 pnlContent.Controls.Add(new LiteralControl("</td><td style=\"vertical-align:top;border:none;\"><table cellspacing=\"0\" cellpadding=\"0\" style=\"border:1px solid #ccc;width:100%\"><tr>"));
                 pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Type</td><td>" + currentBuilding.GetBuildingType() + "</td></tr><tr>"));
@@ -79,7 +86,7 @@ namespace HotelManagement
                 pnlContent.Controls.Add(new LiteralControl("<br><div><b>Services:</b> Security, Housekeeping, Internet ADSL, Cable TV, Telephone...</div>"));
                 pnlContent.Controls.Add(new LiteralControl("<br><div><b>Furnishing:</b> Fully furnished</div>"));
                 DataTable furniture = currentBuilding.getFurniture();
-                pnlContent2.Controls.Add(new LiteralControl("<br><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><th>Name</th><th>Description</th>"
+                pnlContent2.Controls.Add(new LiteralControl("<br><div style=\"height: 300px; overflow: scroll;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><th>Name</th><th>Description</th>"
                     + "<th>Made In</th><th>Number</th><th>Picture</th></tr>"));
                 for (int i = 0; i < furniture.Rows.Count; i++)
                 {
@@ -97,7 +104,7 @@ namespace HotelManagement
                     }
                     pnlContent2.Controls.Add(new LiteralControl("</tr>"));
                 }
-                pnlContent2.Controls.Add(new LiteralControl("</tr></table>"));
+                pnlContent2.Controls.Add(new LiteralControl("</tr></table></div>"));
                 btnDetail.Visible = true;
                 btnBack.Visible = true;
                 btnChooseFur.Visible = true;

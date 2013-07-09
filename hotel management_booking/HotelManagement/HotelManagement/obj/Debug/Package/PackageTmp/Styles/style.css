@@ -12,7 +12,7 @@ body {
 	height:100%;
 }
 form {margin: 0px;padding: 0px;}
-table {padding: 0px;margin: 0px;}
+table {padding: 0px;margin: 0px;border-collapse: collapse;}
 tr {padding: 0px;margin: 0px;}
 td {padding: 0px;margin: 0px;}
 a{outline: none;color: #4d4d4d;}
@@ -47,7 +47,19 @@ strong,b {font-weight:bold;}
 	padding:0px 0px 10px 0px;
 }
 .clearfix {display: block;width: 100%;clear:both;height:0px;line-height:0px;font-size:0px;}
-a.readon {display:block;clear:both;	float:right;}
+a.readon 
+{
+    display:block;
+    background:url(../images/dvd-bg-readon3.jpg) no-repeat 0px 3px !important;
+	float:right !important;
+	height:23px;
+	width:67px;
+	font-size:11px;
+	padding:0px 0px 0px 11px;
+	margin:0px 0px 23px 0px;
+	color:#fff !important;
+	font-weight:bold !important;    
+}
 #left1 a.readon,#user1 a.readon,#user2 a.readon,#user3 a.readon {
 	background:url(../images/dvd-bg-readon3.jpg) no-repeat 0px 3px;
 	height:23px;
@@ -70,7 +82,7 @@ div.search_house a.readon {
 	width:67px;
 	font-size:11px;
 	padding:0px 0px 0px 11px;
-	*margin:0px 0px 23px 0px;
+	margin:0px 0px 23px 0px;
 	color:#fff !important;
 	font-weight:bold !important;
 }
@@ -473,13 +485,13 @@ div.clr {
 #mainnav ul ul{
 	margin:0px;
 	padding:0px;
-	width:150px;
+	width:170px;
 }
 #mainnav ul li {
 	float:left;
 	list-style:none;
 	margin:0px;
-	padding:5px 33px 2px 33px;
+	padding:5px 30px 2px 30px;
 	position:relative;
 	height:31px;
 	*height:34px;
@@ -502,7 +514,7 @@ div.clr {
 	height:18px;
 	clear:both;
 	padding:5px 15px 5px 30px;
-	width:105px;
+	width:170px;
 	border-top:1px solid #fff;
 	text-align:left;
 	z-index:999;
@@ -593,6 +605,17 @@ input[type="text"]
     padding: 4px 6px;
     height: 16px;
 }
+input[type="email"]
+{
+    background-color: #FFFFFF;
+    border: 1px solid #D2D1D1;
+    border-radius: 3px 3px 3px 3px;
+    color: #5D5D5D;
+    font-size: 13px;
+    outline: medium none;
+    padding: 4px 6px;
+    height: 16px;
+}
 input[type="password"]
 {
     background-color: #FFFFFF;
@@ -604,10 +627,64 @@ input[type="password"]
     padding: 4px 6px;
     height: 16px;
 }
+input[type="submit"]
+{
+    background-color:#034569;
+    color:white;
+    border:none;
+    height:25px;
+}
 select
 {
     border: medium none;
     border-radius: 2px 2px 2px 2px;
     box-shadow: 0 1px 2px #CCCCCC inset;
     padding: 4px;    
+}
+.WaterMarkedTextBox
+{
+	border-right: #ccccff thin solid;
+	border-top: #ccccff thin solid;
+	border-left: #ccccff thin solid;
+	border-bottom: #ccccff thin solid;
+	color: gray;
+	display: inline;
+	background: AliceBlue;
+	visibility: visible;
+}
+.NormalTextBox
+{
+    border-right: #ccccff thin solid;
+    border-top: #ccccff thin solid;
+    border-left: #ccccff thin solid;
+    border-bottom: #ccccff thin solid;
+    color: black;
+    display: inline;
+    background: #ffffff;
+    visibility: visible;
+}
+.table table tr th 
+{
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: #005496;
+    text-transform: uppercase;
+    background: url(/Images/bg_title_table.png) repeat-x;height: 30px;
+}
+.table table tr td
+{
+    border: 1px solid #ccc;
+    padding:5px;
+}
+.firstColumn
+{
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: #005496;
+    text-transform: uppercase;
+    background: url(/Images/bg_title_table.png) repeat-x;height: 30px;
+    font-weight:bold;
+}
+textarea {
+    resize: none;
 }

@@ -1021,6 +1021,7 @@
     <Content Include="Rental.aspx" />
     <Content Include="RequestFurniture.aspx" />
     <Content Include="ResetPassword.aspx" />
+    <Content Include="Room.aspx" />
     <Content Include="Scripts\caption.js" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\ImageSlider\generic.css" />
@@ -1327,6 +1328,13 @@
     </Compile>
     <Compile Include="ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Room.aspx.cs">
+      <DependentUpon>Room.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Room.aspx.designer.cs">
+      <DependentUpon>Room.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

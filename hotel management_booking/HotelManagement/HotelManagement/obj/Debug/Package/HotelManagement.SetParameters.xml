@@ -2,4 +2,5 @@
 <parameters>
   <setParameter name="IIS Web Application Name" value="Default Web Site/HotelManagement_deploy" />
   <setParameter name="ApplicationServices-Web.config Connection String" value="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true" />
+  <setParameter name="DavidDucHotelConnectionString-Web.config Connection String" value="Data Source=ANHTUNG;Initial Catalog=DavidDucHotel;Integrated Security=True" />
 </parameters>

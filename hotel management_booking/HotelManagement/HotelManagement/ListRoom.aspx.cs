@@ -120,10 +120,12 @@ namespace HotelManagement
                         {
                             condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
                         }
-                        com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                            + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'"+",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address+",rom.Floor",
+                        string[] column = new string[1];
+                        column[0] = "Detail";
+                        com.bindDataBlankColumn(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
+                            + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'"+",CAST(IsWareHouse as varchar(MAX)) as 'Is WH'", condition + " order by bui." + Message.Address+",rom.Floor",
                             Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
-                            + "=bui." + Message.BuildingID, grdRoom);
+                            + "=bui." + Message.BuildingID, grdRoom,1,column);
                     }
                 }
             }
@@ -171,10 +173,12 @@ namespace HotelManagement
             {
                 condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
             }
-            com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address + ",rom.Floor",
+            string[] column = new string[1];
+            column[0] = "Detail";
+            com.bindDataBlankColumn(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
+                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is WH'", condition + " order by bui." + Message.Address + ",rom.Floor",
                 Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
-                + "=bui." + Message.BuildingID, grdRoom);
+                + "=bui." + Message.BuildingID, grdRoom,1,column);
         }
 
         protected void ddlRoomType_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,10 +208,12 @@ namespace HotelManagement
             {
                 condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
             }
-            com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address + ",rom.Floor",
+            string[] column = new string[1];
+            column[0] = "Detail";
+            com.bindDataBlankColumn(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
+                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is WH'", condition + " order by bui." + Message.Address + ",rom.Floor",
                 Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
-                + "=bui." + Message.BuildingID, grdRoom);
+                + "=bui." + Message.BuildingID, grdRoom, 1, column);
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
@@ -230,6 +236,7 @@ namespace HotelManagement
         {
             e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Attributes.Add("style","width:30%");
+            e.Row.Cells[9].Attributes.Add("style", "width:70px;");
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
             if (e.Row.RowIndex % 2 != 0)
@@ -265,6 +272,7 @@ namespace HotelManagement
                     e.Row.ForeColor = System.Drawing.ColorTranslator.FromHtml("#BB3438");
                     e.Row.Attributes.Add("style", "font-weight:bold");
                 }
+                e.Row.Cells[9].Text = "<a style=\"color:Blue;\" target=\"_blank\" href=\"Room.aspx?ID=" + e.Row.Cells[1].Text + "\">Click to see room details!</a>";
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -562,10 +570,12 @@ namespace HotelManagement
             {
                 condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
             }
-            com.bindData(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
-                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is Warehouse'", condition + " order by bui." + Message.Address + ",rom.Floor",
+            string[] column = new string[1];
+            column[0] = "Detail";
+            com.bindDataBlankColumn(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
+                + " as 'Room No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is WH'", condition + " order by bui." + Message.Address + ",rom.Floor",
                 Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
-                + "=bui." + Message.BuildingID, grdRoom);
+                + "=bui." + Message.BuildingID, grdRoom, 1, column);
         }
 
         protected void chkWareHouse_CheckedChanged(object sender, EventArgs e)

@@ -71,5 +71,30 @@ namespace HotelManagement.Class
             com.updateTable(Message.RoomTable, Message.Status + "='3' where " + Message.RoomID
                 + "=" + RoomID);
         }
+        public string isAvailable()
+        {
+            if (Status == "0")
+            {
+                return "Yes";
+            }
+            else
+            {
+                return "No";
+            }
+        }
+        public DataTable getFurniture()
+        {
+            DataTable dt = com.getData(Message.FurnitureTable, Message.Name + "," + Message.Description
+                + "," + Message.MadeIn + "," + Message.NumberInCollection + "," + Message.Picture, " where "
+                + Message.CurrentRoom + "=" + RoomID);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i][1].ToString() == "")
+                {
+                    dt.Rows[i][1] = "No description";
+                }
+            }
+            return dt;
+        }
     }
 }

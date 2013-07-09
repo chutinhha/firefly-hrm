@@ -68,7 +68,7 @@
                                     width="288"></a><p>
                                         &nbsp;</p>
                             <p>
-                                Please visit <a class="readon" href="http://www.davidducdecor.com/" target="_blank">
+                                Please visit <a href="http://www.davidducdecor.com/" target="_blank">
                                     www.davidducdecor.com</a>
                             </p>
                         </div>
