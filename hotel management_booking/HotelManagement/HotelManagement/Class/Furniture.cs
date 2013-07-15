@@ -110,7 +110,7 @@ namespace HotelManagement.Class
             {
                 DataTable dt = com.getData(Message.RoomTable, Message.BuildingID, " where " + Message.RoomID
                     + "=" + TargetRoom);
-                com.updateTable(Message.Furniture,Message.CurrentRoom+"="+TargetRoom+","+ Message.TargetRoomID + "='" + TargetRoom + "'," +
+                com.updateTable(Message.Furniture,Message.CurrentRoom+"="+TargetRoom+","+ Message.TargetRoomID + "=NULL," +
                     Message.CurrentBuilding+"="+CurrentBuilding+","+
                     Message.ApproveMove + "=NULL where " + Message.FurnitureID + "=" + FurID);
                 if (reason != "")

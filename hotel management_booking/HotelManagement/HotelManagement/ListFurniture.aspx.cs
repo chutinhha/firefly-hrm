@@ -38,6 +38,10 @@ namespace HotelManagement
                     lblCategory.Visible = true;
                 }
                 Panel1.Visible = true;
+                btnDelete.Text = "Request Remove";
+                btnMove.Text = "Request Move";
+                btnDelete.Width = 120;
+                btnMove.Width = 120;
             }
             else {
                 btnAdd.Visible = true;
@@ -45,6 +49,10 @@ namespace HotelManagement
                 grdCategory.Visible = false;
                 lblCategory.Visible = false;
                 Panel1.Visible = false;
+                btnDelete.Text = "Remove";
+                btnMove.Text = "Move";
+                btnDelete.Width = 80;
+                btnMove.Width = 80;
             }
             Session["MenuID"] = "2";
             Page.Title = "Manage Furniture";
@@ -988,6 +996,15 @@ namespace HotelManagement
                 {
                     isCheck = true;
                     pnlDelete.Visible = true;
+                    if (Session["UserLevel"].ToString() == "2")
+                    {
+                        btnConfirmDelete.Text = "Send Request Email";
+                        btnConfirmDelete.Width = 150;
+                    }
+                    else {
+                        btnConfirmDelete.Text = "Remove";
+                        btnConfirmDelete.Width = 80;
+                    }
                     break;
                 }
             }
@@ -1014,7 +1031,13 @@ namespace HotelManagement
                 {
                     isCheck = true;
                     Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
-                    newFurniture.RemoveFurniture(0);
+                    if (Session["UserLevel"].ToString() == "2")
+                    {
+                        newFurniture.RemoveFurniture(0);
+                    }
+                    else {
+                        newFurniture.RemoveFurniture(1);
+                    }
                 }
             }
             if (isCheck == false)
@@ -1120,8 +1143,8 @@ namespace HotelManagement
                         +"="+newFurniture.CurrentRoom);
                     if (Session["UserLevel"].ToString() == "2")
                     {
-                        btnConfirmMove.Text = "Move";
-                        btnConfirmMove.Width = 80;
+                        btnConfirmMove.Text = "Send Email Request";
+                        btnConfirmMove.Width = 150;
                         //Get building list
                         DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
                             + Message.UserID + "=" + Session["UserID"]);
@@ -1141,6 +1164,8 @@ namespace HotelManagement
                     }
                     else
                     {
+                        btnConfirmMove.Text = "Move";
+                        btnConfirmMove.Width = 80;
                         com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlTargetBuilding, "", true, "Please select");
                     }
                     ddlTargetRoom.Items.Clear();
@@ -1161,21 +1186,8 @@ namespace HotelManagement
                 Class.User newUser = new Class.User(int.Parse(Session["UserID"].ToString()));
                 if (Session["UserLevel"].ToString() == "2")
                 {
-                    string[] buildingManage = newUser.RoomManage.Split('|');
-                    for (int i = 0; i < buildingManage.Length; i++)
-                    {
-                        if (buildingManage[i].Contains(ddlTargetBuilding.SelectedValue))
-                        {
-                            btnConfirmMove.Text = "Move";
-                            btnConfirmMove.Width = 80;
-                            break;
-                        }
-                        else
-                        {
-                            btnConfirmMove.Width = 150;
-                            btnConfirmMove.Text = "Send Email Request";
-                        }
-                    }
+                    btnConfirmMove.Width = 150;
+                    btnConfirmMove.Text = "Send Email Request";
                 }
                 else {
                     btnConfirmMove.Text = "Move";

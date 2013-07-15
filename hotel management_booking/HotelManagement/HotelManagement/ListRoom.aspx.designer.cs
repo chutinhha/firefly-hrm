@@ -328,6 +328,33 @@ namespace HotelManagement {
         protected global::System.Web.UI.WebControls.GridView grdRoom;
         
         /// <summary>
+        /// txtReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl txtReason;
+        
+        /// <summary>
+        /// btnRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRequest;
+        
+        /// <summary>
+        /// btnCancelRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelRequest;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>

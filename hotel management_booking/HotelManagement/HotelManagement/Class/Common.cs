@@ -214,41 +214,4 @@ public class CommonFunction
         GridView1.DataSource = dt;
         GridView1.DataBind();
     }
-    internal List<string> GetLatLng(string address)
-    {
-        var requestUri = string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=true", Uri.EscapeDataString(address));
-        var request = WebRequest.Create(requestUri);
-        var response = request.GetResponse();
-        var xdoc = XDocument.Load(response.GetResponseStream());
-        var latLngArray = new List<string>();
-        var xElement = xdoc.Element("GeocodeResponse");
-        if (xElement != null)
-        {
-            var result = xElement.Element("result");
-            if (result != null)
-            {
-                var element = result.Element("geometry");
-                if (element != null)
-                {
-                    var locationElement = element.Element("location");
-                    if (locationElement != null)
-                    {
-                        var xElement1 = locationElement.Element("lat");
-                        if (xElement1 != null)
-                        {
-                            var lat = xElement1.Value;
-                            latLngArray.Add(lat);
-                        }
-                        var element1 = locationElement.Element("lng");
-                        if (element1 != null)
-                        {
-                            var lng = element1.Value;
-                            latLngArray.Add(lng);
-                        }
-                    }
-                }
-            }
-        }
-        return latLngArray;
-    }
 }

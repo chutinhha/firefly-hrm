@@ -171,7 +171,7 @@
                 <br />
                 <br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClientClick="return ConfirmOnDelete();"
+                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80"
                     OnClick="btnDelete_Click" />
                 <br />
                 <br />
@@ -192,6 +192,13 @@
                     </asp:GridView>
                 </div>
                 <br />
+                <ckeditor:ckeditorcontrol id="txtReason" basepath="/ckeditor/" runat="server" 
+                    Visible="False"></ckeditor:ckeditorcontrol><br>
+                <center>
+                    <asp:Button ID="btnRequest" runat="server" Text="Send Email Request" 
+                    Width="150px" Visible="False" onclick="btnRequest_Click" />&nbsp;<asp:Button ID="btnCancelRequest" 
+                    runat="server" Text="Cancel" Width="80" Visible="False" 
+                        onclick="btnCancelRequest_Click" /></center><br><br>
             </asp:Panel>
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>
