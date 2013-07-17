@@ -259,7 +259,7 @@
                                 <td class="mod_houses_right_col">
                                     <div class="lselect">
                                         <asp:DropDownList ID="ddlDistrict" runat="server" Width="150px">
-                                            <asp:ListItem Selected="True" Value="All">All</asp:ListItem>
+                                            <asp:ListItem Selected="True" Value="Tất cả">All</asp:ListItem>
                                             <asp:ListItem Selected="False" Value="Dong Da">Dong Da</asp:ListItem>
                                             <asp:ListItem Selected="False" Value="Hoan Kiem">Hoan Kiem</asp:ListItem>
                                             <asp:ListItem Selected="False" Value="Tay Ho">Tay Ho</asp:ListItem>

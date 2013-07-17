@@ -39,7 +39,7 @@
         <asp:Button ID="btnChooseFur" runat="server" Text="Choose Furniture" 
             onclick="btnChooseFur_Click" />
     <div>
-    <asp:LinkButton ID="btnEdit" runat="server" style="color:Blue;float:left;">Edit</asp:LinkButton>
+    <asp:LinkButton ID="btnEdit" runat="server" style="color:Blue;float:left;">Sửa</asp:LinkButton>
     <asp:LinkButton ID="btnBack" runat="server" CssClass="readon float-left" 
             style="float:right;" onclick="btnBack_Click">Back</asp:LinkButton>
     </div>

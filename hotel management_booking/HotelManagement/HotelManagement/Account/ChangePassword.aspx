@@ -50,7 +50,7 @@
                     </p>
                 </fieldset>
                 <p class="submitButton">
-                    <asp:Button ID="CancelPushButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"/>
+                    <asp:Button ID="CancelPushButton" runat="server" CausesValidation="False" CommandName="Hủy" Text="Hủy"/>
                     <asp:Button ID="ChangePasswordPushButton" runat="server" CommandName="ChangePassword" Text="Change Password" 
                          ValidationGroup="ChangeUserPasswordValidationGroup"/>
                 </p>

@@ -16,7 +16,7 @@
     <br />
         <asp:Label ID="lblTitle" runat="server" Text="Title" Width="150"></asp:Label>
         <asp:DropDownList ID="ddlTitle" runat="server" Width="215">
-            <asp:ListItem Selected="True">Please select</asp:ListItem>
+            <asp:ListItem Selected="True">Xin hãy chọn</asp:ListItem>
             <asp:ListItem>Mr</asp:ListItem>
             <asp:ListItem>Ms</asp:ListItem>
         </asp:DropDownList>&nbsp;<span style="color: Red">(*)</span>

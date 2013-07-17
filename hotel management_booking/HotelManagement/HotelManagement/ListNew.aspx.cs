@@ -13,60 +13,67 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserLevel"] != null)
+            try
             {
-                if (Session["UserLevel"].ToString() == "1") { }
+                if (Session["UserLevel"] != null)
+                {
+                    if (Session["UserLevel"].ToString() == "1") { }
+                    else
+                    {
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect("Home.aspx");
+                    }
+                }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                     Response.Redirect("Home.aspx");
                 }
-            }
-            else
-            {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("Home.aspx");
-            }
-            Session["MenuID"] = "7";
-            Page.Title = "Manage News";
-            lblSuccess.Text = "";
-            lblError.Text = "";
-            this.confirmSave = Message.ConfirmSave;
-            this.confirmDelete = Message.ConfirmDelete;
-            string ID = Request.QueryString["ID"];
-            if (!IsPostBack)
-            {
-                if (ID != null) {
-                    pnlList.Visible = false;
-                    pnlAdd.Visible = true;
-                    Class.News News = new Class.News(int.Parse(ID));
-                    txtTitle.Text = News.Title;
-                    CKEditor1.Text = News.NewsContent;
-                    Session["NewsID"] = ID;
-                }
-            }
-            if (ID == null)
-            {
-                if (pnlList.Visible == true)
+                Session["MenuID"] = "7";
+                Page.Title = "Manage News";
+                lblSuccess.Text = "";
+                lblError.Text = "";
+                this.confirmSave = Message.ConfirmSave;
+                this.confirmDelete = Message.ConfirmDelete;
+                string ID = Request.QueryString["ID"];
+                if (!IsPostBack)
                 {
-                    if (!IsPostBack)
+                    if (ID != null)
                     {
-                        string condition = "";
-                        if (rdoAll.Checked == true)
-                        {
-                        }
-                        else if (rdoMonth.Checked == true)
-                        {
-                            condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
-                        }
-                        else if (rdoYear.Checked == true)
-                        {
-                            condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-                        }
-                        condition = condition + " order by " + Message.Date + " desc";
-                        com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+                        pnlList.Visible = false;
+                        pnlAdd.Visible = true;
+                        Class.News News = new Class.News(int.Parse(ID));
+                        txtTitle.Text = News.Title;
+                        CKEditor1.Text = News.NewsContent;
+                        Session["NewsID"] = ID;
                     }
                 }
+                if (ID == null)
+                {
+                    if (pnlList.Visible == true)
+                    {
+                        if (!IsPostBack)
+                        {
+                            string condition = "";
+                            if (rdoAll.Checked == true)
+                            {
+                            }
+                            else if (rdoMonth.Checked == true)
+                            {
+                                condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                            }
+                            else if (rdoYear.Checked == true)
+                            {
+                                condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                            }
+                            condition = condition + " order by " + Message.Date + " desc";
+                            com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
             }
         }
         protected void grdNew_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -96,6 +103,10 @@ namespace HotelManagement
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
             }
+            else {
+                e.Row.Cells[2].Text = "Tên bài";
+                e.Row.Cells[3].Text = "Ngày";
+            }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
         {
@@ -119,56 +130,74 @@ namespace HotelManagement
 
         protected void rdoAll_CheckedChanged(object sender, EventArgs e)
         {
-            string condition = "";
-            if (rdoAll.Checked == true)
+            try
+            {
+                string condition = "";
+                if (rdoAll.Checked == true)
+                {
+                }
+                else if (rdoMonth.Checked == true)
+                {
+                    condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                }
+                else if (rdoYear.Checked == true)
+                {
+                    condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                }
+                condition = condition + " order by " + Message.Date + " desc";
+                com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+            }
+            catch (Exception)
             {
             }
-            else if (rdoMonth.Checked == true)
-            {
-                condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
-            }
-            else if (rdoYear.Checked == true)
-            {
-                condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-            }
-            condition = condition + " order by " + Message.Date + " desc";
-            com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
         }
 
         protected void rdoYear_CheckedChanged(object sender, EventArgs e)
         {
-            string condition = "";
-            if (rdoAll.Checked == true)
+            try
+            {
+                string condition = "";
+                if (rdoAll.Checked == true)
+                {
+                }
+                else if (rdoMonth.Checked == true)
+                {
+                    condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                }
+                else if (rdoYear.Checked == true)
+                {
+                    condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                }
+                condition = condition + " order by " + Message.Date + " desc";
+                com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+            }
+            catch (Exception)
             {
             }
-            else if (rdoMonth.Checked == true)
-            {
-                condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
-            }
-            else if (rdoYear.Checked == true)
-            {
-                condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-            }
-            condition = condition + " order by " + Message.Date + " desc";
-            com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
         }
 
         protected void rdoMonth_CheckedChanged(object sender, EventArgs e)
         {
-            string condition = "";
-            if (rdoAll.Checked == true)
+            try
+            {
+                string condition = "";
+                if (rdoAll.Checked == true)
+                {
+                }
+                else if (rdoMonth.Checked == true)
+                {
+                    condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                }
+                else if (rdoYear.Checked == true)
+                {
+                    condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                }
+                condition = condition + " order by " + Message.Date + " desc";
+                com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+            }
+            catch (Exception)
             {
             }
-            else if (rdoMonth.Checked == true)
-            {
-                condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
-            }
-            else if (rdoYear.Checked == true)
-            {
-                condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-            }
-            condition = condition + " order by " + Message.Date + " desc";
-            com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -188,112 +217,133 @@ namespace HotelManagement
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtTitle.Text.Trim() == "" || CKEditor1.Text.Trim() == "")
+            try
             {
-                lblError.Text = "You must enter title and content of news!";
-            }
-            else {
-                Class.News News;
-                if (Session["NewsID"] != null)
+                if (txtTitle.Text.Trim() == "" || CKEditor1.Text.Trim() == "")
                 {
-                    News = new Class.News(int.Parse(Session["NewsID"].ToString()));
+                    lblError.Text = "Bạn phải nhập vào tên và nội dung của bài!";
                 }
                 else
                 {
-                    News = new Class.News();
+                    Class.News News;
+                    if (Session["NewsID"] != null)
+                    {
+                        News = new Class.News(int.Parse(Session["NewsID"].ToString()));
+                    }
+                    else
+                    {
+                        News = new Class.News();
+                    }
+                    News.Date = DateTime.Today;
+                    News.NewsContent = CKEditor1.Text;
+                    News.Poster = Session["UserID"].ToString();
+                    News.Title = txtTitle.Text;
+                    if (Session["NewsID"] == null)
+                    {
+                        News.AddNews();
+                    }
+                    else
+                    {
+                        Session.Remove("NewsID");
+                        News.UpdateNews();
+                    }
+                    txtTitle.Text = "";
+                    CKEditor1.Text = "";
+                    pnlAdd.Visible = false;
+                    pnlList.Visible = true;
+                    lblSuccess.Text = "Thành công";
+                    string condition = "";
+                    if (rdoAll.Checked == true)
+                    {
+                    }
+                    else if (rdoMonth.Checked == true)
+                    {
+                        condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                    }
+                    else if (rdoYear.Checked == true)
+                    {
+                        condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                    }
+                    condition = condition + " order by " + Message.Date + " desc";
+                    com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+                    Response.Redirect("ListNew.aspx");
                 }
-                News.Date = DateTime.Today;
-                News.NewsContent = CKEditor1.Text;
-                News.Poster = Session["UserID"].ToString();
-                News.Title = txtTitle.Text;
-                if (Session["NewsID"] == null)
-                {
-                    News.AddNews();
-                }
-                else {
-                    Session.Remove("NewsID");
-                    News.UpdateNews();
-                }
-                txtTitle.Text = "";
-                CKEditor1.Text = "";
-                pnlAdd.Visible = false;
-                pnlList.Visible = true;
-                lblSuccess.Text = "Success";
-                string condition = "";
-                if (rdoAll.Checked == true)
-                {
-                }
-                else if (rdoMonth.Checked == true)
-                {
-                    condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
-                }
-                else if (rdoYear.Checked == true)
-                {
-                    condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-                }
-                condition = condition + " order by " + Message.Date + " desc";
-                com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
-                Response.Redirect("ListNew.aspx");
+            }
+            catch (Exception)
+            {
             }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdNew.Rows)
+            try
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdNew.Rows)
                 {
-                    isCheck = true;
-                    pnlList.Visible = false;
-                    pnlAdd.Visible = true;
-                    Class.News News = new Class.News(int.Parse(gr.Cells[1].Text));
-                    txtTitle.Text = News.Title;
-                    CKEditor1.Text = News.NewsContent;
-                    Session["NewsID"] = gr.Cells[1].Text;
-                    break;
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        pnlList.Visible = false;
+                        pnlAdd.Visible = true;
+                        Class.News News = new Class.News(int.Parse(gr.Cells[1].Text));
+                        txtTitle.Text = News.Title;
+                        CKEditor1.Text = News.NewsContent;
+                        Session["NewsID"] = gr.Cells[1].Text;
+                        break;
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
                 }
             }
-            if (isCheck == false)
+            catch (Exception)
             {
-                lblError.Text = "Please select a row!";
             }
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdNew.Rows)
+            try
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdNew.Rows)
                 {
-                    isCheck = true;
-                    Class.News News = new Class.News(int.Parse(gr.Cells[1].Text));
-                    News.RemoveNews();
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        Class.News News = new Class.News(int.Parse(gr.Cells[1].Text));
+                        News.RemoveNews();
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
+                }
+                else
+                {
+                    string condition = "";
+                    if (rdoAll.Checked == true)
+                    {
+                    }
+                    else if (rdoMonth.Checked == true)
+                    {
+                        condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
+                    }
+                    else if (rdoYear.Checked == true)
+                    {
+                        condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
+                    }
+                    condition = condition + " order by " + Message.Date + " desc";
+                    com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
+                    lblSuccess.Text = "Thành công";
                 }
             }
-            if (isCheck == false)
+            catch (Exception)
             {
-                lblError.Text = "Please select a row!";
-            }
-            else {
-                string condition = "";
-                if (rdoAll.Checked == true)
-                {
-                }
-                else if (rdoMonth.Checked == true)
-                {
-                    condition = " where Date>='" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/01'";
-                }
-                else if (rdoYear.Checked == true)
-                {
-                    condition = " where Date>='" + DateTime.Now.Year + "/01/01'";
-                }
-                condition = condition + " order by " + Message.Date + " desc";
-                com.bindData(Message.NewsID + "," + Message.Title + "," + Message.Date, condition, Message.NewsTable, grdNew);
-                lblSuccess.Text = "Success";
             }
         }
     }

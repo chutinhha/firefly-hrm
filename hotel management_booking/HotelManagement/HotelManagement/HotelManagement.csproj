@@ -968,6 +968,7 @@
     <Content Include="ckeditor\_source\themes\default\theme.js" />
     <Content Include="Contact.aspx" />
     <Content Include="FurnitureCategory.aspx" />
+    <Content Include="History.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="House.aspx" />
     <Content Include="Images\Access-Denied-LeftRight.jpg" />
@@ -1214,6 +1215,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="History.aspx.cs">
+      <DependentUpon>History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History.aspx.designer.cs">
+      <DependentUpon>History.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1400,7 +1408,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1460</DevelopmentServerPort>
+          <DevelopmentServerPort>4297</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

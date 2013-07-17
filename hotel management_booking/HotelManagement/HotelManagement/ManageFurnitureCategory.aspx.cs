@@ -13,46 +13,52 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserLevel"] != null)
+            try
             {
-                if (int.Parse(Session["UserLevel"].ToString()) > 2) { }
+                if (Session["UserLevel"] != null)
+                {
+                    if (int.Parse(Session["UserLevel"].ToString()) > 2) { }
+                    else
+                    {
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect("Home.aspx");
+                    }
+                }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                     Response.Redirect("Home.aspx");
                 }
-            }
-            else
-            {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("Home.aspx");
-            }
-            Session["MenuID"] = "2";
-            lblSuccess.Text = "";
-            lblError.Text = "";
-            this.confirmSave = Message.ConfirmSave;
-            this.confirmDelete = Message.ConfirmDelete;
-            Page.Title = "Manage Furniture Category";
-            string ID = Request.QueryString["ID"];
-            if (!IsPostBack)
-            {
-                if (ID != null)
+                Session["MenuID"] = "2";
+                lblSuccess.Text = "";
+                lblError.Text = "";
+                this.confirmSave = Message.ConfirmSave;
+                this.confirmDelete = Message.ConfirmDelete;
+                Page.Title = "Manage Furniture Category";
+                string ID = Request.QueryString["ID"];
+                if (!IsPostBack)
                 {
-                    pnlList.Visible = false;
-                    pnlAdd.Visible = true;
-                    DataTable dt = com.getData(Message.FurnitureTypeTable, Message.Description, " where "
-                        + Message.FurnitureType + "=" + ID);
-                    txtName.Text = dt.Rows[0][0].ToString();
-                    Session["CateID"] = ID;
+                    if (ID != null)
+                    {
+                        pnlList.Visible = false;
+                        pnlAdd.Visible = true;
+                        DataTable dt = com.getData(Message.FurnitureTypeTable, Message.Description, " where "
+                            + Message.FurnitureType + "=" + ID);
+                        txtName.Text = dt.Rows[0][0].ToString();
+                        Session["CateID"] = ID;
+                    }
+                    else
+                    {
+                        com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
+                            + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
+                            + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
+                            , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                            + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                    }
                 }
-                else
-                {
-                    com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
-                        + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
-                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
-                        , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
-                }
+            }
+            catch (Exception)
+            {
             }
         }
         protected void grdCategory_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -77,6 +83,12 @@ namespace HotelManagement
                 {
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+            }
+            else {
+                e.Row.Cells[2].Text = "Mô tả";
+                e.Row.Cells[3].Text = "Sẵn sàng";
+                e.Row.Cells[4].Text = "Tổng số lượng";
+                e.Row.Cells[5].Text = "Tổng giá trị";
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
@@ -109,25 +121,31 @@ namespace HotelManagement
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdCategory.Rows)
+            try
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdCategory.Rows)
                 {
-                    isCheck = true;
-                    pnlList.Visible = false;
-                    pnlAdd.Visible = true;
-                    DataTable dt = com.getData(Message.FurnitureTypeTable, Message.Description, " where "
-                        + Message.FurnitureType + "=" + gr.Cells[1].Text);
-                    txtName.Text = dt.Rows[0][0].ToString();
-                    Session["CateID"] = gr.Cells[1].Text;
-                    break;
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        pnlList.Visible = false;
+                        pnlAdd.Visible = true;
+                        DataTable dt = com.getData(Message.FurnitureTypeTable, Message.Description, " where "
+                            + Message.FurnitureType + "=" + gr.Cells[1].Text);
+                        txtName.Text = dt.Rows[0][0].ToString();
+                        Session["CateID"] = gr.Cells[1].Text;
+                        break;
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
                 }
             }
-            if (isCheck == false)
+            catch (Exception)
             {
-                lblError.Text = "Please select a row!";
             }
         }
 
@@ -142,54 +160,63 @@ namespace HotelManagement
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtName.Text.Trim() == "")
+            try
             {
-                lblError.Text = "Please enter category name!";
-            }
-            else {
-                
-                if (Session["CateID"] == null)
+                if (txtName.Text.Trim() == "")
                 {
-                    DataTable dt = com.getData(Message.FurnitureTypeTable, "*", " where " + Message.Description
-                        + "=" + com.ToValue(txtName.Text));
-                    if (dt.Rows.Count == 0)
-                    {
-                        com.insertIntoTable(Message.FurnitureTypeTable, "", com.ToValue(txtName.Text)
-                            + ",0,0", false);
-                        pnlAdd.Visible = false;
-                        pnlList.Visible = true;
-                        com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
-                    + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
-                    , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                    + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
-                        Response.Redirect("ManageFurnitureCategory.aspx");
-                    }
-                    else {
-                        lblError.Text = "There is another category with the same name exist!";
-                    }
+                    lblError.Text = "Xin hãy điền tên danh mục!";
                 }
-                else {
-                    DataTable dt = com.getData(Message.FurnitureTypeTable, "*", " where " + Message.Description
-                        + "=" + com.ToValue(txtName.Text)+" and "+Message.FurnitureType+"<>"+Session["CateID"].ToString());
-                    if (dt.Rows.Count == 0)
+                else
+                {
+
+                    if (Session["CateID"] == null)
                     {
-                        com.updateTable(Message.FurnitureTypeTable, Message.Description + "="
-                            + com.ToValue(txtName.Text) + " where " + Message.FurnitureType + "=" + Session["CateID"].ToString());
-                        pnlAdd.Visible = false;
-                        pnlList.Visible = true;
-                        com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
-                    + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
-                    , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                    + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
-                        Response.Redirect("ManageFurnitureCategory.aspx");
+                        DataTable dt = com.getData(Message.FurnitureTypeTable, "*", " where " + Message.Description
+                            + "=" + com.ToValue(txtName.Text));
+                        if (dt.Rows.Count == 0)
+                        {
+                            com.insertIntoTable(Message.FurnitureTypeTable, "", com.ToValue(txtName.Text)
+                                + ",0,0", false);
+                            pnlAdd.Visible = false;
+                            pnlList.Visible = true;
+                            com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
+                        + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
+                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
+                        , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                            Response.Redirect("ManageFurnitureCategory.aspx");
+                        }
+                        else
+                        {
+                            lblError.Text = "Đã có danh mục vật tư với tên này tồn tại!";
+                        }
                     }
                     else
                     {
-                        lblError.Text = "There is another category with the same name exist!";
+                        DataTable dt = com.getData(Message.FurnitureTypeTable, "*", " where " + Message.Description
+                            + "=" + com.ToValue(txtName.Text) + " and " + Message.FurnitureType + "<>" + Session["CateID"].ToString());
+                        if (dt.Rows.Count == 0)
+                        {
+                            com.updateTable(Message.FurnitureTypeTable, Message.Description + "="
+                                + com.ToValue(txtName.Text) + " where " + Message.FurnitureType + "=" + Session["CateID"].ToString());
+                            pnlAdd.Visible = false;
+                            pnlList.Visible = true;
+                            com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
+                        + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
+                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total Value'"
+                        , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                            Response.Redirect("ManageFurnitureCategory.aspx");
+                        }
+                        else
+                        {
+                            lblError.Text = "Đã có danh mục vật tư với tên này tồn tại!";
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
             }
         }
     }

@@ -12,30 +12,36 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserLevel"] != null)
+            try
             {
-                if (int.Parse(Session["UserLevel"].ToString()) >2) { }
+                if (Session["UserLevel"] != null)
+                {
+                    if (int.Parse(Session["UserLevel"].ToString()) > 2) { }
+                    else
+                    {
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect("Home.aspx");
+                    }
+                }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                     Response.Redirect("Home.aspx");
                 }
+                Session["MenuID"] = "5";
+                lblSuccess.Text = "";
+                lblError.Text = "";
+                this.confirmSave = Message.ConfirmSave;
+                this.confirmDelete = Message.ConfirmDelete;
+                Page.Title = "Manage Account";
+                if (!IsPostBack)
+                {
+                    com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
+                        + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                }
             }
-            else
+            catch (Exception)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("Home.aspx");
-            }
-            Session["MenuID"] = "5";
-            lblSuccess.Text = "";
-            lblError.Text = "";
-            this.confirmSave = Message.ConfirmSave;
-            this.confirmDelete = Message.ConfirmDelete;
-            Page.Title = "Manage Account";
-            if (!IsPostBack)
-            {
-                com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
-                    + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
             }
         }
         protected void grdAccount_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -60,6 +66,12 @@ namespace HotelManagement
                 {
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+            }
+            else {
+                e.Row.Cells[2].Text = "User Name";
+                e.Row.Cells[3].Text = "User Level";
+                e.Row.Cells[4].Text = "Tên";
+                e.Row.Cells[6].Text = "Điện Thoại";
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
@@ -88,25 +100,32 @@ namespace HotelManagement
         protected string confirmDelete { get; set; }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdAccount.Rows)
+            try
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdAccount.Rows)
                 {
-                    isCheck = true;
-                    Class.User newUser = new Class.User(int.Parse(gr.Cells[1].Text));
-                    newUser.RemoveUser();
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        Class.User newUser = new Class.User(int.Parse(gr.Cells[1].Text));
+                        newUser.RemoveUser();
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
+                }
+                else
+                {
+                    com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
+                        + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                    lblSuccess.Text = "Thành công";
                 }
             }
-            if (isCheck == false)
+            catch (Exception)
             {
-                lblError.Text = "Please select a row!";
-            }
-            else {
-                com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
-                    + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
-                lblSuccess.Text = "Success";
             }
         }
     }

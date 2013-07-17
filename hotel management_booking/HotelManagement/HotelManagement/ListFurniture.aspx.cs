@@ -14,216 +14,228 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserLevel"] != null)
+            try
             {
-                if (int.Parse(Session["UserLevel"].ToString()) >= 2) { }
+                if (Session["UserLevel"] != null)
+                {
+                    if (int.Parse(Session["UserLevel"].ToString()) >= 2) { }
+                    else
+                    {
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect("Home.aspx");
+                    }
+                }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                     Response.Redirect("Home.aspx");
                 }
-            }
-            else
-            {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("Home.aspx");
-            }
 
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                btnAdd.Visible = false;
-                btnRequest.Visible = true;
-                if (!IsPostBack) {
-                    grdCategory.Visible = true;
-                    lblCategory.Visible = true;
-                }
-                Panel1.Visible = true;
-                btnDelete.Text = "Request Remove";
-                btnMove.Text = "Request Move";
-                btnDelete.Width = 120;
-                btnMove.Width = 120;
-            }
-            else {
-                btnAdd.Visible = true;
-                btnRequest.Visible = false;
-                grdCategory.Visible = false;
-                lblCategory.Visible = false;
-                Panel1.Visible = false;
-                btnDelete.Text = "Remove";
-                btnMove.Text = "Move";
-                btnDelete.Width = 80;
-                btnMove.Width = 80;
-            }
-            Session["MenuID"] = "2";
-            Page.Title = "Manage Furniture";
-            lblSuccess.Text = "";
-            lblError.Text = "";
-            this.confirmSave = Message.ConfirmSave;
-            string ID = Request.QueryString["ID"];
-            if (ID != null)
-            {
-                pnlList.Visible = false;
-                pnlEdit.Visible = true;
-                this.startDate = "";
-                this.endDate = "";
-                ddlEditCountry.DataSource = com.getCountryList();
-                ddlEditCountry.DataBind();
-                ListItem item = new ListItem("Please select");
-                ddlEditCountry.Items.Insert(0, item);
-                Class.Furniture newFuniture = new Class.Furniture(ID);
-                txtEditDes.Text = newFuniture.Description;
-                txtEditName.Text = newFuniture.Name;
-                txtEditPrice.Text = newFuniture.Price;
-                if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
+                if (Session["UserLevel"].ToString() == "2")
                 {
-                    ddlStatus.SelectedValue = "Normal";
+                    btnAdd.Visible = false;
+                    btnRequest.Visible = true;
+                    if (!IsPostBack)
+                    {
+                        grdCategory.Visible = true;
+                        lblCategory.Visible = true;
+                    }
+                    Panel1.Visible = true;
+                    btnDelete.Text = "Yêu cầu xóa";
+                    btnMove.Text = "Yêu cầu di chuyển";
+                    btnDelete.Width = 120;
+                    btnMove.Width = 120;
                 }
                 else
                 {
-                    ddlStatus.SelectedValue = "Broke";
+                    btnAdd.Visible = true;
+                    btnRequest.Visible = false;
+                    grdCategory.Visible = false;
+                    lblCategory.Visible = false;
+                    Panel1.Visible = false;
+                    btnDelete.Text = "Xóa";
+                    btnMove.Text = "Di chuyển";
+                    btnDelete.Width = 80;
+                    btnMove.Width = 80;
                 }
-                ddlEditCountry.SelectedValue = newFuniture.MadeIn;
-                this.startDate = newFuniture.StartWarranty;
-                this.endDate = newFuniture.EndWarranty;
-                imgPicture.ImageUrl = "Images/" + newFuniture.Picture;
-                Session["FurID"] = newFuniture.FurID;
-            }
-            else
-            {
-                if (!IsPostBack)
+                Session["MenuID"] = "2";
+                Page.Title = "Manage Furniture";
+                lblSuccess.Text = "";
+                lblError.Text = "";
+                this.confirmSave = Message.ConfirmSave;
+                string ID = Request.QueryString["ID"];
+                if (ID != null)
                 {
-                    if (Session["UserLevel"].ToString() == "2")
+                    pnlList.Visible = false;
+                    pnlEdit.Visible = true;
+                    this.startDate = "";
+                    this.endDate = "";
+                    ddlEditCountry.DataSource = com.getCountryList();
+                    ddlEditCountry.DataBind();
+                    ListItem item = new ListItem("Xin hãy chọn");
+                    ddlEditCountry.Items.Insert(0, item);
+                    Class.Furniture newFuniture = new Class.Furniture(ID);
+                    txtEditDes.Text = newFuniture.Description;
+                    txtEditName.Text = newFuniture.Name;
+                    txtEditPrice.Text = newFuniture.Price;
+                    if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
                     {
-                        //Get building list
-                        DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                            + Message.UserID + "=" + Session["UserID"]);
-                        string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
-                        string buildingCondition1 = "";
-                        for (int i = 0; i < buildingList1.Length - 1; i++)
-                        {
-                            DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                                + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
-                            if (buildingAddress1.Rows.Count > 0)
-                            {
-                                buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
-                            }
-                        }
-                        buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
-                        com.bindData("distinct furType." + Message.Description
-                            + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
-                            + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
-                            + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
-                            + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
-                            + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Value'"
-                            , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                            + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
-                        lblCategory.Text = "Show Category Statistic";
-                        grdCategory.Visible = false;
-                    }
-                }
-                if (!IsPostBack)
-                {
-                    if (pnlAdd.Visible == true)
-                    {
-
-                        this.startDate = "";
-                        this.endDate = "";
-                        ddlCountry.DataSource = com.getCountryList();
-                        ddlCountry.DataBind();
-                        ListItem item = new ListItem("Please select");
-                        ddlCountry.Items.Insert(0, item);
-                        if (Session["UserLevel"].ToString() == "2")
-                        {
-                            //Get building list
-                            DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                                + Message.UserID + "=" + Session["UserID"]);
-                            string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                            ddlBuilding.Items.Clear();
-                            ddlBuilding.Items.Add("Please select");
-                            for (int i = 0; i < buildingList.Length - 1; i++)
-                            {
-                                DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                                    + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
-                                if (buildingAddress.Rows.Count > 0)
-                                {
-                                    ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                                    ddlBuilding.Items.Add(buildingItem);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlBuilding, "", true, "Please select");
-                        }
-                        com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Please select");
-                        ddlRoom.Items.Clear();
-                        ddlRoom.Items.Add("Please select");
-                    }
-                    else if (pnlList.Visible == true)
-                    {
-
-                        string buildingCondition = "";
-                        if (Session["UserLevel"].ToString() == "2")
-                        {
-                            //Get building list
-                            DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                                + Message.UserID + "=" + Session["UserID"]);
-                            string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                            ddlChooseBuilding.Items.Clear();
-                            ddlChooseBuilding.Items.Add("All");
-                            for (int i = 0; i < buildingList.Length - 1; i++)
-                            {
-                                DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                                    + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
-                                if (buildingAddress.Rows.Count > 0)
-                                {
-                                    ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                                    ddlChooseBuilding.Items.Add(buildingItem);
-                                    buildingCondition = buildingCondition + buildingList[i] + ",";
-                                }
-                            }
-                            buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-                        }
-                        else
-                        {
-                            com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlChooseBuilding, "", true, "All");
-                        }
-                        com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlChooseType, "", true, "All");
-                        ddlChooseRoom.Items.Clear();
-                        ddlChooseRoom.Items.Add("All");
-                        if (Session["UserLevel"].ToString() == "2")
-                        {
-                            com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
-                                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
-                                " where fur.CurrentBuildingID in (" + buildingCondition + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
-                                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-                        }
-                        else
-                        {
-                            com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
-                                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
-                                " where (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
-                                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-                        }
+                        ddlStatus.SelectedValue = "Bình thường";
                     }
                     else
                     {
-                        this.startDate = "";
-                        this.endDate = "";
-                        ddlCountry.DataSource = com.getCountryList();
-                        ddlCountry.DataBind();
-                        ListItem item = new ListItem("Please select");
-                        ddlCountry.Items.Insert(0, item);
+                        ddlStatus.SelectedValue = "Hỏng";
+                    }
+                    ddlEditCountry.SelectedValue = newFuniture.MadeIn;
+                    this.startDate = newFuniture.StartWarranty;
+                    this.endDate = newFuniture.EndWarranty;
+                    imgPicture.ImageUrl = "Images/" + newFuniture.Picture;
+                    Session["FurID"] = newFuniture.FurID;
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            //Get building list
+                            DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                + Message.UserID + "=" + Session["UserID"]);
+                            string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
+                            string buildingCondition1 = "";
+                            for (int i = 0; i < buildingList1.Length - 1; i++)
+                            {
+                                DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                    + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
+                                if (buildingAddress1.Rows.Count > 0)
+                                {
+                                    buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
+                                }
+                            }
+                            buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
+                            com.bindData("distinct furType." + Message.Description
+                                + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                                + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
+                                + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                                + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
+                                + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Value'"
+                                , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                                + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
+                            lblCategory.Text = "Hiện thống kê vật tư";
+                            grdCategory.Visible = false;
+                        }
+                    }
+                    if (!IsPostBack)
+                    {
+                        if (pnlAdd.Visible == true)
+                        {
+
+                            this.startDate = "";
+                            this.endDate = "";
+                            ddlCountry.DataSource = com.getCountryList();
+                            ddlCountry.DataBind();
+                            ListItem item = new ListItem("Xin hãy chọn");
+                            ddlCountry.Items.Insert(0, item);
+                            if (Session["UserLevel"].ToString() == "2")
+                            {
+                                //Get building list
+                                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                    + Message.UserID + "=" + Session["UserID"]);
+                                string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                                ddlBuilding.Items.Clear();
+                                ddlBuilding.Items.Add("Xin hãy chọn");
+                                for (int i = 0; i < buildingList.Length - 1; i++)
+                                {
+                                    DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                        + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                                    if (buildingAddress.Rows.Count > 0)
+                                    {
+                                        ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                                        ddlBuilding.Items.Add(buildingItem);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlBuilding, "", true, "Xin hãy chọn");
+                            }
+                            com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Xin hãy chọn");
+                            ddlRoom.Items.Clear();
+                            ddlRoom.Items.Add("Xin hãy chọn");
+                        }
+                        else if (pnlList.Visible == true)
+                        {
+
+                            string buildingCondition = "";
+                            if (Session["UserLevel"].ToString() == "2")
+                            {
+                                //Get building list
+                                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                    + Message.UserID + "=" + Session["UserID"]);
+                                string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                                ddlChooseBuilding.Items.Clear();
+                                ddlChooseBuilding.Items.Add("Tất cả");
+                                for (int i = 0; i < buildingList.Length - 1; i++)
+                                {
+                                    DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                        + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                                    if (buildingAddress.Rows.Count > 0)
+                                    {
+                                        ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                                        ddlChooseBuilding.Items.Add(buildingItem);
+                                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                                    }
+                                }
+                                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                            }
+                            else
+                            {
+                                com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlChooseBuilding, "", true, "Tất cả");
+                            }
+                            com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlChooseType, "", true, "Tất cả");
+                            ddlChooseRoom.Items.Clear();
+                            ddlChooseRoom.Items.Add("Tất cả");
+                            if (Session["UserLevel"].ToString() == "2")
+                            {
+                                string[] column = new string[1];
+                                column[0] = "Lịch sử";
+                                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                                    + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                                    + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
+                                    " where fur.CurrentBuildingID in (" + buildingCondition + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
+                                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+                            }
+                            else
+                            {
+                                string[] column = new string[1];
+                                column[0] = "Lịch sử";
+                                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                                    + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                                    + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture,
+                                    " where (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)", Message.FurnitureTable
+                                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+                            }
+                        }
+                        else
+                        {
+                            this.startDate = "";
+                            this.endDate = "";
+                            ddlCountry.DataSource = com.getCountryList();
+                            ddlCountry.DataBind();
+                            ListItem item = new ListItem("Xin hãy chọn");
+                            ddlCountry.Items.Insert(0, item);
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
             }
         }
         protected string startDate { get; set; }
@@ -232,7 +244,7 @@ namespace HotelManagement
         protected void grdFurniture_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
-            
+            e.Row.Cells[8].Attributes.Add("style","width:50px;");
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
             if (e.Row.RowIndex % 2 != 0)
@@ -251,16 +263,25 @@ namespace HotelManagement
                 if (e.Row.Cells[6].Text != "&nbsp;") {
                     e.Row.Cells[6].Text = DateTime.Parse(e.Row.Cells[6].Text).ToShortDateString();
                 }
+                e.Row.Cells[8].Attributes.Add("style", "width:50px;");
+                e.Row.Cells[8].Text = "<a style=\"color:blue;\" href=\"History.aspx?ID=" + e.Row.Cells[1].Text + "\">Click để xem chi tiết!</a>";
             }
             else {
                 e.Row.Cells[4].Attributes.Add("width","150px");
+                e.Row.Cells[2].Text = "Tên";
+                e.Row.Cells[3].Text = "Kiểu";
+                e.Row.Cells[4].Text = "Tòa nhà";
+                e.Row.Cells[5].Text = "Phòng";
+                e.Row.Cells[6].Text = "Hết hạn BH";
+                e.Row.Cells[7].Text = "Ảnh";
+                e.Row.Cells[8].Text = "Lịch Sử";
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Class.Furniture newFurniture = new Class.Furniture(e.Row.Cells[1].Text);
                 if (newFurniture.TargetRoomID != "")
                 {
-                    e.Row.Cells[4].Text = "On moving to " + e.Row.Cells[4].Text;
+                    e.Row.Cells[4].Text = "Đang chuyển tới " + e.Row.Cells[4].Text;
                 }
                 string Location = "ListFurniture.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
                 for (int i = 1; i < e.Row.Cells.Count; i++)
@@ -269,128 +290,176 @@ namespace HotelManagement
                 }
             }
         }
+        protected void grdCategory_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+            }
+            else
+            {
+                e.Row.Cells[0].Text = "Mô tả";
+                e.Row.Cells[1].Text = "Sẵn sàng";
+                e.Row.Cells[2].Text = "Tổng số lượng";
+                e.Row.Cells[3].Text = "Tổng giá trị";
+            }
+        }
         protected void ddlBuilding_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlBuilding.SelectedIndex != 0)
+            try
             {
-                com.SetItemList(Message.RoomNo + "," + Message.RoomNo, Message.RoomTable, ddlRoom, " where " + Message.BuildingID
-                    + "=" + ddlBuilding.SelectedValue, true, "Please select");
+                if (ddlBuilding.SelectedIndex != 0)
+                {
+                    com.SetItemList(Message.RoomNo + "," + Message.RoomNo, Message.RoomTable, ddlRoom, " where " + Message.BuildingID
+                        + "=" + ddlBuilding.SelectedValue, true, "Xin hãy chọn");
+                }
+                else
+                {
+                    ddlRoom.Items.Clear();
+                    ddlRoom.Items.Add("Xin hãy chọn");
+                }
             }
-            else {
-                ddlRoom.Items.Clear();
-                ddlRoom.Items.Add("Please select");
+            catch (Exception)
+            {
             }
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtName.Text = "";
-            txtPrice.Text = "";
-            this.startDate = "";
-            this.endDate = "";
-            ddlBuilding.SelectedIndex = 0;
-            ddlCountry.SelectedIndex = 0;
-            ddlRoom.SelectedIndex = 0;
-            ddlType.SelectedIndex = 0;
-            txtDes.Text = "";
+            try
+            {
+                txtName.Text = "";
+                txtPrice.Text = "";
+                this.startDate = "";
+                this.endDate = "";
+                ddlBuilding.SelectedIndex = 0;
+                ddlCountry.SelectedIndex = 0;
+                ddlRoom.SelectedIndex = 0;
+                ddlType.SelectedIndex = 0;
+                txtDes.Text = "";
+            }
+            catch (Exception)
+            {
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            lblError.Text="";
-            lblSuccess.Text="";
-            this.startDate = Request.Form["txtStart"].ToString().Trim();
-            this.endDate = Request.Form["txtEnd"].ToString().Trim(); 
-            if (txtName.Text.Trim() == "" || ddlBuilding.SelectedIndex == 0 || ddlRoom.SelectedIndex == 0
-                ||txtPrice.Text.Trim()=="")
+            try
             {
-                lblError.Text = "Some required field are missing!";
-            }
-            else {
-                bool checkCondition = true;
-                string fileName = null;
-                if (fulPicture.HasFile) {
-                    fileName = fulPicture.FileName;
-                    if (!Path.GetExtension(fileName).Contains(".jpg") &&
-                        !Path.GetExtension(fileName).Contains(".jpeg") &&
-                        !Path.GetExtension(fileName).Contains(".bmp") &&
-                        !Path.GetExtension(fileName).Contains(".png") &&
-                        !Path.GetExtension(fileName).Contains(".gif") &&
-                        !Path.GetExtension(fileName).Contains(".tif") &&
-                        !Path.GetExtension(fileName).Contains(".dib"))
-                    {
-                        lblError.Text = "Only accept jpg,jpeg,png,bmp,gif,tif and dib file type!";
-                        checkCondition = false;
-                    }
-                }
-                if (checkCondition == true)
+                lblError.Text = "";
+                lblSuccess.Text = "";
+                this.startDate = Request.Form["txtStart"].ToString().Trim();
+                this.endDate = Request.Form["txtEnd"].ToString().Trim();
+                if (txtName.Text.Trim() == "" || ddlBuilding.SelectedIndex == 0 || ddlRoom.SelectedIndex == 0
+                    || txtPrice.Text.Trim() == "")
                 {
-                    string name = txtName.Text.Trim();
-                    string building = ddlBuilding.SelectedValue;
-                    DataTable roomID = com.getData(Message.RoomTable,Message.RoomID," where "+Message.BuildingID
-                        +"="+building+" and "+Message.RoomNo+"="+ddlRoom.SelectedValue);
-                    string room = roomID.Rows[0][0].ToString();
-                    string type = ddlType.SelectedValue;
-                    string price = txtPrice.Text.Trim();
-                    string made = ddlCountry.SelectedValue;
-                    string startWarranty = Request.Form["txtStart"].ToString().Trim();
-                    string endWarranty = Request.Form["txtEnd"].ToString().Trim();
-                    string description = txtDes.Text.Trim();
-                    if (fileName != null) {
-                        string pathRoot = HttpContext.Current.Server.MapPath("~/Images/");
-                        if (!File.Exists(pathRoot + fileName))
-                        {
-                            fulPicture.SaveAs(pathRoot + fileName);
-                        }
-                        else {
-                            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                            var stringChars = new char[8];
-                            var random = new Random();
-
-                            for (int i = 0; i < stringChars.Length; i++)
-                            {
-                                stringChars[i] = chars[random.Next(chars.Length)];
-                            }
-
-                            var finalString = new String(stringChars);
-                            fulPicture.SaveAs(pathRoot + fileName.Replace(".", finalString + "."));
-                            fileName = fileName.Replace(".", finalString + ".");
-                        }
-                    }
-                    Class.Furniture newFurniture = new Class.Furniture();
-                    newFurniture.CurrentBuilding = building;
-                    newFurniture.CurrentRoom = room;
-                    newFurniture.Description = description;
-                    if (endWarranty != null&&endWarranty!="")
-                    {
-                        newFurniture.EndWarranty = endWarranty;
-                    }
-                    newFurniture.FurType = newFurniture.GetFurTypeID(ddlType.SelectedValue);
-                    newFurniture.MadeIn = made;
-                    newFurniture.Name = name;
-                    newFurniture.Picture = fileName;
-                    if (price != null && price != "")
-                    {
-                        newFurniture.Price = price;
-                    }
-                    if (startWarranty != null&&startWarranty!="")
-                    {
-                        newFurniture.StartWarranty = startWarranty;
-                    }
-                    newFurniture.Status = "true";
-                    newFurniture.AddFurniture();
-                    lblSuccess.Text = "Success";
-                    txtName.Text = "";
-                    txtPrice.Text = "";
-                    this.startDate = "";
-                    this.endDate = "";
-                    ddlBuilding.SelectedIndex = 0;
-                    ddlCountry.SelectedIndex = 0;
-                    ddlRoom.SelectedIndex = 0;
-                    ddlType.SelectedIndex = 0;
-                    txtDes.Text = "";
-                    Response.Redirect("ListFurniture.aspx");
+                    lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc!";
                 }
+                else
+                {
+                    bool checkCondition = true;
+                    string fileName = null;
+                    if (fulPicture.HasFile)
+                    {
+                        fileName = fulPicture.FileName;
+                        if (!Path.GetExtension(fileName).Contains(".jpg") &&
+                            !Path.GetExtension(fileName).Contains(".jpeg") &&
+                            !Path.GetExtension(fileName).Contains(".bmp") &&
+                            !Path.GetExtension(fileName).Contains(".png") &&
+                            !Path.GetExtension(fileName).Contains(".gif") &&
+                            !Path.GetExtension(fileName).Contains(".tif") &&
+                            !Path.GetExtension(fileName).Contains(".dib"))
+                        {
+                            lblError.Text = "Hệ thống chỉ chấp nhận các loại file ảnh jpg,jpeg,png,bmp,gif,tif và dib!";
+                            checkCondition = false;
+                        }
+                    }
+                    if (checkCondition == true)
+                    {
+                        string name = txtName.Text.Trim();
+                        string building = ddlBuilding.SelectedValue;
+                        DataTable roomID = com.getData(Message.RoomTable, Message.RoomID, " where " + Message.BuildingID
+                            + "=" + building + " and " + Message.RoomNo + "=" + ddlRoom.SelectedValue);
+                        string room = roomID.Rows[0][0].ToString();
+                        string type = ddlType.SelectedValue;
+                        string price = txtPrice.Text.Trim();
+                        string made = ddlCountry.SelectedValue;
+                        string startWarranty = Request.Form["txtStart"].ToString().Trim();
+                        string endWarranty = Request.Form["txtEnd"].ToString().Trim();
+                        string description = txtDes.Text.Trim();
+                        if (fileName != null)
+                        {
+                            string pathRoot = HttpContext.Current.Server.MapPath("~/Images/");
+                            if (!File.Exists(pathRoot + fileName))
+                            {
+                                fulPicture.SaveAs(pathRoot + fileName);
+                            }
+                            else
+                            {
+                                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                                var stringChars = new char[8];
+                                var random = new Random();
+
+                                for (int i = 0; i < stringChars.Length; i++)
+                                {
+                                    stringChars[i] = chars[random.Next(chars.Length)];
+                                }
+
+                                var finalString = new String(stringChars);
+                                fulPicture.SaveAs(pathRoot + fileName.Replace(".", finalString + "."));
+                                fileName = fileName.Replace(".", finalString + ".");
+                            }
+                        }
+                        Class.Furniture newFurniture = new Class.Furniture();
+                        newFurniture.CurrentBuilding = building;
+                        newFurniture.CurrentRoom = room;
+                        newFurniture.Description = description;
+                        if (endWarranty != null && endWarranty != "")
+                        {
+                            newFurniture.EndWarranty = endWarranty;
+                        }
+                        newFurniture.FurType = newFurniture.GetFurTypeID(ddlType.SelectedValue);
+                        newFurniture.MadeIn = made;
+                        newFurniture.Name = name;
+                        newFurniture.Picture = fileName;
+                        if (price != null && price != "")
+                        {
+                            newFurniture.Price = price;
+                        }
+                        if (startWarranty != null && startWarranty != "")
+                        {
+                            newFurniture.StartWarranty = startWarranty;
+                        }
+                        newFurniture.Status = "true";
+                        newFurniture.AddFurniture();
+                        lblSuccess.Text = "Thành công";
+                        txtName.Text = "";
+                        txtPrice.Text = "";
+                        this.startDate = "";
+                        this.endDate = "";
+                        ddlBuilding.SelectedIndex = 0;
+                        ddlCountry.SelectedIndex = 0;
+                        ddlRoom.SelectedIndex = 0;
+                        ddlType.SelectedIndex = 0;
+                        txtDes.Text = "";
+                        Response.Redirect("ListFurniture.aspx");
+                    }
+                }
+            }
+            catch (Exception)
+            {
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
@@ -413,648 +482,18 @@ namespace HotelManagement
 
         protected void ddlChooseBuilding_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlChooseBuilding.SelectedIndex != 0)
+            try
             {
-                com.SetItemList(Message.RoomNo + "," + Message.RoomNo, Message.RoomTable, ddlChooseRoom, " where " + Message.BuildingID
-                    + "=" + ddlChooseBuilding.SelectedValue, true, "All");
-            }
-            else
-            {
-                ddlChooseRoom.Items.Clear();
-                ddlChooseRoom.Items.Add("All");
-            }
-            string buildingCondition = "";
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                //Get building list
-                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                
-                for (int i = 0; i < buildingList.Length - 1; i++)
+                if (ddlChooseBuilding.SelectedIndex != 0)
                 {
-                    buildingCondition = buildingCondition + buildingList[i] + ",";
-                }
-                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-            }
-            string condition = "";
-            if (ddlChooseBuilding.SelectedIndex == 0)
-            {
-                if (Session["UserLevel"].ToString() == "2")
-                {
-                    condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-                else {
-                    condition = " where ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-            }
-            else {
-                condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
-            }
-            if (ddlChooseRoom.SelectedIndex != 0) {
-                condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
-            }
-            if (ddlChooseType.SelectedIndex != 0) {
-                condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
-            }
-            if (ddlInWarraty.SelectedIndex != 0) {
-                if (ddlInWarraty.SelectedIndex == 1)
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or ("+Message.EndWarranty+" is NULL))";
-                }
-                else {
-                    condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-            }
-            if (ddlPosition.SelectedIndex != 0) {
-                if (ddlPosition.SelectedIndex != 1)
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='True'";
-                }
-                else {
-                    condition = condition + " and "+Message.IsWarehouse+"='False'";
-                }
-            }
-            com.bindData("fur."+Message.FurnitureID+",fur." + Message.Name + ", furType."
-                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
-                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-        }
-
-        protected void ddlChooseRoom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string buildingCondition = "";
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                //Get building list
-                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList = building.Rows[0][0].ToString().Split('|');
-
-                for (int i = 0; i < buildingList.Length - 1; i++)
-                {
-                    buildingCondition = buildingCondition + buildingList[i] + ",";
-                }
-                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-            }
-            string condition = "";
-            if (ddlChooseBuilding.SelectedIndex == 0)
-            {
-                if (Session["UserLevel"].ToString() == "2")
-                {
-                    condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    com.SetItemList(Message.RoomNo + "," + Message.RoomNo, Message.RoomTable, ddlChooseRoom, " where " + Message.BuildingID
+                        + "=" + ddlChooseBuilding.SelectedValue, true, "Tất cả");
                 }
                 else
                 {
-                    condition = " where ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    ddlChooseRoom.Items.Clear();
+                    ddlChooseRoom.Items.Add("Tất cả");
                 }
-            }
-            else
-            {
-                condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
-            }
-            if (ddlChooseRoom.SelectedIndex != 0)
-            {
-                condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
-            }
-            if (ddlChooseType.SelectedIndex != 0)
-            {
-                condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
-            }
-            if (ddlInWarraty.SelectedIndex != 0)
-            {
-                if (ddlInWarraty.SelectedIndex == 1)
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-                else
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-            }
-            if (ddlPosition.SelectedIndex != 0)
-            {
-                if (ddlPosition.SelectedIndex != 1)
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='True'";
-                }
-                else
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='False'";
-                }
-            }
-            com.bindData("fur."+Message.FurnitureID+",fur." + Message.Name + ", furType."
-                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
-                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-        }
-
-        protected void ddlChooseType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string buildingCondition = "";
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                //Get building list
-                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList = building.Rows[0][0].ToString().Split('|');
-
-                for (int i = 0; i < buildingList.Length - 1; i++)
-                {
-                    buildingCondition = buildingCondition + buildingList[i] + ",";
-                }
-                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-            }
-            string condition = "";
-            if (ddlChooseBuilding.SelectedIndex == 0)
-            {
-                if (Session["UserLevel"].ToString() == "2")
-                {
-                    condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-                else
-                {
-                    condition = " where ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-            }
-            else
-            {
-                condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
-            }
-            if (ddlChooseRoom.SelectedIndex != 0)
-            {
-                condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
-            }
-            if (ddlChooseType.SelectedIndex != 0)
-            {
-                condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
-            }
-            if (ddlInWarraty.SelectedIndex != 0)
-            {
-                if (ddlInWarraty.SelectedIndex == 1)
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-                else
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-            }
-            if (ddlPosition.SelectedIndex != 0)
-            {
-                if (ddlPosition.SelectedIndex != 1)
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='True'";
-                }
-                else
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='False'";
-                }
-            }
-            com.bindData("fur."+Message.FurnitureID+",fur." + Message.Name + ", furType."
-                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
-                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-        }
-
-        protected void ddlInWarraty_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string buildingCondition = "";
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                //Get building list
-                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList = building.Rows[0][0].ToString().Split('|');
-
-                for (int i = 0; i < buildingList.Length - 1; i++)
-                {
-                    buildingCondition = buildingCondition + buildingList[i] + ",";
-                }
-                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-            }
-            string condition = "";
-            if (ddlChooseBuilding.SelectedIndex == 0)
-            {
-                if (Session["UserLevel"].ToString() == "2")
-                {
-                    condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-                else
-                {
-                    condition = " where ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-            }
-            else
-            {
-                condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
-            }
-            if (ddlChooseRoom.SelectedIndex != 0)
-            {
-                condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
-            }
-            if (ddlChooseType.SelectedIndex != 0)
-            {
-                condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
-            }
-            if (ddlInWarraty.SelectedIndex != 0)
-            {
-                if (ddlInWarraty.SelectedIndex == 1)
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-                else
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-            }
-            if (ddlPosition.SelectedIndex != 0)
-            {
-                if (ddlPosition.SelectedIndex != 1)
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='True'";
-                }
-                else
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='False'";
-                }
-            }
-            com.bindData("fur."+Message.FurnitureID+",fur." + Message.Name + ", furType."
-                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
-                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-        }
-
-        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string buildingCondition = "";
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                //Get building list
-                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList = building.Rows[0][0].ToString().Split('|');
-
-                for (int i = 0; i < buildingList.Length - 1; i++)
-                {
-                    buildingCondition = buildingCondition + buildingList[i] + ",";
-                }
-                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
-            }
-            string condition = "";
-            if (ddlChooseBuilding.SelectedIndex == 0)
-            {
-                if (Session["UserLevel"].ToString() == "2")
-                {
-                    condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-                else
-                {
-                    condition = " where ("
-                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
-                }
-            }
-            else
-            {
-                condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
-            }
-            if (ddlChooseRoom.SelectedIndex != 0)
-            {
-                condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
-            }
-            if (ddlChooseType.SelectedIndex != 0)
-            {
-                condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
-            }
-            if (ddlInWarraty.SelectedIndex != 0)
-            {
-                if (ddlInWarraty.SelectedIndex == 1)
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-                else
-                {
-                    condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
-                }
-            }
-            if (ddlPosition.SelectedIndex != 0)
-            {
-                if (ddlPosition.SelectedIndex != 1)
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='True'";
-                }
-                else
-                {
-                    condition = condition + " and " + Message.IsWarehouse + "='False'";
-                }
-            }
-            com.bindData("fur."+Message.FurnitureID+",fur." + Message.Name + ", furType."
-                + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
-                + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
-                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
-                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
-                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
-        }
-
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            pnlAdd.Visible = true;
-            pnlList.Visible = false;
-            this.startDate = "";
-            this.endDate = "";
-            ddlCountry.DataSource = com.getCountryList();
-            ddlCountry.DataBind();
-            ListItem item = new ListItem("Please select");
-            ddlCountry.Items.Insert(0, item);
-            if (Session["UserLevel"].ToString() == "2")
-            {
-                //Get building list
-                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                ddlBuilding.Items.Clear();
-                ddlBuilding.Items.Add("Please select");
-                for (int i = 0; i < buildingList.Length - 1; i++)
-                {
-                    DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                        + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
-                    if (buildingAddress.Rows.Count > 0)
-                    {
-                        ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                        ddlBuilding.Items.Add(buildingItem);
-                    }
-                }
-            }
-            else
-            {
-                com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlBuilding, "", true, "Please select");
-            }
-            com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Please select");
-            ddlRoom.Items.Clear();
-            ddlRoom.Items.Add("Please select");
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            pnlAdd.Visible = false;
-            pnlList.Visible = true;
-            Response.Redirect("ListFurniture.aspx");
-        }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdFurniture.Rows)
-            {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
-                {
-                    isCheck = true;
-                    pnlList.Visible = false;
-                    pnlEdit.Visible = true;
-                    this.startDate = "";
-                    this.endDate = "";
-                    ddlEditCountry.DataSource = com.getCountryList();
-                    ddlEditCountry.DataBind();
-                    ListItem item = new ListItem("Please select");
-                    ddlEditCountry.Items.Insert(0, item);
-                    Class.Furniture newFuniture = new Class.Furniture(gr.Cells[1].Text);
-                    txtEditDes.Text = newFuniture.Description;
-                    txtEditName.Text = newFuniture.Name;
-                    txtEditPrice.Text = newFuniture.Price;
-                    if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
-                    {
-                        ddlStatus.SelectedValue = "Normal";
-                    }
-                    else {
-                        ddlStatus.SelectedValue = "Broke";
-                    }
-                    ddlEditCountry.SelectedValue = newFuniture.MadeIn;
-                    this.startDate = newFuniture.StartWarranty;
-                    this.endDate = newFuniture.EndWarranty;
-                    imgPicture.ImageUrl = "Images/"+newFuniture.Picture;
-                    Session["FurID"] = newFuniture.FurID;
-                    break;
-                }
-            }
-            if (isCheck == false)
-            {
-                lblError.Text = "Please select a row!";
-            }
-        }
-
-        protected void btnEditReset_Click(object sender, EventArgs e)
-        {
-            Class.Furniture newFuniture = new Class.Furniture(Session["FurID"].ToString());
-            txtEditDes.Text = newFuniture.Description;
-            txtEditName.Text = newFuniture.Name;
-            txtEditPrice.Text = newFuniture.Price;
-            if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
-            {
-                ddlStatus.SelectedValue = "Normal";
-            }
-            else
-            {
-                ddlStatus.SelectedValue = "Broke";
-            }
-            ddlEditCountry.SelectedValue = newFuniture.MadeIn;
-            this.startDate = newFuniture.StartWarranty;
-            this.endDate = newFuniture.EndWarranty;
-            imgPicture.ImageUrl = "Images/" + newFuniture.Picture;
-        }
-
-        protected void btnEditSave_Click(object sender, EventArgs e)
-        {
-            Class.Furniture newFurniture = new Class.Furniture(Session["FurID"].ToString());
-            lblError.Text = "";
-            lblSuccess.Text = "";
-            this.startDate = Request.Form["txtEditStart"].ToString().Trim();
-            this.endDate = Request.Form["txtEditEnd"].ToString().Trim();
-            if (txtEditName.Text.Trim() == "")
-            {
-                lblError.Text = "Required field is missing!";
-            }
-            else
-            {
-                bool checkCondition = true;
-                string fileName = newFurniture.Picture;
-                if (fulEditPicture.HasFile)
-                {
-                    fileName = fulEditPicture.FileName;
-                    if (!Path.GetExtension(fileName).Contains(".jpg") &&
-                        !Path.GetExtension(fileName).Contains(".jpeg") &&
-                        !Path.GetExtension(fileName).Contains(".bmp") &&
-                        !Path.GetExtension(fileName).Contains(".png") &&
-                        !Path.GetExtension(fileName).Contains(".gif") &&
-                        !Path.GetExtension(fileName).Contains(".tif") &&
-                        !Path.GetExtension(fileName).Contains(".dib"))
-                    {
-                        lblError.Text = "Only accept jpg,jpeg,png,bmp,gif,tif and dib file type!";
-                        checkCondition = false;
-                    }
-                }
-                if (checkCondition == true)
-                {
-                    string name = txtEditName.Text.Trim();
-                    string price = txtEditPrice.Text.Trim();
-                    string made = ddlEditCountry.SelectedValue;
-                    string startWarranty = Request.Form["txtEditStart"].ToString().Trim();
-                    string endWarranty = Request.Form["txtEditEnd"].ToString().Trim();
-                    string description = txtEditDes.Text.Trim();
-                    if (fileName != null)
-                    {
-                        if (fulEditPicture.HasFile)
-                        {
-                            string pathRoot = HttpContext.Current.Server.MapPath("~/Images/");
-                            if (!File.Exists(pathRoot + fileName))
-                            {
-                                fulEditPicture.SaveAs(pathRoot + fileName);
-                            }
-                            else
-                            {
-                                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                                var stringChars = new char[8];
-                                var random = new Random();
-
-                                for (int i = 0; i < stringChars.Length; i++)
-                                {
-                                    stringChars[i] = chars[random.Next(chars.Length)];
-                                }
-
-                                var finalString = new String(stringChars);
-                                fulEditPicture.SaveAs(pathRoot + fileName.Replace(".", finalString + "."));
-                                fileName = fileName.Replace(".", finalString + ".");
-                            }
-                        }
-                    }
-                    newFurniture.Description = description;
-                    if (endWarranty != null && endWarranty != "")
-                    {
-                        newFurniture.EndWarranty = endWarranty;
-                    }
-                    newFurniture.MadeIn = made;
-                    newFurniture.Name = name;
-                    newFurniture.Picture = fileName;
-                    if (price != null && price != "")
-                    {
-                        newFurniture.Price = price;
-                    }
-                    if (startWarranty != null && startWarranty != "")
-                    {
-                        newFurniture.StartWarranty = startWarranty;
-                    }
-                    if (ddlStatus.SelectedValue == "Normal")
-                    {
-                        newFurniture.Status = "True";
-                    }
-                    else {
-                        newFurniture.Status = "False";
-                    }
-                    newFurniture.UpdateFurniture();
-                    Response.Redirect("ListFurniture.aspx");
-                }
-            }
-        }
-
-        protected void btnEditCancel_Click(object sender, EventArgs e)
-        {
-            pnlEdit.Visible = false;
-            pnlList.Visible = true;
-            Session.Remove("FurID");
-            Response.Redirect("ListFurniture.aspx");
-        }
-
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdFurniture.Rows)
-            {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
-                {
-                    isCheck = true;
-                    pnlDelete.Visible = true;
-                    if (Session["UserLevel"].ToString() == "2")
-                    {
-                        btnConfirmDelete.Text = "Send Request Email";
-                        btnConfirmDelete.Width = 150;
-                    }
-                    else {
-                        btnConfirmDelete.Text = "Remove";
-                        btnConfirmDelete.Width = 80;
-                    }
-                    break;
-                }
-            }
-            if (isCheck == false)
-            {
-                lblError.Text = "Please select a row!";
-            }
-        }
-
-        protected void btnConfirmCancel_Click(object sender, EventArgs e)
-        {
-            pnlDelete.Visible = false;
-            pnlList.Visible = true;
-            pnlRequest.Visible = false;
-        }
-
-        protected void btnConfirmDelete_Click(object sender, EventArgs e)
-        {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdFurniture.Rows)
-            {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
-                {
-                    isCheck = true;
-                    Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
-                    if (Session["UserLevel"].ToString() == "2")
-                    {
-                        newFurniture.RemoveFurniture(0);
-                    }
-                    else {
-                        newFurniture.RemoveFurniture(1);
-                    }
-                }
-            }
-            if (isCheck == false)
-            {
-                lblError.Text = "Please select a row!";
-            }
-            else
-            {
-                DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
-                    + ">=3");
-                for (int i = 0; i < email.Rows.Count; i++)
-                {
-                    com.SendMail(email.Rows[i][0].ToString(), "Confirm remove furniture from " + Session["FullName"], txtReason.Text);
-                }
-                lblSuccess.Text = "Send email success!";
-                pnlDelete.Visible = false;
-                pnlList.Visible = true;
                 string buildingCondition = "";
                 if (Session["UserLevel"].ToString() == "2")
                 {
@@ -1117,109 +556,625 @@ namespace HotelManagement
                         condition = condition + " and " + Message.IsWarehouse + "='False'";
                     }
                 }
-                com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                string[] column = new string[1];
+                column[0] = "Lịch sử";
+                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
                     + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
                     + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
                     + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
                     + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
                     + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+            }
+            catch (Exception)
+            {
             }
         }
 
-        protected void btnMove_Click(object sender, EventArgs e)
+        protected void ddlChooseRoom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdFurniture.Rows)
+            try
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
+                string buildingCondition = "";
+                if (Session["UserLevel"].ToString() == "2")
                 {
-                    isCheck = true;
-                    pnlMove.Visible = true;
-                    Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
-                    Class.Building newBuilding = new Class.Building(newFurniture.CurrentBuilding);
-                    DataTable dt = com.getData(Message.RoomTable,Message.RoomNo," where "+Message.RoomID
-                        +"="+newFurniture.CurrentRoom);
+                    //Get building list
+                    DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList = building.Rows[0][0].ToString().Split('|');
+
+                    for (int i = 0; i < buildingList.Length - 1; i++)
+                    {
+                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                    }
+                    buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                }
+                string condition = "";
+                if (ddlChooseBuilding.SelectedIndex == 0)
+                {
                     if (Session["UserLevel"].ToString() == "2")
                     {
-                        btnConfirmMove.Text = "Send Email Request";
-                        btnConfirmMove.Width = 150;
-                        //Get building list
-                        DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                            + Message.UserID + "=" + Session["UserID"]);
-                        string[] buildingList = building.Rows[0][0].ToString().Split('|');
-                        ddlTargetBuilding.Items.Clear();
-                        ddlTargetBuilding.Items.Add("Please select");
-                        for (int i = 0; i < buildingList.Length - 1; i++)
-                        {
-                            DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                                + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
-                            if (buildingAddress.Rows.Count > 0)
-                            {
-                                ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
-                                ddlTargetBuilding.Items.Add(buildingItem);
-                            }
-                        }
+                        condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
                     }
                     else
                     {
-                        btnConfirmMove.Text = "Move";
-                        btnConfirmMove.Width = 80;
-                        com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlTargetBuilding, "", true, "Please select");
+                        condition = " where ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
                     }
-                    ddlTargetRoom.Items.Clear();
-                    ddlTargetRoom.Items.Add("Please select");
-                    break;
                 }
+                else
+                {
+                    condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
+                }
+                if (ddlChooseRoom.SelectedIndex != 0)
+                {
+                    condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
+                }
+                if (ddlChooseType.SelectedIndex != 0)
+                {
+                    condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
+                }
+                if (ddlInWarraty.SelectedIndex != 0)
+                {
+                    if (ddlInWarraty.SelectedIndex == 1)
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                    else
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                }
+                if (ddlPosition.SelectedIndex != 0)
+                {
+                    if (ddlPosition.SelectedIndex != 1)
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='True'";
+                    }
+                    else
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='False'";
+                    }
+                }
+                string[] column = new string[1];
+                column[0] = "Lịch sử";
+                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                    + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                    + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
+                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
             }
-            if (isCheck == false)
+            catch (Exception)
             {
-                lblError.Text = "Please select a row!";
             }
         }
 
-        protected void ddlTargetBuilding_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlChooseType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlTargetBuilding.SelectedIndex != 0)
+            try
             {
-                Class.User newUser = new Class.User(int.Parse(Session["UserID"].ToString()));
+                string buildingCondition = "";
                 if (Session["UserLevel"].ToString() == "2")
                 {
-                    btnConfirmMove.Width = 150;
-                    btnConfirmMove.Text = "Send Email Request";
+                    //Get building list
+                    DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList = building.Rows[0][0].ToString().Split('|');
+
+                    for (int i = 0; i < buildingList.Length - 1; i++)
+                    {
+                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                    }
+                    buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
                 }
-                else {
-                    btnConfirmMove.Text = "Move";
-                    btnConfirmMove.Width = 80;
-                }
-                DataTable room = com.getData(Message.RoomTable, Message.RoomNo + "," + Message.RoomID, " where "
-                    +Message.BuildingID+"="+ddlTargetBuilding.SelectedValue);
-                ddlTargetRoom.Items.Clear();
-                ddlTargetRoom.Items.Add("Please select");
-                for (int i = 0; i < room.Rows.Count; i++)
+                string condition = "";
+                if (ddlChooseBuilding.SelectedIndex == 0)
                 {
-                    ListItem buildingItem = new ListItem(room.Rows[i][0].ToString(), room.Rows[i][1].ToString());
-                    ddlTargetRoom.Items.Add(buildingItem);
+                    if (Session["UserLevel"].ToString() == "2")
+                    {
+                        condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    }
+                    else
+                    {
+                        condition = " where ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    }
+                }
+                else
+                {
+                    condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
+                }
+                if (ddlChooseRoom.SelectedIndex != 0)
+                {
+                    condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
+                }
+                if (ddlChooseType.SelectedIndex != 0)
+                {
+                    condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
+                }
+                if (ddlInWarraty.SelectedIndex != 0)
+                {
+                    if (ddlInWarraty.SelectedIndex == 1)
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                    else
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                }
+                if (ddlPosition.SelectedIndex != 0)
+                {
+                    if (ddlPosition.SelectedIndex != 1)
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='True'";
+                    }
+                    else
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='False'";
+                    }
+                }
+                string[] column = new string[1];
+                column[0] = "Lịch sử";
+                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                    + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                    + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
+                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void ddlInWarraty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string buildingCondition = "";
+                if (Session["UserLevel"].ToString() == "2")
+                {
+                    //Get building list
+                    DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList = building.Rows[0][0].ToString().Split('|');
+
+                    for (int i = 0; i < buildingList.Length - 1; i++)
+                    {
+                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                    }
+                    buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                }
+                string condition = "";
+                if (ddlChooseBuilding.SelectedIndex == 0)
+                {
+                    if (Session["UserLevel"].ToString() == "2")
+                    {
+                        condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    }
+                    else
+                    {
+                        condition = " where ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    }
+                }
+                else
+                {
+                    condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
+                }
+                if (ddlChooseRoom.SelectedIndex != 0)
+                {
+                    condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
+                }
+                if (ddlChooseType.SelectedIndex != 0)
+                {
+                    condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
+                }
+                if (ddlInWarraty.SelectedIndex != 0)
+                {
+                    if (ddlInWarraty.SelectedIndex == 1)
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                    else
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                }
+                if (ddlPosition.SelectedIndex != 0)
+                {
+                    if (ddlPosition.SelectedIndex != 1)
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='True'";
+                    }
+                    else
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='False'";
+                    }
+                }
+                string[] column = new string[1];
+                column[0] = "Lịch sử";
+                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                    + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                    + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
+                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string buildingCondition = "";
+                if (Session["UserLevel"].ToString() == "2")
+                {
+                    //Get building list
+                    DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList = building.Rows[0][0].ToString().Split('|');
+
+                    for (int i = 0; i < buildingList.Length - 1; i++)
+                    {
+                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                    }
+                    buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                }
+                string condition = "";
+                if (ddlChooseBuilding.SelectedIndex == 0)
+                {
+                    if (Session["UserLevel"].ToString() == "2")
+                    {
+                        condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    }
+                    else
+                    {
+                        condition = " where ("
+                            + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                    }
+                }
+                else
+                {
+                    condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
+                }
+                if (ddlChooseRoom.SelectedIndex != 0)
+                {
+                    condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
+                }
+                if (ddlChooseType.SelectedIndex != 0)
+                {
+                    condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
+                }
+                if (ddlInWarraty.SelectedIndex != 0)
+                {
+                    if (ddlInWarraty.SelectedIndex == 1)
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                    else
+                    {
+                        condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                    }
+                }
+                if (ddlPosition.SelectedIndex != 0)
+                {
+                    if (ddlPosition.SelectedIndex != 1)
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='True'";
+                    }
+                    else
+                    {
+                        condition = condition + " and " + Message.IsWarehouse + "='False'";
+                    }
+                }
+                string[] column = new string[1];
+                column[0] = "Lịch sử";
+                com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                    + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                    + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
+                    + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                    + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                    + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                    + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlAdd.Visible = true;
+                pnlList.Visible = false;
+                this.startDate = "";
+                this.endDate = "";
+                ddlCountry.DataSource = com.getCountryList();
+                ddlCountry.DataBind();
+                ListItem item = new ListItem("Xin hãy chọn");
+                ddlCountry.Items.Insert(0, item);
+                if (Session["UserLevel"].ToString() == "2")
+                {
+                    //Get building list
+                    DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                    ddlBuilding.Items.Clear();
+                    ddlBuilding.Items.Add("Xin hãy chọn");
+                    for (int i = 0; i < buildingList.Length - 1; i++)
+                    {
+                        DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                            + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                        if (buildingAddress.Rows.Count > 0)
+                        {
+                            ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                            ddlBuilding.Items.Add(buildingItem);
+                        }
+                    }
+                }
+                else
+                {
+                    com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlBuilding, "", true, "Xin hãy chọn");
+                }
+                com.SetItemList(Message.Description + "," + Message.Description, Message.FurnitureTypeTable, ddlType, "", true, "Xin hãy chọn");
+                ddlRoom.Items.Clear();
+                ddlRoom.Items.Add("Xin hãy chọn");
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            pnlAdd.Visible = false;
+            pnlList.Visible = true;
+            Response.Redirect("ListFurniture.aspx");
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdFurniture.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        pnlList.Visible = false;
+                        pnlEdit.Visible = true;
+                        this.startDate = "";
+                        this.endDate = "";
+                        ddlEditCountry.DataSource = com.getCountryList();
+                        ddlEditCountry.DataBind();
+                        ListItem item = new ListItem("Xin hãy chọn");
+                        ddlEditCountry.Items.Insert(0, item);
+                        Class.Furniture newFuniture = new Class.Furniture(gr.Cells[1].Text);
+                        txtEditDes.Text = newFuniture.Description;
+                        txtEditName.Text = newFuniture.Name;
+                        txtEditPrice.Text = newFuniture.Price;
+                        if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
+                        {
+                            ddlStatus.SelectedValue = "Bình thường";
+                        }
+                        else
+                        {
+                            ddlStatus.SelectedValue = "Hỏng";
+                        }
+                        ddlEditCountry.SelectedValue = newFuniture.MadeIn;
+                        this.startDate = newFuniture.StartWarranty;
+                        this.endDate = newFuniture.EndWarranty;
+                        imgPicture.ImageUrl = "Images/" + newFuniture.Picture;
+                        Session["FurID"] = newFuniture.FurID;
+                        break;
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
                 }
             }
-            else
+            catch (Exception)
             {
-                ddlTargetRoom.Items.Clear();
-                ddlTargetRoom.Items.Add("Please select");
             }
         }
 
-        protected void btnMoveCancel_Click(object sender, EventArgs e)
+        protected void btnEditReset_Click(object sender, EventArgs e)
         {
-            ddlTargetBuilding.SelectedIndex = 0;
-            ddlTargetRoom.SelectedIndex = 0;
-            pnlMove.Visible = false;
+            try
+            {
+                Class.Furniture newFuniture = new Class.Furniture(Session["FurID"].ToString());
+                txtEditDes.Text = newFuniture.Description;
+                txtEditName.Text = newFuniture.Name;
+                txtEditPrice.Text = newFuniture.Price;
+                if (newFuniture.Status == "0" || newFuniture.Status == "True" || newFuniture.Status == "")
+                {
+                    ddlStatus.SelectedValue = "Bình thường";
+                }
+                else
+                {
+                    ddlStatus.SelectedValue = "Hỏng";
+                }
+                ddlEditCountry.SelectedValue = newFuniture.MadeIn;
+                this.startDate = newFuniture.StartWarranty;
+                this.endDate = newFuniture.EndWarranty;
+                imgPicture.ImageUrl = "Images/" + newFuniture.Picture;
+            }
+            catch (Exception)
+            {
+            }
         }
 
-        protected void btnConfirmMove_Click(object sender, EventArgs e)
+        protected void btnEditSave_Click(object sender, EventArgs e)
         {
-            if (ddlTargetBuilding.SelectedIndex != 0 && ddlTargetRoom.SelectedIndex != 0)
+            try
+            {
+                Class.Furniture newFurniture = new Class.Furniture(Session["FurID"].ToString());
+                lblError.Text = "";
+                lblSuccess.Text = "";
+                this.startDate = Request.Form["txtEditStart"].ToString().Trim();
+                this.endDate = Request.Form["txtEditEnd"].ToString().Trim();
+                if (txtEditName.Text.Trim() == "")
+                {
+                    lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc!";
+                }
+                else
+                {
+                    bool checkCondition = true;
+                    string fileName = newFurniture.Picture;
+                    if (fulEditPicture.HasFile)
+                    {
+                        fileName = fulEditPicture.FileName;
+                        if (!Path.GetExtension(fileName).Contains(".jpg") &&
+                            !Path.GetExtension(fileName).Contains(".jpeg") &&
+                            !Path.GetExtension(fileName).Contains(".bmp") &&
+                            !Path.GetExtension(fileName).Contains(".png") &&
+                            !Path.GetExtension(fileName).Contains(".gif") &&
+                            !Path.GetExtension(fileName).Contains(".tif") &&
+                            !Path.GetExtension(fileName).Contains(".dib"))
+                        {
+                            lblError.Text = "Hệ thống chỉ chấp nhận các loại file ảnh jpg,jpeg,png,bmp,gif,tif và dib!";
+                            checkCondition = false;
+                        }
+                    }
+                    if (checkCondition == true)
+                    {
+                        string name = txtEditName.Text.Trim();
+                        string price = txtEditPrice.Text.Trim();
+                        string made = ddlEditCountry.SelectedValue;
+                        string startWarranty = Request.Form["txtEditStart"].ToString().Trim();
+                        string endWarranty = Request.Form["txtEditEnd"].ToString().Trim();
+                        string description = txtEditDes.Text.Trim();
+                        if (fileName != null)
+                        {
+                            if (fulEditPicture.HasFile)
+                            {
+                                string pathRoot = HttpContext.Current.Server.MapPath("~/Images/");
+                                if (!File.Exists(pathRoot + fileName))
+                                {
+                                    fulEditPicture.SaveAs(pathRoot + fileName);
+                                }
+                                else
+                                {
+                                    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                                    var stringChars = new char[8];
+                                    var random = new Random();
+
+                                    for (int i = 0; i < stringChars.Length; i++)
+                                    {
+                                        stringChars[i] = chars[random.Next(chars.Length)];
+                                    }
+
+                                    var finalString = new String(stringChars);
+                                    fulEditPicture.SaveAs(pathRoot + fileName.Replace(".", finalString + "."));
+                                    fileName = fileName.Replace(".", finalString + ".");
+                                }
+                            }
+                        }
+                        newFurniture.Description = description;
+                        if (endWarranty != null && endWarranty != "")
+                        {
+                            newFurniture.EndWarranty = endWarranty;
+                        }
+                        newFurniture.MadeIn = made;
+                        newFurniture.Name = name;
+                        newFurniture.Picture = fileName;
+                        if (price != null && price != "")
+                        {
+                            newFurniture.Price = price;
+                        }
+                        if (startWarranty != null && startWarranty != "")
+                        {
+                            newFurniture.StartWarranty = startWarranty;
+                        }
+                        if (ddlStatus.SelectedValue == "Bình thường")
+                        {
+                            newFurniture.Status = "True";
+                        }
+                        else
+                        {
+                            newFurniture.Status = "False";
+                        }
+                        newFurniture.UpdateFurniture();
+                        Response.Redirect("ListFurniture.aspx");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void btnEditCancel_Click(object sender, EventArgs e)
+        {
+            pnlEdit.Visible = false;
+            pnlList.Visible = true;
+            Session.Remove("FurID");
+            Response.Redirect("ListFurniture.aspx");
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdFurniture.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        pnlDelete.Visible = true;
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            btnConfirmDelete.Text = "Gửi Email Yêu Cầu";
+                            btnConfirmDelete.Width = 150;
+                        }
+                        else
+                        {
+                            btnConfirmDelete.Text = "Xóa";
+                            btnConfirmDelete.Width = 80;
+                        }
+                        break;
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void btnConfirmCancel_Click(object sender, EventArgs e)
+        {
+            pnlDelete.Visible = false;
+            pnlList.Visible = true;
+            pnlRequest.Visible = false;
+        }
+
+        protected void btnConfirmDelete_Click(object sender, EventArgs e)
+        {
+            try
             {
                 bool isCheck = false;
                 foreach (GridViewRow gr in grdFurniture.Rows)
@@ -1229,19 +1184,19 @@ namespace HotelManagement
                     {
                         isCheck = true;
                         Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
-                        newFurniture.CurrentBuilding = ddlTargetBuilding.SelectedValue;
-                        if (btnConfirmMove.Text == "Move") {
-                            newFurniture.MoveFurniture(int.Parse(ddlTargetRoom.SelectedValue), 1, Session["UserID"].ToString(),txtMoveReason.Text);
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            newFurniture.RemoveFurniture(0);
                         }
                         else
                         {
-                            newFurniture.MoveFurniture(int.Parse(ddlTargetRoom.SelectedValue), 0, Session["UserID"].ToString(), txtMoveReason.Text);
+                            newFurniture.RemoveFurniture(1);
                         }
                     }
                 }
                 if (isCheck == false)
                 {
-                    lblError.Text = "Please select a row!";
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
                 }
                 else
                 {
@@ -1249,10 +1204,10 @@ namespace HotelManagement
                         + ">=3");
                     for (int i = 0; i < email.Rows.Count; i++)
                     {
-                        com.SendMail(email.Rows[i][0].ToString(), "Confirm move furniture from " + Session["FullName"], txtMoveReason.Text);
+                        com.SendMail(email.Rows[i][0].ToString(), "Xác nhận gỡ bỏ vật tư từ " + Session["FullName"], txtReason.Text);
                     }
-                    lblSuccess.Text = "Send email success!";
-                    pnlMove.Visible = false;
+                    lblSuccess.Text = "Gửi email thành công!";
+                    pnlDelete.Visible = false;
                     pnlList.Visible = true;
                     string buildingCondition = "";
                     if (Session["UserLevel"].ToString() == "2")
@@ -1316,17 +1271,245 @@ namespace HotelManagement
                             condition = condition + " and " + Message.IsWarehouse + "='False'";
                         }
                     }
-                    com.bindData("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                    string[] column = new string[1];
+                    column[0] = "Lịch sử";
+                    com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
                         + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
                         + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
                         + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
                         + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
                         + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
-                        + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture);
+                        + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
                 }
             }
-            else {
-                lblError.Text = "Please select a building and a room";
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void btnMove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdFurniture.Rows)
+                {
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        pnlMove.Visible = true;
+                        Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
+                        Class.Building newBuilding = new Class.Building(newFurniture.CurrentBuilding);
+                        DataTable dt = com.getData(Message.RoomTable, Message.RoomNo, " where " + Message.RoomID
+                            + "=" + newFurniture.CurrentRoom);
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            btnConfirmMove.Text = "Gửi Email Yêu Cầu";
+                            btnConfirmMove.Width = 150;
+                            //Get building list
+                            DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                + Message.UserID + "=" + Session["UserID"]);
+                            string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                            ddlTargetBuilding.Items.Clear();
+                            ddlTargetBuilding.Items.Add("Xin hãy chọn");
+                            for (int i = 0; i < buildingList.Length - 1; i++)
+                            {
+                                DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                                    + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                                if (buildingAddress.Rows.Count > 0)
+                                {
+                                    ListItem buildingItem = new ListItem(buildingAddress.Rows[0][0].ToString(), buildingAddress.Rows[0][1].ToString());
+                                    ddlTargetBuilding.Items.Add(buildingItem);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            btnConfirmMove.Text = "Di chuyển";
+                            btnConfirmMove.Width = 80;
+                            com.SetItemList(Message.Address + "," + Message.BuildingID, Message.BuildingTable, ddlTargetBuilding, "", true, "Xin hãy chọn");
+                        }
+                        ddlTargetRoom.Items.Clear();
+                        ddlTargetRoom.Items.Add("Xin hãy chọn");
+                        break;
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void ddlTargetBuilding_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlTargetBuilding.SelectedIndex != 0)
+                {
+                    Class.User newUser = new Class.User(int.Parse(Session["UserID"].ToString()));
+                    if (Session["UserLevel"].ToString() == "2")
+                    {
+                        btnConfirmMove.Width = 150;
+                        btnConfirmMove.Text = "Gửi Email Yêu Cầu";
+                    }
+                    else
+                    {
+                        btnConfirmMove.Text = "Di chuyển";
+                        btnConfirmMove.Width = 80;
+                    }
+                    DataTable room = com.getData(Message.RoomTable, Message.RoomNo + "," + Message.RoomID, " where "
+                        + Message.BuildingID + "=" + ddlTargetBuilding.SelectedValue);
+                    ddlTargetRoom.Items.Clear();
+                    ddlTargetRoom.Items.Add("Xin hãy chọn");
+                    for (int i = 0; i < room.Rows.Count; i++)
+                    {
+                        ListItem buildingItem = new ListItem(room.Rows[i][0].ToString(), room.Rows[i][1].ToString());
+                        ddlTargetRoom.Items.Add(buildingItem);
+                    }
+                }
+                else
+                {
+                    ddlTargetRoom.Items.Clear();
+                    ddlTargetRoom.Items.Add("Xin hãy chọn");
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void btnMoveCancel_Click(object sender, EventArgs e)
+        {
+            ddlTargetBuilding.SelectedIndex = 0;
+            ddlTargetRoom.SelectedIndex = 0;
+            pnlMove.Visible = false;
+        }
+
+        protected void btnConfirmMove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlTargetBuilding.SelectedIndex != 0 && ddlTargetRoom.SelectedIndex != 0)
+                {
+                    bool isCheck = false;
+                    foreach (GridViewRow gr in grdFurniture.Rows)
+                    {
+                        CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                        if (cb.Checked)
+                        {
+                            isCheck = true;
+                            Class.Furniture newFurniture = new Class.Furniture(gr.Cells[1].Text);
+                            newFurniture.CurrentBuilding = ddlTargetBuilding.SelectedValue;
+                            if (btnConfirmMove.Text == "Di chuyển")
+                            {
+                                newFurniture.MoveFurniture(int.Parse(ddlTargetRoom.SelectedValue), 1, Session["UserID"].ToString(), txtMoveReason.Text);
+                            }
+                            else
+                            {
+                                newFurniture.MoveFurniture(int.Parse(ddlTargetRoom.SelectedValue), 0, Session["UserID"].ToString(), txtMoveReason.Text);
+                            }
+                        }
+                    }
+                    if (isCheck == false)
+                    {
+                        lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
+                    }
+                    else
+                    {
+                        DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                            + ">=3");
+                        for (int i = 0; i < email.Rows.Count; i++)
+                        {
+                            com.SendMail(email.Rows[i][0].ToString(), "Xác nhận di chuyển vật tư từ " + Session["FullName"], txtMoveReason.Text);
+                        }
+                        lblSuccess.Text = "Gửi email thành công!";
+                        pnlMove.Visible = false;
+                        pnlList.Visible = true;
+                        string buildingCondition = "";
+                        if (Session["UserLevel"].ToString() == "2")
+                        {
+                            //Get building list
+                            DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                                + Message.UserID + "=" + Session["UserID"]);
+                            string[] buildingList = building.Rows[0][0].ToString().Split('|');
+
+                            for (int i = 0; i < buildingList.Length - 1; i++)
+                            {
+                                buildingCondition = buildingCondition + buildingList[i] + ",";
+                            }
+                            buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                        }
+                        string condition = "";
+                        if (ddlChooseBuilding.SelectedIndex == 0)
+                        {
+                            if (Session["UserLevel"].ToString() == "2")
+                            {
+                                condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
+                                    + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                            }
+                            else
+                            {
+                                condition = " where ("
+                                    + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                            }
+                        }
+                        else
+                        {
+                            condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
+                        }
+                        if (ddlChooseRoom.SelectedIndex != 0)
+                        {
+                            condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
+                        }
+                        if (ddlChooseType.SelectedIndex != 0)
+                        {
+                            condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
+                        }
+                        if (ddlInWarraty.SelectedIndex != 0)
+                        {
+                            if (ddlInWarraty.SelectedIndex == 1)
+                            {
+                                condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                            }
+                            else
+                            {
+                                condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                            }
+                        }
+                        if (ddlPosition.SelectedIndex != 0)
+                        {
+                            if (ddlPosition.SelectedIndex != 1)
+                            {
+                                condition = condition + " and " + Message.IsWarehouse + "='True'";
+                            }
+                            else
+                            {
+                                condition = condition + " and " + Message.IsWarehouse + "='False'";
+                            }
+                        }
+                        string[] column = new string[1];
+                        column[0] = "Lịch sử";
+                        com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                            + Message.Description + " as 'Furniture Type',bui." + Message.Address + " as 'Building',rom." + Message.RoomNo + " as 'Room No', fur."
+                            + Message.EndWarranty + " as 'End Warranty' ,fur." + Message.Picture, condition, Message.FurnitureTable
+                            + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                            + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                            + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                            + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom, grdFurniture, 1, column);
+                    }
+                }
+                else
+                {
+                    lblError.Text = "Xin hãy chọn 1 tòa nhà và 1 phòng";
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -1342,55 +1525,69 @@ namespace HotelManagement
 
         protected void btnRequestFurniture_Click(object sender, EventArgs e)
         {
-            if (txtComment.Text.Trim() == "")
+            try
             {
-                lblError.Text = "Please enter your request!";
-            }
-            else {
-                DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
-                    + ">=3");
-                for (int i = 0; i < email.Rows.Count; i++)
+                if (txtComment.Text.Trim() == "")
                 {
-                    com.SendMail(email.Rows[i][0].ToString(), "Request furniture from " + Session["FullName"], txtComment.Text);
+                    lblError.Text = "Xin hãy nhập yêu cầu của bạn!";
                 }
-                lblSuccess.Text = "Success!";
-                pnlRequest.Visible = false;
+                else
+                {
+                    DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                        + ">=3");
+                    for (int i = 0; i < email.Rows.Count; i++)
+                    {
+                        com.SendMail(email.Rows[i][0].ToString(), "Yêu cầu vật tư từ " + Session["FullName"], txtComment.Text);
+                    }
+                    lblSuccess.Text = "Thành công";
+                    pnlRequest.Visible = false;
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         protected void lblCategory_Click(object sender, EventArgs e)
         {
-            if (grdCategory.Visible == true)
+            try
             {
-                grdCategory.Visible = false;
-                lblCategory.Text = "Show Category Statistic";
-            }
-            else {
-                grdCategory.Visible = true;
-                //Get building list
-                DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
-                    + Message.UserID + "=" + Session["UserID"]);
-                string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
-                string buildingCondition1 = "";
-                for (int i = 0; i < buildingList1.Length - 1; i++)
+                if (grdCategory.Visible == true)
                 {
-                    DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
-                        + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
-                    if (buildingAddress1.Rows.Count > 0)
-                    {
-                        buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
-                    }
+                    grdCategory.Visible = false;
+                    lblCategory.Text = "Hiện thống kê vật tư";
                 }
-                buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
-                com.bindData("distinct furType." + Message.Description
-                    + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
-                    + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
-                    + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
-                    + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
-                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Value'"
-                    , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
-                    + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
-                lblCategory.Text = "Hide Category Statistic";
+                else
+                {
+                    grdCategory.Visible = true;
+                    //Get building list
+                    DataTable building1 = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                        + Message.UserID + "=" + Session["UserID"]);
+                    string[] buildingList1 = building1.Rows[0][0].ToString().Split('|');
+                    string buildingCondition1 = "";
+                    for (int i = 0; i < buildingList1.Length - 1; i++)
+                    {
+                        DataTable buildingAddress1 = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                            + Message.BuildingID + "=" + buildingList1[i] + " and " + Message.Status + "<>3");
+                        if (buildingAddress1.Rows.Count > 0)
+                        {
+                            buildingCondition1 = buildingCondition1 + buildingList1[i] + ",";
+                        }
+                    }
+                    buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
+                    com.bindData("distinct furType." + Message.Description
+                        + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                        + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
+                        + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
+                        + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total',(select SUM(" + Message.Price
+                        + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total Value'"
+                        , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                        + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
+                    lblCategory.Text = "Ẩn thống kê vật tư";
+                }
+            }
+            catch (Exception)
+            {
             }
         }
     }

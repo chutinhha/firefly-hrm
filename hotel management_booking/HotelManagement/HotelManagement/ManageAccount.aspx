@@ -47,9 +47,9 @@
         <ContentTemplate>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" 
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" 
                     onclick="btnAdd_Click" />
-            <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="80" 
+            <asp:Button ID="btnDelete" runat="server" Text="Xóa" Width="80" 
                     onclick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();" />
                 <br />
                 <br />
