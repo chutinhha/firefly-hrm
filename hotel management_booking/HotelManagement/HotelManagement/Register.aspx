@@ -79,7 +79,7 @@
             <br />
             <asp:Label ID="Label1" runat="server" Text="" Width="150px"></asp:Label>
             <asp:Button ID="btnRegister" runat="server" Text="Đăng ký" Style="background-color: #034569;
-                color: white; border: none; height: 25px;" OnClick="btnRegister_Click" />
+                color: white; border: none; height: 25px;" OnClick="btnRegister_Click" Width="80" />
             <br />
             <br />
             &nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

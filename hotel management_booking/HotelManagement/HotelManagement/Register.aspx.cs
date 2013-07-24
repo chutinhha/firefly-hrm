@@ -77,6 +77,7 @@ namespace HotelManagement
                     if (ID != null)
                     {
                         Class.User newUser = new Class.User(int.Parse(ID));
+                        btnRegister.Text = "Lưu";
                         txtUserName.Text = newUser.UserName;
                         txtPassword.Text = newUser.Password;
                         txtPhone.Text = newUser.PhoneNumber;
@@ -105,6 +106,9 @@ namespace HotelManagement
                                 }
                             }
                         }
+                    }
+                    else {
+                        btnRegister.Text = "Đăng ký";
                     }
                 }
                 if (ID == null)
@@ -194,7 +198,7 @@ namespace HotelManagement
                 {
                     if (ddlAccountType.SelectedValue == "Quản lý tòa nhà")
                     {
-                        if (txtUserName.Text.Trim() == "" || txtPassword.Text.Trim() == "")
+                        if ((txtUserName.Text.Trim() == "" || txtPassword.Text.Trim() == "")&&ID==null)
                         {
                             lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc";
                         }
@@ -342,7 +346,7 @@ namespace HotelManagement
                     }
                     else
                     {
-                        if (txtUserName.Text.Trim() == "" || txtPassword.Text.Trim() == "")
+                        if ((txtUserName.Text.Trim() == "" || txtPassword.Text.Trim() == "")&&ID==null)
                         {
                             lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc";
                         }
