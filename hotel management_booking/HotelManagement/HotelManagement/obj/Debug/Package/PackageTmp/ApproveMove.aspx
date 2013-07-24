@@ -20,7 +20,7 @@
         </asp:GridView>
         </div>
         <br />
-        <asp:Button ID="btnSave" runat="server" Text="Save" Width="80" 
+        <asp:Button ID="btnSave" runat="server" Text="Lưu" Width="80" 
             onclick="btnSave_Click" />
         <br /><br />
         <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

@@ -32,33 +32,33 @@
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br>
-                <span style="font-weight: bold;">Title:</span><br />
+                <span style="font-weight: bold;">Tên bài:</span><br />
                 <asp:TextBox ID="txtTitle" runat="server" Width="98%"></asp:TextBox><br>
                 <br>
                 <ckeditor:ckeditorcontrol id="CKEditor1" basepath="/ckeditor/" runat="server"></ckeditor:ckeditorcontrol>
                 <br />
                 <center>
-                    <asp:Button ID="btnSave" runat="server" Text="Save" Width="80px" 
+                    <asp:Button ID="btnSave" runat="server" Text="Lưu" Width="80px" 
                         onclick="btnSave_Click" OnClientClick="return ConfirmOnSave();" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel"
+                    <asp:Button ID="btnCancel" runat="server" Text="Hủy"
                         Width="80px" onclick="btnCancel_Click" /></center>
                 <br />
             </asp:Panel>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Label ID="lblTime" style="font-weight:bold;" runat="server" Text="Show News In" Width="150"></asp:Label>
-                <asp:RadioButton ID="rdoAll" runat="server" Text="All Time" GroupName="Time" 
+                <asp:Label ID="lblTime" style="font-weight:bold;" runat="server" Text="Hiện tin trong khoảng" Width="150"></asp:Label>
+                <asp:RadioButton ID="rdoAll" runat="server" Text="Mọi thời điểm" GroupName="Time" 
                     Checked="True" AutoPostBack="True" oncheckedchanged="rdoAll_CheckedChanged" />
-                <asp:RadioButton ID="rdoYear" runat="server" Text="This Year" GroupName="Time" 
+                <asp:RadioButton ID="rdoYear" runat="server" Text="Năm nay" GroupName="Time" 
                     AutoPostBack="True" oncheckedchanged="rdoYear_CheckedChanged"/>
-                <asp:RadioButton ID="rdoMonth" runat="server" Text="This Month" 
+                <asp:RadioButton ID="rdoMonth" runat="server" Text="Tháng này" 
                     GroupName="Time" AutoPostBack="True" 
                     oncheckedchanged="rdoMonth_CheckedChanged"/>
                 <br />
                 <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" 
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" 
                     onclick="btnAdd_Click"/>
-                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" 
+                <asp:Button ID="btnDelete" runat="server" Text="Xóa" Width="80" 
                     OnClientClick="return ConfirmOnDelete();" onclick="btnDelete_Click"
                     />
                 <br />

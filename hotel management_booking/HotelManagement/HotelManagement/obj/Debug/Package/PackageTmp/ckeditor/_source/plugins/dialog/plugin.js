@@ -1501,7 +1501,7 @@ CKEDITOR.DIALOG_RESIZE_BOTH = 3;
 			})(),
 
 			/**
-			 * The default cancel button for dialogs. Fires the "cancel" event and closes the dialog if no UI element value changed.
+			 * The default cancel button for dialogs. Fires the "Hủy" event and closes the dialog if no UI element value changed.
 			 * @static
 			 * @field
 			 * @example

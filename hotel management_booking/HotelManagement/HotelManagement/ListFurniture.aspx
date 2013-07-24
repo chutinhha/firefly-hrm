@@ -166,6 +166,12 @@
                 </asp:DropDownList>
                 <br />
                 <br />
+                <asp:Label ID="lblCustomer" Style="font-weight: bold;" runat="server" Text="Khách hàng"
+                    Width="150"></asp:Label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" Width="215" AutoPostBack="True"
+                    OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged">
+                </asp:DropDownList>
+                <br /><br />
                 <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" OnClick="btnAdd_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="Xóa" Width="80" OnClick="btnDelete_Click" />
                 <asp:Button ID="btnMove" runat="server" Text="Di chuyển" Width="80" OnClick="btnMove_Click" />
@@ -180,7 +186,8 @@
                 <br /><br />
                 <asp:GridView ID="grdCategory" OnRowDataBound="grdCategory_RowDataBound" Width="100%" runat="server" Visible="False">
                 </asp:GridView>
-                
+                <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport1" runat="server" 
+                    Width="45px" onclick="btnExport1_Click" ToolTip="Xuất dữ liệu ra excel" />
                 
                 </asp:Panel>
                 <br />
@@ -201,6 +208,9 @@
                     </asp:GridView>
                 </div>
                 <br />
+                <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
+                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    <br /><br />
                 <asp:Panel ID="pnlMove" runat="server" Visible="False">
                     <asp:Label ID="lblTargetBuilding" Style="font-weight: bold;" runat="server" Text="Tòa nhà đích"
                         Width="150px"></asp:Label>

@@ -1,2 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<publishData />
+<publishData>
+  <publishProfile publishUrl="https://tungda01659-001-site1.smarterasp.net:8172/MsDeploy.axd" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="tungda01659-001-site1" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="True" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="ifc\tungda01659-001" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwRzXVEH070mhqIf/o3hqwAAAAAACAAAAAAAQZgAAAAEAACAAAABRL4L9tNe+otv/sE2kIOZDLutKq3ns+qDl6IzPhu1SPgAAAAAOgAAAAAIAACAAAAAtVq0hOyk7PmMA4JZB7uGg0yf3s9hsSktCMctcJuvJ1yAAAACutDSYbHhX/PC6iVpL+RFGCK/f9bBqp3izIkJWhhKObkAAAACLiOG8XY2kv4as8TlYfgo/GLIBzkYiAR4A14W4ig9NTO1EeIAARrfnidvrR1Fm3pmHgo9vs+AhLYLD+hUKwuNx" SelectedForPublish="True" />
+</publishData>

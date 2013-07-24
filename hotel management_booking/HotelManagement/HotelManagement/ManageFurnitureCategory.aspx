@@ -79,6 +79,9 @@
                 <br />
             </asp:Panel>
             <br />
+            <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
+                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    <br />
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>
         </ContentTemplate>

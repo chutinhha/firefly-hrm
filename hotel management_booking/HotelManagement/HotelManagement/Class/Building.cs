@@ -77,6 +77,18 @@ namespace HotelManagement.Class
         public void RemoveBuilding() {
             com.updateTable(Message.BuildingTable, Message.Status+"='3' where " + Message.BuildingID
                 + "=" + BID);
+            DataTable dt = com.getData(Message.UserAccountTable,Message.RoomManage+","+Message.UserID," where "+Message.UserLevel+"=2 and "
+                +Message.RoomManage+" is not NULL");
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                if (dt.Rows[i][0].ToString().Contains("|" + BID + "|")) 
+                { 
+                    com.updateTable(Message.UserAccountTable,Message.RoomManage+"='"
+                        +dt.Rows[i][0].ToString().Replace("|"+BID+"|","|")+"'");
+                }else if (dt.Rows[i][0].ToString().Contains(BID + "|") && dt.Rows[i][0].ToString().IndexOf(BID + "|") == 0){
+                    com.updateTable(Message.UserAccountTable, Message.RoomManage + "='"
+                        + dt.Rows[i][0].ToString().Replace(BID + "|", "") + "'");
+                }
+            }
         }
         public string GetBuildingType() { 
             DataTable dt = com.getData(Message.BuildingTypeTable,Message.Description," where "

@@ -49,11 +49,25 @@ namespace HotelManagement
                 string ID = Request.QueryString["ID"];
                 if (!IsPostBack)
                 {
+                    DataTable customer = com.getData(Message.CustomerTable, Message.LastName
+                                + "," + Message.MiddleName + "," + Message.FirstName + "," + Message.CustomerID, "");
+                    ddlCustomer.Items.Clear();
+                    ddlCustomer.Items.Add("Không có");
+                    for (int i = 0; i < customer.Rows.Count; i++)
+                    {
+                        ListItem newItem = new ListItem(customer.Rows[i][0].ToString() + " " +
+                            customer.Rows[i][1].ToString() + " " +
+                        customer.Rows[i][2].ToString(), customer.Rows[i][3].ToString());
+                        ddlCustomer.Items.Add(newItem);
+                    }
                     if (ID != null)
                     {
                         pnlList.Visible = false;
                         pnlAdd.Visible = true;
                         Class.Room newRoom = new Class.Room(ID);
+                        if (newRoom.CurrentCustomerID != "") {
+                            ddlCustomer.SelectedValue = newRoom.CurrentCustomerID;
+                        }
                         Class.Building newBuilding = new Class.Building(newRoom.BuildingID);
                         ddlBuilding.Visible = false;
                         txtBuilding.Visible = true;
@@ -471,7 +485,9 @@ namespace HotelManagement
                             {
                                 newRoom = new Class.Room(Session["RID"].ToString());
                             }
-
+                            if (ddlCustomer.SelectedIndex != 0) {
+                                newRoom.CurrentCustomerID = ddlCustomer.SelectedValue;
+                            }
                             newRoom.Floor = ddlFloor.SelectedValue;
                             newRoom.RoomNo = txtRoomNo.Text;
                             if (chkWareHouse.Checked)
@@ -550,6 +566,10 @@ namespace HotelManagement
                             }
                             content = content + "Tầng: " + ddlFloor.SelectedValue + "<br>";
                             content = content + "Phòng số: " + txtRoomNo.Text + "<br>";
+                            if (ddlCustomer.SelectedIndex != 0)
+                            {
+                                content = content + "Khách hàng: "+ddlCustomer.SelectedItem.Text+"<br>";
+                            }
                             if (chkWareHouse.Checked)
                             {
                                 content = content + "Là phòng kho: Đúng" + "<br>";
@@ -781,6 +801,59 @@ namespace HotelManagement
                 }
             }
             catch (Exception)
+            {
+            }
+        }
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                    + Message.UserID + "=" + Session["UserID"]);
+                string[] buildingList = building.Rows[0][0].ToString().Split('|');
+                string buildingCondition = "";
+                for (int i = 0; i < buildingList.Length - 1; i++)
+                {
+                    DataTable buildingAddress = com.getData(Message.BuildingTable, Message.Address + "," + Message.BuildingID, " where "
+                        + Message.BuildingID + "=" + buildingList[i] + " and " + Message.Status + "<>3");
+                    if (buildingAddress.Rows.Count > 0)
+                    {
+                        buildingCondition = buildingCondition + buildingList[i] + ",";
+                    }
+                }
+                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
+                string condition = " where rom." + Message.BuildingID + " in (" + buildingCondition + ") and rom." + Message.Status + "<>3";
+                if (ddlChooseBuilding.SelectedIndex == 0) { }
+                else
+                {
+                    condition = condition + " and rom." + Message.BuildingID + "=" + ddlChooseBuilding.SelectedValue;
+                }
+                if (ddlRoomType.SelectedIndex == 0) { }
+                else
+                {
+                    condition = condition + " and IsWareHouse=" + (ddlRoomType.SelectedIndex - 1).ToString();
+                }
+                string[] column = new string[1];
+                column[0] = "Chi tiết";
+                string sql = com.bindDataBlankColumn(" " + Message.RoomID + ",bui." + Message.Address + " as 'Building'," + Message.Floor + "," + Message.RoomNo
+                    + " as 'Room_No',rom." + Message.Area + ",rom." + Message.Price + ",rom.Status as 'Available'" + ",CAST(IsWareHouse as varchar(MAX)) as 'Is_WH'", condition + " order by bui." + Message.Address + ",rom.Floor",
+                    Message.RoomTable + " rom join " + Message.BuildingTable + " bui on rom." + Message.BuildingID
+                    + "=bui." + Message.BuildingID, grdRoom, 1, column);
+                int fromIndex = -4;
+                string temp_sql = sql;
+                while (temp_sql.Contains("from"))
+                {
+                    fromIndex = fromIndex + temp_sql.IndexOf("from") + 4;
+                    temp_sql = temp_sql.Substring(temp_sql.IndexOf("from") + 4, temp_sql.Length - temp_sql.IndexOf("from") - 4);
+                }
+                fromIndex++;
+                com.ExportToExcel(sql, Server.MapPath(@"Excel/Room_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls"), @"ANHTUNG", fromIndex);
+                lblSuccess.Text = "Thành công";
+                Response.Redirect(@"Excel/Room_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls");
+            }
+            catch (Exception ex)
             {
             }
         }

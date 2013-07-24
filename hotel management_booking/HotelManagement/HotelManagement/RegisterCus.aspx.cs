@@ -26,7 +26,7 @@ namespace HotelManagement
                 if (ddlTitle.SelectedIndex == 0 || txtConfirmPassword.Text == "" || txtEmail.Text.Trim() == ""
                     || txtFName.Text.Trim() == "" || txtPassword.Text.Trim() == "" || txtLName.Text.Trim() == "")
                 {
-                    lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc!";
+                    lblError.Text = "Some required data are missing!";
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace HotelManagement
                                 cus.Password = txtPassword.Text.Trim();
                                 cus.Email = txtEmail.Text.Trim();
                                 cus.AddCustomer();
-                                lblSuccess.Text = "Thành công";
+                                lblSuccess.Text = "Successful";
                                 com.SendMail(txtEmail.Text, "Register successful", "Your account have been created.");
                             }
                             else

@@ -155,7 +155,7 @@ public class CommonFunction
         return sb.ToString();
     }
     //Bind data to a gridview
-    internal void bindData(string column, string condition, string table, GridView GridView1)
+    internal string bindData(string column, string condition, string table, GridView GridView1)
     {
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
@@ -164,6 +164,7 @@ public class CommonFunction
         DataTable dt = ds.Tables["data"];
         GridView1.DataSource = dt;
         GridView1.DataBind();
+        return sql;
     }
     //Get country list to bind to DropDownList
     internal List<string> getCountryList()
@@ -199,7 +200,7 @@ public class CommonFunction
         smt.Send(msg);
     }
     //Bind data to a gridview with a blank column
-    internal void bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
+    internal string bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
     {
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
@@ -213,5 +214,32 @@ public class CommonFunction
         }
         GridView1.DataSource = dt;
         GridView1.DataBind();
+        return sql;
+    }
+    internal void ExportToExcel(string sql, string fileName, string server, int fromIndex)
+    {
+        using (SqlCommand cmd = new SqlCommand())
+        {
+            cmd.CommandText = "spExportData";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = cnn;
+            cmd.CommandTimeout = 0;
+            SqlParameter parm = new SqlParameter("@sql", SqlDbType.VarChar);
+            parm.Value = sql;
+            SqlParameter parm1 = new SqlParameter("@fullFileName", SqlDbType.VarChar);
+            parm1.Value = fileName;
+            SqlParameter parm2 = new SqlParameter("@CurrentServer", SqlDbType.VarChar);
+            parm2.Value = server;
+            SqlParameter parm3 = new SqlParameter("@dbName", SqlDbType.VarChar);
+            parm3.Value = "DavidDucHotel";
+            SqlParameter parm4 = new SqlParameter("@fromIndex", SqlDbType.Int);
+            parm4.Value = fromIndex;
+            cmd.Parameters.Add(parm);
+            cmd.Parameters.Add(parm1);
+            cmd.Parameters.Add(parm2);
+            cmd.Parameters.Add(parm3);
+            cmd.Parameters.Add(parm4);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

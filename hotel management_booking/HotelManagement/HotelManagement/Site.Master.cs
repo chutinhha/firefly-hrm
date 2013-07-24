@@ -280,12 +280,35 @@ namespace HotelManagement
                     }
                     if (Session["MenuID"].ToString() == "3")
                     {
-                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\" style=\"font-weight:bold;\"><a href=\"ListRoom.aspx\"><span>DS Phòng</span></a></li>"));
+                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
+                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                            + "(this,'dvd_mainmenu')\" class=\"parent item58\" style=\"font-weight:bold;\"><a href=\"ListBuilding.aspx\"><span>"
+                            + "Tòa nhà</span></a>" + "<ul style=\"display: none;\">"));
+                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
+                            + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
+                            + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListBuilding.aspx\"><span>"
+                            + "DS Tòa nhà</span></a></li>"));
+                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
+                            + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
+                            + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListRoom.aspx\"><span>"
+                            + "DS Phòng</span></a></li>"));
                     }
                     else
                     {
-                        pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\"><a href=\"ListRoom.aspx\"><span>DS Phòng</span></a></li>"));
+                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitemMouseOut"
+                            + "(this,'dvd_mainmenu',false)\" onmouseover=\"menuitemMouseOver"
+                            + "(this,'dvd_mainmenu')\" class=\"parent item58\"><a href=\"ListBuilding.aspx\"><span>"
+                            + "Tòa nhà</span></a>" + "<ul style=\"display: none;\">"));
+                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
+                            + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
+                            + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListBuilding.aspx\"><span>"
+                            + "DS Tòa nhà</span></a></li>"));
+                        pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
+                            + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
+                            + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListRoom.aspx\"><span>"
+                            + "DS Phòng</span></a></li>"));
                     }
+                    pnlMenu.Controls.Add(new LiteralControl("</ul></li>"));
                     if (Session["MenuID"].ToString() == "4")
                     {
                         pnlMenu.Controls.Add(new LiteralControl("<li class=\"item54\" style=\"font-weight:bold;\"><a href=\"RecieveFurniture.aspx\"><span>Xác nhận vật tư</span></a></li>"));

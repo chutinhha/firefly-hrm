@@ -45,18 +45,18 @@
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br />
-                <asp:Label ID="lblName" runat="server" Text="Name of Category" Width="150"></asp:Label>
+                <asp:Label ID="lblName" runat="server" Text="Tên danh mục" Width="150"></asp:Label>
                 <asp:TextBox ID="txtName" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Button ID="btnSave" runat="server" Text="Save" Width="80" 
+                <asp:Button ID="btnSave" runat="server" Text="Lưu" Width="80" 
                     onclick="btnSave_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80" 
+                <asp:Button ID="btnCancel" runat="server" Text="Hủy" Width="80" 
                     onclick="btnCancel_Click" />
             </asp:Panel>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" 
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" 
                     onclick="btnAdd_Click" />
                 <br />
                 <br />

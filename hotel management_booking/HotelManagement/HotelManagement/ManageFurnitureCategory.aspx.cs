@@ -219,5 +219,32 @@ namespace HotelManagement
             {
             }
         }
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = com.bindData("distinct fur." + Message.FurnitureType + ",furType." + Message.Description
+                    + ",furType." + Message.Available + ",furType." + Message.Total + ",(select SUM(" + Message.Price
+                    + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + ") as 'Total_Value'"
+                    , "", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
+                    + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType + " order by fur." + Message.FurnitureType, grdCategory);
+                int fromIndex = -4;
+                string temp_sql = sql;
+                while (temp_sql.Contains("from"))
+                {
+                    fromIndex = fromIndex + temp_sql.IndexOf("from") + 4;
+                    temp_sql = temp_sql.Substring(temp_sql.IndexOf("from") + 4, temp_sql.Length - temp_sql.IndexOf("from") - 4);
+                }
+                fromIndex++;
+                com.ExportToExcel(sql, Server.MapPath(@"Excel/Furniture_Category_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls"), @"ANHTUNG", fromIndex);
+                lblSuccess.Text = "Thành công";
+                Response.Redirect(@"Excel/Furniture_Category_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls");
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

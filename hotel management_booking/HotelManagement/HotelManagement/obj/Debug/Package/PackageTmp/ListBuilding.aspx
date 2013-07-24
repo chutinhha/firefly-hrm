@@ -56,7 +56,7 @@
                 !args.FileName.Contains(".tif") &&
                 !args.FileName.Contains(".dib"))
             {
-                lblError.Text = "Only accept jpg,jpeg,png,bmp,gif,tif and dib file type!";
+                lblError.Text = "Hệ thống chỉ chấp nhận các loại file ảnh jpg,jpeg,png,bmp,gif,tif và dib!";
             }
             else
             {
@@ -80,20 +80,20 @@
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br />
-                <asp:Label ID="lblBuildingType" style="font-weight:bold;" runat="server" Text="Type" Width="150"></asp:Label>
+                <asp:Label ID="lblBuildingType" style="font-weight:bold;" runat="server" Text="Kiểu nhà" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBuildingType" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlBuildingType_SelectedIndexChanged">
                 </asp:DropDownList>
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblAddress" style="font-weight:bold;" runat="server" Text="Address" Width="150"></asp:Label>
+                <asp:Label ID="lblAddress" style="font-weight:bold;" runat="server" Text="Địa chỉ" Width="150"></asp:Label>
                 <asp:TextBox ID="txtAddress" runat="server" Width="200"></asp:TextBox>&nbsp;&nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblDistrict" style="font-weight:bold;" runat="server" Text="District" Width="150"></asp:Label>
+                <asp:Label ID="lblDistrict" style="font-weight:bold;" runat="server" Text="Quận" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlDistrict" runat="server" Width="215px">
-                    <asp:ListItem Selected="True" Value="Please select">Please select</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="Xin hãy chọn">Xin hãy chọn</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Dong Da">Dong Da</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Hoan Kiem">Hoan Kiem</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Tay Ho">Tay Ho</asp:ListItem>
@@ -107,21 +107,21 @@
                 <br />
                 <asp:Panel ID="Panel1" runat="server">
                 
-                <asp:Label ID="lblPrice" style="font-weight:bold;" runat="server" Text="Price" Width="150"></asp:Label>
+                <asp:Label ID="lblPrice" style="font-weight:bold;" runat="server" Text="Giá thuê" Width="150"></asp:Label>
                 <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
                 <span style="padding-left: 150px;"></span>
                 <asp:CheckBox ID="chkGarage" runat="server" Text="Garage" />
                 <span style="padding-left: 25px;"></span>
-                <asp:CheckBox ID="chkPool" runat="server" Text="Pool" />
+                <asp:CheckBox ID="chkPool" runat="server" Text="Bể bơi" />
                 <span style="padding-left: 25px;"></span>
-                <asp:CheckBox ID="chkGarden" runat="server" Text="Garden" />
+                <asp:CheckBox ID="chkGarden" runat="server" Text="Vườn" />
                 <br />
                 <br />
-                <asp:Label ID="lblBedRoom" style="font-weight:bold;" runat="server" Text="Bed Room" Width="150"></asp:Label>
+                <asp:Label ID="lblBedRoom" style="font-weight:bold;" runat="server" Text="Phòng ngủ" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBedRoom" runat="server" Width="215px">
-                    <asp:ListItem Selected="True">Please select</asp:ListItem>
+                    <asp:ListItem Selected="True">Xin hãy chọn</asp:ListItem>
                     <asp:ListItem Selected="False" Value="1">1</asp:ListItem>
                     <asp:ListItem Selected="False" Value="2">2</asp:ListItem>
                     <asp:ListItem Selected="False" Value="3">3</asp:ListItem>
@@ -135,9 +135,9 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblBathRoom" style="font-weight:bold;" runat="server" Text="Bath Room" Width="150"></asp:Label>
+                <asp:Label ID="lblBathRoom" style="font-weight:bold;" runat="server" Text="Phòng tắm" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBathRoom" runat="server" Width="215px">
-                    <asp:ListItem Selected="True">Please select</asp:ListItem>
+                    <asp:ListItem Selected="True">Xin hãy chọn</asp:ListItem>
                     <asp:ListItem Selected="False" Value="1">1</asp:ListItem>
                     <asp:ListItem Selected="False" Value="2">2</asp:ListItem>
                     <asp:ListItem Selected="False" Value="3">3</asp:ListItem>
@@ -151,55 +151,55 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblArea" style="font-weight:bold;" runat="server" Text="Area" Width="150"></asp:Label>
+                <asp:Label ID="lblArea" style="font-weight:bold;" runat="server" Text="Diện tích" Width="150"></asp:Label>
                 <asp:TextBox ID="txtArea" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Label ID="lblNumberFloor" style="font-weight:bold;" runat="server" Text="Number of Floor" Width="150"></asp:Label>
+                <asp:Label ID="lblNumberFloor" style="font-weight:bold;" runat="server" Text="Số tầng" Width="150"></asp:Label>
                 <asp:TextBox ID="txtNumberFloor" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Label ID="lblPicture" style="font-weight:bold;" runat="server" Text="Picture" Width="150"></asp:Label>
+                <asp:Label ID="lblPicture" style="font-weight:bold;" runat="server" Text="Ảnh" Width="150"></asp:Label>
                 <CuteWebUI:Uploader id="fulPicture" runat="server" MultipleFilesUpload="true" OnFileUploaded="Uploader_FileUploaded" InsertText="Choose pictures" /> 
                 <br />
                 <br />
-                <asp:Label ID="lblDescription" style="font-weight:bold;" runat="server" Text="Description"></asp:Label>
+                <asp:Label ID="lblDescription" style="font-weight:bold;" runat="server" Text="Mô tả"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
                 <ckeditor:ckeditorcontrol id="txtDescription" basepath="/ckeditor/" runat="server">
     </ckeditor:ckeditorcontrol>
                 <br />
                 <br />
-                <a style="color:Blue;" href="https://maps.google.com/?q=Ha%20Noi">Google Maps (Use middle mouse please!)</a>
+                <a style="color:Blue;" href="https://maps.google.com/?q=Ha%20Noi">Google Maps (Xin hãy dùng chuột giữa!)</a>
                 <br /><br />
-                <asp:Label ID="lblLat" style="font-weight:bold;" runat="server" Text="Latitude" Width="150"></asp:Label>
+                <asp:Label ID="lblLat" style="font-weight:bold;" runat="server" Text="Tọa độ" Width="150"></asp:Label>
                 <asp:TextBox ID="txtLat" runat="server" Width="200"></asp:TextBox>
                 </asp:Panel>
                 <br />
-                <span style="color: Red">(*): Required</span>
+                <span style="color: Red">(*): Bắt buộc</span>
                 <br />
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:Button ID="btnSave" runat="server" Text="Save" OnClientClick="return ConfirmOnSave();"
+                <asp:Button ID="btnSave" runat="server" Text="Lưu" OnClientClick="return ConfirmOnSave();"
                     Width="80px" OnClick="btnSave_Click" />
                 <asp:Button ID="btnReset" runat="server" Text="Reset" Width="80px" OnClick="btnReset_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Hủy" Width="80px" OnClick="btnCancel_Click" />
                 <br />
                 <br />
             </asp:Panel>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Label ID="lblChooseType" style="font-weight:bold;" runat="server" Text="Type" Width="150"></asp:Label>
+                <asp:Label ID="lblChooseType" style="font-weight:bold;" runat="server" Text="Kiểu nhà" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseType" runat="server" Width="215" 
                     AutoPostBack="True" onselectedindexchanged="ddlChooseType_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblChooseDistrict" style="font-weight:bold;" runat="server" Text="District" Width="150"></asp:Label>
+                <asp:Label ID="lblChooseDistrict" style="font-weight:bold;" runat="server" Text="Quận" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseDistrict" runat="server" Width="215" 
                     AutoPostBack="True" 
                     onselectedindexchanged="ddlChooseDistrict_SelectedIndexChanged">
-                <asp:ListItem Selected="True" Value="All">All</asp:ListItem>
+                <asp:ListItem Selected="True" Value="Tất cả">Tất cả</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Dong Da">Dong Da</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Hoan Kiem">Hoan Kiem</asp:ListItem>
                     <asp:ListItem Selected="False" Value="Tay Ho">Tay Ho</asp:ListItem>
@@ -210,8 +210,8 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();"/>
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnDelete" runat="server" Text="Xóa" Width="80" OnClick="btnDelete_Click" OnClientClick="return ConfirmOnDelete();"/>
                 <br />
                 <br />
                 <div style="height: 300px; overflow: scroll;">

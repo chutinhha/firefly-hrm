@@ -62,6 +62,11 @@
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br />
+                <asp:Label ID="lblCustomer" Style="font-weight: bold;" runat="server" Text="Khách hàng" Width="150"></asp:Label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" Width="215px">
+                </asp:DropDownList>
+                <br />
+                <br />
                 <asp:Label ID="lblBuilding" Style="font-weight: bold;" runat="server" Text="Tòa nhà"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBuilding" runat="server" Width="215" AutoPostBack="True"
@@ -192,6 +197,9 @@
                     </asp:GridView>
                 </div>
                 <br />
+                <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
+                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+
                 <ckeditor:ckeditorcontrol id="txtReason" basepath="/ckeditor/" runat="server" 
                     Visible="False"></ckeditor:ckeditorcontrol><br>
                 <center>

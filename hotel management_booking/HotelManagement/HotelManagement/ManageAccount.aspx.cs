@@ -128,5 +128,29 @@ namespace HotelManagement
             {
             }
         }
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
+                        + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                int fromIndex = -4;
+                string temp_sql = sql;
+                while (temp_sql.Contains("from"))
+                {
+                    fromIndex = fromIndex + temp_sql.IndexOf("from") + 4;
+                    temp_sql = temp_sql.Substring(temp_sql.IndexOf("from") + 4, temp_sql.Length - temp_sql.IndexOf("from") - 4);
+                }
+                fromIndex++;
+                com.ExportToExcel(sql, Server.MapPath(@"Excel/Account_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls"), @"ANHTUNG", fromIndex);
+                lblSuccess.Text = "Thành công";
+                Response.Redirect(@"Excel/Account_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls");
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

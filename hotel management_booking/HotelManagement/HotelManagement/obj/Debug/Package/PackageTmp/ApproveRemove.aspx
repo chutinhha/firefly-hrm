@@ -7,12 +7,12 @@
     <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-        <asp:Label ID="lblShow" runat="server" style="font-weight:bold;" Text="Show" Width="150"></asp:Label>
+        <asp:Label ID="lblShow" runat="server" style="font-weight:bold;" Text="Hiển thị" Width="150"></asp:Label>
         <asp:DropDownList ID="ddlShow" runat="server" AutoPostBack="True" Width="215px" 
             onselectedindexchanged="ddlShow_SelectedIndexChanged">
-            <asp:ListItem Selected="True">All</asp:ListItem>
-            <asp:ListItem>Pending Approve</asp:ListItem>
-            <asp:ListItem>Rejected</asp:ListItem>
+            <asp:ListItem Selected="True">Tất cả</asp:ListItem>
+            <asp:ListItem>Chờ xác nhận</asp:ListItem>
+            <asp:ListItem>Đã từ chối</asp:ListItem>
         </asp:DropDownList>
         <br /><br />
         <div class="table">
@@ -20,11 +20,11 @@
         </asp:GridView>
         </div>
         <br />
-        <asp:Label ID="lblMove" runat="server" Text="Move To" Width="150px"></asp:Label>
+        <asp:Label ID="lblMove" runat="server" Text="Chuyển đến" Width="150px"></asp:Label>
         <asp:DropDownList ID="ddlMove" runat="server">
         </asp:DropDownList>
         <br /><br />
-        <asp:Button ID="btnSave" runat="server" Text="Save" Width="80" 
+        <asp:Button ID="btnSave" runat="server" Text="Lưu" Width="80" 
             onclick="btnSave_Click" />
         <br /><br />
         <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

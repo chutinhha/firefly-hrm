@@ -109,13 +109,13 @@ namespace HotelManagement
                 }
                 if (ID == null)
                 {
-                    txtUserName.Enabled = false;
-                    txtPassword.Enabled = false;
+                    txtUserName.Enabled = true;
+                    txtPassword.Enabled = true;
                 }
                 else
                 {
-                    txtUserName.Enabled = true;
-                    txtPassword.Enabled = true;
+                    txtUserName.Enabled = false;
+                    txtPassword.Enabled = false;
                     if (ID != null)
                     {
                         Class.User newUser = new Class.User(int.Parse(ID));
