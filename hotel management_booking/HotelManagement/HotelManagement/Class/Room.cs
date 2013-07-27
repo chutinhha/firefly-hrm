@@ -53,6 +53,9 @@ namespace HotelManagement.Class
         }
         public void UpdateRoom()
         {
+            if (CurrentCustomerID.Trim() != "") {
+                Status = "2";
+            }
             com.updateTable(Message.RoomTable,
                 Message.BuildingID + "=" + com.ToValue(BuildingID) + "," + Message.Floor
                 + "=" + com.ToValue(Floor) + "," + Message.CurrentCustomer + "="

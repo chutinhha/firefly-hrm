@@ -58,6 +58,15 @@
    </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListBuilding.aspx">Tòa nhà</a></li>
+                    <li class="current"><a href="ListRoom.aspx">Danh sách phòng</a></li>
+                </ul>
+            </div>
+            
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
@@ -198,7 +207,7 @@
                 </div>
                 <br />
                 <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
-                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    Width="45px" onclick="btnExport_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
 
                 <ckeditor:ckeditorcontrol id="txtReason" basepath="/ckeditor/" runat="server" 
                     Visible="False"></ckeditor:ckeditorcontrol><br>

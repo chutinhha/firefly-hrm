@@ -47,6 +47,13 @@
         <ContentTemplate>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
+                <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li class="current"><a href="ManageAccount.aspx">Quản lý tài khoản</a></li>
+                </ul>
+            </div>
+            <br />
                 <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" 
                     onclick="btnAdd_Click" />
             <asp:Button ID="btnDelete" runat="server" Text="Xóa" Width="80" 
@@ -71,7 +78,7 @@
                 </div>
                 <br />
                 <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
-                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    Width="45px" onclick="btnExport_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
             </asp:Panel>
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>

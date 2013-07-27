@@ -30,7 +30,7 @@ namespace HotelManagement
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                     Response.Redirect("Home.aspx");
                 }
-                Session["MenuID"] = "3";
+                Session["MenuID"] = "2";
                 lblSuccess.Text = "";
                 if (!IsPostBack)
                 {

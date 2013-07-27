@@ -27,6 +27,14 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <br />
+        <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListFurniture.aspx">Danh sách vật tư</a></li>
+                    <li class="current"><a href="History.aspx">Tra cứu lịch sử vật tư di chuyển</a></li>
+                </ul>
+            </div>
+            <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             

@@ -13,10 +13,17 @@
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ManageAccount.aspx">Quản lý tài khoản</a></li>
+                    <li class="current"><a href="Register.aspx">Đăng ký mới</a></li>
+                </ul>
+            </div>
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
-            <br />
             <br />
             <asp:Label ID="lblUserName" style="font-weight:bold;" runat="server" Text="User Name:" Width="150px"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server" Width="200px"></asp:TextBox>

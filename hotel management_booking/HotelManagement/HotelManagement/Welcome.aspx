@@ -6,6 +6,14 @@
 <asp:Panel ID="pnlNew" runat="server">
     
     <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li ><a href="About.aspx">About Us</a></li>
+                    <li class="current"><a href="Welcome.aspx">Welcome</a></li>
+                </ul>
+            </div>
+            <br />
     <asp:Label ID="NewsContent" runat="server" Text=""></asp:Label>
     <br />
     <asp:LinkButton style="color:Blue;text-decoration:underline;" ID="btnEdit" 

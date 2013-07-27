@@ -5,6 +5,13 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <br />
+        <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li class="current"><a href="ApproveRemove.aspx">Xác nhận xóa vật tư</a></li>
+                </ul>
+            </div>
+            <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <asp:Label ID="lblShow" runat="server" style="font-weight:bold;" Text="Hiển thị" Width="150"></asp:Label>

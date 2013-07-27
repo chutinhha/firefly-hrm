@@ -28,6 +28,14 @@
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li class="current"><a href="ListNews.aspx">Quản lý tin tức</a></li>
+                </ul>
+            </div>
+           
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">

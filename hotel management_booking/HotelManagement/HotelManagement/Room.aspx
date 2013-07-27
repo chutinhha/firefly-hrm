@@ -4,6 +4,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li class="current"><a href="Room.aspx">Room</a></li>
+                </ul>
+            </div>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
     <asp:Panel ID="pnlContent" runat="server">

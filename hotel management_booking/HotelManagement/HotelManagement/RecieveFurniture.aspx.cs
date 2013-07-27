@@ -15,6 +15,7 @@ namespace HotelManagement
         {
             try
             {
+                Page.Title = "Confirm Recieve Furniture";
                 if (Session["UserLevel"] != null)
                 {
                     if (int.Parse(Session["UserLevel"].ToString()) >= 2) { }
@@ -31,7 +32,7 @@ namespace HotelManagement
                 }
                 if (Session["UserLevel"].ToString() == "2")
                 {
-                    Session["MenuID"] = "4";
+                    Session["MenuID"] = "2";
                 }
                 else
                 {

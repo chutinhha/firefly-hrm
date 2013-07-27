@@ -35,7 +35,7 @@ namespace HotelManagement
                 {
                     if (Session["UserLevel"].ToString() == "2")
                     {
-                        Session["MenuID"] = "5";
+                        Session["MenuID"] = "2";
                         //Get building list
                         DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
                             + Message.UserID + "=" + Session["UserID"]);

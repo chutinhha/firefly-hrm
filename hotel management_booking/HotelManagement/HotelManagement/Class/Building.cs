@@ -60,6 +60,31 @@ namespace HotelManagement.Class
                 + "," + com.ToValue(NumberFloor), false);
         }
         public void UpdateBuilding() {
+            DataTable dt = com.getData(Message.RoomTable, Message.RoomID+","+Message.Status, 
+                " where " + Message.BuildingID
+                + "=" + BID + " and " + Message.Status + "<>3");
+            if (dt.Rows.Count > 0) {
+                bool isAvailable=false;
+                for (int i = 0; i < dt.Rows.Count; i++) {
+                    if (dt.Rows[i][1].ToString() != "2") {
+                        isAvailable = true;
+                        break;
+                    }    
+                }
+                if (isAvailable == true)
+                {
+                    if (Status != "3")
+                    {
+                        Status = "0";
+                    }
+                }
+                else {
+                    if (Status != "3")
+                    {
+                        Status = "1";
+                    }
+                }
+            }
             com.updateTable(Message.BuildingTable, 
                 Message.BuildingTypeID + "=" + com.ToValue(BuildingTypeID) + "," + Message.Address 
                 + "=" + com.ToValue(Address) + "," + Message.Price + "=" 

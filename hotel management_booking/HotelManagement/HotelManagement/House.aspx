@@ -28,6 +28,14 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
+        <br />
+        <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li class="current"><a href="House.aspx">House List</a></li>
+                </ul>
+            </div>
+            
     <asp:Panel ID="pnlContent" runat="server">
     
     </asp:Panel>

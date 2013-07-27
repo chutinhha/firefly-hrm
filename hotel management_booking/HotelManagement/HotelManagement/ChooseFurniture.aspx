@@ -8,6 +8,14 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <br />
+            <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li ><a href="House.aspx">House List</a></li>
+                    <li class="current"><a href="ChooseFurniture.aspx">Choose Furniture</a></li>
+                </ul>
+            </div>
+            <br />
         <asp:Panel ID="pnlAll" runat="server">
         </asp:Panel><br/>
         <asp:Label ID="lblComment" style="color:#1D8A0D;font-size:14pt;" runat="server" Text="Comment"></asp:Label>

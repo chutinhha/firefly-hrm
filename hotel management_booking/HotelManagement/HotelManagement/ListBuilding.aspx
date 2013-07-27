@@ -78,6 +78,15 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <br />
+            <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListBuilding.aspx">Tòa nhà</a></li>
+                    <li class="current"><a href="ListBuilding.aspx">Danh sách tòa nhà</a></li>
+                </ul>
+            </div>
+            
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br />
                 <asp:Label ID="lblCustomer" Style="font-weight: bold;" runat="server" Text="Khách hàng" Width="150"></asp:Label>
@@ -237,7 +246,7 @@
                 </div>
                 <br />
                 <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
-                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    Width="45px" onclick="btnExport_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
             </asp:Panel>
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>

@@ -299,7 +299,7 @@ namespace HotelManagement
             if(e.Row.RowType==DataControlRowType.DataRow){
                 if (e.Row.Cells[7].Text == "0")
                 {
-                    e.Row.Cells[7].Text = "Có";
+                    e.Row.Cells[7].Text = "Không";
                 }
                 else if (e.Row.Cells[7].Text == "1")
                 {
@@ -307,7 +307,7 @@ namespace HotelManagement
                 }
                 else
                 {
-                    e.Row.Cells[7].Text = "Không";
+                    e.Row.Cells[7].Text = "Có";
                 }
                 if (e.Row.Cells[8].Text == "0")
                 {
@@ -335,7 +335,7 @@ namespace HotelManagement
                 e.Row.Cells[4].Text = "Phòng";
                 e.Row.Cells[5].Text = "Diện tích";
                 e.Row.Cells[6].Text = "Giá";
-                e.Row.Cells[7].Text = "Sẵn sàng";
+                e.Row.Cells[7].Text = "Có khách";
                 e.Row.Cells[8].Text = "Kho";
             }
         }

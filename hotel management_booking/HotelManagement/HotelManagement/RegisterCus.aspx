@@ -14,6 +14,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
     <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li class="current"><a href="RegisterCus.aspx">Register</a></li>
+                </ul>
+            </div>
+            <br />
         <asp:Label ID="lblTitle" runat="server" Text="Title" Width="150"></asp:Label>
         <asp:DropDownList ID="ddlTitle" runat="server" Width="215">
             <asp:ListItem Selected="True">Please select</asp:ListItem>

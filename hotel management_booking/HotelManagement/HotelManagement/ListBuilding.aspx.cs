@@ -174,7 +174,7 @@ namespace HotelManagement
                                 condition = condition +" and bui." + Message.BuildingID + " in (" + buildingCondition + ") and bui." + Message.Status + "<>3";
                             }
                             com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                                + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                                + ",bui." + Message.Price+","+Message.Status+" as 'Còn phòng trống'", condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                                 + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
                         }
                     }
@@ -613,7 +613,7 @@ namespace HotelManagement
                     condition = condition + " and bui." + Message.BuildingID + " in (" + buildingCondition + ") and bui." + Message.Status + "<>3";
                 }
                 com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                    + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                    + ",bui." + Message.Price + "," + Message.Status + " as 'Còn phòng trống'", condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                     + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
             }
             catch (Exception)
@@ -646,6 +646,7 @@ namespace HotelManagement
         protected void grdBuilding_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false;
+            e.Row.Cells[3].Attributes.Add("width", "280px");
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
             if (e.Row.RowIndex % 2 != 0)
@@ -660,6 +661,13 @@ namespace HotelManagement
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                if (e.Row.Cells[6].Text == "1")
+                {
+                    e.Row.Cells[6].Text = "Không";
+                }
+                else {
+                    e.Row.Cells[6].Text = "Có";
+                }
                 string Location = "ListBuilding.aspx?ID=" + Server.HtmlDecode(e.Row.Cells[1].Text);
                 for (int i = 1; i < e.Row.Cells.Count; i++)
                 {
@@ -709,7 +717,7 @@ namespace HotelManagement
                     condition = condition + " and bui." + Message.BuildingID + " in (" + buildingCondition + ") and bui." + Message.Status + "<>3";
                 }
                 com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                    + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                    + ",bui." + Message.Price + "," + Message.Status + " as 'Còn phòng trống'", condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                     + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
             }
             catch (Exception)
@@ -752,7 +760,7 @@ namespace HotelManagement
                     condition = condition + " and bui." + Message.BuildingID + " in (" + buildingCondition + ") and bui." + Message.Status + "<>3";
                 }
                 com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                    + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                    + ",bui." + Message.Price + "," + Message.Status + " as 'Còn phòng trống'", condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                     + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
             }
             catch (Exception)
@@ -794,7 +802,7 @@ namespace HotelManagement
                     condition = condition + " and bui." + Message.BuildingID + " in (" + buildingCondition + ") and bui." + Message.Status + "<>3";
                 }
                 string sql = com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
-                    + ",bui." + Message.Price, condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
+                    + ",bui." + Message.Price + "," + Message.Status + " as 'Còn_phòng_trống'", condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                     + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
                 int fromIndex = -4;
                 string temp_sql = sql;

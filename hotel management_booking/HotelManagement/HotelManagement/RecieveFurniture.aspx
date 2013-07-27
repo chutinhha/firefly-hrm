@@ -5,6 +5,14 @@
 <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListFurniture.aspx">Vật tư</a></li>
+                    <li class="current"><a href="RecieveFurniture.aspx">Xác nhận vật tư cần chuyển đổi</a></li>
+                </ul>
+            </div>
+    <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="table">

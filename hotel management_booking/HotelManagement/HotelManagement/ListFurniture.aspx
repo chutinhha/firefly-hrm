@@ -40,10 +40,20 @@
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListFurniture.aspx">Vật tư</a></li>
+                    <li class="current"><a href="ListFurniture.aspx">Danh sách vật tư</a></li>
+                </ul>
+            </div>
+     
     <asp:Panel ID="pnlAdd" runat="server" Visible="False">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <br />
+                    
                 <asp:Label ID="lblName" Style="font-weight: bold;" runat="server" Text="Tên vật tư"
                     Width="150"></asp:Label>
                 <asp:TextBox ID="txtName" runat="server" Width="200"></asp:TextBox>&nbsp;<span style="color: Red">(*)</span>
@@ -187,7 +197,7 @@
                 <asp:GridView ID="grdCategory" OnRowDataBound="grdCategory_RowDataBound" Width="100%" runat="server" Visible="False">
                 </asp:GridView>
                 <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport1" runat="server" 
-                    Width="45px" onclick="btnExport1_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    Width="45px" onclick="btnExport1_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
                 
                 </asp:Panel>
                 <br />
@@ -209,7 +219,7 @@
                 </div>
                 <br />
                 <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
-                    Width="45px" onclick="btnExport_Click" ToolTip="Xuất dữ liệu ra excel" />
+                    Width="45px" onclick="btnExport_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
                     <br /><br />
                 <asp:Panel ID="pnlMove" runat="server" Visible="False">
                     <asp:Label ID="lblTargetBuilding" Style="font-weight: bold;" runat="server" Text="Tòa nhà đích"
