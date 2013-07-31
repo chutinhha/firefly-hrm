@@ -80,7 +80,7 @@
                 <br />
                 <br />
                 <asp:Label ID="lblPrice" Style="font-weight: bold;" runat="server" Text="Giá thành" Width="150"></asp:Label>
-                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>&nbsp;USD
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
@@ -304,7 +304,7 @@
                 <br />
                 <asp:Label ID="lblEditPrice" Style="font-weight: bold;" runat="server" Text="Giá thành"
                     Width="150"></asp:Label>
-                <asp:TextBox ID="txtEditPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <asp:TextBox ID="txtEditPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>&nbsp;USD&nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
                 <asp:Label ID="lblStatus" Style="font-weight: bold;" runat="server" Text="Trạng thái"

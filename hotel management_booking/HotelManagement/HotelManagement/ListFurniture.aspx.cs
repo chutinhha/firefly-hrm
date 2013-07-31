@@ -66,7 +66,7 @@ namespace HotelManagement
                 lblError.Text = "";
                 this.confirmSave = Message.ConfirmSave;
                 string ID = Request.QueryString["ID"];
-                if (ID != null)
+                if (ID != null&&!IsPostBack)
                 {
                     pnlList.Visible = false;
                     pnlEdit.Visible = true;
@@ -1167,7 +1167,7 @@ namespace HotelManagement
                 lblSuccess.Text = "";
                 this.startDate = Request.Form["txtEditStart"].ToString().Trim();
                 this.endDate = Request.Form["txtEditEnd"].ToString().Trim();
-                if (txtEditName.Text.Trim() == "")
+                if (txtEditName.Text.Trim() == ""||txtEditPrice.Text.Trim()=="")
                 {
                     lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc!";
                 }

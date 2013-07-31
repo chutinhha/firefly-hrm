@@ -111,7 +111,17 @@ namespace HotelManagement
                     pnlContent2.Controls.Add(new LiteralControl("</tr></table></div>"));
                     btnDetail.Visible = true;
                     btnBack.Visible = true;
-                    btnChooseFur.Visible = true;
+                    //btnChooseFur.Visible = true;
+                    Panel1.Visible = true;
+                    string[] column = new string[1];
+                    column[0] = "Details";
+                    com.bindDataBlankColumn(Message.RoomID + "," + Message.Floor + "," + Message.RoomNo + ","
+                        + Message.BedRoom + "," + Message.BathRoom + "," + Message.Area + "," + Message.Price+","+Message.Status+" as 'Available'", " where "
+                        + Message.IsWarehouse + "='0' and "
+                        + Message.BuildingID + "=" + BuildingID, Message.RoomTable, grdRoom, 1, column);
+                    if (grdRoom.Rows.Count == 0) {
+                        Panel1.Visible = false;
+                    }
                     if (!IsPostBack)
                     {
                         pnlContent2.Visible = false;
@@ -119,6 +129,7 @@ namespace HotelManagement
                 }
                 else
                 {
+                    Panel1.Visible = false;
                     btnChooseFur.Visible = false;
                     if (Session["ListBuilding"] == null)
                     {
@@ -485,7 +496,33 @@ namespace HotelManagement
                 pnlContent2.Visible = false;
             }
         }
-
+        protected void grdRoom_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false;
+            e.Row.Style["cursor"] = "pointer";
+            e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
+            if (e.Row.RowIndex % 2 != 0)
+            {
+                e.Row.Attributes.Add("style", "background-color:white;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = 'white';");
+            }
+            else
+            {
+                e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[7].Text == "0" || e.Row.Cells[7].Text == "1")
+                {
+                    e.Row.Cells[7].Text = "Yes";
+                }
+                else {
+                    e.Row.Cells[7].Text = "No";
+                }
+                e.Row.Cells[8].Text = "<a style=\"color:Blue;\" target=\"_blank\" href=\"Room.aspx?ID=" + e.Row.Cells[0].Text + "\">Click to see room details!</a>";
+            }
+        }
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("House.aspx");

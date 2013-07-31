@@ -280,11 +280,11 @@ namespace HotelManagement
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListBuilding.aspx\"><span>"
-                            + "DS Tòa nhà</span></a></li>"));
+                            + "Danh sách tòa nhà</span></a></li>"));
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListRoom.aspx\"><span>"
-                            + "DS Phòng</span></a></li>"));
+                            + "Danh sách phòng</span></a></li>"));
                     }
                     else
                     {
@@ -295,11 +295,11 @@ namespace HotelManagement
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListBuilding.aspx\"><span>"
-                            + "DS Tòa nhà</span></a></li>"));
+                            + "Danh sách tòa nhà</span></a></li>"));
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListRoom.aspx\"><span>"
-                            + "DS Phòng</span></a></li>"));
+                            + "Danh sách phòng</span></a></li>"));
                     }
                     pnlMenu.Controls.Add(new LiteralControl("</ul></li>"));
                     if (Session["MenuID"].ToString() == "2")
@@ -364,11 +364,11 @@ namespace HotelManagement
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListBuilding.aspx\"><span>"
-                            + "DS Tòa nhà</span></a></li>"));
+                            + "Danh sách tòa nhà</span></a></li>"));
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListRoom.aspx\"><span>"
-                            + "DS Phòng</span></a></li>"));
+                            + "Danh sách phòng</span></a></li>"));
                     }
                     else
                     {
@@ -379,11 +379,11 @@ namespace HotelManagement
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListBuilding.aspx\"><span>"
-                            + "DS Tòa nhà</span></a></li>"));
+                            + "Danh sách tòa nhà</span></a></li>"));
                         pnlMenu.Controls.Add(new LiteralControl("<li onmouseout=\"menuitem"
                             + "MouseOut(this,'dvd_mainmenu',false)\" onmouseover=\"menuitem"
                             + "MouseOver(this,'dvd_mainmenu')\" class=\"item87\"><a href=\"ListRoom.aspx\"><span>"
-                            + "DS Phòng</span></a></li>"));
+                            + "Danh sách phòng</span></a></li>"));
                     }
                     pnlMenu.Controls.Add(new LiteralControl("</ul></li>"));
                     if (Session["MenuID"].ToString() == "2")

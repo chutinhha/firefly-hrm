@@ -62,12 +62,13 @@ namespace HotelManagement
                     ddlRoom.Items.Add("Xin hãy chọn");
                     if (FurnitureID != null)
                     {
-                        com.bindData("fu.FurnitureID,fu.Name,bu.Address,ro.RoomNo, fh.MoveDate, us.FullName as 'Mover',fh.Reason",
-                            "where fu.FurnitureID=" + FurnitureID + " order by Address,fh.MoveDate",
-                            "FurnitureHistory fh join Furniture fu on fh.FurnitureID = fu.FurnitureID"
-                            + " join Building bu on bu.BuildingID = fu.CurrentBuildingID"
-                            + " join UserAccount us on us.UserID = fh.HandoverID"
-                            + " join Room ro on ro.RoomID = fu.CurrentRoomID ", grdFurniture);
+                        com.bindData("fu.FurnitureID,fu.Name,bu.Address +' - Room '+ cast(ro.RoomNo as varchar(MAX)) as 'Address',bu1.Address +' - Room '+ cast(ro1.RoomNo as varchar(MAX)) as 'Address1', fh.MoveDate, us.FullName as 'Mover',fh.Reason",
+                        "where fu.FurnitureID=" + FurnitureID + " order by fh.FurnitureID,fh.MoveDate",
+                        "FurnitureHistory fh join Furniture fu on fh.FurnitureID = fu.FurnitureID "
+                        + "join Building bu on bu.BuildingID = fh.CurrentBuildingID join UserAccount us "
+                        + "on us.UserID = fh.HandoverID join Room ro on ro.RoomID = fh.CurrentRoomID "
+                        + "join Building bu1 on bu1.BuildingID = fh.TargetBuildingID "
+                        + "join Room ro1 on ro1.RoomID = fh.TargetRoomID ", grdFurniture);
                         UpdatePanel1.Visible = false;
                     }
                     else
@@ -82,6 +83,7 @@ namespace HotelManagement
         }
         protected void grdFurniture_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            e.Row.Cells[0].Visible = false;
             e.Row.Style["cursor"] = "pointer";
             e.Row.Attributes.Add("onMouseOver", "this.style.cursor = 'hand';this.style.backgroundColor = '#CCCCCC';");
             if (e.Row.RowIndex % 2 != 0)
@@ -94,18 +96,25 @@ namespace HotelManagement
                 e.Row.Attributes.Add("style", "background-color:#EAEAEA;");
                 e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor = '#EAEAEA';");
             }
+            e.Row.Cells[2].Attributes.Add("width", "150px");
+            e.Row.Cells[3].Attributes.Add("width", "150px");
             if (e.Row.RowType != DataControlRowType.DataRow)
             {
                 e.Row.Cells[0].Text = "Vật tư ID";
-                e.Row.Cells[0].Attributes.Add("width","65px");
+                e.Row.Cells[0].Attributes.Add("width", "65px");
                 e.Row.Cells[1].Text = "Tên";
-                e.Row.Cells[2].Text = "Tòa nhà";
-                e.Row.Cells[3].Text = "Phòng";
+                e.Row.Cells[2].Text = "Điểm xuất phát";
+                e.Row.Cells[3].Text = "Điểm đến";
                 e.Row.Cells[4].Text = "Ngày chuyển";
+
                 e.Row.Cells[5].Text = "Người bàn giao";
                 e.Row.Cells[5].Attributes.Add("width", "105px");
                 e.Row.Cells[6].Text = "Lý do";
                 e.Row.Cells[6].Attributes.Add("width", "40px");
+            }
+            else {
+                e.Row.Cells[4].Text = DateTime.Parse(e.Row.Cells[4].Text).ToShortDateString();
+                
             }
         }
         protected void txtStart_OnChanged(object sender, EventArgs e)
@@ -168,21 +177,23 @@ namespace HotelManagement
                 string FurnitureID = Request.QueryString["ID"];
                 if (FurnitureID != null)
                 {
-                    com.bindData("fu.FurnitureID,fu.Name,bu.Address,ro.RoomNo, fh.MoveDate, us.FullName as 'Mover',fh.Reason",
-                        "where fu.FurnitureID=" + FurnitureID + condition + " order by Address,fh.MoveDate",
-                        "FurnitureHistory fh join Furniture fu on fh.FurnitureID = fu.FurnitureID"
-                        + " join Building bu on bu.BuildingID = fu.CurrentBuildingID"
-                        + " join UserAccount us on us.UserID = fh.HandoverID"
-                        + " join Room ro on ro.RoomID = fu.CurrentRoomID ", grdFurniture);
+                    com.bindData("fu.FurnitureID,fu.Name,bu.Address +' - Room '+ cast(ro.RoomNo as varchar(MAX)) as 'Address',bu1.Address +' - Room '+ cast(ro1.RoomNo as varchar(MAX)) as 'Address1', fh.MoveDate, us.FullName as 'Mover',fh.Reason",
+                        "where fu.FurnitureID=" + FurnitureID + condition + " order by fh.FurnitureID,fh.MoveDate",
+                        "FurnitureHistory fh join Furniture fu on fh.FurnitureID = fu.FurnitureID "
+                        + "join Building bu on bu.BuildingID = fh.CurrentBuildingID join UserAccount us "
+                        + "on us.UserID = fh.HandoverID join Room ro on ro.RoomID = fh.CurrentRoomID "
+                        + "join Building bu1 on bu1.BuildingID = fh.TargetBuildingID "
+                        + "join Room ro1 on ro1.RoomID = fh.TargetRoomID ", grdFurniture);
                 }
                 else
                 {
-                    com.bindData("fu.FurnitureID,fu.Name,bu.Address,ro.RoomNo, fh.MoveDate, us.FullName as 'Mover',fh.Reason",
-                        "where 1=1 " + condition + " order by Address,fh.MoveDate",
-                        "FurnitureHistory fh join Furniture fu on fh.FurnitureID = fu.FurnitureID"
-                        + " join Building bu on bu.BuildingID = fu.CurrentBuildingID"
-                        + " join UserAccount us on us.UserID = fh.HandoverID"
-                        + " join Room ro on ro.RoomID = fu.CurrentRoomID ", grdFurniture);
+                    com.bindData("fu.FurnitureID,fu.Name,bu.Address +' - Room '+ cast(ro.RoomNo as varchar(MAX)) as 'Address',bu1.Address +' - Room '+ cast(ro1.RoomNo as varchar(MAX)) as 'Address1', fh.MoveDate, us.FullName as 'Mover',fh.Reason",
+                        "where 1=1 " + condition + " order by fh.FurnitureID,fh.MoveDate",
+                        "FurnitureHistory fh join Furniture fu on fh.FurnitureID = fu.FurnitureID "
+                        +"join Building bu on bu.BuildingID = fh.CurrentBuildingID join UserAccount us "
+                        +"on us.UserID = fh.HandoverID join Room ro on ro.RoomID = fh.CurrentRoomID "
+                        +"join Building bu1 on bu1.BuildingID = fh.TargetBuildingID "
+                        + "join Room ro1 on ro1.RoomID = fh.TargetRoomID ", grdFurniture);
                 }
             }
             catch (Exception)

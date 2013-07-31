@@ -122,7 +122,7 @@
                 <asp:Panel ID="Panel1" runat="server">
                 
                 <asp:Label ID="lblPrice" style="font-weight:bold;" runat="server" Text="Giá thuê" Width="150"></asp:Label>
-                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>&nbsp;USD
                 <br />
                 <br />
                 <span style="padding-left: 150px;"></span>

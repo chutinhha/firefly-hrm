@@ -39,13 +39,23 @@
     <asp:Panel ID="pnlContent" runat="server">
     
     </asp:Panel>
+        
     <asp:LinkButton ID="btnDetail" runat="server" style="color:Blue;" 
         onclick="btnDetail_Click">See details</asp:LinkButton>
     <asp:Panel ID="pnlContent2" runat="server" CssClass="table">
     </asp:Panel>
     <br/><br/>
+    <asp:Panel ID="Panel1" runat="server" CssClass="table">
+        <asp:Label ID="lblRoom" runat="server" Text="Room List"></asp:Label><br /><br />
+    <div style="height: 300px; overflow: scroll;">
+      
+            <asp:GridView ID="grdRoom" runat="server" Width="100%" OnRowDataBound="grdRoom_RowDataBound">
+            </asp:GridView>
+        </div>
+        </asp:Panel>
+        <br/><br/>
         <asp:Button ID="btnChooseFur" runat="server" Text="Choose Furniture" 
-            onclick="btnChooseFur_Click" />
+            onclick="btnChooseFur_Click" Visible=false />
     <div>
     <asp:LinkButton ID="btnEdit" runat="server" style="color:Blue;float:left;">Sửa</asp:LinkButton>
     <asp:LinkButton ID="btnBack" runat="server" CssClass="readon float-left" 
