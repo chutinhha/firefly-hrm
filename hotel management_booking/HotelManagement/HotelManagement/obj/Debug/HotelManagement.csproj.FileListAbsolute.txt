@@ -20,7 +20,6 @@ D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bi
 D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\HotelManagement.pdb
 D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\CKEditor.NET.dll
 D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\CKEditor.NET.pdb
-D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\HotelManagement.csprojResolveAssemblyReference.cache
 D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\Interop.WindowsInstaller.dll
 D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\HotelManagement.csproj.ResolveComReference.cache
 D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\HotelManagement.dll

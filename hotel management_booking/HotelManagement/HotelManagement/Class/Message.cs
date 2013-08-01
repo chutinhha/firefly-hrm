@@ -1,7 +1,7 @@
 ﻿public class Message
 {
     //connection string
-    internal const string ConnectionString = @"Data Source=ANHTUNG\SQLEXPRESS;Initial Catalog=DavidDucHotel;User ID=tungda;Password=123456";
+    internal const string ConnectionString = @"Data Source=SQL5001.Smarterasp.net;Initial Catalog=DB_9A9DAB_davidduc;User Id=DB_9A9DAB_davidduc_admin;Password=12345678;";
     internal const string ConfirmSave = "Are you sure that you want to save?";
     internal const string ConfirmDelete = "Are you sure that you want to delete?";
     internal const string ourEmail = "tungda01659@gmail.com";

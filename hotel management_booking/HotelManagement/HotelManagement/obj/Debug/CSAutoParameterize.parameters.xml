@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="ApplicationServices-Web.config Connection String" description="ApplicationServices Connection String used in web.config by the application to access the database." defaultvalue="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\Do\ An\\firefly-hrm\\hotel\ management_booking\\HotelManagement\\HotelManagement\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationServices']/@connectionString" />
-  </parameter>
-  <parameter name="DavidDucHotelConnectionString-Web.config Connection String" description="DavidDucHotelConnectionString Connection String used in web.config by the application to access the database." defaultvalue="Data Source=SQL5001.Smarterasp.net;Initial Catalog=DB_9A9DAB_davidduc;User Id=DB_9A9DAB_davidduc_admin;Password=12345678;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="D:\\Do\ An\\firefly-hrm\\hotel\ management_booking\\HotelManagement\\HotelManagement\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DavidDucHotelConnectionString']/@connectionString" />
-  </parameter>
-</parameters>
