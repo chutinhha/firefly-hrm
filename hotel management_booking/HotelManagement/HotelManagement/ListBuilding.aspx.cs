@@ -801,22 +801,12 @@ namespace HotelManagement
                     buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
                     condition = condition + " and bui." + Message.BuildingID + " in (" + buildingCondition + ") and bui." + Message.Status + "<>3";
                 }
-                string sql = com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
+                DataTable sql = com.bindData(" bui." + Message.BuildingID + ", buiT." + Message.Description + ",bui." + Message.Address + ",bui." + Message.District
                     + ",bui." + Message.Price + "," + Message.Status + " as 'Còn_phòng_trống'", condition + " order by bui." + Message.District, Message.BuildingTable + " bui join " + Message.BuildingTypeTable
                     + " buiT on bui." + Message.BuildingTypeID + " = buiT." + Message.BuildingTypeID, grdBuilding);
-                int fromIndex = -4;
-                string temp_sql = sql;
-                while (temp_sql.Contains("from"))
-                {
-                    fromIndex = fromIndex + temp_sql.IndexOf("from") + 4;
-                    temp_sql = temp_sql.Substring(temp_sql.IndexOf("from") + 4, temp_sql.Length - temp_sql.IndexOf("from") - 4);
-                }
-                fromIndex++;
-                com.ExportToExcel(sql, Server.MapPath(@"Excel/Building_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
-                    + DateTime.Now.Year + ".xls"), @"ANHTUNG", fromIndex);
+                com.ExportToExcel(sql,grdBuilding, "Building_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls", Response);
                 lblSuccess.Text = "Thành công";
-                Response.Redirect(@"Excel/Building_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
-                    + DateTime.Now.Year + ".xls");
             }
             catch (Exception ex)
             {

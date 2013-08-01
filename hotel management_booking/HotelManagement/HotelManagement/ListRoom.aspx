@@ -220,5 +220,8 @@
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnExport" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

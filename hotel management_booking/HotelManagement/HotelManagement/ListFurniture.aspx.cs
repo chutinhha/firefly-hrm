@@ -1749,8 +1749,6 @@ namespace HotelManagement
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
-            try
-            {
                 string buildingCondition = "";
                 if (Session["UserLevel"].ToString() == "2")
                 {
@@ -1819,7 +1817,7 @@ namespace HotelManagement
                 }
                 string[] column = new string[1];
                 column[0] = "Lịch sử";
-                string sql = com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                DataTable sql = com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
                     + Message.Description + ",bui." + Message.Address + ",rom." + Message.RoomNo + ", fur."
                     + Message.EndWarranty + ",fur." + Message.Picture, condition, Message.FurnitureTable
                     + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
@@ -1827,23 +1825,91 @@ namespace HotelManagement
                     + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
                     + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom
                     + " left join " + Message.CustomerTable + " cus on cus." + Message.CustomerID + "=fur." + Message.CurrentCustomer, grdFurniture, 1, column);
-                int fromIndex = -4;
-                string temp_sql = sql;
-                while (temp_sql.Contains("from"))
-                {
-                    fromIndex = fromIndex + temp_sql.IndexOf("from") + 4;
-                    temp_sql = temp_sql.Substring(temp_sql.IndexOf("from") + 4, temp_sql.Length - temp_sql.IndexOf("from") - 4);
-                }
-                fromIndex++;
-                com.ExportToExcel(sql, Server.MapPath(@"Excel/Furniture_" + DateTime.Now.Hour+"_"+DateTime.Now.Minute+"_"+ DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
-                    +DateTime.Now.Year+".xls"),@"ANHTUNG",fromIndex);
+                com.ExportToExcel(sql, grdFurniture, "Furniture_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls", Response);
                 lblSuccess.Text = "Thành công";
-                Response.Redirect(@"Excel/Furniture_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
-                    + DateTime.Now.Year + ".xls");
-            }
-            catch (Exception ex)
+        }
+        protected void btnWord_Click(object sender, EventArgs e)
+        {
+            string buildingCondition = "";
+            if (Session["UserLevel"].ToString() == "2")
             {
+                //Get building list
+                DataTable building = com.getData(Message.UserAccountTable, Message.RoomManage, " where "
+                    + Message.UserID + "=" + Session["UserID"]);
+                string[] buildingList = building.Rows[0][0].ToString().Split('|');
+
+                for (int i = 0; i < buildingList.Length - 1; i++)
+                {
+                    buildingCondition = buildingCondition + buildingList[i] + ",";
+                }
+                buildingCondition = buildingCondition.Remove(buildingCondition.Length - 1, 1);
             }
+            string condition = "";
+            if (ddlChooseBuilding.SelectedIndex == 0)
+            {
+                if (Session["UserLevel"].ToString() == "2")
+                {
+                    condition = " where fur.CurrentBuildingID in (" + buildingCondition + ") and ("
+                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                }
+                else
+                {
+                    condition = " where ("
+                        + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete + " is NULL)";
+                }
+            }
+            else
+            {
+                condition = " where fur.CurrentBuildingID =" + ddlChooseBuilding.SelectedValue;
+            }
+            if (ddlChooseRoom.SelectedIndex != 0)
+            {
+                condition = condition + " and rom." + Message.RoomNo + "=" + ddlChooseRoom.SelectedValue;
+            }
+            if (ddlChooseType.SelectedIndex != 0)
+            {
+                condition = condition + " and furType." + Message.Description + "=N'" + ddlChooseType.SelectedValue + "'";
+            }
+            if (ddlInWarraty.SelectedIndex != 0)
+            {
+                if (ddlInWarraty.SelectedIndex == 1)
+                {
+                    condition = condition + " and ((fur." + Message.EndWarranty + ">='" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                }
+                else
+                {
+                    condition = condition + " and ((fur." + Message.EndWarranty + "<'" + DateTime.Today + "') or (" + Message.EndWarranty + " is NULL))";
+                }
+            }
+            if (ddlPosition.SelectedIndex != 0)
+            {
+                if (ddlPosition.SelectedIndex != 1)
+                {
+                    condition = condition + " and " + Message.IsWarehouse + "='True'";
+                }
+                else
+                {
+                    condition = condition + " and " + Message.IsWarehouse + "='False'";
+                }
+            }
+            if (ddlCustomer.SelectedIndex != 0)
+            {
+                condition = condition + " and cus." + Message.CustomerID + "=" + ddlCustomer.SelectedValue;
+            }
+            string[] column = new string[1];
+            column[0] = "Lịch sử";
+            DataTable sql = com.bindDataBlankColumn("fur." + Message.FurnitureID + ",fur." + Message.Name + ", furType."
+                + Message.Description + ",bui." + Message.Address + ",rom." + Message.RoomNo + ", fur."
+                + Message.EndWarranty + ",fur." + Message.Picture, condition, Message.FurnitureTable
+                + " fur join " + Message.BuildingTable + " bui on fur." + Message.CurrentBuilding
+                + " = bui." + Message.BuildingID + " join " + Message.FurnitureTypeTable + " furType on "
+                + "fur." + Message.FurnitureType + " = furType." + Message.FurnitureType + " join "
+                + Message.RoomTable + " rom on rom." + Message.RoomID + " = fur." + Message.CurrentRoom
+                + " left join " + Message.CustomerTable + " cus on cus." + Message.CustomerID + "=fur." + Message.CurrentCustomer, grdFurniture, 1, column);
+            com.ExportToWord(sql,Response,"Furniture_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                + DateTime.Now.Year + ".doc");
+            lblSuccess.Text = "Thành công";
         }
         protected void btnExport1_Click(object sender, EventArgs e)
         {
@@ -1864,7 +1930,7 @@ namespace HotelManagement
                     }
                 }
                 buildingCondition1 = buildingCondition1.Remove(buildingCondition1.Length - 1, 1);
-                string sql = com.bindData("distinct furType." + Message.Description
+                DataTable sql = com.bindData("distinct furType." + Message.Description
                     + ",(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
                     + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ") and (" + Message.ApproveDelete + "<>1 or " + Message.ApproveDelete
                     + " is NULL)) as 'Available',(select count(*) from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType
@@ -1872,18 +1938,9 @@ namespace HotelManagement
                     + ") from " + Message.FurnitureTable + " where " + Message.FurnitureType + "=fur." + Message.FurnitureType + " and " + Message.CurrentBuilding + " in (" + buildingCondition1 + ")) as 'Total_Value'"
                     , " where fur." + Message.CurrentBuilding + " in (" + buildingCondition1 + ")", Message.FurnitureTable + " fur join " + Message.FurnitureTypeTable + " furType"
                     + " on fur." + Message.FurnitureType + "=furType." + Message.FurnitureType, grdCategory);
-                int fromIndex = -4;
-                string temp_sql = sql;
-                while (temp_sql.Contains("from")) {
-                    fromIndex = fromIndex+ temp_sql.IndexOf("from")+4;
-                    temp_sql = temp_sql.Substring(temp_sql.IndexOf("from") + 4, temp_sql.Length - temp_sql.IndexOf("from") - 4);
-                }
-                fromIndex++;
-                com.ExportToExcel(sql, Server.MapPath(@"Excel/Furniture_Category_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
-                    + DateTime.Now.Year + ".xls"), @"ANHTUNG",fromIndex);
+                com.ExportToExcel(sql, grdCategory,"Furniture_Category_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls", Response);
                 lblSuccess.Text = "Thành công";
-                Response.Redirect(@"Excel/Furniture_Category_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
-                    + DateTime.Now.Year + ".xls");
             }
             catch (Exception ex)
             {

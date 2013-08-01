@@ -290,6 +290,8 @@
             <asp:PostBackTrigger ControlID="btnSave" />
             <asp:PostBackTrigger ControlID="btnAdd" />
             <asp:PostBackTrigger ControlID="btnEditSave" />
+            <asp:PostBackTrigger ControlID="btnExport" />
+            <asp:PostBackTrigger ControlID="btnExport1" />
         </Triggers>
     </asp:UpdatePanel>
     <asp:Panel ID="pnlEdit" runat="server" Visible="False">

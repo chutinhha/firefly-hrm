@@ -253,6 +253,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSave" />
+            <asp:PostBackTrigger ControlID="btnExport" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

@@ -13,6 +13,11 @@ using System.Web.UI.WebControls;
 using System.Net;
 using System.Net.Mail;
 using System.Xml.Linq;
+using System.Web.UI.HtmlControls;
+using System.Configuration;
+using System.Web.Security;
+using System.Web.UI.WebControls.WebParts;
+
 
 public class CommonFunction
 {
@@ -155,7 +160,7 @@ public class CommonFunction
         return sb.ToString();
     }
     //Bind data to a gridview
-    internal string bindData(string column, string condition, string table, GridView GridView1)
+    internal DataTable bindData(string column, string condition, string table, GridView GridView1)
     {
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
@@ -164,7 +169,7 @@ public class CommonFunction
         DataTable dt = ds.Tables["data"];
         GridView1.DataSource = dt;
         GridView1.DataBind();
-        return sql;
+        return dt;
     }
     //Get country list to bind to DropDownList
     internal List<string> getCountryList()
@@ -200,7 +205,7 @@ public class CommonFunction
         smt.Send(msg);
     }
     //Bind data to a gridview with a blank column
-    internal string bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
+    internal DataTable bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
     {
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
@@ -214,9 +219,9 @@ public class CommonFunction
         }
         GridView1.DataSource = dt;
         GridView1.DataBind();
-        return sql;
+        return dt;
     }
-    internal void ExportToExcel(string sql, string fileName, string server, int fromIndex)
+    /*internal void ExportToExcel(string sql, string fileName, string server, int fromIndex)
     {
         using (SqlCommand cmd = new SqlCommand())
         {
@@ -241,5 +246,60 @@ public class CommonFunction
             cmd.Parameters.Add(parm4);
             cmd.ExecuteNonQuery();
         }
+    }*/
+    internal void ExportToExcel(DataTable table, GridView GridView_Result, string fileName, HttpResponse Response)
+    {
+        //Create a dummy GridView
+        GridView GridView1 = new GridView();
+        GridView1.AllowPaging = false;
+        GridView1.DataSource = table;
+        GridView1.DataBind();
+
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition",
+         "attachment;filename="+fileName);
+        Response.Charset = "UTF-8";
+        Response.ContentEncoding = Encoding.UTF8;
+        Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+        Response.ContentType = "application/vnd.ms-excel";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            //Apply text style to each Row
+            GridView1.Rows[i].Attributes.Add("class", "textmode");
+        }
+        GridView1.RenderControl(hw);
+
+        //style to format numbers to string
+        string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+        Response.Write(style);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
+    }
+    internal void ExportToWord(DataTable dt, HttpResponse Response, string fileName)
+    {
+        //Create a dummy GridView
+        GridView GridView1 = new GridView();
+        GridView1.AllowPaging = false;
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename="+fileName);
+        Response.Charset = "UTF-8";
+        Response.ContentEncoding = Encoding.UTF8;
+        Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+        Response.ContentType = "application/vnd.ms-word ";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        GridView1.RenderControl(hw);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
     }
 }
