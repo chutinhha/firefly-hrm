@@ -38,26 +38,9 @@
                 i.value = i.value.replace(/[^\d]+/g, '');
             }
         }
-        function Focus(objname, waterMarkText) {
-            obj = document.getElementById(objname);
-            if (obj.value == waterMarkText) {
-                obj.value = "";
-                obj.className = "NormalTextBox";
-            }
-        }
-        function Blur(objname, waterMarkText) {
-            obj = document.getElementById(objname);
-            if (obj.value == "") {
-                obj.value = waterMarkText;
-                obj.className = "WaterMarkedTextBox";
-            }
-            else {
-                obj.className = "NormalTextBox";
-            }
-        }
     </script>
     
-    <form runat="server" style="height: 100%;">
+    <form runat="server" style="height: 100%;" autocomplete="off">
     
     <div id="wrapper" class="wrapper" align="center" style="height: auto">
         <div class="header">
@@ -69,9 +52,9 @@
                 <div id="topnav" class="header">
                     <div id="jflanguageselection">
                         <asp:Label ID="lblLogin" runat="server" Text="Login:" style="vertical-align:middle;"></asp:Label>
-                        <asp:TextBox ID="txtUser" runat="server" Width="100" onfocus="Focus(this.id,'Your user name')" onblur="Blur(this.id,'Your user name')"></asp:TextBox>
+                        <asp:TextBox ID="txtUser" runat="server" Width="100"></asp:TextBox>
                         &nbsp;
-                        <asp:TextBox ID="txtPassword" runat="server" Width="100" TextMode="Password" onfocus="Focus(this.id,'123456')" onblur="Blur(this.id,'123456')"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" Width="100" TextMode="Password"></asp:TextBox>
                         &nbsp;<asp:Button ID="btnLogin" 
                             style="background-color:#034569;float:none;color:white;border:none;height:25px;" 
                             class="readon float-left" runat="server" Text="Login" 
@@ -259,7 +242,7 @@
                                 <td class="mod_houses_right_col">
                                     <div class="lselect">
                                         <asp:DropDownList ID="ddlDistrict" runat="server" Width="150px">
-                                            <asp:ListItem Selected="True" Value="All">All</asp:ListItem>
+                                            <asp:ListItem Selected="True" Value="Tất cả">All</asp:ListItem>
                                             <asp:ListItem Selected="False" Value="Dong Da">Dong Da</asp:ListItem>
                                             <asp:ListItem Selected="False" Value="Hoan Kiem">Hoan Kiem</asp:ListItem>
                                             <asp:ListItem Selected="False" Value="Tay Ho">Tay Ho</asp:ListItem>
@@ -384,6 +367,7 @@
         <a href="mailto:davidduc@hn.vnn.vn">davidduc@hn.vnn.vn</a>
     </div>
     </div>
+    <asp:Label ID="Label1" runat="server" Text="Label" Visible=false></asp:Label>
     </form>
 </body>
 </html>

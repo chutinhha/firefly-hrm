@@ -208,7 +208,7 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDes;
+        protected global::CKEditor.NET.CKEditorControl txtDes;
         
         /// <summary>
         /// btnSave control.
@@ -346,6 +346,24 @@ namespace HotelManagement {
         protected global::System.Web.UI.WebControls.DropDownList ddlPosition;
         
         /// <summary>
+        /// lblCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCustomer;
+        
+        /// <summary>
+        /// ddlCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        
+        /// <summary>
         /// btnAdd control.
         /// </summary>
         /// <remarks>
@@ -409,6 +427,15 @@ namespace HotelManagement {
         protected global::System.Web.UI.WebControls.GridView grdCategory;
         
         /// <summary>
+        /// btnExport1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnExport1;
+        
+        /// <summary>
         /// grdFurniture control.
         /// </summary>
         /// <remarks>
@@ -416,6 +443,15 @@ namespace HotelManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdFurniture;
+        
+        /// <summary>
+        /// btnExport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnExport;
         
         /// <summary>
         /// pnlMove control.
@@ -478,7 +514,7 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMoveReason;
+        protected global::CKEditor.NET.CKEditorControl txtMoveReason;
         
         /// <summary>
         /// btnConfirmMove control.
@@ -523,7 +559,7 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReason;
+        protected global::CKEditor.NET.CKEditorControl txtReason;
         
         /// <summary>
         /// btnConfirmDelete control.
@@ -568,7 +604,7 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComment;
+        protected global::CKEditor.NET.CKEditorControl txtComment;
         
         /// <summary>
         /// btnRequestFurniture control.
@@ -748,7 +784,7 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEditDes;
+        protected global::CKEditor.NET.CKEditorControl txtEditDes;
         
         /// <summary>
         /// btnEditSave control.

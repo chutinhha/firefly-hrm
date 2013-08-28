@@ -514,7 +514,7 @@ div.clr {
 	height:18px;
 	clear:both;
 	padding:5px 15px 5px 30px;
-	width:170px;
+	width:205px;
 	border-top:1px solid #fff;
 	text-align:left;
 	z-index:999;
@@ -688,3 +688,10 @@ select
 textarea {
     resize: none;
 }
+.sitemap {background: #f7f7f7;border: 1px solid #c6c7c6;padding: 7px;border-radius: 5px;border-bottom-color: #fff;box-shadow: 1px 1px 2px #b5b5b5 inset;margin-bottom: 15px;}
+.sitemap ul {overflow: hidden;}
+.sitemap ul li {float: left;padding-left: 15px;background: url(../images/icon-arrow.png) left center no-repeat;margin-right: 9px;list-style-type:none;}
+.sitemap ul li.home {background: url(../images/icon-home.png) left top no-repeat;padding-left: 20px;list-style-type:none;}
+.sitemap ul li a {color: #838383;}
+.sitemap ul li a:hover {text-decoration: underline;}
+.sitemap ul li.current a {color: #005496;}

@@ -5,6 +5,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li ><a href="About.aspx">About Us</a></li>
+                    <li class="current"><a href="News.aspx">News</a></li>
+                </ul>
+            </div>
     <asp:Panel ID="pnlAllNews" runat="server">
     </asp:Panel>
     <asp:Panel ID="pnlNew" runat="server">
@@ -29,8 +37,8 @@
         <CKEditor:CKEditorControl ID="CKEditor1" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
         <br />
         <center>
-            <asp:Button ID="btnSave" onclick="btnSave_Click" runat="server" Text="Save" Width="80px" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
+            <asp:Button ID="btnSave" onclick="btnSave_Click" runat="server" Text="Lưu" Width="80px" />
+            <asp:Button ID="btnCancel" runat="server" Text="Hủy" Width="80px" 
                 onclick="btnCancel_Click" />
         </center>
         <br />

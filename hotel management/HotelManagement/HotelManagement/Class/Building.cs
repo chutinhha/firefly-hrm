@@ -60,6 +60,31 @@ namespace HotelManagement.Class
                 + "," + com.ToValue(NumberFloor), false);
         }
         public void UpdateBuilding() {
+            DataTable dt = com.getData(Message.RoomTable, Message.RoomID+","+Message.Status, 
+                " where " + Message.BuildingID
+                + "=" + BID + " and " + Message.Status + "<>3");
+            if (dt.Rows.Count > 0) {
+                bool isAvailable=false;
+                for (int i = 0; i < dt.Rows.Count; i++) {
+                    if (dt.Rows[i][1].ToString() != "2") {
+                        isAvailable = true;
+                        break;
+                    }    
+                }
+                if (isAvailable == true)
+                {
+                    if (Status != "3")
+                    {
+                        Status = "0";
+                    }
+                }
+                else {
+                    if (Status != "3")
+                    {
+                        Status = "1";
+                    }
+                }
+            }
             com.updateTable(Message.BuildingTable, 
                 Message.BuildingTypeID + "=" + com.ToValue(BuildingTypeID) + "," + Message.Address 
                 + "=" + com.ToValue(Address) + "," + Message.Price + "=" 
@@ -77,6 +102,18 @@ namespace HotelManagement.Class
         public void RemoveBuilding() {
             com.updateTable(Message.BuildingTable, Message.Status+"='3' where " + Message.BuildingID
                 + "=" + BID);
+            DataTable dt = com.getData(Message.UserAccountTable,Message.RoomManage+","+Message.UserID," where "+Message.UserLevel+"=2 and "
+                +Message.RoomManage+" is not NULL");
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                if (dt.Rows[i][0].ToString().Contains("|" + BID + "|")) 
+                { 
+                    com.updateTable(Message.UserAccountTable,Message.RoomManage+"='"
+                        +dt.Rows[i][0].ToString().Replace("|"+BID+"|","|")+"'");
+                }else if (dt.Rows[i][0].ToString().Contains(BID + "|") && dt.Rows[i][0].ToString().IndexOf(BID + "|") == 0){
+                    com.updateTable(Message.UserAccountTable, Message.RoomManage + "='"
+                        + dt.Rows[i][0].ToString().Replace(BID + "|", "") + "'");
+                }
+            }
         }
         public string GetBuildingType() { 
             DataTable dt = com.getData(Message.BuildingTypeTable,Message.Description," where "

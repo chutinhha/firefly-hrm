@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.IO;
 
 namespace HotelManagement
 {
@@ -12,30 +14,37 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserLevel"] != null)
+            try
             {
-                if (int.Parse(Session["UserLevel"].ToString()) >2) { }
+                if (Session["UserLevel"] != null)
+                {
+                    if (int.Parse(Session["UserLevel"].ToString()) > 2) { }
+                    else
+                    {
+                        Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                        Response.Redirect("Home.aspx");
+                    }
+                }
                 else
                 {
                     Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
                     Response.Redirect("Home.aspx");
                 }
+                Session["MenuID"] = "5";
+                lblSuccess.Text = "";
+                lblError.Text = "";
+                this.confirmSave = Message.ConfirmSave;
+                this.confirmDelete = Message.ConfirmDelete;
+                Page.Title = "Manage Account";
+                if (!IsPostBack)
+                {
+                    com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
+                        + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Session["CurrentPage"] = HttpContext.Current.Request.Url.AbsoluteUri;
-                Response.Redirect("Home.aspx");
-            }
-            Session["MenuID"] = "5";
-            lblSuccess.Text = "";
-            lblError.Text = "";
-            this.confirmSave = Message.ConfirmSave;
-            this.confirmDelete = Message.ConfirmDelete;
-            Page.Title = "Manage Account";
-            if (!IsPostBack)
-            {
-                com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
-                    + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                if(!ex.Message.Contains("Thread was being aborted")){if (File.Exists(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt")){string content = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt");content = content + "|" + ex.Message;File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", content);}else {File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", ex.Message);}}
             }
         }
         protected void grdAccount_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -60,6 +69,12 @@ namespace HotelManagement
                 {
                     e.Row.Cells[i].Attributes.Add("onClick", string.Format("javascript:window.location='{0}';", Location));
                 }
+            }
+            else {
+                e.Row.Cells[2].Text = "User Name";
+                e.Row.Cells[3].Text = "User Level";
+                e.Row.Cells[4].Text = "Tên";
+                e.Row.Cells[6].Text = "Điện Thoại";
             }
         }
         protected void CheckUncheckAll(object sender, EventArgs e)
@@ -88,25 +103,48 @@ namespace HotelManagement
         protected string confirmDelete { get; set; }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            bool isCheck = false;
-            foreach (GridViewRow gr in grdAccount.Rows)
+            try
             {
-                CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
-                if (cb.Checked)
+                bool isCheck = false;
+                foreach (GridViewRow gr in grdAccount.Rows)
                 {
-                    isCheck = true;
-                    Class.User newUser = new Class.User(int.Parse(gr.Cells[1].Text));
-                    newUser.RemoveUser();
+                    CheckBox cb = (CheckBox)gr.Cells[0].FindControl("myCheckBox");
+                    if (cb.Checked)
+                    {
+                        isCheck = true;
+                        Class.User newUser = new Class.User(int.Parse(gr.Cells[1].Text));
+                        newUser.RemoveUser();
+                    }
+                }
+                if (isCheck == false)
+                {
+                    lblError.Text = "Xin hãy chọn ít nhất 1 dòng";
+                }
+                else
+                {
+                    com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
+                        + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                    lblSuccess.Text = "Thành công";
                 }
             }
-            if (isCheck == false)
+            catch (Exception ex)
             {
-                lblError.Text = "Please select a row!";
+                if(!ex.Message.Contains("Thread was being aborted")){if (File.Exists(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt")){string content = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt");content = content + "|" + ex.Message;File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", content);}else {File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", ex.Message);}}
             }
-            else {
-                com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
-                    + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
-                lblSuccess.Text = "Success";
+        }
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable sql = com.bindData(Message.UserID + "," + Message.UserName + "," + Message.UserLevel + "," + Message.FullName
+                        + "," + Message.Email + "," + Message.PhoneNumber, " where " + Message.Status + "='True' and " + Message.UserLevel + "<3", Message.UserAccountTable, grdAccount);
+                com.ExportToExcel(sql,grdAccount, "Account_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Day + "_" + DateTime.Now.Month + "_"
+                    + DateTime.Now.Year + ".xls",Response);
+                lblSuccess.Text = "Thành công";
+            }
+            catch (Exception ex)
+            {
+                if(!ex.Message.Contains("Thread was being aborted")){if (File.Exists(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt")){string content = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt");content = content + "|" + ex.Message;File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", content);}else {File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", ex.Message);}}
             }
         }
     }

@@ -7,6 +7,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
     <br />
+        <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li class="current"><a href="ChangePassword.aspx">Change Password</a></li>
+                </ul>
+            </div>
+            <br />
     <asp:Label ID="lblOld" runat="server" Text="Old Password" Width="150"></asp:Label>
     <asp:TextBox ID="txtOld" runat="server" Width="200" TextMode="Password"></asp:TextBox>
     <br /><br />

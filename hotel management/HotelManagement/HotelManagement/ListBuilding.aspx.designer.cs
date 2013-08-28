@@ -40,6 +40,24 @@ namespace HotelManagement {
         protected global::System.Web.UI.WebControls.Panel pnlAdd;
         
         /// <summary>
+        /// lblCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCustomer;
+        
+        /// <summary>
+        /// ddlCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        
+        /// <summary>
         /// lblBuildingType control.
         /// </summary>
         /// <remarks>
@@ -235,7 +253,16 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CuteWebUI.Uploader fulPicture;
+        protected global::FlashUpload.FlashUpload fulPicture;
+        
+        /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
         /// lblDescription control.
@@ -253,7 +280,7 @@ namespace HotelManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::CKEditor.NET.CKEditorControl txtDescription;
         
         /// <summary>
         /// lblLat control.
@@ -371,6 +398,15 @@ namespace HotelManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBuilding;
+        
+        /// <summary>
+        /// btnExport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnExport;
         
         /// <summary>
         /// lblError control.

@@ -6,6 +6,13 @@
 <asp:Panel ID="pnlNew" runat="server">
     
     <br />
+        <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li class="current"><a href="Contact.aspx">Contact</a></li>
+                </ul>
+            </div>
+            <br />
     <asp:Label ID="NewsContent" runat="server" Text=""></asp:Label>
     <br />
     <asp:LinkButton style="color:Blue;text-decoration:underline;" ID="btnEdit" 
@@ -15,8 +22,8 @@
         <CKEditor:CKEditorControl ID="CKEditor1" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
         <br />
         <center>
-            <asp:Button ID="btnSave" onclick="btnSave_Click" runat="server" Text="Save" Width="80px" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" 
+            <asp:Button ID="btnSave" onclick="btnSave_Click" runat="server" Text="Lưu" Width="80px" />
+            <asp:Button ID="btnCancel" runat="server" Text="Hủy" Width="80px" 
                 onclick="btnCancel_Click" />
         </center>
         <br /><br /><br />
@@ -28,8 +35,8 @@
     &nbsp;<span style="font-weight:bold;">Message Subject:</span><br/>
     <asp:TextBox ID="txtSubject" runat="server" Width="400px"></asp:TextBox>
     <br/>
-    &nbsp;<span style="font-weight:bold;">Enter your Message:</span><br/>
-    <asp:TextBox ID="txtMessage" runat="server" Width="408px" Height="200px" TextMode="MultiLine"></asp:TextBox>    
+    &nbsp;<span style="font-weight:bold;">Enter your Message:</span><br/>  
+    <ckeditor:ckeditorcontrol id="txtMessage" basepath="/ckeditor/" runat="server"></ckeditor:ckeditorcontrol>
     <br/>
     &nbsp;<asp:CheckBox ID="chkEmail" runat="server" Text="E-mail a copy of this message to your own address." />
     <br/><br/>

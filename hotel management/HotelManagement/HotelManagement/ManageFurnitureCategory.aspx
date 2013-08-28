@@ -41,22 +41,31 @@
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListFurniture.aspx">Vật tư</a></li>
+                    <li class="current"><a href="ManageFurnitureCategory.aspx">Quản lý danh mục vật tư</a></li>
+                </ul>
+            </div>
+            
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
             <asp:Panel ID="pnlAdd" runat="server" Visible="False">
                 <br />
-                <asp:Label ID="lblName" runat="server" Text="Name of Category" Width="150"></asp:Label>
+                <asp:Label ID="lblName" runat="server" Text="Tên danh mục" Width="150"></asp:Label>
                 <asp:TextBox ID="txtName" runat="server" Width="200"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Button ID="btnSave" runat="server" Text="Save" Width="80" 
+                <asp:Button ID="btnSave" runat="server" Text="Lưu" Width="80" 
                     onclick="btnSave_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80" 
+                <asp:Button ID="btnCancel" runat="server" Text="Hủy" Width="80" 
                     onclick="btnCancel_Click" />
             </asp:Panel>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" 
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" 
                     onclick="btnAdd_Click" />
                 <br />
                 <br />
@@ -79,8 +88,14 @@
                 <br />
             </asp:Panel>
             <br />
+            <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
+                    Width="45px" onclick="btnExport_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
+                    <br />
             <asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>
             <asp:Label ID="lblSuccess" runat="server" Text="" Style="color: Green;"></asp:Label>
         </ContentTemplate>
+        <Triggers>
+        <asp:PostBackTrigger ControlID="btnExport" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

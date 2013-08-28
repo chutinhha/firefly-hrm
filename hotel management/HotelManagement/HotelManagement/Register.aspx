@@ -13,27 +13,34 @@
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ManageAccount.aspx">Quản lý tài khoản</a></li>
+                    <li class="current"><a href="Register.aspx">Đăng ký mới</a></li>
+                </ul>
+            </div>
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
-            <br />
             <br />
             <asp:Label ID="lblUserName" style="font-weight:bold;" runat="server" Text="User Name:" Width="150px"></asp:Label>
             <asp:TextBox ID="txtUserName" runat="server" Width="200px"></asp:TextBox>
             &nbsp;<span style="color: Red">(*)</span>
             <br />
             <br />
-            <asp:Label ID="lblPassword" style="font-weight:bold;" runat="server" Text="Password:" Width="150px"></asp:Label>
+            <asp:Label ID="lblPassword" style="font-weight:bold;" runat="server" Text="Mật khẩu:" Width="150px"></asp:Label>
             <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="200px"></asp:TextBox>
             &nbsp;<span style="color: Red">(*)</span>
             <br />
             <br />
-            <asp:Label ID="lblAccountType" style="font-weight:bold;" runat="server" Text="Account Type:" Width="150px"></asp:Label>
+            <asp:Label ID="lblAccountType" style="font-weight:bold;" runat="server" Text="Loại tài khoản:" Width="150px"></asp:Label>
             <asp:DropDownList Width="214px" ID="ddlAccountType" runat="server" AutoPostBack="true"
                 OnSelectedIndexChanged="ddlAccountType_SelectedIndexChanged">
-                <asp:ListItem Selected="True">Please select</asp:ListItem>
-                <asp:ListItem>Website Manager</asp:ListItem>
-                <asp:ListItem>Building Manager</asp:ListItem>
+                <asp:ListItem Selected="True">Xin hãy chọn</asp:ListItem>
+                <asp:ListItem>Quản lý tin tức</asp:ListItem>
+                <asp:ListItem>Quản lý tòa nhà</asp:ListItem>
                 <asp:ListItem>Administrator</asp:ListItem>
             </asp:DropDownList>
             &nbsp;<span style="color: Red">(*)</span>
@@ -42,7 +49,7 @@
                 <br />
                 <br />
                 <span style="color: Red">(*) </span>
-                <asp:Label ID="lblBuilding" style="font-weight:bold;" runat="server" Text="Please select at least 1 building"></asp:Label>
+                <asp:Label ID="lblBuilding" style="font-weight:bold;" runat="server" Text="Xin hãy chọn ít nhất 1 tòa nhà"></asp:Label>
                 <br />
                 <br />
                 <asp:GridView ID="grdRoom" runat="server" Width="100%" 
@@ -58,15 +65,15 @@
             </asp:Panel>
             <br />
             <br />
-            <asp:Label ID="lblName" style="font-weight:bold;" Width="150px" runat="server" Text="Full name:"></asp:Label>
+            <asp:Label ID="lblName" style="font-weight:bold;" Width="150px" runat="server" Text="Tên đầy đủ:"></asp:Label>
             <asp:TextBox ID="txtName" Width="200px" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblPhone" style="font-weight:bold;" Width="150px" runat="server" Text="Phone:"></asp:Label>
+            <asp:Label ID="lblPhone" style="font-weight:bold;" Width="150px" runat="server" Text="Điện thoại:"></asp:Label>
             <asp:TextBox ID="txtPhone" Width="200px" runat="server" onkeyup="ValidateText(this);"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblAddress" style="font-weight:bold;" Width="150px" runat="server" Text="Address:"></asp:Label>
+            <asp:Label ID="lblAddress" style="font-weight:bold;" Width="150px" runat="server" Text="Địa chỉ:"></asp:Label>
             <asp:TextBox ID="txtAddress" Width="200px" runat="server"></asp:TextBox>
             <br />
             <br />
@@ -74,12 +81,12 @@
             <asp:TextBox ID="txtMail" Width="200px" runat="server" TextMode="Email"></asp:TextBox>
             <br />
             <br />
-            <span style="color: Red">(*): Required</span>
+            <span style="color: Red">(*): Bắt buộc</span>
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Text="" Width="150px"></asp:Label>
-            <asp:Button ID="btnRegister" runat="server" Text="Register" Style="background-color: #034569;
-                color: white; border: none; height: 25px;" OnClick="btnRegister_Click" />
+            <asp:Button ID="btnRegister" runat="server" Text="Đăng ký" Style="background-color: #034569;
+                color: white; border: none; height: 25px;" OnClick="btnRegister_Click" Width="80" />
             <br />
             <br />
             &nbsp;<asp:Label ID="lblError" runat="server" Text="" Style="color: Red;"></asp:Label>

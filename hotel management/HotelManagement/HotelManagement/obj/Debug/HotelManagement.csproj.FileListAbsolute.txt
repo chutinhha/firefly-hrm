@@ -16,3 +16,19 @@ D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\obj\Debug\
 D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\obj\Debug\HotelManagement.csproj.ResolveComReference.cache
 D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\obj\Debug\HotelManagement.dll
 D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\obj\Debug\HotelManagement.pdb
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\HotelManagement.dll
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\HotelManagement.pdb
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\CKEditor.NET.dll
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\bin\CKEditor.NET.pdb
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\Interop.WindowsInstaller.dll
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\HotelManagement.csproj.ResolveComReference.cache
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\HotelManagement.dll
+D:\Do An\firefly-hrm\hotel management_booking\HotelManagement\HotelManagement\obj\Debug\HotelManagement.pdb
+C:\Users\Do\Desktop\New folder\bin\HotelManagement.dll
+C:\Users\Do\Desktop\New folder\bin\HotelManagement.pdb
+C:\Users\Do\Desktop\New folder\bin\FlashUpload.dll
+C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.csprojResolveAssemblyReference.cache
+C:\Users\Do\Desktop\New folder\obj\Debug\Interop.WindowsInstaller.dll
+C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.csproj.ResolveComReference.cache
+C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.dll
+C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.pdb

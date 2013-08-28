@@ -7,6 +7,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
     <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Home</a></li>
+                    <li class="current"><a href="ResetPassword.aspx">Reset Password</a></li>
+                </ul>
+            </div>
+            <br />
         <asp:Label ID="lblEmail" runat="server" Text="Email" Width="150"></asp:Label>
         <asp:TextBox ID="txtEmail" runat="server" Width="200" TextMode="Email"></asp:TextBox>
         <br /><br />

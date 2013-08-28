@@ -13,6 +13,11 @@ using System.Web.UI.WebControls;
 using System.Net;
 using System.Net.Mail;
 using System.Xml.Linq;
+using System.Web.UI.HtmlControls;
+using System.Configuration;
+using System.Web.Security;
+using System.Web.UI.WebControls.WebParts;
+
 
 public class CommonFunction
 {
@@ -21,7 +26,6 @@ public class CommonFunction
     internal CommonFunction()
     {
         cnn = new SqlConnection(Message.ConnectionString);
-        cnn.Open();
     }
 
     //Close db connection
@@ -32,15 +36,18 @@ public class CommonFunction
 
     internal void deleteFromTable(string table, string condition)
     {
+        cnn.Open();
         string sql;
         sql = @"DELETE from " + table + condition + " ;";
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
+        cnn.Close();
     }
 
     //Insert new row to table
     internal void insertIntoTable(string table, string column, string condition, bool IDENTITY_INSERT)
     {
+        cnn.Open();
         string sql;
         if (IDENTITY_INSERT == true)
         {
@@ -53,40 +60,48 @@ public class CommonFunction
         }
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
+        cnn.Close();
     }
 
     internal DataTable getData(string table, string column, string condition)
     {
+        cnn.Open();
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
         da.Fill(ds, "data");
         DataTable dt = ds.Tables["data"];
+        cnn.Close();
         return dt;
     }
 
     //get largest ID of a identity column in a table
     internal int getTopID(string table)
     {
+        cnn.Open();
         string sql = @"select IDENT_CURRENT('" + table + "')";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
         da.Fill(ds, "data");
         DataTable dt = ds.Tables["data"];
+        cnn.Close();
         return int.Parse(dt.Rows[0][0].ToString());
     }
 
     //Update a table
     internal void updateTable(string table, string condition)
     {
+        cnn.Open();
         string sql = @"update " + table + " set " + condition + ";";
         SqlCommand command = new SqlCommand(sql, cnn);
         command.ExecuteNonQuery();
+        cnn.Close();
     }
 
     //Set a DropDownList Item List
     internal void SetItemList(string column, string table, DropDownList ddl, string condition, Boolean addItem, string Item)
     {
+        cnn.Open();
         ddl.Items.Clear();
         string sql = @"SELECT distinct " + column + " FROM " + table + condition;
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
@@ -112,6 +127,7 @@ public class CommonFunction
                 ddl.Items.Add("NULL");
             }
         }
+        cnn.Close();
     }
 
     //Return string to update or insert to db
@@ -128,7 +144,7 @@ public class CommonFunction
             else if (str.GetType() == typeof(string)) {
                 if (str.ToString().Trim() != "")
                 {
-                    str = "N'" + str + "'";
+                    str = "N'" + str.ToString().Replace("'","''") + "'";
                 }
                 else {
                     str = "NULL";
@@ -155,8 +171,9 @@ public class CommonFunction
         return sb.ToString();
     }
     //Bind data to a gridview
-    internal void bindData(string column, string condition, string table, GridView GridView1)
+    internal DataTable bindData(string column, string condition, string table, GridView GridView1)
     {
+        cnn.Open();
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
@@ -164,6 +181,8 @@ public class CommonFunction
         DataTable dt = ds.Tables["data"];
         GridView1.DataSource = dt;
         GridView1.DataBind();
+        cnn.Close();
+        return dt;
     }
     //Get country list to bind to DropDownList
     internal List<string> getCountryList()
@@ -199,8 +218,9 @@ public class CommonFunction
         smt.Send(msg);
     }
     //Bind data to a gridview with a blank column
-    internal void bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
+    internal DataTable bindDataBlankColumn(string column, string condition, string table, GridView GridView1, int noOfBlankColumn, string[] ColumnTitle)
     {
+        cnn.Open();
         string sql = @"SELECT " + column + " from " + table + condition + ";";
         SqlDataAdapter da = new SqlDataAdapter(sql, cnn);
         DataSet ds = new DataSet();
@@ -213,42 +233,88 @@ public class CommonFunction
         }
         GridView1.DataSource = dt;
         GridView1.DataBind();
+        cnn.Close();
+        return dt;
     }
-    internal List<string> GetLatLng(string address)
+    /*internal void ExportToExcel(string sql, string fileName, string server, int fromIndex)
     {
-        var requestUri = string.Format("http://maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=true", Uri.EscapeDataString(address));
-        var request = WebRequest.Create(requestUri);
-        var response = request.GetResponse();
-        var xdoc = XDocument.Load(response.GetResponseStream());
-        var latLngArray = new List<string>();
-        var xElement = xdoc.Element("GeocodeResponse");
-        if (xElement != null)
+        using (SqlCommand cmd = new SqlCommand())
         {
-            var result = xElement.Element("result");
-            if (result != null)
-            {
-                var element = result.Element("geometry");
-                if (element != null)
-                {
-                    var locationElement = element.Element("location");
-                    if (locationElement != null)
-                    {
-                        var xElement1 = locationElement.Element("lat");
-                        if (xElement1 != null)
-                        {
-                            var lat = xElement1.Value;
-                            latLngArray.Add(lat);
-                        }
-                        var element1 = locationElement.Element("lng");
-                        if (element1 != null)
-                        {
-                            var lng = element1.Value;
-                            latLngArray.Add(lng);
-                        }
-                    }
-                }
-            }
+            cmd.CommandText = "spExportData";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = cnn;
+            cmd.CommandTimeout = 0;
+            SqlParameter parm = new SqlParameter("@sql", SqlDbType.VarChar);
+            parm.Value = sql;
+            SqlParameter parm1 = new SqlParameter("@fullFileName", SqlDbType.VarChar);
+            parm1.Value = fileName;
+            SqlParameter parm2 = new SqlParameter("@CurrentServer", SqlDbType.VarChar);
+            parm2.Value = server;
+            SqlParameter parm3 = new SqlParameter("@dbName", SqlDbType.VarChar);
+            parm3.Value = "DavidDucHotel";
+            SqlParameter parm4 = new SqlParameter("@fromIndex", SqlDbType.Int);
+            parm4.Value = fromIndex;
+            cmd.Parameters.Add(parm);
+            cmd.Parameters.Add(parm1);
+            cmd.Parameters.Add(parm2);
+            cmd.Parameters.Add(parm3);
+            cmd.Parameters.Add(parm4);
+            cmd.ExecuteNonQuery();
         }
-        return latLngArray;
+    }*/
+    internal void ExportToExcel(DataTable table, GridView GridView_Result, string fileName, HttpResponse Response)
+    {
+        //Create a dummy GridView
+        GridView GridView1 = new GridView();
+        GridView1.AllowPaging = false;
+        GridView1.DataSource = table;
+        GridView1.DataBind();
+
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition",
+         "attachment;filename="+fileName);
+        Response.Charset = "UTF-8";
+        Response.ContentEncoding = Encoding.UTF8;
+        Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+        Response.ContentType = "application/vnd.ms-excel";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            //Apply text style to each Row
+            GridView1.Rows[i].Attributes.Add("class", "textmode");
+        }
+        GridView1.RenderControl(hw);
+
+        //style to format numbers to string
+        string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+        Response.Write(style);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
+    }
+    internal void ExportToWord(DataTable dt, HttpResponse Response, string fileName)
+    {
+        //Create a dummy GridView
+        GridView GridView1 = new GridView();
+        GridView1.AllowPaging = false;
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename="+fileName);
+        Response.Charset = "UTF-8";
+        Response.ContentEncoding = Encoding.UTF8;
+        Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+        Response.ContentType = "application/vnd.ms-word ";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        GridView1.RenderControl(hw);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.IO;
 
 namespace HotelManagement
 {
@@ -13,26 +14,33 @@ namespace HotelManagement
         CommonFunction com = new CommonFunction();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["MenuID"] = "6";
-            lblError.Text = "";
-            lblSuccess.Text = "";
-            Page.Header.Title = "Contacts";
-            if (Session["UserLevel"] != null)
+            try
             {
-                if (Session["UserLevel"].ToString() == "1") { }
+                Session["MenuID"] = "6";
+                lblError.Text = "";
+                lblSuccess.Text = "";
+                Page.Header.Title = "Contacts";
+                if (Session["UserLevel"] != null)
+                {
+                    if (Session["UserLevel"].ToString() == "1") { }
+                    else
+                    {
+                        btnEdit.Visible = true;
+                    }
+                }
                 else
                 {
-                    btnEdit.Visible = true;
+                    btnEdit.Visible = false;
+                }
+                DataTable dt = com.getData(Message.Stuff, "*", " where " + Message.StuffID + "=7");
+                if (dt.Rows.Count > 0)
+                {
+                    NewsContent.Text = dt.Rows[0][1].ToString();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                btnEdit.Visible = false;
-            }
-            DataTable dt = com.getData(Message.Stuff, "*", " where " + Message.StuffID + "=7");
-            if (dt.Rows.Count > 0)
-            {
-                NewsContent.Text = dt.Rows[0][1].ToString();
+                if(!ex.Message.Contains("Thread was being aborted")){if (File.Exists(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt")){string content = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt");content = content + "|" + ex.Message;File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", content);}else {File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", ex.Message);}}
             }
         }
 
@@ -51,39 +59,56 @@ namespace HotelManagement
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Class.Stuff newStuff = new Class.Stuff(7);
-            newStuff.StuffContent = CKEditor1.Text;
-            newStuff.UpdateStuff();
-            NewsContent.Text = newStuff.StuffContent;
-            pnlNew.Visible = true;
-            pnlEdit.Visible = false;
+            try
+            {
+                Class.Stuff newStuff = new Class.Stuff(7);
+                newStuff.StuffContent = CKEditor1.Text;
+                newStuff.UpdateStuff();
+                NewsContent.Text = newStuff.StuffContent;
+                pnlNew.Visible = true;
+                pnlEdit.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                if(!ex.Message.Contains("Thread was being aborted")){if (File.Exists(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt")){string content = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt");content = content + "|" + ex.Message;File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", content);}else {File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", ex.Message);}}
+            }
         }
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            if (txtEmail.Text.Trim() == "" || txtMessage.Text.Trim() == "" || txtName.Text.Trim() == "" || txtSubject.Text.Trim() == "")
+            try
             {
-                lblError.Text = "Please enter your name, email, subject and content of email!";
-            }
-            else {
-                if (!txtEmail.Text.Contains("@"))
+                if (txtEmail.Text.Trim() == "" || txtMessage.Text.Trim() == "" || txtName.Text.Trim() == "" || txtSubject.Text.Trim() == "")
                 {
-                    lblError.Text = "The email you have enter may be not correct, please re-enter!";
+                    lblError.Text = "Please enter your name, email, subject and content of email!";
                 }
-                else {
-                    DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
-                   + ">=3");
-                    for (int i = 0; i < email.Rows.Count; i++)
+                else
+                {
+                    if (!txtEmail.Text.Contains("@"))
                     {
-                        com.SendMail(email.Rows[i][0].ToString(), txtSubject.Text+" from "+txtName.Text
-                            +"/"+txtEmail.Text, txtMessage.Text);
+                        lblError.Text = "The email you have enter may be not correct, please re-enter!";
                     }
-                    if (chkEmail.Checked == true) {
-                        com.SendMail(txtEmail.Text, txtSubject.Text + " from " + txtName.Text
-                            + "/" + txtEmail.Text, txtMessage.Text);
+                    else
+                    {
+                        DataTable email = com.getData(Message.UserAccountTable, Message.Email, " where " + Message.UserLevel
+                       + ">=3");
+                        for (int i = 0; i < email.Rows.Count; i++)
+                        {
+                            com.SendMail(email.Rows[i][0].ToString(), txtSubject.Text + " from " + txtName.Text
+                                + "/" + txtEmail.Text, txtMessage.Text);
+                        }
+                        if (chkEmail.Checked == true)
+                        {
+                            com.SendMail(txtEmail.Text, txtSubject.Text + " from " + txtName.Text
+                                + "/" + txtEmail.Text, txtMessage.Text);
+                        }
+                        lblSuccess.Text = "Thành công";
                     }
-                    lblSuccess.Text = "Success";
                 }
+            }
+            catch (Exception ex)
+            {
+                if(!ex.Message.Contains("Thread was being aborted")){if (File.Exists(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt")){string content = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt");content = content + "|" + ex.Message;File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", content);}else {File.WriteAllText(HttpContext.Current.Server.MapPath("~/Images/") + @"/Log.txt", ex.Message);}}
             }
         }
     }

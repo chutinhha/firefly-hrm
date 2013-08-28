@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="ListFurniture.aspx.cs" Inherits="HotelManagement.ListFurniture" %>
-
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -40,22 +40,32 @@
     </script>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <br />
+    <div class="sitemap">
+                <ul>
+                    <li class="home"><a href="Home.aspx">Trang chủ</a></li>
+                    <li ><a href="ListFurniture.aspx">Vật tư</a></li>
+                    <li class="current"><a href="ListFurniture.aspx">Danh sách vật tư</a></li>
+                </ul>
+            </div>
+     
     <asp:Panel ID="pnlAdd" runat="server" Visible="False">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <br />
-                <asp:Label ID="lblName" Style="font-weight: bold;" runat="server" Text="Name of Furniture"
+                    
+                <asp:Label ID="lblName" Style="font-weight: bold;" runat="server" Text="Tên vật tư"
                     Width="150"></asp:Label>
                 <asp:TextBox ID="txtName" runat="server" Width="200"></asp:TextBox>&nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblType" Style="font-weight: bold;" runat="server" Text="Type" Width="150px"></asp:Label>
+                <asp:Label ID="lblType" Style="font-weight: bold;" runat="server" Text="Kiểu vật tư" Width="150px"></asp:Label>
                 <asp:DropDownList ID="ddlType" runat="server" Width="215px">
                 </asp:DropDownList>
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblBuilding" Style="font-weight: bold;" runat="server" Text="Building"
+                <asp:Label ID="lblBuilding" Style="font-weight: bold;" runat="server" Text="Tòa nhà"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlBuilding" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlBuilding_SelectedIndexChanged">
@@ -63,18 +73,18 @@
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblRoom" Style="font-weight: bold;" runat="server" Text="Room" Width="150"></asp:Label>
+                <asp:Label ID="lblRoom" Style="font-weight: bold;" runat="server" Text="Phòng" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlRoom" runat="server" Width="215">
                 </asp:DropDownList>
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblPrice" Style="font-weight: bold;" runat="server" Text="Price" Width="150"></asp:Label>
-                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <asp:Label ID="lblPrice" Style="font-weight: bold;" runat="server" Text="Giá thành" Width="150"></asp:Label>
+                <asp:TextBox ID="txtPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>&nbsp;USD
                 &nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblMade" Style="font-weight: bold;" runat="server" Text="Made In"
+                <asp:Label ID="lblMade" Style="font-weight: bold;" runat="server" Text="Xuất từ"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlCountry" runat="server" Width="215">
                 </asp:DropDownList>
@@ -82,36 +92,37 @@
                 <br />
             </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:Label ID="lblStart" Style="font-weight: bold;" runat="server" Text="Start Warranty"
+        <asp:Label ID="lblStart" Style="font-weight: bold;" runat="server" Text="Bắt đầu BH"
             Width="150"></asp:Label>
         <input type="text" id="txtStart" style="width: 200px;" name="txtStart" value="<%=this.startDate %>" />
         <br />
         <br />
-        <asp:Label ID="lblEnd" Style="font-weight: bold;" runat="server" Text="End Warranty"
+        <asp:Label ID="lblEnd" Style="font-weight: bold;" runat="server" Text="Kết thúc BH"
             Width="150"></asp:Label>
         <input type="text" id="txtEnd" style="width: 200px;" name="txtEnd" value="<%=this.endDate %>" />
         <br />
         <br />
         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
             <ContentTemplate>
-                <asp:Label ID="lblPicture" Style="font-weight: bold;" runat="server" Text="Picture"
+                <asp:Label ID="lblPicture" Style="font-weight: bold;" runat="server" Text="Ảnh"
                     Width="150"></asp:Label>
                 <asp:FileUpload ID="fulPicture" runat="server" />
                 <br />
                 <br />
-                <asp:Label ID="lblDes" Style="font-weight: bold;" runat="server" Text="Description"></asp:Label>
+                <asp:Label ID="lblDes" Style="font-weight: bold;" runat="server" Text="Mô tả"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:TextBox ID="txtDes" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                <ckeditor:ckeditorcontrol id="txtDes" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                 <br />
-                <span style="color: Red">(*): Required</span>
+                <span style="color: Red">(*): Bắt buộc</span>
                 <br />
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:Button ID="btnSave" runat="server" Text="Save" OnClientClick="return ConfirmOnSave();"
+                <asp:Button ID="btnSave" runat="server" Text="Lưu" OnClientClick="return ConfirmOnSave();"
                     Width="80px" OnClick="btnSave_Click" />
                 <asp:Button ID="btnReset" runat="server" Text="Reset" Width="80px" OnClick="btnReset_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Hủy" Width="80px" OnClick="btnCancel_Click" />
                 <br />
                 <br />
             </ContentTemplate>
@@ -124,62 +135,69 @@
         <ContentTemplate>
             <asp:Panel ID="pnlList" runat="server" CssClass="table">
                 <br />
-                <asp:Label ID="lblChooseBuilding" Style="font-weight: bold;" runat="server" Text="Building"
+                <asp:Label ID="lblChooseBuilding" Style="font-weight: bold;" runat="server" Text="Tòa nhà"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseBuilding" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlChooseBuilding_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblChooseRoom" Style="font-weight: bold;" runat="server" Text="Room"
+                <asp:Label ID="lblChooseRoom" Style="font-weight: bold;" runat="server" Text="Phòng"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseRoom" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlChooseRoom_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblChooseType" Style="font-weight: bold;" runat="server" Text="Type"
+                <asp:Label ID="lblChooseType" Style="font-weight: bold;" runat="server" Text="Kiểu vật tư"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseType" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlChooseType_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblInWarraty" Style="font-weight: bold;" runat="server" Text="In Warranty Time"
+                <asp:Label ID="lblInWarraty" Style="font-weight: bold;" runat="server" Text="Trong thời gian BH"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlInWarraty" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlInWarraty_SelectedIndexChanged">
-                    <asp:ListItem Selected="True">All</asp:ListItem>
-                    <asp:ListItem>Yes</asp:ListItem>
-                    <asp:ListItem>No</asp:ListItem>
+                    <asp:ListItem Selected="True">Tất cả</asp:ListItem>
+                    <asp:ListItem>Có</asp:ListItem>
+                    <asp:ListItem>Không</asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblPosition" Style="font-weight: bold;" runat="server" Text="Position"
+                <asp:Label ID="lblPosition" Style="font-weight: bold;" runat="server" Text="Vị trí"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlPosition" runat="server" Width="215" AutoPostBack="True"
                     OnSelectedIndexChanged="ddlPosition_SelectedIndexChanged">
-                    <asp:ListItem Selected="True">All</asp:ListItem>
-                    <asp:ListItem>In Room</asp:ListItem>
-                    <asp:ListItem>In Warehouse</asp:ListItem>
+                    <asp:ListItem Selected="True">Tất cả</asp:ListItem>
+                    <asp:ListItem>Trong phòng cho thuê</asp:ListItem>
+                    <asp:ListItem>Trong kho</asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Button ID="btnAdd" runat="server" Text="Add" Width="80" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnDelete" runat="server" Text="Remove" Width="80" OnClick="btnDelete_Click" />
-                <asp:Button ID="btnMove" runat="server" Text="Move" Width="80" OnClick="btnMove_Click" />
-                <asp:Button ID="btnRequest" runat="server" Text="Request Furniture" 
+                <asp:Label ID="lblCustomer" Style="font-weight: bold;" runat="server" Text="Khách hàng"
+                    Width="150"></asp:Label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" Width="215" AutoPostBack="True"
+                    OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged">
+                </asp:DropDownList>
+                <br /><br />
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm" Width="80" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnDelete" runat="server" Text="Xóa" Width="80" OnClick="btnDelete_Click" />
+                <asp:Button ID="btnMove" runat="server" Text="Di chuyển" Width="80" OnClick="btnMove_Click" />
+                <asp:Button ID="btnRequest" runat="server" Text="Yêu cầu vật tư" 
                     Width="120px" onclick="btnRequest_Click"/>
                 <br />
                 <asp:Panel ID="Panel1" runat="server">
                 
                 <br />
                 <asp:LinkButton ID="lblCategory" runat="server" style="color:Blue;" 
-                    onclick="lblCategory_Click">Hide Category Statistic</asp:LinkButton>
+                    onclick="lblCategory_Click">Ẩn thống kê vật tư</asp:LinkButton>
                 <br /><br />
-                <asp:GridView ID="grdCategory" Width="100%" runat="server" Visible="False">
+                <asp:GridView ID="grdCategory" OnRowDataBound="grdCategory_RowDataBound" Width="100%" runat="server" Visible="False">
                 </asp:GridView>
-                
+                <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport1" runat="server" 
+                    Width="45px" onclick="btnExport1_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
                 
                 </asp:Panel>
                 <br />
@@ -200,47 +218,52 @@
                     </asp:GridView>
                 </div>
                 <br />
+                <asp:ImageButton ImageUrl="Images/export_excel.jpg" ID="btnExport" runat="server" 
+                    Width="45px" onclick="btnExport_Click" ToolTip="Click để xuất toàn bộ dữ liệu ra excel" />
+                    <br /><br />
                 <asp:Panel ID="pnlMove" runat="server" Visible="False">
-                    <asp:Label ID="lblTargetBuilding" Style="font-weight: bold;" runat="server" Text="Target Building"
+                    <asp:Label ID="lblTargetBuilding" Style="font-weight: bold;" runat="server" Text="Tòa nhà đích"
                         Width="150px"></asp:Label>
                     <asp:DropDownList ID="ddlTargetBuilding" runat="server" Width="215px" AutoPostBack="True"
                         OnSelectedIndexChanged="ddlTargetBuilding_SelectedIndexChanged">
                     </asp:DropDownList>
                     <br />
                     <br />
-                    <asp:Label ID="lblTargetRoom" Style="font-weight: bold;" runat="server" Text="Target Room"
+                    <asp:Label ID="lblTargetRoom" Style="font-weight: bold;" runat="server" Text="Phòng đích"
                         Width="150px"></asp:Label>
                     <asp:DropDownList ID="ddlTargetRoom" runat="server" Width="215px">
                     </asp:DropDownList>
                     <br />
                     <br />
-                    <asp:Label ID="lblMoveReason" Style="font-weight: bold;" runat="server" Text="Reason for moving"
+                    <asp:Label ID="lblMoveReason" Style="font-weight: bold;" runat="server" Text="Lý do chuyển"
                         Width="150px"></asp:Label>
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtMoveReason" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                    <ckeditor:ckeditorcontrol id="txtMoveReason" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                     <br />
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:Button ID="btnConfirmMove" runat="server" Text="Send Request Email" Width="150px"
+                    <asp:Button ID="btnConfirmMove" runat="server" Text="Gửi Email Yêu Cầu" Width="150px"
                         OnClick="btnConfirmMove_Click" />
-                    <asp:Button ID="btnMoveCancel" runat="server" Text="Cancel" OnClick="btnMoveCancel_Click"
+                    <asp:Button ID="btnMoveCancel" runat="server" Text="Hủy" OnClick="btnMoveCancel_Click"
                         Width="80px" />
                     <br />
                     <br />
                 </asp:Panel>
                 <asp:Panel ID="pnlDelete" runat="server" Visible="False">
-                    <asp:Label ID="lblReason" Style="font-weight: bold;" runat="server" Text="Reason for delete"
+                    <asp:Label ID="lblReason" Style="font-weight: bold;" runat="server" Text="Lý do xóa"
                         Width="150px"></asp:Label>
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtReason" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                    <ckeditor:ckeditorcontrol id="txtReason" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                     <br />
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:Button ID="btnConfirmDelete" runat="server" Text="Send Request Email" Width="150px"
+                    <asp:Button ID="btnConfirmDelete" runat="server" Text="Gửi Email Yêu Cầu" Width="150px"
                         OnClick="btnConfirmDelete_Click" />
-                    <asp:Button ID="btnConfirmCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnConfirmCancel_Click" />
+                    <asp:Button ID="btnConfirmCancel" runat="server" Text="Hủy" Width="80px" OnClick="btnConfirmCancel_Click" />
                     <br />
                     <br />
                 </asp:Panel>
@@ -249,14 +272,15 @@
                         Width="150px"></asp:Label>
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                    <ckeditor:ckeditorcontrol id="txtComment" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                     <br />
                     <br />
                     <span style="padding-left: 155px;"></span>
-                    <asp:Button ID="btnRequestFurniture" runat="server" Text="Send Request Email" 
+                    <asp:Button ID="btnRequestFurniture" runat="server" Text="Gửi Email Yêu Cầu" 
                         Width="150px" onclick="btnRequestFurniture_Click"
                         />
-                    <asp:Button ID="btnRequestCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnConfirmCancel_Click" />
+                    <asp:Button ID="btnRequestCancel" runat="server" Text="Hủy" Width="80px" OnClick="btnConfirmCancel_Click" />
                     <br />
                     <br />
                 </asp:Panel>
@@ -266,32 +290,34 @@
             <asp:PostBackTrigger ControlID="btnSave" />
             <asp:PostBackTrigger ControlID="btnAdd" />
             <asp:PostBackTrigger ControlID="btnEditSave" />
+            <asp:PostBackTrigger ControlID="btnExport" />
+            <asp:PostBackTrigger ControlID="btnExport1" />
         </Triggers>
     </asp:UpdatePanel>
     <asp:Panel ID="pnlEdit" runat="server" Visible="False">
         <asp:UpdatePanel ID="UpdatePanel4" runat="server">
             <ContentTemplate>
                 <br />
-                <asp:Label ID="lblEditName" Style="font-weight: bold;" runat="server" Text="Name of Furniture"
+                <asp:Label ID="lblEditName" Style="font-weight: bold;" runat="server" Text="Tên vật tư"
                     Width="150"></asp:Label>
                 <asp:TextBox ID="txtEditName" runat="server" Width="200"></asp:TextBox>&nbsp;<span
                     style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblEditPrice" Style="font-weight: bold;" runat="server" Text="Price"
+                <asp:Label ID="lblEditPrice" Style="font-weight: bold;" runat="server" Text="Giá thành"
                     Width="150"></asp:Label>
-                <asp:TextBox ID="txtEditPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>
+                <asp:TextBox ID="txtEditPrice" onkeyup="ValidateText(this);" runat="server" Width="200"></asp:TextBox>&nbsp;USD&nbsp;<span style="color: Red">(*)</span>
                 <br />
                 <br />
-                <asp:Label ID="lblStatus" Style="font-weight: bold;" runat="server" Text="Status"
+                <asp:Label ID="lblStatus" Style="font-weight: bold;" runat="server" Text="Trạng thái"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlStatus" runat="server" Width="215px">
-                    <asp:ListItem Selected="True">Normal</asp:ListItem>
-                    <asp:ListItem>Broke</asp:ListItem>
+                    <asp:ListItem Selected="True">Bình thường</asp:ListItem>
+                    <asp:ListItem>Hỏng</asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 <br />
-                <asp:Label ID="lblEditMade" Style="font-weight: bold;" runat="server" Text="Made In"
+                <asp:Label ID="lblEditMade" Style="font-weight: bold;" runat="server" Text="Xuất xứ"
                     Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlEditCountry" runat="server" Width="215">
                 </asp:DropDownList>
@@ -299,17 +325,17 @@
                 <br />
             </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:Label ID="lblEditStart" Style="font-weight: bold;" runat="server" Text="Start Warranty"
+        <asp:Label ID="lblEditStart" Style="font-weight: bold;" runat="server" Text="Bắt đầu BH"
             Width="150"></asp:Label>
         <input type="text" id="txtEditStart" style="width: 200px;" name="txtEditStart" value="<%=this.startDate %>" />
         <br />
         <br />
-        <asp:Label ID="lblEditEnd" Style="font-weight: bold;" runat="server" Text="End Warranty"
+        <asp:Label ID="lblEditEnd" Style="font-weight: bold;" runat="server" Text="Kết thúc BH"
             Width="150"></asp:Label>
         <input type="text" id="txtEditEnd" style="width: 200px;" name="txtEditEnd" value="<%=this.endDate %>" />
         <br />
         <br />
-        <asp:Label ID="lblEditPicture" Style="font-weight: bold;" runat="server" Text="Picture"
+        <asp:Label ID="lblEditPicture" Style="font-weight: bold;" runat="server" Text="Ảnh"
             Width="150"></asp:Label>
         <asp:FileUpload ID="fulEditPicture" runat="server" />
         <asp:Image ID="imgPicture" Width="50px" runat="server" />
@@ -317,17 +343,18 @@
             <ContentTemplate>
                 <br />
                 <br />
-                <asp:Label ID="lblEditDes" Style="font-weight: bold;" runat="server" Text="Description"></asp:Label>
+                <asp:Label ID="lblEditDes" Style="font-weight: bold;" runat="server" Text="Mô tả"></asp:Label>
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:TextBox ID="txtEditDes" runat="server" TextMode="MultiLine" Width="500" Height="100"></asp:TextBox>
+                <ckeditor:ckeditorcontrol id="txtEditDes" basepath="/ckeditor/" runat="server">
+    </ckeditor:ckeditorcontrol>
                 <br />
                 <br />
                 <span style="padding-left: 155px;"></span>
-                <asp:Button ID="btnEditSave" runat="server" Text="Save" OnClientClick="return ConfirmOnSave();"
+                <asp:Button ID="btnEditSave" runat="server" Text="Lưu" OnClientClick="return ConfirmOnSave();"
                     Width="80px" OnClick="btnEditSave_Click" />
                 <asp:Button ID="btnEditReset" runat="server" Text="Reset" Width="80px" OnClick="btnEditReset_Click" />
-                <asp:Button ID="btnEditCancel" runat="server" Text="Cancel" Width="80px" OnClick="btnEditCancel_Click" />
+                <asp:Button ID="btnEditCancel" runat="server" Text="Hủy" Width="80px" OnClick="btnEditCancel_Click" />
                 <br />
                 <br />
             </ContentTemplate>

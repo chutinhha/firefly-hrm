@@ -27,6 +27,7 @@ namespace HotelManagement.Class
         internal string TargetRoomID;
         internal string ApproveMove;
         internal string Reason;
+        internal string CurrentCustomerID;
         internal CommonFunction com = new CommonFunction();
         public Furniture() { }
         public Furniture(string FurnitureID)
@@ -53,6 +54,7 @@ namespace HotelManagement.Class
                 TargetRoomID = NewFurniture.Rows[0][16].ToString();
                 ApproveMove = NewFurniture.Rows[0][17].ToString();
                 Reason = NewFurniture.Rows[0][18].ToString();
+                CurrentCustomerID = NewFurniture.Rows[0][19].ToString();
             }
         }
         public void AddFurniture() {
@@ -61,7 +63,7 @@ namespace HotelManagement.Class
                 +","+com.ToValue(Name)+","+com.ToValue(Status)+","+com.ToValue(MadeIn)+","
                 +com.ToValue(StartWarranty)+"," + com.ToValue(EndWarranty) + "," 
                 + com.ToValue(HandoverID) + "," + com.ToValue(CollectionID) + ","
-                + com.ToValue(NumberInCollection) + "," + com.ToValue(Picture) + "," + com.ToValue(CurrentRoom)+",NULL,NULL,NULL,NULL", false);
+                + com.ToValue(NumberInCollection) + "," + com.ToValue(Picture) + "," + com.ToValue(CurrentRoom)+",NULL,NULL,NULL,NULL,NULL", false);
             com.updateTable(Message.FurnitureTypeTable, Message.Total + "=" + Message.Total + "+1,"
                 +Message.Available+"="+Message.Available+"+1 where "+Message.FurnitureType+"="+FurType);
         }
@@ -75,7 +77,7 @@ namespace HotelManagement.Class
                 + "," + Message.HandoverID + "=" + com.ToValue(HandoverID) + "," + Message.CollectionID
                 + "=" + com.ToValue(CollectionID) + "," + Message.NumberInCollection + "=" 
                 + com.ToValue(NumberInCollection) + "," + Message.Picture + "="+com.ToValue(Picture)+","+Message.CurrentBuilding
-                +"="+com.ToValue(CurrentBuilding)+" where " 
+                + "=" + com.ToValue(CurrentBuilding) + "," + Message.CurrentCustomer + "=" + com.ToValue(CurrentCustomerID) + " where " 
                 + Message.FurnitureID + "=" + com.ToValue(FurID));
         }
         public void RemoveFurniture(int status) {
@@ -110,9 +112,9 @@ namespace HotelManagement.Class
             {
                 DataTable dt = com.getData(Message.RoomTable, Message.BuildingID, " where " + Message.RoomID
                     + "=" + TargetRoom);
-                com.updateTable(Message.Furniture,Message.CurrentRoom+"="+TargetRoom+","+ Message.TargetRoomID + "='" + TargetRoom + "'," +
+                com.updateTable(Message.Furniture,Message.CurrentRoom+"="+TargetRoom+","+ Message.TargetRoomID + "=NULL," +
                     Message.CurrentBuilding+"="+CurrentBuilding+","+
-                    Message.ApproveMove + "=NULL where " + Message.FurnitureID + "=" + FurID);
+                    Message.ApproveMove + "=NULL,"+Message.CurrentCustomer+"=NULL where " + Message.FurnitureID + "=" + FurID);
                 if (reason != "")
                 {
                     com.insertIntoTable(Message.FurnitureHistory, "", FurID + "," + CurrentBuilding + "," + CurrentRoom
