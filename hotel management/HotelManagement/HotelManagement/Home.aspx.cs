@@ -45,12 +45,24 @@ namespace HotelManagement
                     pnlNews.Controls.Add(new LiteralControl("<div class=\"articlebox\">"));
                     for (int i = 0; i < News.Rows.Count; i++)
                     {
-                        pnlNews.Controls.Add(new LiteralControl("<div class=\"articlebox_item articlebox_item_0\""
-                        + " style=\"width: 99%;\"><div class=\"articlebox_datetime\">"
-                        + DateTime.Parse(News.Rows[i][2].ToString()).ToShortDateString() + ":"
-                        + "</div><div class=\"articlebox_introtext\"><a href=\"News.aspx?ID=" + News.Rows[i][0].ToString()
-                        + "\">" + News.Rows[i][1].ToString() + ""
-                        + "</a></div></div><div style=\"clear: left;\" class=\"articlebox_row\"></div>"));
+                        TimeSpan time = DateTime.Now - DateTime.Parse(News.Rows[i][2].ToString());
+                        if (time.Days <= 30)
+                        {
+                            pnlNews.Controls.Add(new LiteralControl("<div class=\"articlebox_item articlebox_item_0\""
+                            + " style=\"width: 99%;\"><div class=\"articlebox_datetime\">"
+                            + DateTime.Parse(News.Rows[i][2].ToString()).ToShortDateString() + ":"
+                            + "</div><div class=\"articlebox_introtext\"><a style=\"color:#FF6600;font-weight:bold\" href=\"News.aspx?ID=" + News.Rows[i][0].ToString()
+                            + "\"><img style=\"display:inline\" src=\"Images/hotnews.gif\">&nbsp;" + News.Rows[i][1].ToString() + ""
+                            + "</a></div></div><div style=\"clear: left;\" class=\"articlebox_row\"></div>"));
+                        }
+                        else {
+                            pnlNews.Controls.Add(new LiteralControl("<div class=\"articlebox_item articlebox_item_0\""
+                            + " style=\"width: 99%;\"><div class=\"articlebox_datetime\">"
+                            + DateTime.Parse(News.Rows[i][2].ToString()).ToShortDateString() + ":"
+                            + "</div><div class=\"articlebox_introtext\"><a href=\"News.aspx?ID=" + News.Rows[i][0].ToString()
+                            + "\">" + News.Rows[i][1].ToString() + ""
+                            + "</a></div></div><div style=\"clear: left;\" class=\"articlebox_row\"></div>"));
+                        }
                     }
                     pnlNews.Controls.Add(new LiteralControl("<div class=\"articlebox_category\">"
                         + "<a href=\"News.aspx\">Read more</a></div></div>"));

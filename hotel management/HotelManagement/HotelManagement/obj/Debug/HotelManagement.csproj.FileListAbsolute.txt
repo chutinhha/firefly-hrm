@@ -32,3 +32,25 @@ C:\Users\Do\Desktop\New folder\obj\Debug\Interop.WindowsInstaller.dll
 C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.csproj.ResolveComReference.cache
 C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.dll
 C:\Users\Do\Desktop\New folder\obj\Debug\HotelManagement.pdb
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\AjaxControlToolkit.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\AjaxMin.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\Microsoft.WindowsAzure.Storage.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\HtmlAgilityPack.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\AjaxControlToolkit.pdb
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\Microsoft.WindowsAzure.Storage.xml
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\ar\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\cs\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\de\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\es\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\fr\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\he\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\hi\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\it\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\ja\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\ko\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\nl\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\pt\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\ru\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\tr-TR\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\zh-CHS\AjaxControlToolkit.resources.dll
+D:\Do An\firefly-hrm\hotel management\HotelManagement\HotelManagement\bin\zh-CHT\AjaxControlToolkit.resources.dll

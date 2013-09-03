@@ -3,6 +3,7 @@
 <%@ Register Assembly="FlashUpload" Namespace="FlashUpload" 
 	TagPrefix="FlashUpload" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -46,8 +47,6 @@
             }
         }
     </script>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <br />
@@ -181,7 +180,7 @@
                 <br />
                 <asp:Label ID="lblChooseType" style="font-weight:bold;" runat="server" Text="Kiểu nhà" Width="150"></asp:Label>
                 <asp:DropDownList ID="ddlChooseType" runat="server" Width="215" 
-                    AutoPostBack="True" onselectedindexchanged="ddlChooseType_SelectedIndexChanged">
+                    AutoPostBack=true onselectedindexchanged="ddlChooseType_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
                 <br />

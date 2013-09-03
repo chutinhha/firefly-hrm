@@ -37,52 +37,86 @@ namespace HotelManagement
                 {
                     Class.Building currentBuilding = new Class.Building(BuildingID);
                     pnlContent.Controls.Add(new LiteralControl("<br><div class=\"componentheading\">"
-                        + currentBuilding.Address + "</div><div class=\"table\">"));
-                    string[] pictures = currentBuilding.Picture.Split('|');
-                    pnlContent.Controls.Add(new LiteralControl("<table width=\"100%\"><tr><td width=\"65%\" style=\"border:none;\">"));
-                    for (int i = 0; i < pictures.Length; i++)
+                        + currentBuilding.Address + "</div><hr><div class=\"table\">"));
+                    //string[] pictures = currentBuilding.Picture.Split('|');
+                    //pnlContent.Controls.Add(new LiteralControl("<table width=\"100%\"><tr><td width=\"65%\" style=\"border:none;\">"));
+                    //for (int i = 0; i < pictures.Length; i++)
+                    //{
+                    //    if (pictures[i].Trim() != "")
+                    //    {
+                    //        pnlContent.Controls.Add(new LiteralControl("<img width=\"95%\" src=Images/" + pictures[i] + ">"));
+                    //    }
+                    //}
+                    //if (pictures.Length == 1 && pictures[0].Trim() == "")
+                    //{
+                    //    pnlContent.Controls.Add(new LiteralControl("<img width=\"300px\" src=\"/Images/noimage.jpg\">"));
+                    //}
+
+                    DataTable AllRoom = com.getData(Message.RoomTable, "*", " where " + Message.BuildingID
+                        + "="+currentBuilding.BID+" and Status<>3 and IsWareHouse=0");
+                    if (AllRoom.Rows.Count > 0)
                     {
-                        if (pictures[i].Trim() != "")
+                        pnlContent.Controls.Add(new LiteralControl("<table>"));
+                        for (int i = 0; i < AllRoom.Rows.Count; i++)
                         {
-                            pnlContent.Controls.Add(new LiteralControl("<img width=\"95%\" src=Images/" + pictures[i] + ">"));
+                            if (AllRoom.Rows[i][12].ToString() != "")
+                            {
+                                string[] imageLink = AllRoom.Rows[i][12].ToString().Split('|');
+                                pnlContent.Controls.Add(new LiteralControl("<tr><td style=\"width:45%;vertical-align:top;border:none;\"><a href=\"Room.aspx?ID="
+                                    + AllRoom.Rows[i][0].ToString() + "\"><img width=\"300px;\" src=\"Images/" + imageLink[0] + "\"></a></td>"));
+                            }
+                            else
+                            {
+                                pnlContent.Controls.Add(new LiteralControl("<tr><td style=\"width:45%;vertical-align:top;border:none;\"><a href=\"Room.aspx?ID="
+                                    + AllRoom.Rows[i][0].ToString() + "\"><img width=\"300px;\" src=\"/Images/noimage.jpg\"></a></td>"));
+
+                            }
+                            pnlContent.Controls.Add(new LiteralControl("<td style=\"padding-left:1%;vertical-align: top;border:none;\"><a style=\"color:#1D8A0D;font-size:14pt;\" href=\"Room.aspx?ID="
+                                + AllRoom.Rows[i][0].ToString() + "\">Room " + AllRoom.Rows[i][5].ToString() + "</a><br><br>"));
+
+                            Class.Room currentRoom = new Class.Room(AllRoom.Rows[i][0].ToString());
+                            pnlContent.Controls.Add(new LiteralControl("<table style=\"font-weight:normal;width:50%;\">"));
+                            pnlContent.Controls.Add(new LiteralControl("<tr><td style=\"border:none\">Available:</td><td style=\"border:none\">" + currentRoom.isAvailable() + "</td></tr>"));
+                            pnlContent.Controls.Add(new LiteralControl("<tr><td style=\"border:none\">Price:</td><td style=\"border:none\">" + currentRoom.Price + "$</td></tr>"));
+                            pnlContent.Controls.Add(new LiteralControl("<tr><td style=\"border:none\">Bedroom:</td><td style=\"border:none\">" + currentRoom.BedRoom + "</td></tr>"));
+                            pnlContent.Controls.Add(new LiteralControl("<tr><td style=\"border:none\">Bathroom:</td><td style=\"border:none\">" + currentRoom.BathRoom + "</td></tr></table>"));
+                            pnlContent.Controls.Add(new LiteralControl("</td></tr><tr><td colspan=\"2\" style=\"height:30px;border:none;\"></td></tr>"));
                         }
+                        pnlContent.Controls.Add(new LiteralControl("</table>"));
                     }
-                    if (pictures.Length == 1 && pictures[0].Trim() == "")
-                    {
-                        pnlContent.Controls.Add(new LiteralControl("<img width=\"300px\" src=\"/Images/noimage.jpg\">"));
-                    }
-                    pnlContent.Controls.Add(new LiteralControl("</td><td style=\"vertical-align:top;border:none;\"><table cellspacing=\"0\" cellpadding=\"0\" style=\"border:1px solid #ccc;width:100%\"><tr>"));
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Type</td><td>" + currentBuilding.GetBuildingType() + "</td></tr><tr>"));
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Available</td><td>" + currentBuilding.isAvailable() + "</td></tr><tr>"));
-                    if (currentBuilding.Price != "" && currentBuilding.Price != "0")
-                    {
-                        pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Price</td><td>" + currentBuilding.Price + "$</td></tr><tr>"));
-                    }
-                    else
-                    {
-                        pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Price</td><td>Negotiate</td></tr><tr>"));
-                    }
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Garage</td><td>" + currentBuilding.haveGarage() + "</td></tr><tr>"));
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Pool</td><td>" + currentBuilding.havePool() + "</td></tr><tr>"));
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Garden</td><td>" + currentBuilding.haveGarden() + "</td></tr><tr>"));
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Bedroom</td><td>" + currentBuilding.BedRoom + "</td></tr><tr>"));
-                    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Bathroom</td><td>" + currentBuilding.BathRoom + "</td></tr>"));
-                    if (currentBuilding.Area != "")
-                    {
-                        pnlContent.Controls.Add(new LiteralControl("<tr><td class=\"firstColumn\">Total Area</td><td>" + currentBuilding.Area + " m2</td></tr>"));
-                    }
+                    pnlContent.Controls.Add(new LiteralControl("</div>"));
+                    //pnlContent.Controls.Add(new LiteralControl("</td><td style=\"vertical-align:top;border:none;\"><table cellspacing=\"0\" cellpadding=\"0\" style=\"border:1px solid #ccc;width:100%\"><tr>"));
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Type</td><td>" + currentBuilding.GetBuildingType() + "</td></tr><tr>"));
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Available</td><td>" + currentBuilding.isAvailable() + "</td></tr><tr>"));
+                    //if (currentBuilding.Price != "" && currentBuilding.Price != "0")
+                    //{
+                    //    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Price</td><td>" + currentBuilding.Price + "$</td></tr><tr>"));
+                    //}
+                    //else
+                    //{
+                    //    pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Price</td><td>Negotiate</td></tr><tr>"));
+                    //}
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Garage</td><td>" + currentBuilding.haveGarage() + "</td></tr><tr>"));
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Pool</td><td>" + currentBuilding.havePool() + "</td></tr><tr>"));
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Garden</td><td>" + currentBuilding.haveGarden() + "</td></tr><tr>"));
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Bedroom</td><td>" + currentBuilding.BedRoom + "</td></tr><tr>"));
+                    //pnlContent.Controls.Add(new LiteralControl("<td class=\"firstColumn\">Bathroom</td><td>" + currentBuilding.BathRoom + "</td></tr>"));
+                    //if (currentBuilding.Area != "")
+                    //{
+                    //    pnlContent.Controls.Add(new LiteralControl("<tr><td class=\"firstColumn\">Total Area</td><td>" + currentBuilding.Area + " m2</td></tr>"));
+                    //}
                     string[] coor = currentBuilding.Coordinate.Split(',');
                     if (coor.Length > 1)
                     {
-                        pnlContent.Controls.Add(new LiteralControl("</table></td></tr><tr><td colspan=2><iframe width=\"100%\" height=\"350\" "
+                        pnlContent.Controls.Add(new LiteralControl("<table width=\"100%\"><tr><td colspan=2><iframe width=\"100%\" height=\"350\" "
                             + "frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" "
                             + "src=\"https://maps.google.com/maps?q=" + coor[0] + "," + coor[1] + "&amp;num=1&amp;t=h&amp;ie=UTF8&amp;z=14&amp;ll=" + coor[0] + "," + coor[1] + "&amp;output=embed\">"
                             + "</iframe><br /><small><a href=\"https://maps.google.com/maps?q=" + coor[0] + "," + coor[1] + "&amp;num=1&amp;t=h&amp;ie=UTF8&amp;z=14&amp;ll=" + coor[0] + "," + coor[1] + "&amp;source=embed\""
-                            + "style=\"color:#0000FF;text-align:left;font-size:10pt;\">See bigger map</a></small></td></tr></table></div>"));
+                            + "style=\"color:#0000FF;text-align:left;font-size:10pt;\">See bigger map</a></small></td></tr></table>"));
                     }
                     else
                     {
-                        pnlContent.Controls.Add(new LiteralControl("</table></td></tr></table></div>"));
+                        pnlContent.Controls.Add(new LiteralControl("</table></td></tr></table>"));
                     }
                     if (currentBuilding.Description != "")
                     {
@@ -113,16 +147,16 @@ namespace HotelManagement
                     btnDetail.Visible = true;
                     btnBack.Visible = true;
                     //btnChooseFur.Visible = true;
-                    Panel1.Visible = true;
-                    string[] column = new string[1];
-                    column[0] = "Details";
-                    com.bindDataBlankColumn(Message.RoomID + "," + Message.Floor + "," + Message.RoomNo + ","
-                        + Message.BedRoom + "," + Message.BathRoom + "," + Message.Area + "," + Message.Price+","+Message.Status+" as 'Available'", " where "
-                        + Message.IsWarehouse + "='0' and "
-                        + Message.BuildingID + "=" + BuildingID, Message.RoomTable, grdRoom, 1, column);
-                    if (grdRoom.Rows.Count == 0) {
-                        Panel1.Visible = false;
-                    }
+                    //Panel1.Visible = true;
+                    //string[] column = new string[1];
+                    //column[0] = "Details";
+                    //com.bindDataBlankColumn(Message.RoomID + "," + Message.Floor + "," + Message.RoomNo + ","
+                    //    + Message.BedRoom + "," + Message.BathRoom + "," + Message.Area + "," + Message.Price+","+Message.Status+" as 'Available'", " where "
+                    //    + Message.IsWarehouse + "='0' and "
+                    //    + Message.BuildingID + "=" + BuildingID, Message.RoomTable, grdRoom, 1, column);
+                    //if (grdRoom.Rows.Count == 0) {
+                    //    Panel1.Visible = false;
+                    //}
                     if (!IsPostBack)
                     {
                         pnlContent2.Visible = false;
@@ -130,7 +164,6 @@ namespace HotelManagement
                 }
                 else
                 {
-                    Panel1.Visible = false;
                     btnChooseFur.Visible = false;
                     if (Session["ListBuilding"] == null)
                     {

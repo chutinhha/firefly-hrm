@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>C:\Users\Do\Downloads\Compressed\AjaxControlToolkit.Binary.NET40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin">
+      <HintPath>C:\Users\Do\Downloads\Compressed\AjaxControlToolkit.Binary.NET40\AjaxMin.dll</HintPath>
+    </Reference>
     <Reference Include="CKEditor.NET">
       <HintPath>..\ckeditor\bin\Release\CKEditor.NET.dll</HintPath>
     </Reference>
@@ -1376,7 +1382,9 @@
     <Content Include="Styles\style_002.css" />
     <Content Include="Test.aspx" />
     <Content Include="TopSecret.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

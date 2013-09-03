@@ -1,8 +1,8 @@
 ﻿public class Message
 {
     //connection string
-    internal const string ConnectionString = @"Data Source=10.0.0.109;Initial Catalog=lebangDavidDuc;User Id=lebangsa;Password=Davidduc13";
-    //internal const string ConnectionString = @"Data Source=ANHTUNG\SQLEXPRESS;Initial Catalog=DavidDucHotel;User Id=tungda;Password=123456";
+    //internal const string ConnectionString = @"Data Source=10.0.0.109;Initial Catalog=lebangDavidDuc;User Id=lebangsa;Password=Davidduc13";
+    internal const string ConnectionString = @"Data Source=ANHTUNG\SQLEXPRESS;Initial Catalog=DavidDucHotel;User Id=tungda;Password=123456";
     internal const string ConfirmSave = "Are you sure that you want to save?";
     internal const string ConfirmDelete = "Are you sure that you want to delete?";
     internal const string ourEmail = "tungda01659@gmail.com";

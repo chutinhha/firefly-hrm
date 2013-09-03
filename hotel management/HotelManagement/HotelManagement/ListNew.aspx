@@ -26,8 +26,6 @@
             }
         }
     </script>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
     <br />
     <div class="sitemap">
                 <ul>

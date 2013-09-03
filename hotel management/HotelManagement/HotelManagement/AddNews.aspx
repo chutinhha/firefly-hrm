@@ -4,6 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
     <br>
     <div class="sitemap">
                 <ul>
@@ -23,4 +25,5 @@
         Width="80px" />
     <asp:Button ID="btnCancel" runat="server" Text="Hủy" 
         onclick="btnCancel_Click" Width="80px" /></center><br/>
+    </ContentTemplate></asp:UpdatePanel>
 </asp:Content>

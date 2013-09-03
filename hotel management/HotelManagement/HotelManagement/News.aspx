@@ -5,6 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+   <ContentTemplate>
     <br />
     <div class="sitemap">
                 <ul>
@@ -45,4 +47,5 @@
     </asp:Panel>
     <br/>
     <a href="News.aspx" style="color:Blue;">Read more News...</a>
+    <ContentTemplate></asp:UpdatePanel>
 </asp:Content>

@@ -478,6 +478,9 @@ namespace HotelManagement
                     {
                         lblError.Text = "Bạn đang điền thiếu 1 số thông tin bắt buộc!";
                     }
+                    else if (txtRoomNo.Text[0].ToString() != ddlFloor.SelectedValue) {
+                        lblError.Text = "Tên phòng ở tầng "+ddlFloor.SelectedValue+" phải được bắt đầu bằng ký tự "+ddlFloor.SelectedValue;
+                    }
                     else
                     {
                         if (btnSave.Text == "Lưu")
@@ -492,7 +495,8 @@ namespace HotelManagement
                             {
                                 newRoom = new Class.Room(Session["RID"].ToString());
                             }
-                            if (ddlCustomer.SelectedIndex != 0&&ddlCustomer.Items.Count>0) {
+                            if (ddlCustomer.SelectedIndex != 0 && ddlCustomer.Items.Count > 0)
+                            {
                                 newRoom.CurrentCustomerID = ddlCustomer.SelectedValue;
                             }
                             newRoom.Floor = ddlFloor.SelectedValue;
@@ -585,7 +589,7 @@ namespace HotelManagement
                             content = content + "Phòng số: " + txtRoomNo.Text + "<br>";
                             if (ddlCustomer.SelectedIndex > 0)
                             {
-                                content = content + "Khách hàng: "+ddlCustomer.SelectedItem.Text+"<br>";
+                                content = content + "Khách hàng: " + ddlCustomer.SelectedItem.Text + "<br>";
                             }
                             if (chkWareHouse.Checked)
                             {

@@ -19,7 +19,6 @@ namespace HotelManagement
             {
                 if (Session["UserName"] != null)
                 {
-                    Label1.Text = Session["UserName"].ToString();
                     txtPassword.Visible = false;
                     txtUser.Visible = false;
                     lbtnForget.Visible = false;
@@ -32,7 +31,6 @@ namespace HotelManagement
                 }
                 else
                 {
-                    Label1.Text = "None";
                     if (Session["CustomerID"] != null)
                     {
                         txtPassword.Visible = false;

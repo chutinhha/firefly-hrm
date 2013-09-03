@@ -3,8 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<asp:Panel ID="pnlNew" runat="server">
-    
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+    <asp:Panel ID="pnlNew" runat="server">
     <br />
     <div class="sitemap">
                 <ul>
@@ -28,4 +30,5 @@
         </center>
         <br />
     </asp:Panel>
+    </ContentTemplate></asp:UpdatePanel>
 </asp:Content>

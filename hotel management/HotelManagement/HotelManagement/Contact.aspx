@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
 <asp:Panel ID="pnlNew" runat="server">
     
     <br />
@@ -45,4 +47,5 @@
         onclick="btnSend_Click"/><br/><br/>
     <asp:Label ID="lblError" runat="server" Text="" style="color:Red;"></asp:Label><asp:Label ID="lblSuccess"
         runat="server" Text="" style="color:Green;"></asp:Label>
+    </ContentTemplate></asp:UpdatePanel>
 </asp:Content>
